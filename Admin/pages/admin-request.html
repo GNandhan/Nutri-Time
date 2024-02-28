@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Admin Request</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="../vendors/feather/feather.css">
+  <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="../images/icon-small.png" />
+</head>
+
+<body>
+  <div class="container-scroller">
+    <!-- partial:../../partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" href="admin-dashboard.html"><img src="../images/icon.png" class="mr-2" alt="logo" width="90"/></a>
+        <a class="navbar-brand brand-logo-mini" href="admin-dashboard.html"><img src="../images/icon-small.png" alt="logo" width="90"/></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="icon-menu"></span>
+        </button>
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-search d-none d-lg-block">
+            <div class="input-group">
+              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                <span class="input-group-text" id="search">
+                  <i class="icon-search"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item dropdown">
+            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+              <i class="icon-bell mx-0"></i>
+              <span class="count"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" style="border-radius: 15px;">
+              <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+              <a class="dropdown-item preview-item border-bottom">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-success">
+                    <i class="ti-info-alt mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">New Order</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    Just now
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-info">
+                    <i class="ti-user mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">New user registration</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    2 days ago
+                  </p>
+                </div>
+              </a>
+            </div>
+          </li>
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+              <img src="../images/user.jpg" alt="profile"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" style="border-radius: 15px;">
+              <a class="dropdown-item">
+                <i class="ti-power-off text-primary"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="admin-dashboard.html">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+              <i class="menu-arrow"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#raw" aria-expanded="false" aria-controls="raw">
+              <i class="icon-layout menu-icon"></i>
+              <span class="menu-title">Raw Materials</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="raw">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="admin-material.html">Add Materials</a></li>
+                <li class="nav-item"> <a class="nav-link" href="admin-viewmaterial.html">View Materials</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="admin-user.html">
+              <i class="icon-columns menu-icon"></i>
+              <span class="menu-title">User</span>
+              <i class="menu-arrow"></i>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" data-toggle="collapse" href="#program" aria-expanded="false" aria-controls="program">
+              <i class="icon-bar-graph menu-icon"></i>
+              <span class="menu-title">Programs</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="program">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="admin-program.html">Add Program</a></li>
+                <li class="nav-item"> <a class="nav-link" href="admin-request.html">View Request</a></li>
+                <li class="nav-item"> <a class="nav-link" href="admin-attendence.html">Mark Attendence</a></li>
+                <li class="nav-item"> <a class="nav-link" href="admin-viewattendence.html">View Attendence</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="admin-shake.html">
+              <i class="icon-grid-2 menu-icon"></i>
+              <span class="menu-title">Shakes</span>
+              <i class="menu-arrow"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="admin-timetable.html">
+              <i class="icon-head menu-icon"></i>
+              <span class="menu-title">Time table</span>
+              <i class="menu-arrow"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="admin-staff.html">
+              <i class="icon-ban menu-icon"></i>
+              <span class="menu-title">Staff</span>
+              <i class="menu-arrow"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="admin-message.html">
+              <i class="icon-ban menu-icon"></i>
+              <span class="menu-title">Messaging</span>
+              <i class="menu-arrow"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <!-- table view -->
+          <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Request</h4>
+                <p class="card-description">
+                 Customer request Details
+                </p>
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>User Id</th>
+                        <th>User Name</th>
+                        <th>Customer Name</th>
+                        <th>Program Name</th>
+                        <th>Program Status</th>
+                        <th>Payment Status </th>
+                        <th>Duration</th>
+                        <th>Starting Date</th>
+                        <th>Ending Date</th>
+                        <th>Total Amount</th>
+                        <th>Amount Paid</th>
+                        <th>Remaining Amount</th>
+
+                        <th>Edit</th>
+                        <th>Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="py-1">#00A001</td>
+                        <td>username 1</td>
+                        <td>Customer 1</td>
+                        <td>Fat reducer</td>
+                        <td>Processing</td>
+                        <td>Completed</td>
+                        <td>20 Days</td>
+                        <td>10/01/2024</td>
+                        <td>30/01/2024</td>
+                        <td>10,000</td>
+                        <td>10,000</td>
+                        <td>0</td>
+                        <td>
+                          <button class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
+                            <i class="ti-pencil-alt btn-icon-append"></i>
+                          </button>
+                        </td>
+                        <td>
+                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
+                            <i class="ti-trash btn-icon-prepend"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="py-1">#00A001</td>
+                        <td>username 1</td>
+                        <td>Customer 1</td>
+                        <td>Fat reducer</td>
+                        <td>Processing</td>
+                        <td>Completed</td>
+                        <td>20 Days</td>
+                        <td>10/01/2024</td>
+                        <td>30/01/2024</td>
+                        <td>10,000</td>
+                        <td>10,000</td>
+                        <td>0</td>
+                        <td>
+                          <button class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
+                            <i class="ti-pencil-alt btn-icon-append"></i>
+                          </button>
+                        </td>
+                        <td>
+                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
+                            <i class="ti-trash btn-icon-prepend"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="py-1">#00A001</td>
+                        <td>username 1</td>
+                        <td>Customer 1</td>
+                        <td>Fat reducer</td>
+                        <td>Processing</td>
+                        <td>Completed</td>
+                        <td>20 Days</td>
+                        <td>10/01/2024</td>
+                        <td>30/01/2024</td>
+                        <td>10,000</td>
+                        <td>10,000</td>
+                        <td>0</td>
+                        <td>
+                          <button class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
+                            <i class="ti-pencil-alt btn-icon-append"></i>
+                          </button>
+                        </td>
+                        <td>
+                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
+                            <i class="ti-trash btn-icon-prepend"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="py-1">#00A001</td>
+                        <td>username 1</td>
+                        <td>Customer 1</td>
+                        <td>Fat reducer</td>
+                        <td>Processing</td>
+                        <td>Completed</td>
+                        <td>20 Days</td>
+                        <td>10/01/2024</td>
+                        <td>30/01/2024</td>
+                        <td>10,000</td>
+                        <td>10,000</td>
+                        <td>0</td>
+                        <td>
+                          <button class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
+                            <i class="ti-pencil-alt btn-icon-append"></i>
+                          </button>
+                        </td>
+                        <td>
+                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
+                            <i class="ti-trash btn-icon-prepend"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="py-1">#00A001</td>
+                        <td>username 1</td>
+                        <td>Customer 1</td>
+                        <td>Fat reducer</td>
+                        <td>Processing</td>
+                        <td>Completed</td>
+                        <td>20 Days</td>
+                        <td>10/01/2024</td>
+                        <td>30/01/2024</td>
+                        <td>10,000</td>
+                        <td>10,000</td>
+                        <td>0</td>
+                        <td>
+                          <button class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
+                            <i class="ti-pencil-alt btn-icon-append"></i>
+                          </button>
+                        </td>
+                        <td>
+                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
+                            <i class="ti-trash btn-icon-prepend"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="py-1">#00A001</td>
+                        <td>username 1</td>
+                        <td>Customer 1</td>
+                        <td>Fat reducer</td>
+                        <td>Processing</td>
+                        <td>Completed</td>
+                        <td>20 Days</td>
+                        <td>10/01/2024</td>
+                        <td>30/01/2024</td>
+                        <td>10,000</td>
+                        <td>10,000</td>
+                        <td>0</td>
+                        <td>
+                          <button class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
+                            <i class="ti-pencil-alt btn-icon-append"></i>
+                          </button>
+                        </td>
+                        <td>
+                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
+                            <i class="ti-trash btn-icon-prepend"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- table view closed -->
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024.Nutri-time. All rights reserved.</span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="../vendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="../vendors/chart.js/Chart.min.js"></script>
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="../js/off-canvas.js"></script>
+  <script src="../js/hoverable-collapse.js"></script>
+  <script src="../js/template.js"></script>
+  <script src="../js/settings.js"></script>
+  <script src="../js/todolist.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="../js/chart.js"></script>
+  <!-- End custom js for this page-->
+</body>
+
+</html>

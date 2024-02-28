@@ -1,0 +1,50 @@
++===================================+
+| New Account Info                  |
++===================================+
+| Domain: nutritime.in
+| Ip: 103.163.41.45 (n)
+| HasCgi: y
+| UserName: nutritime
+| PassWord: Qf^nJfWTvlL5
+| CpanelMod: jupiter
+| HomeRoot: /home1
+| Quota: unlimited
+| NameServer1: hostbox-dns1.webhostlayer.com
+| NameServer2: hostbox-dns2.webhostlayer.com
+| NameServer3: hostbox-dns3.webhostlayer.com
+| NameServer4: 
+| Contact Email: akhil@ooly.in
+| Package: oo904ly_Ooly_Advanced
+| Feature List: default
+| Account Enhancements: None
+| Language: en
++===================================+
+
+Indian server 
+Advanced package 
+SSD
+
+SERVER DETAILS
+1 Website 
+1 GB SSD Storage 5GB Bandwidth
+ Unlimited Free SSL 
+Security
+DDos Protected Global Nameservers Malware Scanner
+Free Bonuses
+2 Email Accounts
+Softaculous App Installer
+Application Support
+Wordpress Toolkit PHP 7.2, 7.3, 7.4, 8.0, 8.1, 8.2 
+OPCache & Brotil Compressions 
+2 MySQL Database 
+2 Sub Domains Addon Domains
+Service and Support
+30 Days Money Back Guarantee 24/7 Tech Support 99,90% Uptime Guarantee
+Technical Details
+GIT Access SSH Access
+More Features
+1 GB RAM 
+1 vCPU Core
+2 Mbps IO Usage 
+200000 File Limits
+
