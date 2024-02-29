@@ -1,11 +1,18 @@
 <?php
  include './connect.php';
 //  error_reporting(0);
-//  session_start();
-//  if($_SESSION["email"]=="")
-//  {
-//     header('location:admin-login.php');
-//  }
+ session_start();
+ if($_SESSION["email"]=="")
+ {
+    header('location:admin-login.php');
+ }
+ // Fetch the customer's name based on the logged-in user's email
+$email = $_SESSION["email"];
+$query = mysqli_query($conn, "SELECT `admin_name` FROM `admin` WHERE `admin_mail`='$email'");
+
+if ($row = mysqli_fetch_assoc($query)) {
+    $AdminName = $row['admin_name'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +49,7 @@
             <div class="col-md-12 grid-margin">
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                  <h3 class="font-weight-bold">Welcome Martin</h3>
+                  <h3 class="font-weight-bold">Welcome <?php echo $AdminName; ?> </h3>
                   <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6>
                 </div>
               </div>

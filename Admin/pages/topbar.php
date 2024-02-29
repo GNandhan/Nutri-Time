@@ -1,7 +1,7 @@
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="admin-dashboard.html"><img src="../images/icon.png" class="mr-2" alt="logo" width="90"/></a>
-        <a class="navbar-brand brand-logo-mini" href="admin-dashboard.html"><img src="../images/icon-small.png" alt="logo" width="90"/></a>
+        <a class="navbar-brand brand-logo mr-5" href="admin-dashboard.php"><img src="../images/icon.png" class="mr-2" alt="logo" width="90"/></a>
+        <a class="navbar-brand brand-logo-mini" href="admin-dashboard.php"><img src="../images/icon-small.png" alt="logo" width="90"/></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -15,7 +15,7 @@
                   <i class="icon-search"></i>
                 </span>
               </div>
-              
+
               <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
             </div>
           </li>
@@ -85,7 +85,7 @@
               <i class="menu-arrow"></i>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#raw" aria-expanded="false" aria-controls="raw">
               <i class="icon-layout menu-icon"></i>
               <span class="menu-title">Raw Materials</span>
@@ -93,13 +93,20 @@
             </a>
             <div class="collapse" id="raw">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="admin-material.html">Add Materials</a></li>
-                <li class="nav-item"> <a class="nav-link" href="admin-viewmaterial.html">View Materials</a></li>
+                <li class="nav-item"> <a class="nav-link" href="admin-material.php">Add Materials</a></li>
+                <li class="nav-item"> <a class="nav-link" href="admin-viewmaterial.php">View Materials</a></li>
               </ul>
             </div>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" href="admin-material.php">
+              <i class="icon-columns menu-icon"></i>
+              <span class="menu-title">Materials</span>
+              <i class="menu-arrow"></i>
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="admin-user.html">
+            <a class="nav-link" href="admin-user.php">
               <i class="icon-columns menu-icon"></i>
               <span class="menu-title">User</span>
               <i class="menu-arrow"></i>
@@ -113,36 +120,36 @@
             </a>
             <div class="collapse" id="program">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="admin-program.html">Add Program</a></li>
-                <li class="nav-item"> <a class="nav-link" href="admin-request.html">View Request</a></li>
-                <li class="nav-item"> <a class="nav-link" href="admin-attendence.html">Mark Attendence</a></li>
-                <li class="nav-item"> <a class="nav-link" href="admin-viewattendence.html">View Attendence</a></li>
+                <li class="nav-item"> <a class="nav-link" href="admin-program.php">Add Program</a></li>
+                <li class="nav-item"> <a class="nav-link" href="admin-request.php">View Request</a></li>
+                <li class="nav-item"> <a class="nav-link" href="admin-attendence.php">Mark Attendence</a></li>
+                <li class="nav-item"> <a class="nav-link" href="admin-viewattendence.php">View Attendence</a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="admin-shake.html">
+            <a class="nav-link" href="admin-shake.php">
               <i class="icon-grid-2 menu-icon"></i>
               <span class="menu-title">Shakes</span>
               <i class="menu-arrow"></i>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="admin-timetable.html">
+            <a class="nav-link" href="admin-timetable.php">
               <i class="icon-head menu-icon"></i>
               <span class="menu-title">Time table</span>
               <i class="menu-arrow"></i>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="admin-staff.html">
+            <a class="nav-link" href="admin-staff.php">
               <i class="icon-ban menu-icon"></i>
               <span class="menu-title">Staff</span>
               <i class="menu-arrow"></i>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="admin-message.html">
+            <a class="nav-link" href="admin-message.php">
               <i class="ti-share menu-icon"></i>
               <span class="menu-title">Messaging</span>
               <i class="menu-arrow"></i>
