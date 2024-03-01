@@ -230,7 +230,7 @@ echo 'Error in entering into the database';
 }
 }
 ?>
-        <div class="row">
+        <div class="row ">
           <!-- table view -->
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
