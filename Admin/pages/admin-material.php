@@ -87,14 +87,14 @@ if(isset($_GET['pd_id']))
                 <form method="post" class="forms-sample" enctype="multipart/form-data">
                   <input type="hidden" name="pid" value="<?php echo $proid; ?>">
                   <div class="row">
-                    <div class="col">
+                    <div class="col-lg-6 col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product Code</label>
                         <input type="text" class="form-control" placeholder="#00A001" name="procode"
                           value="<?php echo $p_code1; ?>">
                       </div>
                     </div>
-                    <div class="col">
+                    <div class="col-lg-6 col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product Name</label>
                         <input type="text" class="form-control" placeholder="Weight Gainer" name="proname"
@@ -149,15 +149,11 @@ if(isset($_GET['pd_id']))
                     <div class="col">
                       <div class="form-group">
                         <label>Product Image</label>
-                        <input type="file" name="img[]" class="file-upload-default">
-                        <div class="input-group col-xs-12">
-                          <input type="file" class="form-control file-upload-info" disabled placeholder="Upload Image"
-                            name="proimg" value="<?php echo $p_img1; ?>">
-                          <span class="input-group-append">
-                            <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                          </span>
-                          <img src="../images/material/<?php echo $me_img1; ?>" alt="" width="100">
+                        <div class="input-group mb-3">
+                            <input type="file" class="custom-file-input form-control file-upload-info" id="inputGroupFile01" name="proimg" onchange="displaySelectedFileName(this)"  value="<?php echo $p_img1; ?>">
+                            <label class="input-group-text custom-file-label" for="inputGroupFile01">Choose file</label>
                         </div>
+                        <img src="../images/material/<?php echo $me_img1; ?>" alt="" width="100">
                       </div>
                     </div>
                     <div class="col">
@@ -190,12 +186,16 @@ if(isset($_GET['pd_id']))
     $pdis= $_POST["prodis"];
     $pimg = $_FILES['proimg']['name'];
 
-// Image uploading formats
-$filename = $_FILES['proimg']['name'];
-$tempname = $_FILES['proimg']['tmp_name'];
-$folder = "../images/material/";
+   // Construct the new image filename using the product name
+   $extension = pathinfo($_FILES['proimg']['name'], PATHINFO_EXTENSION);
+   $pimg = $pname . '.' . $extension;
 
-    // Fetch the material ID from the URL parameters
+ // Image uploading formats
+ $filename = $_FILES['proimg']['name'];
+ $tempname = $_FILES['proimg']['tmp_name'];
+ $folder = "../images/material/";
+
+// Fetch the material ID from the URL parameters
 $pro_id = $_POST["pid"];
 
 if($pro_id=='')
@@ -220,13 +220,11 @@ if ($sql == TRUE)
 {
 // echo "<script type= 'text/javascript'>alert('New record created successfully');</script>";
 move_uploaded_file($tempname, $folder . $filename);
-echo '<script type="text/javascript"> window.location = "admin-material.php"
-</script>';
+echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
 } 
 else
 {
-echo "<script type= 'text/javascript'>alert('Error: " . $sql . "<br>" . $conn->error."');</script>";  
-echo 'Error in entering into the database'; 
+  echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
 }
 }
 ?>
@@ -273,9 +271,7 @@ while($row=mysqli_fetch_assoc($sql))
 ?>
                     <tbody>
                       <tr>
-                        <td class="py-1">#
-                          <?php echo $pro_cod; ?>
-                        </td>
+                        <td class="py-1">#<?php echo $pro_cod; ?></td>
                         <td><img src="../images/material/<?php echo $pro_img; ?>" alt="" width="50"
                             class="rounded-circle"></td>
                         <td>
@@ -341,6 +337,14 @@ while($row=mysqli_fetch_assoc($sql))
   </div>
   <!-- container-scroller -->
   <!-- plugins:js -->
+  <script>
+    function displaySelectedFileName(input) {
+        var fileName = input.files[0].name;
+        var label = input.nextElementSibling;
+        label.innerText = fileName;
+    }
+</script>
+
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
