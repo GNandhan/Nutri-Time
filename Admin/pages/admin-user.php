@@ -1,11 +1,11 @@
 <?php
  include './connect.php';
-//  error_reporting(0);
-//  session_start();
-//  if($_SESSION["email"]=="")
-//  {
-//     header('location:admin-login.php');
-//  }
+ error_reporting(0);
+ session_start();
+ if($_SESSION["email"]=="")
+ {
+    header('location:admin-login.php');
+ }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,6 +33,26 @@
 <!-- including the sidebar,navbar -->
 <?php
   include './topbar.php';
+?>
+<?php
+// fetching the data from the URL for deleting the subject form
+if(isset($_GET['ud_id']))
+{
+    $dl_id = $_GET['ud_id'];
+    $dl_query = mysqli_query($conn,"SELECT * FROM user WHERE user_id = '$dl_id'");
+    $dl_row1=mysqli_fetch_array($dl_query);
+    $img = '../images/user/'.$dl_row['user_image'];
+    $del = mysqli_query($conn,"DELETE FROM user WHERE user_id ='$dl_id'");
+    if($del)
+    {
+        unlink($img); //for deleting the existing image from the folder
+        header("location:admin-user.php");
+    }
+    else
+    {
+        echo "Deletion Failed";
+    }    
+}
 ?>
       <!-- partial -->
       <div class="main-panel">
@@ -62,104 +82,42 @@
                         <th>Delete</th>
                       </tr>
                     </thead>
+<?php  
+$sql=mysqli_query($conn,"SELECT * FROM user ORDER BY user_id ");
+while($row=mysqli_fetch_assoc($sql))
+{
+    $u_id=$row['user_id'];
+    $u_name=$row['user_name'];
+    $u_phno=$row['user_phno'];
+    $u_gender=$row['user_gender'];
+    $u_blood=$row['user_blood'];
+    $u_address=$row['user_address']; 
+    $u_city=$row['user_city']; 
+    $u_prog=$row['user_program']; 
+    $u_payment=$row['user_payment']; 
+    $u_img=$row['user_image']; 
+?>
                     <tbody>
                       <tr>
-                        <td class="py-1">#CUSA001</td>
-                        <td><img src="../images/user.jpg" alt=""></td>
-                        <td>Albert</td>
-                        <td>9985968513</td>
-                        <td>North-mavoor, kozhikode</td>
-                        <td>B+</td>
-                        <td>Vadakara</td>
-                        <td>Fitness</td>
-                        <td>GPay</td>
+                        <td class="py-1"><?php echo $u_id; ?></td>
+                        <td><img src="../images/material/<?php echo $u_img; ?>" alt=""></td>
+                        <td><?php echo $u_name; ?></td>
+                        <td><?php echo $u_phno; ?></td>
+                        <td><?php echo $u_address; ?></td>
+                        <td><?php echo $u_blood; ?></td>
+                        <td><?php echo $u_city; ?></td>
+                        <td><?php echo $u_prog; ?></td>
+                        <td><?php echo $u_payment; ?></td>
                         <td>
-                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
+                          <a href="admin-user.php?ud_id=<?php echo $u_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete 
                             <i class="ti-trash btn-icon-prepend"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="py-1">#CUSA002</td>
-                        <td><img src="../images/user.jpg" alt=""></td>
-                        <td>Alfred</td>
-                        <td>9985968513</td>
-                        <td>North-mavoor, kozhikode 2</td>
-                        <td>B-</td>
-                        <td>Mavoor</td>
-                        <td>Fitness</td>
-                        <td>GPay</td>
-                        <td>
-                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
-                            <i class="ti-trash btn-icon-prepend"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="py-1">#CUSA003</td>
-                        <td><img src="../images/user.jpg" alt=""></td>
-                        <td>Mubasheer</td>
-                        <td>9985968513</td>
-                        <td>North-mavoor, kozhikode 3</td>
-                        <td>A+</td>
-                        <td>Kozhikode</td>
-                        <td>Fitness</td>
-                        <td>GPay</td>
-                        <td>
-                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
-                            <i class="ti-trash btn-icon-prepend"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="py-1">#CUSA004</td>
-                        <td><img src="../images/user.jpg" alt=""></td>
-                        <td>Althaf</td>
-                        <td>9985968513</td>
-                        <td>North-mavoor, kozhikode 4</td>
-                        <td>A-</td>
-                        <td>Kozhikode</td>
-                        <td>Fitness</td>
-                        <td>GPay</td>
-                        <td>
-                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
-                            <i class="ti-trash btn-icon-prepend"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="py-1">#CUSA005</td>
-                        <td><img src="../images/user.jpg" alt=""></td>
-                        <td>Muhammed zhabir</td>
-                        <td>9985968513</td>
-                        <td>North-mavoor, kozhikode 5</td>
-                        <td>O+</td>
-                        <td>Kozhikode</td>
-                        <td>Fitness</td>
-                        <td>GPay</td>
-                        <td>
-                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
-                            <i class="ti-trash btn-icon-prepend"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="py-1">#CUSA006</td>
-                        <td><img src="../images/user.jpg" alt=""></td>
-                        <td>Mahesh</td>
-                        <td>9985968513</td>
-                        <td>North-mavoor, kozhikode 6</td>
-                        <td>O-</td>
-                        <td>Kozhikode</td>
-                        <td>Fitness</td>
-                        <td>GPay</td>
-                        <td>
-                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
-                            <i class="ti-trash btn-icon-prepend"></i>
-                          </button>
+                          </a>
                         </td>
                       </tr>
                     </tbody>
+<?php
+}
+?>
                   </table>
                 </div>
               </div>

@@ -43,12 +43,12 @@
                   name="submitl">SIGN IN</button>
                 </div>
                 <div class="my-2 d-flex justify-content-between align-items-center">
-                  <div class="form-check">
+                  <!-- <div class="form-check">
                     <label class="form-check-label text-muted">
                       <input type="checkbox" class="form-check-input">
                       Keep me signed in
                     </label>
-                  </div>
+                  </div> -->
                   <!-- <a href="#" class="auth-link text-black">Forgot password?</a> -->
                 </div>
                 <!-- <div class="text-center mt-4 font-weight-light">

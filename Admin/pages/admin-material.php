@@ -37,7 +37,7 @@
     <?php
   include './topbar.php';
 ?>
-    <?php
+<?php
 if(isset($_GET['pid']))
 {
     $proid = $_GET['pid'];
@@ -90,15 +90,13 @@ if(isset($_GET['pd_id']))
                     <div class="col-lg-6 col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product Code</label>
-                        <input type="text" class="form-control" placeholder="#00A001" name="procode"
-                          value="<?php echo $p_code1; ?>">
+                        <input type="text" class="form-control" placeholder="#00A001" name="procode" value="<?php echo $p_code1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg-6 col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product Name</label>
-                        <input type="text" class="form-control" placeholder="Weight Gainer" name="proname"
-                          value="<?php echo $p_name1; ?>">
+                        <input type="text" class="form-control" placeholder="Weight Gainer" name="proname" value="<?php echo $p_name1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -106,7 +104,7 @@ if(isset($_GET['pd_id']))
                     <div class="col">
                       <div class="form-group">
                         <label for="exampleSelectGender">Category</label>
-                        <select class="form-control" name="procat">
+                        <select class="form-control" name="procat" required>
                           <option <?php if($p_cat1=='Category1' ) echo 'selected' ; ?> value="Category1">Category1</option>
                           <option <?php if($p_cat1=='Category2' ) echo 'selected' ; ?>  value="Category2">Category2</option>
                         </select>
@@ -115,11 +113,9 @@ if(isset($_GET['pd_id']))
                     <div class="col">
                       <div class="form-group">
                         <label for="exampleSelectGender">Subcategory</label>
-                        <select class="form-control" name="subcat">
-                          <option value="Subcategory11" <?php if($p_sub1=='Subcategory11' ) echo 'selected' ; ?>
-                            >Subcategory11</option>
-                          <option value="Subcategory22" <?php if($p_sub1=='Subcategory22' ) echo 'selected' ; ?>
-                            >Subcategory22</option>
+                        <select class="form-control" name="subcat" required>
+                          <option value="Subcategory11" <?php if($p_sub1=='Subcategory11' ) echo 'selected' ; ?>>Subcategory11</option>
+                          <option value="Subcategory22" <?php if($p_sub1=='Subcategory22' ) echo 'selected' ; ?>>Subcategory22</option>
                         </select>
 
                       </div>
@@ -127,7 +123,7 @@ if(isset($_GET['pd_id']))
                     <div class="col">
                       <div class="form-group">
                         <label>Product Brand</label>
-                        <input type="text" class="form-control" name="probrand" value="<?php echo $p_brand1; ?>">
+                        <input type="text" class="form-control" name="probrand" value="<?php echo $p_brand1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -135,13 +131,13 @@ if(isset($_GET['pd_id']))
                     <div class="col">
                       <div class="form-group">
                         <label>Price</label>
-                        <input type="number" class="form-control" name="proprice" value="<?php echo $p_pri1; ?>">
+                        <input type="number" class="form-control" name="proprice" value="<?php echo $p_pri1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>Quantity</label>
-                        <input type="number" class="form-control" name="proquant" value="<?php echo $p_qua1; ?>">
+                        <input type="number" class="form-control" name="proquant" value="<?php echo $p_qua1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -150,16 +146,16 @@ if(isset($_GET['pd_id']))
                       <div class="form-group">
                         <label>Product Image</label>
                         <div class="input-group mb-3">
-                            <input type="file" class="custom-file-input form-control file-upload-info" id="inputGroupFile01" name="proimg" onchange="displaySelectedFileName(this)"  value="<?php echo $p_img1; ?>">
+                            <input type="file" class="custom-file-input form-control file-upload-info" id="inputGroupFile01" name="proimg" onchange="displaySelectedFileName(this)"  value="<?php echo $p_img1; ?>" required>
                             <label class="input-group-text custom-file-label" for="inputGroupFile01">Choose file</label>
                         </div>
-                        <img src="../images/material/<?php echo $me_img1; ?>" alt="" width="100">
+                        <img src="../images/material/<?php echo $p_img1; ?>" alt="" width="100">
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>Stock Distribution</label>
-                        <input type="text" class="form-control" name="prodis" value="<?php echo $p_dis1; ?>">
+                        <input type="text" class="form-control" name="prodis" value="<?php echo $p_dis1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -186,14 +182,14 @@ if(isset($_GET['pd_id']))
     $pdis= $_POST["prodis"];
     $pimg = $_FILES['proimg']['name'];
 
-   // Construct the new image filename using the product name
-   $extension = pathinfo($_FILES['proimg']['name'], PATHINFO_EXTENSION);
-   $pimg = $pname . '.' . $extension;
+  // Image uploading formats
+  $filename = $_FILES['proimg']['name'];
+  $tempname = $_FILES['proimg']['tmp_name'];
 
- // Image uploading formats
- $filename = $_FILES['proimg']['name'];
- $tempname = $_FILES['proimg']['tmp_name'];
- $folder = "../images/material/";
+// Image uploading formats
+// $filename = $_FILES['proimg']['name'];
+// $tempname = $_FILES['proimg']['tmp_name'];
+// $folder = "../images/material/";
 
 // Fetch the material ID from the URL parameters
 $pro_id = $_POST["pid"];
@@ -219,7 +215,7 @@ $sql = mysqli_query($conn,"INSERT INTO material (pro_code, pro_name, pro_categor
 if ($sql == TRUE)
 {
 // echo "<script type= 'text/javascript'>alert('New record created successfully');</script>";
-move_uploaded_file($tempname, $folder . $filename);
+move_uploaded_file($tempname, "../images/material/$filename");
 echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
 } 
 else
@@ -254,7 +250,7 @@ else
                         <th>Delete</th>
                       </tr>
                     </thead>
-                    <?php  
+<?php  
 $sql=mysqli_query($conn,"SELECT * FROM material ORDER BY pro_id ");
 while($row=mysqli_fetch_assoc($sql))
 {
@@ -266,35 +262,20 @@ while($row=mysqli_fetch_assoc($sql))
     $pro_bra=$row['pro_brand']; 
     $pro_pri=$row['pro_price']; 
     $pro_qua=$row['pro_quantity']; 
-    $pro_img=$row['pro_image']; 
     $pro_dis=$row['pro_distribution']; 
+    $pro_img=$row['pro_image']; 
 ?>
                     <tbody>
                       <tr>
                         <td class="py-1">#<?php echo $pro_cod; ?></td>
-                        <td><img src="../images/material/<?php echo $pro_img; ?>" alt="" width="50"
-                            class="rounded-circle"></td>
-                        <td>
-                          <?php echo $pro_nam; ?>
-                        </td>
-                        <td>
-                          <?php echo $pro_cat; ?>
-                        </td>
-                        <td>
-                          <?php echo $pro_subcat; ?>
-                        </td>
-                        <td>
-                          <?php echo $pro_bra; ?>
-                        </td>
-                        <td>
-                          <?php echo $pro_pri; ?>
-                        </td>
-                        <td>
-                          <?php echo $pro_qua; ?>
-                        </td>
-                        <td>
-                          <?php echo $pro_dis; ?>
-                        </td>
+                        <td><img src="../images/material/<?php echo $pro_img; ?>" alt="" width="50" class="rounded-circle"></td>
+                        <td><?php echo $pro_nam; ?></td>
+                        <td><?php echo $pro_cat; ?></td>
+                        <td><?php echo $pro_subcat; ?></td>
+                        <td><?php echo $pro_bra; ?></td>
+                        <td><?php echo $pro_pri; ?></td>
+                        <td><?php echo $pro_qua; ?></td>
+                        <td><?php echo $pro_dis; ?></td>
                         <td>
                           <a href="admin-material.php?pid=<?php echo $pro_id; ?>"
                             class="btn btn-inverse-secondary btn-icon-text p-2">Edit
@@ -309,7 +290,7 @@ while($row=mysqli_fetch_assoc($sql))
                         </td>
                       </tr>
                     </tbody>
-                    <?php
+<?php
 }
 ?>
                   </table>

@@ -1,11 +1,11 @@
 <?php
  include './connect.php';
-//  error_reporting(0);
-//  session_start();
-//  if($_SESSION["email"]=="")
-//  {
-//     header('location:admin-login.php');
-//  }
+ error_reporting(0);
+ session_start();
+ if($_SESSION["email"]=="")
+ {
+    header('location:admin-login.php');
+ }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,6 +35,40 @@
 <?php
   include './topbar.php';
 ?>
+<?php
+if(isset($_GET['prid']))
+{
+    $progid = $_GET['prid'];
+    $pr_query = mysqli_query($conn,"SELECT * FROM program WHERE program_id = '$progid'");
+    $pr_row1=mysqli_fetch_array($pr_query);
+
+        $pr_name1 = $pr_row1['program_name'];
+        $pr_purpose1 = $pr_row1['program_purpose'];
+        $pr_dur1 = $pr_row1['program_duration']; 
+        $pr_age1 = $pr_row1['program_age']; 
+        $pr_fee1 = $pr_row1['program_fee']; 
+        $pr_cond1 = $pr_row1['program_condition']; 
+        $pr_mode1 = $pr_row1['program_mode']; 
+}
+// fetching the data from the URL for deleting the subject form
+if(isset($_GET['prd_id']))
+{
+    $dl_id = $_GET['prd_id'];
+    $dl_query = mysqli_query($conn,"SELECT * FROM program WHERE program_id = '$dl_id'");
+    $dl_row1=mysqli_fetch_array($dl_query);
+    $img = '../images/material/'.$dl_row['pro_image'];
+    $del = mysqli_query($conn,"DELETE FROM program WHERE program_id='$dl_id'");
+    if($del)
+    {
+        unlink($img); //for deleting the existing image from the folder
+        header("location:admin-program.php");
+    }
+    else
+    {
+        echo "Deletion Failed";
+    }    
+}
+?>
       <!-- partial -->
       <div class="main-panel">          
         <div class="content-wrapper">
@@ -47,18 +81,18 @@
                   <p class="card-description">
                     Add Program Details
                   </p>
-                  <form class="forms-sample">
+                  <form method="post" class="forms-sample">
                     <div class="row">
                       <div class="col">
                         <div class="form-group">
                           <label>Program Name</label>
-                          <input type="text" class="form-control"  placeholder="Weight Gainer">
+                          <input type="text" class="form-control"  placeholder="Weight Gainer" name="pname" value="<?php echo $pr_name1; ?>" required>
                         </div>
                       </div>
                       <div class="col">
                         <div class="form-group">
                           <label>Purpose</label>
-                          <input type="text" class="form-control"  placeholder="Weight Gainer">
+                          <input type="text" class="form-control"  placeholder="Weight Gainer" name="ppurpose" value="<?php echo $pr_purpose1; ?>" required>
                         </div>
                       </div>
                     </div> 
@@ -66,61 +100,89 @@
                       <div class="col">
                         <div class="form-group">
                           <label for="exampleSelectGender">Duration</label>
-                            <select class="form-control">
-                              <option>10 Days</option>
-                              <option>20 Days</option>
-                              <option>25 Days</option>
+                            <select class="form-control"  name="pduration" required>
+                              <option <?php if($pr_dur1=='10 Days' ) echo 'selected' ; ?> value="10 Days">10 Days</option>
+                              <option <?php if($pr_dur1=='20 Days' ) echo 'selected' ; ?> value="20 Days">20 Days</option>
+                              <option <?php if($pr_dur1=='25 Days' ) echo 'selected' ; ?> value="25 Days">25 Days</option>
                             </select>
                         </div>
                       </div>
                       <div class="col">
                         <div class="form-group">
                           <label for="exampleSelectGender">Age limit</label>
-                            <select class="form-control">
-                              <option>20-30</option>
-                              <option>30-50</option>
+                            <select class="form-control"  name="pagel" required>
+                              <option <?php if($pr_age1=='20-30' ) echo 'selected' ; ?>  value="20-30">20-30</option>
+                              <option <?php if($pr_age1=='30-50' ) echo 'selected' ; ?>  value="30-50">30-50</option>
                             </select>
                           </div>
                       </div>
                       <div class="col">
                         <div class="form-group">
                           <label>Fee (per/month)</label>
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control"  name="pfee" value="<?php echo $pr_fee1; ?>" required>
                         </div>
                       </div>
-                    </div>  
+                    </div>      
                     <div class="row">
                       <div class="col">
                         <div class="form-group">
                           <label>Program Condition</label>
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control"  name="pcond" value="<?php echo $pr_cond1; ?>" required>
                         </div> 
                       </div>
                       <div class="col">
                         <div class="form-group">
                           <label for="exampleSelectGender">Program Mode</label>
-                            <select class="form-control">
-                              <option>Online</option>
-                              <option>Offline</option>
+                            <select class="form-control"  name="pmode"  required>
+                              <option <?php if($pr_mode1=='Online' ) echo 'selected' ; ?> value="Online">Online</option>
+                              <option <?php if($pr_mode1=='Offline' ) echo 'selected' ; ?> value="Offline">Offline</option>
                             </select>
                         </div>
                       </div>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button type="submit" class="btn btn-primary mr-2"  name="submitpr">Submit</button>
                     <button class="btn btn-light">Cancel</button>
                   </form>
                 </div>
                 <!-- Form Closed -->
               </div>
             </div>
+<!-- PHP CODE FOR INSERTING THE DATA -->
+<?php
+if(isset($_POST["submitpr"])) 
+{ 
+    $pr_name= $_POST["pname"];
+    $pr_purpose= $_POST["ppurpose"];
+    $pr_dur= $_POST["pduration"];
+    $pr_age= $_POST["pagel"];
+    $pr_fee= $_POST["pfee"];
+    $pr_cond= $_POST["pcond"];
+    $pr_mode= $_POST["pmode"];
+
+    if($pr_id=='')
+    {
+      $sql = mysqli_query($conn,"INSERT INTO program (program_name, program_purpose, program_duration, program_age, program_fee, program_condition, program_mode) 
+                         VALUES ('$pr_name','$pr_purpose','$pr_dur','$pr_age','$pr_fee','$pr_cond','$pr_mode')");
+    }
+    else {
+      $sql = mysqli_query($conn, "UPDATE program SET program_name='$pr_name', program_purpose='$pr_purpose', program_duration='$pr_dur', program_age='$pr_age', program_fee='$pr_fee', program_condition='$pr_cond', program_mode='$pr_mode' WHERE program_id='$pr_id'");
+  }
+  
+    if ($sql == TRUE) {
+        echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
+    } else {
+        echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
+    }
+}
+?>
               <!-- table view -->
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">Shakes</h4>
+                <h4 class="card-title">Program</h4>
                 <p class="card-description">
-                 Shake Details
+                 Program Details
                 </p>
                 <div class="table-responsive">
                   <table class="table table-striped">
@@ -138,128 +200,44 @@
                         <th>Delete</th>
                       </tr>
                     </thead>
+<?php  
+$sql=mysqli_query($conn,"SELECT * FROM program ORDER BY program_id ");
+while($row=mysqli_fetch_assoc($sql))
+{
+    $pro_id=$row['program_id'];
+    $pro_name=$row['program_name'];
+    $pro_pur=$row['program_purpose'];
+    $pro_dura=$row['program_duration'];
+    $pro_age=$row['program_age']; 
+    $pro_fee=$row['program_fee'];
+    $pro_con=$row['program_condition']; 
+    $pro_mode=$row['program_mode']; 
+?>
                     <tbody>
                       <tr>
-                        <td class="py-1">#00A001</td>
-                        <td>Program 1</td>
-                        <td>Fat reducing</td>
-                        <td>10 Days</td>
-                        <td>15-50</td>
-                        <td>1000</td>
-                        <td>Condition 1</td>
-                        <td>Online</td>
+                        <td class="py-1">#<?php echo $pro_id; ?></td>
+                        <td><?php echo $pro_name; ?></td>
+                        <td><?php echo $pro_pur; ?></td>
+                        <td><?php echo $pro_dura; ?></td>
+                        <td><?php echo $pro_age; ?></td>
+                        <td><?php echo $pro_fee; ?></td>
+                        <td><?php echo $pro_con; ?></td>
+                        <td><?php echo $pro_mode; ?></td>
                         <td>
-                          <button class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
+                          <a href="admin-program.php?prid=<?php echo $pro_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
                             <i class="ti-pencil-alt btn-icon-append"></i>
-                          </button>
+                          </a>
                         </td>
                         <td>
-                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
+                          <a href="admin-program.php?prd_id=<?php echo $pro_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete 
                             <i class="ti-trash btn-icon-prepend"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="py-1">#00A001</td>
-                        <td>Program 1</td>
-                        <td>Fat reducing</td>
-                        <td>10 Days</td>
-                        <td>15-50</td>
-                        <td>1000</td>
-                        <td>Condition 1</td>
-                        <td>Online</td>
-                        <td>
-                          <button class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
-                            <i class="ti-pencil-alt btn-icon-append"></i>
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
-                            <i class="ti-trash btn-icon-prepend"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="py-1">#00A001</td>
-                        <td>Program 1</td>
-                        <td>Fat reducing</td>
-                        <td>10 Days</td>
-                        <td>15-50</td>
-                        <td>1000</td>
-                        <td>Condition 1</td>
-                        <td>Online</td>
-                        <td>
-                          <button class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
-                            <i class="ti-pencil-alt btn-icon-append"></i>
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
-                            <i class="ti-trash btn-icon-prepend"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="py-1">#00A001</td>
-                        <td>Program 1</td>
-                        <td>Fat reducing</td>
-                        <td>10 Days</td>
-                        <td>15-50</td>
-                        <td>1000</td>
-                        <td>Condition 1</td>
-                        <td>Online</td>
-                        <td>
-                          <button class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
-                            <i class="ti-pencil-alt btn-icon-append"></i>
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
-                            <i class="ti-trash btn-icon-prepend"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="py-1">#00A001</td>
-                        <td>Program 1</td>
-                        <td>Fat reducing</td>
-                        <td>10 Days</td>
-                        <td>15-50</td>
-                        <td>1000</td>
-                        <td>Condition 1</td>
-                        <td>Online</td>
-                        <td>
-                          <button class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
-                            <i class="ti-pencil-alt btn-icon-append"></i>
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
-                            <i class="ti-trash btn-icon-prepend"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="py-1">#00A001</td>
-                        <td>Program 1</td>
-                        <td>Fat reducing</td>
-                        <td>10 Days</td>
-                        <td>15-50</td>
-                        <td>1000</td>
-                        <td>Condition 1</td>
-                        <td>Online</td>
-                        <td>
-                          <button class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
-                            <i class="ti-pencil-alt btn-icon-append"></i>
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
-                            <i class="ti-trash btn-icon-prepend"></i>
-                          </button>
+                          </a>
                         </td>
                       </tr>
                     </tbody>
+<?php
+}
+?>
                   </table>
                 </div>
               </div>

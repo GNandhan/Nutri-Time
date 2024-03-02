@@ -61,10 +61,7 @@
               <img src="../images/user.jpg" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" style="border-radius: 15px;">
-              <a class="dropdown-item">
-                <i class="ti-power-off text-primary"></i>
-                Logout
-              </a>
+              <a href="./admin-login.php" class="dropdown-item"><i class="ti-power-off text-primary"></i>Logout</a>
             </div>
           </li>
         </ul>
