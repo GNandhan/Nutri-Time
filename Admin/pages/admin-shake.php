@@ -42,14 +42,14 @@ if(isset($_GET['sid']))
     $s_query = mysqli_query($conn,"SELECT * FROM shake WHERE shake_id = '$sh_id'");
     $s_row1=mysqli_fetch_array($s_query);
 
-        $p_code1 = $s_row1['shake_name'];
-        $p_name1 = $s_row1['shake_goal'];
-        $p_cat1 = $s_row1['shake_recipes']; 
-        $p_sub1 = $s_row1['shake_raw']; 
-        $p_brand1 = $s_row1['shake_mcost']; 
-        $p_pri1 = $s_row1['shake_scost']; 
-        $p_qua1 = $s_row1['shake_desc']; 
-        $p_img1 = $s_row1['shake_img']; 
+        $sh_name1 = $s_row1['shake_name'];
+        $sh_goal1 = $s_row1['shake_goal'];
+        $sh_reci1 = $s_row1['shake_recipes']; 
+        $sh_raw1 = $s_row1['shake_raw']; 
+        $sh_mcost1 = $s_row1['shake_mcost']; 
+        $sh_scost1 = $s_row1['shake_scost']; 
+        $sh_disc1 = $s_row1['shake_desc']; 
+        $sh_img1 = $s_row1['shake_img']; 
 }
 // fetching the data from the URL for deleting the subject form
 if(isset($_GET['sd_id']))
@@ -87,13 +87,13 @@ if(isset($_GET['sd_id']))
                       <div class="col">
                         <div class="form-group">
                           <label>Shake Name</label>
-                          <input type="text" class="form-control"  placeholder="#00A001" name="shname">
+                          <input type="text" class="form-control"  placeholder="#00A001" name="shname"  value="<?php echo $sh_name1; ?>" required>
                         </div>
                       </div>
                       <div class="col">
                         <div class="form-group">
                           <label>Shake Goal</label>
-                          <input type="text" class="form-control"  placeholder="Weight Gainer"  name="shgoal">
+                          <input type="text" class="form-control"  placeholder="Weight Gainer"  name="shgoal" value="<?php echo $sh_goal1; ?>" required>
                         </div>
                       </div>
                     </div> 
@@ -102,8 +102,8 @@ if(isset($_GET['sd_id']))
                         <div class="form-group">
                           <label for="exampleSelectGender">Shake Recipes</label>
                             <select class="form-control"  name="shrecipe">
-                              <option>Recipes 1</option>
-                              <option>Recipes 2</option>
+                              <option value="Recipes 1" <?php if($sh_reci1=='Recipes 1' ) echo 'selected' ; ?> >Recipes 1</option>
+                              <option value="Recipes 2" <?php if($sh_reci1=='Recipes 2' ) echo 'selected' ; ?> >Recipes 2</option>
                             </select>
                           </div>
                       </div>
@@ -111,15 +111,15 @@ if(isset($_GET['sd_id']))
                         <div class="form-group">
                           <label for="exampleSelectGender">Raw materials</label>
                             <select class="form-control" name="shraw">
-                              <option>material 1</option>
-                              <option>materials 2</option>
+                              <option value="material 1" <?php if($sh_raw1=='material 1' ) echo 'selected' ; ?>>material 1</option>
+                              <option value="material 2" <?php if($sh_raw1=='material 2' ) echo 'selected' ; ?>>materials 2</option>
                             </select>
                         </div>
                       </div>
                       <div class="col">
                         <div class="form-group">
                           <label>Making Cost</label>
-                          <input type="text" class="form-control" name="shmcost">
+                          <input type="text" class="form-control" name="shmcost" value="<?php echo $sh_mcost1; ?>" required>
                         </div>
                       </div>
                     </div>  
@@ -127,13 +127,13 @@ if(isset($_GET['sd_id']))
                       <div class="col">
                         <div class="form-group">
                           <label>Selling Price</label>
-                          <input type="text" class="form-control" name="shscost">
+                          <input type="text" class="form-control" name="shscost" value="<?php echo $sh_scost1; ?>" required>
                         </div> 
                       </div>
                       <div class="col">
                         <div class="form-group">
                           <label>Description</label>
-                          <input type="text" class="form-control" name="shdis">
+                          <input type="text" class="form-control" name="shdis" value="<?php echo $sh_disc1; ?>" required>
                         </div>
                       </div>
                     </div>
@@ -142,33 +142,32 @@ if(isset($_GET['sd_id']))
                         <div class="form-group">
                           <label>Shake Image</label>
                            <div class="input-group mb-3">
-                            <input type="file" class="custom-file-input form-control file-upload-info" id="inputGroupFile01" name="shimg" onchange="displaySelectedFileName(this)"  value="<?php echo $p_img1; ?>" required>
+                            <input type="file" class="custom-file-input form-control file-upload-info" id="inputGroupFile01" name="shimg" onchange="displaySelectedFileName(this)"  value="<?php echo $sh_img1; ?>" required>
                             <label class="input-group-text custom-file-label" for="inputGroupFile01">Choose file</label>
                         </div>
                         </div>
                       </div>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button type="submit" class="btn btn-primary mr-2" name="submitsh">Submit</button>
                     <a href="./admin-shake.php" class="btn btn-light">Cancel</a>
                   </form>
                 </div>
                 <!-- Form Closed -->
               </div>
             </div>
-            <!-- PHP CODE FOR INSERTING THE DATA -->
+<!-- PHP CODE FOR INSERTING THE DATA -->
 <?php
-    if(isset($_POST["submitp"]))
+    if(isset($_POST["submitsh"]))
     {
-    $pcode= $_POST["procode"];
-    $pname= $_POST["proname"];
-    $pcat= $_POST["procat"];
-    $psubcat= $_POST["subcat"];
-    $pbrand= $_POST["probrand"];
-    $pprice= $_POST["proprice"];
-    $pquan= $_POST["proquant"]; 
-    $pdis= $_POST["prodis"];
-    $pimg = $_FILES['proimg']['name'];
+    $sh_name= $_POST["shname"];
+    $sh_goal= $_POST["shgoal"];
+    $sh_reci= $_POST["shrecipe"];
+    $sh_raw= $_POST["shraw"];
+    $sh_mcost= $_POST["shmcost"];
+    $sh_scost= $_POST["shscost"];
+    $sh_disc= $_POST["shdis"];
+    $sh_img = $_FILES['shimg']['name'];
 
   // Image uploading formats
   $filename = $_FILES['proimg']['name'];
@@ -179,31 +178,31 @@ if(isset($_GET['sd_id']))
 // $tempname = $_FILES['proimg']['tmp_name'];
 // $folder = "../images/material/";
 
-// Fetch the material ID from the URL parameters
+// Fetch the shake ID from the URL parameters
 $pro_id = $_POST["pid"];
 
 if($pro_id=='')
 {
-$sql = mysqli_query($conn,"INSERT INTO material (pro_code, pro_name, pro_category, pro_subcategory, pro_brand, pro_price, pro_quantity, pro_image, pro_distribution)
+$sql = mysqli_query($conn,"INSERT INTO shake (shake_name, shake_goal, shake_recipes, pro_subcategory, pro_brand, pro_price, pro_quantity, pro_image, pro_distribution)
                                          VALUES ('$pcode','$pname','$pcat','$psubcat','$pbrand','$pprice','$pquan','$pimg','$pdis')");
 }else{
         // Update existing material
         if ($filename) {
           // Remove the existing image
-          $imgs = '../images/material/' . $pimg;
+          $imgs = '../images/shake/' . $pimg;
           unlink($imgs);
-          // Update material with new image
-      $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat', pro_subcategory='$psubcat', pro_brand='$pbrand', pro_price='$pprice', pro_quantity='$pquan', pro_image='$pimg', pro_distribution='$pdis' WHERE pro_id='$pro_id'");
+          // Update shake with new image
+      $sql = mysqli_query($conn, "UPDATE shake SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat', pro_subcategory='$psubcat', pro_brand='$pbrand', pro_price='$pprice', pro_quantity='$pquan', pro_image='$pimg', pro_distribution='$pdis' WHERE pro_id='$pro_id'");
     } else {
-      // Update material without changing the image
-      $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat', pro_subcategory='$psubcat', pro_brand='$pbrand', pro_price='$pprice', pro_quantity='$pquan', pro_distribution='$pdis' WHERE pro_id='$pro_id'");
+      // Update shake without changing the image
+      $sql = mysqli_query($conn, "UPDATE shake SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat', pro_subcategory='$psubcat', pro_brand='$pbrand', pro_price='$pprice', pro_quantity='$pquan', pro_distribution='$pdis' WHERE pro_id='$pro_id'");
   }
 }
 
 if ($sql == TRUE)
 {
 // echo "<script type= 'text/javascript'>alert('New record created successfully');</script>";
-move_uploaded_file($tempname, "../images/material/$filename");
+move_uploaded_file($tempname, "../images/shake/$filename");
 echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
 } 
 else
