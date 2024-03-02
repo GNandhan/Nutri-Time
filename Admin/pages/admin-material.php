@@ -117,7 +117,6 @@ if(isset($_GET['pd_id']))
                           <option value="Subcategory11" <?php if($p_sub1=='Subcategory11' ) echo 'selected' ; ?>>Subcategory11</option>
                           <option value="Subcategory22" <?php if($p_sub1=='Subcategory22' ) echo 'selected' ; ?>>Subcategory22</option>
                         </select>
-
                       </div>
                     </div>
                     <div class="col">
@@ -168,8 +167,8 @@ if(isset($_GET['pd_id']))
           </div>
 
         </div>
-        <!-- PHP CODE FOR INSERTING THE DATA -->
-        <?php
+<!-- PHP CODE FOR INSERTING THE DATA -->
+<?php
     if(isset($_POST["submitp"]))
     {
     $pcode= $_POST["procode"];

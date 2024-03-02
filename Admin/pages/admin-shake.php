@@ -35,6 +35,41 @@
 <?php
   include './topbar.php';
 ?>
+<?php
+if(isset($_GET['sid']))
+{
+    $sh_id = $_GET['sid'];
+    $s_query = mysqli_query($conn,"SELECT * FROM shake WHERE shake_id = '$sh_id'");
+    $s_row1=mysqli_fetch_array($s_query);
+
+        $p_code1 = $s_row1['shake_name'];
+        $p_name1 = $s_row1['shake_goal'];
+        $p_cat1 = $s_row1['shake_recipes']; 
+        $p_sub1 = $s_row1['shake_raw']; 
+        $p_brand1 = $s_row1['shake_mcost']; 
+        $p_pri1 = $s_row1['shake_scost']; 
+        $p_qua1 = $s_row1['shake_desc']; 
+        $p_img1 = $s_row1['shake_img']; 
+}
+// fetching the data from the URL for deleting the subject form
+if(isset($_GET['sd_id']))
+{
+    $dl_id = $_GET['sd_id'];
+    $dl_query = mysqli_query($conn,"SELECT * FROM shake WHERE shake_id = '$dl_id'");
+    $dl_row1=mysqli_fetch_array($dl_query);
+    $img = '../images/shake/'.$dl_row['pro_image'];
+    $del = mysqli_query($conn,"DELETE FROM shake WHERE shake_id='$dl_id'");
+    if($del)
+    {
+        unlink($img); //for deleting the existing image from the folder
+        header("location:admin-shake.php");
+    }
+    else
+    {
+        echo "Deletion Failed";
+    }    
+}
+?>
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
@@ -52,13 +87,13 @@
                       <div class="col">
                         <div class="form-group">
                           <label>Shake Name</label>
-                          <input type="text" class="form-control"  placeholder="#00A001">
+                          <input type="text" class="form-control"  placeholder="#00A001" name="shname">
                         </div>
                       </div>
                       <div class="col">
                         <div class="form-group">
                           <label>Shake Goal</label>
-                          <input type="text" class="form-control"  placeholder="Weight Gainer">
+                          <input type="text" class="form-control"  placeholder="Weight Gainer"  name="shgoal">
                         </div>
                       </div>
                     </div> 
@@ -66,7 +101,7 @@
                       <div class="col">
                         <div class="form-group">
                           <label for="exampleSelectGender">Shake Recipes</label>
-                            <select class="form-control">
+                            <select class="form-control"  name="shrecipe">
                               <option>Recipes 1</option>
                               <option>Recipes 2</option>
                             </select>
@@ -75,7 +110,7 @@
                       <div class="col">
                         <div class="form-group">
                           <label for="exampleSelectGender">Raw materials</label>
-                            <select class="form-control">
+                            <select class="form-control" name="shraw">
                               <option>material 1</option>
                               <option>materials 2</option>
                             </select>
@@ -84,7 +119,7 @@
                       <div class="col">
                         <div class="form-group">
                           <label>Making Cost</label>
-                          <input type="email" class="form-control">
+                          <input type="text" class="form-control" name="shmcost">
                         </div>
                       </div>
                     </div>  
@@ -92,13 +127,13 @@
                       <div class="col">
                         <div class="form-group">
                           <label>Selling Price</label>
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control" name="shscost">
                         </div> 
                       </div>
                       <div class="col">
                         <div class="form-group">
                           <label>Description</label>
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control" name="shdis">
                         </div>
                       </div>
                     </div>
@@ -106,24 +141,77 @@
                       <div class="col">
                         <div class="form-group">
                           <label>Shake Image</label>
-                          <input type="file" name="img[]" class="file-upload-default">
-                          <div class="input-group col-xs-12">
-                            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                            <span class="input-group-append">
-                              <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                            </span>
-                          </div>  
+                           <div class="input-group mb-3">
+                            <input type="file" class="custom-file-input form-control file-upload-info" id="inputGroupFile01" name="shimg" onchange="displaySelectedFileName(this)"  value="<?php echo $p_img1; ?>" required>
+                            <label class="input-group-text custom-file-label" for="inputGroupFile01">Choose file</label>
+                        </div>
                         </div>
                       </div>
                     </div>
                     
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                    <button class="btn btn-light">Cancel</button>
+                    <a href="./admin-shake.php" class="btn btn-light">Cancel</a>
                   </form>
                 </div>
                 <!-- Form Closed -->
               </div>
             </div>
+            <!-- PHP CODE FOR INSERTING THE DATA -->
+<?php
+    if(isset($_POST["submitp"]))
+    {
+    $pcode= $_POST["procode"];
+    $pname= $_POST["proname"];
+    $pcat= $_POST["procat"];
+    $psubcat= $_POST["subcat"];
+    $pbrand= $_POST["probrand"];
+    $pprice= $_POST["proprice"];
+    $pquan= $_POST["proquant"]; 
+    $pdis= $_POST["prodis"];
+    $pimg = $_FILES['proimg']['name'];
+
+  // Image uploading formats
+  $filename = $_FILES['proimg']['name'];
+  $tempname = $_FILES['proimg']['tmp_name'];
+
+// Image uploading formats
+// $filename = $_FILES['proimg']['name'];
+// $tempname = $_FILES['proimg']['tmp_name'];
+// $folder = "../images/material/";
+
+// Fetch the material ID from the URL parameters
+$pro_id = $_POST["pid"];
+
+if($pro_id=='')
+{
+$sql = mysqli_query($conn,"INSERT INTO material (pro_code, pro_name, pro_category, pro_subcategory, pro_brand, pro_price, pro_quantity, pro_image, pro_distribution)
+                                         VALUES ('$pcode','$pname','$pcat','$psubcat','$pbrand','$pprice','$pquan','$pimg','$pdis')");
+}else{
+        // Update existing material
+        if ($filename) {
+          // Remove the existing image
+          $imgs = '../images/material/' . $pimg;
+          unlink($imgs);
+          // Update material with new image
+      $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat', pro_subcategory='$psubcat', pro_brand='$pbrand', pro_price='$pprice', pro_quantity='$pquan', pro_image='$pimg', pro_distribution='$pdis' WHERE pro_id='$pro_id'");
+    } else {
+      // Update material without changing the image
+      $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat', pro_subcategory='$psubcat', pro_brand='$pbrand', pro_price='$pprice', pro_quantity='$pquan', pro_distribution='$pdis' WHERE pro_id='$pro_id'");
+  }
+}
+
+if ($sql == TRUE)
+{
+// echo "<script type= 'text/javascript'>alert('New record created successfully');</script>";
+move_uploaded_file($tempname, "../images/material/$filename");
+echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
+} 
+else
+{
+  echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
+}
+}
+?>
             <!-- table view -->
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
@@ -171,111 +259,6 @@
                           </button>
                         </td>
                       </tr>
-                      <tr>
-                        <td class="py-1">#00A002</td>
-                        <td><img src="../images/shake3.jpg" alt=""></td>
-                        <td>Muscle Gainer</td>
-                        <td>category 2</td>
-                        <td>Sugar, Milk, Nutients</td>
-                        <td>Sugar, Milk, Nutients, cardamom </td>
-                        <td>150</td>
-                        <td>270</td>
-                        <td>Helps you to reduce fat easiler, low sugar, </td>
-                        <td>
-                          <button class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
-                            <i class="ti-pencil-alt btn-icon-append"></i>
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
-                            <i class="ti-trash btn-icon-prepend"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="py-1">#00A003</td>
-                        <td><img src="../images/shake4.jpg" alt=""></td>
-                        <td>Protein Shake</td>
-                        <td>category 3</td>
-                        <td>Sugar, Milk, Nutients</td>
-                        <td>Sugar, Milk, Nutients, cardamom </td>
-                        <td>150</td>
-                        <td>270</td>
-                        <td>Helps you to reduce fat easiler, low sugar, </td>
-                        <td>
-                          <button class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
-                            <i class="ti-pencil-alt btn-icon-append"></i>
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
-                            <i class="ti-trash btn-icon-prepend"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="py-1">#00A004</td>
-                        <td><img src="../images/shake3.jpg" alt=""></td>
-                        <td>Protein Shake</td>
-                        <td>category 4</td>
-                        <td>Sugar, Milk, Nutients</td>
-                        <td>Sugar, Milk, Nutients, cardamom </td>
-                        <td>150</td>
-                        <td>270</td>
-                        <td>Helps you to reduce fat easiler, low sugar, </td>
-                        <td>
-                          <button class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
-                            <i class="ti-pencil-alt btn-icon-append"></i>
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
-                            <i class="ti-trash btn-icon-prepend"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="py-1">#00A005</td>
-                        <td><img src="../images/shake4.jpg" alt=""></td>
-                        <td>Muscle Gainer</td>
-                        <td>category 5</td>
-                        <td>Sugar, Milk, Nutients</td>
-                        <td>Sugar, Milk, Nutients, cardamom </td>
-                        <td>150</td>
-                        <td>270</td>
-                        <td>Helps you to reduce fat easiler, low sugar, </td>
-                        <td>
-                          <button class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
-                            <i class="ti-pencil-alt btn-icon-append"></i>
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
-                            <i class="ti-trash btn-icon-prepend"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="py-1">#00A006</td>
-                        <td><img src="../images/shake2.jpg" alt=""></td>
-                        <td>Fat reducer</td>
-                        <td>category 6</td>
-                        <td>Sugar, Milk, Nutients</td>
-                        <td>Sugar, Milk, Nutients, cardamom </td>
-                        <td>150</td>
-                        <td>270</td>
-                        <td>Helps you to reduce fat easiler, low sugar, </td>
-                        <td>
-                          <button class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
-                            <i class="ti-pencil-alt btn-icon-append"></i>
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
-                            <i class="ti-trash btn-icon-prepend"></i>
-                          </button>
-                        </td>
-                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -306,6 +289,13 @@
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
+  <script>
+    function displaySelectedFileName(input) {
+        var fileName = input.files[0].name;
+        var label = input.nextElementSibling;
+        label.innerText = fileName;
+    }
+</script>
   <!-- End plugin js for this page -->
   <!-- inject:js -->
   <script src="../js/off-canvas.js"></script>
