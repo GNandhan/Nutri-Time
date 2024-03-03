@@ -1,11 +1,11 @@
 <?php
  include './connect.php';
-//  error_reporting(0);
-//  session_start();
-//  if($_SESSION["email"]=="")
-//  {
-//     header('location:admin-login.php');
-//  }
+ error_reporting(0);
+ session_start();
+ if($_SESSION["email"]=="")
+ {
+    header('location:admin-login.php');
+ }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,7 +57,7 @@ if(isset($_GET['sd_id']))
     $dl_id = $_GET['sd_id'];
     $dl_query = mysqli_query($conn,"SELECT * FROM shake WHERE shake_id = '$dl_id'");
     $dl_row1=mysqli_fetch_array($dl_query);
-    $img = '../images/shake/'.$dl_row['pro_image'];
+    $img = '../images/shake/'.$dl_row['shake_img'];
     $del = mysqli_query($conn,"DELETE FROM shake WHERE shake_id='$dl_id'");
     if($del)
     {
@@ -82,7 +82,7 @@ if(isset($_GET['sd_id']))
                   <p class="card-description">
                     Add Shakes Details
                   </p>
-                  <form class="forms-sample">
+                  <form  method="post" class="forms-sample">
                     <div class="row">
                       <div class="col">
                         <div class="form-group">
@@ -170,8 +170,8 @@ if(isset($_GET['sd_id']))
     $sh_img = $_FILES['shimg']['name'];
 
   // Image uploading formats
-  $filename = $_FILES['proimg']['name'];
-  $tempname = $_FILES['proimg']['tmp_name'];
+  $filename = $_FILES['shimg']['name'];
+  $tempname = $_FILES['shimg']['tmp_name'];
 
 // Image uploading formats
 // $filename = $_FILES['proimg']['name'];
@@ -179,23 +179,23 @@ if(isset($_GET['sd_id']))
 // $folder = "../images/material/";
 
 // Fetch the shake ID from the URL parameters
-$pro_id = $_POST["pid"];
+$sh_id = $_POST["shid"];
 
-if($pro_id=='')
+if($sh_id=='')
 {
-$sql = mysqli_query($conn,"INSERT INTO shake (shake_name, shake_goal, shake_recipes, pro_subcategory, pro_brand, pro_price, pro_quantity, pro_image, pro_distribution)
-                                         VALUES ('$pcode','$pname','$pcat','$psubcat','$pbrand','$pprice','$pquan','$pimg','$pdis')");
+$sql = mysqli_query($conn,"INSERT INTO shake (shake_name, shake_goal, shake_recipes, shake_raw, shake_mcost, shake_scost, shake_desc, shake_img)
+                                         VALUES ('$sh_name','$sh_goal','$sh_reci','$sh_raw','$sh_mcost','$sh_scost','$sh_disc','$sh_img')");
 }else{
         // Update existing material
         if ($filename) {
           // Remove the existing image
-          $imgs = '../images/shake/' . $pimg;
+          $imgs = '../images/shake/' . $sh_img;
           unlink($imgs);
           // Update shake with new image
-      $sql = mysqli_query($conn, "UPDATE shake SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat', pro_subcategory='$psubcat', pro_brand='$pbrand', pro_price='$pprice', pro_quantity='$pquan', pro_image='$pimg', pro_distribution='$pdis' WHERE pro_id='$pro_id'");
+      $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_raw='$sh_raw', shake_mcost='$sh_mcost', shake_scost='$sh_scost', shake_desc='$sh_disc', shake_img='$sh_img' WHERE shake_id='$sh_id'");
     } else {
       // Update shake without changing the image
-      $sql = mysqli_query($conn, "UPDATE shake SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat', pro_subcategory='$psubcat', pro_brand='$pbrand', pro_price='$pprice', pro_quantity='$pquan', pro_distribution='$pdis' WHERE pro_id='$pro_id'");
+      $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_raw='$sh_raw', shake_mcost='$sh_mcost', shake_scost='$sh_scost', shake_desc='$sh_disc', shake_img='$sh_img' WHERE shake_id='$sh_id'");
   }
 }
 
@@ -236,29 +236,46 @@ else
                         <th>Delete</th>
                       </tr>
                     </thead>
+<?php  
+$sql=mysqli_query($conn,"SELECT * FROM shake ORDER BY shake_id ");
+while($row=mysqli_fetch_assoc($sql))
+{
+    $s_id=$row['shake_id'];
+    $s_name=$row['shake_name'];
+    $s_goal=$row['shake_goal'];
+    $s_reci=$row['shake_recipes'];
+    $s_raw=$row['shake_raw']; 
+    $s_mcost=$row['shake_mcost']; 
+    $s_scost=$row['shake_scost']; 
+    $s_disc=$row['shake_desc']; 
+    $s_img=$row['shake_img']; 
+?>
                     <tbody>
                       <tr>
-                        <td class="py-1">#00A001</td>
-                        <td><img src="../images/shake2.jpg" alt=""></td>
-                        <td>Fat reducer</td>
-                        <td>Loss fat</td>
-                        <td>Sugar, Milk, Nutients</td>
-                        <td>Sugar, Milk, Nutients, cardamom </td>
-                        <td>150</td>
-                        <td>270</td>
-                        <td>Helps you to reduce fat easiler, low sugar, </td>
+                        <td class="py-1"><?php echo $s_id; ?></td>
+                        <td><img src="../images/<?php echo $s_img; ?>" alt=""></td>
+                        <td><?php echo $s_name; ?></td>
+                        <td><?php echo $s_goal; ?></td>
+                        <td><?php echo $s_reci; ?></td>
+                        <td><?php echo $s_raw; ?></td>
+                        <td><?php echo $s_mcost; ?></td>
+                        <td><?php echo $s_scost; ?></td>
+                        <td><?php echo $s_disc; ?></td>
                         <td>
-                          <button class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
+                          <a  href="admin-shake.php?sid=<?php echo $s_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
                             <i class="ti-pencil-alt btn-icon-append"></i>
-                          </button>
+                          </a>
                         </td>
                         <td>
-                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
+                          <a href="admin-shake.php?sd_id=<?php echo $s_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete 
                             <i class="ti-trash btn-icon-prepend"></i>
-                          </button>
+                          </a>
                         </td>
                       </tr>
                     </tbody>
+<?php
+}
+?>
                   </table>
                 </div>
               </div>

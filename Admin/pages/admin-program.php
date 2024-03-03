@@ -101,9 +101,9 @@ if(isset($_GET['prd_id']))
                         <div class="form-group">
                           <label for="exampleSelectGender">Duration</label>
                             <select class="form-control"  name="pduration" required>
-                              <option <?php if($pr_dur1=='10 Days' ) echo 'selected' ; ?> value="10 Days">10 Days</option>
-                              <option <?php if($pr_dur1=='20 Days' ) echo 'selected' ; ?> value="20 Days">20 Days</option>
-                              <option <?php if($pr_dur1=='25 Days' ) echo 'selected' ; ?> value="25 Days">25 Days</option>
+                              <option <?php if($pr_dur1=='10 Days' ) echo 'selected' ; ?> value="10-Days">10 Days</option>
+                              <option <?php if($pr_dur1=='20 Days' ) echo 'selected' ; ?> value="20-Days">20 Days</option>
+                              <option <?php if($pr_dur1=='25 Days' ) echo 'selected' ; ?> value="25-Days">25 Days</option>
                             </select>
                         </div>
                       </div>
@@ -119,7 +119,7 @@ if(isset($_GET['prd_id']))
                       <div class="col">
                         <div class="form-group">
                           <label>Fee (per/month)</label>
-                          <input type="text" class="form-control"  name="pfee" value="<?php echo $pr_fee1; ?>" required>
+                          <input type="number" class="form-control" name="pfee" value="<?php echo $pr_fee1; ?>" required>
                         </div>
                       </div>
                     </div>      
