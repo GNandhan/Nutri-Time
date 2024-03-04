@@ -1,11 +1,11 @@
 <?php
  include './connect.php';
-//  error_reporting(0);
-//  session_start();
-//  if($_SESSION["email"]=="")
-//  {
-//     header('location:admin-login.php');
-//  }
+ error_reporting(0);
+ session_start();
+ if($_SESSION["email"]=="")
+ {
+    header('location:admin-login.php');
+ }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,14 +19,11 @@
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
-  <!-- Plugin css for this page -->
-  <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
-
 <body>
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
@@ -43,9 +40,7 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Time Table</h4>
-                <p class="card-description">
-                 Customer Time Table Details
-                </p>
+                <p class="card-description">Customer Time Table Details</p>
                 <div class="table-responsive">
                   <table class="table table-striped"> 
                     <thead>
@@ -163,7 +158,6 @@
             </div>
           </div>
           <!-- table view closed -->
-           
           </div>
         </div>
         <!-- content-wrapper ends -->
@@ -183,8 +177,6 @@
   <!-- plugins:js -->
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
-  <!-- Plugin js for this page -->
-  <!-- End plugin js for this page -->
   <!-- inject:js -->
   <script src="../js/off-canvas.js"></script>
   <script src="../js/hoverable-collapse.js"></script>
@@ -195,5 +187,4 @@
   <!-- Custom js for this page-->
   <!-- End custom js for this page-->
 </body>
-
 </html>

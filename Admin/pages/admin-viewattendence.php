@@ -1,15 +1,14 @@
 <?php
  include './connect.php';
-//  error_reporting(0);
-//  session_start();
-//  if($_SESSION["email"]=="")
-//  {
-//     header('location:admin-login.php');
-//  }
+ error_reporting(0);
+ session_start();
+ if($_SESSION["email"]=="")
+ {
+    header('location:admin-login.php');
+ }
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -20,14 +19,11 @@
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
-  <!-- Plugin css for this page -->
-  <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
-
 <body>
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
@@ -44,9 +40,7 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Attendence</h4>
-                <p class="card-description">
-                 Customer Attendence 
-                </p>
+                <p class="card-description">Customer Attendence </p>
                 <div class="table-responsive">
                   <table class="table table-striped">
                     <thead>
@@ -211,5 +205,4 @@
   <script src="../js/chart.js"></script>
   <!-- End custom js for this page-->
 </body>
-
 </html>

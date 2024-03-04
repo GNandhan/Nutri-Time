@@ -1,6 +1,6 @@
 <?php
  include './connect.php';
-//  error_reporting(0);
+ error_reporting(0);
  session_start();
  if($_SESSION["email"]=="")
  {
@@ -89,9 +89,7 @@ if ($row = mysqli_fetch_assoc($query)) {
                 </div>
               </div>
             </div>
-                     
             <!-- newly arrived product carousel -->
-            
             <div class="col-md-6 grid-margin transparent">
               <div class="row">
                 <div class="col-md-6 col-6 mb-4 stretch-card transparent">
@@ -336,7 +334,6 @@ if ($row = mysqli_fetch_assoc($query)) {
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-
   <!-- plugins:js -->
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
@@ -345,7 +342,6 @@ if ($row = mysqli_fetch_assoc($query)) {
   <script src="../vendors/datatables.net/jquery.dataTables.js"></script>
   <script src="../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
   <script src="../js/dataTables.select.min.js"></script>
-
   <!-- End plugin js for this page -->
   <!-- inject:js -->
   <script src="../js/off-canvas.js"></script>

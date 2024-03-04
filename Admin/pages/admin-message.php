@@ -1,11 +1,11 @@
 <?php
  include './connect.php';
-//  error_reporting(0);
-//  session_start();
-//  if($_SESSION["email"]=="")
-//  {
-//     header('location:admin-login.php');
-//  }
+ error_reporting(0);
+ session_start();
+ if($_SESSION["email"]=="")
+ {
+    header('location:admin-login.php');
+ }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +28,6 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
-
 <body>
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
@@ -44,11 +43,8 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Message Details</h4>
-                  <p class="card-description">
-                    Add Message Content
-                  </p>
+                  <p class="card-description">Add Message Content</p>
                   <form class="forms-sample">
-                    
                     <div class="form-group">
                       <label for="exampleTextarea1">Message content</label>
                       <textarea class="form-control" id="exampleTextarea1" rows="4" placeholder="Thank You For choosing Nutri-Time. Your Program Id id #00Ad001"></textarea>
@@ -63,9 +59,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Users List</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
         <table>
@@ -108,12 +102,11 @@
             <td>user 1</td>
             <td><input type="checkbox"></td>
           </tr>
-
         </table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary"   data-dismiss="modal">Send Message</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Send Message</button>
       </div>
     </div>
   </div>

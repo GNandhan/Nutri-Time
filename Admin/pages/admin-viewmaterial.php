@@ -1,11 +1,11 @@
 <?php
  include './connect.php';
-//  error_reporting(0);
-//  session_start();
-//  if($_SESSION["email"]=="")
-//  {
-//     header('location:admin-login.php');
-//  }
+ error_reporting(0);
+ session_start();
+ if($_SESSION["email"]=="")
+ {
+    header('location:admin-login.php');
+ }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +28,6 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
-
 <body>
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
@@ -45,9 +44,7 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Materials</h4>
-                <p class="card-description">
-                 Material Details
-                </p>
+                <p class="card-description">Material Details</p>
                 <div class="table-responsive">
                   <table class="table table-striped">
                     <thead>

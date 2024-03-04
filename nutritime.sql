@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 01, 2024 at 11:46 AM
+-- Generation Time: Mar 04, 2024 at 06:05 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -53,21 +53,6 @@ CREATE TABLE `login_details` (
   `login_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `login_details`
---
-
-INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`) VALUES
-('nutriadmin@gmail.com', 1, '2024-02-28 23:32:59'),
-('nutriadmin@gmail.com', 2, '2024-02-28 23:35:09'),
-('nutriadmin@gmail.com', 3, '2024-02-29 00:08:20'),
-('nutriadmin@gmail.com', 4, '2024-02-29 00:08:28'),
-('nutriadmin@gmail.com', 5, '2024-02-29 00:09:25'),
-('nutriadmin@gmail.com', 6, '2024-02-29 07:30:04'),
-('nutriadmin@gmail.com', 7, '2024-03-01 10:46:27'),
-('nutriadmin@gmail.com', 8, '2024-03-01 10:46:44'),
-('nutriadmin@gmail.com', 9, '2024-03-01 10:47:20');
-
 -- --------------------------------------------------------
 
 --
@@ -87,35 +72,76 @@ CREATE TABLE `material` (
   `pro_distribution` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `material`
+-- Table structure for table `program`
 --
 
-INSERT INTO `material` (`pro_id`, `pro_code`, `pro_name`, `pro_category`, `pro_subcategory`, `pro_brand`, `pro_price`, `pro_quantity`, `pro_image`, `pro_distribution`) VALUES
-(5, 'eeeeeeeeeeeeee', 'Metabolic52525', 'Category1', 'Subcategory22', '52252', 580, 20, '', '56'),
-(6, 'yhey', 'xhhh', 'Category2', 'Subcategory22', 'yedh', 546, 782, '', 'htghtgxh'),
-(8, 'lnendwlfwef', 'weffefef', 'Category2', 'Subcategory22', 'wefweafewfewf', 520, 65, '', '651'),
-(9, '', '', 'Category1', 'Subcategory11', '', 0, 0, 'Capture-removebg-preview.png', ''),
-(10, '', '', 'Category1', 'Subcategory11', '', 0, 0, '1000066113-01.jpeg.jpg', ''),
-(11, '', '', 'Category1', 'Subcategory11', '', 0, 0, '', ''),
-(12, '', '', 'Category1', 'Subcategory11', '', 0, 0, '', ''),
-(13, '', '', 'Category1', 'Subcategory11', '', 0, 0, '', ''),
-(14, '', '', 'Category1', 'Subcategory11', '', 0, 0, 'Capture-removebg-preview.png', ''),
-(15, '', '', 'Category1', 'Subcategory11', '', 0, 0, 'Capture-removebg-preview.png', ''),
-(16, '', '', 'Category1', 'Subcategory11', '', 0, 0, 'Capture-removebg-preview.png', ''),
-(17, '', '', 'Category1', 'Subcategory11', '', 0, 0, '', ''),
-(18, '', '', 'Category1', 'Subcategory11', '', 0, 0, 'Capture-removebg-preview.png', ''),
-(19, '', '', 'Category1', 'Subcategory11', '', 0, 0, 'Capture-removebg-preview.png', ''),
-(20, '', '', 'Category1', 'Subcategory11', '', 0, 0, 'Capture-removebg-preview.png', ''),
-(21, 'sugunan#11111', 'Metabolic', 'Category2', 'Subcategory22', 'shoba', 150, 200, 'IMG12.jpg', '15'),
-(22, 'aaaaaaaaaaaaaaaaaaaa', 'bbbbbbbbbbbb', 'Category2', 'Subcategory22', 'branddd', 350, 20, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.png', 'ssssssssssssssssssss'),
-(23, 'rhdthteherhrehhhrh', '', 'Category1', 'Subcategory11', '', 0, 0, 'rhdthteherhrehhhrh.jpg', ''),
-(25, 'xthtehterhdehdh', '', 'Category1', 'Subcategory11', '', 0, 0, '.jpg', ''),
-(26, 'ddawdadadd', '', 'Category1', 'Subcategory11', '', 0, 0, 'ddawdadadd.jpg', ''),
-(27, 'efrererererererer', '', 'Category1', 'Subcategory11', '', 0, 0, 'efrererererererer.jpg', ''),
-(28, 'sefererererrerererer', '', 'Category1', 'Subcategory11', '', 0, 0, 'sefererererrererererr.dng', ''),
-(29, 'etteteteet', '', 'Category1', 'Subcategory11', '', 0, 0, '.png', ''),
-(30, '#a016666', 'probiotin', 'Category2', 'Subcategory22', 'herbalife', 600, 30, 'probiotin.jpg', '56');
+CREATE TABLE `program` (
+  `program_id` int(11) NOT NULL,
+  `program_name` varchar(50) NOT NULL,
+  `program_purpose` varchar(50) NOT NULL,
+  `program_duration` varchar(50) NOT NULL,
+  `program_age` varchar(20) NOT NULL,
+  `program_fee` int(20) NOT NULL,
+  `program_condition` varchar(50) NOT NULL,
+  `program_mode` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shake`
+--
+
+CREATE TABLE `shake` (
+  `shake_id` int(11) NOT NULL,
+  `shake_name` varchar(100) NOT NULL,
+  `shake_goal` varchar(100) NOT NULL,
+  `shake_recipes` varchar(100) NOT NULL,
+  `shake_raw` varchar(50) NOT NULL,
+  `shake_mcost` int(20) NOT NULL,
+  `shake_scost` int(20) NOT NULL,
+  `shake_desc` varchar(100) NOT NULL,
+  `shake_img` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `staff`
+--
+
+CREATE TABLE `staff` (
+  `staff_id` int(11) NOT NULL,
+  `staff_name` varchar(100) NOT NULL,
+  `staff_uname` varchar(100) NOT NULL,
+  `staff_email` varchar(100) NOT NULL,
+  `staff_pass` varchar(50) NOT NULL,
+  `staff_gender` varchar(50) NOT NULL,
+  `staff_city` varchar(50) NOT NULL,
+  `staff_phno` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `user_id` int(11) NOT NULL,
+  `user_name` varchar(50) NOT NULL,
+  `user_phno` varchar(20) NOT NULL,
+  `user_gender` varchar(20) NOT NULL,
+  `user_blood` varchar(10) NOT NULL,
+  `user_address` varchar(100) NOT NULL,
+  `user_city` varchar(100) NOT NULL,
+  `user_program` varchar(100) NOT NULL,
+  `user_payment` varchar(100) NOT NULL,
+  `user_image` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
@@ -140,6 +166,30 @@ ALTER TABLE `material`
   ADD PRIMARY KEY (`pro_id`);
 
 --
+-- Indexes for table `program`
+--
+ALTER TABLE `program`
+  ADD PRIMARY KEY (`program_id`);
+
+--
+-- Indexes for table `shake`
+--
+ALTER TABLE `shake`
+  ADD PRIMARY KEY (`shake_id`);
+
+--
+-- Indexes for table `staff`
+--
+ALTER TABLE `staff`
+  ADD PRIMARY KEY (`staff_id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`user_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -153,13 +203,37 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `material`
 --
 ALTER TABLE `material`
-  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `program`
+--
+ALTER TABLE `program`
+  MODIFY `program_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `shake`
+--
+ALTER TABLE `shake`
+  MODIFY `shake_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `staff`
+--
+ALTER TABLE `staff`
+  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

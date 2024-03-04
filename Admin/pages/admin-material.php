@@ -9,7 +9,6 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -29,7 +28,6 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
-
 <body>
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
@@ -81,9 +79,7 @@ if(isset($_GET['pd_id']))
             <div class="card">
               <div class="card-body">
                 <h1 class="card-title">Materials</h1>
-                <p class="card-description">
-                  Add Material Details
-                </p>
+                <p class="card-description">Add Material Details</p>
                 <form method="post" class="forms-sample" enctype="multipart/form-data">
                   <input type="hidden" name="pid" value="<?php echo $proid; ?>">
                   <div class="row">
@@ -165,7 +161,6 @@ if(isset($_GET['pd_id']))
               </div>
             </div>
           </div>
-
         </div>
 <!-- PHP CODE FOR INSERTING THE DATA -->
 <?php
@@ -185,16 +180,10 @@ if(isset($_GET['pd_id']))
   $filename = $_FILES['proimg']['name'];
   $tempname = $_FILES['proimg']['tmp_name'];
 
-// Image uploading formats
-// $filename = $_FILES['proimg']['name'];
-// $tempname = $_FILES['proimg']['tmp_name'];
-// $folder = "../images/material/";
-
 // Fetch the material ID from the URL parameters
 $pro_id = $_POST["pid"];
 
-if($pro_id=='')
-{
+if($pro_id==''){
 $sql = mysqli_query($conn,"INSERT INTO material (pro_code, pro_name, pro_category, pro_subcategory, pro_brand, pro_price, pro_quantity, pro_image, pro_distribution)
                                          VALUES ('$pcode','$pname','$pcat','$psubcat','$pbrand','$pprice','$pquan','$pimg','$pdis')");
 }else{
@@ -210,15 +199,12 @@ $sql = mysqli_query($conn,"INSERT INTO material (pro_code, pro_name, pro_categor
       $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat', pro_subcategory='$psubcat', pro_brand='$pbrand', pro_price='$pprice', pro_quantity='$pquan', pro_distribution='$pdis' WHERE pro_id='$pro_id'");
   }
 }
-
-if ($sql == TRUE)
-{
+if ($sql == TRUE){
 // echo "<script type= 'text/javascript'>alert('New record created successfully');</script>";
 move_uploaded_file($tempname, "../images/material/$filename");
 echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
 } 
-else
-{
+else{
   echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
 }
 }
@@ -229,9 +215,7 @@ else
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Materials</h4>
-                <p class="card-description">
-                  Material Details
-                </p>
+                <p class="card-description">Material Details</p>
                 <div class="table-responsive">
                   <table class="table table-striped">
                     <thead>
@@ -279,15 +263,11 @@ while($row=mysqli_fetch_assoc($sql))
                         <td><?php echo $pro_qua; ?></td>
                         <td><?php echo $pro_dis; ?></td>
                         <td>
-                          <a href="admin-material.php?pid=<?php echo $pro_id; ?>"
-                            class="btn btn-inverse-secondary btn-icon-text p-2">Edit
-                            <i class="ti-pencil-alt btn-icon-append"></i>
+                          <a href="admin-material.php?pid=<?php echo $pro_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i>
                           </a>
                         </td>
                         <td>
-                          <a href="admin-material.php?pd_id=<?php echo $pro_id; ?>"
-                            class="btn btn-inverse-danger btn-icon-text p-2">Delete
-                            <i class="ti-trash btn-icon-prepend"></i>
+                          <a href="admin-material.php?pd_id=<?php echo $pro_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i>
                           </a>
                         </td>
                       </tr>
@@ -304,7 +284,6 @@ while($row=mysqli_fetch_assoc($sql))
         </div>
       </div>
       <!-- content-wrapper ends -->
-
       <!-- partial:../../partials/_footer.html -->
       <footer class="footer">
         <div class="d-sm-flex justify-content-center justify-content-sm-between">
@@ -320,7 +299,6 @@ while($row=mysqli_fetch_assoc($sql))
   </div>
   <!-- container-scroller -->
   <!-- plugins:js -->
-
 <script>
 function displaySelectedFileName(input) {
     var fileName = input.files[0].name;
@@ -341,7 +319,6 @@ function displaySelectedFileName(input) {
     fileReader.readAsDataURL(input.files[0]);
 }
 </script>
-
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
@@ -361,5 +338,4 @@ function displaySelectedFileName(input) {
   <script src="../js/select2.js"></script>
   <!-- End custom js for this page-->
 </body>
-
 </html>

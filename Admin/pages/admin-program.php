@@ -19,14 +19,11 @@
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
-  <!-- Plugin css for this page -->
-  <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
-
 <body>
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
@@ -56,13 +53,11 @@ if(isset($_GET['prd_id']))
     $dl_query = mysqli_query($conn,"SELECT * FROM program WHERE program_id = '$dl_id'");
     $dl_row1=mysqli_fetch_array($dl_query);
     $del = mysqli_query($conn,"DELETE FROM program WHERE program_id='$dl_id'");
-    if($del)
-    {
+    if($del){
         unlink($img); //for deleting the existing image from the folder
         header("location:admin-program.php");
     }
-    else
-    {
+    else{
         echo "Deletion Failed";
     }    
 }
@@ -76,9 +71,7 @@ if(isset($_GET['prd_id']))
                 <!-- Form -->
                 <div class="card-body">
                   <h1 class="card-title">Program</h1>
-                  <p class="card-description">
-                    Add Program Details
-                  </p>
+                  <p class="card-description">Add Program Details</p>
                   <form method="post" class="forms-sample">
                   <input type="hidden" name="prid" value="<?php echo $progid; ?>">
                     <div class="row">
@@ -160,15 +153,13 @@ if(isset($_POST["submitpr"]))
     $pr_cond= $_POST["pcond"];
     $pr_mode= $_POST["pmode"];
 
-    if($pr_id=='')
-    {
+    if($pr_id==''){
       $sql = mysqli_query($conn,"INSERT INTO program (program_name, program_purpose, program_duration, program_age, program_fee, program_condition, program_mode) 
                          VALUES ('$pr_name','$pr_purpose','$pr_dur','$pr_age','$pr_fee','$pr_cond','$pr_mode')");
     }
     else {
       $sql = mysqli_query($conn, "UPDATE program SET program_name='$pr_name', program_purpose='$pr_purpose', program_duration='$pr_dur', program_age='$pr_age', program_fee='$pr_fee', program_condition='$pr_cond', program_mode='$pr_mode' WHERE program_id='$pr_id'");
   }
-  
     if ($sql == TRUE) {
         echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
     } else {
@@ -181,9 +172,7 @@ if(isset($_POST["submitpr"]))
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Program</h4>
-                <p class="card-description">
-                 Program Details
-                </p>
+                <p class="card-description">Program Details</p>
                 <div class="table-responsive">
                   <table class="table table-striped">
                     <thead>
@@ -264,8 +253,6 @@ while($row=mysqli_fetch_assoc($sql))
   <!-- plugins:js -->
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
-  <!-- Plugin js for this page -->
-  <!-- End plugin js for this page -->
   <!-- inject:js -->
   <script src="../js/off-canvas.js"></script>
   <script src="../js/hoverable-collapse.js"></script>
@@ -274,5 +261,4 @@ while($row=mysqli_fetch_assoc($sql))
   <script src="../js/todolist.js"></script>
   <!-- endinject -->
 </body>
-
 </html>

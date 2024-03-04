@@ -19,14 +19,11 @@
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
-  <!-- Plugin css for this page -->
-  <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
-
 <body>
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
@@ -43,13 +40,11 @@ if(isset($_GET['ud_id']))
     $dl_row1=mysqli_fetch_array($dl_query);
     $img = '../images/user/'.$dl_row['user_image'];
     $del = mysqli_query($conn,"DELETE FROM user WHERE user_id ='$dl_id'");
-    if($del)
-    {
+    if($del){
         unlink($img); //for deleting the existing image from the folder
         header("location:admin-user.php");
     }
-    else
-    {
+    else{
         echo "Deletion Failed";
     }    
 }
@@ -63,9 +58,7 @@ if(isset($_GET['ud_id']))
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Customer</h4>
-                <p class="card-description">
-                  Customer Details
-                </p>
+                <p class="card-description">Customer Details</p>
                 <div class="table-responsive">
                   <table class="table table-striped">
                     <thead>
@@ -143,8 +136,6 @@ while($row=mysqli_fetch_assoc($sql))
   <!-- plugins:js -->
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
-  <!-- Plugin js for this page -->
-  <!-- End plugin js for this page -->
   <!-- inject:js -->
   <script src="../js/off-canvas.js"></script>
   <script src="../js/hoverable-collapse.js"></script>
@@ -155,5 +146,4 @@ while($row=mysqli_fetch_assoc($sql))
   <!-- Custom js for this page-->
   <!-- End custom js for this page-->
 </body>
-
 </html>

@@ -28,7 +28,6 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
-
 <body>
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
@@ -58,13 +57,11 @@ if(isset($_GET['std_id']))
     $dl_query = mysqli_query($conn,"SELECT * FROM staff WHERE staff_id = '$dl_id'");
     $dl_row1=mysqli_fetch_array($dl_query);
     $del = mysqli_query($conn,"DELETE FROM staff WHERE staff_id='$dl_id'");
-    if($del)
-    {
+    if($del){
         unlink($img); //for deleting the existing image from the folder
         header("location:admin-staff.php");
     }
-    else
-    {
+    else{
         echo "Deletion Failed";
     }    
 }
@@ -77,9 +74,7 @@ if(isset($_GET['std_id']))
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Staff Details</h4>
-                  <p class="card-description">
-                    Add staff Details
-                  </p>
+                  <p class="card-description">Add staff Details</p>
                   <form class="forms-sample" method="post">
                   <input type="hidden" name="stid" value="<?php echo $st_id; ?>">
                     <div class="row">
@@ -134,7 +129,6 @@ if(isset($_GET['std_id']))
                       </div>
                     </div>
                   </div>
-       
                     <button type="submit" class="btn btn-primary mr-2" name="submitst">Submit</button>
                     <button class="btn btn-light">Cancel</button>
                   </form>

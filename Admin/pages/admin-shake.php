@@ -58,13 +58,11 @@ if(isset($_GET['sd_id']))
     $dl_row1=mysqli_fetch_array($dl_query);
     $img = '../images/shake/'.$dl_row1['shake_img'];
     $del = mysqli_query($conn,"DELETE FROM shake WHERE shake_id='$dl_id'");
-    if($del)
-    {
+    if($del){
         unlink($img); //for deleting the existing image from the folder
         header("location:admin-shake.php");
     }
-    else
-    {
+    else{
         echo "Deletion Failed";
     }    
 }
@@ -78,9 +76,7 @@ if(isset($_GET['sd_id']))
                 <!-- Form -->
                 <div class="card-body">
                   <h1 class="card-title">Shakes</h1>
-                  <p class="card-description">
-                    Add Shakes Details
-                  </p>
+                  <p class="card-description">Add Shakes Details</p>
                   <form method="post" enctype="multipart/form-data" class="forms-sample">
                   <input type="hidden" name="shid" value="<?php echo $sh_id; ?>">
                     <div class="row">
@@ -149,7 +145,6 @@ if(isset($_GET['sd_id']))
                         </div>
                       </div>
                     </div>
-                    
                     <button type="submit" class="btn btn-primary mr-2" name="submitsh">Submit</button>
                     <a href="./admin-shake.php" class="btn btn-light">Cancel</a>
                   </form>
@@ -195,14 +190,12 @@ $sql = mysqli_query($conn,"INSERT INTO shake (shake_name, shake_goal, shake_reci
   }
 }
 
-if ($sql == TRUE)
-{
+if ($sql == TRUE){
 // echo "<script type= 'text/javascript'>alert('New record created successfully');</script>";
 move_uploaded_file($tempname, "../images/shake/$filename");
 echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
 } 
-else
-{
+else{
   echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
 }
 }
@@ -212,9 +205,7 @@ else
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Shakes</h4>
-                <p class="card-description">
-                 Shake Details
-                </p>
+                <p class="card-description">Shake Details</p>
                 <div class="table-responsive">
                   <table class="table table-striped">
                     <thead>
@@ -331,5 +322,4 @@ function displaySelectedFileName(input) {
   <script src="../js/todolist.js"></script>
   <!-- endinject -->
 </body>
-
 </html>
