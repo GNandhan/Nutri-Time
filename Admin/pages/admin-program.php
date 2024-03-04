@@ -82,6 +82,7 @@ if(isset($_GET['prd_id']))
                     Add Program Details
                   </p>
                   <form method="post" class="forms-sample">
+                  <input type="hidden" name="prid" value="<?php echo $progid; ?>">
                     <div class="row">
                       <div class="col">
                         <div class="form-group">
@@ -152,6 +153,7 @@ if(isset($_GET['prd_id']))
 <?php
 if(isset($_POST["submitpr"])) 
 { 
+    $pr_id= $_POST["prid"];
     $pr_name= $_POST["pname"];
     $pr_purpose= $_POST["ppurpose"];
     $pr_dur= $_POST["pduration"];

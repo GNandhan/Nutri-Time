@@ -9,7 +9,6 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -82,7 +81,8 @@ if(isset($_GET['sd_id']))
                   <p class="card-description">
                     Add Shakes Details
                   </p>
-                  <form  method="post" class="forms-sample">
+                  <form method="post" enctype="multipart/form-data" class="forms-sample">
+                  <input type="hidden" name="shid" value="<?php echo $sh_id; ?>">
                     <div class="row">
                       <div class="col">
                         <div class="form-group">
@@ -173,16 +173,10 @@ if(isset($_GET['sd_id']))
   $filename = $_FILES['shimg']['name'];
   $tempname = $_FILES['shimg']['tmp_name'];
 
-// Image uploading formats
-// $filename = $_FILES['proimg']['name'];
-// $tempname = $_FILES['proimg']['tmp_name'];
-// $folder = "../images/material/";
-
-// Fetch the shake ID from the URL parameters
+// Fetch the shake ID from the form
 $sh_id = $_POST["shid"];
 
-if($sh_id=='')
-{
+if($sh_id=='') {
 $sql = mysqli_query($conn,"INSERT INTO shake (shake_name, shake_goal, shake_recipes, shake_raw, shake_mcost, shake_scost, shake_desc, shake_img)
                                          VALUES ('$sh_name','$sh_goal','$sh_reci','$sh_raw','$sh_mcost','$sh_scost','$sh_disc','$sh_img')");
 }else{
@@ -253,7 +247,7 @@ while($row=mysqli_fetch_assoc($sql))
                     <tbody>
                       <tr>
                         <td class="py-1"><?php echo $s_id; ?></td>
-                        <td><img src="../images/<?php echo $s_img; ?>" alt=""></td>
+                        <td><img src="../images/shake/<?php echo $s_img; ?>" alt=""></td>
                         <td><?php echo $s_name; ?></td>
                         <td><?php echo $s_goal; ?></td>
                         <td><?php echo $s_reci; ?></td>
