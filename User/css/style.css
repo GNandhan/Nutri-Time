@@ -40,14 +40,6 @@
   }
 } */
 
-main {
-	display: flex;
-	padding: 1.5em;
-	gap: 3em;
-	flex-wrap: wrap;
-	justify-content: center;
-	margin: auto;
-}
 .pl1__g,
 .pl1__rect,
 .pl2__rect,

@@ -47,4 +47,3 @@ More Features
 1 vCPU Core
 2 Mbps IO Usage 
 200000 File Limits
-
