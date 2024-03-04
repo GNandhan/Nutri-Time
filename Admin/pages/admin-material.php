@@ -154,7 +154,6 @@ if(isset($_GET['pd_id']))
                       </div>
                     </div>
                   </div>
-
                   <button type="submit" class="btn btn-primary mr-2" name="submitp">Submit</button>
                   <button class="btn btn-light">Cancel</button>
                 </form>
