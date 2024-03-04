@@ -60,7 +60,7 @@ if(isset($_GET['pd_id']))
     $dl_id = $_GET['pd_id'];
     $dl_query = mysqli_query($conn,"SELECT * FROM material WHERE pro_id = '$dl_id'");
     $dl_row1=mysqli_fetch_array($dl_query);
-    $img = '../images/material/'.$dl_row['pro_image'];
+    $img = '../images/material/'.$dl_row1['pro_image'];
     $del = mysqli_query($conn,"DELETE FROM material WHERE pro_id='$dl_id'");
     if($del)
     {
@@ -236,6 +236,7 @@ else
                   <table class="table table-striped">
                     <thead>
                       <tr>
+                        <th>Slno</th>
                         <th>Product Code</th>
                         <th>Product Image</th>
                         <th>Product Name</th>
@@ -251,6 +252,7 @@ else
                     </thead>
 <?php  
 $sql=mysqli_query($conn,"SELECT * FROM material ORDER BY pro_id ");
+$serialNo = 1;
 while($row=mysqli_fetch_assoc($sql))
 {
     $pro_id=$row['pro_id'];
@@ -266,6 +268,7 @@ while($row=mysqli_fetch_assoc($sql))
 ?>
                     <tbody>
                       <tr>
+                      <td class="py-1"><?php echo $serialNo++; ?></td>
                         <td class="py-1">#<?php echo $pro_cod; ?></td>
                         <td><img src="../images/material/<?php echo $pro_img; ?>" alt="" width="50" class="rounded-circle"></td>
                         <td><?php echo $pro_nam; ?></td>
@@ -317,12 +320,26 @@ while($row=mysqli_fetch_assoc($sql))
   </div>
   <!-- container-scroller -->
   <!-- plugins:js -->
-  <script>
-    function displaySelectedFileName(input) {
-        var fileName = input.files[0].name;
-        var label = input.nextElementSibling;
-        label.innerText = fileName;
-    }
+
+<script>
+function displaySelectedFileName(input) {
+    var fileName = input.files[0].name;
+    var label = input.nextElementSibling;
+    label.innerText = fileName;
+
+    // Display selected image
+    var fileReader = new FileReader();
+    fileReader.onload = function(e) {
+        var img = document.createElement("img");
+        img.src = e.target.result;
+        img.style.width = "350px"; // Set width
+        img.style.height = "auto"; // Maintain aspect ratio
+        img.style.borderRadius = "8px"; // Border radius
+        img.style.marginTop = "50px"; // Optional margin
+        label.parentNode.appendChild(img);
+    };
+    fileReader.readAsDataURL(input.files[0]);
+}
 </script>
 
   <script src="../vendors/js/vendor.bundle.base.js"></script>

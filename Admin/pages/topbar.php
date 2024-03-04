@@ -69,7 +69,7 @@
           <span class="icon-menu"></span>
         </button>
       </div>
-    </nav>
+</nav>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_sidebar.html -->

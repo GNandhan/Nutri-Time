@@ -56,7 +56,7 @@ if(isset($_GET['sd_id']))
     $dl_id = $_GET['sd_id'];
     $dl_query = mysqli_query($conn,"SELECT * FROM shake WHERE shake_id = '$dl_id'");
     $dl_row1=mysqli_fetch_array($dl_query);
-    $img = '../images/shake/'.$dl_row['shake_img'];
+    $img = '../images/shake/'.$dl_row1['shake_img'];
     $del = mysqli_query($conn,"DELETE FROM shake WHERE shake_id='$dl_id'");
     if($del)
     {
@@ -144,6 +144,7 @@ if(isset($_GET['sd_id']))
                            <div class="input-group mb-3">
                             <input type="file" class="custom-file-input form-control file-upload-info" id="inputGroupFile01" name="shimg" onchange="displaySelectedFileName(this)"  value="<?php echo $sh_img1; ?>" required>
                             <label class="input-group-text custom-file-label" for="inputGroupFile01">Choose file</label>
+                            <input type="hidden" name="current_shimg" value="<?php echo $sh_img1; ?>">
                         </div>
                         </div>
                       </div>
@@ -160,6 +161,7 @@ if(isset($_GET['sd_id']))
 <?php
     if(isset($_POST["submitsh"]))
     {
+    $sh_id = $_POST["shid"];
     $sh_name= $_POST["shname"];
     $sh_goal= $_POST["shgoal"];
     $sh_reci= $_POST["shrecipe"];
@@ -232,6 +234,7 @@ else
                     </thead>
 <?php  
 $sql=mysqli_query($conn,"SELECT * FROM shake ORDER BY shake_id ");
+$serialNo = 1;
 while($row=mysqli_fetch_assoc($sql))
 {
     $s_id=$row['shake_id'];
@@ -246,7 +249,7 @@ while($row=mysqli_fetch_assoc($sql))
 ?>
                     <tbody>
                       <tr>
-                        <td class="py-1"><?php echo $s_id; ?></td>
+                      <td class="py-1"><?php echo $serialNo++; ?></td>
                         <td><img src="../images/shake/<?php echo $s_img; ?>" alt=""></td>
                         <td><?php echo $s_name; ?></td>
                         <td><?php echo $s_goal; ?></td>
@@ -300,11 +303,24 @@ while($row=mysqli_fetch_assoc($sql))
   <!-- endinject -->
   <!-- Plugin js for this page -->
   <script>
-    function displaySelectedFileName(input) {
-        var fileName = input.files[0].name;
-        var label = input.nextElementSibling;
-        label.innerText = fileName;
-    }
+function displaySelectedFileName(input) {
+    var fileName = input.files[0].name;
+    var label = input.nextElementSibling;
+    label.innerText = fileName;
+
+    // Display selected image
+    var fileReader = new FileReader();
+    fileReader.onload = function(e) {
+        var img = document.createElement("img");
+        img.src = e.target.result;
+        img.style.width = "350px"; // Set width
+        img.style.height = "auto"; // Maintain aspect ratio
+        img.style.borderRadius = "8px"; // Border radius
+        img.style.marginTop = "50px"; // Optional margin
+        label.parentNode.appendChild(img);
+    };
+    fileReader.readAsDataURL(input.files[0]);
+}
 </script>
   <!-- End plugin js for this page -->
   <!-- inject:js -->

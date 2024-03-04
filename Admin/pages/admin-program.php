@@ -9,7 +9,6 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -56,7 +55,6 @@ if(isset($_GET['prd_id']))
     $dl_id = $_GET['prd_id'];
     $dl_query = mysqli_query($conn,"SELECT * FROM program WHERE program_id = '$dl_id'");
     $dl_row1=mysqli_fetch_array($dl_query);
-    $img = '../images/material/'.$dl_row['pro_image'];
     $del = mysqli_query($conn,"DELETE FROM program WHERE program_id='$dl_id'");
     if($del)
     {
@@ -204,6 +202,7 @@ if(isset($_POST["submitpr"]))
                     </thead>
 <?php  
 $sql=mysqli_query($conn,"SELECT * FROM program ORDER BY program_id ");
+$serialNo = 1;
 while($row=mysqli_fetch_assoc($sql))
 {
     $pro_id=$row['program_id'];
@@ -217,7 +216,7 @@ while($row=mysqli_fetch_assoc($sql))
 ?>
                     <tbody>
                       <tr>
-                        <td class="py-1">#<?php echo $pro_id; ?></td>
+                        <td class="py-1"><?php echo $serialNo++; ?></td>
                         <td><?php echo $pro_name; ?></td>
                         <td><?php echo $pro_pur; ?></td>
                         <td><?php echo $pro_dura; ?></td>
