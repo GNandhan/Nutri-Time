@@ -23,7 +23,7 @@
 Indian server 
 Advanced package 
 SSD
-
+====================================+
 SERVER DETAILS
 1 Website 
 1 GB SSD Storage 5GB Bandwidth
@@ -47,3 +47,20 @@ More Features
 1 vCPU Core
 2 Mbps IO Usage 
 200000 File Limits
+=========================+
+
+Database User:
+
+username:  nutritime_Admin
+Password:  nutriadmin@
+
+
+=========================+
+UPDATION-----
+youtube video
+Product description (benefit)
+famiy photo
+category section
+filter option
+gallery
+staff panel

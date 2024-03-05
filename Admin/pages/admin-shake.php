@@ -141,7 +141,7 @@ if(isset($_GET['sd_id']))
                             <input type="file" class="custom-file-input form-control file-upload-info" id="inputGroupFile01" name="shimg" onchange="displaySelectedFileName(this)"  value="<?php echo $sh_img1; ?>" required>
                             <label class="input-group-text custom-file-label" for="inputGroupFile01">Choose file</label>
                             <input type="hidden" name="current_shimg" value="<?php echo $sh_img1; ?>">
-                        </div>
+                            </div>
                         </div>
                       </div>
                     </div>

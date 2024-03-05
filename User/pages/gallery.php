@@ -28,10 +28,10 @@
               </a>
               <ul class="nav">
                 <li class="nav-item"><a href="../../index.html" class="nav-link text-dark">Home</a></li>
-                <li class="nav-item"><a href="./program.html" class="nav-link text-dark">Program</a></li>
-                <li class="nav-item"><a href="./gallery.html" class="nav-link text-success border-bottom border-2 border-success text-success">Gallery</a></li>
-                <li class="nav-item"><a href="./product.html" class="nav-link text-dark">Product</a></li>
-                <li class="nav-item"><a href="./login.html" class="nav-link text-dark">Sign in</a></li>
+                <li class="nav-item"><a href="./program.php" class="nav-link text-dark">Program</a></li>
+                <li class="nav-item"><a href="./gallery.php" class="nav-link text-success border-bottom border-2 border-success text-success">Gallery</a></li>
+                <li class="nav-item"><a href="./product.php" class="nav-link text-dark">Product</a></li>
+                <li class="nav-item"><a href="./login.php" class="nav-link text-dark">Sign in</a></li>
               </ul>
             </header>
         </div>

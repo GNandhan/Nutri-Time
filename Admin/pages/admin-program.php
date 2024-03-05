@@ -1,6 +1,6 @@
 <?php
  include './connect.php';
-//  error_reporting(0);
+ error_reporting(0);
  session_start();
  if($_SESSION["email"]=="")
  {
@@ -131,6 +131,16 @@ if(isset($_GET['prd_id']))
                             </select>
                         </div>
                       </div>
+                      <div class="col">
+                        <div class="form-group">
+                          <label>Program Image</label>
+                           <div class="input-group mb-3">
+                            <input type="file" class="custom-file-input form-control file-upload-info" id="inputGroupFile01" name="shimg" onchange="displaySelectedFileName(this)"  value="<?php echo $sh_img1; ?>" required>
+                            <label class="input-group-text custom-file-label" for="inputGroupFile01">Choose file</label>
+                            <input type="hidden" name="current_shimg" value="<?php echo $sh_img1; ?>">
+                            </div>
+                        </div>
+                      </div>
                     </div>
                     
                     <button type="submit" class="btn btn-primary mr-2"  name="submitpr">Submit</button>
@@ -253,6 +263,26 @@ while($row=mysqli_fetch_assoc($sql))
   <!-- plugins:js -->
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
+  <script>
+function displaySelectedFileName(input) {
+    var fileName = input.files[0].name;
+    var label = input.nextElementSibling;
+    label.innerText = fileName;
+
+    // Display selected image
+    var fileReader = new FileReader();
+    fileReader.onload = function(e) {
+        var img = document.createElement("img");
+        img.src = e.target.result;
+        img.style.width = "350px"; // Set width
+        img.style.height = "auto"; // Maintain aspect ratio
+        img.style.borderRadius = "8px"; // Border radius
+        img.style.marginTop = "50px"; // Optional margin
+        label.parentNode.appendChild(img);
+    };
+    fileReader.readAsDataURL(input.files[0]);
+}
+</script>
   <!-- inject:js -->
   <script src="../js/off-canvas.js"></script>
   <script src="../js/hoverable-collapse.js"></script>
