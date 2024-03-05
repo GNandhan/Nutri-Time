@@ -45,6 +45,7 @@ if(isset($_GET['prid']))
         $pr_fee1 = $pr_row1['program_fee']; 
         $pr_cond1 = $pr_row1['program_condition']; 
         $pr_mode1 = $pr_row1['program_mode']; 
+        $pr_img1 = $pr_row1['program_img']; 
 }
 // fetching the data from the URL for deleting the subject form
 if(isset($_GET['prd_id']))
@@ -52,6 +53,7 @@ if(isset($_GET['prd_id']))
     $dl_id = $_GET['prd_id'];
     $dl_query = mysqli_query($conn,"SELECT * FROM program WHERE program_id = '$dl_id'");
     $dl_row1=mysqli_fetch_array($dl_query);
+    $img = '../images/program/'.$dl_row1['program_img'];
     $del = mysqli_query($conn,"DELETE FROM program WHERE program_id='$dl_id'");
     if($del){
         unlink($img); //for deleting the existing image from the folder
@@ -72,7 +74,7 @@ if(isset($_GET['prd_id']))
                 <div class="card-body">
                   <h1 class="card-title">Program</h1>
                   <p class="card-description">Add Program Details</p>
-                  <form method="post" class="forms-sample">
+                  <form method="post"  enctype="multipart/form-data" class="forms-sample">
                   <input type="hidden" name="prid" value="<?php echo $progid; ?>">
                     <div class="row">
                       <div class="col">
@@ -135,9 +137,9 @@ if(isset($_GET['prd_id']))
                         <div class="form-group">
                           <label>Program Image</label>
                            <div class="input-group mb-3">
-                            <input type="file" class="custom-file-input form-control file-upload-info" id="inputGroupFile01" name="shimg" onchange="displaySelectedFileName(this)"  value="<?php echo $sh_img1; ?>" required>
+                            <input type="file" class="custom-file-input form-control file-upload-info" id="inputGroupFile01" name="prgimg" onchange="displaySelectedFileName(this)"  value="<?php echo $pr_img1; ?>" required>
                             <label class="input-group-text custom-file-label" for="inputGroupFile01">Choose file</label>
-                            <input type="hidden" name="current_shimg" value="<?php echo $sh_img1; ?>">
+                            <input type="hidden" name="current_primg" value="<?php echo $pr_img1; ?>">
                             </div>
                         </div>
                       </div>
@@ -162,19 +164,35 @@ if(isset($_POST["submitpr"]))
     $pr_fee= $_POST["pfee"];
     $pr_cond= $_POST["pcond"];
     $pr_mode= $_POST["pmode"];
+    $pr_img = $_FILES['prgimg']['name'];
+
+    // Image uploading formats
+    $filename = $_FILES['prgimg']['name'];
+    $tempname = $_FILES['prgimg']['tmp_name'];
+  
+  // Fetch the shake ID from the form
+  $pr_id = $_POST["prid"];
 
     if($pr_id==''){
-      $sql = mysqli_query($conn,"INSERT INTO program (program_name, program_purpose, program_duration, program_age, program_fee, program_condition, program_mode) 
-                         VALUES ('$pr_name','$pr_purpose','$pr_dur','$pr_age','$pr_fee','$pr_cond','$pr_mode')");
+      $sql = mysqli_query($conn,"INSERT INTO program (program_name, program_purpose, program_duration, program_age, program_fee, program_condition, program_mode, program_img) 
+                         VALUES ('$pr_name','$pr_purpose','$pr_dur','$pr_age','$pr_fee','$pr_cond','$pr_mode', '$pr_img')");
     }
     else {
+        if ($filename) {
+            // Remove the existing image
+            $imgs = '../images/program/' . $sh_img;
+            unlink($imgs);
+            // Update shake with new image
+            $sql = mysqli_query($conn, "UPDATE program SET program_name='$pr_name', program_img='$pr_img', program_purpose='$pr_purpose', program_duration='$pr_dur', program_age='$pr_age', program_fee='$pr_fee', program_condition='$pr_cond', program_mode='$pr_mode' WHERE program_id='$pr_id'");
+        }
       $sql = mysqli_query($conn, "UPDATE program SET program_name='$pr_name', program_purpose='$pr_purpose', program_duration='$pr_dur', program_age='$pr_age', program_fee='$pr_fee', program_condition='$pr_cond', program_mode='$pr_mode' WHERE program_id='$pr_id'");
   }
-    if ($sql == TRUE) {
-        echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
-    } else {
-        echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
-    }
+if ($sql == TRUE) {
+move_uploaded_file($tempname, "../images/program/$filename");
+echo "<script type='text/javascript'>('Operation completed successfully.');</script>";}
+else {
+  echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
+}
 }
 ?>
               <!-- table view -->
@@ -189,6 +207,7 @@ if(isset($_POST["submitpr"]))
                       <tr>
                         <th>sl-no</th>
                         <th>Program Name</th>
+                        <th>Program images</th>
                         <th>Purpose</th>
                         <th>Duration</th>
                         <th>Age Limit</th>
@@ -206,6 +225,7 @@ while($row=mysqli_fetch_assoc($sql))
 {
     $pro_id=$row['program_id'];
     $pro_name=$row['program_name'];
+    $pro_img=$row['program_img'];
     $pro_pur=$row['program_purpose'];
     $pro_dura=$row['program_duration'];
     $pro_age=$row['program_age']; 
@@ -217,6 +237,7 @@ while($row=mysqli_fetch_assoc($sql))
                       <tr>
                         <td class="py-1"><?php echo $serialNo++; ?></td>
                         <td><?php echo $pro_name; ?></td>
+                        <td><img src="../images/program/<?php echo $pro_img; ?>" alt=""></td>
                         <td><?php echo $pro_pur; ?></td>
                         <td><?php echo $pro_dura; ?></td>
                         <td><?php echo $pro_age; ?></td>

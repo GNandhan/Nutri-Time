@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2024 at 06:05 AM
+-- Generation Time: Mar 05, 2024 at 12:45 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -53,6 +53,14 @@ CREATE TABLE `login_details` (
   `login_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `login_details`
+--
+
+INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`) VALUES
+('nutriadmin@gmail.com', 1, '2024-03-04 17:30:01'),
+('nutriadmin@gmail.com', 2, '2024-03-05 06:12:44');
+
 -- --------------------------------------------------------
 
 --
@@ -81,6 +89,7 @@ CREATE TABLE `material` (
 CREATE TABLE `program` (
   `program_id` int(11) NOT NULL,
   `program_name` varchar(50) NOT NULL,
+  `program_img` varchar(50) NOT NULL,
   `program_purpose` varchar(50) NOT NULL,
   `program_duration` varchar(50) NOT NULL,
   `program_age` varchar(20) NOT NULL,
@@ -88,6 +97,15 @@ CREATE TABLE `program` (
   `program_condition` varchar(50) NOT NULL,
   `program_mode` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `program`
+--
+
+INSERT INTO `program` (`program_id`, `program_name`, `program_img`, `program_purpose`, `program_duration`, `program_age`, `program_fee`, `program_condition`, `program_mode`) VALUES
+(2, 'formula 1', '', 'weight gainer', '20-Days', '30-50', 500, 'daily consumable, strict diet', 'Online'),
+(3, 'dove soapbar', '', 'dddddddddddddddddddd', '20-Days', '30-50', 420, 'nothing daaaaaaaaaaaaaaaaaaa', 'Offline'),
+(4, 'Oppok 10 5g', 'card2.jpg', 'dddddddddddddddddddd', '25-Days', '30-50', 625, '77557757575757575wdDdwadwadwawafaf', 'Offline');
 
 -- --------------------------------------------------------
 
@@ -203,19 +221,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `material`
 --
 ALTER TABLE `material`
-  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `program`
 --
 ALTER TABLE `program`
-  MODIFY `program_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `program_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `shake`
@@ -227,7 +245,7 @@ ALTER TABLE `shake`
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`

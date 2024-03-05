@@ -57,6 +57,7 @@ $sql=mysqli_query($conn,"SELECT * FROM program ORDER BY program_id ");
 while($row=mysqli_fetch_assoc($sql))
 {
     $prg_name=$row['program_name'];
+    $prg_img=$row['program_img'];
     $prg_purp=$row['program_purpose'];
     $prg_dur=$row['program_duration'];
     $prg_age=$row['program_age'];
@@ -66,31 +67,20 @@ while($row=mysqli_fetch_assoc($sql))
 ?>
             <div class="col-lg-3 col-md col-sm col my-5">
                 <div class="card rounded-5  pt-5 border-0"
-                    style="width: 14rem; position: relative;background-color: #C5EBAA;" data-bs-toggle="collapse"
-                    data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-                    <img src="../images/diet1.png" alt="" class="rounded-circle border border-5 border-light-subtle shadow-lg z-3 position-absolute" width="120"
-                        style="margin: auto; top: -60px; left: 0; right: 0;">
+                    style="width: 14rem; position: relative;background-color: #C5EBAA;">
+                    <img src="../../Admin/images/program/<?php echo $prg_img; ?>" alt="" class="rounded-circle border border-5 border-light-subtle shadow-lg z-3 position-absolute" width="120" style="margin: auto; top: -60px; left: 0; right: 0;">
                     <div class="card-body pt-3">
-                        <h5 class="card-title text-uppercase"><?php echo $prg_name; ?></h5>
-                        <p class="card-text"><?php echo $prg_con; ?></p>
-                        <div class="text-secondary"><?php echo $prg_mode; ?></div>
+                        <h5 class="card-title text-uppercase"><?php echo $prg_name; ?>placeholder</h5>
+                        <p class="card-text"><?php echo $prg_con; ?>placeholderplaceholderplaceholder</p>
+                        <div class="text-secondary"><?php echo $prg_mode; ?>placeholder</div>
                     </div>
                 </div>
-        <!-- Collapse -->
-            <div style="min-height: 120px;">
-                <div class="collapse collapse-horizontal" id="collapseWidthExample">
-                    <div class="card card-body" style="width: 300px;">
-                    <?php echo $prg_purp; ?>
-                    </div>
-                </div>
-            </div>
             </div>
 <?php
 }
 ?>
         </div>
     </div>
-
     <!-- Active plan -->
     <!-- <div class="container my-5">
       <div class="d-flex mb-4 justify-content-between align-items-center">

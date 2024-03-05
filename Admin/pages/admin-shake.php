@@ -189,9 +189,7 @@ $sql = mysqli_query($conn,"INSERT INTO shake (shake_name, shake_goal, shake_reci
       $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_raw='$sh_raw', shake_mcost='$sh_mcost', shake_scost='$sh_scost', shake_desc='$sh_disc', shake_img='$sh_img' WHERE shake_id='$sh_id'");
   }
 }
-
 if ($sql == TRUE){
-// echo "<script type= 'text/javascript'>alert('New record created successfully');</script>";
 move_uploaded_file($tempname, "../images/shake/$filename");
 echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
 } 
