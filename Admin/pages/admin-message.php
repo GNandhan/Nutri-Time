@@ -63,45 +63,20 @@
       </div>
       <div class="modal-body">
         <table>
+<?php  
+$sql=mysqli_query($conn,"SELECT * FROM user ORDER BY user_id ");
+while($row=mysqli_fetch_assoc($sql))
+{
+    $u_id=$row['user_id'];
+    $u_name=$row['user_name'];
+?>
           <tr>
-            <td>user 1</td>
-            <td><input type="checkbox"></td>
-          </tr><tr>
-            <td>user 1</td>
+            <td><?php echo $u_name; ?></td>
             <td><input type="checkbox"></td>
           </tr>
-          <tr>
-            <td>user 1</td>
-            <td><input type="checkbox"></td>
-          </tr>
-          <tr>
-            <td>user 1</td>
-            <td><input type="checkbox"></td>
-          </tr>
-          <tr>
-            <td>user 1</td>
-            <td><input type="checkbox"></td>
-          </tr>
-          <tr>
-            <td>user 1</td>
-            <td><input type="checkbox"></td>
-          </tr>
-          <tr>
-            <td>user 1</td>
-            <td><input type="checkbox"></td>
-          </tr>
-          <tr>
-            <td>user 1</td>
-            <td><input type="checkbox"></td>
-          </tr>
-          <tr>
-            <td>user 1</td>
-            <td><input type="checkbox"></td>
-          </tr>
-          <tr>
-            <td>user 1</td>
-            <td><input type="checkbox"></td>
-          </tr>
+<?php
+}
+?>
         </table>
       </div>
       <div class="modal-footer">

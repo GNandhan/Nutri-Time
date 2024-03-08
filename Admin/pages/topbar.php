@@ -98,7 +98,7 @@
           <li class="nav-item">
             <a class="nav-link" href="admin-material.php">
               <i class="icon-columns menu-icon"></i>
-              <span class="menu-title">Materials</span>
+              <span class="menu-title">Raw Materials</span>
               <i class="menu-arrow"></i>
             </a>
           </li>
@@ -149,6 +149,13 @@
             <a class="nav-link" href="admin-message.php">
               <i class="ti-share menu-icon"></i>
               <span class="menu-title">Messaging</span>
+              <i class="menu-arrow"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="admin-gallery.php">
+              <i class="ti-share menu-icon"></i>
+              <span class="menu-title">Gallery</span>
               <i class="menu-arrow"></i>
             </a>
           </li>

@@ -180,7 +180,7 @@ if(isset($_POST["submitpr"]))
     else {
         if ($filename) {
             // Remove the existing image
-            $imgs = '../images/program/' . $sh_img;
+            $imgs = '../images/program/' . $pr_img;
             unlink($imgs);
             // Update shake with new image
             $sql = mysqli_query($conn, "UPDATE program SET program_name='$pr_name', program_img='$pr_img', program_purpose='$pr_purpose', program_duration='$pr_dur', program_age='$pr_age', program_fee='$pr_fee', program_condition='$pr_cond', program_mode='$pr_mode' WHERE program_id='$pr_id'");
