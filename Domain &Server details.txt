@@ -62,5 +62,5 @@ Product description (benefit)
 famiy photo
 category section
 filter option
-gallery
+gallery +++++++++++++++++++++
 staff panel

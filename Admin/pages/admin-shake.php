@@ -48,6 +48,7 @@ if(isset($_GET['sid']))
         $sh_mcost1 = $s_row1['shake_mcost']; 
         $sh_scost1 = $s_row1['shake_scost']; 
         $sh_disc1 = $s_row1['shake_desc']; 
+        $sh_bene1 = $s_row1['shake_benefit']; 
         $sh_img1 = $s_row1['shake_img']; 
 }
 // fetching the data from the URL for deleting the subject form
@@ -120,11 +121,17 @@ if(isset($_GET['sd_id']))
                       </div>
                     </div>  
                     <div class="row">
-                      <div class="col">
+                      <div class="col-2">
                         <div class="form-group">
                           <label>Selling Price</label>
                           <input type="text" class="form-control" name="shscost" value="<?php echo $sh_scost1; ?>" required>
                         </div> 
+                      </div>
+                      <div class="col">
+                        <div class="form-group">
+                          <label>Benefit</label>
+                          <input type="text" class="form-control" name="shbene" value="<?php echo $sh_bene1; ?>" required>
+                        </div>
                       </div>
                       <div class="col">
                         <div class="form-group">
@@ -164,6 +171,7 @@ if(isset($_GET['sd_id']))
     $sh_mcost= $_POST["shmcost"];
     $sh_scost= $_POST["shscost"];
     $sh_disc= $_POST["shdis"];
+    $sh_bene= $_POST["shbene"];
     $sh_img = $_FILES['shimg']['name'];
 
   // Image uploading formats
@@ -174,8 +182,8 @@ if(isset($_GET['sd_id']))
 $sh_id = $_POST["shid"];
 
 if($sh_id=='') {
-$sql = mysqli_query($conn,"INSERT INTO shake (shake_name, shake_goal, shake_recipes, shake_raw, shake_mcost, shake_scost, shake_desc, shake_img)
-                                         VALUES ('$sh_name','$sh_goal','$sh_reci','$sh_raw','$sh_mcost','$sh_scost','$sh_disc','$sh_img')");
+$sql = mysqli_query($conn,"INSERT INTO shake (shake_name, shake_goal, shake_recipes, shake_raw, shake_mcost, shake_scost, shake_desc, shake_benefit, shake_img)
+                                         VALUES ('$sh_name','$sh_goal','$sh_reci','$sh_raw','$sh_mcost','$sh_scost','$sh_disc','$sh_bene','$sh_img')");
 }else{
         // Update existing material
         if ($filename) {
@@ -183,10 +191,10 @@ $sql = mysqli_query($conn,"INSERT INTO shake (shake_name, shake_goal, shake_reci
           $imgs = '../images/shake/' . $sh_img;
           unlink($imgs);
           // Update shake with new image
-      $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_raw='$sh_raw', shake_mcost='$sh_mcost', shake_scost='$sh_scost', shake_desc='$sh_disc', shake_img='$sh_img' WHERE shake_id='$sh_id'");
+      $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_raw='$sh_raw', shake_mcost='$sh_mcost', shake_scost='$sh_scost', shake_desc='$sh_disc', shake_benefit='$sh_bene', shake_img='$sh_img' WHERE shake_id='$sh_id'");
     } else {
       // Update shake without changing the image
-      $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_raw='$sh_raw', shake_mcost='$sh_mcost', shake_scost='$sh_scost', shake_desc='$sh_disc' WHERE shake_id='$sh_id'");
+      $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_raw='$sh_raw', shake_mcost='$sh_mcost', shake_scost='$sh_scost', shake_desc='$sh_disc', shake_benefit='$sh_bene' WHERE shake_id='$sh_id'");
   }
 }
 if ($sql == TRUE){
@@ -216,6 +224,7 @@ else{
                         <th>Raw Materials</th>
                         <th>Making Cost</th>
                         <th>Selling price</th>
+                        <th>Benefits</th>
                         <th>Description</th>
                         <th>Edit</th>
                         <th>Delete</th>
@@ -233,6 +242,7 @@ while($row=mysqli_fetch_assoc($sql))
     $s_raw=$row['shake_raw']; 
     $s_mcost=$row['shake_mcost']; 
     $s_scost=$row['shake_scost']; 
+    $s_bene=$row['shake_benefit']; 
     $s_disc=$row['shake_desc']; 
     $s_img=$row['shake_img']; 
 ?>
@@ -246,6 +256,7 @@ while($row=mysqli_fetch_assoc($sql))
                         <td><?php echo $s_raw; ?></td>
                         <td><?php echo $s_mcost; ?></td>
                         <td><?php echo $s_scost; ?></td>
+                        <td><?php echo $s_bene; ?></td>
                         <td><?php echo $s_disc; ?></td>
                         <td>
                           <a  href="admin-shake.php?sid=<?php echo $s_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
