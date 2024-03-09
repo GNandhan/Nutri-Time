@@ -42,17 +42,7 @@
                   name="submitl">SIGN IN</button>
                 </div>
                 <div class="my-2 d-flex justify-content-between align-items-center">
-                  <!-- <div class="form-check">
-                    <label class="form-check-label text-muted">
-                      <input type="checkbox" class="form-check-input">
-                      Keep me signed in
-                    </label>
-                  </div> -->
-                  <!-- <a href="#" class="auth-link text-black">Forgot password?</a> -->
                 </div>
-                <!-- <div class="text-center mt-4 font-weight-light">
-                  Don't have an account? <a href="admin-register.html" class="text-primary">Create</a>
-                </div> -->
               </form>
             </div>
           </div>

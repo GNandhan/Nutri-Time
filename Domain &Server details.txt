@@ -64,3 +64,8 @@ category section +++++++++++++++++++
 filter option
 gallery +++++++++++++++++++++
 staff panel
+
+Address in index page ++++++++++++++
+sorting
+message history
+customer backend

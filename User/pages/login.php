@@ -54,7 +54,7 @@
 					</div>
 					<div class="input-field">
 						<i class="fas fa-venus-mars"></i>
-						<input type="number" placeholder="Gender" />
+						<input type="text" placeholder="Gender" />
 					</div>
 					<div class="input-field">
 						<i class="fas fa-envelope"></i>

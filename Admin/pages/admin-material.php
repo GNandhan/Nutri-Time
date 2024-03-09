@@ -232,8 +232,25 @@ else{
                     <p class="card-description">Material Details</p>
                   </div>
                   <div class="col-md-3">
-                    filter option
-                    <input type="text" class="form-control">
+                    <div class="dropdown">
+                      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Filter By:
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <p class="pl-3">Type</p>
+                        <div class="dropdown-item">
+                          <input type="checkbox" id="checkCategory" class="filter-checkbox" value="category">
+                          <label for="checkCategory">Used Materials</label>
+                        </div>
+                        <div class="dropdown-item">
+                          <input type="checkbox" id="checkSubcategory" class="filter-checkbox" value="subcategory">
+                          <label for="checkSubcategory">Unused Materials</label>
+                        </div>
+                        <!-- Add more checkbox items for other filter options -->
+                      </div>
+                    </div>
+
                   </div>
                 </div>
                 <div class="table-responsive">

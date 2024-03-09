@@ -82,23 +82,10 @@
               <i class="menu-arrow"></i>
             </a>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#raw" aria-expanded="false" aria-controls="raw">
-              <i class="icon-layout menu-icon"></i>
-              <span class="menu-title">Raw Materials</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="raw">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="admin-material.php">Add Materials</a></li>
-                <li class="nav-item"> <a class="nav-link" href="admin-viewmaterial.php">View Materials</a></li>
-              </ul>
-            </div>
-          </li> -->
           <li class="nav-item">
             <a class="nav-link" href="admin-material.php">
               <i class="icon-columns menu-icon"></i>
-              <span class="menu-title">Raw Materials</span>
+              <span class="menu-title">Material</span>
               <i class="menu-arrow"></i>
             </a>
           </li>
@@ -139,23 +126,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="admin-staff.php">
-              <i class="icon-ban menu-icon"></i>
-              <span class="menu-title">Staff</span>
-              <i class="menu-arrow"></i>
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="admin-message.php">
               <i class="ti-share menu-icon"></i>
               <span class="menu-title">Messaging</span>
-              <i class="menu-arrow"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="admin-gallery.php">
-              <i class="ti-share menu-icon"></i>
-              <span class="menu-title">Gallery</span>
               <i class="menu-arrow"></i>
             </a>
           </li>
