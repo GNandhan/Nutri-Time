@@ -4,7 +4,6 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +22,6 @@
         }
     </style>
 </head>
-
 <body>
     <!-- navbar -->
     <div class="container-fluid bg-white shadow-sm">
@@ -37,106 +35,63 @@
                 </a>
                 <ul class="nav">
                     <li class="nav-item"><a href="../../index.html" class="nav-link text-dark">Home</a></li>
-                    <li class="nav-item"><a href="./program.php"
-                            class="nav-link text-success border-bottom border-2 border-success text-success">Program</a>
-                    </li>
+                    <li class="nav-item"><a href="./program.php"class="nav-link text-success border-bottom border-2 border-success text-success">Program</a></li>
                     <li class="nav-item"><a href="./gallery.php" class="nav-link text-dark">Gallery</a></li>
                     <li class="nav-item"><a href="./product.php" class="nav-link text-dark">Product</a></li>
+                    <li class="nav-item"><a href="./contact.php" class="nav-link text-dark">Contact</a></li>
                     <li class="nav-item"><a href="./login.php" class="nav-link text-dark">Sign in</a></li>
                 </ul>
             </header>
         </div>
     </div>
     <!-- navbar closed -->
-
-
+    <!-- Program cards -->
     <div class="container">
-        <div class="row my-5">
-            <?php  
-$sql=mysqli_query($conn,"SELECT * FROM program ORDER BY program_id ");
-while($row=mysqli_fetch_assoc($sql))
-{
-    $prg_name=$row['program_name'];
-    $prg_img=$row['program_img'];
-    $prg_purp=$row['program_purpose'];
-    $prg_dur=$row['program_duration'];
-    $prg_age=$row['program_age'];
-    $prg_fee=$row['program_fee'];
-    $prg_con=$row['program_condition']; 
-    $prg_mode=$row['program_mode'];
-?>
-            <div class="col-lg-3 col-md col-sm col my-5">
-                <div class="card rounded-5  pt-5 border-0"
-                    style="width: 14rem; position: relative;background-color: #C5EBAA;">
-                    <img src="../../Admin/images/program/<?php echo $prg_img; ?>" alt="" class="rounded-circle border border-5 border-light-subtle shadow-lg z-3 position-absolute" width="120" style="margin: auto; top: -60px; left: 0; right: 0;">
-                    <div class="card-body pt-3">
-                        <h5 class="card-title text-uppercase"><?php echo $prg_name; ?>placeholder</h5>
-                        <p class="card-text"><?php echo $prg_con; ?>placeholderplaceholderplaceholder</p>
-                        <div class="text-secondary"><?php echo $prg_mode; ?>placeholder</div>
-                    </div>
-                </div>
-            </div>
-<?php
-}
-?>
-        </div>
-    </div>
-    <!-- Active plan -->
-    <!-- <div class="container my-5">
-      <div class="d-flex mb-4 justify-content-between align-items-center">
-          <h2 class="text-start d-flex me-auto">Currently <span class="text-success">&nbsp;Active plan</span></h2>
-          <a href="#" class="text-end d-flex align-items-center text-success text-decoration-none">
-              View All
-          </a>
-      </div>
-      <div class="row ">
-          <div class="col-lg-6">
-              <h5>21 Days</h5>
-              <div class="row my-4">
-                  <div class="col-lg-6">
-                      <div class="d-flex align-items-center">
-                          <img src="../images/diet1.png" alt="" width="40" class="mr-3">
-                          <span class="">Day 1: Vitamins</span>
-                      </div>
-                  </div>
-                  <div class="col-lg-6">
-                      <div class="d-flex align-items-center">
-                          <img src="..//images/diet1.png" alt="" width="40" class="mr-3">
-                          <span class="">Day 2: Sugar free</span>
-                      </div>
-                  </div>
-              </div>
-              <div class="row my-4">
-                  <div class="col-lg-6">
-                      <div class="d-flex align-items-center">
-                          <img src="..//images/diet1.png" alt="" width="40" class="mr-3">
-                          <span class="">Day 2: Protein</span>
-                      </div>
-                  </div>
-                  <div class="col-lg-6">
-                      <div class="d-flex align-items-center">
-                          <img src="..//images/diet1.png" alt="" width="40" class="mr-3">
-                          <span class="">Day 4: Creatine</span>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-6 d-flex align-items-center justify-content-center text-center" style="position: relative;">
-              <div style="margin-right: 200px;">
-                  <div class="h3">16 Days</div>
-                  <div>Left</div>
-                  <div class="progress" role="progressbar" aria-label="succetext-success example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-                      <div class="progress-bar bg-succetext-success" style="width: 50%">50%</div>
-                  </div>
-              </div>
-              <div style="border-radius: 20px; position: absolute; right: 0; top: 0; bottom: 0; width: 50%; background: linear-gradient(to left, rgba(255, 255, 255, 0), rgb(250, 250, 250)), url('..//images/bg1.jpg'); background-size: cover;"></div>
-          </div>                              
-      </div>
-      <div class="row">
+    <div class="row">
+    <div class="h2 py-4 px-5 border-start bg-white rounded-5 shadow">Programs</div>
+    <div class="card border-0 shadow-lg rounded-5">
+        <div class="row text-center p-4">
+        <?php  
+        // Define an array of colors
+        $colors = array('#C5EBAA', '#E1F0DA', '#EED3D9', '#C6DCBA', '#D4E2D4', '#EEE0C9', '#C2DEDC', '#96B6C5', '#F5F0BB', '#F1F7B5');
         
-      </div>
-  </div> -->
-    <!-- Active plan CLosed -->
+        $sql=mysqli_query($conn,"SELECT * FROM program ORDER BY program_id ");
+        $color_index = 0; // Start with the first color
+        while($row=mysqli_fetch_assoc($sql))
+        {
+            $prg_name=$row['program_name'];
+            $prg_img=$row['program_img'];
+            $prg_purp=$row['program_purpose'];
+            $prg_dur=$row['program_duration'];
+            $prg_age=$row['program_age'];
+            $prg_fee=$row['program_fee'];
+            $prg_con=$row['program_condition']; 
+            $prg_mode=$row['program_mode'];
+            
+            // Get the color for this card
+            $color = $colors[$color_index % count($colors)]; // Use modulo to loop through colors
+            
+            // Increment color index for next card
+            $color_index++;
+        ?>
+        <div class="col-lg-3 col-md col-sm-6 col my-5 ">
+            <div class="card shadow rounded-5 pt-5 border-0 h-100" style="width: 14rem; position: relative; background-color: <?php echo $color; ?>">
+                <div class="image-container rounded-circle overflow-hidden border border-3 border-light-subtle shadow z-3 position-absolute" style="width: 120px; height: 120px; margin: auto; top: -60px; left: 0; right: 0; background-image: url('../../Admin/images/program/<?php echo $prg_img; ?>'); background-size: cover; background-position: center;"></div>
+                <div class="card-body pt-4">
+                    <h5 class="card-title text-uppercase"><?php echo $prg_name; ?></h5>
+                    <p class="card-text"><?php echo $prg_con; ?></p>
+                </div>
+                <div class="card-footer text-secondary bg-transparent border-top"><?php echo $prg_mode; ?></div>
+            </div>
+        </div>
+        <?php
+        }
+        ?>
+        </div>
+            </div>
+    </div>
+</div>
+    <!-- Program cards -->
     <!-- footer -->
     <div class="container">
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
@@ -148,7 +103,6 @@ while($row=mysqli_fetch_assoc($sql))
                 </a>
                 <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2024 Company, Inc</span>
             </div>
-
             <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
                 <li class="ms-3"><a class="text-body-secondary" href="#"><img src="../images/icon-twitter.png"
                             width="24" height="24" alt="twitter icon"></a></li>

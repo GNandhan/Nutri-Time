@@ -1,3 +1,7 @@
+<?php
+ include './connect.php';
+ error_reporting(0);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +18,6 @@
         body{
             background-color: rgb(250, 250, 250);
             font-family: "Outfit", sans-serif;
-            
         }
     </style>
 </head>
@@ -32,94 +35,44 @@
               <li class="nav-item"><a href="./program.php" class="nav-link text-dark">Program</a></li>
               <li class="nav-item"><a href="./gallery.php" class="nav-link text-dark">Gallery</a></li>
               <li class="nav-item"><a href="./product.php" class="nav-link text-success border-bottom border-2 border-success text-success">Product</a></li>
+              <li class="nav-item"><a href="./contact.php" class="nav-link text-dark">Contact</a></li>
               <li class="nav-item"><a href="./login.php" class="nav-link text-dark">Sign in</a></li>
             </ul>
           </header>
       </div>
    </div>
     <!-- navbar closed -->
-    <div class="album py-5 bg-body-tertiary">
-        <div class="container">
-            <h2 class="border-start border-warning border-4 mb-5">&nbsp;&nbsp;Our Product List</h2>
-    
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <div class="col">
-              <div class="card shadow-sm h-100" style="border-radius: 20px">
-                <img src="../images/pro1.png" class="bd-placeholder-img card-img-top img-fluid" style="border-radius: 20px 20px 0px 0px;" style="border-radius: 20px 20px 0px 0px;" width="100%" height="225">
-                <div class="card-body">
-                  <p class="card-text">Protein Powder</p>
 
-                  <div class="d-flex justify-content-between align-items-center">
-                    <button type="button" class="btn btn-sm btn-warning rounded-3">Get now.</button>
+        <!-- Program cards -->
+<div class="container">
+    <div class="row">
+      <div class="h2 py-4 px-5 border-start bg-white rounded-5 shadow">Gallery</div>
+      <div class="card border-0 shadow-lg rounded-5">
+        <div class="row text-center p-4">
+          <?php  
 
-                  </div>
-                </div>
+        $sql=mysqli_query($conn,"SELECT * FROM gallery ORDER BY gallery_id ");
+        while($row=mysqli_fetch_assoc($sql))
+        {
+            $gal_name=$row['gallery_dis'];
+            $gal_img=$row['gallery_img'];
+        ?>
+          <div class="col-lg-3 col-md col-sm-6 col my-2">
+            <div class="card rounded-4 shadow-lg d-flex flex-column border-0 h-100" style="height: 200px; object-fit: cover; border-radius: 20px 20px 0px 0px">
+              <img src="../../Admin/images/gallery/<?php echo $gal_img; ?>" class="rounded-top-4" alt="..." style="height: 200px; object-fit: cover; border-radius: 20px 20px 0px 0px">
+              <div class="card-body">
+                <p class="card-text"><?php echo $gal_name; ?></p>
               </div>
             </div>
-            <div class="col">
-              <div class="card shadow-sm h-100" style="border-radius: 20px">
-                <img src="../images/pro2.png" class="bd-placeholder-img card-img-top img-fluid" style="border-radius: 20px 20px 0px 0px;" width="100%" height="225">
-                <div class="card-body">
-                  <p class="card-text">Beverage Mix</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <button type="button" class="btn btn-sm btn-warning rounded-3">Get now.</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm h-100" style="border-radius: 20px">
-                <img src="../images/pro3.png" class="bd-placeholder-img card-img-top img-fluid" style="border-radius: 20px 20px 0px 0px;" width="100%" height="225">
-                <div class="card-body">
-                  <p class="card-text">Protein Drink Mix</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <button type="button" class="btn btn-sm btn-warning rounded-3">Get now.</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-    
-            <div class="col">
-              <div class="card shadow-sm h-100" style="border-radius: 20px">
-                <img src="../images/shake4.jpg" class="bd-placeholder-img card-img-top " style="border-radius: 20px 20px 0px 0px;" width="100%" height="225">
-                <div class="card-body">
-                  <p class="card-text">Shake 2</p>
-                  <p>Use: <span class="fw-semibold">fat reducer</span></p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <button type="button" class="btn btn-sm btn-warning rounded-3">Get now.</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm h-100" style="border-radius: 20px">
-                <img src="../images/shake5.jpg" class="bd-placeholder-img card-img-top" style="border-radius: 20px 20px 0px 0px;" width="100%" height="225">
-                <div class="card-body">
-                  <p class="card-text">Shake 2</p>
-                  <p>Use: <span class="fw-semibold">fat reducer</span></p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <button type="button" class="btn btn-sm btn-warning rounded-3">Get now.</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm h-100" style="border-radius: 20px">
-                <img src="../images/shake1.jpg" class="bd-placeholder-img card-img-top" style="border-radius: 20px 20px 0px 0px;" width="100%" height="225">
-                <div class="card-body">
-                  <p class="card-text">Shake 2</p>
-                  <p>Use: <span class="fw-semibold">fat reducer</span></p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <button type="button" class="btn btn-sm btn-warning rounded-3">Get now.</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
           </div>
+          <?php
+        }
+        ?>
         </div>
       </div>
-      <!--  -->
+    </div>
+  </div>
+    <!-- Program cards -->
 
       <!-- footer -->
 <div class="container">

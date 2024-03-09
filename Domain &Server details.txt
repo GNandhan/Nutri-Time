@@ -57,15 +57,15 @@ Password:  nutriadmin@
 
 =========================+
 UPDATION-----
-youtube video
+youtube video +++++++++++++
 Product description (benefit) ++++++++++++++
 famiy photo
 category section +++++++++++++++++++
 filter option
 gallery +++++++++++++++++++++
-staff panel
+staff panel ++++++++++++
 
 Address in index page ++++++++++++++
 sorting
 message history
-customer backend
+customer backend ++++++++++++++==

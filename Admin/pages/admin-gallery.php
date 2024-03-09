@@ -1,4 +1,4 @@
-<?php
+ <?php
  include './connect.php';
  error_reporting(0);
  session_start();
@@ -76,7 +76,7 @@ if(isset($_GET['did']))
                   <div class="form-group">
                     <label for="exampleTextarea1">Img Description</label>
                     <input type="text" class="form-control" style="border-radius: 15px;" name="galldis"
-                      value="<?php echo $gl_dis1; ?>" required>
+                      value="<?php echo $gl_dis1; ?>">
                   </div>
                   <div class="form-group">
                     <label for="exampleTextarea1">Add Images</label>

@@ -146,7 +146,7 @@ if(isset($_GET['prd_id']))
                     </div>
                     
                     <button type="submit" class="btn btn-primary mr-2"  name="submitpr">Submit</button>
-                    <button class="btn btn-light">Cancel</button>
+                    <a href="./admin-program.php" class="btn btn-light">Cancel</a>
                   </form>
                 </div>
                 <!-- Form Closed -->

@@ -105,10 +105,11 @@ if(isset($_GET['pd_id']))
                       <div class="form-group">
                         <label for="exampleSelectGender">Category</label>
                         <select class="form-control" name="procat" required>
-                          <option <?php if($p_cat1=='Category1' ) echo 'selected' ; ?> value="Category1">Category1
-                          </option>
-                          <option <?php if($p_cat1=='Category2' ) echo 'selected' ; ?> value="Category2">Category2
-                          </option>
+                          <option <?php if($p_cat1=='Category1' ) echo 'selected' ; ?> value="Category1">Weight Management</option>
+                          <option <?php if($p_cat1=='Category2' ) echo 'selected' ; ?> value="Category2">Sport Nutrition</option>
+                          <option <?php if($p_cat1=='Category2' ) echo 'selected' ; ?> value="Category2">Energy</option>
+                          <option <?php if($p_cat1=='Category2' ) echo 'selected' ; ?> value="Category2">Ayurvedic Nutrition</option>
+                          <option <?php if($p_cat1=='Category2' ) echo 'selected' ; ?> value="Category2">Targeted Nutrition</option>
                         </select>
                       </div>
                     </div>
@@ -116,10 +117,22 @@ if(isset($_GET['pd_id']))
                       <div class="form-group">
                         <label for="exampleSelectGender">Subcategory</label>
                         <select class="form-control" name="subcat" required>
-                          <option value="Subcategory11" <?php if($p_sub1=='Subcategory11' ) echo 'selected' ; ?>
-                            >Subcategory11</option>
-                          <option value="Subcategory22" <?php if($p_sub1=='Subcategory22' ) echo 'selected' ; ?>
-                            >Subcategory22</option>
+<?php  
+$sql=mysqli_query($conn,"SELECT * FROM category ORDER BY category_id ");
+$serialNo = 1;
+while($row=mysqli_fetch_assoc($sql))
+{
+    $cat_id=$row['category_id'];
+    $cat_name=$row['category_name'];
+    $cat_subname=$row['subcategory_name']; 
+    if (condition) {
+      # code...
+    }
+?>
+                          <option value="Subcategory11" <?php if($p_sub1=='Subcategory11' ) echo 'selected' ; ?>><?php echo $cat_name; ?></option>
+<?php
+}
+?>
                         </select>
                       </div>
                     </div>
@@ -398,5 +411,4 @@ while($row=mysqli_fetch_assoc($sql))
   <script src="../js/select2.js"></script>
   <!-- End custom js for this page-->
 </body>
-
 </html>
