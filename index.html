@@ -157,6 +157,16 @@
       100% {transform: rotate(360deg);
       }
     }
+    .category-heading {
+    display: flex;
+    align-items: center;
+}
+.line {
+    flex-grow: 1;
+    height: 1px;
+    background-color: black;
+    margin: 0 10px;
+}
   </style>
 </head>
 <body>
@@ -182,7 +192,7 @@
     <!-- navbar -->
     <div class="container-fluid bg-white shadow-sm">
       <div class="container">
-        <header class="d-flex flex-wrap justify-content-center py-2 mb-4 border-bottom">
+        <header class="d-flex flex-wrap justify-content-center py-2 mb-4">
           <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
             <img src="./User/images/icon.png" class="icon1 me-2" width="90">
             <use xlink:href="#bootstrap" />
@@ -322,9 +332,54 @@
       </div>
     </div>
     <!--product card Closed -->
+
+    <!-- Category  -->
+    <div class="container my-5">
+      <div class="row">
+          <div class="col-lg col-md col-sm col">
+              <div class="category-heading">
+                  <hr class="line">
+                  <h3>OUR SUPPLEMENT CATEGORIES</h3>
+                  <hr class="line">
+              </div>
+          </div>
+      </div>
+      <div class="row my-4">
+        <div class="col-lg col-md col-sm col text-center">
+          <img src="./User/images/category1.svg" alt="" width="100">
+          <div class="py-3">Beauty Health</div>
+        </div>
+        <div class="col-lg col-md col-sm col text-center">
+          <img src="./User/images/category2.svg" alt="" width="100">
+          <div class="py-3">Women Health</div>
+        </div>
+        <div class="col-lg col-md col-sm col text-center">
+          <img src="./User/images/category3.svg" alt="" width="100">
+          <div class="py-3">Diabetic Support</div>
+        </div>
+        <div class="col-lg col-md col-sm col text-center">
+          <img src="./User/images/category4.svg" alt="" width="100">
+          <div class="py-3">Kids Health</div>
+        </div>
+        <div class="col-lg col-md col-sm col text-center">
+          <img src="./User/images/category5.svg" alt="" width="100">
+          <div class="py-3">Weight Management</div>
+        </div>
+        <div class="col-lg col-md col-sm col text-center">
+          <img src="./User/images/category6.svg" alt="" width="100">
+          <div class="py-3">Immune Health</div>
+        </div>
+        <div class="col-lg col-md col-sm col text-center">
+          <img src="./User/images/category7.svg" alt="" width="100">
+          <div class="py-3">Vitamins & Minerals</div>
+        </div>
+      </div>
+  </div>
+  
+    <!-- Category Closed  -->
     <!-- Our Specialities -->
     <div class="b-example-divider"></div>
-    <div class="container px-4 pt-5">
+    <div class="container px-4">
       <h2 class="pb-2 border-bottom">Our <span class="text-success">&nbsp;Specialities</span></h2>
       <div class="row row-cols-1 row-cols-md-2 g-5 py-5 align-items-md-center">
         <div class="col-lg-5 col-md col-sm col d-flex flex-column align-items-start gap-2">
@@ -395,11 +450,11 @@
     <!-- Get started -->
     <div class="container col-xxl-8 col-md col-sm col px-4 pt-2">
       <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-        <div class="col-10 col-sm-8 col-lg-6">
-          <img src="User/images/bg2.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700"
+        <div class=" col-lg-6 col-md-6 col-sm-8 col-10 text-center">
+          <img src="User/images/bg2.png" class="d-block mx-auto img-fluid" alt="Bootstrap Themes" width="700"
             height="500" loading="lazy">
         </div>
-        <div class="col-lg-6  col-md col-sm col">
+        <div class="col-lg-6  col-md-6 col-sm col">
           <!-- <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Responsive left-aligned hero with image</h1> -->
           <h2 class="border-4 border-warning border-start mb-4">&nbsp;&nbsp;Get started</h2>
           <p class="lead">The <span class="fw-bold">NutriDiet Planner & Health Shake </span>Provider website is a
@@ -470,13 +525,9 @@
         </div>
 
         <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-          <li class="ms-3"><a class="text-body-secondary" href="#"><img src="user/images/icon-twitter.png" width="24"
-                height="24" alt="twitter icon"></a></li>
-          <li class="ms-3"><a class="text-body-secondary" href="#"><img src="user/images/icon-facebook.png" width="24"
-                height="24" alt="facebook icon"></a></li>
-          <li class="ms-3"><a class="text-body-secondary" target="_blank"
-              href="https://www.instagram.com/nutritimenutritionclub/"><img src="user/images/icon-instagram.png"
-                width="24" height="24" alt="instagram icon"></a></li>
+          <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-facebook" width="24" height="24"></i></a></li>
+          <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-twitter-x" width="24" height="24"></i></a></li>
+          <li class="ms-3"><a class="text-body-secondary" target="_blank" href="https://www.instagram.com/nutritimenutritionclub/"><i class="bi bi-instagram" width="24" height="24"></i></a></li>
         </ul>
       </footer>
     </div>

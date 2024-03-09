@@ -58,9 +58,9 @@ Password:  nutriadmin@
 =========================+
 UPDATION-----
 youtube video
-Product description (benefit)
+Product description (benefit) ++++++++++++++
 famiy photo
-category section
+category section +++++++++++++++++++
 filter option
 gallery +++++++++++++++++++++
 staff panel

@@ -9,6 +9,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -28,6 +29,7 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
+
 <body>
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
@@ -35,7 +37,7 @@
     <?php
   include './topbar.php';
 ?>
-<?php
+    <?php
 if(isset($_GET['pid']))
 {
     $proid = $_GET['pid'];
@@ -86,13 +88,15 @@ if(isset($_GET['pd_id']))
                     <div class="col-lg-6 col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product Code</label>
-                        <input type="text" class="form-control" placeholder="#00A001" name="procode" value="<?php echo $p_code1; ?>" required>
+                        <input type="text" class="form-control" placeholder="#00A001" name="procode"
+                          value="<?php echo $p_code1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg-6 col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product Name</label>
-                        <input type="text" class="form-control" placeholder="Weight Gainer" name="proname" value="<?php echo $p_name1; ?>" required>
+                        <input type="text" class="form-control" placeholder="Weight Gainer" name="proname"
+                          value="<?php echo $p_name1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -101,8 +105,10 @@ if(isset($_GET['pd_id']))
                       <div class="form-group">
                         <label for="exampleSelectGender">Category</label>
                         <select class="form-control" name="procat" required>
-                          <option <?php if($p_cat1=='Category1' ) echo 'selected' ; ?> value="Category1">Category1</option>
-                          <option <?php if($p_cat1=='Category2' ) echo 'selected' ; ?>  value="Category2">Category2</option>
+                          <option <?php if($p_cat1=='Category1' ) echo 'selected' ; ?> value="Category1">Category1
+                          </option>
+                          <option <?php if($p_cat1=='Category2' ) echo 'selected' ; ?> value="Category2">Category2
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -110,15 +116,18 @@ if(isset($_GET['pd_id']))
                       <div class="form-group">
                         <label for="exampleSelectGender">Subcategory</label>
                         <select class="form-control" name="subcat" required>
-                          <option value="Subcategory11" <?php if($p_sub1=='Subcategory11' ) echo 'selected' ; ?>>Subcategory11</option>
-                          <option value="Subcategory22" <?php if($p_sub1=='Subcategory22' ) echo 'selected' ; ?>>Subcategory22</option>
+                          <option value="Subcategory11" <?php if($p_sub1=='Subcategory11' ) echo 'selected' ; ?>
+                            >Subcategory11</option>
+                          <option value="Subcategory22" <?php if($p_sub1=='Subcategory22' ) echo 'selected' ; ?>
+                            >Subcategory22</option>
                         </select>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>Product Brand</label>
-                        <input type="text" class="form-control" name="probrand" value="<?php echo $p_brand1; ?>" required>
+                        <input type="text" class="form-control" name="probrand" value="<?php echo $p_brand1; ?>"
+                          required>
                       </div>
                     </div>
                   </div>
@@ -126,13 +135,15 @@ if(isset($_GET['pd_id']))
                     <div class="col">
                       <div class="form-group">
                         <label>Price</label>
-                        <input type="number" class="form-control" name="proprice" value="<?php echo $p_pri1; ?>" required>
+                        <input type="number" class="form-control" name="proprice" value="<?php echo $p_pri1; ?>"
+                          required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>Quantity</label>
-                        <input type="number" class="form-control" name="proquant" value="<?php echo $p_qua1; ?>" required>
+                        <input type="number" class="form-control" name="proquant" value="<?php echo $p_qua1; ?>"
+                          required>
                       </div>
                     </div>
                   </div>
@@ -141,8 +152,10 @@ if(isset($_GET['pd_id']))
                       <div class="form-group">
                         <label>Product Image</label>
                         <div class="input-group mb-3">
-                            <input type="file" class="custom-file-input form-control file-upload-info" id="inputGroupFile01" name="proimg" onchange="displaySelectedFileName(this)"  value="<?php echo $p_img1; ?>" required>
-                            <label class="input-group-text custom-file-label" for="inputGroupFile01">Choose file</label>
+                          <input type="file" class="custom-file-input form-control file-upload-info"
+                            id="inputGroupFile01" name="proimg" onchange="displaySelectedFileName(this)"
+                            value="<?php echo $p_img1; ?>" required>
+                          <label class="input-group-text custom-file-label" for="inputGroupFile01">Choose file</label>
                         </div>
                         <img src="../images/material/<?php echo $p_img1; ?>" alt="" width="100">
                       </div>
@@ -161,8 +174,8 @@ if(isset($_GET['pd_id']))
             </div>
           </div>
         </div>
-<!-- PHP CODE FOR INSERTING THE DATA -->
-<?php
+        <!-- PHP CODE FOR INSERTING THE DATA -->
+        <?php
     if(isset($_POST["submitp"]))
     {
     $pcode= $_POST["procode"];
@@ -214,7 +227,15 @@ else{
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Materials</h4>
-                <p class="card-description">Material Details</p>
+                <div class="row">
+                  <div class="col-md-9">
+                    <p class="card-description">Material Details</p>
+                  </div>
+                  <div class="col-md-3">
+                    filter option
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
                 <div class="table-responsive">
                   <table class="table table-striped">
                     <thead>
@@ -233,7 +254,7 @@ else{
                         <th>Delete</th>
                       </tr>
                     </thead>
-<?php  
+                    <?php  
 $sql=mysqli_query($conn,"SELECT * FROM material ORDER BY pro_id ");
 $serialNo = 1;
 while($row=mysqli_fetch_assoc($sql))
@@ -251,27 +272,50 @@ while($row=mysqli_fetch_assoc($sql))
 ?>
                     <tbody>
                       <tr>
-                      <td class="py-1"><?php echo $serialNo++; ?></td>
-                        <td class="py-1">#<?php echo $pro_cod; ?></td>
-                        <td><img src="../images/material/<?php echo $pro_img; ?>" alt="" width="50" class="rounded-circle"></td>
-                        <td><?php echo $pro_nam; ?></td>
-                        <td><?php echo $pro_cat; ?></td>
-                        <td><?php echo $pro_subcat; ?></td>
-                        <td><?php echo $pro_bra; ?></td>
-                        <td><?php echo $pro_pri; ?></td>
-                        <td><?php echo $pro_qua; ?></td>
-                        <td><?php echo $pro_dis; ?></td>
+                        <td class="py-1">
+                          <?php echo $serialNo++; ?>
+                        </td>
+                        <td class="py-1">#
+                          <?php echo $pro_cod; ?>
+                        </td>
+                        <td><img src="../images/material/<?php echo $pro_img; ?>" alt="" width="50"
+                            class="rounded-circle"></td>
                         <td>
-                          <a href="admin-material.php?pid=<?php echo $pro_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i>
+                          <?php echo $pro_nam; ?>
+                        </td>
+                        <td>
+                          <?php echo $pro_cat; ?>
+                        </td>
+                        <td>
+                          <?php echo $pro_subcat; ?>
+                        </td>
+                        <td>
+                          <?php echo $pro_bra; ?>
+                        </td>
+                        <td>
+                          <?php echo $pro_pri; ?>
+                        </td>
+                        <td>
+                          <?php echo $pro_qua; ?>
+                        </td>
+                        <td>
+                          <?php echo $pro_dis; ?>
+                        </td>
+                        <td>
+                          <a href="admin-material.php?pid=<?php echo $pro_id; ?>"
+                            class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i
+                              class="ti-pencil-alt btn-icon-append"></i>
                           </a>
                         </td>
                         <td>
-                          <a href="admin-material.php?pd_id=<?php echo $pro_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i>
+                          <a href="admin-material.php?pd_id=<?php echo $pro_id; ?>"
+                            class="btn btn-inverse-danger btn-icon-text p-2">Delete<i
+                              class="ti-trash btn-icon-prepend"></i>
                           </a>
                         </td>
                       </tr>
                     </tbody>
-<?php
+                    <?php
 }
 ?>
                   </table>
@@ -298,15 +342,15 @@ while($row=mysqli_fetch_assoc($sql))
   </div>
   <!-- container-scroller -->
   <!-- plugins:js -->
-<script>
-function displaySelectedFileName(input) {
-    var fileName = input.files[0].name;
-    var label = input.nextElementSibling;
-    label.innerText = fileName;
+  <script>
+    function displaySelectedFileName(input) {
+      var fileName = input.files[0].name;
+      var label = input.nextElementSibling;
+      label.innerText = fileName;
 
-    // Display selected image
-    var fileReader = new FileReader();
-    fileReader.onload = function(e) {
+      // Display selected image
+      var fileReader = new FileReader();
+      fileReader.onload = function (e) {
         var img = document.createElement("img");
         img.src = e.target.result;
         img.style.width = "350px"; // Set width
@@ -314,10 +358,10 @@ function displaySelectedFileName(input) {
         img.style.borderRadius = "8px"; // Border radius
         img.style.marginTop = "50px"; // Optional margin
         label.parentNode.appendChild(img);
-    };
-    fileReader.readAsDataURL(input.files[0]);
-}
-</script>
+      };
+      fileReader.readAsDataURL(input.files[0]);
+    }
+  </script>
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
@@ -337,4 +381,5 @@ function displaySelectedFileName(input) {
   <script src="../js/select2.js"></script>
   <!-- End custom js for this page-->
 </body>
+
 </html>
