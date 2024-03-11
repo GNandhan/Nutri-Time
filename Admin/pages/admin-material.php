@@ -9,7 +9,6 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -29,7 +28,6 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
-
 <body>
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
@@ -117,22 +115,7 @@ if(isset($_GET['pd_id']))
                       <div class="form-group">
                         <label for="exampleSelectGender">Subcategory</label>
                         <select class="form-control" name="subcat" required>
-<?php  
-$sql=mysqli_query($conn,"SELECT * FROM category ORDER BY category_id ");
-$serialNo = 1;
-while($row=mysqli_fetch_assoc($sql))
-{
-    $cat_id=$row['category_id'];
-    $cat_name=$row['category_name'];
-    $cat_subname=$row['subcategory_name']; 
-    if (condition) {
-      # code...
-    }
-?>
                           <option value="Subcategory11" <?php if($p_sub1=='Subcategory11' ) echo 'selected' ; ?>><?php echo $cat_name; ?></option>
-<?php
-}
-?>
                         </select>
                       </div>
                     </div>

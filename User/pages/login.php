@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,7 +8,6 @@
     <link rel="icon" href="../images/icon.png">
 	<title>Sign in & Sign up Form</title>
 </head>
-
 <body>
 	<div class="container">
 		<div class="forms-container">
@@ -26,8 +24,8 @@
 					</div>
 					<a href="../../index.html" class="btn solid" style="text-align: center;padding-top: 10px; text-decoration: none;">Submit</a>
 					<!-- <input type="submit" value="Login" class="btn solid" /> -->
-					<p class="social-text">Or Sign in with social platforms</p>
-					<div class="social-media">
+					<!-- <p class="social-text">Or Sign in with social platforms</p> -->
+					<!-- <div class="social-media">
 						<a href="#" class="social-icon">
 							<i class="fab fa-facebook-f"></i>
 						</a>
@@ -40,7 +38,7 @@
 						<a href="#" class="social-icon">
 							<i class="fab fa-linkedin-in"></i>
 						</a>
-					</div>
+					</div> -->
 				</form>
 				<form action="#" class="sign-up-form">
 					<h2 class="title">Sign up</h2>
@@ -99,7 +97,19 @@
 		</div>
 	</div>
 
-	<script src="../js/login.js"></script>
+	<script>
+const sign_in_btn = document.querySelector("#sign-in-btn");
+const sign_up_btn = document.querySelector("#sign-up-btn");
+const container = document.querySelector(".container");
+
+sign_up_btn.addEventListener("click", () => {
+  container.classList.add("sign-up-mode");
+});
+
+sign_in_btn.addEventListener("click", () => {
+  container.classList.remove("sign-up-mode");
+});
+	</script>
 </body>
 
 </html>
