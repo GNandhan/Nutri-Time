@@ -11,6 +11,7 @@
     <link rel="shortcut icon" href="../images/icon.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Example using Font Awesome for the play button icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
@@ -46,7 +47,7 @@
         <!-- Program cards -->
 <div class="container">
     <div class="row">
-      <div class="h2 py-4 px-5 border-start bg-white rounded-5 shadow">Gallery</div>
+      <div class="h2 py-4 px-5 border-start bg-white rounded-5 shadow">Product</div>
       <div class="card border-0 shadow-lg rounded-5">
         <div class="row text-center p-4">
           <?php  
@@ -75,22 +76,20 @@
     <!-- Program cards -->
 
       <!-- footer -->
-<div class="container">
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <footer class="d-flex container flex-wrap fixed-bottom justify-content-between align-items-center py-3 my-4 border-top">
       <div class="col-md-4 d-flex align-items-center">
         <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-          <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+        <img src="../images/icon.png" alt="" width="80">
         </a>
         <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2024 Company, Inc</span>
       </div>
   
       <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-        <li class="ms-3"><a class="text-body-secondary" href="#"><img src="../images/icon-twitter.png" width="24" height="24" alt="twitter icon"></a></li>
-        <li class="ms-3"><a class="text-body-secondary" href="#"><img src="../images/icon-facebook.png" width="24" height="24" alt="facebook icon"></a></li>
-        <li class="ms-3"><a class="text-body-secondary"  target="_blank" href="https://www.instagram.com/nutritimenutritionclub/""><img src="../images/icon-instagram.png" width="24" height="24" alt="instagram icon"></a></li>
+        <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-facebook" width="24" height="24"></i></a></li>
+        <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-twitter-x" width="24" height="24"></i></a></li>
+        <li class="ms-3"><a class="text-body-secondary" target="_blank" href="https://www.instagram.com/nutritimenutritionclub/"><i class="bi bi-instagram" width="24" height="24"></i></a></li>
       </ul>
     </footer>
-  </div>
 <!-- Footer closed -->
     
 

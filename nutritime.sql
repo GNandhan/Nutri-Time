@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 05, 2024 at 12:45 PM
+-- Generation Time: Mar 11, 2024 at 07:51 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,6 +44,48 @@ INSERT INTO `admin` (`admin_id`, `admin_name`, `admin_mail`, `admin_pass`) VALUE
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `category`
+--
+
+CREATE TABLE `category` (
+  `category_id` int(11) NOT NULL,
+  `category_name` varchar(50) NOT NULL,
+  `subcategory_name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`category_id`, `category_name`, `subcategory_name`) VALUES
+(1, 'Weight Management', 'none'),
+(2, 'Sport Nutrition', 'none'),
+(3, 'Energy', 'none'),
+(4, 'Ayurvedic Nutrition', 'Brain Health'),
+(5, 'Ayurvedic Nutrition', 'Immune Health'),
+(6, 'Targeted Nutrition', 'Digestive Health'),
+(7, 'Targeted Nutrition', 'Cardiovascular Health'),
+(8, 'Targeted Nutrition', 'Children Health'),
+(9, 'Targeted Nutrition', 'Skin Health'),
+(10, 'Targeted Nutrition', 'Bone & Joint Health'),
+(11, 'Targeted Nutrition', 'Women\'s Health'),
+(12, 'Targeted Nutrition', 'Men\'s Health');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gallery`
+--
+
+CREATE TABLE `gallery` (
+  `gallery_id` int(11) NOT NULL,
+  `gallery_dis` varchar(100) NOT NULL,
+  `gallery_img` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `login_details`
 --
 
@@ -58,8 +100,10 @@ CREATE TABLE `login_details` (
 --
 
 INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`) VALUES
-('nutriadmin@gmail.com', 1, '2024-03-04 17:30:01'),
-('nutriadmin@gmail.com', 2, '2024-03-05 06:12:44');
+('nutriadmin@gmail.com', 1, '2024-03-08 15:15:44'),
+('nutriadmin@gmail.com', 2, '2024-03-09 05:26:44'),
+('nutriadmin@gmail.com', 3, '2024-03-09 08:38:31'),
+('nutriadmin@gmail.com', 4, '2024-03-09 08:39:24');
 
 -- --------------------------------------------------------
 
@@ -98,15 +142,6 @@ CREATE TABLE `program` (
   `program_mode` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `program`
---
-
-INSERT INTO `program` (`program_id`, `program_name`, `program_img`, `program_purpose`, `program_duration`, `program_age`, `program_fee`, `program_condition`, `program_mode`) VALUES
-(2, 'formula 1', '', 'weight gainer', '20-Days', '30-50', 500, 'daily consumable, strict diet', 'Online'),
-(3, 'dove soapbar', '', 'dddddddddddddddddddd', '20-Days', '30-50', 420, 'nothing daaaaaaaaaaaaaaaaaaa', 'Offline'),
-(4, 'Oppok 10 5g', 'card2.jpg', 'dddddddddddddddddddd', '25-Days', '30-50', 625, '77557757575757575wdDdwadwadwawafaf', 'Offline');
-
 -- --------------------------------------------------------
 
 --
@@ -122,6 +157,7 @@ CREATE TABLE `shake` (
   `shake_mcost` int(20) NOT NULL,
   `shake_scost` int(20) NOT NULL,
   `shake_desc` varchar(100) NOT NULL,
+  `shake_benefit` varchar(100) NOT NULL,
   `shake_img` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -152,7 +188,7 @@ CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
   `user_name` varchar(50) NOT NULL,
   `user_phno` varchar(20) NOT NULL,
-  `user_gender` varchar(20) NOT NULL,
+  `user_gender` enum('Male','Female','Other') NOT NULL,
   `user_blood` varchar(10) NOT NULL,
   `user_address` varchar(100) NOT NULL,
   `user_city` varchar(100) NOT NULL,
@@ -170,6 +206,18 @@ CREATE TABLE `user` (
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`);
+
+--
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`category_id`);
+
+--
+-- Indexes for table `gallery`
+--
+ALTER TABLE `gallery`
+  ADD PRIMARY KEY (`gallery_id`);
 
 --
 -- Indexes for table `login_details`
@@ -218,28 +266,40 @@ ALTER TABLE `admin`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1002;
 
 --
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `gallery`
+--
+ALTER TABLE `gallery`
+  MODIFY `gallery_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `material`
 --
 ALTER TABLE `material`
-  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `program`
 --
 ALTER TABLE `program`
-  MODIFY `program_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `program_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `shake`
 --
 ALTER TABLE `shake`
-  MODIFY `shake_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `shake_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `staff`
@@ -251,7 +311,7 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1002;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
