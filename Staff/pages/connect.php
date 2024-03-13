@@ -11,3 +11,17 @@ if ($conn->connect_error) {
 }
 #echo "Connected successfully";
 ?>
+
+<?php
+$servername = "localhost";
+$username = "nutritime_nutritime_Admin";
+$password = "nutriadmin@";
+$db = "nutritime_nutritime";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $db);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+#echo "Connected successfully";
+?>
