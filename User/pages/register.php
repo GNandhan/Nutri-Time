@@ -1,3 +1,7 @@
+<?php
+ include './connect.php';
+ error_reporting(0);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,26 +85,26 @@
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="bi bi-egg-fried me-3 form-icon" style="color:rgb(34 203 48);"></i> <!-- Added form-icon class -->
                       <div class="form-outline flex-fill mb-0">
-                        <input type="text" id="form3Example3c" class="form-control rounded-4 border border-top-0 p-3 shadow-sm" placeholder="Enter Name" required/>
+                        <input type="text"  class="form-control rounded-4 border border-top-0 p-3 shadow-sm" placeholder="Enter Name" name="" required/>
                       </div>
                     </div>
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="bi bi-geo-alt me-3 form-icon" style="color:rgb(34 203 48);"></i> <!-- Added form-icon class -->
                       <div class="form-outline flex-fill mb-0">
-                        <input type="text" id="form3Example4c" class="form-control rounded-4  border border-top-0 p-3 shadow-sm" placeholder="Enter Location" required/>
+                        <input type="text"  class="form-control rounded-4  border border-top-0 p-3 shadow-sm" placeholder="Enter Location" name="" required/>
                       </div>
                     </div>
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="bi bi-envelope me-3 form-icon" style="color:rgb(34 203 48);"></i> <!-- Added form-icon class -->
                       <div class="form-outline flex-fill mb-0">
-                        <input type="email" id="form3Example4c" class="form-control rounded-4  border border-top-0 p-3 shadow-sm" placeholder="Enter Email Id" required/>
+                        <input type="email"  class="form-control rounded-4  border border-top-0 p-3 shadow-sm" placeholder="Enter Email Id" name="" required/>
                       </div>
                     </div>
                     <div class="d-flex flex-row align-items-center mb-3">
                       <i class="bi bi-shield-lock me-3 form-icon" style="color:rgb(34 203 48);"></i>
                       <div class="form-outline flex-fill position-relative mb-0">
                           <div class="input-group shadow-sm rounded-4  border border-top-0">
-                              <input type="password" id="form3Example4" class="form-control rounded-4 border-0 p-3 shadow-none" name="accpass" placeholder="Enter Password" required />
+                              <input type="password" class="form-control rounded-4 border-0 p-3 shadow-none" name="accpass" placeholder="Enter Password" name="" required />
                               <button class="btn border border-0  rounded-end-4" type="button" id="showPassword"><i class="bi bi-eye"></i></button>
                           </div>
                       </div>
@@ -128,10 +132,7 @@
  <!-- footer -->
  <footer class="d-flex container flex-wrap justify-content-between align-items-center py-2 my-3 border-top">
       <div class="col-md-4 d-flex align-items-center">
-        <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-        <img src="../images/icon.png" alt="" width="80">
-        </a>
-        <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2024 Company, Inc</span>
+        <p>Powered by <a href="https://allenzion.com/" class="text-decoration-none">Allen<span class="text-danger">Zion</span></a></p>
       </div>
       <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
         <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-facebook" width="24" height="24"></i></a></li>
@@ -151,8 +152,6 @@
       }
     });
 </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

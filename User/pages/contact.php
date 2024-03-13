@@ -24,8 +24,7 @@
         <div class="container">
             <header class="d-flex flex-wrap justify-content-center py-2 mb-4 border-bottom">
               <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-                <img src="../images/icon.png" class="icon1 me-2" width="90"><use xlink:href="#bootstrap"/>
-                <!-- <span class="fs-4 text-success" >Nutri-Time</span> -->
+                <img src="../images/icon.png" class="icon1 me-2" width="90">
               </a>
               <ul class="nav">
                 <li class="nav-item"><a href="../../index.html" class="nav-link text-dark">Home</a></li>
@@ -45,10 +44,7 @@
             <div class="card text-light  p-4 rounded-4 shadow border-0" style="background-color:rgb(44, 202, 44);">
                 <div class="h2">Address</div>
                 <div>Ashraf K P</div>
-                <P class="border-bottom py-3">1st Floor, NUTRI TIME, 
-                WELLNESS HUB, NTA Complex 
-                Bypass Junction, Mankave 
-                Kozhikode, Kerala, 673007 </P>
+                <P class="border-bottom py-3">1st Floor, NUTRI TIME, WELLNESS HUB, NTA Complex Bypass Junction, Mankave Kozhikode, Kerala, 673007 </P>
                 <div class="h5">Email id</div>
                 <p class="border-bottom">nutritime@gmail.com</p>
                 <div class="h5">Contact</div>
@@ -57,16 +53,11 @@
         </div>
     </div>
 </div>
-    
       <!-- footer -->
     <footer class="d-flex flex-wrap container fixed-bottom justify-content-between align-items-center py-3 my-4 border-top">
       <div class="col-md-4 d-flex align-items-center">
-        <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-        <img src="../images/icon.png" alt="" width="80">
-        </a>
-        <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2024 Company, Inc</span>
+      <p>Powered by <a href="https://allenzion.com/" class="text-decoration-none">Allen<span class="text-danger">Zion</span></a></p>
       </div>
-  
       <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
         <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-facebook" width="24" height="24"></i></a></li>
         <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-twitter-x" width="24" height="24"></i></a></li>

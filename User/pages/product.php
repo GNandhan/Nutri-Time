@@ -23,7 +23,7 @@
     </style>
 </head>
 <body>
-     <!-- navbar -->
+<!-- navbar -->
      <div class="container-fluid bg-white shadow-sm">
       <div class="container">
           <header class="d-flex flex-wrap justify-content-center py-2 mb-4 border-bottom">
@@ -42,16 +42,14 @@
           </header>
       </div>
    </div>
-    <!-- navbar closed -->
-
-        <!-- Program cards -->
+<!-- navbar closed -->
+<!-- Program cards -->
 <div class="container">
     <div class="row">
       <div class="h2 py-4 px-5 border-start bg-white rounded-5 shadow">Product</div>
       <div class="card border-0 shadow-lg rounded-5">
         <div class="row text-center p-4">
-          <?php  
-
+<?php  
         $sql=mysqli_query($conn,"SELECT * FROM gallery ORDER BY gallery_id ");
         while($row=mysqli_fetch_assoc($sql))
         {
@@ -68,22 +66,17 @@
           </div>
           <?php
         }
-        ?>
+?>
         </div>
       </div>
     </div>
   </div>
-    <!-- Program cards -->
-
-      <!-- footer -->
+<!-- Program cards -->
+<!-- footer -->
     <footer class="d-flex container flex-wrap fixed-bottom justify-content-between align-items-center py-3 my-4 border-top">
       <div class="col-md-4 d-flex align-items-center">
-        <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-        <img src="../images/icon.png" alt="" width="80">
-        </a>
-        <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2024 Company, Inc</span>
+        <p>Powered by <a href="https://allenzion.com/" class="text-decoration-none">Allen<span class="text-danger">Zion</span></a></p>
       </div>
-  
       <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
         <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-facebook" width="24" height="24"></i></a></li>
         <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-twitter-x" width="24" height="24"></i></a></li>
@@ -91,9 +84,6 @@
       </ul>
     </footer>
 <!-- Footer closed -->
-    
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

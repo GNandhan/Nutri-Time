@@ -1,3 +1,7 @@
+<?php
+ include './connect.php';
+ error_reporting(0);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -112,10 +116,7 @@
  <!-- footer -->
  <footer class="d-flex container fixed-bottom flex-wrap justify-content-between align-items-center py-2 pt-3 my-3 border-top">
       <div class="col-md-4 d-flex align-items-center">
-        <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-        <img src="../images/icon.png" alt="" width="80">
-        </a>
-        <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2024 Company, Inc</span>
+      <p>Powered by <a href="https://allenzion.com/" class="text-decoration-none">Allen<span class="text-danger">Zion</span></a></p>
       </div>
       <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
         <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-facebook" width="24" height="24"></i></a></li>

@@ -16,14 +16,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
-
     body {
       background-color: rgb(250, 250, 250);
       font-family: "Outfit", sans-serif;
     }
   </style>
 </head>
-
 <body>
   <!-- navbar -->
   <div class="container-fluid bg-white shadow-sm">
@@ -31,8 +29,6 @@
       <header class="d-flex flex-wrap justify-content-center py-2 mb-4 border-bottom">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
           <img src="../images/icon.png" class="icon1 me-2" width="90">
-          <use xlink:href="#bootstrap" />
-          <!-- <span class="fs-4 text-success" >Nutri-Time</span> -->
         </a>
         <ul class="nav">
           <li class="nav-item"><a href="../../index.html" class="nav-link text-dark">Home</a></li>
@@ -46,7 +42,6 @@
     </div>
   </div>
   <!-- navbar closed -->
-
   <!-- Gallery Images -->
   <div class="container">
     <div class="row">
@@ -80,12 +75,8 @@
   <!-- footer -->
     <footer class="d-flex container fixed-bottom flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
       <div class="col-md-4 d-flex align-items-center">
-        <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-        <img src="../images/icon.png" alt="" width="80">
-        </a>
-        <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2024 Company, Inc</span>
+      <p>Powered by <a href="https://allenzion.com/" class="text-decoration-none">Allen<span class="text-danger">Zion</span></a></p>
       </div>
-
       <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
         <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-facebook" width="24" height="24"></i></a></li>
         <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-twitter-x" width="24" height="24"></i></a></li>
@@ -95,5 +86,4 @@
   <!-- Footer closed -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
