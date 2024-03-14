@@ -30,16 +30,13 @@
               <h6 class="font-weight-light">Sign in to continue.</h6>
               <form method="post" class="pt-3">
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" style="border-radius:15px;"
-                    placeholder="Email id" name="email">
+                  <input type="email" class="form-control form-control-lg" style="border-radius:15px;" placeholder="Email id" name="email">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" style="border-radius:15px;"
-                    placeholder="Password" name="pass">
+                  <input type="password" class="form-control form-control-lg" style="border-radius:15px;" placeholder="Password" name="pass">
                 </div>
                 <div class="mt-3">
-                  <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                  name="submitl">SIGN IN</button>
+                  <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" name="submitl">SIGN IN</button>
                 </div>
                 <div class="my-2 d-flex justify-content-between align-items-center">
                   <!-- <div class="form-check">

@@ -26,7 +26,6 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
-
 <body>
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
@@ -47,6 +46,7 @@ if(isset($_GET['sid']))
         $sh_raw1 = $s_row1['shake_raw']; 
         $sh_mcost1 = $s_row1['shake_mcost']; 
         $sh_scost1 = $s_row1['shake_scost']; 
+        $sh_gst1 = $s_row1['shake_gst']; 
         $sh_disc1 = $s_row1['shake_desc']; 
         $sh_bene1 = $s_row1['shake_benefit']; 
         $sh_img1 = $s_row1['shake_img']; 
@@ -116,7 +116,7 @@ if(isset($_GET['sd_id']))
                       <div class="col">
                         <div class="form-group">
                           <label>Making Cost</label>
-                          <input type="text" class="form-control" name="shmcost" value="<?php echo $sh_mcost1; ?>" required>
+                          <input type="number" class="form-control" name="shmcost" value="<?php echo $sh_mcost1; ?>" required>
                         </div>
                       </div>
                     </div>  
@@ -124,7 +124,7 @@ if(isset($_GET['sd_id']))
                       <div class="col-2">
                         <div class="form-group">
                           <label>Selling Price</label>
-                          <input type="text" class="form-control" name="shscost" value="<?php echo $sh_scost1; ?>" required>
+                          <input type="number" class="form-control" name="shscost" value="<?php echo $sh_scost1; ?>" required>
                         </div> 
                       </div>
                       <div class="col">
@@ -141,6 +141,12 @@ if(isset($_GET['sd_id']))
                       </div>
                     </div>
                     <div class="row">
+                    <div class="col-2">
+                        <div class="form-group">
+                          <label>GST</label>
+                          <input type="number" class="form-control" name="shgst" value="<?php echo $sh_gst1; ?>" required>
+                        </div>
+                      </div>
                       <div class="col">
                         <div class="form-group">
                           <label>Shake Image</label>
@@ -171,6 +177,7 @@ if(isset($_GET['sd_id']))
     $sh_mcost= $_POST["shmcost"];
     $sh_scost= $_POST["shscost"];
     $sh_disc= $_POST["shdis"];
+    $sh_gst= $_POST["shgst"];
     $sh_bene= $_POST["shbene"];
     $sh_img = $_FILES['shimg']['name'];
 
@@ -182,8 +189,8 @@ if(isset($_GET['sd_id']))
 $sh_id = $_POST["shid"];
 
 if($sh_id=='') {
-$sql = mysqli_query($conn,"INSERT INTO shake (shake_name, shake_goal, shake_recipes, shake_raw, shake_mcost, shake_scost, shake_desc, shake_benefit, shake_img)
-                                         VALUES ('$sh_name','$sh_goal','$sh_reci','$sh_raw','$sh_mcost','$sh_scost','$sh_disc','$sh_bene','$sh_img')");
+$sql = mysqli_query($conn,"INSERT INTO shake (shake_name, shake_goal, shake_recipes, shake_raw, shake_mcost, shake_scost, shake_desc, shake_benefit, shake_gst, shake_img)
+                                      VALUES ('$sh_name','$sh_goal','$sh_reci','$sh_raw','$sh_mcost','$sh_scost','$sh_disc','$sh_bene','$sh_gst','$sh_img')");
 }else{
         // Update existing material
         if ($filename) {
@@ -191,10 +198,10 @@ $sql = mysqli_query($conn,"INSERT INTO shake (shake_name, shake_goal, shake_reci
           $imgs = '../images/shake/' . $sh_img;
           unlink($imgs);
           // Update shake with new image
-      $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_raw='$sh_raw', shake_mcost='$sh_mcost', shake_scost='$sh_scost', shake_desc='$sh_disc', shake_benefit='$sh_bene', shake_img='$sh_img' WHERE shake_id='$sh_id'");
+      $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_raw='$sh_raw', shake_mcost='$sh_mcost', shake_scost='$sh_scost', shake_desc='$sh_disc', shake_benefit='$sh_bene', shake_gst='$sh_gst', shake_img='$sh_img' WHERE shake_id='$sh_id'");
     } else {
       // Update shake without changing the image
-      $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_raw='$sh_raw', shake_mcost='$sh_mcost', shake_scost='$sh_scost', shake_desc='$sh_disc', shake_benefit='$sh_bene' WHERE shake_id='$sh_id'");
+      $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_raw='$sh_raw', shake_mcost='$sh_mcost', shake_scost='$sh_scost', shake_desc='$sh_disc', shake_benefit='$sh_bene', shake_gst='$sh_gst' WHERE shake_id='$sh_id'");
   }
 }
 if ($sql == TRUE){
@@ -224,6 +231,8 @@ else{
                         <th>Raw Materials</th>
                         <th>Making Cost</th>
                         <th>Selling price</th>
+                        <th>GST</th>
+                        <th>Total Price</th>
                         <th>Benefits</th>
                         <th>Description</th>
                         <th>Edit</th>
@@ -242,9 +251,13 @@ while($row=mysqli_fetch_assoc($sql))
     $s_raw=$row['shake_raw']; 
     $s_mcost=$row['shake_mcost']; 
     $s_scost=$row['shake_scost']; 
+    $s_gst=$row['shake_gst']; 
     $s_bene=$row['shake_benefit']; 
     $s_disc=$row['shake_desc']; 
     $s_img=$row['shake_img']; 
+
+    // Calculate total price
+    $s_total = $s_scost + $s_gst;
 ?>
                     <tbody>
                       <tr>
@@ -256,6 +269,8 @@ while($row=mysqli_fetch_assoc($sql))
                         <td><?php echo $s_raw; ?></td>
                         <td><?php echo $s_mcost; ?></td>
                         <td><?php echo $s_scost; ?></td>
+                        <td><?php echo $s_gst; ?></td>
+                        <td><?php echo $s_total; ?></td>
                         <td><?php echo $s_bene; ?></td>
                         <td><?php echo $s_disc; ?></td>
                         <td>
