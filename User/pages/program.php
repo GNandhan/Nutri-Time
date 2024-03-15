@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
-
         body {
             background-color: rgb(250, 250, 250);
             font-family: "Outfit", sans-serif;
@@ -28,11 +27,8 @@
     <div class="container-fluid bg-white shadow-sm">
         <div class="container">
             <header class="d-flex flex-wrap justify-content-center py-2 mb-4 border-bottom">
-                <a href="/"
-                    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
                     <img src="../images/icon.png" class="icon1 me-2" width="90">
-                    <use xlink:href="#bootstrap" />
-                    <!-- <span class="fs-4 text-success" >Nutri-Time</span> -->
                 </a>
                 <ul class="nav">
                     <li class="nav-item"><a href="../../index.html" class="nav-link text-dark">Home</a></li>
@@ -67,10 +63,8 @@
             $prg_fee=$row['program_fee'];
             $prg_con=$row['program_condition']; 
             $prg_mode=$row['program_mode'];
-            
             // Get the color for this card
             $color = $colors[$color_index % count($colors)]; // Use modulo to loop through colors
-            
             // Increment color index for next card
             $color_index++;
         ?>

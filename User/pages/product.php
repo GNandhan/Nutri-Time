@@ -28,8 +28,7 @@
       <div class="container">
           <header class="d-flex flex-wrap justify-content-center py-2 mb-4 border-bottom">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-              <img src="../images/icon.png" class="icon1 me-2" width="90"><use xlink:href="#bootstrap"/>
-              <!-- <span class="fs-4 text-success" >Nutri-Time</span> -->
+              <img src="../images/icon.png" class="icon1 me-2" width="90">
             </a>
             <ul class="nav">
               <li class="nav-item"><a href="../../index.html" class="nav-link text-dark">Home</a></li>

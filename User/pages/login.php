@@ -21,7 +21,6 @@
         .allison-regular {
             font-family: "Allison";
             font-weight: normal;
-            /* Use 'normal' instead of '400' */
             font-style: normal;
         }
         .nav-link {

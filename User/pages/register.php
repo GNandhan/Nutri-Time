@@ -21,7 +21,6 @@
     .allison-regular {
       font-family: "Allison";
       font-weight: normal;
-      /* Use 'normal' instead of '400' */
       font-style: normal;
     }
     .nav-link {
@@ -57,8 +56,7 @@
     <div class="container">
       <header class="d-flex flex-wrap justify-content-center py-2 mb-4 border-bottom">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-          <img src="../images/icon.png" class="icon1 me-2" width="90">
-        </a>
+          <img src="../images/icon.png" class="icon1 me-2" width="90"></a>
         <ul class="nav">
           <li class="nav-item"><a href="../../index.html" class="nav-link text-dark">Home</a></li>
           <li class="nav-item"><a href="./program.php" class="nav-link text-dark">Program</a></li>
