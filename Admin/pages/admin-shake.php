@@ -97,11 +97,8 @@ if(isset($_GET['sd_id']))
                     <div class="row">
                       <div class="col">
                         <div class="form-group">
-                          <label for="exampleSelectGender">Shake Recipes</label>
-                            <select class="form-control"  name="shrecipe">
-                              <option value="Recipes 1" <?php if($sh_reci1=='Recipes 1' ) echo 'selected' ; ?> >Recipes 1</option>
-                              <option value="Recipes 2" <?php if($sh_reci1=='Recipes 2' ) echo 'selected' ; ?> >Recipes 2</option>
-                            </select>
+                        <label>Shake Recipes</label>
+                          <input type="text" class="form-control"  placeholder="Milk, Sugar"  name="shrecipe" value="<?php echo $sh_reci1; ?>" required>
                           </div>
                       </div>
                       <div class="col">
