@@ -4,7 +4,7 @@
  session_start();
  if($_SESSION["email"]=="")
  {
-    header('location:admin-login.php');
+    header('location:staff-login.php');
  }
 ?>
 <!DOCTYPE html>
@@ -13,7 +13,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Admin View Attendence</title>
+  <title>Staff View Attendence</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
