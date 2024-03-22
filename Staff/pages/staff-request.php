@@ -4,7 +4,7 @@
  session_start();
  if($_SESSION["email"]=="")
  {
-    header('location:admin-login.php');
+    header('location:staff-login.php');
  }
 ?>
 <!DOCTYPE html>
@@ -13,7 +13,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Admin Request</title>
+  <title>Staff Request</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
@@ -62,126 +62,6 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td class="py-1">#00A001</td>
-                        <td>username 1</td>
-                        <td>Customer 1</td>
-                        <td>Fat reducer</td>
-                        <td>Processing</td>
-                        <td>Completed</td>
-                        <td>20 Days</td>
-                        <td>10/01/2024</td>
-                        <td>30/01/2024</td>
-                        <td>10,000</td>
-                        <td>10,000</td>
-                        <td>0</td>
-                        <td>
-                          <button class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
-                            <i class="ti-pencil-alt btn-icon-append"></i>
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
-                            <i class="ti-trash btn-icon-prepend"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="py-1">#00A001</td>
-                        <td>username 1</td>
-                        <td>Customer 1</td>
-                        <td>Fat reducer</td>
-                        <td>Processing</td>
-                        <td>Completed</td>
-                        <td>20 Days</td>
-                        <td>10/01/2024</td>
-                        <td>30/01/2024</td>
-                        <td>10,000</td>
-                        <td>10,000</td>
-                        <td>0</td>
-                        <td>
-                          <button class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
-                            <i class="ti-pencil-alt btn-icon-append"></i>
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
-                            <i class="ti-trash btn-icon-prepend"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="py-1">#00A001</td>
-                        <td>username 1</td>
-                        <td>Customer 1</td>
-                        <td>Fat reducer</td>
-                        <td>Processing</td>
-                        <td>Completed</td>
-                        <td>20 Days</td>
-                        <td>10/01/2024</td>
-                        <td>30/01/2024</td>
-                        <td>10,000</td>
-                        <td>10,000</td>
-                        <td>0</td>
-                        <td>
-                          <button class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
-                            <i class="ti-pencil-alt btn-icon-append"></i>
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
-                            <i class="ti-trash btn-icon-prepend"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="py-1">#00A001</td>
-                        <td>username 1</td>
-                        <td>Customer 1</td>
-                        <td>Fat reducer</td>
-                        <td>Processing</td>
-                        <td>Completed</td>
-                        <td>20 Days</td>
-                        <td>10/01/2024</td>
-                        <td>30/01/2024</td>
-                        <td>10,000</td>
-                        <td>10,000</td>
-                        <td>0</td>
-                        <td>
-                          <button class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
-                            <i class="ti-pencil-alt btn-icon-append"></i>
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
-                            <i class="ti-trash btn-icon-prepend"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="py-1">#00A001</td>
-                        <td>username 1</td>
-                        <td>Customer 1</td>
-                        <td>Fat reducer</td>
-                        <td>Processing</td>
-                        <td>Completed</td>
-                        <td>20 Days</td>
-                        <td>10/01/2024</td>
-                        <td>30/01/2024</td>
-                        <td>10,000</td>
-                        <td>10,000</td>
-                        <td>0</td>
-                        <td>
-                          <button class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
-                            <i class="ti-pencil-alt btn-icon-append"></i>
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
-                            <i class="ti-trash btn-icon-prepend"></i>
-                          </button>
-                        </td>
-                      </tr>
                       <tr>
                         <td class="py-1">#00A001</td>
                         <td>username 1</td>
