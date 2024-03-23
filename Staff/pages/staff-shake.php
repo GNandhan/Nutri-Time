@@ -105,8 +105,19 @@ if(isset($_GET['sd_id']))
                         <div class="form-group">
                           <label for="exampleSelectGender">Raw materials</label>
                             <select class="form-control" name="shraw">
-                              <option value="material 1" <?php if($sh_raw1=='material 1' ) echo 'selected' ; ?>>material 1</option>
-                              <option value="material 2" <?php if($sh_raw1=='material 2' ) echo 'selected' ; ?>>materials 2</option>
+                              <option selected>Select the Raw material</option>
+                              <?php
+                    $query = mysqli_query($conn,"select * from material");
+                    while ($row = mysqli_fetch_assoc($query))
+                      {
+                      $pro_id=$row["pro_id"];
+                      $pro_name=$row["pro_name"];
+                  ?>
+                    <option value="<?php echo $pro_name; ?>" <?php if($row['pro_name'] == $sh_raw1){echo 'selected';} ?> ><?php echo $pro_name; ?></option>
+                    <?php
+                      }
+                    ?> 
+
                             </select>
                         </div>
                       </div>
