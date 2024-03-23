@@ -82,23 +82,17 @@
               <i class="menu-arrow"></i>
             </a>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#raw" aria-expanded="false" aria-controls="raw">
-              <i class="icon-layout menu-icon"></i>
-              <span class="menu-title">Raw Materials</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="raw">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="admin-material.php">Add Materials</a></li>
-                <li class="nav-item"> <a class="nav-link" href="admin-viewmaterial.php">View Materials</a></li>
-              </ul>
-            </div>
-          </li> -->
           <li class="nav-item">
             <a class="nav-link" href="admin-material.php">
               <i class="icon-columns menu-icon"></i>
               <span class="menu-title">Raw Materials</span>
+              <i class="menu-arrow"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="admin-stock.php">
+              <i class="icon-columns menu-icon"></i>
+              <span class="menu-title">Stock Distribution</span>
               <i class="menu-arrow"></i>
             </a>
           </li>
