@@ -37,6 +37,20 @@
     <?php
   include './topbar.php';
 ?>
+<!-- To connect -->
+<script>
+  function getcat()
+  {
+id=document.getElementById('catid').value;
+//alert(id);
+if(id!=0)
+{
+  $('#sub').html('<option value="">loading</option>');
+  $.post('sub.php',{id:""+id+""},function(data){$('#sub').html(data);});
+ 
+}
+  }
+</script>
     <?php
 if(isset($_GET['pid']))
 {
@@ -101,25 +115,52 @@ if(isset($_GET['pd_id']))
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col">
-                      <div class="form-group">
-                        <label for="exampleSelectGender">Category</label>
-                        <select class="form-control" name="procat" required>
-                          <option <?php if($p_cat1=='Category1' ) echo 'selected' ; ?> value="Category1">Category1
-                          </option>
-                          <option <?php if($p_cat1=='Category2' ) echo 'selected' ; ?> value="Category2">Category2
-                          </option>
-                        </select>
-                      </div>
-                    </div>
+                  <div class="col">
+    <div class="form-group">
+        <label for="exampleSelectGender">Category</label>
+        <select class="form-control" name="procat"  onchange="getcat();" id="catid" required>
+            <option selected>Select the Raw material</option>
+            <?php
+            $query = mysqli_query($conn, "SELECT * FROM category");
+            $added_categories = array(); // Array to keep track of added categories
+
+            while ($row = mysqli_fetch_assoc($query)) {
+                $cat_id = $row["category_id"];
+                $cat_name = $row["category_name"];
+
+                // Check if the category has already been added
+                if (!in_array($cat_name, $added_categories)) {
+                    // Add the category to the list of added categories
+                    $added_categories[] = $cat_name;
+            ?>
+                    <option value="<?php echo $cat_name; ?>" <?php if ($row['category_name'] == $sh_raw1) {
+                                                                    echo 'selected';
+                                                                } ?>><?php echo $cat_name; ?></option>
+            <?php
+                }
+            }
+            ?>
+        </select>
+    </div>
+</div>
+
                     <div class="col">
                       <div class="form-group">
                         <label for="exampleSelectGender">Subcategory</label>
-                        <select class="form-control" name="subcat" required>
-                          <option value="Subcategory11" <?php if($p_sub1=='Subcategory11' ) echo 'selected' ; ?>
-                            >Subcategory11</option>
-                          <option value="Subcategory22" <?php if($p_sub1=='Subcategory22' ) echo 'selected' ; ?>
-                            >Subcategory22</option>
+                        <select class="form-control" name="subcat" id="sub" >
+                        <option selected>Select the Subcategory</option>
+                <?php
+                      $data2 = "SELECT * FROM category";
+                      $data2_query = mysqli_query($conn,$data2);
+                      while ($row2 = mysqli_fetch_assoc($data2_query))
+                      {
+                        $subcat_id=$row2['subcategory_id'];
+                        $subcat_name=$row2['subcategory_name'];
+                ?>
+                      <option value="<?php echo $subcat_id; ?>" <?php if($row2['subcategory_id']==$p_sub1){ echo 'selected';} ?> ><?php echo $subcat_name; ?></option>
+                    <?php
+                      }
+                    ?>
                         </select>
                       </div>
                     </div>
@@ -134,8 +175,8 @@ if(isset($_GET['pd_id']))
                   <div class="row">
                     <div class="col">
                       <div class="form-group">
-                        <label>Price</label>
-                        <input type="number" class="form-control" name="proprice" value="<?php echo $p_pri1; ?>"
+                        <label>MRP</label>
+                        <input type="number" class="form-control" name="promrp" value="<?php echo $p_pri1; ?>"
                           required>
                       </div>
                     </div>
@@ -160,12 +201,6 @@ if(isset($_GET['pd_id']))
                         <img src="../images/material/<?php echo $p_img1; ?>" alt="" width="100">
                       </div>
                     </div>
-                    <div class="col">
-                      <div class="form-group">
-                        <label>Stock Distribution</label>
-                        <input type="text" class="form-control" name="prodis" value="<?php echo $p_dis1; ?>" required>
-                      </div>
-                    </div>
                   </div>
                   <button type="submit" class="btn btn-primary mr-2" name="submitp">Submit</button>
                   <button class="btn btn-light">Cancel</button>
@@ -183,9 +218,8 @@ if(isset($_GET['pd_id']))
     $pcat= $_POST["procat"];
     $psubcat= $_POST["subcat"];
     $pbrand= $_POST["probrand"];
-    $pprice= $_POST["proprice"];
+    $pmrp= $_POST["promrp"];
     $pquan= $_POST["proquant"]; 
-    $pdis= $_POST["prodis"];
     $pimg = $_FILES['proimg']['name'];
 
   // Image uploading formats
@@ -196,24 +230,24 @@ if(isset($_GET['pd_id']))
 $pro_id = $_POST["pid"];
 
 if($pro_id==''){
-$sql = mysqli_query($conn,"INSERT INTO material (pro_code, pro_name, pro_category, pro_subcategory, pro_brand, pro_price, pro_quantity, pro_image, pro_distribution)
-                                         VALUES ('$pcode','$pname','$pcat','$psubcat','$pbrand','$pprice','$pquan','$pimg','$pdis')");
+$sql = mysqli_query($conn,"INSERT INTO material (pro_code, pro_name, pro_category, pro_subcategory, pro_brand, pro_mrp, pro_quantity, pro_image)
+                                         VALUES ('$pcode','$pname','$pcat','$psubcat','$pbrand','$pmrp','$pquan','$pimg')");
 }else{
         // Update existing material
         if ($filename) {
           // Remove the existing image
-          $imgs = '../images/material/' . $pimg;
+          $imgs = '../../Admin/images/material/' . $pimg;
           unlink($imgs);
           // Update material with new image
-      $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat', pro_subcategory='$psubcat', pro_brand='$pbrand', pro_price='$pprice', pro_quantity='$pquan', pro_image='$pimg', pro_distribution='$pdis' WHERE pro_id='$pro_id'");
+      $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat', pro_subcategory='$psubcat', pro_brand='$pbrand', pro_mrp='$pmrp', pro_quantity='$pquan', pro_image='$pimg' WHERE pro_id='$pro_id'");
     } else {
       // Update material without changing the image
-      $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat', pro_subcategory='$psubcat', pro_brand='$pbrand', pro_price='$pprice', pro_quantity='$pquan', pro_distribution='$pdis' WHERE pro_id='$pro_id'");
+      $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat', pro_subcategory='$psubcat', pro_brand='$pbrand', pro_mrp='$pmrp', pro_quantity='$pquan' WHERE pro_id='$pro_id'");
   }
 }
 if ($sql == TRUE){
 // echo "<script type= 'text/javascript'>alert('New record created successfully');</script>";
-move_uploaded_file($tempname, "../images/material/$filename");
+move_uploaded_file($tempname, "../../Admin/images/material/$filename");
 echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
 } 
 else{
@@ -266,7 +300,7 @@ else{
                         <th>Brand</th>
                         <th>Price</th>
                         <th>Quantity</th>
-                        <th>Stock Distribution</th>
+                        <th>Current Quantity</th>
                         <th>Edit</th>
                         <th>Delete</th>
                       </tr>
@@ -282,57 +316,36 @@ while($row=mysqli_fetch_assoc($sql))
     $pro_cat=$row['pro_category'];
     $pro_subcat=$row['pro_subcategory']; 
     $pro_bra=$row['pro_brand']; 
-    $pro_pri=$row['pro_price']; 
+    $pro_mrp=$row['pro_mrp']; 
     $pro_qua=$row['pro_quantity']; 
     $pro_dis=$row['pro_distribution']; 
     $pro_img=$row['pro_image']; 
 ?>
                     <tbody>
                       <tr>
-                        <td class="py-1">
-                          <?php echo $serialNo++; ?>
-                        </td>
-                        <td class="py-1">#
-                          <?php echo $pro_cod; ?>
-                        </td>
-                        <td><img src="../images/material/<?php echo $pro_img; ?>" alt="" width="50"
-                            class="rounded-circle"></td>
+                        <td class="py-1"><?php echo $serialNo++; ?></td>
+                        <td class="py-1">#<?php echo $pro_cod; ?></td>
+                        <td><img src="../../Admin/images/material/<?php echo $pro_img; ?>" alt="" width="50" class="rounded-circle"></td>
+                        <td><?php echo $pro_nam; ?></td>
+                        <td><?php echo $pro_cat; ?></td>
+                        <td><?php echo $pro_subcat; ?></td>
+                        <td><?php echo $pro_bra; ?></td>
+                        <td><?php echo $pro_mrp; ?></td>
+                        <td><?php echo $pro_qua; ?></td>
+                        <td><?php echo $pro_dis; ?></td>
                         <td>
-                          <?php echo $pro_nam; ?>
-                        </td>
-                        <td>
-                          <?php echo $pro_cat; ?>
-                        </td>
-                        <td>
-                          <?php echo $pro_subcat; ?>
-                        </td>
-                        <td>
-                          <?php echo $pro_bra; ?>
-                        </td>
-                        <td>
-                          <?php echo $pro_pri; ?>
-                        </td>
-                        <td>
-                          <?php echo $pro_qua; ?>
-                        </td>
-                        <td>
-                          <?php echo $pro_dis; ?>
-                        </td>
-                        <td>
-                          <a href="admin-material.php?pid=<?php echo $pro_id; ?>"
-                            class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i
-                              class="ti-pencil-alt btn-icon-append"></i>
+                          <a href="staff-material.php?pid=<?php echo $pro_id; ?>"
+                            class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i>
                           </a>
                         </td>
                         <td>
-                          <a href="admin-material.php?pd_id=<?php echo $pro_id; ?>"
-                            class="btn btn-inverse-danger btn-icon-text p-2">Delete<i
-                              class="ti-trash btn-icon-prepend"></i>
+                          <a href="staff-material.php?pd_id=<?php echo $pro_id; ?>"
+                            class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i>
                           </a>
                         </td>
                       </tr>
                     </tbody>
-                    <?php
+<?php
 }
 ?>
                   </table>
