@@ -5,7 +5,7 @@
 | Ip: 103.163.41.45 (n)
 | HasCgi: y
 | UserName: nutritime
-| PassWord: 5Qf^nJfWTvl
+| PassWord: 5Qf^nJfWTvlL
 | CpanelMod: jupiter
 | HomeRoot: /home1
 | Quota: unlimited
@@ -21,7 +21,6 @@
 +===================================+
 
 https://cpanel.nutritime.in/
-
 
 ====================================+
 SERVER DETAILS
@@ -53,7 +52,6 @@ Database User:
 
 username:  nutritime_Admin
 Password:  nutriadmin@
-
 
 =========================+
 UPDATION-----
