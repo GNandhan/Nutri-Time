@@ -97,19 +97,27 @@ if(isset($_GET['sd_id']))
                     <div class="row">
                       <div class="col">
                         <div class="form-group">
-                          <label for="exampleSelectGender">Shake Recipes</label>
-                            <select class="form-control"  name="shrecipe">
-                              <option value="Recipes 1" <?php if($sh_reci1=='Recipes 1' ) echo 'selected' ; ?> >Recipes 1</option>
-                              <option value="Recipes 2" <?php if($sh_reci1=='Recipes 2' ) echo 'selected' ; ?> >Recipes 2</option>
-                            </select>
+                        <label>Shake Recipes</label>
+                          <input type="text" class="form-control"  placeholder="Milk, Sugar"  name="shrecipe" value="<?php echo $sh_reci1; ?>" required>
                           </div>
                       </div>
                       <div class="col">
                         <div class="form-group">
                           <label for="exampleSelectGender">Raw materials</label>
-                            <select class="form-control" name="shraw">
-                              <option value="material 1" <?php if($sh_raw1=='material 1' ) echo 'selected' ; ?>>material 1</option>
-                              <option value="material 2" <?php if($sh_raw1=='material 2' ) echo 'selected' ; ?>>materials 2</option>
+                          <select class="form-control" name="shraw">
+                              <option selected>Select the Raw material</option>
+                              <?php
+                    $query = mysqli_query($conn,"select * from material");
+                    while ($row = mysqli_fetch_assoc($query))
+                      {
+                      $pro_id=$row["pro_id"];
+                      $pro_name=$row["pro_name"];
+                  ?>
+                    <option value="<?php echo $pro_name; ?>" <?php if($row['pro_name'] == $sh_raw1){echo 'selected';} ?> ><?php echo $pro_name; ?></option>
+                    <?php
+                      }
+                    ?> 
+
                             </select>
                         </div>
                       </div>
@@ -121,12 +129,12 @@ if(isset($_GET['sd_id']))
                       </div>
                     </div>  
                     <div class="row">
-                      <div class="col-2">
+                      <!-- <div class="col-2">
                         <div class="form-group">
                           <label>Selling Price</label>
                           <input type="number" class="form-control" name="shscost" value="<?php echo $sh_scost1; ?>" required>
                         </div> 
-                      </div>
+                      </div> -->
                       <div class="col">
                         <div class="form-group">
                           <label>Benefit</label>
@@ -144,7 +152,7 @@ if(isset($_GET['sd_id']))
                     <div class="col-2">
                         <div class="form-group">
                           <label>GST</label>
-                          <input type="number" class="form-control" name="shgst" value="<?php echo $sh_gst1; ?>" required>
+                          <input type="number" class="form-control" name="shgst" value="<?php echo $sh_gst1; ?>" placeholder="percentage%" required>
                         </div>
                       </div>
                       <div class="col">
@@ -175,11 +183,15 @@ if(isset($_GET['sd_id']))
     $sh_reci= $_POST["shrecipe"];
     $sh_raw= $_POST["shraw"];
     $sh_mcost= $_POST["shmcost"];
-    $sh_scost= $_POST["shscost"];
-    $sh_disc= $_POST["shdis"];
     $sh_gst= $_POST["shgst"];
+    $sh_disc= $_POST["shdis"];
     $sh_bene= $_POST["shbene"];
     $sh_img = $_FILES['shimg']['name'];
+
+    // Calculate selling price
+    $price = $sh_mcost * ($sh_gst / 100);
+    $selling_price = $sh_mcost + $price;
+
 
   // Image uploading formats
   $filename = $_FILES['shimg']['name'];
@@ -189,20 +201,20 @@ if(isset($_GET['sd_id']))
 $sh_id = $_POST["shid"];
 
 if($sh_id=='') {
-$sql = mysqli_query($conn,"INSERT INTO shake (shake_name, shake_goal, shake_recipes, shake_raw, shake_mcost, shake_scost, shake_desc, shake_benefit, shake_gst, shake_img)
-                                      VALUES ('$sh_name','$sh_goal','$sh_reci','$sh_raw','$sh_mcost','$sh_scost','$sh_disc','$sh_bene','$sh_gst','$sh_img')");
-}else{
+  $sql = mysqli_query($conn,"INSERT INTO shake (shake_name, shake_goal, shake_recipes, shake_raw, shake_mcost, shake_scost, shake_desc, shake_benefit, shake_gst, shake_img)
+                                        VALUES ('$sh_name','$sh_goal','$sh_reci','$sh_raw','$sh_mcost','$selling_price','$sh_disc','$sh_bene','$sh_gst','$sh_img')");
+  }else{
         // Update existing material
         if ($filename) {
           // Remove the existing image
           $imgs = '../images/shake/' . $sh_img;
           unlink($imgs);
           // Update shake with new image
-      $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_raw='$sh_raw', shake_mcost='$sh_mcost', shake_scost='$sh_scost', shake_desc='$sh_disc', shake_benefit='$sh_bene', shake_gst='$sh_gst', shake_img='$sh_img' WHERE shake_id='$sh_id'");
-    } else {
-      // Update shake without changing the image
-      $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_raw='$sh_raw', shake_mcost='$sh_mcost', shake_scost='$sh_scost', shake_desc='$sh_disc', shake_benefit='$sh_bene', shake_gst='$sh_gst' WHERE shake_id='$sh_id'");
-  }
+          $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_raw='$sh_raw', shake_mcost='$sh_mcost', shake_scost='$selling_price', shake_desc='$sh_disc', shake_benefit='$sh_bene', shake_gst='$sh_gst', shake_img='$sh_img' WHERE shake_id='$sh_id'");
+        } else {
+          // Update shake without changing the image
+          $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_raw='$sh_raw', shake_mcost='$sh_mcost', shake_scost='$selling_price', shake_desc='$sh_disc', shake_benefit='$sh_bene', shake_gst='$sh_gst' WHERE shake_id='$sh_id'");
+      }
 }
 if ($sql == TRUE){
 move_uploaded_file($tempname, "../images/shake/$filename");
@@ -223,16 +235,15 @@ else{
                   <table class="table table-striped">
                     <thead>
                       <tr>
-                        <th>sl-no</th>
+                      <th>sl-no</th>
                         <th>Shake Image</th>
                         <th>Shake Name</th>
                         <th>Shake Goal</th>
                         <th>Recipes</th>
                         <th>Raw Materials</th>
                         <th>Making Cost</th>
-                        <th>Selling price</th>
                         <th>GST</th>
-                        <th>Total Price</th>
+                        <th>Selling price</th>
                         <th>Benefits</th>
                         <th>Description</th>
                         <th>Edit</th>
@@ -268,9 +279,8 @@ while($row=mysqli_fetch_assoc($sql))
                         <td><?php echo $s_reci; ?></td>
                         <td><?php echo $s_raw; ?></td>
                         <td><?php echo $s_mcost; ?></td>
-                        <td><?php echo $s_scost; ?></td>
                         <td><?php echo $s_gst; ?></td>
-                        <td><?php echo $s_total; ?></td>
+                        <td><?php echo $s_scost; ?></td>
                         <td><?php echo $s_bene; ?></td>
                         <td><?php echo $s_disc; ?></td>
                         <td>

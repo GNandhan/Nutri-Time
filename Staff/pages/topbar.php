@@ -61,7 +61,7 @@
               <img src="../images/user.jpg" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" style="border-radius: 15px;">
-              <a href="./admin-login.php" class="dropdown-item"><i class="ti-power-off text-primary"></i>Logout</a>
+              <a href="./staff-login.php" class="dropdown-item"><i class="ti-power-off text-primary"></i>Logout</a>
             </div>
           </li>
         </ul>
@@ -76,21 +76,21 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="admin-dashboard.php">
+            <a class="nav-link" href="staff-dashboard.php">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">Dashboard</span>
               <i class="menu-arrow"></i>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="admin-material.php">
+            <a class="nav-link" href="staff-material.php">
               <i class="icon-columns menu-icon"></i>
               <span class="menu-title">Material</span>
               <i class="menu-arrow"></i>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="admin-user.php">
+            <a class="nav-link" href="staff-user.php">
               <i class="icon-columns menu-icon"></i>
               <span class="menu-title">User</span>
               <i class="menu-arrow"></i>
@@ -104,29 +104,29 @@
             </a>
             <div class="collapse" id="program">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="admin-program.php">Add Program</a></li>
-                <li class="nav-item"> <a class="nav-link" href="admin-request.php">View Request</a></li>
-                <li class="nav-item"> <a class="nav-link" href="admin-attendence.php">Mark Attendence</a></li>
-                <li class="nav-item"> <a class="nav-link" href="admin-viewattendence.php">View Attendence</a></li>
+                <li class="nav-item"> <a class="nav-link" href="staff-program.php">Add Program</a></li>
+                <li class="nav-item"> <a class="nav-link" href="staff-request.php">View Request</a></li>
+                <li class="nav-item"> <a class="nav-link" href="staff-attendence.php">Mark Attendence</a></li>
+                <li class="nav-item"> <a class="nav-link" href="staff-viewattendence.php">View Attendence</a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="admin-shake.php">
+            <a class="nav-link" href="staff-shake.php">
               <i class="icon-grid-2 menu-icon"></i>
               <span class="menu-title">Shakes</span>
               <i class="menu-arrow"></i>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="admin-timetable.php">
+            <a class="nav-link" href="staff-timetable.php">
               <i class="icon-head menu-icon"></i>
               <span class="menu-title">Time table</span>
               <i class="menu-arrow"></i>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="admin-message.php">
+            <a class="nav-link" href="staff-message.php">
               <i class="ti-share menu-icon"></i>
               <span class="menu-title">Messaging</span>
               <i class="menu-arrow"></i>

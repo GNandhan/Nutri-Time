@@ -48,6 +48,7 @@ if(isset($_GET['pid']))
         $p_sub1 = $p_row1['pro_subcategory']; 
         $p_brand1 = $p_row1['pro_brand']; 
         $p_pri1 = $p_row1['pro_price']; 
+        $p_mrp1 = $p_row1['pro_mrp']; 
         $p_qua1 = $p_row1['pro_quantity']; 
         $p_img1 = $p_row1['pro_image']; 
         $p_dis1 = $p_row1['pro_distribution'];
@@ -130,7 +131,14 @@ if(isset($_GET['pd_id']))
                   <div class="row">
                     <div class="col">
                       <div class="form-group">
-                        <label>Price</label>
+                        <label>MRP</label>
+                        <input type="number" class="form-control" name="promrp" value="<?php echo $p_mrp1; ?>"
+                          required>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Purchased Price</label>
                         <input type="number" class="form-control" name="proprice" value="<?php echo $p_pri1; ?>"
                           required>
                       </div>
@@ -156,12 +164,6 @@ if(isset($_GET['pd_id']))
                         <img src="../images/material/<?php echo $p_img1; ?>" alt="" width="100">
                       </div>
                     </div>
-                    <div class="col">
-                      <div class="form-group">
-                        <label>Stock Distribution</label>
-                        <input type="text" class="form-control" name="prodis" value="<?php echo $p_dis1; ?>" required>
-                      </div>
-                    </div>
                   </div>
                   <button type="submit" class="btn btn-primary mr-2" name="submitp">Submit</button>
                   <button class="btn btn-light">Cancel</button>
@@ -179,9 +181,9 @@ if(isset($_GET['pd_id']))
     $pcat= $_POST["procat"];
     $psubcat= $_POST["subcat"];
     $pbrand= $_POST["probrand"];
+    $pmrp= $_POST["promrp"];
     $pprice= $_POST["proprice"];
     $pquan= $_POST["proquant"]; 
-    $pdis= $_POST["prodis"];
     $pimg = $_FILES['proimg']['name'];
 
   // Image uploading formats
@@ -192,8 +194,8 @@ if(isset($_GET['pd_id']))
 $pro_id = $_POST["pid"];
 
 if($pro_id==''){
-$sql = mysqli_query($conn,"INSERT INTO material (pro_code, pro_name, pro_category, pro_subcategory, pro_brand, pro_price, pro_quantity, pro_image, pro_distribution)
-                                         VALUES ('$pcode','$pname','$pcat','$psubcat','$pbrand','$pprice','$pquan','$pimg','$pdis')");
+$sql = mysqli_query($conn,"INSERT INTO material (pro_code, pro_name, pro_category, pro_subcategory, pro_brand, pro_price, pro_mrp, pro_quantity, pro_image, pro_distribution)
+                                         VALUES ('$pcode','$pname','$pcat','$psubcat','$pbrand','$pprice', '$pmrp','$pquan','$pimg','$pdis')");
 }else{
         // Update existing material
         if ($filename) {
@@ -201,10 +203,10 @@ $sql = mysqli_query($conn,"INSERT INTO material (pro_code, pro_name, pro_categor
           $imgs = '../images/material/' . $pimg;
           unlink($imgs);
           // Update material with new image
-      $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat', pro_subcategory='$psubcat', pro_brand='$pbrand', pro_price='$pprice', pro_quantity='$pquan', pro_image='$pimg', pro_distribution='$pdis' WHERE pro_id='$pro_id'");
+      $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat', pro_subcategory='$psubcat', pro_brand='$pbrand', pro_price='$pprice', pro_mrp='$pmrp', pro_quantity='$pquan', pro_image='$pimg', pro_distribution='$pdis' WHERE pro_id='$pro_id'");
     } else {
       // Update material without changing the image
-      $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat', pro_subcategory='$psubcat', pro_brand='$pbrand', pro_price='$pprice', pro_quantity='$pquan', pro_distribution='$pdis' WHERE pro_id='$pro_id'");
+      $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat', pro_subcategory='$psubcat', pro_brand='$pbrand', pro_price='$pprice', pro_mrp='$pmrp', pro_quantity='$pquan', pro_distribution='$pdis' WHERE pro_id='$pro_id'");
   }
 }
 if ($sql == TRUE){
@@ -260,9 +262,13 @@ else{
                         <th>Category</th>
                         <th>Subcategory</th>
                         <th>Brand</th>
-                        <th>Price</th>
+                        <th>MRP</th>
+                        <th>Purchased Price</th>
                         <th>Quantity</th>
-                        <th>Stock Distribution</th>
+                        <th>Current Quantity</th>
+                        <th>MRP Total</th>
+                        <th>Purchased Total</th>
+                        <th>Purchase Profit</th>
                         <th>Edit</th>
                         <th>Delete</th>
                       </tr>
@@ -279,41 +285,32 @@ while($row=mysqli_fetch_assoc($sql))
     $pro_subcat=$row['pro_subcategory']; 
     $pro_bra=$row['pro_brand']; 
     $pro_pri=$row['pro_price']; 
+    $pro_mrp=$row['pro_mrp']; 
     $pro_qua=$row['pro_quantity']; 
     $pro_dis=$row['pro_distribution']; 
     $pro_img=$row['pro_image']; 
+
+    $pro_mrptotal = $pro_mrp * $pro_qua;
+    $pro_purtotal = $pro_pri * $pro_qua;
+    $pro_purprofit = $pro_mrptotal - $pro_purtotal;
+    // $pro_sellprofit = $pro_mrp * ($pro_qua - $pro_dis);
 ?>
                     <tbody>
                       <tr>
-                        <td class="py-1">
-                          <?php echo $serialNo++; ?>
-                        </td>
-                        <td class="py-1">#
-                          <?php echo $pro_cod; ?>
-                        </td>
-                        <td><img src="../images/material/<?php echo $pro_img; ?>" alt="" width="50"
-                            class="rounded-circle"></td>
-                        <td>
-                          <?php echo $pro_nam; ?>
-                        </td>
-                        <td>
-                          <?php echo $pro_cat; ?>
-                        </td>
-                        <td>
-                          <?php echo $pro_subcat; ?>
-                        </td>
-                        <td>
-                          <?php echo $pro_bra; ?>
-                        </td>
-                        <td>
-                          <?php echo $pro_pri; ?>
-                        </td>
-                        <td>
-                          <?php echo $pro_qua; ?>
-                        </td>
-                        <td>
-                          <?php echo $pro_dis; ?>
-                        </td>
+                        <td class="py-1"><?php echo $serialNo++; ?></td>
+                        <td class="py-1">#<?php echo $pro_cod; ?></td>
+                        <td><img src="../images/material/<?php echo $pro_img; ?>" alt="" width="50" class="rounded-circle"></td>
+                        <td><?php echo $pro_nam; ?></td>
+                        <td><?php echo $pro_cat; ?></td>
+                        <td><?php echo $pro_subcat; ?></td>
+                        <td><?php echo $pro_bra; ?></td>
+                        <td><?php echo $pro_mrp; ?></td>
+                        <td><?php echo $pro_pri; ?></td>
+                        <td><?php echo $pro_qua; ?></td>
+                        <td><?php echo $pro_dis; ?></td>
+                        <td><?php echo $pro_mrptotal; ?></td>
+                        <td><?php echo $pro_purtotal; ?></td>
+                        <td><?php echo $pro_purprofit; ?></td>
                         <td>
                           <a href="admin-material.php?pid=<?php echo $pro_id; ?>"
                             class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i

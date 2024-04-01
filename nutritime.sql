@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2024 at 07:51 AM
+-- Generation Time: Mar 23, 2024 at 11:46 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -48,28 +48,29 @@ INSERT INTO `admin` (`admin_id`, `admin_name`, `admin_mail`, `admin_pass`) VALUE
 --
 
 CREATE TABLE `category` (
-  `category_id` int(11) NOT NULL,
-  `category_name` varchar(50) NOT NULL,
-  `subcategory_name` varchar(50) NOT NULL
+  `subcategory_id` int(11) NOT NULL,
+  `subcategory_name` varchar(50) NOT NULL,
+  `category_id` int(10) NOT NULL,
+  `category_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`category_id`, `category_name`, `subcategory_name`) VALUES
-(1, 'Weight Management', 'none'),
-(2, 'Sport Nutrition', 'none'),
-(3, 'Energy', 'none'),
-(4, 'Ayurvedic Nutrition', 'Brain Health'),
-(5, 'Ayurvedic Nutrition', 'Immune Health'),
-(6, 'Targeted Nutrition', 'Digestive Health'),
-(7, 'Targeted Nutrition', 'Cardiovascular Health'),
-(8, 'Targeted Nutrition', 'Children Health'),
-(9, 'Targeted Nutrition', 'Skin Health'),
-(10, 'Targeted Nutrition', 'Bone & Joint Health'),
-(11, 'Targeted Nutrition', 'Women\'s Health'),
-(12, 'Targeted Nutrition', 'Men\'s Health');
+INSERT INTO `category` (`subcategory_id`, `subcategory_name`, `category_id`, `category_name`) VALUES
+(1, 'none', 1, 'Weigt management'),
+(2, 'none', 2, 'Sport Nutrition'),
+(3, 'none', 3, 'Energy'),
+(4, 'Brain Health', 4, 'Ayurvedic Nutrition'),
+(5, 'Immune Helath', 4, 'Ayurvedic Nutrition'),
+(6, 'Digestive Health', 5, 'Targeted Nutrition'),
+(7, 'Cardiovascular health', 5, 'Targeted Nutrition'),
+(8, 'Children health', 5, 'Targeted Nutrition'),
+(9, 'Skin Health', 5, 'Targeted Nutrition'),
+(10, 'Bone & Joint Health', 5, 'Targeted Nutrition'),
+(11, 'Women\'s Health', 5, 'Targeted Nutrition'),
+(12, 'Men\'s Health', 5, 'Targeted Nutrition');
 
 -- --------------------------------------------------------
 
@@ -95,16 +96,6 @@ CREATE TABLE `login_details` (
   `login_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `login_details`
---
-
-INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`) VALUES
-('nutriadmin@gmail.com', 1, '2024-03-08 15:15:44'),
-('nutriadmin@gmail.com', 2, '2024-03-09 05:26:44'),
-('nutriadmin@gmail.com', 3, '2024-03-09 08:38:31'),
-('nutriadmin@gmail.com', 4, '2024-03-09 08:39:24');
-
 -- --------------------------------------------------------
 
 --
@@ -119,9 +110,12 @@ CREATE TABLE `material` (
   `pro_subcategory` varchar(50) NOT NULL,
   `pro_brand` varchar(50) NOT NULL,
   `pro_price` int(20) NOT NULL,
+  `pro_mrp` int(10) NOT NULL,
   `pro_quantity` int(20) NOT NULL,
+  `pro_curquantity` int(10) NOT NULL,
   `pro_image` varchar(50) NOT NULL,
-  `pro_distribution` varchar(50) NOT NULL
+  `pro_distribution` varchar(50) NOT NULL,
+  `pro_status` enum('used','unused') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -153,9 +147,11 @@ CREATE TABLE `shake` (
   `shake_name` varchar(100) NOT NULL,
   `shake_goal` varchar(100) NOT NULL,
   `shake_recipes` varchar(100) NOT NULL,
+  `shake_rawid` int(10) NOT NULL,
   `shake_raw` varchar(50) NOT NULL,
   `shake_mcost` int(20) NOT NULL,
   `shake_scost` int(20) NOT NULL,
+  `shake_gst` int(20) NOT NULL,
   `shake_desc` varchar(100) NOT NULL,
   `shake_benefit` varchar(100) NOT NULL,
   `shake_img` varchar(50) NOT NULL
@@ -176,6 +172,25 @@ CREATE TABLE `staff` (
   `staff_gender` varchar(50) NOT NULL,
   `staff_city` varchar(50) NOT NULL,
   `staff_phno` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stock`
+--
+
+CREATE TABLE `stock` (
+  `stock_id` int(11) NOT NULL,
+  `stock_place` varchar(50) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `stock_name` varchar(100) NOT NULL,
+  `stock_quantity` int(10) NOT NULL,
+  `stock_comname` varchar(100) NOT NULL,
+  `stock_price` int(50) NOT NULL,
+  `stock_gst` int(50) NOT NULL,
+  `stock_total` int(50) NOT NULL,
+  `stock_date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -211,7 +226,7 @@ ALTER TABLE `admin`
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
-  ADD PRIMARY KEY (`category_id`);
+  ADD PRIMARY KEY (`subcategory_id`);
 
 --
 -- Indexes for table `gallery`
@@ -250,6 +265,12 @@ ALTER TABLE `staff`
   ADD PRIMARY KEY (`staff_id`);
 
 --
+-- Indexes for table `stock`
+--
+ALTER TABLE `stock`
+  ADD PRIMARY KEY (`stock_id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -269,7 +290,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `subcategory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `gallery`
@@ -281,13 +302,13 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `material`
 --
 ALTER TABLE `material`
-  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `program`
@@ -299,13 +320,19 @@ ALTER TABLE `program`
 -- AUTO_INCREMENT for table `shake`
 --
 ALTER TABLE `shake`
-  MODIFY `shake_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `shake_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `stock`
+--
+ALTER TABLE `stock`
+  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`

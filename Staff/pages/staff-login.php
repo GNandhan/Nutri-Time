@@ -10,7 +10,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Nutri-Time: Admin-Login</title>
+  <title>Nutri-Time: Staff-Login</title>
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
@@ -58,7 +58,7 @@ if (isset($_POST["submitl"])) {
     $email = $_POST["email"];
     $password = $_POST["pass"];
 
-    $sql = "SELECT * FROM admin WHERE admin_mail='$email' AND admin_pass='$password'";
+    $sql = "SELECT * FROM staff WHERE staff_email='$email' AND staff_pass='$password'";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
@@ -70,7 +70,7 @@ if (isset($_POST["submitl"])) {
         $_SESSION["email"] = $email;
         $_SESSION["pass"] = $password;
 
-        echo '<script type="text/javascript">window.location = "admin-dashboard.php"</script>';
+        echo '<script type="text/javascript">window.location = "staff-dashboard.php"</script>';
     } else {
         echo "<script type='text/javascript'>alert('Error: Invalid credentials');</script>";
     }
