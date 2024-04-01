@@ -313,4 +313,8 @@ while($row=mysqli_fetch_assoc($sql))
   <script src="../js/select2.js"></script>
   <!-- End custom js for this page-->
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> cca3dfaa6cd45d1a1fd64732766d549939fc1bf7
