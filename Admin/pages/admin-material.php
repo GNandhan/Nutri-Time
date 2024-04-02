@@ -211,8 +211,8 @@ if(isset($_GET['pd_id']))
     {
     $pcode= $_POST["procode"];
     $pname= $_POST["proname"];
-    $pcat= $_POST["procat"];
-    $psubcat= $_POST["subcat"];
+    $pcat_id = $_POST["procat"];
+    $psubcat_id = $_POST["subcat"];
     $pbrand= $_POST["probrand"];
     $pmrp= $_POST["promrp"];
     $pprice= $_POST["proprice"];
@@ -223,12 +223,21 @@ if(isset($_GET['pd_id']))
   $filename = $_FILES['proimg']['name'];
   $tempname = $_FILES['proimg']['tmp_name'];
 
+    // Fetch category and subcategory names based on their IDs
+    $cat_query = mysqli_query($conn, "SELECT category_name FROM category WHERE category_id = '$pcat_id'");
+    $cat_row = mysqli_fetch_assoc($cat_query); // Fetching names
+    $pcat_name = $cat_row['category_name']; // Assigning names
+
+    $subcat_query = mysqli_query($conn, "SELECT subcategory_name FROM subcategory WHERE subcategory_id = '$psubcat_id'");
+    $subcat_row = mysqli_fetch_assoc($subcat_query); // Fetching names
+    $psubcat_name = $subcat_row['subcategory_name']; // Assigning names
+
 // Fetch the material ID from the URL parameters
 $pro_id = $_POST["pid"];
 
 if($pro_id==''){
 $sql = mysqli_query($conn,"INSERT INTO material (pro_code, pro_name, pro_category, pro_subcategory, pro_brand, pro_price, pro_mrp, pro_quantity, pro_curquantity, pro_image)
-                                         VALUES ('$pcode','$pname','$pcat','$psubcat','$pbrand','$pprice', '$pmrp','$pquan','$pquan','$pimg')");
+                                         VALUES ('$pcode','$pname','$pcat_name','$psubcat_name','$pbrand','$pprice', '$pmrp','$pquan','$pquan','$pimg')");
 }else{
         // Update existing material
         if ($filename) {
@@ -236,10 +245,10 @@ $sql = mysqli_query($conn,"INSERT INTO material (pro_code, pro_name, pro_categor
           $imgs = '../images/material/' . $pimg;
           unlink($imgs);
           // Update material with new image
-      $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat', pro_subcategory='$psubcat', pro_brand='$pbrand', pro_price='$pprice', pro_mrp='$pmrp', pro_quantity='$pquan', pro_image='$pimg' WHERE pro_id='$pro_id'");
+      $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat_name', pro_subcategory='$psubcat_name', pro_brand='$pbrand', pro_price='$pprice', pro_mrp='$pmrp', pro_quantity='$pquan', pro_image='$pimg' WHERE pro_id='$pro_id'");
     } else {
       // Update material without changing the image
-      $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat', pro_subcategory='$psubcat', pro_brand='$pbrand', pro_price='$pprice', pro_mrp='$pmrp', pro_quantity='$pquan' WHERE pro_id='$pro_id'");
+      $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat_name', pro_subcategory='$psubcat_name', pro_brand='$pbrand', pro_price='$pprice', pro_mrp='$pmrp', pro_quantity='$pquan' WHERE pro_id='$pro_id'");
   }
 }
 if ($sql == TRUE){
