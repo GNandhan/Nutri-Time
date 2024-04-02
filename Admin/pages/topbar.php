@@ -153,5 +153,12 @@
               <i class="menu-arrow"></i>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="admin-report.php">
+              <i class="ti-share menu-icon"></i>
+              <span class="menu-title">Report</span>
+              <i class="menu-arrow"></i>
+            </a>
+          </li>
         </ul>
       </nav>
