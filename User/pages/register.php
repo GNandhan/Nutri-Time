@@ -89,13 +89,49 @@
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="bi bi-geo-alt me-3 form-icon" style="color:rgb(34 203 48);"></i> <!-- Added form-icon class -->
                       <div class="form-outline flex-fill mb-0">
-                        <input type="text"  class="form-control rounded-4  border border-top-0 p-3 shadow-sm" placeholder="Enter Location" name="" required/>
+                        <input type="text"  class="form-control rounded-4  border border-top-0 p-3 shadow-sm" placeholder="Enter Phone No" name="" required/>
                       </div>
                     </div>
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="bi bi-envelope me-3 form-icon" style="color:rgb(34 203 48);"></i> <!-- Added form-icon class -->
                       <div class="form-outline flex-fill mb-0">
                         <input type="email"  class="form-control rounded-4  border border-top-0 p-3 shadow-sm" placeholder="Enter Email Id" name="" required/>
+                      </div>
+                    </div>
+                    <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="d-flex flex-row align-items-center">
+                        <i class="bi bi-heart-fill me-3 form-icon" style="color:rgb(34 203 48);"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <input type="text" class="form-control rounded-4 border border-top-0 p-3 shadow-sm" placeholder="Enter Blood Group" name="blood_group" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="d-flex flex-row align-items-center">
+                        <i class="bi bi-person-fill me-3 form-icon" style="color:rgb(34 203 48);"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <input type="text" class="form-control rounded-4 border border-top-0 p-3 shadow-sm" placeholder="Enter Gender" name="gender" required />
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="bi bi-geo-alt me-3 form-icon" style="color:rgb(34 203 48);"></i> <!-- Added form-icon class -->
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="text"  class="form-control rounded-4  border border-top-0 p-3 shadow-sm" placeholder="Enter Location" name="" required/>
+                      </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="bi bi-geo-alt me-3 form-icon" style="color:rgb(34 203 48);"></i> <!-- Added form-icon class -->
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="text"  class="form-control rounded-4  border border-top-0 p-3 shadow-sm" placeholder="Enter Location" name="" required/>
+                      </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="bi bi-geo-alt me-3 form-icon" style="color:rgb(34 203 48);"></i> <!-- Added form-icon class -->
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="text"  class="form-control rounded-4  border border-top-0 p-3 shadow-sm" placeholder="Enter Location" name="" required/>
                       </div>
                     </div>
                     <div class="d-flex flex-row align-items-center mb-3">
@@ -127,6 +163,59 @@
     </div>
   </section>
   <!-- User Home Closed -->
+
+<!-- PHP CODE FOR INSERTING THE DATA -->
+<?php
+    if(isset($_POST["submitst"]))
+    {
+    $sh_id = $_POST["shid"];
+    $sh_name= $_POST["shname"];
+    $sh_goal= $_POST["shgoal"];
+    $sh_reci= $_POST["shrecipe"];
+    $sh_raw= $_POST["shraw"];
+    $sh_mcost= $_POST["shmcost"];
+    $sh_gst= $_POST["shgst"];
+    $sh_disc= $_POST["shdis"];
+    $sh_bene= $_POST["shbene"];
+    $sh_img = $_FILES['shimg']['name'];
+
+    // Calculate selling price
+    $price = $sh_mcost * ($sh_gst / 100);
+    $selling_price = $sh_mcost + $price;
+
+  // Image uploading formats
+  $filename = $_FILES['shimg']['name'];
+  $tempname = $_FILES['shimg']['tmp_name'];
+
+// Fetch the shake ID from the form
+$sh_id = $_POST["shid"];
+
+if($sh_id=='') {
+$sql = mysqli_query($conn,"INSERT INTO shake (shake_name, shake_goal, shake_recipes, shake_raw, shake_mcost, shake_scost, shake_desc, shake_benefit, shake_gst, shake_img)
+                                      VALUES ('$sh_name','$sh_goal','$sh_reci','$sh_raw','$sh_mcost','$selling_price','$sh_disc','$sh_bene','$sh_gst','$sh_img')");
+}else{
+        // Update existing material
+        if ($filename) {
+          // Remove the existing image
+          $imgs = '../../Admin/images/shake/' . $sh_img;
+          unlink($imgs);
+          // Update shake with new image
+      $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_raw='$sh_raw', shake_mcost='$sh_mcost', shake_scost='$selling_price', shake_desc='$sh_disc', shake_benefit='$sh_bene', shake_gst='$sh_gst', shake_img='$sh_img' WHERE shake_id='$sh_id'");
+    } else {
+      // Update shake without changing the image
+      $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_raw='$sh_raw', shake_mcost='$sh_mcost', shake_scost='$selling_price', shake_desc='$sh_disc', shake_benefit='$sh_bene', shake_gst='$sh_gst' WHERE shake_id='$sh_id'");
+  }
+}
+if ($sql == TRUE){
+move_uploaded_file($tempname, "../../Admin/images/shake/$filename");
+echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
+} 
+else{
+  echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
+}
+}
+?>
+
  <!-- footer -->
  <footer class="d-flex container flex-wrap justify-content-between align-items-center py-2 my-3 border-top">
       <div class="col-md-4 d-flex align-items-center">

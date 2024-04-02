@@ -29,10 +29,24 @@
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
 <body>
+  <!-- code for getteing the subcategory as per the actegory selected -->
+<script>
+  function getcat()
+  {
+id=document.getElementById('catid').value;
+//alert(id);
+if(id!=0)
+{
+  $('#sub').html('<option value="">loading</option>');
+  $.post('sub.php',{id:""+id+""},function(data){$('#sub').html(data);});
+ 
+}
+  }
+</script>
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
     <!-- including the sidebar,navbar -->
-    <?php
+<?php
   include './topbar.php';
 ?>
     <?php
@@ -103,21 +117,40 @@ if(isset($_GET['pd_id']))
                     <div class="col">
                       <div class="form-group">
                         <label for="exampleSelectGender">Category</label>
-                        <select class="form-control" name="procat" required>
-                          <option <?php if($p_cat1=='Category1' ) echo 'selected' ; ?> value="Category1">Weight Management</option>
-                          <option <?php if($p_cat1=='Category2' ) echo 'selected' ; ?> value="Category2">Sport Nutrition</option>
-                          <option <?php if($p_cat1=='Category2' ) echo 'selected' ; ?> value="Category2">Energy</option>
-                          <option <?php if($p_cat1=='Category2' ) echo 'selected' ; ?> value="Category2">Ayurvedic Nutrition</option>
-                          <option <?php if($p_cat1=='Category2' ) echo 'selected' ; ?> value="Category2">Targeted Nutrition</option>
-                        </select>
+                        <select class="form-control" name="procat" onchange="getcat();" id="catid" required>
+                        <option selected>Select the categories</option>
+                <?php
+                      $query = mysqli_query($conn,"select * from category");
+                      while ($row = mysqli_fetch_assoc($query))
+                      {
+                        $cate_id=$row["category_id"];
+                        $cate_name=$row["category_name"];
+                ?>
+                      <option value="<?php echo $cate_id; ?>" <?php if($row['category_id']==$p_cat1){ echo 'selected';} ?> ><?php echo $cate_name; ?></option>
+                    <?php
+                      }
+                    ?>
+              </select>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label for="exampleSelectGender">Subcategory</label>
-                        <select class="form-control" name="subcat" required>
-                          <option value="Subcategory11" <?php if($p_sub1=='Subcategory11' ) echo 'selected' ; ?>><?php echo $cat_name; ?></option>
-                        </select>
+                        <select class="form-control" name="subcat"   id="sub" required>
+                        <option selected>Select the Brand</option>
+                <?php
+                      $data2 = "SELECT * FROM subcategory";
+                      $data2_query = mysqli_query($conn,$data2);
+                      while ($row2 = mysqli_fetch_assoc($data2_query))
+                      {
+                        $subcat_id=$row2['subcategory_id'];
+                        $subcat_name=$row2['subcategory_name'];
+                ?>
+                      <option value="<?php echo $subcat_id; ?>" <?php if($row2['subcategory_id']==$p_sub1){ echo 'selected';} ?> ><?php echo $subcat_name; ?></option>
+                    <?php
+                      }
+                    ?>
+              </select>
                       </div>
                     </div>
                     <div class="col">
@@ -194,8 +227,8 @@ if(isset($_GET['pd_id']))
 $pro_id = $_POST["pid"];
 
 if($pro_id==''){
-$sql = mysqli_query($conn,"INSERT INTO material (pro_code, pro_name, pro_category, pro_subcategory, pro_brand, pro_price, pro_mrp, pro_quantity, pro_image, pro_distribution)
-                                         VALUES ('$pcode','$pname','$pcat','$psubcat','$pbrand','$pprice', '$pmrp','$pquan','$pimg','$pdis')");
+$sql = mysqli_query($conn,"INSERT INTO material (pro_code, pro_name, pro_category, pro_subcategory, pro_brand, pro_price, pro_mrp, pro_quantity, pro_curquantity, pro_image)
+                                         VALUES ('$pcode','$pname','$pcat','$psubcat','$pbrand','$pprice', '$pmrp','$pquan','$pquan','$pimg')");
 }else{
         // Update existing material
         if ($filename) {
@@ -203,10 +236,10 @@ $sql = mysqli_query($conn,"INSERT INTO material (pro_code, pro_name, pro_categor
           $imgs = '../images/material/' . $pimg;
           unlink($imgs);
           // Update material with new image
-      $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat', pro_subcategory='$psubcat', pro_brand='$pbrand', pro_price='$pprice', pro_mrp='$pmrp', pro_quantity='$pquan', pro_image='$pimg', pro_distribution='$pdis' WHERE pro_id='$pro_id'");
+      $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat', pro_subcategory='$psubcat', pro_brand='$pbrand', pro_price='$pprice', pro_mrp='$pmrp', pro_quantity='$pquan', pro_image='$pimg' WHERE pro_id='$pro_id'");
     } else {
       // Update material without changing the image
-      $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat', pro_subcategory='$psubcat', pro_brand='$pbrand', pro_price='$pprice', pro_mrp='$pmrp', pro_quantity='$pquan', pro_distribution='$pdis' WHERE pro_id='$pro_id'");
+      $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat', pro_subcategory='$psubcat', pro_brand='$pbrand', pro_price='$pprice', pro_mrp='$pmrp', pro_quantity='$pquan' WHERE pro_id='$pro_id'");
   }
 }
 if ($sql == TRUE){
@@ -284,11 +317,12 @@ while($row=mysqli_fetch_assoc($sql))
     $pro_cat=$row['pro_category'];
     $pro_subcat=$row['pro_subcategory']; 
     $pro_bra=$row['pro_brand']; 
-    $pro_pri=$row['pro_price']; 
     $pro_mrp=$row['pro_mrp']; 
+    $pro_pri=$row['pro_price']; 
     $pro_qua=$row['pro_quantity']; 
-    $pro_dis=$row['pro_distribution']; 
+    $pro_curqua=$row['pro_curquantity']; 
     $pro_img=$row['pro_image']; 
+    $pro_sta=$row['pro_status']; 
 
     $pro_mrptotal = $pro_mrp * $pro_qua;
     $pro_purtotal = $pro_pri * $pro_qua;
@@ -307,7 +341,7 @@ while($row=mysqli_fetch_assoc($sql))
                         <td><?php echo $pro_mrp; ?></td>
                         <td><?php echo $pro_pri; ?></td>
                         <td><?php echo $pro_qua; ?></td>
-                        <td><?php echo $pro_dis; ?></td>
+                        <td><?php echo $pro_curqua; ?></td>
                         <td><?php echo $pro_mrptotal; ?></td>
                         <td><?php echo $pro_purtotal; ?></td>
                         <td><?php echo $pro_purprofit; ?></td>
