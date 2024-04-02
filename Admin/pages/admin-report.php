@@ -1,12 +1,3 @@
-<?php
- include './connect.php';
- error_reporting(0);
- session_start();
- if($_SESSION["email"]=="")
- {
-    header('location:admin-login.php');
- }
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,7 +40,7 @@
                         </div>
                 </div>
                 <div class="table-responsive">
-                  <table class="table table-striped"> 
+                <table id="reportTable" class="table table-striped">
                     <thead>
                       <tr>
                         <th>Sl No</th>
@@ -96,17 +87,35 @@
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-  <!-- plugins:js -->
-  <script src="../vendors/js/vendor.bundle.base.js"></script>
-  <!-- endinject -->
-  <!-- inject:js -->
-  <script src="../js/off-canvas.js"></script>
-  <script src="../js/hoverable-collapse.js"></script>
-  <script src="../js/template.js"></script>
-  <script src="../js/settings.js"></script>
-  <script src="../js/todolist.js"></script>
-  <!-- endinject -->
-  <!-- Custom js for this page-->
-  <!-- End custom js for this page-->
+ <!-- plugins:js -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../vendors/js/vendor.bundle.base.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
+<!-- endinject -->
+<!-- inject:js -->
+<script src="../js/off-canvas.js"></script>
+<script src="../js/hoverable-collapse.js"></script>
+<script src="../js/template.js"></script>
+<script src="../js/settings.js"></script>
+<script src="../js/todolist.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+<script>
+$(document).ready(function(){
+  // Add click event listener to export button
+  $(".btn-primary").on('click', function(){
+    // Create new jsPDF instance
+    var doc = new jsPDF();
+    // Get table content
+    var tableContent = $("#reportTable").get(0);
+    // Add table content to PDF
+    doc.autoTable({html: tableContent});
+    // Save or download the PDF file
+    doc.save('report.pdf');
+  });
+});
+</script>
+<!-- End custom js for this page-->
+
 </body>
 </html>

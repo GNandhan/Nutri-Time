@@ -176,21 +176,21 @@ while ($row = mysqli_fetch_assoc($query)) {
     $stoloct= $_POST["stoloc"];
     $stoqua= $_POST["stoqua"];
     $stopri= $_POST["stopri"];
-    $stogst= $_POST["stogst"];
+    // $stogst= $_POST["stogst"];
 
     // $total = $stopri * ($stogst / 100);
-    $stototal = $stoqua * $stopri;
+    $stototal = intval($stoqua) * intval($stopri);
 
 
 // Fetch the shake ID from the form
 $sto_id = $_POST["stoid"];
 
 if($sto_id=='') {
-$sql = mysqli_query($conn,"INSERT INTO stock (stock_place, stock_name, stock_quantity, stock_comname, stock_price, stock_gst, stock_total, stock_date)
-                                         VALUES ('$stoloct','$stomat','$stoqua','$stocom','$stopri','$stogst','$stototal')");
+$sql = mysqli_query($conn,"INSERT INTO stock (stock_place, stock_name, stock_quantity, stock_comname, stock_price, stock_total, stock_date)
+                                         VALUES ('$stoloct','$stomat','$stoqua','$stocom','$stopri','$stototal', NOW())");
 }else{
       // Update shake
-$sql = mysqli_query($conn, "UPDATE stock SET stock_place='$stoloct', stock_name='$stomat', stock_quantity='$stoqua', stock_comname='$stocom', stock_price='$stopri', stock_gst='$stogst', stock_total='$stototal' WHERE stock_id='$sto_id'");
+$sql = mysqli_query($conn, "UPDATE stock SET stock_place='$stoloct', stock_name='$stomat', stock_quantity='$stoqua', stock_comname='$stocom', stock_price='$stopri', stock_total='$stototal' WHERE stock_id='$sto_id'");
 }
 if ($sql == TRUE){
 echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
@@ -239,7 +239,7 @@ while($row=mysqli_fetch_assoc($sql))
     $stock_quan=$row['stock_quantity']; 
     $stock_comname=$row['stock_comname']; 
     $stock_pri=$row['stock_price']; 
-    $stock_gst=$row['stock_gst']; 
+    // $stock_gst=$row['stock_gst'];  
     $stock_total=$row['stock_total'];
     $stock_date=$row['stock_date']; 
 ?>
@@ -313,8 +313,4 @@ while($row=mysqli_fetch_assoc($sql))
   <script src="../js/select2.js"></script>
   <!-- End custom js for this page-->
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> cca3dfaa6cd45d1a1fd64732766d549939fc1bf7
