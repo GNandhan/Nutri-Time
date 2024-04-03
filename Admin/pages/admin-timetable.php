@@ -63,93 +63,18 @@
                     <tbody>
                       <tr>
                         <td class="py-1">#00A001</td>
-                        <td>username 1</td>
-                        <td>Customer 1</td>
-                        <td>Fat reducer</td>
-                        <td>Creatine shake</td>
-                        <td>2/day</td>
-                        <td>25-01-2024</td>
-                        <td>25-01-2024</td>
-                        <td>30-02-2024</td>
-                        <td>Present</td>
-                        <td>Offline</td>
-                        <td>22.6 kg/m2 </td>
-                        <td>1,499 Calories/day</td>
-                      </tr>
-                      <tr>
-                        <td class="py-1">#00A001</td>
-                        <td>username 1</td>
-                        <td>Customer 1</td>
-                        <td>Fat reducer</td>
-                        <td>Creatine shake</td>
-                        <td>2/day</td>
-                        <td>25-01-2024</td>
-                        <td>25-01-2024</td>
-                        <td>30-02-2024</td>
-                        <td>Present</td>
-                        <td>Offline</td>
-                        <td>22.6 kg/m2 </td>
-                        <td>1,499 Calories/day</td>
-                      </tr>
-                      <tr>
-                        <td class="py-1">#00A001</td>
-                        <td>username 1</td>
-                        <td>Customer 1</td>
-                        <td>Fat reducer</td>
-                        <td>Creatine shake</td>
-                        <td>2/day</td>
-                        <td>25-01-2024</td>
-                        <td>25-01-2024</td>
-                        <td>30-02-2024</td>
-                        <td>Present</td>
-                        <td>Offline</td>
-                        <td>22.6 kg/m2 </td>
-                        <td>1,499 Calories/day</td>
-                      </tr>
-                      <tr>
-                        <td class="py-1">#00A001</td>
-                        <td>username 1</td>
-                        <td>Customer 1</td>
-                        <td>Fat reducer</td>
-                        <td>Creatine shake</td>
-                        <td>2/day</td>
-                        <td>25-01-2024</td>
-                        <td>25-01-2024</td>
-                        <td>30-02-2024</td>
-                        <td>Present</td>
-                        <td>Offline</td>
-                        <td>22.6 kg/m2 </td>
-                        <td>1,499 Calories/day</td>
-                      </tr>
-                      <tr>
-                        <td class="py-1">#00A001</td>
-                        <td>username 1</td>
-                        <td>Customer 1</td>
-                        <td>Fat reducer</td>
-                        <td>Creatine shake</td>
-                        <td>2/day</td>
-                        <td>25-01-2024</td>
-                        <td>25-01-2024</td>
-                        <td>30-02-2024</td>
-                        <td>Present</td>
-                        <td>Offline</td>
-                        <td>22.6 kg/m2 </td>
-                        <td>1,499 Calories/day</td>
-                      </tr>
-                      <tr>
-                        <td class="py-1">#00A001</td>
-                        <td>username 1</td>
-                        <td>Customer 1</td>
-                        <td>Fat reducer</td>
-                        <td>Creatine shake</td>
-                        <td>2/day</td>
-                        <td>25-01-2024</td>
-                        <td>25-01-2024</td>
-                        <td>30-02-2024</td>
-                        <td>Present</td>
-                        <td>Offline</td>
-                        <td>22.6 kg/m2 </td>
-                        <td>1,499 Calories/day</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
                       </tr>
                     </tbody>
                   </table>

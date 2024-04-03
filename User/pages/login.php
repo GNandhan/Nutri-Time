@@ -1,6 +1,8 @@
 <?php
  include './connect.php';
  error_reporting(0);
+ session_start();
+ $_SESSION["email"]='';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -97,7 +99,7 @@
                                         </div>
                                     </div>                              
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <a href="../../index.html" type="submit" class="btn text-white rounded-pill px-5 btn-lg" style="background-color:rgb(34 203 48);">Login</a>
+                                        <button type="submit" class="btn text-white rounded-pill px-5 btn-lg" style="background-color:rgb(34 203 48);" name="submit">Login</button>
                                     </div>
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                         <span>Not registered yet?</span> 
@@ -129,7 +131,7 @@ if($check>0)
  // header("location: pages/Table.php");
 
  echo '<script type="text/javascript">
- window.location = "../index.html"
+ window.location = "./index2.php"
 </script>';
 } 
 else

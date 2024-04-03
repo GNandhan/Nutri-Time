@@ -1,6 +1,11 @@
 <?php
  include './connect.php';
  error_reporting(0);
+ session_start();
+ if($_SESSION["email"]=="")
+ {
+    header('location:login.php');
+ }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,12 +36,12 @@
                     <img src="../images/icon.png" class="icon1 me-2" width="90">
                 </a>
                 <ul class="nav">
-                    <li class="nav-item"><a href="../../index.html" class="nav-link text-dark">Home</a></li>
-                    <li class="nav-item"><a href="./program.php"class="nav-link text-success border-bottom border-2 border-success text-success">Program</a></li>
-                    <li class="nav-item"><a href="./gallery.php" class="nav-link text-dark">Gallery</a></li>
-                    <li class="nav-item"><a href="./product.php" class="nav-link text-dark">Product</a></li>
-                    <li class="nav-item"><a href="./contact.php" class="nav-link text-dark">Contact</a></li>
-                    <li class="nav-item"><a href="./login.php" class="nav-link text-dark">Sign in</a></li>
+                    <li class="nav-item"><a href="./index2.php" class="nav-link text-dark">Home</a></li>
+                    <li class="nav-item"><a href="./program2.php"class="nav-link text-success border-bottom border-2 border-success text-success">Program</a></li>
+                    <li class="nav-item"><a href="./gallery2.php" class="nav-link text-dark">Gallery</a></li>
+                    <li class="nav-item"><a href="./product2.php" class="nav-link text-dark">Product</a></li>
+                    <li class="nav-item"><a href="./contact2.php" class="nav-link text-dark">Contact</a></li>
+                    <li class="nav-item"><a href="./login.php" class="nav-link text-dark">Log out</a></li>
                 </ul>
             </header>
         </div>
