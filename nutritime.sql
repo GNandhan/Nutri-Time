@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2024 at 05:56 AM
+-- Generation Time: Apr 03, 2024 at 01:22 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -75,6 +75,13 @@ CREATE TABLE `gallery` (
   `gallery_img` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `gallery`
+--
+
+INSERT INTO `gallery` (`gallery_id`, `gallery_dis`, `gallery_img`) VALUES
+(10, 'first image', 'main page.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -93,7 +100,9 @@ CREATE TABLE `login_details` (
 
 INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`) VALUES
 ('nutriadmin@gmail.com', 1, '2024-04-02 12:57:31'),
-('nutriadmin@gmail.com', 2, '2024-04-02 13:19:46');
+('nutriadmin@gmail.com', 2, '2024-04-02 13:19:46'),
+('nutriadmin@gmail.com', 3, '2024-04-03 07:50:39'),
+('nutriadmin@gmail.com', 4, '2024-04-03 08:17:20');
 
 -- --------------------------------------------------------
 
@@ -121,7 +130,8 @@ CREATE TABLE `material` (
 --
 
 INSERT INTO `material` (`pro_id`, `pro_code`, `pro_name`, `pro_category`, `pro_subcategory`, `pro_brand`, `pro_mrp`, `pro_price`, `pro_quantity`, `pro_curquantity`, `pro_image`, `pro_status`) VALUES
-(1, '1002', 'Formula 1', 'Ayurvedic Nutrition', 'Immune Health', 'Herbalife', 20, 15, 10, 10, 'main page.jpg', 'used');
+(1, '1002', 'Formula 1', 'Ayurvedic Nutrition', 'Immune Health', 'Herbalife', 20, 15, 10, 10, 'main page.jpg', 'used'),
+(2, '210458', 'Muscle blazer', 'Energy', 'none', 'Herbalife', 200, 150, 10, 10, 'download.jpeg', 'used');
 
 -- --------------------------------------------------------
 
@@ -133,13 +143,18 @@ CREATE TABLE `program` (
   `program_id` int(11) NOT NULL,
   `program_name` varchar(50) NOT NULL,
   `program_img` varchar(50) NOT NULL,
-  `program_purpose` varchar(50) NOT NULL,
   `program_duration` varchar(50) NOT NULL,
-  `program_age` varchar(20) NOT NULL,
   `program_fee` int(20) NOT NULL,
   `program_condition` varchar(50) NOT NULL,
   `program_mode` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `program`
+--
+
+INSERT INTO `program` (`program_id`, `program_name`, `program_img`, `program_duration`, `program_fee`, `program_condition`, `program_mode`) VALUES
+(12, 'Fitness diet', 'main page.jpg', '20-Days', 500, 'Strict diet should be followed', 'Offline');
 
 -- --------------------------------------------------------
 
@@ -257,6 +272,14 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`user_id`, `user_name`, `user_phno`, `user_email`, `user_password`, `user_gender`, `user_blood`, `user_address`, `user_city`, `user_program`, `user_payment`, `user_image`) VALUES
+(1003, 'Manu', '7854985687', 'manu123@gmail.com', 'manu123@', 'Male', 'AB+', 'thalaserry kannur', 'kannur', '', '', ''),
+(1004, 'Jeslin', '854986587', 'jeslin123@gmail.com', 'jeslin123@', 'Male', 'AB+', 'kaloor po south road', 'Kaloor', '', '', '');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -346,25 +369,25 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `gallery_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `gallery_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `material`
 --
 ALTER TABLE `material`
-  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `program`
 --
 ALTER TABLE `program`
-  MODIFY `program_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `program_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `shake`
@@ -394,7 +417,7 @@ ALTER TABLE `subcategory`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1002;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1005;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
