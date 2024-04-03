@@ -83,7 +83,7 @@
                                     <div class="d-flex flex-row align-items-center mb-3">
                                         <i class="bi bi-envelope me-3 form-icon" style="color:rgb(34 203 48);"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="email" id="form3Example3c" class="form-control rounded-4 border-0 p-3 shadow-sm" placeholder="Enter email id" required/>
+                                            <input type="email" id="form3Example3c" class="form-control rounded-4 border-0 p-3 shadow-sm" placeholder="Enter email id" name="email" required/>
                                         </div>
                                     </div>
                                     <!-- Password -->
@@ -91,7 +91,7 @@
                                         <i class="bi bi-shield-lock me-3 form-icon" style="color:rgb(34 203 48);"></i>
                                         <div class="form-outline flex-fill position-relative mb-0">
                                             <div class="input-group shadow-sm rounded-4">
-                                                <input type="password" id="form3Example4" class="form-control rounded-4 border-0 p-3 shadow-none" name="accpass" placeholder="Enter Password" required />
+                                                <input type="password" id="form3Example4" class="form-control rounded-4 border-0 p-3 shadow-none" name="pass" placeholder="Enter Password" required />
                                                 <button class="btn border border-0 rounded-end-4" type="button" id="showPassword"><i class="bi bi-eye"></i></button>
                                             </div>
                                         </div>
@@ -112,6 +112,32 @@
         </div>
     </section>
     <!-- User Home Closed -->
+<!-- PHP CODE FOR CHECKING THE INSERTED FORM IS CORRECT OR NOT THEN LOGGED IN -->
+<?php
+if(isset($_POST["submit"]))
+{
+  $email=$_POST["email"];
+  $password=$_POST["pass"];
+  
+  $sq=mysqli_query($conn,"select * from user where user_email='$email' and user_password='$password'");
+  $check=mysqli_num_rows($sq);
+  
+if($check>0)
+{
+  $_SESSION["email"] = $email;  
+  $_SESSION["pass"] = $password;    
+ // header("location: pages/Table.php");
+
+ echo '<script type="text/javascript">
+ window.location = "../index.html"
+</script>';
+} 
+else
+{
+echo "<script type= 'text/javascript'>alert('Error: "  . "wrong username or password" . $conn->error."');</script>";
+}
+}
+?>
  <!-- footer -->
  <footer class="d-flex container fixed-bottom flex-wrap justify-content-between align-items-center py-2 pt-3 my-3 border-top">
       <div class="col-md-4 d-flex align-items-center">

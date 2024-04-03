@@ -1,6 +1,6 @@
 <?php
  include './connect.php';
- error_reporting(0);
+//  error_reporting(0);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,31 +79,51 @@
               <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-12 col-xl-7 order-2 order-lg-1">
                   <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign Up</p>
-                  <form class="mx-1 mx-md-4">
+                  <form class="mx-1 mx-md-4" method="post" enctype="multipart/form-data">
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="bi bi-egg-fried me-3 form-icon" style="color:rgb(34 203 48);"></i> <!-- Added form-icon class -->
                       <div class="form-outline flex-fill mb-0">
-                        <input type="text"  class="form-control rounded-4 border border-top-0 p-3 shadow-sm" placeholder="Enter Name" name="" required/>
+                        <input type="text"  class="form-control rounded-4 border border-top-0 p-3 shadow-sm" placeholder="Enter Name" name="uname" required/>
                       </div>
                     </div>
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="bi bi-geo-alt me-3 form-icon" style="color:rgb(34 203 48);"></i> <!-- Added form-icon class -->
                       <div class="form-outline flex-fill mb-0">
-                        <input type="text"  class="form-control rounded-4  border border-top-0 p-3 shadow-sm" placeholder="Enter Phone No" name="" required/>
+                        <input type="number"  class="form-control rounded-4  border border-top-0 p-3 shadow-sm" placeholder="Enter Phone No" name="uphno" required/>
                       </div>
                     </div>
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="bi bi-envelope me-3 form-icon" style="color:rgb(34 203 48);"></i> <!-- Added form-icon class -->
                       <div class="form-outline flex-fill mb-0">
-                        <input type="email"  class="form-control rounded-4  border border-top-0 p-3 shadow-sm" placeholder="Enter Email Id" name="" required/>
+                        <input type="email"  class="form-control rounded-4  border border-top-0 p-3 shadow-sm" placeholder="Enter Email Id" name="uemail" required/>
                       </div>
                     </div>
+                    <div class="d-flex flex-row align-items-center mb-3">
+                      <i class="bi bi-shield-lock me-3 form-icon" style="color:rgb(34 203 48);"></i>
+                      <div class="form-outline flex-fill position-relative mb-0">
+                          <div class="input-group shadow-sm rounded-4  border border-top-0">
+                              <input type="password" class="form-control rounded-4 border-0 p-3 shadow-none" name="upass" placeholder="Enter Password" name="" required />
+                              <button class="btn border border-0  rounded-end-4" type="button" id="showPassword"><i class="bi bi-eye"></i></button>
+                          </div>
+                      </div>
+                  </div>
                     <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="d-flex flex-row align-items-center">
                         <i class="bi bi-heart-fill me-3 form-icon" style="color:rgb(34 203 48);"></i>
                         <div class="form-outline flex-fill mb-0">
-                            <input type="text" class="form-control rounded-4 border border-top-0 p-3 shadow-sm" placeholder="Enter Blood Group" name="blood_group" required />
+                            <!-- <input type="text" class="form-control rounded-4 border border-top-0 p-3 shadow-sm" placeholder="Enter Blood Group" name="ublood" required /> -->
+                            <select class="form-select rounded-4 border border-top-0 p-3 shadow-sm" name="ublood" required>
+                              <option value="" disabled selected>Blood Group</option>
+                              <option value="A+">A+</option>
+                              <option value="A-">A-</option>
+                              <option value="B+">B+</option>
+                              <option value="B-">B-</option>
+                              <option value="AB+">AB+</option>
+                              <option value="AB-">AB-</option>
+                              <option value="O+">O+</option>
+                              <option value="O-">O-</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -111,7 +131,13 @@
                     <div class="d-flex flex-row align-items-center">
                         <i class="bi bi-person-fill me-3 form-icon" style="color:rgb(34 203 48);"></i>
                         <div class="form-outline flex-fill mb-0">
-                            <input type="text" class="form-control rounded-4 border border-top-0 p-3 shadow-sm" placeholder="Enter Gender" name="gender" required />
+                            <!-- <input type="text" class="form-control rounded-4 border border-top-0 p-3 shadow-sm" placeholder="Enter Gender" name="ugender" required /> -->
+                            <select class="form-select rounded-4 border border-top-0 p-3 shadow-sm" name="ugender" required>
+                              <option value="" disabled selected>Gender</option>
+                              <option value="Male">Male</option>
+                              <option value="Female">Female</option>
+                              <option value="Other">Other</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -119,32 +145,18 @@
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="bi bi-geo-alt me-3 form-icon" style="color:rgb(34 203 48);"></i> <!-- Added form-icon class -->
                       <div class="form-outline flex-fill mb-0">
-                        <input type="text"  class="form-control rounded-4  border border-top-0 p-3 shadow-sm" placeholder="Enter Location" name="" required/>
+                        <input type="text"  class="form-control rounded-4  border border-top-0 p-3 shadow-sm" placeholder="Enter Location" name="ulocation" required/>
                       </div>
                     </div>
+
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="bi bi-geo-alt me-3 form-icon" style="color:rgb(34 203 48);"></i> <!-- Added form-icon class -->
                       <div class="form-outline flex-fill mb-0">
-                        <input type="text"  class="form-control rounded-4  border border-top-0 p-3 shadow-sm" placeholder="Enter Location" name="" required/>
+                        <input type="text"  class="form-control rounded-4  border border-top-0 p-3 shadow-sm" placeholder="Enter Address" name="uaddress" required/>
                       </div>
                     </div>
-                    <div class="d-flex flex-row align-items-center mb-4">
-                      <i class="bi bi-geo-alt me-3 form-icon" style="color:rgb(34 203 48);"></i> <!-- Added form-icon class -->
-                      <div class="form-outline flex-fill mb-0">
-                        <input type="text"  class="form-control rounded-4  border border-top-0 p-3 shadow-sm" placeholder="Enter Location" name="" required/>
-                      </div>
-                    </div>
-                    <div class="d-flex flex-row align-items-center mb-3">
-                      <i class="bi bi-shield-lock me-3 form-icon" style="color:rgb(34 203 48);"></i>
-                      <div class="form-outline flex-fill position-relative mb-0">
-                          <div class="input-group shadow-sm rounded-4  border border-top-0">
-                              <input type="password" class="form-control rounded-4 border-0 p-3 shadow-none" name="accpass" placeholder="Enter Password" name="" required />
-                              <button class="btn border border-0  rounded-end-4" type="button" id="showPassword"><i class="bi bi-eye"></i></button>
-                          </div>
-                      </div>
-                  </div>
                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                      <button type="submit" class="btn rounded-pill text-white px-5 btn-lg" style="background-color:rgb(34 203 48);">Register</button>
+                      <button type="submit" class="btn rounded-pill text-white px-5 btn-lg" style="background-color:rgb(34 203 48);" name="submitu">Register</button>
                     </div>
                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                       <span>Already a User?</span> 
@@ -166,54 +178,54 @@
 
 <!-- PHP CODE FOR INSERTING THE DATA -->
 <?php
-    if(isset($_POST["submitst"]))
+    include './connect.php';
+    error_reporting(0);
+
+    if(isset($_POST["submitu"]))
     {
-    $sh_id = $_POST["shid"];
-    $sh_name= $_POST["shname"];
-    $sh_goal= $_POST["shgoal"];
-    $sh_reci= $_POST["shrecipe"];
-    $sh_raw= $_POST["shraw"];
-    $sh_mcost= $_POST["shmcost"];
-    $sh_gst= $_POST["shgst"];
-    $sh_disc= $_POST["shdis"];
-    $sh_bene= $_POST["shbene"];
-    $sh_img = $_FILES['shimg']['name'];
+        $us_id = $_POST["usid"];
+        $us_name = $_POST["uname"];
+        $us_phno = $_POST["uphno"];
+        $us_email = $_POST["uemail"];
+        $us_pass = $_POST["upass"];
+        $us_blood = $_POST["ublood"];
+        $us_gender = $_POST["ugender"];
+        $us_location = $_POST["ulocation"];
+        $us_address = $_POST["uaddress"];
+        $us_img = $_FILES['shimg']['name'];
 
-    // Calculate selling price
-    $price = $sh_mcost * ($sh_gst / 100);
-    $selling_price = $sh_mcost + $price;
+        // Image uploading formats
+        $filename = $_FILES['shimg']['name'];
+        $tempname = $_FILES['shimg']['tmp_name'];
 
-  // Image uploading formats
-  $filename = $_FILES['shimg']['name'];
-  $tempname = $_FILES['shimg']['tmp_name'];
+        // Fetch the user ID from the form
+        $sh_id = $_POST["shid"];
 
-// Fetch the shake ID from the form
-$sh_id = $_POST["shid"];
+        if($sh_id == '') {
+            $sql = mysqli_query($conn, "INSERT INTO user (user_name, user_phno, user_email, user_password, user_gender, user_blood, user_address, user_city, user_image)
+                                                VALUES ('$us_name','$us_phno','$us_email','$us_pass','$us_gender','$us_blood','$us_address','$us_location','$us_img')");
+        } else {
+            // Update existing user
+            if ($filename) {
+                // Remove the existing image
+                $imgs = '../../Admin/images/user/' . $us_img;
+                unlink($imgs);
+                // Update user with new image
+                $sql = mysqli_query($conn, "UPDATE user SET user_name='$us_name', user_phno='$us_phno', user_email='$us_email', user_password='$us_pass', user_gender='$us_gender', user_blood='$us_blood', user_address='$us_address', user_city='$us_location', user_image='$us_img' WHERE user_id='$sh_id'");
+            } else {
+                // Update user without changing the image
+                $sql = mysqli_query($conn, "UPDATE user SET user_name='$us_name', user_phno='$us_phno', user_email='$us_email', user_password='$us_pass', user_gender='$us_gender', user_blood='$us_blood', user_address='$us_address', user_city='$us_location' WHERE user_id='$sh_id'");
+            }
+        }
 
-if($sh_id=='') {
-$sql = mysqli_query($conn,"INSERT INTO shake (shake_name, shake_goal, shake_recipes, shake_raw, shake_mcost, shake_scost, shake_desc, shake_benefit, shake_gst, shake_img)
-                                      VALUES ('$sh_name','$sh_goal','$sh_reci','$sh_raw','$sh_mcost','$selling_price','$sh_disc','$sh_bene','$sh_gst','$sh_img')");
-}else{
-        // Update existing material
-        if ($filename) {
-          // Remove the existing image
-          $imgs = '../../Admin/images/shake/' . $sh_img;
-          unlink($imgs);
-          // Update shake with new image
-      $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_raw='$sh_raw', shake_mcost='$sh_mcost', shake_scost='$selling_price', shake_desc='$sh_disc', shake_benefit='$sh_bene', shake_gst='$sh_gst', shake_img='$sh_img' WHERE shake_id='$sh_id'");
-    } else {
-      // Update shake without changing the image
-      $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_raw='$sh_raw', shake_mcost='$sh_mcost', shake_scost='$selling_price', shake_desc='$sh_disc', shake_benefit='$sh_bene', shake_gst='$sh_gst' WHERE shake_id='$sh_id'");
-  }
-}
-if ($sql == TRUE){
-move_uploaded_file($tempname, "../../Admin/images/shake/$filename");
-echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
-} 
-else{
-  echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
-}
-}
+        if ($sql == TRUE) {
+          move_uploaded_file($tempname, "../../Admin/images/user/$filename");
+          echo "<script>alert('User registration successfully.'); window.location.href = './login.php';</script>";
+          exit; // Prevent further execution
+      } else {
+          echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
+      }
+    }
 ?>
 
  <!-- footer -->

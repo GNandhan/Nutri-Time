@@ -65,7 +65,7 @@ if(isset($_GET['pid']))
         $p_mrp1 = $p_row1['pro_mrp']; 
         $p_qua1 = $p_row1['pro_quantity']; 
         $p_img1 = $p_row1['pro_image']; 
-        $p_dis1 = $p_row1['pro_distribution'];
+        // $p_dis1 = $p_row1['pro_distribution'];
 }
 // fetching the data from the URL for deleting the subject form
 if(isset($_GET['pd_id']))
@@ -165,8 +165,7 @@ if(isset($_GET['pd_id']))
                     <div class="col">
                       <div class="form-group">
                         <label>MRP</label>
-                        <input type="number" class="form-control" name="promrp" value="<?php echo $p_mrp1; ?>"
-                          required>
+                        <input type="number" class="form-control" name="promrp" value="<?php echo $p_mrp1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
@@ -199,7 +198,7 @@ if(isset($_GET['pd_id']))
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary mr-2" name="submitp">Submit</button>
-                  <button class="btn btn-light">Cancel</button>
+                  <button type="reset" class="btn btn-light">Cancel</button>
                 </form>
               </div>
             </div>
@@ -236,21 +235,22 @@ if(isset($_GET['pd_id']))
 $pro_id = $_POST["pid"];
 
 if($pro_id==''){
-$sql = mysqli_query($conn,"INSERT INTO material (pro_code, pro_name, pro_category, pro_subcategory, pro_brand, pro_price, pro_mrp, pro_quantity, pro_curquantity, pro_image)
-                                         VALUES ('$pcode','$pname','$pcat_name','$psubcat_name','$pbrand','$pprice', '$pmrp','$pquan','$pquan','$pimg')");
+  $sql = mysqli_query($conn,"INSERT INTO material (pro_code, pro_name, pro_category, pro_subcategory, pro_brand, pro_price, pro_mrp, pro_quantity, pro_curquantity, pro_image)
+                                       VALUES ('$pcode','$pname','$pcat_name','$psubcat_name','$pbrand','$pprice', '$pmrp','$pquan','$pquan','$pimg')");
 }else{
-        // Update existing material
-        if ($filename) {
-          // Remove the existing image
-          $imgs = '../images/material/' . $pimg;
-          unlink($imgs);
-          // Update material with new image
-      $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat_name', pro_subcategory='$psubcat_name', pro_brand='$pbrand', pro_price='$pprice', pro_mrp='$pmrp', pro_quantity='$pquan', pro_image='$pimg' WHERE pro_id='$pro_id'");
-    } else {
+  // Update existing material
+  if ($filename) {
+      // Remove the existing image
+      $imgs = '../images/material/' . $pimg;
+      unlink($imgs);
+      // Update material with new image
+      $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat_name', pro_subcategory='$psubcat_name', pro_brand='$pbrand', pro_price='$pprice', pro_mrp='$pmrp', pro_quantity='$pquan', pro_curquantity='$pquan', pro_image='$pimg' WHERE pro_id='$pro_id'");
+  } else {
       // Update material without changing the image
-      $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat_name', pro_subcategory='$psubcat_name', pro_brand='$pbrand', pro_price='$pprice', pro_mrp='$pmrp', pro_quantity='$pquan' WHERE pro_id='$pro_id'");
+      $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat_name', pro_subcategory='$psubcat_name', pro_brand='$pbrand', pro_price='$pprice', pro_mrp='$pmrp', pro_quantity='$pquan', pro_curquantity='$pquan' WHERE pro_id='$pro_id'");
   }
 }
+
 if ($sql == TRUE){
 // echo "<script type= 'text/javascript'>alert('New record created successfully');</script>";
 move_uploaded_file($tempname, "../images/material/$filename");

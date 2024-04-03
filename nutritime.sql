@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2024 at 11:44 AM
+-- Generation Time: Apr 03, 2024 at 05:56 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -87,6 +87,14 @@ CREATE TABLE `login_details` (
   `login_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `login_details`
+--
+
+INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`) VALUES
+('nutriadmin@gmail.com', 1, '2024-04-02 12:57:31'),
+('nutriadmin@gmail.com', 2, '2024-04-02 13:19:46');
+
 -- --------------------------------------------------------
 
 --
@@ -107,6 +115,13 @@ CREATE TABLE `material` (
   `pro_image` varchar(50) NOT NULL,
   `pro_status` enum('used','unused') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `material`
+--
+
+INSERT INTO `material` (`pro_id`, `pro_code`, `pro_name`, `pro_category`, `pro_subcategory`, `pro_brand`, `pro_mrp`, `pro_price`, `pro_quantity`, `pro_curquantity`, `pro_image`, `pro_status`) VALUES
+(1, '1002', 'Formula 1', 'Ayurvedic Nutrition', 'Immune Health', 'Herbalife', 20, 15, 10, 10, 'main page.jpg', 'used');
 
 -- --------------------------------------------------------
 
@@ -183,6 +198,13 @@ CREATE TABLE `stock` (
   `stock_date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `stock`
+--
+
+INSERT INTO `stock` (`stock_id`, `stock_place`, `product_id`, `stock_name`, `stock_quantity`, `stock_comname`, `stock_price`, `stock_gst`, `stock_total`, `stock_date`) VALUES
+(1, 'Ernakulam', 0, 0, 2, 'damu limited', 20, 0, 40, '2024-04-02');
+
 -- --------------------------------------------------------
 
 --
@@ -223,6 +245,8 @@ CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
   `user_name` varchar(50) NOT NULL,
   `user_phno` varchar(20) NOT NULL,
+  `user_email` varchar(50) NOT NULL,
+  `user_password` varchar(50) NOT NULL,
   `user_gender` enum('Male','Female','Other') NOT NULL,
   `user_blood` varchar(10) NOT NULL,
   `user_address` varchar(100) NOT NULL,
@@ -328,13 +352,13 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `material`
 --
 ALTER TABLE `material`
-  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `program`
@@ -358,7 +382,7 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `subcategory`

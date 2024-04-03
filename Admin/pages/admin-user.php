@@ -66,12 +66,14 @@ if(isset($_GET['ud_id']))
                         <th>User Id</th>
                         <th>Customer Image</th>
                         <th>Customer Name</th>
+                        <th>Gender</th>
                         <th>Phno</th>
+                        <th>Email</th>
                         <th>Address</th>
                         <th>Blood Group</th>
                         <th>City</th>
-                        <th>Program</th>
-                        <th>Payment Method</th>
+                        <!-- <th>Program</th>
+                        <th>Payment Method</th> -->
                         <th>Delete</th>
                       </tr>
                     </thead>
@@ -82,25 +84,29 @@ while($row=mysqli_fetch_assoc($sql))
     $u_id=$row['user_id'];
     $u_name=$row['user_name'];
     $u_phno=$row['user_phno'];
+    $u_email=$row['user_email'];
+    $u_pass=$row['user_password'];
     $u_gender=$row['user_gender'];
     $u_blood=$row['user_blood'];
     $u_address=$row['user_address']; 
     $u_city=$row['user_city']; 
-    $u_prog=$row['user_program']; 
-    $u_payment=$row['user_payment']; 
+    // $u_prog=$row['user_program']; 
+    // $u_payment=$row['user_payment']; 
     $u_img=$row['user_image']; 
 ?>
                     <tbody>
                       <tr>
                         <td class="py-1"><?php echo $u_id; ?></td>
-                        <td><img src="../images/material/<?php echo $u_img; ?>" alt=""></td>
+                        <td><img src="../images/user/<?php echo $u_img; ?>" alt=""></td>
                         <td><?php echo $u_name; ?></td>
+                        <td><?php echo $u_gender; ?></td>
                         <td><?php echo $u_phno; ?></td>
+                        <td><?php echo $u_email; ?></td>
                         <td><?php echo $u_address; ?></td>
                         <td><?php echo $u_blood; ?></td>
                         <td><?php echo $u_city; ?></td>
-                        <td><?php echo $u_prog; ?></td>
-                        <td><?php echo $u_payment; ?></td>
+                        <!-- <td><?php echo $u_prog; ?></td>
+                        <td><?php echo $u_payment; ?></td> -->
                         <td>
                           <a href="admin-user.php?ud_id=<?php echo $u_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete 
                             <i class="ti-trash btn-icon-prepend"></i>
