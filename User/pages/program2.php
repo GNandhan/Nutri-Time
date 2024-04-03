@@ -65,7 +65,6 @@
             $prg_purp=$row['program_purpose'];
             $prg_dur=$row['program_duration'];
             $prg_age=$row['program_age'];
-            $prg_fee=$row['program_fee'];
             $prg_con=$row['program_condition']; 
             $prg_mode=$row['program_mode'];
             // Get the color for this card
@@ -93,11 +92,10 @@
       </div>
       <div class="modal-body">
         <img src="../../Admin/images/program/<?php echo $prg_img; ?>" class="rounded-4" alt="Product Image" width="100%">
-          <div><?php echo $prg_name; ?></div>
+          <div>Program name: <?php echo $prg_name; ?></div>
           <div><?php echo $prg_purp; ?></div>
           <div><?php echo $prg_dur; ?></div>
           <div><?php echo $prg_age; ?></div>
-          <div><?php echo $prg_fee; ?></div>
           <div><?php echo $prg_con; ?></div>
           <div><?php echo $prg_mode; ?></div>
       </div>

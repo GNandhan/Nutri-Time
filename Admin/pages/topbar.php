@@ -85,14 +85,28 @@
           <li class="nav-item">
             <a class="nav-link" href="admin-material.php">
               <i class="icon-columns menu-icon"></i>
-              <span class="menu-title">Raw Materials</span>
+              <span class="menu-title">Product Purchase</span>
               <i class="menu-arrow"></i>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="admin-stock.php">
               <i class="icon-columns menu-icon"></i>
-              <span class="menu-title">Stock Distribution</span>
+              <span class="menu-title">Product Sales</span>
+              <i class="menu-arrow"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="admin-stocktrans.php">
+              <i class="icon-columns menu-icon"></i>
+              <span class="menu-title">Stock Transfer</span>
+              <i class="menu-arrow"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="admin-category.php">
+              <i class="icon-columns menu-icon"></i>
+              <span class="menu-title">Category</span>
               <i class="menu-arrow"></i>
             </a>
           </li>

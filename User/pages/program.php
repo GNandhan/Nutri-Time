@@ -60,7 +60,6 @@
             $prg_purp=$row['program_purpose'];
             $prg_dur=$row['program_duration'];
             $prg_age=$row['program_age'];
-            $prg_fee=$row['program_fee'];
             $prg_con=$row['program_condition']; 
             $prg_mode=$row['program_mode'];
             // Get the color for this card
@@ -88,16 +87,15 @@
       </div>
       <div class="modal-body">
         <img src="../../Admin/images/program/<?php echo $prg_img; ?>" class="rounded-4" alt="Product Image" width="100%">
-          <div><?php echo $prg_name; ?></div>
+            <div>Program name: <?php echo $prg_name; ?></div>
           <div><?php echo $prg_purp; ?></div>
           <div><?php echo $prg_dur; ?></div>
           <div><?php echo $prg_age; ?></div>
-          <div><?php echo $prg_fee; ?></div>
           <div><?php echo $prg_con; ?></div>
           <div><?php echo $prg_mode; ?></div>
       </div>
       <div class="modal-footer">
-    <button type="button" class="btn text-white" style="background-color: rgb(44, 202, 44);" data-bs-dismiss="modal" onclick="sendRequest()">Request</button>
+    <a href="./login.php" class="btn text-white" style="background-color: rgb(44, 202, 44);">Request</a>
 </div>
     </div>
   </div>
@@ -122,35 +120,6 @@
             <li class="ms-3"><a class="text-body-secondary" target="_blank" href="https://www.instagram.com/nutritimenutritionclub/"><i class="bi bi-instagram" width="24" height="24"></i></a></li>
             </ul>
         </footer>
-<!-- Define the Bootstrap toast message with updated positioning -->
-<div class="position-fixed top-0 start-50 translate-middle-x" style="z-index: 1050">
-    <div class="toast" id="requestToast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-        <div class="toast-header">
-            <strong class="me-auto">Success</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-            Request sent successfully
-        </div>
-    </div>
-</div>
-
-<!-- navbar, Program cards, and footer sections remain unchanged -->
-
-<script>
-    function sendRequest() {
-        // Show Bootstrap toast message
-        var toastEl = document.getElementById('requestToast');
-        var toast = new bootstrap.Toast(toastEl);
-        toast.show();
-
-        // Redirect after a delay
-        setTimeout(function() {
-            window.location.href = './program.php';
-        }, 2000); // 2000 milliseconds = 2 seconds
-    }
-</script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

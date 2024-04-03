@@ -69,9 +69,9 @@ if(isset($_GET['stod_id']))
 <!-- Fetching prices of all materials from the database -->
 <?php
 $material_prices = array();
-$query = mysqli_query($conn, "SELECT pro_name, pro_mrp FROM material");
+$query = mysqli_query($conn, "SELECT pro_name, pro_price FROM material");
 while ($row = mysqli_fetch_assoc($query)) {
-    $material_prices[$row['pro_name']] = $row['pro_mrp'];
+    $material_prices[$row['pro_name']] = $row['pro_price'];
 }
 ?>
 
@@ -99,8 +99,8 @@ while ($row = mysqli_fetch_assoc($query)) {
           <div class="col-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <h1 class="card-title">Product Sales</h1>
-                <p class="card-description">Sales Management/ Distribution</p>
+                <h1 class="card-title">Stock Transfer</h1>
+                <p class="card-description">Stock Transfer Details</p>
                 <form method="post" class="forms-sample" enctype="multipart/form-data">
                   <input type="hidden" name="pid" value="<?php echo $proid; ?>">
                   <div class="row">
@@ -186,15 +186,8 @@ while ($row = mysqli_fetch_assoc($query)) {
                     </div>
                     <div class="col">
                       <div class="form-group">
-                        <label>Price</label>
+                        <label>Purchased</label>
                         <input type="number" class="form-control" name="stopri" id="stopri" required>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <div class="form-group">
-                        <label>Sales Price</label>
-                        <input type="number" class="form-control" name="stogst" value="<?php echo $stogst1; ?>"
-                          required>
                       </div>
                     </div>
                   </div>
@@ -259,7 +252,6 @@ else{
                         <th>Location</th>
                         <th>Quantity</th>
                         <th>Price</th>
-                        <th>Sales Price</th>
                         <!-- <th>Total</th> -->
                         <th>Edit</th>
                         <th>Delete</th>
@@ -290,7 +282,7 @@ while($row=mysqli_fetch_assoc($sql))
                         <td><?php echo $stock_quan; ?></td>
                         <td><?php echo $stock_pri; ?></td>
                         <!-- <td><?php echo $stock_gst; ?></td> -->
-                        <td><?php echo $stock_total; ?></td>
+                        <!-- <td><?php echo $stock_total; ?></td> -->
                         <td>
                           <a href="admin-stock.php?stoid=<?php echo $stock_id; ?>"
                             class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i

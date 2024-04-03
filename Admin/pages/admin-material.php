@@ -93,8 +93,8 @@ if(isset($_GET['pd_id']))
           <div class="col-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <h1 class="card-title">Materials</h1>
-                <p class="card-description">Add Material Details</p>
+                <h1 class="card-title">Product</h1>
+                <p class="card-description">Add Product Details</p>
                 <form method="post" class="forms-sample" enctype="multipart/form-data">
                   <input type="hidden" name="pid" value="<?php echo $proid; ?>">
                   <div class="row">
@@ -153,13 +153,13 @@ if(isset($_GET['pd_id']))
               </select>
                       </div>
                     </div>
-                    <div class="col">
+                    <!-- <div class="col">
                       <div class="form-group">
                         <label>Product Brand</label>
                         <input type="text" class="form-control" name="probrand" value="<?php echo $p_brand1; ?>"
                           required>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                   <div class="row">
                     <div class="col">
@@ -303,14 +303,12 @@ else{
                         <th>Product Name</th>
                         <th>Category</th>
                         <th>Subcategory</th>
-                        <th>Brand</th>
                         <th>MRP</th>
                         <th>Purchased Price</th>
                         <th>Quantity</th>
                         <th>Current Quantity</th>
                         <th>MRP Total</th>
                         <th>Purchased Total</th>
-                        <th>Purchase Profit</th>
                         <th>Edit</th>
                         <th>Delete</th>
                       </tr>
@@ -325,7 +323,7 @@ while($row=mysqli_fetch_assoc($sql))
     $pro_nam=$row['pro_name'];
     $pro_cat=$row['pro_category'];
     $pro_subcat=$row['pro_subcategory']; 
-    $pro_bra=$row['pro_brand']; 
+    // $pro_bra=$row['pro_brand']; 
     $pro_mrp=$row['pro_mrp']; 
     $pro_pri=$row['pro_price']; 
     $pro_qua=$row['pro_quantity']; 
@@ -346,14 +344,13 @@ while($row=mysqli_fetch_assoc($sql))
                         <td><?php echo $pro_nam; ?></td>
                         <td><?php echo $pro_cat; ?></td>
                         <td><?php echo $pro_subcat; ?></td>
-                        <td><?php echo $pro_bra; ?></td>
+                        <!-- <td><?php echo $pro_bra; ?></td> -->
                         <td><?php echo $pro_mrp; ?></td>
                         <td><?php echo $pro_pri; ?></td>
                         <td><?php echo $pro_qua; ?></td>
                         <td><?php echo $pro_curqua; ?></td>
                         <td><?php echo $pro_mrptotal; ?></td>
                         <td><?php echo $pro_purtotal; ?></td>
-                        <td><?php echo $pro_purprofit; ?></td>
                         <td>
                           <a href="admin-material.php?pid=<?php echo $pro_id; ?>"
                             class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i

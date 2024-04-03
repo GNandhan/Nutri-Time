@@ -45,19 +45,15 @@
                       <tr>
                         <th>Sl No</th>
                         <th>Total Customers</th>
-                        <th>Total Raw Materials</th>
+                        <th>Total Products</th>
                         <th>Total Shakes</th>
                         <th>Total revenue</th>
-                        <th>Total Staff</th>
-                        <th>Total Programs</th>
                         <th>Distributed Stock Details</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <td class="py-1">#00A001</td>
-                        <td>---</td>
-                        <td>---</td>
                         <td>---</td>
                         <td>---</td>
                         <td>---</td>

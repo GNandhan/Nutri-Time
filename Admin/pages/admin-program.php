@@ -41,7 +41,6 @@ if(isset($_GET['prid']))
         $pr_name1 = $pr_row1['program_name'];
         $pr_purpose1 = $pr_row1['program_purpose'];
         $pr_dur1 = $pr_row1['program_duration']; 
-        $pr_age1 = $pr_row1['program_age']; 
         $pr_fee1 = $pr_row1['program_fee']; 
         $pr_cond1 = $pr_row1['program_condition']; 
         $pr_mode1 = $pr_row1['program_mode']; 
@@ -103,15 +102,6 @@ if(isset($_GET['prd_id']))
                       </div>
                       <div class="col">
                         <div class="form-group">
-                          <label for="exampleSelectGender">Age limit</label>
-                            <select class="form-control"  name="pagel" required>
-                              <option <?php if($pr_age1=='20-30' ) echo 'selected' ; ?>  value="20-30">20-30</option>
-                              <option <?php if($pr_age1=='30-50' ) echo 'selected' ; ?>  value="30-50">30-50</option>
-                            </select>
-                          </div>
-                      </div>
-                      <div class="col">
-                        <div class="form-group">
                           <label>Fee (per/month)</label>
                           <input type="number" class="form-control" name="pfee" value="<?php echo $pr_fee1; ?>" required>
                         </div>
@@ -160,7 +150,6 @@ if(isset($_POST["submitpr"]))
     $pr_name= $_POST["pname"];
     $pr_purpose= $_POST["ppurpose"];
     $pr_dur= $_POST["pduration"];
-    $pr_age= $_POST["pagel"];
     $pr_fee= $_POST["pfee"];
     $pr_cond= $_POST["pcond"];
     $pr_mode= $_POST["pmode"];
@@ -174,8 +163,8 @@ if(isset($_POST["submitpr"]))
   $pr_id = $_POST["prid"];
 
     if($pr_id==''){
-      $sql = mysqli_query($conn,"INSERT INTO program (program_name, program_purpose, program_duration, program_age, program_fee, program_condition, program_mode, program_img) 
-                         VALUES ('$pr_name','$pr_purpose','$pr_dur','$pr_age','$pr_fee','$pr_cond','$pr_mode', '$pr_img')");
+      $sql = mysqli_query($conn,"INSERT INTO program (program_name, program_duration, program_fee, program_condition, program_mode, program_img) 
+                         VALUES ('$pr_name','$pr_purpose','$pr_dur','$pr_fee','$pr_cond','$pr_mode', '$pr_img')");
     }
     else {
         if ($filename) {
@@ -183,9 +172,9 @@ if(isset($_POST["submitpr"]))
             $imgs = '../images/program/' . $pr_img;
             unlink($imgs);
             // Update shake with new image
-            $sql = mysqli_query($conn, "UPDATE program SET program_name='$pr_name', program_img='$pr_img', program_purpose='$pr_purpose', program_duration='$pr_dur', program_age='$pr_age', program_fee='$pr_fee', program_condition='$pr_cond', program_mode='$pr_mode' WHERE program_id='$pr_id'");
+            $sql = mysqli_query($conn, "UPDATE program SET program_name='$pr_name', program_img='$pr_img', program_purpose='$pr_purpose', program_duration='$pr_dur', program_fee='$pr_fee', program_condition='$pr_cond', program_mode='$pr_mode' WHERE program_id='$pr_id'");
         }
-      $sql = mysqli_query($conn, "UPDATE program SET program_name='$pr_name', program_purpose='$pr_purpose', program_duration='$pr_dur', program_age='$pr_age', program_fee='$pr_fee', program_condition='$pr_cond', program_mode='$pr_mode' WHERE program_id='$pr_id'");
+      $sql = mysqli_query($conn, "UPDATE program SET program_name='$pr_name', program_purpose='$pr_purpose', program_duration='$pr_dur', program_fee='$pr_fee', program_condition='$pr_cond', program_mode='$pr_mode' WHERE program_id='$pr_id'");
   }
 if ($sql == TRUE) {
 move_uploaded_file($tempname, "../images/program/$filename");
@@ -208,9 +197,7 @@ else {
                         <th>sl-no</th>
                         <th>Program Name</th>
                         <th>Program images</th>
-                        <th>Purpose</th>
                         <th>Duration</th>
-                        <th>Age Limit</th>
                         <th>Fee</th>
                         <th>Program Conditions</th>
                         <th>Program Mode</th>
@@ -226,9 +213,7 @@ while($row=mysqli_fetch_assoc($sql))
     $pro_id=$row['program_id'];
     $pro_name=$row['program_name'];
     $pro_img=$row['program_img'];
-    $pro_pur=$row['program_purpose'];
     $pro_dura=$row['program_duration'];
-    $pro_age=$row['program_age']; 
     $pro_fee=$row['program_fee'];
     $pro_con=$row['program_condition']; 
     $pro_mode=$row['program_mode']; 
@@ -238,9 +223,7 @@ while($row=mysqli_fetch_assoc($sql))
                         <td class="py-1"><?php echo $serialNo++; ?></td>
                         <td><?php echo $pro_name; ?></td>
                         <td><img src="../images/program/<?php echo $pro_img; ?>" alt=""></td>
-                        <td><?php echo $pro_pur; ?></td>
                         <td><?php echo $pro_dura; ?></td>
-                        <td><?php echo $pro_age; ?></td>
                         <td><?php echo $pro_fee; ?></td>
                         <td><?php echo $pro_con; ?></td>
                         <td><?php echo $pro_mode; ?></td>

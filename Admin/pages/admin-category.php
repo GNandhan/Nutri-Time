@@ -92,6 +92,7 @@ while ($row = mysqli_fetch_assoc($query)) {
     }
   }
 </script>
+
     <!-- partial -->
     <div class="main-panel">
       <div class="content-wrapper">
@@ -99,16 +100,16 @@ while ($row = mysqli_fetch_assoc($query)) {
           <div class="col-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <h1 class="card-title">Product Sales</h1>
-                <p class="card-description">Sales Management/ Distribution</p>
+                <h1 class="card-title">Stock</h1>
+                <p class="card-description">Stock Management/ Distribution</p>
                 <form method="post" class="forms-sample" enctype="multipart/form-data">
                   <input type="hidden" name="pid" value="<?php echo $proid; ?>">
                   <div class="row">
                     <div class="col-lg-6 col-md col-sm col-12">
                       <div class="form-group">
-                        <label>Product</label>
+                        <label>Raw materials</label>
                         <select class="form-control" name="stomaterial" id="stomaterial" onchange="updatePrice()">
-                            <option selected>Select the Product</option>
+                            <option selected>Select the Raw material</option>
                               <?php 
                     $query = mysqli_query($conn,"select * from material");
                     while ($row = mysqli_fetch_assoc($query))
@@ -192,7 +193,7 @@ while ($row = mysqli_fetch_assoc($query)) {
                     </div>
                     <div class="col">
                       <div class="form-group">
-                        <label>Sales Price</label>
+                        <label>Discount</label>
                         <input type="number" class="form-control" name="stogst" value="<?php echo $stogst1; ?>"
                           required>
                       </div>
@@ -214,10 +215,10 @@ while ($row = mysqli_fetch_assoc($query)) {
     $stoloct= $_POST["stoloc"];
     $stoqua= $_POST["stoqua"];
     $stopri= $_POST["stopri"];
-    $stogst= $_POST["stogst"];
+    // $stogst= $_POST["stogst"];
 
     // $total = $stopri * ($stogst / 100);
-    // $stototal = intval($stoqua) * intval($stopri);
+    $stototal = intval($stoqua) * intval($stopri);
 
 
 // Fetch the shake ID from the form
@@ -225,10 +226,10 @@ $sto_id = $_POST["stoid"];
 
 if($sto_id=='') {
 $sql = mysqli_query($conn,"INSERT INTO stock (stock_place, stock_name, stock_quantity, stock_comname, stock_price, stock_total, stock_date)
-                                         VALUES ('$stoloct','$stomat','$stoqua','$stocom','$stopri','$stogst', NOW())");
+                                         VALUES ('$stoloct','$stomat','$stoqua','$stocom','$stopri','$stototal', NOW())");
 }else{
       // Update shake
-$sql = mysqli_query($conn, "UPDATE stock SET stock_place='$stoloct', stock_name='$stomat', stock_quantity='$stoqua', stock_comname='$stocom', stock_price='$stopri', stock_total='$stogst' WHERE stock_id='$sto_id'");
+$sql = mysqli_query($conn, "UPDATE stock SET stock_place='$stoloct', stock_name='$stomat', stock_quantity='$stoqua', stock_comname='$stocom', stock_price='$stopri', stock_total='$stototal' WHERE stock_id='$sto_id'");
 }
 if ($sql == TRUE){
 echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
@@ -258,9 +259,9 @@ else{
                         <th>Vendor Name</th>
                         <th>Location</th>
                         <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Sales Price</th>
-                        <!-- <th>Total</th> -->
+                        <th>MRP</th>
+                        <!-- <th>GST</th> -->
+                        <th>Total</th>
                         <th>Edit</th>
                         <th>Delete</th>
                       </tr>
