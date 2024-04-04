@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2024 at 01:25 PM
+-- Generation Time: Apr 04, 2024 at 01:55 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -216,8 +216,10 @@ CREATE TABLE `shake` (
 --
 
 INSERT INTO `shake` (`shake_id`, `shake_name`, `customer_id`, `customer_name`, `shake_goal`, `shake_recipes`, `shake_mrp`, `shake_scoops`, `shake_extra`, `shake_discount`, `shake_expence`, `shake_total`, `shake_image`) VALUES
-(1, 'Club Shake222', 0, 'Manu Alex', 'Weight gainer222', '', '', '', 'Milk', '35', '520', '520', 'main page.jpg'),
-(2, 'kids protein', 1, 'Manu Alex', 'Kids nutrition', 'Formula 1, Protein Powder', '115', '20, 25', 'milk', '25', '30', '58.75', 'main page.jpg');
+(2, 'kids protein', 1, 'Manu Alex', 'Kids nutrition', 'Formula 1, Protein Powder', '115', '20, 25', 'milk', '25', '30', '58.75', 'main page.jpg'),
+(3, 'oirjori43jri43j', 0, 'Manu Alex', 'Nutrition', '', '', '', 'Milk, Butter', '25', '10', '10', 'download.jpeg'),
+(4, '5yg5y56y656y', 0, 'Manu Alex', 'u7u7uu7uuu7u77u', 'Formula 1,Protein Powder', '', '', 'milk, sugar, protein', '50', '25', '25', 'download.jpeg'),
+(5, 'pokpokpokpokpokpokpokpok', 0, 'Manu Alex', 'protein fibre', 'Formula 1,Muscle blazer', '165', '', 'water', '42', '60', '60', 'download.jpeg');
 
 -- --------------------------------------------------------
 
@@ -412,7 +414,7 @@ ALTER TABLE `program`
 -- AUTO_INCREMENT for table `shake`
 --
 ALTER TABLE `shake`
-  MODIFY `shake_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `shake_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `staff`
