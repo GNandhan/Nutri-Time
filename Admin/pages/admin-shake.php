@@ -268,7 +268,7 @@ if ($_SESSION["email"] == "") {
                         <th>Recipes</th>
                         <th>MRP</th>
                         <th>No of Scoops</th>
-                        <th>Ectra Incredients</th>
+                        <th>Extra Incredients</th>
                         <th>Discount</th>
                         <th>Service Charge</th>
                         <th>Total</th>

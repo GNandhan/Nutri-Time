@@ -1,6 +1,6 @@
 <?php
  include './connect.php';
-//  error_reporting(0);
+ error_reporting(0);
  session_start();
  if($_SESSION["email"]=="")
  {
@@ -119,7 +119,7 @@ while($row=mysqli_fetch_assoc($sql))
                           </a>
                         </td>
                         <td>
-                          <a href="admin-customer.php?userd_id=<?php echo $pro_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete 
+                          <a href="admin-customer.php?userd_id=<?php echo $cus_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete 
                             <i class="ti-trash btn-icon-prepend"></i>
                           </a>
                         </td>

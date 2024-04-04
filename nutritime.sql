@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2024 at 09:04 AM
+-- Generation Time: Apr 04, 2024 at 11:57 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -91,8 +91,7 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`customer_id`, `customer_fname`, `customer_lname`, `customer_age`, `customer_phno`, `customer_whatsapp`, `customer_email`, `customer_password`, `customer_gender`, `customer_address`, `customer_city`, `customer_program`, `customer_payment`, `customer_type`) VALUES
-(1003, 'Manu', 'Alex', 20, '7854985687', '2147483647', 'manu123@gmail.com', 'manu123@', 'Male', 'thalaserry kannur', 'kannur', '', '', 'Online'),
-(1004, 'Jeslin', 'Biju', 22, '854986587', '854986587', 'jeslin123@gmail.com', 'jeslin123@', 'Male', 'kaloor po south road', 'Kaloor', '', '', 'Online');
+(1003, 'Manu', 'Alex', 20, '7854985687', '2147483647', 'manu123@gmail.com', 'manu123@', 'Male', 'thalaserry kannur', 'kannur', '', '', 'Online');
 
 -- --------------------------------------------------------
 
@@ -199,16 +198,16 @@ INSERT INTO `program` (`program_id`, `program_name`, `program_img`, `program_dur
 CREATE TABLE `shake` (
   `shake_id` int(11) NOT NULL,
   `shake_name` varchar(100) NOT NULL,
+  `customer_id` int(10) NOT NULL,
+  `customer_name` varchar(100) NOT NULL,
   `shake_goal` varchar(100) NOT NULL,
-  `shake_recipes` varchar(100) NOT NULL,
-  `shake_rawid` int(10) NOT NULL,
-  `shake_raw` varchar(50) NOT NULL,
-  `shake_mcost` int(20) NOT NULL,
-  `shake_scost` int(20) NOT NULL,
-  `shake_gst` int(20) NOT NULL,
-  `shake_desc` varchar(100) NOT NULL,
-  `shake_benefit` varchar(100) NOT NULL,
-  `shake_img` varchar(50) NOT NULL
+  `shake_recipes` varchar(200) NOT NULL,
+  `shake_mrp` varchar(100) NOT NULL,
+  `shake_scoops` varchar(100) NOT NULL,
+  `shake_extra` varchar(25) NOT NULL,
+  `shake_discount` varchar(50) NOT NULL,
+  `shake_expence` varchar(25) NOT NULL,
+  `shake_total` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
