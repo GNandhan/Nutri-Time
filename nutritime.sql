@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2024 at 01:22 PM
+-- Generation Time: Apr 04, 2024 at 09:04 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -66,6 +66,37 @@ INSERT INTO `category` (`category_id`, `category_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `customer`
+--
+
+CREATE TABLE `customer` (
+  `customer_id` int(11) NOT NULL,
+  `customer_fname` varchar(50) NOT NULL,
+  `customer_lname` varchar(50) NOT NULL,
+  `customer_age` int(10) NOT NULL,
+  `customer_phno` varchar(20) NOT NULL,
+  `customer_whatsapp` varchar(20) NOT NULL,
+  `customer_email` varchar(50) NOT NULL,
+  `customer_password` varchar(50) NOT NULL,
+  `customer_gender` enum('Male','Female','Other') NOT NULL,
+  `customer_address` varchar(100) NOT NULL,
+  `customer_city` varchar(100) NOT NULL,
+  `customer_program` varchar(100) NOT NULL,
+  `customer_payment` varchar(100) NOT NULL,
+  `customer_type` enum('Online','Offilne') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`customer_id`, `customer_fname`, `customer_lname`, `customer_age`, `customer_phno`, `customer_whatsapp`, `customer_email`, `customer_password`, `customer_gender`, `customer_address`, `customer_city`, `customer_program`, `customer_payment`, `customer_type`) VALUES
+(1003, 'Manu', 'Alex', 20, '7854985687', '2147483647', 'manu123@gmail.com', 'manu123@', 'Male', 'thalaserry kannur', 'kannur', '', '', 'Online'),
+(1004, 'Jeslin', 'Biju', 22, '854986587', '854986587', 'jeslin123@gmail.com', 'jeslin123@', 'Male', 'kaloor po south road', 'Kaloor', '', '', 'Online');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `gallery`
 --
 
@@ -102,7 +133,9 @@ INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`)
 ('nutriadmin@gmail.com', 1, '2024-04-02 12:57:31'),
 ('nutriadmin@gmail.com', 2, '2024-04-02 13:19:46'),
 ('nutriadmin@gmail.com', 3, '2024-04-03 07:50:39'),
-('nutriadmin@gmail.com', 4, '2024-04-03 08:17:20');
+('nutriadmin@gmail.com', 4, '2024-04-03 08:17:20'),
+('nutriadmin@gmail.com', 5, '2024-04-04 05:54:29'),
+('nutriadmin@gmail.com', 6, '2024-04-04 05:59:11');
 
 -- --------------------------------------------------------
 
@@ -131,7 +164,8 @@ CREATE TABLE `material` (
 
 INSERT INTO `material` (`pro_id`, `pro_code`, `pro_name`, `pro_category`, `pro_subcategory`, `pro_brand`, `pro_mrp`, `pro_price`, `pro_quantity`, `pro_curquantity`, `pro_image`, `pro_status`) VALUES
 (1, '1002', 'Formula 1', 'Ayurvedic Nutrition', 'Immune Health', 'Herbalife', 20, 15, 10, 10, 'main page.jpg', 'used'),
-(2, '210458', 'Muscle blazer', 'Energy', 'none', 'Herbalife', 200, 150, 10, 10, 'download.jpeg', 'used');
+(2, '210458', 'Muscle blazer', 'Energy', 'none', 'Herbalife', 200, 150, 10, 10, 'download.jpeg', 'used'),
+(3, '210458', 'Protein Powder', 'Energy', 'none', '', 150, 100, 20, 20, 'download.jpeg', 'used');
 
 -- --------------------------------------------------------
 
@@ -250,35 +284,6 @@ INSERT INTO `subcategory` (`subcategory_id`, `category_id`, `subcategory_name`) 
 (11, 5, 'Women\'s Health'),
 (12, 5, 'Men\'s Health');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `user_id` int(11) NOT NULL,
-  `user_name` varchar(50) NOT NULL,
-  `user_phno` varchar(20) NOT NULL,
-  `user_email` varchar(50) NOT NULL,
-  `user_password` varchar(50) NOT NULL,
-  `user_gender` enum('Male','Female','Other') NOT NULL,
-  `user_blood` varchar(10) NOT NULL,
-  `user_address` varchar(100) NOT NULL,
-  `user_city` varchar(100) NOT NULL,
-  `user_program` varchar(100) NOT NULL,
-  `user_payment` varchar(100) NOT NULL,
-  `user_image` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`user_id`, `user_name`, `user_phno`, `user_email`, `user_password`, `user_gender`, `user_blood`, `user_address`, `user_city`, `user_program`, `user_payment`, `user_image`) VALUES
-(1003, 'Manu', '7854985687', 'manu123@gmail.com', 'manu123@', 'Male', 'AB+', 'thalaserry kannur', 'kannur', '', '', ''),
-(1004, 'Jeslin', '854986587', 'jeslin123@gmail.com', 'jeslin123@', 'Male', 'AB+', 'kaloor po south road', 'Kaloor', '', '', '');
-
 --
 -- Indexes for dumped tables
 --
@@ -294,6 +299,12 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`category_id`);
+
+--
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`customer_id`);
 
 --
 -- Indexes for table `gallery`
@@ -344,12 +355,6 @@ ALTER TABLE `subcategory`
   ADD PRIMARY KEY (`subcategory_id`);
 
 --
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -366,6 +371,12 @@ ALTER TABLE `category`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1005;
+
+--
 -- AUTO_INCREMENT for table `gallery`
 --
 ALTER TABLE `gallery`
@@ -375,13 +386,13 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `material`
 --
 ALTER TABLE `material`
-  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `program`
@@ -412,12 +423,6 @@ ALTER TABLE `stock`
 --
 ALTER TABLE `subcategory`
   MODIFY `subcategory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1005;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
