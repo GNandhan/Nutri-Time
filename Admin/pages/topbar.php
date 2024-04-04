@@ -111,9 +111,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="admin-user.php">
+            <a class="nav-link" href="admin-customer.php">
               <i class="icon-columns menu-icon"></i>
-              <span class="menu-title">User</span>
+              <span class="menu-title">Customer</span>
               <i class="menu-arrow"></i>
             </a>
           </li>
