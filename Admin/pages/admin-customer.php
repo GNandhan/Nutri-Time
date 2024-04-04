@@ -1,6 +1,6 @@
 <?php
  include './connect.php';
- error_reporting(0);
+//  error_reporting(0);
  session_start();
  if($_SESSION["email"]=="")
  {
@@ -31,6 +31,22 @@
 <?php
   include './topbar.php';
 ?>
+<?php
+// fetching the data from the URL for deleting the subject form
+if(isset($_GET['userd_id']))
+{
+    $dl_id = $_GET['userd_id'];
+    $dl_query = mysqli_query($conn,"SELECT * FROM customer WHERE customer_id = '$dl_id'");
+    $dl_row1=mysqli_fetch_array($dl_query);
+    $del = mysqli_query($conn,"DELETE FROM customer WHERE customer_id='$dl_id'");
+    if($del){ //for deleting the existing image from the folder
+        header("location:admin-customer.php");
+    }
+    else{
+        echo "Deletion Failed";
+    }    
+}
+?>
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
@@ -39,21 +55,22 @@
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">Request</h4>
-                <p class="card-description">Customer request Details</p>
+                <h4 class="card-title">Customer</h4>
+                <p class="card-description">Customer Details</p>
                 <div class="table-responsive">
                   <table class="table table-striped">
                     <thead>
                       <tr>
-                        <th>User Id</th>
-                        <th>User Name</th>
+                        <th>Customer Id</th>
                         <th>Customer Name</th>
-                        <th>Program Name</th>
-                        <th>Program Status</th>
-                        <th>Payment Status </th>
-                        <th>Duration</th>
-                        <th>Starting Date</th>
-                        <th>Ending Date</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Phno</th>
+                        <th>WhatsappNo</th>
+                        <th>Mail</th>
+                        <th>City</th>
+                        <th>Address</th>
+                        <th>Program</th>
                         <th>Total Amount</th>
                         <th>Amount Paid</th>
                         <th>Remaining Amount</th>
@@ -61,32 +78,56 @@
                         <th>Delete</th>
                       </tr>
                     </thead>
+<?php  
+$sql=mysqli_query($conn,"SELECT * FROM customer ORDER BY customer_id ");
+$serialNo = 1;
+while($row=mysqli_fetch_assoc($sql))
+{
+    $cus_id=$row['customer_id'];
+    $cus_fname=$row['customer_fname'];
+    $cus_lname=$row['customer_lname'];
+    $cus_age=$row['customer_age'];
+    $cus_phno=$row['customer_phno'];
+    $cus_whatsapp=$row['customer_whatsapp']; 
+    $cus_mail=$row['customer_email']; 
+    $cus_gender=$row['customer_gender']; 
+    $cus_address=$row['customer_address']; 
+    $cus_city=$row['customer_city']; 
+    $cus_program=$row['customer_program']; 
+    $cus_payment=$row['customer_payment']; 
+
+    // $name= $cus_fname + $cus_lname;
+?>
                     <tbody>
                       <tr>
-                        <td class="py-1">#00A001</td>
-                        <td>username 1</td>
-                        <td>Customer 1</td>
-                        <td>Fat reducer</td>
-                        <td>Processing</td>
-                        <td>Completed</td>
-                        <td>20 Days</td>
-                        <td>10/01/2024</td>
-                        <td>30/01/2024</td>
-                        <td>10,000</td>
-                        <td>10,000</td>
-                        <td>0</td>
+                        <td class="py-1">#<?php echo $serialNo++; ?></td>
+                        <td><?php echo $name; ?></td>
+                        <td><?php echo $cus_age; ?></td>
+                        <td><?php echo $cus_gender; ?></td>
+                        <td><?php echo $cus_phno; ?></td>
+                        <td><?php echo $cus_whatsapp; ?></td>
+                        <td><?php echo $cus_mail; ?></td>
+                        <td><?php echo $cus_city; ?></td>
+                        <td><?php echo $cus_address; ?></td>
+                        <td><?php echo $cus_program; ?></td>
+                        <td><?php echo $cus_payment; ?></td>
+                        <td><?php echo $cus_payment; ?></td>
+                        <td><?php echo $cus_payment; ?></td>
                         <td>
-                          <button class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
+                          <a  class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
                             <i class="ti-pencil-alt btn-icon-append"></i>
-                          </button>
+                          </a>
                         </td>
                         <td>
-                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
+                          <a href="admin-customer.php?userd_id=<?php echo $pro_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete 
                             <i class="ti-trash btn-icon-prepend"></i>
-                          </button>
+                          </a>
                         </td>
                       </tr>
                     </tbody>
+<?php
+}
+?>
                   </table>
                 </div>
               </div>
