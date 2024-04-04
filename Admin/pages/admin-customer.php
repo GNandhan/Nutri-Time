@@ -96,7 +96,7 @@ while($row=mysqli_fetch_assoc($sql))
     $cus_program=$row['customer_program']; 
     $cus_payment=$row['customer_payment']; 
 
-    // $name= $cus_fname + $cus_lname;
+    $name = $cus_fname . " " . $cus_lname;
 ?>
                     <tbody>
                       <tr>
