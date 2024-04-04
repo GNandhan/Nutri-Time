@@ -82,7 +82,7 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>Customer Name</label>
-                        <select class="form-control" name="shname">
+                        <select class="form-control" name="cusname">
                           <option selected>Select Customers</option>
                           <?php
                           $query = mysqli_query($conn, "SELECT * FROM customer");
@@ -124,7 +124,7 @@ if ($_SESSION["email"] == "") {
                           $pro_mrp = $row["pro_mrp"];
                         ?>
                           <div class="form-check ml-4">
-                            <input class="form-check-input" type="checkbox" name="shraw[]" value="<?php echo $pro_name; ?>" <?php if (in_array($pro_name, explode(",", $sh_raw1))) echo "checked"; ?>>
+                            <input class="form-check-input" type="checkbox" name="shrecipe[]" value="<?php echo $pro_name; ?>" <?php if (in_array($pro_name, explode(",", $sh_raw1))) echo "checked"; ?>>
                             <label class="form-check-label"><?php echo $pro_name; ?></label>
                           </div>
                         <?php } ?>
@@ -140,7 +140,7 @@ if ($_SESSION["email"] == "") {
                             // $pro_name = $row["pro_name"];
                             $pro_price = $row["pro_price"]; // Fetch raw material price
                           ?>
-                            <li class="mb-2"><?php echo $pro_price; ?></li>
+                            <li name="price" class="mb-2"><?php echo $pro_price; ?></li>
                           <?php } ?>
                         </ul>
                       </div>
@@ -168,7 +168,7 @@ if ($_SESSION["email"] == "") {
                     <div class="col-4">
                       <div class="form-group">
                         <label>Extra Incredients</label>
-                        <input type="text" class="form-control" name="shbene" value="<?php echo $sh_bene1; ?>" required>
+                        <input type="text" class="form-control" name="shextra" value="<?php echo $sh_bene1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -176,7 +176,7 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>Discount %</label>
-                        <select class="form-control" name="shscost" required>
+                        <select class="form-control" name="shdiscount" required>
                           <option selected>Select Discount Percentage</option>
                           <option value="15" <?php if ($sh_scost1 == 15) echo "selected"; ?>>15%</option>
                           <option value="25" <?php if ($sh_scost1 == 25) echo "selected"; ?>>25%</option>
@@ -186,11 +186,22 @@ if ($_SESSION["email"] == "") {
                         </select>
                       </div>
                     </div>
-
                     <div class="col">
                       <div class="form-group">
                         <label>Service Charge</label>
-                        <input type="text" class="form-control" name="shbene" value="<?php echo $sh_bene1; ?>" required>
+                        <input type="text" class="form-control" name="shcharge" value="<?php echo $sh_bene1; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Shake Image</label>
+                        <div class="input-group mb-3">
+                          <input type="file" class="custom-file-input form-control file-upload-info"
+                            id="inputGroupFile01" name="shimg" onchange="displaySelectedFileName(this)"
+                            value="<?php echo $p_img1; ?>" required>
+                          <label class="input-group-text custom-file-label" for="inputGroupFile01">Choose file</label>
+                        </div>
+                        <img src="../images/shake/<?php echo $p_img1; ?>" alt="" width="100">
                       </div>
                     </div>
                   </div>
@@ -205,20 +216,20 @@ if ($_SESSION["email"] == "") {
           <?php
           if (isset($_POST["submitsh"])) {
             $sh_id = $_POST["shid"];
+            $cus_name = $_POST["cusname"];
             $sh_name = $_POST["shname"];
             $sh_goal = $_POST["shgoal"];
-            $sh_reci = $_POST["shrecipe"];
-            $sh_raw = $_POST["shraw"];
-            $sh_mcost = $_POST["shmcost"];
-            $sh_gst = $_POST["shgst"];
-            $sh_disc = $_POST["shdis"];
-            $sh_bene = $_POST["shbene"];
+            $sh_reci = $_POST["shrecipe[]"];
+            $sh_price = $_POST["price"];
+            $sh_number = $_POST["number"];
+            $sh_extra = $_POST["shextra"];
+            $sh_disc = $_POST["shdiscount"];
+            $sh_sercharge = $_POST["shcharge"];
             $sh_img = $_FILES['shimg']['name'];
 
             // Calculate selling price
             $price = $sh_mcost * ($sh_gst / 100);
             $selling_price = $sh_mcost + $price;
-
 
             // Image uploading formats
             $filename = $_FILES['shimg']['name'];
@@ -228,8 +239,8 @@ if ($_SESSION["email"] == "") {
             $sh_id = $_POST["shid"];
 
             if ($sh_id == '') {
-              $sql = mysqli_query($conn, "INSERT INTO shake (shake_name, shake_goal, shake_recipes, shake_raw, shake_mcost, shake_scost, shake_desc, shake_benefit, shake_gst, shake_img)
-                                        VALUES ('$sh_name','$sh_goal','$sh_reci','$sh_raw','$sh_mcost','$selling_price','$sh_disc','$sh_bene','$sh_gst','$sh_img')");
+              $sql = mysqli_query($conn, "INSERT INTO shake (shake_name, customer_id, customer_name, shake_goal, shake_recipes, shake_mrp, shake_scoops, shake_extra, shake_discount, shake_expence, shake_total, shake_image)
+                                        VALUES ('$sh_name','$cus_name','$cus_name','$sh_goal','$sh_reci','$sh_price','$sh_number','$sh_extra','$sh_disc','$sh_sercharge','$sh_sercharge','$sh_img')");
             } else {
               // Update existing material
               if ($filename) {
@@ -263,6 +274,7 @@ if ($_SESSION["email"] == "") {
                       <tr>
                         <th>Sl-no</th>
                         <th>Customer Name</th>
+                        <th>Shake Img</th>
                         <th>Shake Name</th>
                         <th>Shake Goal</th>
                         <th>Recipes</th>
@@ -280,34 +292,34 @@ if ($_SESSION["email"] == "") {
                     $sql = mysqli_query($conn, "SELECT * FROM shake ORDER BY shake_id ");
                     $serialNo = 1;
                     while ($row = mysqli_fetch_assoc($sql)) {
-                      $s_id = $row['shake_id'];
-                      $s_name = $row['shake_name'];
-                      $s_goal = $row['shake_goal'];
-                      $s_reci = $row['shake_recipes'];
-                      $s_raw = $row['shake_raw'];
-                      $s_mcost = $row['shake_mcost'];
-                      $s_scost = $row['shake_scost'];
-                      $s_gst = $row['shake_gst'];
-                      $s_bene = $row['shake_benefit'];
-                      $s_disc = $row['shake_desc'];
-                      $s_img = $row['shake_img'];
+                      $sh_id = $row['shake_id'];
+                      $cu_name = $row['customer_name'];
+                      $sh_img = $row['shake_image'];
+                      $sh_name = $row['shake_name'];
+                      $sh_goal = $row['shake_goal'];
+                      $sh_recipe = $row['shake_recipes'];
+                      $sh_mrp = $row['shake_mrp'];
+                      $sh_scoop = $row['shake_scoops'];
+                      $sh_extra = $row['shake_extra'];
+                      $sh_discount = $row['shake_discount'];
+                      $sh_expense = $row['shake_expence'];
+                      $sh_total = $row['shake_total'];
 
-                      // Calculate total price
-                      $s_total = $s_scost + $s_gst;
                     ?>
                       <tbody>
                         <tr>
                           <td class="py-1"><?php echo $serialNo++; ?></td>
-                          <td><img src="../images/shake/<?php echo $s_img; ?>" alt=""></td>
-                          <td><?php echo $s_name; ?></td>
-                          <td><?php echo $s_goal; ?></td>
-                          <td><?php echo $s_reci; ?></td>
-                          <td><?php echo $s_raw; ?></td>
-                          <td><?php echo $s_mcost; ?></td>
-                          <td><?php echo $s_gst; ?></td>
-                          <td><?php echo $s_scost; ?></td>
-                          <td><?php echo $s_bene; ?></td>
-                          <td><?php echo $s_disc; ?></td>
+                          <td><?php echo $cu_name; ?></td>
+                        <td><img src="../images/shake/<?php echo $sh_img; ?>" alt="" width="50" class="rounded-circle"></td>
+                          <td><?php echo $sh_name; ?></td>
+                          <td><?php echo $sh_goal; ?></td>
+                          <td><?php echo $sh_recipe; ?></td>
+                          <td><?php echo $sh_mrp; ?></td>
+                          <td><?php echo $sh_scoop; ?></td>
+                          <td><?php echo $sh_extra; ?></td>
+                          <td><?php echo $sh_discount; ?></td>
+                          <td><?php echo $sh_expense; ?></td>
+                          <td><?php echo $sh_total; ?></td>
                           <td>
                             <a href="admin-shake.php?sid=<?php echo $s_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit
                               <i class="ti-pencil-alt btn-icon-append"></i>
