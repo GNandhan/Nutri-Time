@@ -53,7 +53,7 @@ if(id!=0)
 if(isset($_GET['pid']))
 {
     $proid = $_GET['pid'];
-    $p_query = mysqli_query($conn,"SELECT * FROM material WHERE pro_id = '$proid'");
+    $p_query = mysqli_query($conn,"SELECT * FROM product WHERE pro_id = '$proid'");
     $p_row1=mysqli_fetch_array($p_query);
 
         $p_code1 = $p_row1['pro_code'];
@@ -71,14 +71,14 @@ if(isset($_GET['pid']))
 if(isset($_GET['pd_id']))
 {
     $dl_id = $_GET['pd_id'];
-    $dl_query = mysqli_query($conn,"SELECT * FROM material WHERE pro_id = '$dl_id'");
+    $dl_query = mysqli_query($conn,"SELECT * FROM product WHERE pro_id = '$dl_id'");
     $dl_row1=mysqli_fetch_array($dl_query);
-    $img = '../images/material/'.$dl_row1['pro_image'];
-    $del = mysqli_query($conn,"DELETE FROM material WHERE pro_id='$dl_id'");
+    $img = '../images/product/'.$dl_row1['pro_image'];
+    $del = mysqli_query($conn,"DELETE FROM product WHERE pro_id='$dl_id'");
     if($del)
     {
         unlink($img); //for deleting the existing image from the folder
-        header("location:admin-material.php");
+        header("location:admin-product.php");
     }
     else
     {
@@ -137,7 +137,7 @@ if(isset($_GET['pd_id']))
                       <div class="form-group">
                         <label for="exampleSelectGender">Subcategory</label>
                         <select class="form-control" name="subcat"   id="sub" required>
-                        <option selected>Select the Brand</option>
+                        <option selected>Select the Subcategory</option>
                 <?php
                       $data2 = "SELECT * FROM subcategory";
                       $data2_query = mysqli_query($conn,$data2);
@@ -153,13 +153,6 @@ if(isset($_GET['pd_id']))
               </select>
                       </div>
                     </div>
-                    <!-- <div class="col">
-                      <div class="form-group">
-                        <label>Product Brand</label>
-                        <input type="text" class="form-control" name="probrand" value="<?php echo $p_brand1; ?>"
-                          required>
-                      </div>
-                    </div> -->
                   </div>
                   <div class="row">
                     <div class="col">
@@ -212,7 +205,7 @@ if(isset($_GET['pd_id']))
     $pname= $_POST["proname"];
     $pcat_id = $_POST["procat"];
     $psubcat_id = $_POST["subcat"];
-    $pbrand= $_POST["probrand"];
+    $pbrand= "Herbalife";
     $pmrp= $_POST["promrp"];
     $pprice= $_POST["proprice"];
     $pquan= $_POST["proquant"]; 
@@ -235,25 +228,25 @@ if(isset($_GET['pd_id']))
 $pro_id = $_POST["pid"];
 
 if($pro_id==''){
-  $sql = mysqli_query($conn,"INSERT INTO material (pro_code, pro_name, pro_category, pro_subcategory, pro_brand, pro_price, pro_mrp, pro_quantity, pro_curquantity, pro_image)
+  $sql = mysqli_query($conn,"INSERT INTO product (pro_code, pro_name, pro_category, pro_subcategory, pro_brand, pro_price, pro_mrp, pro_quantity, pro_curquantity, pro_image)
                                        VALUES ('$pcode','$pname','$pcat_name','$psubcat_name','$pbrand','$pprice', '$pmrp','$pquan','$pquan','$pimg')");
 }else{
   // Update existing material
   if ($filename) {
       // Remove the existing image
-      $imgs = '../images/material/' . $pimg;
+      $imgs = '../images/product/' . $pimg;
       unlink($imgs);
       // Update material with new image
-      $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat_name', pro_subcategory='$psubcat_name', pro_brand='$pbrand', pro_price='$pprice', pro_mrp='$pmrp', pro_quantity='$pquan', pro_curquantity='$pquan', pro_image='$pimg' WHERE pro_id='$pro_id'");
+      $sql = mysqli_query($conn, "UPDATE product SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat_name', pro_subcategory='$psubcat_name', pro_brand='$pbrand', pro_price='$pprice', pro_mrp='$pmrp', pro_quantity='$pquan', pro_curquantity='$pquan', pro_image='$pimg' WHERE pro_id='$pro_id'");
   } else {
       // Update material without changing the image
-      $sql = mysqli_query($conn, "UPDATE material SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat_name', pro_subcategory='$psubcat_name', pro_brand='$pbrand', pro_price='$pprice', pro_mrp='$pmrp', pro_quantity='$pquan', pro_curquantity='$pquan' WHERE pro_id='$pro_id'");
+      $sql = mysqli_query($conn, "UPDATE product SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat_name', pro_subcategory='$psubcat_name', pro_brand='$pbrand', pro_price='$pprice', pro_mrp='$pmrp', pro_quantity='$pquan', pro_curquantity='$pquan' WHERE pro_id='$pro_id'");
   }
 }
 
 if ($sql == TRUE){
 // echo "<script type= 'text/javascript'>alert('New record created successfully');</script>";
-move_uploaded_file($tempname, "../images/material/$filename");
+move_uploaded_file($tempname, "../images/product/$filename");
 echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
 } 
 else{
@@ -266,10 +259,10 @@ else{
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">Materials</h4>
+                <h4 class="card-title">Product</h4>
                 <div class="row">
                   <div class="col-md-9">
-                    <p class="card-description">Material Details</p>
+                    <p class="card-description">Product Details</p>
                   </div>
                   <div class="col-md-3">
                     <div class="dropdown">
@@ -281,16 +274,15 @@ else{
                         <p class="pl-3">Type</p>
                         <div class="dropdown-item">
                           <input type="checkbox" id="checkCategory" class="filter-checkbox" value="category">
-                          <label for="checkCategory">Used Materials</label>
+                          <label for="checkCategory">Used Product</label>
                         </div>
                         <div class="dropdown-item">
                           <input type="checkbox" id="checkSubcategory" class="filter-checkbox" value="subcategory">
-                          <label for="checkSubcategory">Unused Materials</label>
+                          <label for="checkSubcategory">Unused Product</label>
                         </div>
                         <!-- Add more checkbox items for other filter options -->
                       </div>
                     </div>
-
                   </div>
                 </div>
                 <div class="table-responsive">
@@ -303,6 +295,7 @@ else{
                         <th>Product Name</th>
                         <th>Category</th>
                         <th>Subcategory</th>
+                        <th>Brand</th>
                         <th>MRP</th>
                         <th>Purchased Price</th>
                         <th>Quantity</th>
@@ -314,7 +307,7 @@ else{
                       </tr>
                     </thead>
                     <?php  
-$sql=mysqli_query($conn,"SELECT * FROM material ORDER BY pro_id ");
+$sql=mysqli_query($conn,"SELECT * FROM product ORDER BY pro_id ");
 $serialNo = 1;
 while($row=mysqli_fetch_assoc($sql))
 {
@@ -323,7 +316,7 @@ while($row=mysqli_fetch_assoc($sql))
     $pro_nam=$row['pro_name'];
     $pro_cat=$row['pro_category'];
     $pro_subcat=$row['pro_subcategory']; 
-    // $pro_bra=$row['pro_brand']; 
+    $pro_bra=$row['pro_brand']; 
     $pro_mrp=$row['pro_mrp']; 
     $pro_pri=$row['pro_price']; 
     $pro_qua=$row['pro_quantity']; 
@@ -340,11 +333,11 @@ while($row=mysqli_fetch_assoc($sql))
                       <tr>
                         <td class="py-1"><?php echo $serialNo++; ?></td>
                         <td class="py-1">#<?php echo $pro_cod; ?></td>
-                        <td><img src="../images/material/<?php echo $pro_img; ?>" alt="" width="50" class="rounded-circle"></td>
+                        <td><img src="../images/product/<?php echo $pro_img; ?>" alt="" width="50" class="rounded-circle"></td>
                         <td><?php echo $pro_nam; ?></td>
                         <td><?php echo $pro_cat; ?></td>
                         <td><?php echo $pro_subcat; ?></td>
-                        <!-- <td><?php echo $pro_bra; ?></td> -->
+                        <td><?php echo $pro_bra; ?></td>
                         <td><?php echo $pro_mrp; ?></td>
                         <td><?php echo $pro_pri; ?></td>
                         <td><?php echo $pro_qua; ?></td>
@@ -352,13 +345,13 @@ while($row=mysqli_fetch_assoc($sql))
                         <td><?php echo $pro_mrptotal; ?></td>
                         <td><?php echo $pro_purtotal; ?></td>
                         <td>
-                          <a href="admin-material.php?pid=<?php echo $pro_id; ?>"
+                          <a href="admin-product.php?pid=<?php echo $pro_id; ?>"
                             class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i
                               class="ti-pencil-alt btn-icon-append"></i>
                           </a>
                         </td>
                         <td>
-                          <a href="admin-material.php?pd_id=<?php echo $pro_id; ?>"
+                          <a href="admin-product.php?pd_id=<?php echo $pro_id; ?>"
                             class="btn btn-inverse-danger btn-icon-text p-2">Delete<i
                               class="ti-trash btn-icon-prepend"></i>
                           </a>
@@ -380,8 +373,7 @@ while($row=mysqli_fetch_assoc($sql))
       <!-- partial:../../partials/_footer.html -->
       <footer class="footer">
         <div class="d-sm-flex justify-content-center justify-content-sm-between">
-          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024.Nutri-time. All
-            rights reserved.</span>
+          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024.Nutri-time. All rights reserved.</span>
         </div>
       </footer>
       <!-- partial -->

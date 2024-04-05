@@ -117,7 +117,7 @@ if ($_SESSION["email"] == "") {
                       <div class="form-group">
                         <label for="exampleSelectGender">Shake Recipe</label><br>
                         <?php
-                        $query = mysqli_query($conn, "SELECT * FROM material");
+                        $query = mysqli_query($conn, "SELECT * FROM product");
                         while ($row = mysqli_fetch_assoc($query)) {
                           $pro_id = $row["pro_id"];
                           $pro_name = $row["pro_name"];
@@ -136,12 +136,12 @@ if ($_SESSION["email"] == "") {
                         <label>Ingredient Prices (MRP)</label><br>
                         <ul>
                           <?php
-                          $query = mysqli_query($conn, "SELECT * FROM material");
+                          $query = mysqli_query($conn, "SELECT * FROM product");
                           while ($row = mysqli_fetch_assoc($query)) {
                             // $pro_name = $row["pro_name"];
-                            $pro_price = $row["pro_price"]; // Fetch raw material price
+                            $pro_mrp = $row["pro_mrp"]; // Fetch raw material price
                           ?>
-                            <li name="price" class="mb-2"><?php echo $pro_price; ?></li>
+                            <li name="price" class="mb-2"><?php echo $pro_mrp; ?></li>
                           <?php } ?>
                         </ul>
                       </div>
@@ -151,7 +151,7 @@ if ($_SESSION["email"] == "") {
                         No of Scoops
                         <ul>
                           <?php
-                          $query = mysqli_query($conn, "SELECT * FROM material");
+                          $query = mysqli_query($conn, "SELECT * FROM product");
                           while ($row = mysqli_fetch_assoc($query)) {
                             $pro_name = $row["pro_name"];
                             $pro_price = $row["pro_price"];
