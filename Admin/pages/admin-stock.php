@@ -69,7 +69,7 @@ if(isset($_GET['stod_id']))
 <!-- Fetching prices of all materials from the database -->
 <?php
 $material_prices = array();
-$query = mysqli_query($conn, "SELECT pro_name, pro_mrp FROM material");
+$query = mysqli_query($conn, "SELECT pro_name, pro_mrp FROM product");
 while ($row = mysqli_fetch_assoc($query)) {
     $material_prices[$row['pro_name']] = $row['pro_mrp'];
 }
@@ -110,7 +110,7 @@ while ($row = mysqli_fetch_assoc($query)) {
                         <select class="form-control" name="stomaterial" id="stomaterial" onchange="updatePrice()">
                             <option selected>Select the Product</option>
                               <?php 
-                    $query = mysqli_query($conn,"select * from material");
+                    $query = mysqli_query($conn,"select * from product");
                     while ($row = mysqli_fetch_assoc($query))
                       {
                       $pro_id=$row["pro_id"];

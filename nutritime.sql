@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2024 at 01:55 PM
+-- Generation Time: Apr 05, 2024 at 01:23 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -134,23 +134,56 @@ INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`)
 ('nutriadmin@gmail.com', 3, '2024-04-03 07:50:39'),
 ('nutriadmin@gmail.com', 4, '2024-04-03 08:17:20'),
 ('nutriadmin@gmail.com', 5, '2024-04-04 05:54:29'),
-('nutriadmin@gmail.com', 6, '2024-04-04 05:59:11');
+('nutriadmin@gmail.com', 6, '2024-04-04 05:59:11'),
+('nutriadmin@gmail.com', 7, '2024-04-05 06:36:58');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `material`
+-- Table structure for table `price`
 --
 
-CREATE TABLE `material` (
+CREATE TABLE `price` (
+  `pri_id` int(11) NOT NULL,
+  `pro_name` varchar(50) NOT NULL,
+  `pro_code` int(20) NOT NULL,
+  `pro_mrp` int(20) NOT NULL,
+  `pro_price` int(20) NOT NULL,
+  `pro_dis15` int(10) NOT NULL,
+  `pro_dis25` int(10) NOT NULL,
+  `pro_dis35` int(10) NOT NULL,
+  `pro_dis42` int(10) NOT NULL,
+  `pro_dis50` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `price`
+--
+
+INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_mrp`, `pro_price`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`) VALUES
+(2, 'product 111', 654656554, 250, 100, 1254, 5421, 8596, 7854, 7193),
+(3, 'oownewvtrgtr', 651654, 2147483647, 54353, 221, 767, 657, 4345454, 4535434);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product`
+--
+
+CREATE TABLE `product` (
   `pro_id` int(11) NOT NULL,
   `pro_code` varchar(20) NOT NULL,
   `pro_name` varchar(100) NOT NULL,
   `pro_category` varchar(100) NOT NULL,
   `pro_subcategory` varchar(50) NOT NULL,
-  `pro_brand` varchar(50) NOT NULL,
+  `pro_brand` varchar(50) NOT NULL DEFAULT 'Herbalife',
   `pro_mrp` int(10) NOT NULL,
   `pro_price` int(20) NOT NULL,
+  `pro_dis15` int(10) NOT NULL,
+  `pro_dis25` int(10) NOT NULL,
+  `pro_dis35` int(11) NOT NULL,
+  `pro_dis42` int(11) NOT NULL,
+  `pro_dis50` int(11) NOT NULL,
   `pro_quantity` int(20) NOT NULL,
   `pro_curquantity` int(10) NOT NULL,
   `pro_image` varchar(50) NOT NULL,
@@ -158,13 +191,12 @@ CREATE TABLE `material` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `material`
+-- Dumping data for table `product`
 --
 
-INSERT INTO `material` (`pro_id`, `pro_code`, `pro_name`, `pro_category`, `pro_subcategory`, `pro_brand`, `pro_mrp`, `pro_price`, `pro_quantity`, `pro_curquantity`, `pro_image`, `pro_status`) VALUES
-(1, '1002', 'Formula 1', 'Ayurvedic Nutrition', 'Immune Health', 'Herbalife', 20, 15, 10, 10, 'main page.jpg', 'used'),
-(2, '210458', 'Muscle blazer', 'Energy', 'none', 'Herbalife', 200, 150, 10, 10, 'download.jpeg', 'used'),
-(3, '210458', 'Protein Powder', 'Energy', 'none', '', 150, 100, 20, 20, 'download.jpeg', 'used');
+INSERT INTO `product` (`pro_id`, `pro_code`, `pro_name`, `pro_category`, `pro_subcategory`, `pro_brand`, `pro_mrp`, `pro_price`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`, `pro_quantity`, `pro_curquantity`, `pro_image`, `pro_status`) VALUES
+(2, '210458', 'Muscle blazer', 'Energy', 'none', 'Herbalife', 200, 150, 0, 0, 0, 0, 0, 10, 10, 'download.jpeg', 'used'),
+(3, '210458', 'Protein Powder', 'Ayurvedic Nutrition', 'Immune Health', 'Herbalife', 150, 80, 0, 0, 0, 0, 0, 20, 20, 'download.jpeg', 'used');
 
 -- --------------------------------------------------------
 
@@ -329,9 +361,15 @@ ALTER TABLE `login_details`
   ADD PRIMARY KEY (`login_details_id`);
 
 --
--- Indexes for table `material`
+-- Indexes for table `price`
 --
-ALTER TABLE `material`
+ALTER TABLE `price`
+  ADD PRIMARY KEY (`pri_id`);
+
+--
+-- Indexes for table `product`
+--
+ALTER TABLE `product`
   ADD PRIMARY KEY (`pro_id`);
 
 --
@@ -396,12 +434,18 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `material`
+-- AUTO_INCREMENT for table `price`
 --
-ALTER TABLE `material`
+ALTER TABLE `price`
+  MODIFY `pri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `product`
+--
+ALTER TABLE `product`
   MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
