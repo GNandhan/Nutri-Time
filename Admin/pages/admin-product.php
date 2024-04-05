@@ -98,13 +98,30 @@ if(isset($_GET['pd_id']))
                 <form method="post" class="forms-sample" enctype="multipart/form-data">
                   <input type="hidden" name="pid" value="<?php echo $proid; ?>">
                   <div class="row">
-                    <div class="col-lg-6 col-md col-sm col-12">
+                    <!-- <div class="col-lg-6 col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product Code</label>
                         <input type="text" class="form-control" placeholder="#00A001" name="procode"
                           value="<?php echo $p_code1; ?>" required>
                       </div>
-                    </div>
+                    </div> -->
+                    <div class="col-lg-6 col-md col-sm col-12">
+    <div class="form-group">
+        <label>Product Code</label>
+        <select class="form-control" name="procode" required>
+            <option value="">Select Product Code</option>
+            <?php
+            $price_query = mysqli_query($conn, "SELECT pri_id, pro_code FROM price");
+            while ($price_row = mysqli_fetch_assoc($price_query)) {
+                $pri_id = $price_row['pri_id'];
+                $pro_code = $price_row['pro_code'];
+                echo "<option value='$pro_code'>$pro_code</option>";
+            }
+            ?>
+        </select>
+    </div>
+</div>
+
                     <div class="col-lg-6 col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product Name</label>
