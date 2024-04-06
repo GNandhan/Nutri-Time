@@ -8,7 +8,6 @@ if ($_SESSION["email"] == "") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -227,7 +226,7 @@ if ($_SESSION["email"] == "") {
 
             // Loop through each selected recipe to calculate total price
             foreach ($sh_reci_array as $recipe) {
-                $query = mysqli_query($conn, "SELECT pro_price FROM material WHERE pro_name = '$recipe'");
+                $query = mysqli_query($conn, "SELECT pro_price FROM product WHERE pro_name = '$recipe'");
                 $row = mysqli_fetch_assoc($query);
                 $recipe_price = $row['pro_price']; // Fetch the price of the selected recipe
                 $total_price += $recipe_price; // Add the price to the total price

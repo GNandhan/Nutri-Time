@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2024 at 07:41 AM
+-- Generation Time: Apr 06, 2024 at 11:33 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -135,7 +135,8 @@ INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`)
 ('nutriadmin@gmail.com', 4, '2024-04-03 08:17:20'),
 ('nutriadmin@gmail.com', 5, '2024-04-04 05:54:29'),
 ('nutriadmin@gmail.com', 6, '2024-04-04 05:59:11'),
-('nutriadmin@gmail.com', 7, '2024-04-05 06:36:58');
+('nutriadmin@gmail.com', 7, '2024-04-05 06:36:58'),
+('nutriadmin@gmail.com', 8, '2024-04-06 08:45:45');
 
 -- --------------------------------------------------------
 
@@ -147,6 +148,8 @@ CREATE TABLE `price` (
   `pri_id` int(11) NOT NULL,
   `pro_name` varchar(50) NOT NULL,
   `pro_code` int(20) NOT NULL,
+  `pro_category` varchar(50) NOT NULL,
+  `pro_subcat` varchar(50) NOT NULL,
   `pro_mrp` int(20) NOT NULL,
   `pro_price` int(20) NOT NULL,
   `pro_dis15` int(10) NOT NULL,
@@ -160,9 +163,11 @@ CREATE TABLE `price` (
 -- Dumping data for table `price`
 --
 
-INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_mrp`, `pro_price`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`) VALUES
-(3, '3030630', 5050505, 202020, 101010, 1111, 222, 3333, 4444, 5555),
-(4, 'product 111', 651654, 250, 200, 30, 50, 70, 84, 150);
+INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subcat`, `pro_mrp`, `pro_price`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`) VALUES
+(3, 'Formula 1', 5050505, '', '', 202020, 101010, 1111, 222, 3333, 4444, 5555),
+(4, 'Afresh', 651654, '', '', 250, 200, 30, 50, 70, 84, 150),
+(5, 'Shakemate', 9865, '', '', 410, 400, 60, 100, 140, 168, 200),
+(6, 'Pretein', 10101010, 'Targeted Nutrition', 'Energy', 150, 120, 22, 37, 52, 63, 75);
 
 -- --------------------------------------------------------
 
@@ -195,8 +200,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`pro_id`, `pro_code`, `pro_name`, `pro_category`, `pro_subcategory`, `pro_brand`, `pro_mrp`, `pro_price`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`, `pro_quantity`, `pro_curquantity`, `pro_image`, `pro_status`) VALUES
-(2, '210458', 'Muscle blazer', 'Energy', 'none', 'Herbalife', 200, 150, 0, 0, 0, 0, 0, 10, 10, 'download.jpeg', 'used'),
-(3, '210458', 'Protein Powder', 'Ayurvedic Nutrition', 'Immune Health', 'Herbalife', 150, 80, 0, 0, 0, 0, 0, 20, 20, 'download.jpeg', 'used');
+(4, '651654', 'Afresh', 'Targeted Nutrition', 'Digestive Health', 'Herbalife', 250, 200, 0, 0, 0, 0, 0, 20, 20, 'main page.jpg', 'used');
 
 -- --------------------------------------------------------
 
@@ -434,19 +438,19 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `price`
 --
 ALTER TABLE `price`
-  MODIFY `pri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `pri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `program`

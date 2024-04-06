@@ -44,6 +44,8 @@ if(isset($_GET['pid']))
 
         $p_code1 = $p_row1['pro_code'];
         $p_name1 = $p_row1['pro_name'];
+        $p_cat1 = $p_row1['pro_category'];
+        $p_subcat1 = $p_row1['pro_subcat'];
         $p_mrp1 = $p_row1['pro_mrp']; 
         $p_pri1 = $p_row1['pro_price']; 
         $p_dis151 = $p_row1['pro_dis15']; 
@@ -148,6 +150,21 @@ if(isset($_GET['pd_id']))
                       </div>
                     </div>
                   </div>
+                  <div class="row"> 
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Category</label>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodcat" value="<?php echo $p_cat1; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Subcategory</label>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodsubcat" value="<?php echo $p_subcat1; ?>"
+                          required>
+                      </div>
+                    </div>
+                  </div>
                   <button type="submit" class="btn btn-primary mr-2" name="submitp">Submit</button>
                   <a href="./admin-price.php" type="reset" class="btn btn-light">Cancel</a>
                 </form>
@@ -161,6 +178,8 @@ if(isset($_GET['pd_id']))
     {
     $pcode= $_POST["prodcode"];
     $pname= $_POST["prodname"];
+    $pcat= $_POST["prodcat"];
+    $psubcat= $_POST["prodsubcat"];
     $pmrp= $_POST["prodmrp"];
     $ppur= $_POST["prodpur"];
     $pdis15= $_POST["dis15"];
@@ -174,11 +193,11 @@ if(isset($_GET['pd_id']))
 $pri_id = $_POST["prid"];
 
 if($pri_id=='') {
-$sql = mysqli_query($conn,"INSERT INTO price (pro_name, pro_code, pro_mrp, pro_price, pro_dis15, pro_dis25, pro_dis35, pro_dis42, pro_dis50)
-                                         VALUES ('$pname','$pcode','$pmrp','$ppur','$pdis15','$pdis25','$pdis35','$pdis42','$pdis50' )");
+$sql = mysqli_query($conn,"INSERT INTO price (pro_name, pro_code, pro_category, pro_subcat, pro_mrp, pro_price, pro_dis15, pro_dis25, pro_dis35, pro_dis42, pro_dis50)
+                                         VALUES ('$pname','$pcode','$pcat','$psubcat','$pmrp','$ppur','$pdis15','$pdis25','$pdis35','$pdis42','$pdis50' )");
 }else{
       // Update shake
-$sql = mysqli_query($conn, "UPDATE price SET pro_name='$pname', pro_code='$pcode', pro_mrp='$pmrp', pro_price='$ppur', pro_dis15='$pdis15', pro_dis25='$pdis25', pro_dis35='$pdis35', pro_dis42='$pdis42', pro_dis50='$pdis50' WHERE pri_id='$pri_id'");
+$sql = mysqli_query($conn, "UPDATE price SET pro_name='$pname', pro_code='$pcode', pro_category='$pcat', pro_subcat='$psubcat', pro_mrp='$pmrp', pro_price='$ppur', pro_dis15='$pdis15', pro_dis25='$pdis25', pro_dis35='$pdis35', pro_dis42='$pdis42', pro_dis50='$pdis50' WHERE pri_id='$pri_id'");
 }
 if ($sql == TRUE){
 echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
@@ -226,6 +245,8 @@ else{
                         <th>Slno</th>
                         <th>Product Code</th>
                         <th>Product Name</th>
+                        <th>Category</th>
+                        <th>Subcategory</th>
                         <th>MRP</th>
                         <th>Purchased Price</th>
                         <th>15% Discount</th>
@@ -245,6 +266,8 @@ while($row=mysqli_fetch_assoc($sql))
     $pri_id=$row['pri_id'];
     $pri_cod=$row['pro_code'];
     $pri_nam=$row['pro_name'];
+    $pri_cat=$row['pro_category'];
+    $pri_subcat=$row['pro_subcat'];
     $pri_mrp=$row['pro_mrp'];
     $pri_pri=$row['pro_price']; 
     $pri_dis15=$row['pro_dis15']; 
@@ -258,6 +281,8 @@ while($row=mysqli_fetch_assoc($sql))
                         <td class="py-1"><?php echo $serialNo++; ?></td>
                         <td class="py-1">#<?php echo $pri_cod; ?></td>
                         <td><?php echo $pri_nam; ?></td>
+                        <td><?php echo $pri_cat; ?></td>
+                        <td><?php echo $pri_subcat; ?></td>
                         <td><?php echo $pri_mrp; ?></td>
                         <td><?php echo $pri_pri; ?></td>
                         <td><?php echo $pri_dis15; ?></td>
