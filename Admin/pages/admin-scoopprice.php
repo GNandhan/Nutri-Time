@@ -87,7 +87,7 @@ if(isset($_GET['pd_id']))
                   <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product Name</label>
-                        <select class="form-control" name="proname" id="proname" onchange="updatePrice()">
+                        <select class="form-control" style="border-radius: 15px;" name="proname" id="proname" onchange="updatePrice()">
                         <option selected>Select the Product</option>
                               <?php 
                     $query = mysqli_query($conn,"select * from price");
@@ -105,28 +105,14 @@ if(isset($_GET['pd_id']))
                     </div>
                     <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
-                        <label>Product Name</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodname"
+                        <label>No of Scoops</label>
+                        <input type="number" class="form-control" style="border-radius: 15px;" name="prodname"
                           value="<?php echo $p_name1; ?>" required>
-                      </div>
-                    </div>
-                    <div class="col-lg col-md col-sm col-12">
-                      <div class="form-group">
-                        <label>Product MRP</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodmrp"
-                          value="<?php echo $p_mrp1; ?>" required>
-                      </div>
-                    </div>
-                    <div class="col-lg col-md col-sm col-12">
-                      <div class="form-group">
-                        <label>Product Purchase Price</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodpur"
-                          value="<?php echo $p_pri1; ?>" required>
                       </div>
                     </div>
                   </div>
                   <div class="row"> 
-                    <p>Discount Price</p> <br>
+                    <p>Rate per Scoop</p> <br>
                     <div class="col">
                       <div class="form-group">
                         <label>15%</label>
@@ -158,21 +144,6 @@ if(isset($_GET['pd_id']))
                       <div class="form-group">
                         <label>50%</label>
                         <input type="number" class="form-control" style="border-radius: 15px;" name="dis50" value="<?php echo $p_dis501; ?>"
-                          required>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row"> 
-                    <div class="col">
-                      <div class="form-group">
-                        <label>Category</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodcat" value="<?php echo $p_cat1; ?>" required>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <div class="form-group">
-                        <label>Subcategory</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodsubcat" value="<?php echo $p_subcat1; ?>"
                           required>
                       </div>
                     </div>
@@ -257,15 +228,12 @@ else{
                         <th>Slno</th>
                         <th>Product Code</th>
                         <th>Product Name</th>
-                        <th>Category</th>
-                        <th>Subcategory</th>
-                        <th>MRP</th>
-                        <th>Purchased Price</th>
-                        <th>15% Discount</th>
-                        <th>25% Discount</th>
-                        <th>35% Discount</th>
-                        <th>42% Discount</th>
-                        <th>50% Discount</th>
+                        <th>No of Scoops</th>
+                        <th>15% Scoop</th>
+                        <th>25% Scoop</th>
+                        <th>35% Scoop</th>
+                        <th>42% Scoop</th>
+                        <th>50% Scoop</th>
                         <th>Edit</th>
                         <th>Delete</th>
                       </tr>
@@ -278,38 +246,32 @@ while($row=mysqli_fetch_assoc($sql))
     $pri_id=$row['pri_id'];
     $pri_cod=$row['pro_code'];
     $pri_nam=$row['pro_name'];
-    $pri_cat=$row['pro_category'];
-    $pri_subcat=$row['pro_subcat'];
-    $pri_mrp=$row['pro_mrp'];
-    $pri_pri=$row['pro_price']; 
-    $pri_dis15=$row['pro_dis15']; 
-    $pri_dis25=$row['pro_dis25']; 
-    $pri_dis35=$row['pro_dis35'];
-    $pri_dis42=$row['pro_dis42'];
-    $pri_dis50=$row['pro_dis50']; 
+    $pri_scoop=$row['pro_scoop'];
+    $pri_scoop15=$row['pro_scoop15']; 
+    $pri_scoop25=$row['pro_scoop25']; 
+    $pri_scoop35=$row['pro_scoop35'];
+    $pri_scoop42=$row['pro_scoop42'];
+    $pri_scoop50=$row['pro_scoop50']; 
 ?>
                     <tbody>
                       <tr>
                         <td class="py-1"><?php echo $serialNo++; ?></td>
                         <td class="py-1">#<?php echo $pri_cod; ?></td>
                         <td><?php echo $pri_nam; ?></td>
-                        <td><?php echo $pri_cat; ?></td>
-                        <td><?php echo $pri_subcat; ?></td>
-                        <td><?php echo $pri_mrp; ?></td>
-                        <td><?php echo $pri_pri; ?></td>
-                        <td><?php echo $pri_dis15; ?></td>
-                        <td><?php echo $pri_dis25; ?></td>
-                        <td><?php echo $pri_dis35; ?></td>
-                        <td><?php echo $pri_dis42; ?></td>
-                        <td><?php echo $pri_dis50; ?></td>
+                        <td><?php echo $pri_scoop; ?></td>
+                        <td><?php echo $pri_scoop15; ?></td>
+                        <td><?php echo $pri_scoop25; ?></td>
+                        <td><?php echo $pri_scoop35; ?></td>
+                        <td><?php echo $pri_scoop42; ?></td>
+                        <td><?php echo $pri_scoop50; ?></td>
                         <td>
-                          <a href="admin-price.php?pid=<?php echo $pri_id; ?>"
+                          <a href="admin-scoopprice.php?pid=<?php echo $pri_id; ?>"
                             class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i
                               class="ti-pencil-alt btn-icon-append"></i>
                           </a>
                         </td>
                         <td>
-                          <a href="admin-price.php?pd_id=<?php echo $pri_id; ?>"
+                          <a href="admin-scoopprice.php?pd_id=<?php echo $pri_id; ?>"
                             class="btn btn-inverse-danger btn-icon-text p-2">Delete<i
                               class="ti-trash btn-icon-prepend"></i>
                           </a>
