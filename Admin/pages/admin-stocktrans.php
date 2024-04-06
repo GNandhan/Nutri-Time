@@ -45,7 +45,7 @@ if(isset($_GET['stoid']))
         $stoloct1 = $sto_row1['stock_place'];
         $stomat1 = $sto_row1['stock_name']; 
         $stoqua1 = $sto_row1['stock_quantity']; 
-        $stocom1 = $sto_row1['stock_comname']; 
+        $stocom1 = $sto_row1['stock_comname'];
         $stopri1 = $sto_row1['stock_price']; 
         $stogst1 = $sto_row1['stock_gst']; 
         $stototal1 = $sto_row1['stock_total']; 
@@ -69,7 +69,7 @@ if(isset($_GET['stod_id']))
 <!-- Fetching prices of all materials from the database -->
 <?php
 $material_prices = array();
-$query = mysqli_query($conn, "SELECT pro_name, pro_price FROM material");
+$query = mysqli_query($conn, "SELECT pro_name, pro_price FROM product");
 while ($row = mysqli_fetch_assoc($query)) {
     $material_prices[$row['pro_name']] = $row['pro_price'];
 }
@@ -110,7 +110,7 @@ while ($row = mysqli_fetch_assoc($query)) {
                         <select class="form-control" name="stomaterial" id="stomaterial" onchange="updatePrice()">
                             <option selected>Select the Product</option>
                               <?php 
-                    $query = mysqli_query($conn,"select * from material");
+                    $query = mysqli_query($conn,"select * from product");
                     while ($row = mysqli_fetch_assoc($query))
                       {
                       $pro_id=$row["pro_id"];

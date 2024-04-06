@@ -97,7 +97,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="admin-stock.php">
+            <a class="nav-link" href="admin-sales.php">
               <i class="icon-columns menu-icon"></i>
               <span class="menu-title">Product Sales</span>
               <i class="menu-arrow"></i>

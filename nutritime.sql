@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2024 at 01:23 PM
+-- Generation Time: Apr 06, 2024 at 07:41 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -161,8 +161,8 @@ CREATE TABLE `price` (
 --
 
 INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_mrp`, `pro_price`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`) VALUES
-(2, 'product 111', 654656554, 250, 100, 1254, 5421, 8596, 7854, 7193),
-(3, 'oownewvtrgtr', 651654, 2147483647, 54353, 221, 767, 657, 4345454, 4535434);
+(3, '3030630', 5050505, 202020, 101010, 1111, 222, 3333, 4444, 5555),
+(4, 'product 111', 651654, 250, 200, 30, 50, 70, 84, 150);
 
 -- --------------------------------------------------------
 
@@ -440,7 +440,7 @@ ALTER TABLE `login_details`
 -- AUTO_INCREMENT for table `price`
 --
 ALTER TABLE `price`
-  MODIFY `pri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `pri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `product`

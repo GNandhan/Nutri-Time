@@ -59,7 +59,7 @@ if(isset($_GET['stod_id']))
     $del = mysqli_query($conn,"DELETE FROM stock WHERE stock_id='$dl_id'");
     if($del){
         unlink($img); //for deleting the existing image from the folder
-        header("location:admin-stock.php");
+        header("location:admin-sales.php");
     }
     else{
         echo "Deletion Failed";
@@ -74,7 +74,6 @@ while ($row = mysqli_fetch_assoc($query)) {
     $material_prices[$row['pro_name']] = $row['pro_mrp'];
 }
 ?>
-
 <!-- JavaScript to update the price field -->
 <script>
   // Define a JavaScript object to store material prices
@@ -292,13 +291,13 @@ while($row=mysqli_fetch_assoc($sql))
                         <!-- <td><?php echo $stock_gst; ?></td> -->
                         <td><?php echo $stock_total; ?></td>
                         <td>
-                          <a href="admin-stock.php?stoid=<?php echo $stock_id; ?>"
+                          <a href="admin-sales.php?stoid=<?php echo $stock_id; ?>"
                             class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i
                               class="ti-pencil-alt btn-icon-append"></i>
                           </a>
                         </td>
                         <td>
-                          <a href="admin-stock.php?stod_id=<?php echo $stock_id; ?>"
+                          <a href="admin-sales.php?stod_id=<?php echo $stock_id; ?>"
                             class="btn btn-inverse-danger btn-icon-text p-2">Delete<i
                               class="ti-trash btn-icon-prepend"></i>
                           </a>
