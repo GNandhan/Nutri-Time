@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2024 at 11:33 AM
+-- Generation Time: Apr 06, 2024 at 12:53 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -167,7 +167,8 @@ INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subc
 (3, 'Formula 1', 5050505, '', '', 202020, 101010, 1111, 222, 3333, 4444, 5555),
 (4, 'Afresh', 651654, '', '', 250, 200, 30, 50, 70, 84, 150),
 (5, 'Shakemate', 9865, '', '', 410, 400, 60, 100, 140, 168, 200),
-(6, 'Pretein', 10101010, 'Targeted Nutrition', 'Energy', 150, 120, 22, 37, 52, 63, 75);
+(6, 'Pretein', 10101010, 'Targeted Nutrition', 'Energy', 150, 120, 22, 37, 52, 63, 75),
+(7, 'January', 2024, 'Targeted Nutrition', 'Protein', 2300, 2000, 345, 575, 805, 966, 1150);
 
 -- --------------------------------------------------------
 
@@ -200,7 +201,10 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`pro_id`, `pro_code`, `pro_name`, `pro_category`, `pro_subcategory`, `pro_brand`, `pro_mrp`, `pro_price`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`, `pro_quantity`, `pro_curquantity`, `pro_image`, `pro_status`) VALUES
-(4, '651654', 'Afresh', 'Targeted Nutrition', 'Digestive Health', 'Herbalife', 250, 200, 0, 0, 0, 0, 0, 20, 20, 'main page.jpg', 'used');
+(4, '651654', 'Afresh', 'Targeted Nutrition', 'Digestive Health', 'Herbalife', 250, 200, 0, 0, 0, 0, 0, 20, 20, 'main page.jpg', 'used'),
+(5, '10101010', 'Pretein', '', '', 'Herbalife', 150, 120, 0, 0, 0, 0, 0, 35, 35, 'main page.jpg', 'used'),
+(6, '10101010', 'Pretein', 'Targeted Nutrition', 'Energy', 'Herbalife', 150, 120, 0, 0, 0, 0, 0, 35, 35, 'main page.jpg', 'used'),
+(7, '2024', 'January', 'Targeted Nutrition', 'Protein', 'Herbalife', 2300, 2000, 0, 0, 0, 0, 0, 30, 30, 'download.jpg', 'used');
 
 -- --------------------------------------------------------
 
@@ -255,7 +259,8 @@ INSERT INTO `shake` (`shake_id`, `shake_name`, `customer_id`, `customer_name`, `
 (2, 'kids protein', 1, 'Manu Alex', 'Kids nutrition', 'Formula 1, Protein Powder', '115', '20, 25', 'milk', '25', '30', '58.75', 'main page.jpg'),
 (3, 'oirjori43jri43j', 0, 'Manu Alex', 'Nutrition', '', '', '', 'Milk, Butter', '25', '10', '10', 'download.jpeg'),
 (4, '5yg5y56y656y', 0, 'Manu Alex', 'u7u7uu7uuu7u77u', 'Formula 1,Protein Powder', '', '', 'milk, sugar, protein', '50', '25', '25', 'download.jpeg'),
-(5, 'pokpokpokpokpokpokpokpok', 0, 'Manu Alex', 'protein fibre', 'Formula 1,Muscle blazer', '165', '', 'water', '42', '60', '60', 'download.jpeg');
+(5, 'pokpokpokpokpokpokpokpok', 0, 'Manu Alex', 'protein fibre', 'Formula 1,Muscle blazer', '165', '', 'water', '42', '60', '60', 'download.jpeg'),
+(6, 'sharja shake', 0, 'Manu Alex', 'waste of time', 'Afresh,Pretein,January', '2700', '', 'milk boost, butter', '35', '50', '1805', 'download.jpg');
 
 -- --------------------------------------------------------
 
@@ -444,13 +449,13 @@ ALTER TABLE `login_details`
 -- AUTO_INCREMENT for table `price`
 --
 ALTER TABLE `price`
-  MODIFY `pri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `pri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `program`
@@ -462,7 +467,7 @@ ALTER TABLE `program`
 -- AUTO_INCREMENT for table `shake`
 --
 ALTER TABLE `shake`
-  MODIFY `shake_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `shake_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `staff`
