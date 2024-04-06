@@ -13,7 +13,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Admin Price</title>
+  <title>Admin Scoop Price</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
@@ -79,16 +79,28 @@ if(isset($_GET['pd_id']))
           <div class="col-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <h1 class="card-title">Product Price</h1>
-                <p class="card-description">Add Product Discount Details</p>
+                <h1 class="card-title">Product Scoop Price</h1>
+                <p class="card-description">Add Product Scoop Details</p>
                 <form method="post" class="forms-sample" enctype="multipart/form-data">
                   <input type="hidden" name="prid" value="<?php echo $priid; ?>">
                   <div class="row">
                   <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
-                        <label>Product Code</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodcode"
-                          value="<?php echo $p_code1; ?>" required>
+                        <label>Product Name</label>
+                        <select class="form-control" name="proname" id="proname" onchange="updatePrice()">
+                        <option selected>Select the Product</option>
+                              <?php 
+                    $query = mysqli_query($conn,"select * from price");
+                    while ($row = mysqli_fetch_assoc($query))
+                      {
+                      $pro_id=$row["pro_id"];
+                      $pro_name=$row["pro_name"];
+                  ?>
+                    <option value="<?php echo $pro_name; ?>" <?php if($row['pro_name'] == $sh_raw1){echo 'selected';} ?> ><?php echo $pro_name; ?></option>
+                    <?php
+                      }
+                    ?>
+                            </select>
                       </div>
                     </div>
                     <div class="col-lg col-md col-sm col-12">
