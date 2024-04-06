@@ -44,15 +44,12 @@ if(isset($_GET['pid']))
 
         $p_code1 = $p_row1['pro_code'];
         $p_name1 = $p_row1['pro_name'];
-        $p_cat1 = $p_row1['pro_category'];
-        $p_subcat1 = $p_row1['pro_subcat'];
-        $p_mrp1 = $p_row1['pro_mrp']; 
-        $p_pri1 = $p_row1['pro_price']; 
-        $p_dis151 = $p_row1['pro_dis15']; 
-        $p_dis251 = $p_row1['pro_dis25']; 
-        $p_dis351 = $p_row1['pro_dis35']; 
-        $p_dis421 = $p_row1['pro_dis42']; 
-        $p_dis501 = $p_row1['pro_dis50']; 
+        $p_cat1 = $p_row1['pro_scoop'];
+        $p_dis151 = $p_row1['pro_scoop15']; 
+        $p_dis251 = $p_row1['pro_scoop25']; 
+        $p_dis351 = $p_row1['pro_scoop35']; 
+        $p_dis421 = $p_row1['pro_scoop42']; 
+        $p_dis501 = $p_row1['pro_scoop50']; 
 }
 // fetching the data from the URL for deleting the subject form
 if(isset($_GET['pd_id']))
