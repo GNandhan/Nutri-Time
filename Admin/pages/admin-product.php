@@ -29,20 +29,6 @@ if ($_SESSION["email"] == "") {
 </head>
 <body>
   <!-- code for getteing the subcategory as per the actegory selected -->
-  <script>
-    function getcat() {
-      id = document.getElementById('catid').value;
-      //alert(id);
-      if (id != 0) {
-        $('#sub').html('<option value="">loading</option>');
-        $.post('sub.php', {
-          id: "" + id + ""
-        }, function(data) {
-          $('#sub').html(data);
-        });
-      }
-    }
-  </script>
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
     <!-- including the sidebar,navbar -->
@@ -94,14 +80,16 @@ while ($row = mysqli_fetch_assoc($query)) {
   // Define a JavaScript object to store material prices
   var materialPrices = <?php echo json_encode($material_prices); ?>;
   
- // JavaScript to update the price, product code, and purchase price fields
+// JavaScript to update the price, product code, category, subcategory, and purchase price fields
 function updatePrice() {
   var selectedMaterial = document.getElementById("proname").value;
   var priceInput = document.getElementById("promrp");
   var codeInput = document.getElementById("procode");
+  var categoryInput = document.getElementById("procat");
+  var subcategoryInput = document.getElementById("prosubcat");
   var purchasePriceInput = document.getElementById("proprice");
 
-  // Set the price, code, and purchase price fields based on selected material
+  // Set the price, code, category, subcategory, and purchase price fields based on selected material
   if (selectedMaterial && materialPrices[selectedMaterial]) {
     priceInput.value = materialPrices[selectedMaterial]; // Set MRP value
 
@@ -111,15 +99,21 @@ function updatePrice() {
       if (productDetails && productDetails.pro_code) {
         codeInput.value = productDetails.pro_code; // Set product code value
         purchasePriceInput.value = productDetails.pro_price; // Set purchase price value
+        categoryInput.value = productDetails.pro_category; // Set category value
+        subcategoryInput.value = productDetails.pro_subcat; // Set subcategory value
       } else {
         codeInput.value = ""; // Clear product code if no data found
         purchasePriceInput.value = ""; // Clear purchase price if no data found
+        categoryInput.value = ""; // Clear category if no data found
+        subcategoryInput.value = ""; // Clear subcategory if no data found
       }
     });
   } else {
     priceInput.value = ""; // Clear the price field if no material is selected
     codeInput.value = ""; // Clear the code field if no material is selected
     purchasePriceInput.value = ""; // Clear the purchase price field if no material is selected
+    categoryInput.value = ""; // Clear the category field if no material is selected
+    subcategoryInput.value = ""; // Clear the subcategory field if no material is selected
   }
 }
 
@@ -166,43 +160,14 @@ function updatePrice() {
                   <div class="row">
                     <div class="col">
                       <div class="form-group">
-                        <label for="exampleSelectGender">Category</label>
-                        <select class="form-control" name="procat" onchange="getcat();" id="catid" required>
-                          <option selected>Select the categories</option>
-                          <?php
-                          $query = mysqli_query($conn, "select * from category");
-                          while ($row = mysqli_fetch_assoc($query)) {
-                            $cate_id = $row["category_id"];
-                            $cate_name = $row["category_name"];
-                          ?>
-                            <option value="<?php echo $cate_id; ?>" <?php if ($row['category_id'] == $p_cat1) {
-                                                                      echo 'selected';
-                                                                    } ?>><?php echo $cate_name; ?></option>
-                          <?php
-                          }
-                          ?>
-                        </select>
+                      <label>Category</label>
+                        <input type="text" class="form-control" placeholder="Category" name="procat" id="procat" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
-                        <label for="exampleSelectGender">Subcategory</label>
-                        <select class="form-control" name="subcat" id="sub" required>
-                          <option selected>Select the Subcategory</option>
-                          <?php
-                          $data2 = "SELECT * FROM subcategory";
-                          $data2_query = mysqli_query($conn, $data2);
-                          while ($row2 = mysqli_fetch_assoc($data2_query)) {
-                            $subcat_id = $row2['subcategory_id'];
-                            $subcat_name = $row2['subcategory_name'];
-                          ?>
-                            <option value="<?php echo $subcat_id; ?>" <?php if ($row2['subcategory_id'] == $p_sub1) {
-                                                                        echo 'selected';
-                                                                      } ?>><?php echo $subcat_name; ?></option>
-                          <?php
-                          }
-                          ?>
-                        </select>
+                      <label>Subcategory</label>
+                        <input type="text" class="form-control" placeholder="Subcategory" name="prosubcat" id="prosubcat" required>
                       </div>
                     </div>
                   </div>
@@ -250,8 +215,8 @@ function updatePrice() {
         if (isset($_POST["submitp"])) {
           $pcode = $_POST["procode"];
           $pname = $_POST["proname"];
-          $pcat_id = $_POST["procat"];
-          $psubcat_id = $_POST["subcat"];
+          $pcat_name = $_POST["procat"];
+          $psubcat_name = $_POST["prosubcat"];
           $pbrand = "Herbalife";
           $pmrp = $_POST["promrp"];
           $pprice = $_POST["proprice"];
@@ -261,16 +226,6 @@ function updatePrice() {
           // Image uploading formats
           $filename = $_FILES['proimg']['name'];
           $tempname = $_FILES['proimg']['tmp_name'];
-
-          // Fetch category and subcategory names based on their IDs
-          $cat_query = mysqli_query($conn, "SELECT category_name FROM category WHERE category_id = '$pcat_id'");
-          $cat_row = mysqli_fetch_assoc($cat_query); // Fetching names
-          $pcat_name = $cat_row['category_name']; // Assigning names
-
-          $subcat_query = mysqli_query($conn, "SELECT subcategory_name FROM subcategory WHERE subcategory_id = '$psubcat_id'");
-          $subcat_row = mysqli_fetch_assoc($subcat_query); // Fetching names
-          $psubcat_name = $subcat_row['subcategory_name']; // Assigning names
-
           // Fetch the material ID from the URL parameters
           $pro_id = $_POST["pid"];
 
