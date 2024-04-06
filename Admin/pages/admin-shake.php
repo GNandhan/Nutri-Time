@@ -153,12 +153,12 @@ if ($_SESSION["email"] == "") {
                           $query = mysqli_query($conn, "SELECT * FROM product");
                           while ($row = mysqli_fetch_assoc($query)) {
                             $pro_name = $row["pro_name"];
-                            $pro_price = $row["pro_price"];
+                            $pro_mrp = $row["pro_mrp"];
                           ?>
                             <li>
                               <div class="form-group mb-2">
                                 <!-- <label><?php echo $pro_name; ?> Scoops</label> -->
-                                <input type="number" class="form-control" style="height: 8px; width: aut0;" name="<?php echo $pro_name; ?>_scoops" value="<?php echo isset($scoops[$pro_name]) ? $scoops[$pro_name] : ''; ?>" required>
+                                <input type="number" class="form-control" style="height: 8px; width: aut0;" name="<?php echo $pro_name; ?>_scoops" value="<?php echo isset($scoops[$pro_name]) ? $scoops[$pro_name] : ''; ?>">
                               </div>
                             </li>
                           <?php } ?>
@@ -226,12 +226,11 @@ if ($_SESSION["email"] == "") {
 
             // Loop through each selected recipe to calculate total price
             foreach ($sh_reci_array as $recipe) {
-                $query = mysqli_query($conn, "SELECT pro_price FROM product WHERE pro_name = '$recipe'");
+                $query = mysqli_query($conn, "SELECT pro_mrp FROM product WHERE pro_name = '$recipe'");
                 $row = mysqli_fetch_assoc($query);
-                $recipe_price = $row['pro_price']; // Fetch the price of the selected recipe
+                $recipe_price = $row['pro_mrp']; // Fetch the price of the selected recipe
                 $total_price += $recipe_price; // Add the price to the total price
             }
-            
 
             $sh_price = $total_price;
             $sh_number = $_POST["number"];

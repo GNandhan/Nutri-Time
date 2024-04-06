@@ -83,11 +83,17 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="admin-price.php">
-              <i class="icon-columns menu-icon"></i>
-              <span class="menu-title">Price Table</span>
+            <a class="nav-link" data-toggle="collapse" href="#pricing" aria-expanded="false" aria-controls="pricing">
+              <i class="icon-bar-graph menu-icon"></i>
+              <span class="menu-title">Pricing</span>
               <i class="menu-arrow"></i>
             </a>
+            <div class="collapse" id="pricing">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="admin-price.php">Price-Discount</a></li>
+                <li class="nav-item"> <a class="nav-link" href="admin-scoopprice.php">Price-Scoop</a></li>
+              </ul>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="admin-product.php">
