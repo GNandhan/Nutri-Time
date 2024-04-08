@@ -44,24 +44,24 @@ if(isset($_GET['pid']))
 
         $p_code1 = $p_row1['pro_code'];
         $p_name1 = $p_row1['pro_name'];
-        $p_cat1 = $p_row1['pro_scoop'];
-        $p_dis151 = $p_row1['pro_scoop15']; 
-        $p_dis251 = $p_row1['pro_scoop25']; 
-        $p_dis351 = $p_row1['pro_scoop35']; 
-        $p_dis421 = $p_row1['pro_scoop42']; 
-        $p_dis501 = $p_row1['pro_scoop50']; 
+        $p_scoop1 = $p_row1['pro_scoop'];
+        $p_scoop151 = $p_row1['pro_scoop15']; 
+        $p_scoop251 = $p_row1['pro_scoop25']; 
+        $p_scoop351 = $p_row1['pro_scoop35']; 
+        $p_scoop421 = $p_row1['pro_scoop42']; 
+        $p_scoop501 = $p_row1['pro_scoop50']; 
 }
 // fetching the data from the URL for deleting the subject form
 if(isset($_GET['pd_id']))
 {
     $dl_id = $_GET['pd_id'];
-    $dl_query = mysqli_query($conn,"SELECT * FROM price WHERE pri_id = '$dl_id'");
+    $dl_query = mysqli_query($conn,"SELECT pro_scoop, pro_scoop15, pro_scoop25, pro_scoop35, pro_scoop42, pro_scoop50  FROM price WHERE pri_id = '$dl_id'");
     $dl_row1=mysqli_fetch_array($dl_query);
     $del = mysqli_query($conn,"DELETE FROM price WHERE pri_id='$dl_id'");
     if($del)
     {
         unlink($img); //for deleting the existing image from the folder
-        header("location:admin-price.php");
+        header("location:admin-scoopprice.php");
     }
     else
     {
@@ -84,7 +84,7 @@ if(isset($_GET['pd_id']))
                   <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product Name</label>
-                        <select class="form-control" style="border-radius: 15px;" name="proname" id="proname" onchange="updatePrice()">
+                        <select class="form-control" style="border-radius: 15px;" name="proname" id="proname">
                         <option selected>Select the Product</option>
                               <?php 
                     $query = mysqli_query($conn,"select * from price");
@@ -93,7 +93,7 @@ if(isset($_GET['pd_id']))
                       $pro_id=$row["pro_id"];
                       $pro_name=$row["pro_name"];
                   ?>
-                    <option value="<?php echo $pro_name; ?>" <?php if($row['pro_name'] == $sh_raw1){echo 'selected';} ?> ><?php echo $pro_name; ?></option>
+                    <option value="<?php echo $pro_name; ?>" <?php if($row['pro_name'] == $p_name1){echo 'selected';} ?> ><?php echo $pro_name; ?></option>
                     <?php
                       }
                     ?>
@@ -103,8 +103,8 @@ if(isset($_GET['pd_id']))
                     <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
                         <label>No of Scoops</label>
-                        <input type="number" class="form-control" style="border-radius: 15px;" name="prodname"
-                          value="<?php echo $p_name1; ?>" required>
+                        <input type="number" class="form-control" style="border-radius: 15px;" name="scoop"
+                          value="<?php echo $p_scoop1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -113,40 +113,40 @@ if(isset($_GET['pd_id']))
                     <div class="col">
                       <div class="form-group">
                         <label>15%</label>
-                        <input type="number" class="form-control" style="border-radius: 15px;" name="dis15" value="<?php echo $p_dis151; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="scoop15" value="<?php echo $p_scoop151; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>25%</label>
-                        <input type="number" class="form-control" style="border-radius: 15px;" name="dis25" value="<?php echo $p_dis251; ?>"
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="scoop25" value="<?php echo $p_scoop251; ?>"
                           required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>35%</label>
-                        <input type="number" class="form-control" style="border-radius: 15px;" name="dis35" value="<?php echo $p_dis351; ?>"
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="scoop35" value="<?php echo $p_scoop351; ?>"
                           required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>42%</label>
-                        <input type="number" class="form-control" style="border-radius: 15px;" name="dis42" value="<?php echo $p_dis421; ?>"
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="scoop42" value="<?php echo $p_scoop421; ?>"
                           required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>50%</label>
-                        <input type="number" class="form-control" style="border-radius: 15px;" name="dis50" value="<?php echo $p_dis501; ?>"
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="scoop50" value="<?php echo $p_scoop501; ?>"
                           required>
                       </div>
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary mr-2" name="submitp">Submit</button>
-                  <a href="./admin-price.php" type="reset" class="btn btn-light">Cancel</a>
+                  <a href="./admin-scoopprice.php" type="reset" class="btn btn-light">Cancel</a>
                 </form>
               </div>
             </div>
@@ -156,29 +156,26 @@ if(isset($_GET['pd_id']))
         <?php
     if(isset($_POST["submitp"]))
     {
-    $pcode= $_POST["prodcode"];
-    $pname= $_POST["prodname"];
-    $pcat= $_POST["prodcat"];
-    $psubcat= $_POST["prodsubcat"];
-    $pmrp= $_POST["prodmrp"];
-    $ppur= $_POST["prodpur"];
-    $pdis15= $_POST["dis15"];
-    $pdis25= $_POST["dis25"];
-    $pdis35= $_POST["dis35"]; 
-    $pdis42= $_POST["dis42"]; 
-    $pdis50= $_POST["dis50"]; 
-
+    $pname= $_POST["proname"];
+    $pscoop= $_POST["scoop"];
+    $pscoop15= $_POST["scoop15"];
+    $pscoop25= $_POST["scoop25"];
+    $pscoop35= $_POST["scoop35"];
+    $pscoop42= $_POST["scoop42"];
+    $pscoop50= $_POST["scoop50"];
    
 // Fetch the shake ID from the form
 $pri_id = $_POST["prid"];
 
-if($pri_id=='') {
-$sql = mysqli_query($conn,"INSERT INTO price (pro_name, pro_code, pro_category, pro_subcat, pro_mrp, pro_price, pro_dis15, pro_dis25, pro_dis35, pro_dis42, pro_dis50)
-                                         VALUES ('$pname','$pcode','$pcat','$psubcat','$pmrp','$ppur','$pdis15','$pdis25','$pdis35','$pdis42','$pdis50' )");
-}else{
-      // Update shake
-$sql = mysqli_query($conn, "UPDATE price SET pro_name='$pname', pro_code='$pcode', pro_category='$pcat', pro_subcat='$psubcat', pro_mrp='$pmrp', pro_price='$ppur', pro_dis15='$pdis15', pro_dis25='$pdis25', pro_dis35='$pdis35', pro_dis42='$pdis42', pro_dis50='$pdis50' WHERE pri_id='$pri_id'");
+if (empty($pri_id)) {
+    // Insert new record
+    $sql = mysqli_query($conn, "INSERT INTO price (pro_name, pro_scoop, pro_scoop15, pro_scoop25, pro_scoop35, pro_scoop42, pro_scoop50)
+                                      VALUES ('$pname', '$pscoop', '$pscoop15', '$pscoop25', '$pscoop35', '$pscoop42', '$pscoop50')");
+} else {
+    // Update existing record
+    $sql = mysqli_query($conn, "UPDATE price SET pro_name='$pname', pro_scoop='$pscoop', pro_scoop15='$pscoop15', pro_scoop25='$pscoop25', pro_scoop35='$pscoop35', pro_scoop42='$pscoop42', pro_scoop50='$pscoop50' WHERE pri_id='$pri_id'");
 }
+
 if ($sql == TRUE){
 echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
 } 
