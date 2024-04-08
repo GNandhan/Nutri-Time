@@ -1,11 +1,10 @@
 <?php
- include './connect.php';
+include './connect.php';
  error_reporting(0);
- session_start();
- if($_SESSION["email"]=="")
- {
-    header('location:admin-login.php');
- }
+session_start();
+if ($_SESSION["email"] == "") {
+  header('location:admin-login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +12,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Admin Price</title>
+  <title>Admin Materials</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
@@ -29,49 +28,96 @@
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
 <body>
+  <!-- code for getteing the subcategory as per the actegory selected -->
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
     <!-- including the sidebar,navbar -->
-<?php
-  include './topbar.php';
-?>
     <?php
-if(isset($_GET['pid']))
-{
-    $priid = $_GET['pid'];
-    $p_query = mysqli_query($conn,"SELECT * FROM price WHERE pri_id = '$priid'");
-    $p_row1=mysqli_fetch_array($p_query);
+    include './topbar.php';
+    ?>
+    <?php
+    if (isset($_GET['pid'])) {
+      $proid = $_GET['pid'];
+      $p_query = mysqli_query($conn, "SELECT * FROM product WHERE pro_id = '$proid'");
+      $p_row1 = mysqli_fetch_array($p_query);
 
-        $p_code1 = $p_row1['pro_code'];
-        $p_name1 = $p_row1['pro_name'];
-        $p_cat1 = $p_row1['pro_category'];
-        $p_subcat1 = $p_row1['pro_subcat'];
-        $p_mrp1 = $p_row1['pro_mrp']; 
-        $p_pri1 = $p_row1['pro_price']; 
-        $p_dis151 = $p_row1['pro_dis15']; 
-        $p_dis251 = $p_row1['pro_dis25']; 
-        $p_dis351 = $p_row1['pro_dis35']; 
-        $p_dis421 = $p_row1['pro_dis42']; 
-        $p_dis501 = $p_row1['pro_dis50']; 
-}
-// fetching the data from the URL for deleting the subject form
-if(isset($_GET['pd_id']))
-{
-    $dl_id = $_GET['pd_id'];
-    $dl_query = mysqli_query($conn,"SELECT * FROM price WHERE pri_id = '$dl_id'");
-    $dl_row1=mysqli_fetch_array($dl_query);
-    $del = mysqli_query($conn,"DELETE FROM price WHERE pri_id='$dl_id'");
-    if($del)
-    {
-        unlink($img); //for deleting the existing image from the folder
-        header("location:admin-price.php");
+      $p_code1 = $p_row1['pro_code'];
+      $p_name1 = $p_row1['pro_name'];
+      $p_cat1 = $p_row1['pro_category'];
+      $p_sub1 = $p_row1['pro_subcategory'];
+      $p_brand1 = $p_row1['pro_brand'];
+      $p_pri1 = $p_row1['pro_price'];
+      $p_mrp1 = $p_row1['pro_mrp'];
+      $p_qua1 = $p_row1['pro_quantity'];
+      $p_img1 = $p_row1['pro_image'];
+      // $p_dis1 = $p_row1['pro_distribution'];
     }
-    else
-    {
+    // fetching the data from the URL for deleting the subject form
+    if (isset($_GET['pd_id'])) {
+      $dl_id = $_GET['pd_id'];
+      $dl_query = mysqli_query($conn, "SELECT * FROM product WHERE pro_id = '$dl_id'");
+      $dl_row1 = mysqli_fetch_array($dl_query);
+      $img = '../images/product/' . $dl_row1['pro_image'];
+      $del = mysqli_query($conn, "DELETE FROM product WHERE pro_id='$dl_id'");
+      if ($del) {
+        unlink($img); //for deleting the existing image from the folder
+        header("location:admin-product.php");
+      } else {
         echo "Deletion Failed";
-    }    
+      }
+    }
+    ?>
+    <!-- Fetching prices of all materials from the database -->
+<?php
+$material_prices = array();
+$query = mysqli_query($conn, "SELECT pro_name, pro_mrp FROM price");
+while ($row = mysqli_fetch_assoc($query)) {
+    $material_prices[$row['pro_name']] = $row['pro_mrp'];
 }
 ?>
+<!-- JavaScript to update the price field -->
+<script>
+  // Define a JavaScript object to store material prices
+  var materialPrices = <?php echo json_encode($material_prices); ?>;
+  
+// JavaScript to update the price, product code, category, subcategory, and purchase price fields
+function updatePrice() {
+  var selectedMaterial = document.getElementById("proname").value;
+  var priceInput = document.getElementById("promrp");
+  var codeInput = document.getElementById("procode");
+  var categoryInput = document.getElementById("procat");
+  var subcategoryInput = document.getElementById("prosubcat");
+  var purchasePriceInput = document.getElementById("proprice");
+
+  // Set the price, code, category, subcategory, and purchase price fields based on selected material
+  if (selectedMaterial && materialPrices[selectedMaterial]) {
+    priceInput.value = materialPrices[selectedMaterial]; // Set MRP value
+
+    // AJAX request to fetch product details based on selected product name
+    $.post('get_product_details.php', { product_name: selectedMaterial }, function(data) {
+      var productDetails = JSON.parse(data);
+      if (productDetails && productDetails.pro_code) {
+        codeInput.value = productDetails.pro_code; // Set product code value
+        purchasePriceInput.value = productDetails.pro_price; // Set purchase price value
+        categoryInput.value = productDetails.pro_category; // Set category value
+        subcategoryInput.value = productDetails.pro_subcat; // Set subcategory value
+      } else {
+        codeInput.value = ""; // Clear product code if no data found
+        purchasePriceInput.value = ""; // Clear purchase price if no data found
+        categoryInput.value = ""; // Clear category if no data found
+        subcategoryInput.value = ""; // Clear subcategory if no data found
+      }
+    });
+  } else {
+    priceInput.value = ""; // Clear the price field if no material is selected
+    codeInput.value = ""; // Clear the code field if no material is selected
+    purchasePriceInput.value = ""; // Clear the purchase price field if no material is selected
+    categoryInput.value = ""; // Clear the category field if no material is selected
+    subcategoryInput.value = ""; // Clear the subcategory field if no material is selected
+  }
+}
+
+</script>
     <!-- partial -->
     <div class="main-panel">
       <div class="content-wrapper">
@@ -79,134 +125,124 @@ if(isset($_GET['pd_id']))
           <div class="col-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <h1 class="card-title">Product Price</h1>
-                <p class="card-description">Add Product Discount Details</p>
+                <h1 class="card-title">Product</h1>
+                <p class="card-description">Add Product Details</p>
                 <form method="post" class="forms-sample" enctype="multipart/form-data">
-                  <input type="hidden" name="prid" value="<?php echo $priid; ?>">
+                  <input type="hidden" name="pid" value="<?php echo $proid; ?>">
                   <div class="row">
-                  <div class="col-lg col-md col-sm col-12">
-                      <div class="form-group">
-                        <label>Product Code</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodcode"
-                          value="<?php echo $p_code1; ?>" required>
-                      </div>
-                    </div>
-                    <div class="col-lg col-md col-sm col-12">
+                    <div class="col-lg-6 col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product Name</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodname"
-                          value="<?php echo $p_name1; ?>" required>
+                        <select class="form-control" name="proname" id="proname" onchange="updatePrice()">
+                        <option selected>Select the Product</option>
+                              <?php 
+                    $query = mysqli_query($conn,"select * from price");
+                    while ($row = mysqli_fetch_assoc($query))
+                      {
+                      $pro_id=$row["pro_id"];
+                      $pro_name=$row["pro_name"];
+                  ?>
+                    <option value="<?php echo $pro_name; ?>" <?php if($row['pro_name'] == $sh_raw1){echo 'selected';} ?> ><?php echo $pro_name; ?></option>
+                    <?php
+                      }
+                    ?>
+                            </select>
                       </div>
                     </div>
-                    <div class="col-lg col-md col-sm col-12">
+
+                    <div class="col-lg-6 col-md col-sm col-12">
                       <div class="form-group">
-                        <label>Product MRP</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodmrp"
-                          value="<?php echo $p_mrp1; ?>" required>
-                      </div>
-                    </div>
-                    <div class="col-lg col-md col-sm col-12">
-                      <div class="form-group">
-                        <label>Product Purchase Price</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodpur"
-                          value="<?php echo $p_pri1; ?>" required>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row"> 
-                    <p>Discount Price</p> <br>
-                    <div class="col">
-                      <div class="form-group">
-                        <label>15%</label>
-                        <input type="number" class="form-control" style="border-radius: 15px;" name="dis15" value="<?php echo $p_dis151; ?>" required>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <div class="form-group">
-                        <label>25%</label>
-                        <input type="number" class="form-control" style="border-radius: 15px;" name="dis25" value="<?php echo $p_dis251; ?>"
-                          required>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <div class="form-group">
-                        <label>35%</label>
-                        <input type="number" class="form-control" style="border-radius: 15px;" name="dis35" value="<?php echo $p_dis351; ?>"
-                          required>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <div class="form-group">
-                        <label>42%</label>
-                        <input type="number" class="form-control" style="border-radius: 15px;" name="dis42" value="<?php echo $p_dis421; ?>"
-                          required>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <div class="form-group">
-                        <label>50%</label>
-                        <input type="number" class="form-control" style="border-radius: 15px;" name="dis50" value="<?php echo $p_dis501; ?>"
-                          required>
+                        <label>Product Code</label>
+                        <input type="text" class="form-control" placeholder="Weight Gainer" name="procode" id="procode" required>
                       </div>
                     </div>
                   </div>
-                  <div class="row"> 
+                  <div class="row">
                     <div class="col">
                       <div class="form-group">
-                        <label>Category</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodcat" value="<?php echo $p_cat1; ?>" required>
+                      <label>Category</label>
+                        <input type="text" class="form-control" placeholder="Category" name="procat" id="procat" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
-                        <label>Subcategory</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodsubcat" value="<?php echo $p_subcat1; ?>"
-                          required>
+                      <label>Subcategory</label>
+                        <input type="text" class="form-control" placeholder="Subcategory" name="prosubcat" id="prosubcat" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label>MRP</label>
+                        <input type="number" class="form-control" name="promrp" id="promrp" required>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Purchased Price</label>
+                        <input type="number" class="form-control" name="proprice" id="proprice" required>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Quantity</label>
+                        <input type="number" class="form-control" name="proquant" value="<?php echo $p_qua1; ?>" required>
                       </div>
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary mr-2" name="submitp">Submit</button>
-                  <a href="./admin-price.php" type="reset" class="btn btn-light">Cancel</a>
+                  <button type="reset" class="btn btn-light">Cancel</button>
                 </form>
               </div>
             </div>
           </div>
         </div>
-<!-- PHP CODE FOR INSERTING THE DATA -->
+        <!-- PHP CODE FOR INSERTING THE DATA -->
         <?php
-    if(isset($_POST["submitp"]))
-    {
-    $pcode= $_POST["prodcode"];
-    $pname= $_POST["prodname"];
-    $pcat= $_POST["prodcat"];
-    $psubcat= $_POST["prodsubcat"];
-    $pmrp= $_POST["prodmrp"];
-    $ppur= $_POST["prodpur"];
-    $pdis15= $_POST["dis15"];
-    $pdis25= $_POST["dis25"];
-    $pdis35= $_POST["dis35"]; 
-    $pdis42= $_POST["dis42"]; 
-    $pdis50= $_POST["dis50"]; 
+        if (isset($_POST["submitp"])) {
+          $pcode = $_POST["procode"];
+          $pname = $_POST["proname"];
+          $pcat_name = $_POST["procat"];
+          $psubcat_name = $_POST["prosubcat"];
+          $pbrand = "Herbalife";
+          $pmrp = $_POST["promrp"];
+          $pprice = $_POST["proprice"];
+          $pquan = $_POST["proquant"];
+          $pimg = $_FILES['proimg']['name'];
 
-   
-// Fetch the shake ID from the form
-$pri_id = $_POST["prid"];
+          // Image uploading formats
+          $filename = $_FILES['proimg']['name'];
+          $tempname = $_FILES['proimg']['tmp_name'];
+          // Fetch the material ID from the URL parameters
+          $pro_id = $_POST["pid"];
 
-if($pri_id=='') {
-$sql = mysqli_query($conn,"INSERT INTO price (pro_name, pro_code, pro_category, pro_subcat, pro_mrp, pro_price, pro_dis15, pro_dis25, pro_dis35, pro_dis42, pro_dis50)
-                                         VALUES ('$pname','$pcode','$pcat','$psubcat','$pmrp','$ppur','$pdis15','$pdis25','$pdis35','$pdis42','$pdis50' )");
-}else{
-      // Update shake
-$sql = mysqli_query($conn, "UPDATE price SET pro_name='$pname', pro_code='$pcode', pro_category='$pcat', pro_subcat='$psubcat', pro_mrp='$pmrp', pro_price='$ppur', pro_dis15='$pdis15', pro_dis25='$pdis25', pro_dis35='$pdis35', pro_dis42='$pdis42', pro_dis50='$pdis50' WHERE pri_id='$pri_id'");
-}
-if ($sql == TRUE){
-echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
-} 
-else{
-  echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
-}
-}
-?>
+          if ($pro_id == '') {
+            $sql = mysqli_query($conn, "INSERT INTO product (pro_code, pro_name, pro_category, pro_subcategory, pro_brand, pro_price, pro_mrp, pro_quantity, pro_curquantity, pro_image)
+                                       VALUES ('$pcode','$pname','$pcat_name','$psubcat_name','$pbrand','$pprice', '$pmrp','$pquan','$pquan','$pimg')");
+          } else {
+            // Update existing material
+            if ($filename) {
+              // Remove the existing image
+              $imgs = '../images/product/' . $pimg;
+              unlink($imgs);
+              // Update material with new image
+              $sql = mysqli_query($conn, "UPDATE product SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat_name', pro_subcategory='$psubcat_name', pro_brand='$pbrand', pro_price='$pprice', pro_mrp='$pmrp', pro_quantity='$pquan', pro_curquantity='$pquan', pro_image='$pimg' WHERE pro_id='$pro_id'");
+            } else {
+              // Update material without changing the image
+              $sql = mysqli_query($conn, "UPDATE product SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat_name', pro_subcategory='$psubcat_name', pro_brand='$pbrand', pro_price='$pprice', pro_mrp='$pmrp', pro_quantity='$pquan', pro_curquantity='$pquan' WHERE pro_id='$pro_id'");
+            }
+          }
+
+          if ($sql == TRUE) {
+            // echo "<script type= 'text/javascript'>alert('New record created successfully');</script>";
+            move_uploaded_file($tempname, "../images/product/$filename");
+            echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
+          } else {
+            echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
+          }
+        }
+        ?>
         <div class="row ">
           <!-- table view -->
           <div class="col-lg-12 grid-margin stretch-card">
@@ -215,12 +251,11 @@ else{
                 <h4 class="card-title">Product</h4>
                 <div class="row">
                   <div class="col-md-9">
-                    <p class="card-description">Product Discount Details</p>
+                    <p class="card-description">Product Details</p>
                   </div>
                   <div class="col-md-3">
                     <div class="dropdown">
-                      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Filter By:
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -244,69 +279,71 @@ else{
                       <tr>
                         <th>Slno</th>
                         <th>Product Code</th>
+                        <th>Product Image</th>
                         <th>Product Name</th>
                         <th>Category</th>
                         <th>Subcategory</th>
+                        <th>Brand</th>
                         <th>MRP</th>
                         <th>Purchased Price</th>
-                        <th>15% Discount</th>
-                        <th>25% Discount</th>
-                        <th>35% Discount</th>
-                        <th>42% Discount</th>
-                        <th>50% Discount</th>
+                        <th>Quantity</th>
+                        <th>Current Quantity</th>
+                        <th>MRP Total</th>
+                        <th>Purchased Total</th>
                         <th>Edit</th>
                         <th>Delete</th>
                       </tr>
                     </thead>
-                    <?php  
-$sql=mysqli_query($conn,"SELECT * FROM price ORDER BY pri_id ");
-$serialNo = 1;
-while($row=mysqli_fetch_assoc($sql))
-{
-    $pri_id=$row['pri_id'];
-    $pri_cod=$row['pro_code'];
-    $pri_nam=$row['pro_name'];
-    $pri_cat=$row['pro_category'];
-    $pri_subcat=$row['pro_subcat'];
-    $pri_mrp=$row['pro_mrp'];
-    $pri_pri=$row['pro_price']; 
-    $pri_dis15=$row['pro_dis15']; 
-    $pri_dis25=$row['pro_dis25']; 
-    $pri_dis35=$row['pro_dis35'];
-    $pri_dis42=$row['pro_dis42'];
-    $pri_dis50=$row['pro_dis50']; 
-?>
-                    <tbody>
-                      <tr>
-                        <td class="py-1"><?php echo $serialNo++; ?></td>
-                        <td class="py-1">#<?php echo $pri_cod; ?></td>
-                        <td><?php echo $pri_nam; ?></td>
-                        <td><?php echo $pri_cat; ?></td>
-                        <td><?php echo $pri_subcat; ?></td>
-                        <td><?php echo $pri_mrp; ?></td>
-                        <td><?php echo $pri_pri; ?></td>
-                        <td><?php echo $pri_dis15; ?></td>
-                        <td><?php echo $pri_dis25; ?></td>
-                        <td><?php echo $pri_dis35; ?></td>
-                        <td><?php echo $pri_dis42; ?></td>
-                        <td><?php echo $pri_dis50; ?></td>
-                        <td>
-                          <a href="admin-price.php?pid=<?php echo $pri_id; ?>"
-                            class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i
-                              class="ti-pencil-alt btn-icon-append"></i>
-                          </a>
-                        </td>
-                        <td>
-                          <a href="admin-price.php?pd_id=<?php echo $pri_id; ?>"
-                            class="btn btn-inverse-danger btn-icon-text p-2">Delete<i
-                              class="ti-trash btn-icon-prepend"></i>
-                          </a>
-                        </td>
-                      </tr>
-                    </tbody>
-<?php
-}
-?>
+                    <?php
+                    $sql = mysqli_query($conn, "SELECT * FROM product ORDER BY pro_id ");
+                    $serialNo = 1;
+                    while ($row = mysqli_fetch_assoc($sql)) {
+                      $pro_id = $row['pro_id'];
+                      $pro_cod = $row['pro_code'];
+                      $pro_nam = $row['pro_name'];
+                      $pro_cat = $row['pro_category'];
+                      $pro_subcat = $row['pro_subcategory'];
+                      $pro_bra = $row['pro_brand'];
+                      $pro_mrp = $row['pro_mrp'];
+                      $pro_pri = $row['pro_price'];
+                      $pro_qua = $row['pro_quantity'];
+                      $pro_curqua = $row['pro_curquantity'];
+                      $pro_img = $row['pro_image'];
+                      $pro_sta = $row['pro_status'];
+
+                      $pro_mrptotal = $pro_mrp * $pro_qua;
+                      $pro_purtotal = $pro_pri * $pro_qua;
+                      $pro_purprofit = $pro_mrptotal - $pro_purtotal;
+                      // $pro_sellprofit = $pro_mrp * ($pro_qua - $pro_dis);
+                    ?>
+                      <tbody>
+                        <tr>
+                          <td class="py-1"><?php echo $serialNo++; ?></td>
+                          <td class="py-1">#<?php echo $pro_cod; ?></td>
+                          <td><img src="../images/product/<?php echo $pro_img; ?>" alt="" width="50" class="rounded-circle"></td>
+                          <td><?php echo $pro_nam; ?></td>
+                          <td><?php echo $pro_cat; ?></td>
+                          <td><?php echo $pro_subcat; ?></td>
+                          <td><?php echo $pro_bra; ?></td>
+                          <td><?php echo $pro_mrp; ?></td>
+                          <td><?php echo $pro_pri; ?></td>
+                          <td><?php echo $pro_qua; ?></td>
+                          <td><?php echo $pro_curqua; ?></td>
+                          <td><?php echo $pro_mrptotal; ?></td>
+                          <td><?php echo $pro_purtotal; ?></td>
+                          <td>
+                            <a href="admin-product.php?pid=<?php echo $pro_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i>
+                            </a>
+                          </td>
+                          <td>
+                            <a href="admin-product.php?pd_id=<?php echo $pro_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i>
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    <?php
+                    }
+                    ?>
                   </table>
                 </div>
               </div>

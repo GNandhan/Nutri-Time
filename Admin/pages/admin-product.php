@@ -293,13 +293,12 @@ function updatePrice() {
                         <th>Product Code</th>
                         <th>Product Image</th>
                         <th>Product Name</th>
+                        <th>Quanity</th>
+                        <th>Current Quantity</th>
                         <th>Category</th>
                         <th>Subcategory</th>
-                        <th>Brand</th>
                         <th>MRP</th>
                         <th>Purchased Price</th>
-                        <th>Quantity</th>
-                        <th>Current Quantity</th>
                         <th>MRP Total</th>
                         <th>Purchased Total</th>
                         <th>Edit</th>
@@ -307,42 +306,36 @@ function updatePrice() {
                       </tr>
                     </thead>
                     <?php
-                    $sql = mysqli_query($conn, "SELECT * FROM product ORDER BY pro_id ");
+                    $sql = mysqli_query($conn, "SELECT * FROM price ORDER BY pri_id");
                     $serialNo = 1;
                     while ($row = mysqli_fetch_assoc($sql)) {
-                      $pro_id = $row['pro_id'];
+                      $pro_id = $row['pri_id'];
                       $pro_cod = $row['pro_code'];
+                      $pro_img = $row['pro_img'];
                       $pro_nam = $row['pro_name'];
-                      $pro_cat = $row['pro_category'];
-                      $pro_subcat = $row['pro_subcategory'];
-                      $pro_bra = $row['pro_brand'];
-                      $pro_mrp = $row['pro_mrp'];
-                      $pro_pri = $row['pro_price'];
                       $pro_qua = $row['pro_quantity'];
-                      $pro_curqua = $row['pro_curquantity'];
-                      $pro_img = $row['pro_image'];
-                      $pro_sta = $row['pro_status'];
+                      $pro_curqua = $row['pro_quantity'];
+                      $pro_cat = $row['pro_category'];
+                      $pro_subcat = $row['pro_subcat'];
+                      $pro_mrp = $row['pro_mrp'];
+                      $pro_price = $row['pro_price'];;
 
-                      $pro_mrptotal = $pro_mrp * $pro_qua;
-                      $pro_purtotal = $pro_pri * $pro_qua;
-                      $pro_purprofit = $pro_mrptotal - $pro_purtotal;
                       // $pro_sellprofit = $pro_mrp * ($pro_qua - $pro_dis);
                     ?>
                       <tbody>
                         <tr>
                           <td class="py-1"><?php echo $serialNo++; ?></td>
                           <td class="py-1">#<?php echo $pro_cod; ?></td>
-                          <td><img src="../images/product/<?php echo $pro_img; ?>" alt="" width="50" class="rounded-circle"></td>
+                          <td><img src="../images/product/<?php echo $pro_img; ?>"  width="50" class="rounded-circle"></td>
                           <td><?php echo $pro_nam; ?></td>
-                          <td><?php echo $pro_cat; ?></td>
-                          <td><?php echo $pro_subcat; ?></td>
-                          <td><?php echo $pro_bra; ?></td>
-                          <td><?php echo $pro_mrp; ?></td>
-                          <td><?php echo $pro_pri; ?></td>
                           <td><?php echo $pro_qua; ?></td>
                           <td><?php echo $pro_curqua; ?></td>
-                          <td><?php echo $pro_mrptotal; ?></td>
-                          <td><?php echo $pro_purtotal; ?></td>
+                          <td><?php echo $pro_cat; ?></td>
+                          <td><?php echo $pro_subcat; ?></td>
+                          <td><?php echo $pro_mrp; ?></td>
+                          <td><?php echo $pro_price; ?></td>
+                          <td><?php echo $pro_price; ?></td>
+                          <td><?php echo $pro_price; ?></td>
                           <td>
                             <a href="admin-product.php?pid=<?php echo $pro_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i>
                             </a>
