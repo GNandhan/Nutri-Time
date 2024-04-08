@@ -105,7 +105,7 @@
           <li class="nav-item">
             <a class="nav-link" href="admin-salesprice.php">
               <i class="icon-columns menu-icon"></i>
-              <span class="menu-title">Price- Sales</span>
+              <span class="menu-title">Sales Price</span>
               <i class="menu-arrow"></i>
             </a>
           </li>
