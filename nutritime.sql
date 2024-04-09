@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2024 at 09:49 AM
+-- Generation Time: Apr 09, 2024 at 01:43 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -169,7 +169,8 @@ INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subc
 (2, 'Fiber Complex', 1002, 'Targeted Nutrition', 'Energy', '2792', '2600', '2425', '2180', '1940', '1765', '1570', '30', '80', '72', '64', '58', '52', '', ''),
 (3, 'Protein', 1003, 'Targeted Nutrition', 'Energy', '1413', '1200', '1230', '1105', '980', '895', '795', '30', '41', '36.83', '32.67', '29.83', '26.50', '', ''),
 (4, 'Shakemate', 1004, 'Targeted Nutrition', 'Energy', '712', '700', '660', '625', '590', '565', '535', '18', '36.67', '34.72', '32.78', '31.39', '29.72', '', ''),
-(5, 'Afresh', 1005, 'Targeted Nutrition', 'Energy', '885', '800', '770', '690', '615', '560', '500', '25', '30.80', '27.60', '24.60', '22.40', '20', '', '');
+(5, 'Afresh', 1005, 'Targeted Nutrition', 'Energy', '885', '800', '770', '690', '615', '560', '500', '25', '30.80', '27.60', '24.60', '22.40', '20', '', ''),
+(6, 'Dino ', 1006, 'Ayurdevic Nutrition', 'Energy', '150', '100', '90', '80', '70', '60', '50', '30', '10', '20', '30', '40', '50', '', '');
 
 -- --------------------------------------------------------
 
@@ -196,6 +197,13 @@ CREATE TABLE `product` (
   `pro_image` varchar(50) NOT NULL,
   `pro_status` enum('used','unused') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`pro_id`, `pro_code`, `pro_name`, `pro_category`, `pro_subcategory`, `pro_brand`, `pro_mrp`, `pro_price`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`, `pro_quantity`, `pro_curquantity`, `pro_image`, `pro_status`) VALUES
+(1, '1006', 'Dino ', 'Ayurdevic Nutrition', 'Energy', 'Herbalife', 150, 100, 0, 0, 0, 0, 0, 500, 500, 'Screenshot 2024-04-08 120727.png', 'used');
 
 -- --------------------------------------------------------
 
@@ -241,9 +249,7 @@ CREATE TABLE `shake` (
 --
 
 INSERT INTO `shake` (`shake_id`, `shake_name`, `customer_id`, `customer_name`, `shake_goal`, `shake_recipes`, `shake_mrp`, `shake_scoops`, `shake_extra`, `shake_extraprice`, `shake_discount`, `shake_expence`, `shake_total`, `shake_image`) VALUES
-(6, 'Club Shake', 0, 'Manu Alex', 'Weight gainer222', 'Formula 1,Shakemate,Afresh', '0', '', 'milk', '20', 'pro_scoop25', '18', '', 'Screenshot 2024-04-05 093756.png'),
-(7, 'Club Shake2edwqedwdwqd', 0, 'Manu Alex', 'ewdeewdewdwdewdw', 'Fiber Complex,Protein,Afresh', '0', '', 'Milk', '20', 'pro_scoop25', '10', '100', 'Screenshot 2024-04-05 093756.png'),
-(8, 'Club Shake2edwqedwdwqd', 0, 'Manu Alex', 'ewdeewdewdwdewdw', 'Fiber Complex,Protein,Afresh', '0', '', 'Milk', '20', 'pro_scoop25', '10', '100', 'Screenshot 2024-04-05 093756.png');
+(13, 'Club Shake', 0, 'Manu Alex', 'weight losser', 'Formula 1,Protein', '0', '', 'milk', '25', '25', '40', '100', 'Screenshot 2024-04-02 095348.png');
 
 -- --------------------------------------------------------
 
@@ -425,13 +431,13 @@ ALTER TABLE `login_details`
 -- AUTO_INCREMENT for table `price`
 --
 ALTER TABLE `price`
-  MODIFY `pri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `pri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `program`
@@ -443,7 +449,7 @@ ALTER TABLE `program`
 -- AUTO_INCREMENT for table `shake`
 --
 ALTER TABLE `shake`
-  MODIFY `shake_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `shake_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `staff`
