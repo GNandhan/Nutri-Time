@@ -49,7 +49,7 @@
       <div class="card border-0 shadow-lg rounded-5">
         <div class="row text-center p-4">
 <?php  
-        $sql=mysqli_query($conn,"SELECT * FROM material ORDER BY pro_id ");
+        $sql=mysqli_query($conn,"SELECT * FROM price ORDER BY pri_id ");
         while($row=mysqli_fetch_assoc($sql))
         {
             $pro_name=$row['pro_name'];
@@ -59,7 +59,7 @@
         ?>
 <div class="col-lg-3 col-md col-sm-6 col my-2">
   <div class="card rounded-4 shadow-lg d-flex flex-column border-0 h-100" style="height: 200px; object-fit: cover; border-radius: 20px;">
-    <img src="../../Admin/images/material/<?php echo $pro_img; ?>" class="rounded-top-4" alt="..." style="height: 200px; object-fit: cover; border-radius: 20px 20px 0px 0px;">
+    <img src="../../Admin/images/product/<?php echo $pro_img; ?>" class="rounded-top-4" alt="..." style="height: 200px; object-fit: cover; border-radius: 20px 20px 0px 0px;">
     <div class="card-body d-flex justify-content-between align-items-center">
       <p class="card-text"><?php echo $pro_name; ?></p>
       <p class="card-text">$<?php echo $pro_mrp; ?></p> <!-- Assuming $pro_price contains the price -->
