@@ -1,7 +1,7 @@
 <?php
 include './connect.php';
-error_reporting(0);
-$sh_reci1= $pro_id =''; //for declaring the variable and not to show errors in the page
+// error_reporting(0);
+$sh_reci1 = $pro_id = $sh_name1 = $sh_goal1 = $sh_extra1 = $sh_extraprice1= $sh_expen1= $sh_raw1 = $sh_disc1 =''; //for declaring the variable and not to show errors in the page
 session_start();
 if ($_SESSION["email"] == "") {
   header('location:admin-login.php');
@@ -121,7 +121,7 @@ if ($_SESSION["email"] == "") {
                         <?php
                         $query = mysqli_query($conn, "SELECT * FROM price");
                         while ($row = mysqli_fetch_assoc($query)) {
-                          $pro_id = $row["pro_id"];
+                          // $pro_id = $row["pro_id"];
                           $pro_name = $row["pro_name"];
                           $pro_mrp = $row["pro_mrp"];
                         ?>
@@ -140,8 +140,8 @@ if ($_SESSION["email"] == "") {
                           <!-- Ingredient prices will be dynamically updated here -->
                         </div>
                       </div>
-
                     </div>
+
                     <div class="col">
                       <div class="form-group">
                         No of Scoops
@@ -224,22 +224,23 @@ if ($_SESSION["email"] == "") {
             $cus_name = $_POST["cusname"];
             $sh_name = $_POST["shname"];
             $sh_goal = $_POST["shgoal"];
-
             // Get selected shake recipes
             $sh_reci_array = isset($_POST["shrecipe"]) ? $_POST["shrecipe"] : array();
+            $sh_increprice_array = isset($_POST["shincreprice"]) ? $_POST["shincreprice"] : array();
 
             // Convert array to comma-separated string
             $sh_reci = implode(",", $sh_reci_array);
+            $sh_price = implode(",", $sh_increprice_array);
 
             $total_price = 0; // Initialize total price variable
 
             // Loop through each selected recipe to calculate total price
-            foreach ($sh_reci_array as $recipe) {
-              $query = mysqli_query($conn, "SELECT pro_mrp FROM product WHERE pro_name = '$recipe'");
-              $row = mysqli_fetch_assoc($query);
-              $recipe_price = $row['pro_mrp']; // Fetch the price of the selected recipe
-              $total_price += $recipe_price; // Add the price to the total price
-            }
+            // foreach ($sh_reci_array as $recipe) {
+            //   $query = mysqli_query($conn, "SELECT pro_mrp FROM product WHERE pro_name = '$recipe'");
+            //   $row = mysqli_fetch_assoc($query);
+            //   $recipe_price = $row['pro_mrp']; // Fetch the price of the selected recipe
+            //   $total_price += $recipe_price; // Add the price to the total price
+            // }
 
             $sh_price = $total_price;
             $sh_number = $_POST["number"];
@@ -250,7 +251,7 @@ if ($_SESSION["email"] == "") {
             $sh_img = $_FILES['shimg']['name'];
 
             // Calculate total cost after applying discount and adding service charge
-            $total_cost = $total_price - ($total_price * ($sh_disc / 100)) + $sh_sercharge;
+            $total_cost = 100;
 
             // Image uploading formats
             $filename = $_FILES['shimg']['name'];
@@ -260,8 +261,8 @@ if ($_SESSION["email"] == "") {
             $sh_id = $_POST["shid"];
 
             if ($sh_id == '') {
-              $sql = mysqli_query($conn, "INSERT INTO shake (shake_name, customer_id, customer_name, shake_goal, shake_recipes, shake_mrp, shake_scoops, shake_extra, shake_extraprice, shake_discount, shake_expence, shake_total, shake_image)
-                                                     VALUES ('$sh_name','$cus_name','$cus_name','$sh_goal','$sh_reci','$sh_price','$sh_number','$sh_extra','$sh_extra_price','$sh_disc','$sh_sercharge','$total_cost','$sh_img')");
+              $sql = mysqli_query($conn, "INSERT INTO shake (shake_name, customer_id, customer_name, shake_goal, shake_recipes, shake_mrp, shake_extra, shake_extraprice, shake_discount, shake_expence, shake_total, shake_image)
+                                                        VALUES ('$sh_name','$cus_name','$cus_name','$sh_goal','$sh_reci','$sh_price','$sh_extra','$sh_extra_price','$sh_disc','$sh_sercharge','$total_cost','$sh_img')");
             } else {
               // Update existing material
               if ($filename) {
@@ -269,10 +270,10 @@ if ($_SESSION["email"] == "") {
                 $imgs = '../images/shake/' . $sh_img;
                 unlink($imgs);
                 // Update shake with new image
-                $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_raw='$sh_raw', shake_mcost='$sh_mcost', shake_scost='$selling_price', shake_desc='$sh_disc', shake_benefit='$sh_bene', shake_gst='$sh_gst', shake_img='$sh_img' WHERE shake_id='$sh_id'");
+                $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_mrp='$sh_price', shake_extra='$sh_extra', shake_extraprice='$sh_extra_price', shake_discount='$sh_disc', shake_expence='$sh_sercharge', shake_image='$sh_img' WHERE shake_id='$sh_id'");
               } else {
                 // Update shake without changing the image
-                $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_raw='$sh_raw', shake_mcost='$sh_mcost', shake_scost='$selling_price', shake_desc='$sh_disc', shake_benefit='$sh_bene', shake_gst='$sh_gst' WHERE shake_id='$sh_id'");
+                $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_mrp='$sh_price', shake_extra='$sh_extra', shake_extraprice='$sh_extra_price', shake_discount='$sh_disc', shake_expence='$sh_sercharge' WHERE shake_id='$sh_id'");
               }
             }
             if ($sql == TRUE) {
@@ -410,26 +411,25 @@ if ($_SESSION["email"] == "") {
   </script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
-    $(document).ready(function() {
-      $('select[name="shdiscount"]').change(function() {
-        var selectedDiscount = $(this).val();
+  $(document).ready(function() {
+    $('select[name="shdiscount"]').change(function() {
+      var selectedDiscount = $(this).val();
 
-        // Make AJAX request to fetch corresponding ingredient prices
-        $.ajax({
-          type: 'POST',
-          url: 'get_ingredient_prices.php', // PHP script to fetch prices based on discount
-          data: {
-            discount: selectedDiscount
-          },
-          success: function(response) {
-            // Update the ingredient prices list or display based on response
-            $('#ingredientPrices').html(response);
-          }
-        });
+      // Make AJAX request to fetch corresponding ingredient prices
+      $.ajax({
+        type: 'POST',
+        url: 'get_ingredient_prices.php', // PHP script to fetch prices based on discount
+        data: {
+          discount: selectedDiscount
+        },
+        success: function(response) {
+          // Update the ingredient prices list or display based on response
+          $('#ingredientPrices').html(response);
+        }
       });
     });
-  </script>
-
+  });
+</script>
 
   <!-- End plugin js for this page -->
   <!-- inject:js -->

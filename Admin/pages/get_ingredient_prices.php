@@ -10,7 +10,12 @@ if(isset($_POST['discount'])) {
 
     $response = '<ul>';
     while($row = mysqli_fetch_assoc($result)) {
-        $response .= '<li>'.$row['pro_name'].': '.$row['price'].'</li>';
+        $response .= '<li>
+                        <div class="form-check ml-4">
+                          <input class="form-check-input" type="checkbox" name="shincreprice[]" value="'.$row['pro_name'].'">
+                          <label class="form-check-label">'.$row['price'].'</label>
+                        </div>
+                      </li>';
     }
     $response .= '</ul>';
 
