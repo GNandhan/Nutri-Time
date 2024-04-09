@@ -191,6 +191,43 @@ function updatePrice() {
                       </div>
                     </div>
                   </div>
+                  <div class="row"> 
+                    <p>Rate per Scoop</p> <br>
+                    <div class="col">
+                      <div class="form-group">
+                        <label>15%</label>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="scoop15" value="<?php echo $p_scoop151; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label>25%</label>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="scoop25" value="<?php echo $p_scoop251; ?>"
+                          required>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label>35%</label>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="scoop35" value="<?php echo $p_scoop351; ?>"
+                          required>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label>42%</label>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="scoop42" value="<?php echo $p_scoop421; ?>"
+                          required>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label>50%</label>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="scoop50" value="<?php echo $p_scoop501; ?>"
+                          required>
+                      </div>
+                    </div>
+                  </div>
                   <button type="submit" class="btn btn-primary mr-2" name="submitp">Submit</button>
                   <button type="reset" class="btn btn-light">Cancel</button>
                 </form>
