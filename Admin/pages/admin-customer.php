@@ -70,6 +70,13 @@ if(isset($_GET['userd_id']))
                         <th>Mail</th>
                         <th>City</th>
                         <th>Address</th>
+                        <th>Weight Type</th>
+                        <th>Weight Loss</th>
+                        <th>Weight Gain</th>
+                        <th>Address</th>
+                        <th>Address</th>
+                        <th>Address</th>
+
                         <th>Program</th>
                         <th>Total Amount</th>
                         <th>Amount Paid</th>

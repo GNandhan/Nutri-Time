@@ -1,6 +1,6 @@
 <?php
 include './connect.php';
-// error_reporting(0);
+error_reporting(0);
 $sh_reci1 = $pro_id = $sh_name1 = $sh_goal1 = $sh_extra1 = $sh_extraprice1= $sh_expen1= $sh_raw1 = $sh_disc1 =''; //for declaring the variable and not to show errors in the page
 session_start();
 if ($_SESSION["email"] == "") {
@@ -94,7 +94,7 @@ if ($_SESSION["email"] == "") {
                             $cus_lname = $row["customer_lname"];
                             $fullname = $cus_fname . ' ' . $cus_lname;
                           ?>
-                            <option value="<?php echo $fullname; ?>" <?php if ($row['customer_fname'] == $sh_raw1) ?>><?php echo $fullname; ?></option>
+                            <option value="<?php echo $fullname; ?>" <?php if ($row['customer_fname'] == $sh_name1) ?>><?php echo $fullname; ?></option>
                           <?php
                           }
                           ?>
@@ -115,32 +115,30 @@ if ($_SESSION["email"] == "") {
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col">
-                      <div class="form-group">
-                        <label for="exampleSelectGender">Shake Recipe</label><br>
-                        <?php
-                        $query = mysqli_query($conn, "SELECT * FROM price");
-                        while ($row = mysqli_fetch_assoc($query)) {
-                          // $pro_id = $row["pro_id"];
-                          $pro_name = $row["pro_name"];
-                          $pro_mrp = $row["pro_mrp"];
-                        ?>
-                          <div class="form-check ml-4">
-                            <input class="form-check-input" type="checkbox" name="shrecipe[]" value="<?php echo $pro_name; ?>" <?php if (in_array($pro_name, explode(",", $sh_reci1))) echo "checked"; ?>>
-                            <label class="form-check-label"><?php echo $pro_name; ?></label>
-                          </div>
+                  <div class="col">
+    <div class="form-group">
+        <label for="exampleSelectGender">Shake Recipe</label><br>
+        <?php
+        $query = mysqli_query($conn, "SELECT * FROM price");
+        while ($row = mysqli_fetch_assoc($query)) {
+            $pro_name = $row["pro_name"];
+        ?>
+        <div class="form-check ml-4">
+            <input class="form-check-input" type="checkbox" name="shrecipe[]" value="<?php echo $pro_name; ?>" onchange="displayIngredientPrices()">
+            <label class="form-check-label"><?php echo $pro_name; ?></label>
+        </div>
+        <?php } ?>
+    </div>
+</div>
+<div class="col">
+    <div class="form-group">
+        <label>Ingredient Prices (MRP)</label>
+        <div id="ingredientPrices">
+            <!-- Ingredient prices will be dynamically updated here -->
+        </div>
+    </div>
+</div>
 
-                        <?php } ?>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <div class="form-group">
-                        <label>Ingredient Prices (MRP)</label>
-                        <div id="ingredientPrices">
-                          <!-- Ingredient prices will be dynamically updated here -->
-                        </div>
-                      </div>
-                    </div>
 
                     <div class="col">
                       <div class="form-group">
@@ -185,11 +183,11 @@ if ($_SESSION["email"] == "") {
                         <label>Discount %</label>
                         <select class="form-control" name="shdiscount" required>
                           <option selected>Select Discount Percentage</option>
-                          <option value="pro_scoop15" <?php if ($sh_disc1 == 15) echo "selected"; ?>>15%</option>
-                          <option value="pro_scoop25" <?php if ($sh_disc1 == 25) echo "selected"; ?>>25%</option>
-                          <option value="pro_scoop35" <?php if ($sh_disc1 == 35) echo "selected"; ?>>35%</option>
-                          <option value="pro_scoop42" <?php if ($sh_disc1 == 42) echo "selected"; ?>>42%</option>
-                          <option value="pro_scoop50" <?php if ($sh_disc1 == 50) echo "selected"; ?>>50%</option>
+                          <option value="15" <?php if ($sh_disc1 == 15) echo "selected"; ?>>15%</option>
+                          <option value="25" <?php if ($sh_disc1 == 25) echo "selected"; ?>>25%</option>
+                          <option value="35" <?php if ($sh_disc1 == 35) echo "selected"; ?>>35%</option>
+                          <option value="42" <?php if ($sh_disc1 == 42) echo "selected"; ?>>42%</option>
+                          <option value="50" <?php if ($sh_disc1 == 50) echo "selected"; ?>>50%</option>
                         </select>
                       </div>
                     </div>
@@ -210,7 +208,7 @@ if ($_SESSION["email"] == "") {
                       </div>
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-primary mr-2" name="submitsh">Submit</button>
+                  <input type="submit" class="btn btn-primary mr-2" name="submitsh" value="Submit">
                   <a href="./admin-shake.php" class="btn btn-light">Cancel</a>
                 </form>
               </div>
@@ -226,21 +224,12 @@ if ($_SESSION["email"] == "") {
             $sh_goal = $_POST["shgoal"];
             // Get selected shake recipes
             $sh_reci_array = isset($_POST["shrecipe"]) ? $_POST["shrecipe"] : array();
-            $sh_increprice_array = isset($_POST["shincreprice"]) ? $_POST["shincreprice"] : array();
 
             // Convert array to comma-separated string
             $sh_reci = implode(",", $sh_reci_array);
-            $sh_price = implode(",", $sh_increprice_array);
 
             $total_price = 0; // Initialize total price variable
 
-            // Loop through each selected recipe to calculate total price
-            // foreach ($sh_reci_array as $recipe) {
-            //   $query = mysqli_query($conn, "SELECT pro_mrp FROM product WHERE pro_name = '$recipe'");
-            //   $row = mysqli_fetch_assoc($query);
-            //   $recipe_price = $row['pro_mrp']; // Fetch the price of the selected recipe
-            //   $total_price += $recipe_price; // Add the price to the total price
-            // }
 
             $sh_price = $total_price;
             $sh_number = $_POST["number"];
@@ -262,7 +251,8 @@ if ($_SESSION["email"] == "") {
 
             if ($sh_id == '') {
               $sql = mysqli_query($conn, "INSERT INTO shake (shake_name, customer_id, customer_name, shake_goal, shake_recipes, shake_mrp, shake_extra, shake_extraprice, shake_discount, shake_expence, shake_total, shake_image)
-                                                        VALUES ('$sh_name','$cus_name','$cus_name','$sh_goal','$sh_reci','$sh_price','$sh_extra','$sh_extra_price','$sh_disc','$sh_sercharge','$total_cost','$sh_img')");
+              VALUES ('$sh_name','$cus_name','$cus_name','$sh_goal','$sh_reci','$total_price','$sh_extra','$sh_extra_price','$sh_disc','$sh_sercharge','$total_cost','$sh_img')");
+
             } else {
               // Update existing material
               if ($filename) {
@@ -346,7 +336,7 @@ if ($_SESSION["email"] == "") {
                           <td><?php echo $sh_expense; ?></td>
                           <td><?php echo $sh_total; ?></td>
                           <td>
-                            <a href="admin-shake.php?sid=<?php echo $s_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit
+                            <a href="admin-shake.php?sid=<?php echo $sh_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit
                               <i class="ti-pencil-alt btn-icon-append"></i>
                             </a>
                           </td>
@@ -409,28 +399,40 @@ if ($_SESSION["email"] == "") {
       fileReader.readAsDataURL(input.files[0]);
     }
   </script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-  $(document).ready(function() {
+ 
+ <script>
+$(document).ready(function() {
+    // Function to handle change in discount select
     $('select[name="shdiscount"]').change(function() {
-      var selectedDiscount = $(this).val();
+        var discount = $(this).val();
 
-      // Make AJAX request to fetch corresponding ingredient prices
-      $.ajax({
-        type: 'POST',
-        url: 'get_ingredient_prices.php', // PHP script to fetch prices based on discount
-        data: {
-          discount: selectedDiscount
-        },
-        success: function(response) {
-          // Update the ingredient prices list or display based on response
-          $('#ingredientPrices').html(response);
-        }
-      });
+        // Collect selected recipe checkboxes
+        var selectedRecipes = [];
+        $('input[name="shrecipe[]"]:checked').each(function() {
+            selectedRecipes.push($(this).val());
+        });
+
+        // AJAX call to fetch prices of selected recipes based on the selected discount
+        $.ajax({
+            type: 'POST',
+            url: 'get_prices.php',
+            data: { discount: discount, recipes: selectedRecipes },
+            dataType: 'json',
+            success: function(response) {
+                // Update the HTML to display the fetched prices
+                var ingredientPrices = '';
+                $.each(response, function(key, value) {
+                    ingredientPrices += '<div>' + key + ' Price: ' + value + '</div>';
+                });
+                $('#ingredientPrices').html(ingredientPrices);
+            },
+            error: function(xhr, status, error) {
+                console.log(error);
+            }
+        });
     });
-  });
-</script>
-
+});
+ </script>
   <!-- End plugin js for this page -->
   <!-- inject:js -->
   <script src="../js/off-canvas.js"></script>
@@ -440,5 +442,4 @@ if ($_SESSION["email"] == "") {
   <script src="../js/todolist.js"></script>
   <!-- endinject -->
 </body>
-
 </html>

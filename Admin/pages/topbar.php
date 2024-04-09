@@ -103,17 +103,11 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#sales" aria-expanded="false" aria-controls="sales">
-              <i class="icon-bar-graph menu-icon"></i>
+            <a class="nav-link" href="admin-sales.php">
+              <i class="icon-columns menu-icon"></i>
               <span class="menu-title">Sales</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="sales">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="admin-salesprice.php">Sales Pricing</a></li>
-                <li class="nav-item"> <a class="nav-link" href="admin-sales.php">Product Sales</a></li>
-              </ul>
-            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="admin-stocktrans.php">

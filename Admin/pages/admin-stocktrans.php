@@ -123,15 +123,7 @@ while ($row = mysqli_fetch_assoc($query)) {
                             </select>
                       </div>
                     </div>
-                    <div class="col-lg-6 col-md col-sm col-12">
-                      <div class="form-group">
-                        <label>Vendor / Company Name</label>
-                        <input type="text" class="form-control" placeholder="Weight Gainer" name="stocomname" value="<?php echo $stocom1; ?>" required>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                  <div class="col">
+                    <!-- <div class="col">
                       <div class="form-group">
                         <label for="exampleSelectGender">Category</label>
                         <select class="form-control" name="procat" onchange="getcat();" id="catid" required>
@@ -149,8 +141,8 @@ while ($row = mysqli_fetch_assoc($query)) {
                     ?>
               </select>
                       </div>
-                    </div>
-                    <div class="col">
+                    </div> -->
+                    <!-- <div class="col">
                       <div class="form-group">
                         <label for="exampleSelectGender">Subcategory</label>
                         <select class="form-control" name="subcat"   id="sub" required>
@@ -169,7 +161,7 @@ while ($row = mysqli_fetch_assoc($query)) {
                     ?>
               </select>
                       </div>
-                    </div>
+                    </div> -->
                     <div class="col">
                     <div class="form-group">
                         <label>Quantity</label>
@@ -186,7 +178,7 @@ while ($row = mysqli_fetch_assoc($query)) {
                     </div>
                     <div class="col">
                       <div class="form-group">
-                        <label>Purchased</label>
+                        <label>Purchased Price</label>
                         <input type="number" class="form-control" name="stopri" id="stopri" required>
                       </div>
                     </div>
@@ -248,11 +240,10 @@ else{
                       <tr>
                         <th>Slno</th>
                         <th>Product</th>
-                        <th>Vendor Name</th>
-                        <th>Location</th>
                         <th>Quantity</th>
+                        <th>Location</th>
                         <th>Price</th>
-                        <!-- <th>Total</th> -->
+                        <th>Total</th>
                         <th>Edit</th>
                         <th>Delete</th>
                       </tr>
