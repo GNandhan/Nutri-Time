@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 08, 2024 at 08:20 AM
+-- Generation Time: Apr 09, 2024 at 09:49 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -155,19 +155,21 @@ CREATE TABLE `price` (
   `pro_scoop25` varchar(10) NOT NULL,
   `pro_scoop35` varchar(10) NOT NULL,
   `pro_scoop42` varchar(10) NOT NULL,
-  `pro_scoop50` varchar(10) NOT NULL
+  `pro_scoop50` varchar(10) NOT NULL,
+  `pro_quantity` varchar(10) NOT NULL,
+  `pro_img` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `price`
 --
 
-INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subcat`, `pro_mrp`, `pro_price`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`, `pro_scoop`, `pro_scoop15`, `pro_scoop25`, `pro_scoop35`, `pro_scoop42`, `pro_scoop50`) VALUES
-(1, 'Formula 1', 1001, 'Targeted Nutrition', 'Brain Health', '2378', '2200', '2065', '1860', '1650', '1505', '1340', '20', '103.25', '93', '82.50', '75.25', '68'),
-(2, 'Fiber Complex', 1002, 'Targeted Nutrition', 'Energy', '2792', '2600', '2425', '2180', '1940', '1765', '1570', '30', '80', '72', '64', '58', '52'),
-(3, 'Protein', 1003, 'Targeted Nutrition', 'Energy', '1413', '1200', '1230', '1105', '980', '895', '795', '30', '41', '36.83', '32.67', '29.83', '26.50'),
-(4, 'Shakemate', 1004, 'Targeted Nutrition', 'Energy', '712', '700', '660', '625', '590', '565', '535', '18', '36.67', '34.72', '32.78', '31.39', '29.72'),
-(5, 'Afresh', 1005, 'Targeted Nutrition', 'Energy', '885', '800', '770', '690', '615', '560', '500', '25', '30.80', '27.60', '24.60', '22.40', '20');
+INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subcat`, `pro_mrp`, `pro_price`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`, `pro_scoop`, `pro_scoop15`, `pro_scoop25`, `pro_scoop35`, `pro_scoop42`, `pro_scoop50`, `pro_quantity`, `pro_img`) VALUES
+(1, 'Formula 1', 1001, 'Targeted Nutrition', 'Brain Health', '2378', '2200', '2065', '1860', '1650', '1505', '1340', '20', '103.25', '93', '82.50', '75.25', '68', '', ''),
+(2, 'Fiber Complex', 1002, 'Targeted Nutrition', 'Energy', '2792', '2600', '2425', '2180', '1940', '1765', '1570', '30', '80', '72', '64', '58', '52', '', ''),
+(3, 'Protein', 1003, 'Targeted Nutrition', 'Energy', '1413', '1200', '1230', '1105', '980', '895', '795', '30', '41', '36.83', '32.67', '29.83', '26.50', '', ''),
+(4, 'Shakemate', 1004, 'Targeted Nutrition', 'Energy', '712', '700', '660', '625', '590', '565', '535', '18', '36.67', '34.72', '32.78', '31.39', '29.72', '', ''),
+(5, 'Afresh', 1005, 'Targeted Nutrition', 'Energy', '885', '800', '770', '690', '615', '560', '500', '25', '30.80', '27.60', '24.60', '22.40', '20', '', '');
 
 -- --------------------------------------------------------
 
@@ -227,11 +229,21 @@ CREATE TABLE `shake` (
   `shake_mrp` varchar(100) NOT NULL,
   `shake_scoops` varchar(100) NOT NULL,
   `shake_extra` varchar(25) NOT NULL,
+  `shake_extraprice` varchar(10) NOT NULL,
   `shake_discount` varchar(50) NOT NULL,
   `shake_expence` varchar(25) NOT NULL,
   `shake_total` varchar(50) NOT NULL,
   `shake_image` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `shake`
+--
+
+INSERT INTO `shake` (`shake_id`, `shake_name`, `customer_id`, `customer_name`, `shake_goal`, `shake_recipes`, `shake_mrp`, `shake_scoops`, `shake_extra`, `shake_extraprice`, `shake_discount`, `shake_expence`, `shake_total`, `shake_image`) VALUES
+(6, 'Club Shake', 0, 'Manu Alex', 'Weight gainer222', 'Formula 1,Shakemate,Afresh', '0', '', 'milk', '20', 'pro_scoop25', '18', '', 'Screenshot 2024-04-05 093756.png'),
+(7, 'Club Shake2edwqedwdwqd', 0, 'Manu Alex', 'ewdeewdewdwdewdw', 'Fiber Complex,Protein,Afresh', '0', '', 'Milk', '20', 'pro_scoop25', '10', '100', 'Screenshot 2024-04-05 093756.png'),
+(8, 'Club Shake2edwqedwdwqd', 0, 'Manu Alex', 'ewdeewdewdwdewdw', 'Fiber Complex,Protein,Afresh', '0', '', 'Milk', '20', 'pro_scoop25', '10', '100', 'Screenshot 2024-04-05 093756.png');
 
 -- --------------------------------------------------------
 
@@ -431,7 +443,7 @@ ALTER TABLE `program`
 -- AUTO_INCREMENT for table `shake`
 --
 ALTER TABLE `shake`
-  MODIFY `shake_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `shake_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `staff`
