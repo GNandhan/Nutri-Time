@@ -327,7 +327,7 @@ function updatePrice() {
                       $pro_mrp = $row['pro_mrp'];
                       $pro_price = $row['pro_price'];;
 
-                      $pro_purtotal = $pro_price * $pro_qua;
+                      $pro_purtotal = (int)$pro_price * (int)$pro_qua;
                     ?>
                       <tbody>
                         <tr>

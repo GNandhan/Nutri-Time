@@ -60,7 +60,6 @@ if(isset($_GET['pd_id']))
     $del = mysqli_query($conn,"DELETE FROM price WHERE pri_id='$dl_id'");
     if($del)
     {
-        unlink($img); //for deleting the existing image from the folder
         header("location:admin-scoopprice.php");
     }
     else
@@ -79,7 +78,7 @@ if(isset($_GET['pd_id']))
                 <h1 class="card-title">Product Scoop Price</h1>
                 <p class="card-description">Add Product Scoop Details</p>
                 <form method="post" class="forms-sample" enctype="multipart/form-data">
-                  <input type="hidden" name="prid" value="<?php echo $priid; ?>">
+                  <input type="hidden" name="prid" value="<?php echo $pri_id; ?>">
                   <div class="row">
                   <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
@@ -154,35 +153,46 @@ if(isset($_GET['pd_id']))
         </div>
 <!-- PHP CODE FOR INSERTING THE DATA -->
         <?php
-    if(isset($_POST["submitp"]))
-    {
-    $pname= $_POST["proname"];
-    $pscoop= $_POST["scoop"];
-    $pscoop15= $_POST["scoop15"];
-    $pscoop25= $_POST["scoop25"];
-    $pscoop35= $_POST["scoop35"];
-    $pscoop42= $_POST["scoop42"];
-    $pscoop50= $_POST["scoop50"];
-   
-// Fetch the shake ID from the form
-$pri_id = $_POST["prid"];
-
-if (empty($pri_id)) {
-    // Insert new record
-    $sql = mysqli_query($conn, "INSERT INTO price (pro_name, pro_scoop, pro_scoop15, pro_scoop25, pro_scoop35, pro_scoop42, pro_scoop50)
-                                      VALUES ('$pname', '$pscoop', '$pscoop15', '$pscoop25', '$pscoop35', '$pscoop42', '$pscoop50')");
-} else {
-    // Update existing record
-    $sql = mysqli_query($conn, "UPDATE price SET pro_name='$pname', pro_scoop='$pscoop', pro_scoop15='$pscoop15', pro_scoop25='$pscoop25', pro_scoop35='$pscoop35', pro_scoop42='$pscoop42', pro_scoop50='$pscoop50' WHERE pri_id='$pri_id'");
+if(isset($_POST["submitp"])) {
+  $pname = $_POST["proname"];
+  $pscoop = $_POST["scoop"];
+  $pscoop15 = $_POST["scoop15"];
+  $pscoop25 = $_POST["scoop25"];
+  $pscoop35 = $_POST["scoop35"];
+  $pscoop42 = $_POST["scoop42"];
+  $pscoop50 = $_POST["scoop50"];
+  
+  // Check if a product is selected
+  if (!empty($pname)) {
+      // Retrieve existing record based on selected product name
+      $existing_product_query = mysqli_query($conn, "SELECT * FROM price WHERE pro_name = '$pname'");
+      $existing_product = mysqli_fetch_assoc($existing_product_query);
+      
+      if ($existing_product) {
+          // Update existing product record with additional details
+          $pri_id = $existing_product['pri_id']; // Get the ID of the existing product
+          $sql = mysqli_query($conn, "UPDATE price SET 
+                                          pro_scoop = '$pscoop', 
+                                          pro_scoop15 = '$pscoop15', 
+                                          pro_scoop25 = '$pscoop25', 
+                                          pro_scoop35 = '$pscoop35', 
+                                          pro_scoop42 = '$pscoop42', 
+                                          pro_scoop50 = '$pscoop50' 
+                                      WHERE pri_id = '$pri_id'");
+          
+          if ($sql) {
+              echo "<script>alert('Additional details added successfully.');</script>";
+          } else {
+              echo "<script>alert('Error updating details: " . mysqli_error($conn) . "');</script>";
+          }
+      } else {
+          echo "<script>alert('Selected product not found.');</script>";
+      }
+  } else {
+      echo "<script>alert('Please select a product.');</script>";
+  }
 }
 
-if ($sql == TRUE){
-echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
-} 
-else{
-  echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
-}
-}
 ?>
         <div class="row ">
           <!-- table view -->
