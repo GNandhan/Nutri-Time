@@ -315,7 +315,6 @@ if (isset($_POST["submitp"])) {
                         <th>Purchased Price</th>
                         <th>Purchased Total</th>
                         <th>Edit</th>
-                        <th>Delete</th>
                       </tr>
                     </thead>
                     <?php
@@ -354,10 +353,10 @@ if (isset($_POST["submitp"])) {
                             <a href="admin-product.php?pid=<?php echo $pro_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i>
                             </a>
                           </td>
-                          <td>
+                          <!-- <td>
                             <a href="admin-product.php?pd_id=<?php echo $pro_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i>
                             </a>
-                          </td>
+                          </td> -->
                         </tr>
                       </tbody>
                     <?php
