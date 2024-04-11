@@ -8,7 +8,6 @@ if ($_SESSION["email"] == "") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -28,7 +27,6 @@ if ($_SESSION["email"] == "") {
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
-
 <body>
   <!-- code for getteing the subcategory as per the actegory selected -->
   <div class="container-scroller">
@@ -223,14 +221,12 @@ if ($_SESSION["email"] == "") {
                         </select>
                       </div>
                     </div>
-
                     <div class="col">
                       <div class="form-group">
                         <label>Percentage Price</label>
                         <input type="number" class="form-control" name="properprice" id="properprice" readonly required>
                       </div>
                     </div>
-
                   </div>
                   <button type="submit" class="btn btn-primary mr-2" name="submitp">Submit</button>
                   <button type="reset" class="btn btn-light">Cancel</button>
