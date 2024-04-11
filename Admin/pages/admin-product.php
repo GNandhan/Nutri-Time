@@ -1,6 +1,7 @@
 <?php
 include './connect.php';
- error_reporting(0);
+//  error_reporting(0);
+$p_code1 =  $p_cat1 = $p_sub1 ='';
 session_start();
 if ($_SESSION["email"] == "") {
   header('location:admin-login.php');
@@ -38,27 +39,26 @@ if ($_SESSION["email"] == "") {
     <?php
     if (isset($_GET['pid'])) {
       $proid = $_GET['pid'];
-      $p_query = mysqli_query($conn, "SELECT * FROM product WHERE pro_id = '$proid'");
+      $p_query = mysqli_query($conn, "SELECT * FROM price WHERE pri_id = '$proid'");
       $p_row1 = mysqli_fetch_array($p_query);
 
-      $p_code1 = $p_row1['pro_code'];
       $p_name1 = $p_row1['pro_name'];
+      $p_code1 = $p_row1['pro_code'];
       $p_cat1 = $p_row1['pro_category'];
-      $p_sub1 = $p_row1['pro_subcategory'];
-      $p_brand1 = $p_row1['pro_brand'];
-      $p_pri1 = $p_row1['pro_price'];
+      $p_sub1 = $p_row1['pro_subcat'];
       $p_mrp1 = $p_row1['pro_mrp'];
+      $p_pri1 = $p_row1['pro_price'];
       $p_qua1 = $p_row1['pro_quantity'];
-      $p_img1 = $p_row1['pro_image'];
+      $p_img1 = $p_row1['pro_img'];
       // $p_dis1 = $p_row1['pro_distribution'];
     }
     // fetching the data from the URL for deleting the subject form
     if (isset($_GET['pd_id'])) {
       $dl_id = $_GET['pd_id'];
-      $dl_query = mysqli_query($conn, "SELECT * FROM product WHERE pro_id = '$dl_id'");
+      $dl_query = mysqli_query($conn, "SELECT * FROM price WHERE pri_id = '$dl_id'");
       $dl_row1 = mysqli_fetch_array($dl_query);
       $img = '../images/product/' . $dl_row1['pro_image'];
-      $del = mysqli_query($conn, "DELETE FROM product WHERE pro_id='$dl_id'");
+      $del = mysqli_query($conn, "DELETE FROM price WHERE pri_id='$dl_id'");
       if ($del) {
         unlink($img); //for deleting the existing image from the folder
         header("location:admin-product.php");
@@ -142,7 +142,7 @@ function updatePrice() {
                       $pro_id=$row["pro_id"];
                       $pro_name=$row["pro_name"];
                   ?>
-                    <option value="<?php echo $pro_name; ?>" <?php if($row['pro_name'] == $sh_raw1){echo 'selected';} ?> ><?php echo $pro_name; ?></option>
+                    <option value="<?php echo $pro_name; ?>" <?php if($row['pro_name'] == $p_name1){echo 'selected';} ?> ><?php echo $pro_name; ?></option>
                     <?php
                       }
                     ?>
@@ -153,7 +153,7 @@ function updatePrice() {
                     <div class="col-lg-6 col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product Code</label>
-                        <input type="text" class="form-control" placeholder="Weight Gainer" name="procode" id="procode" required>
+                        <input type="text" class="form-control" placeholder="Weight Gainer" name="procode" id="procode" value="<?php echo $p_code1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -161,13 +161,13 @@ function updatePrice() {
                     <div class="col">
                       <div class="form-group">
                       <label>Category</label>
-                        <input type="text" class="form-control" placeholder="Category" name="procat" id="procat" required>
+                        <input type="text" class="form-control" placeholder="Category" name="procat" id="procat" value="<?php echo $p_cat1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                       <label>Subcategory</label>
-                        <input type="text" class="form-control" placeholder="Subcategory" name="prosubcat" id="prosubcat" required>
+                        <input type="text" class="form-control" placeholder="Subcategory" name="prosubcat" id="prosubcat" value="<?php echo $p_sub1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -175,13 +175,13 @@ function updatePrice() {
                     <div class="col">
                       <div class="form-group">
                         <label>MRP</label>
-                        <input type="number" class="form-control" name="promrp" id="promrp" required>
+                        <input type="number" class="form-control" name="promrp" id="promrp" value="<?php echo $p_mrp1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>Purchased Price</label>
-                        <input type="number" class="form-control" name="proprice" id="proprice" required>
+                        <input type="number" class="form-control" name="proprice" id="proprice" value="<?php echo $p_pri1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
@@ -204,7 +204,7 @@ function updatePrice() {
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary mr-2" name="submitp">Submit</button>
-                  <button type="reset" class="btn btn-light">Cancel</button>
+                  <a href="./admin-product.php" type="reset" class="btn btn-light">Cancel</a>
                 </form>
               </div>
             </div>
@@ -215,9 +215,8 @@ function updatePrice() {
         if (isset($_POST["submitp"])) {
           $pcode = $_POST["procode"];
           $pname = $_POST["proname"];
-          $pcat_name = $_POST["procat"];
-          $psubcat_name = $_POST["prosubcat"];
-          $pbrand = "Herbalife";
+          $pcat = $_POST["procat"];
+          $psubcat = $_POST["prosubcat"];
           $pmrp = $_POST["promrp"];
           $pprice = $_POST["proprice"];
           $pquan = $_POST["proquant"];
@@ -230,8 +229,8 @@ function updatePrice() {
           $pro_id = $_POST["pid"];
 
           if ($pro_id == '') {
-            $sql = mysqli_query($conn, "INSERT INTO product (pro_code, pro_name, pro_category, pro_subcategory, pro_brand, pro_price, pro_mrp, pro_quantity, pro_curquantity, pro_image)
-                                       VALUES ('$pcode','$pname','$pcat_name','$psubcat_name','$pbrand','$pprice', '$pmrp','$pquan','$pquan','$pimg')");
+            $sql = mysqli_query($conn, "INSERT INTO price (pro_name, pro_quantity, pro_curquantity, pro_img)
+                                                     VALUES ('$pname','$pquan','$pquan','$pimg')");
           } else {
             // Update existing material
             if ($filename) {
@@ -239,10 +238,10 @@ function updatePrice() {
               $imgs = '../images/product/' . $pimg;
               unlink($imgs);
               // Update material with new image
-              $sql = mysqli_query($conn, "UPDATE product SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat_name', pro_subcategory='$psubcat_name', pro_brand='$pbrand', pro_price='$pprice', pro_mrp='$pmrp', pro_quantity='$pquan', pro_curquantity='$pquan', pro_image='$pimg' WHERE pro_id='$pro_id'");
+              $sql = mysqli_query($conn, "UPDATE price SET pro_name='$pname', pro_quantity='$pquan', pro_curquantity='$pquan', pro_img='$pimg' WHERE pri_id='$pro_id'");
             } else {
               // Update material without changing the image
-              $sql = mysqli_query($conn, "UPDATE product SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat_name', pro_subcategory='$psubcat_name', pro_brand='$pbrand', pro_price='$pprice', pro_mrp='$pmrp', pro_quantity='$pquan', pro_curquantity='$pquan' WHERE pro_id='$pro_id'");
+              $sql = mysqli_query($conn, "UPDATE price SET pro_name='$pname', pro_quantity='$pquan', pro_curquantity='$pquan' WHERE pri_id='$pro_id'");
             }
           }
 
@@ -320,7 +319,8 @@ function updatePrice() {
                       $pro_mrp = $row['pro_mrp'];
                       $pro_price = $row['pro_price'];;
 
-                      // $pro_sellprofit = $pro_mrp * ($pro_qua - $pro_dis);
+                      $pro_mrptotal = $pro_mrp * $pro_qua;
+                      $pro_purtotal = $pro_price * $pro_qua;
                     ?>
                       <tbody>
                         <tr>
@@ -334,8 +334,8 @@ function updatePrice() {
                           <td><?php echo $pro_subcat; ?></td>
                           <td><?php echo $pro_mrp; ?></td>
                           <td><?php echo $pro_price; ?></td>
-                          <td><?php echo $pro_price; ?></td>
-                          <td><?php echo $pro_price; ?></td>
+                          <td><?php echo $pro_mrptotal; ?></td>
+                          <td><?php echo $pro_purtotal; ?></td>
                           <td>
                             <a href="admin-product.php?pid=<?php echo $pro_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i>
                             </a>
