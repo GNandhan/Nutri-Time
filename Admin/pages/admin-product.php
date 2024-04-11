@@ -1,7 +1,7 @@
 <?php
 include './connect.php';
 //  error_reporting(0);
-$p_code1 =  $p_cat1 = $p_sub1 ='';
+$p_code1 =  $p_cat1 = $p_sub1 = $p_name1 ='';
 session_start();
 if ($_SESSION["email"] == "") {
   header('location:admin-login.php');
