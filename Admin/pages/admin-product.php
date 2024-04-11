@@ -13,7 +13,7 @@ if ($_SESSION["email"] == "") {
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Admin Materials</title>
+  <title>Admin Product</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
@@ -202,6 +202,12 @@ function updatePrice() {
                         <img src="../images/material/<?php echo $p_img1; ?>" alt="" width="100">
                       </div>
                     </div>
+                    <div class="col">
+            <div class="form-group">
+                <label>Description</label>
+                <textarea class="form-control" name="prodesc" rows="1" placeholder="Enter Product Description"></textarea>
+            </div>
+        </div>
                   </div>
                   <button type="submit" class="btn btn-primary mr-2" name="submitp">Submit</button>
                   <a href="./admin-product.php" type="reset" class="btn btn-light">Cancel</a>
@@ -319,7 +325,6 @@ function updatePrice() {
                       $pro_mrp = $row['pro_mrp'];
                       $pro_price = $row['pro_price'];;
 
-                      $pro_mrptotal = $pro_mrp * $pro_qua;
                       $pro_purtotal = $pro_price * $pro_qua;
                     ?>
                       <tbody>
@@ -334,7 +339,6 @@ function updatePrice() {
                           <td><?php echo $pro_subcat; ?></td>
                           <td><?php echo $pro_mrp; ?></td>
                           <td><?php echo $pro_price; ?></td>
-                          <td><?php echo $pro_mrptotal; ?></td>
                           <td><?php echo $pro_purtotal; ?></td>
                           <td>
                             <a href="admin-product.php?pid=<?php echo $pro_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i>
