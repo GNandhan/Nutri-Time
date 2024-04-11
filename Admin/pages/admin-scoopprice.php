@@ -181,7 +181,7 @@ if(isset($_POST["submitp"])) {
                                       WHERE pri_id = '$pri_id'");
           
           if ($sql) {
-              echo "<script>alert('Additional details added successfully.');</script>";
+              echo "<script>alert('Product details added successfully.');</script>";
           } else {
               echo "<script>alert('Error updating details: " . mysqli_error($conn) . "');</script>";
           }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2024 at 09:08 AM
+-- Generation Time: Apr 11, 2024 at 11:30 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -173,7 +173,8 @@ INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subc
 (3, 'Protein', 1003, 'Targeted Nutrition', 'Energy', '1413', '1200', '1230', '1105', '980', '895', '795', '30', '41', '36.83', '32.67', '29.83', '26.50', '50', '50', '', 'download.jpeg'),
 (4, 'Shakemate', 1004, 'Targeted Nutrition', 'Energy', '712', '700', '660', '625', '590', '565', '535', '18', '36.67', '34.72', '32.78', '31.39', '29.72', '35', '35', '', 'download.jpeg'),
 (5, 'Afresh', 1005, 'Targeted Nutrition', 'Energy', '885', '800', '770', '690', '615', '560', '500', '25', '30.80', '27.60', '24.60', '22.40', '20', '18', '18', '', 'download.jpeg'),
-(6, 'Dino ', 1006, 'Ayurdevic Nutrition', 'Energy', '150', '100', '90', '80', '70', '60', '50', '30', '10', '20', '30', '40', '50', '25', '25', '', 'download.jpeg');
+(6, 'Dino ', 1006, 'Ayurdevic Nutrition', 'Energy', '150', '100', '90', '80', '70', '60', '50', '30', '10', '20', '30', '40', '50', '25', '25', 'pijpjpooeopgrefkrkgforekoferofrekfoerkfokreforepkfrekforekfreopfkoerkforeofkreoforekforkeofre', 'NightlY Glow 3.jpg'),
+(7, 'Heigher Protein', 1007, 'Ayurdevic Nutrition', 'Protein', '1000', '950', '900', '800', '700', '600', '500', '30', '888', '777', '666', '555', '444', '35', '', '32r3r32r32r2r32r32r32r32r32r32r32r32r32re23r32r32r32r32r32r', 'main page.jpg');
 
 -- --------------------------------------------------------
 
@@ -434,7 +435,7 @@ ALTER TABLE `login_details`
 -- AUTO_INCREMENT for table `price`
 --
 ALTER TABLE `price`
-  MODIFY `pri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `pri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `product`

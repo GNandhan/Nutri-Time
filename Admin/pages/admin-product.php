@@ -1,6 +1,6 @@
 <?php
 include './connect.php';
-//  error_reporting(0);
+ error_reporting(0);
 $p_code1 =  $p_cat1 = $p_sub1 = $p_name1 ='';
 session_start();
 if ($_SESSION["email"] == "") {
@@ -218,49 +218,56 @@ function updatePrice() {
         </div>
         <!-- PHP CODE FOR INSERTING THE DATA -->
         <?php
-        if (isset($_POST["submitp"])) {
-          $pcode = $_POST["procode"];
-          $pname = $_POST["proname"];
-          $pcat = $_POST["procat"];
-          $psubcat = $_POST["prosubcat"];
-          $pmrp = $_POST["promrp"];
-          $pprice = $_POST["proprice"];
-          $pquan = $_POST["proquant"];
-          $pdesc = $_POST["prodesc"];
-          $pimg = $_FILES['proimg']['name'];
+if (isset($_POST["submitp"])) {
+    $pname = $_POST["proname"];
+    $pcode = $_POST["procode"];
+    $pcat = $_POST["procat"];
+    $psubcat = $_POST["prosubcat"];
+    $pmrp = $_POST["promrp"];
+    $pprice = $_POST["proprice"];
+    $pquant = $_POST["proquant"];
+    $pdesc = $_POST["prodesc"];
+    $pimg = $_FILES['proimg']['name'];
+    
+    // Update the record in the price table based on the selected product name
+    $sql = "UPDATE price SET 
+            pro_code = '$pcode', 
+            pro_category = '$pcat', 
+            pro_subcat = '$psubcat', 
+            pro_mrp = '$pmrp', 
+            pro_price = '$pprice', 
+            pro_quantity = '$pquant', 
+            pro_desc = '$pdesc'";
 
-          // Image uploading formats
-          $filename = $_FILES['proimg']['name'];
-          $tempname = $_FILES['proimg']['tmp_name'];
-          // Fetch the material ID from the URL parameters
-          $pro_id = $_POST["pid"];
-
-          if ($pro_id == '') {
-            $sql = mysqli_query($conn, "INSERT INTO price (pro_name, pro_quantity, pro_curquantity, pro_desc, pro_img)
-                                                     VALUES ('$pname','$pquan','$pquan','$pdesc','$pimg')");
-          } else {
-            // Update existing material
-            if ($filename) {
-              // Remove the existing image
-              $imgs = '../images/product/' . $pimg;
-              unlink($imgs);
-              // Update material with new image
-              $sql = mysqli_query($conn, "UPDATE price SET pro_name='$pname', pro_quantity='$pquan', pro_curquantity='$pquan', pro_desc='$pdesc', pro_img='$pimg' WHERE pri_id='$pro_id'");
-            } else {
-              // Update material without changing the image
-              $sql = mysqli_query($conn, "UPDATE price SET pro_name='$pname', pro_quantity='$pquan', pro_curquantity='$pquan' pro_desc='$pdesc', WHERE pri_id='$pro_id'");
-            }
-          }
-
-          if ($sql == TRUE) {
-            // echo "<script type= 'text/javascript'>alert('New record created successfully');</script>";
-            move_uploaded_file($tempname, "../images/product/$filename");
-            echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
-          } else {
-            echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
-          }
+    // Check if an image is uploaded
+    if ($_FILES['proimg']['name']) {
+        // Remove the existing image file if it exists
+        $old_img = '../images/product/' . $pimg;
+        if (file_exists($old_img)) {
+            unlink($old_img);
         }
-        ?>
+        
+        // Upload the new image
+        $temp_img = $_FILES['proimg']['tmp_name'];
+        $new_img = '../images/product/' . $pimg;
+        move_uploaded_file($temp_img, $new_img);
+
+        // Add the image path to the SQL update query
+        $sql .= ", pro_img = '$pimg'";
+    }
+
+    // Complete the SQL query based on the selected product name
+    $sql .= " WHERE pro_name = '$pname'";
+
+    // Execute the SQL update query
+    if (mysqli_query($conn, $sql)) {
+        echo "<script>alert('Product details updated successfully');</script>";
+    } else {
+        echo "<script>alert('Error updating product details');</script>";
+    }
+}
+?>
+
         <div class="row ">
           <!-- table view -->
           <div class="col-lg-12 grid-margin stretch-card">
