@@ -53,9 +53,10 @@
             $modalIndex = 0;
             while ($row = mysqli_fetch_assoc($sql)) {
                 $pro_name = $row['pro_name'];
-                $pro_mrp = $row['pro_mrp'];
                 $pro_cat = $row['pro_category'];
+                $pro_cat = $row['pro_subcat'];
                 $pro_img = $row['pro_img'];
+                $pro_desc = $row['pro_desc'];
                 $modalIndex++;
             ?>
 <div class="col-lg-3 col-md col-sm-6 col my-3">
@@ -82,7 +83,7 @@
         <img src="../../Admin/images/product/<?php echo $pro_img; ?>" class="rounded-4" alt="Product Image" width="80%">
           <div><?php echo $pro_name; ?></div>
           <div><?php echo $pro_cat; ?></div>
-          <div><?php echo $pro_mrp; ?></div>
+          <div><?php echo $pro_desc; ?></div>
       </div>
       <div class="modal-footer">
         <!-- <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button> -->

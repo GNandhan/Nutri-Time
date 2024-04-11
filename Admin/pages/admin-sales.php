@@ -124,8 +124,8 @@ if ($_SESSION["email"] == "") {
           <div class="col-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <h1 class="card-title">Product</h1>
-                <p class="card-description">Add Product Details</p>
+                <h1 class="card-title">Sales</h1>
+                <p class="card-description">Add Product Sales Details</p>
                 <form method="post" class="forms-sample" enctype="multipart/form-data">
                   <input type="hidden" name="pid" value="<?php echo $proid; ?>">
                   <div class="row">

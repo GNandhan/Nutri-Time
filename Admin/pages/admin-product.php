@@ -226,6 +226,7 @@ function updatePrice() {
           $pmrp = $_POST["promrp"];
           $pprice = $_POST["proprice"];
           $pquan = $_POST["proquant"];
+          $pdesc = $_POST["prodesc"];
           $pimg = $_FILES['proimg']['name'];
 
           // Image uploading formats
@@ -235,8 +236,8 @@ function updatePrice() {
           $pro_id = $_POST["pid"];
 
           if ($pro_id == '') {
-            $sql = mysqli_query($conn, "INSERT INTO price (pro_name, pro_quantity, pro_curquantity, pro_img)
-                                                     VALUES ('$pname','$pquan','$pquan','$pimg')");
+            $sql = mysqli_query($conn, "INSERT INTO price (pro_name, pro_quantity, pro_curquantity, pro_desc, pro_img)
+                                                     VALUES ('$pname','$pquan','$pquan','$pdesc','$pimg')");
           } else {
             // Update existing material
             if ($filename) {
@@ -244,10 +245,10 @@ function updatePrice() {
               $imgs = '../images/product/' . $pimg;
               unlink($imgs);
               // Update material with new image
-              $sql = mysqli_query($conn, "UPDATE price SET pro_name='$pname', pro_quantity='$pquan', pro_curquantity='$pquan', pro_img='$pimg' WHERE pri_id='$pro_id'");
+              $sql = mysqli_query($conn, "UPDATE price SET pro_name='$pname', pro_quantity='$pquan', pro_curquantity='$pquan', pro_desc='$pdesc', pro_img='$pimg' WHERE pri_id='$pro_id'");
             } else {
               // Update material without changing the image
-              $sql = mysqli_query($conn, "UPDATE price SET pro_name='$pname', pro_quantity='$pquan', pro_curquantity='$pquan' WHERE pri_id='$pro_id'");
+              $sql = mysqli_query($conn, "UPDATE price SET pro_name='$pname', pro_quantity='$pquan', pro_curquantity='$pquan' pro_desc='$pdesc', WHERE pri_id='$pro_id'");
             }
           }
 
@@ -298,13 +299,13 @@ function updatePrice() {
                         <th>Product Code</th>
                         <th>Product Image</th>
                         <th>Product Name</th>
+                        <th>Description</th>
                         <th>Quanity</th>
                         <th>Current Quantity</th>
                         <th>Category</th>
                         <th>Subcategory</th>
                         <th>MRP</th>
                         <th>Purchased Price</th>
-                        <th>MRP Total</th>
                         <th>Purchased Total</th>
                         <th>Edit</th>
                         <th>Delete</th>
@@ -318,6 +319,7 @@ function updatePrice() {
                       $pro_cod = $row['pro_code'];
                       $pro_img = $row['pro_img'];
                       $pro_nam = $row['pro_name'];
+                      $pro_desc = $row['pro_desc'];
                       $pro_qua = $row['pro_quantity'];
                       $pro_curqua = $row['pro_quantity'];
                       $pro_cat = $row['pro_category'];
@@ -333,6 +335,7 @@ function updatePrice() {
                           <td class="py-1">#<?php echo $pro_cod; ?></td>
                           <td><img src="../images/product/<?php echo $pro_img; ?>"  width="50" class="rounded-circle"></td>
                           <td><?php echo $pro_nam; ?></td>
+                          <td><?php echo $pro_desc; ?></td>
                           <td><?php echo $pro_qua; ?></td>
                           <td><?php echo $pro_curqua; ?></td>
                           <td><?php echo $pro_cat; ?></td>
