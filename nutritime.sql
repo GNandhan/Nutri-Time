@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2024 at 11:30 AM
+-- Generation Time: Apr 12, 2024 at 08:07 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -130,7 +130,8 @@ INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`)
 ('nutriadmin@gmail.com', 6, '2024-04-04 05:59:11'),
 ('nutriadmin@gmail.com', 7, '2024-04-05 06:36:58'),
 ('nutriadmin@gmail.com', 8, '2024-04-06 08:45:45'),
-('nutriadmin@gmail.com', 9, '2024-04-11 06:47:13');
+('nutriadmin@gmail.com', 9, '2024-04-11 06:47:13'),
+('nutriadmin@gmail.com', 10, '2024-04-12 06:55:39');
 
 -- --------------------------------------------------------
 
@@ -179,39 +180,6 @@ INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subc
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
---
-
-CREATE TABLE `product` (
-  `pro_id` int(11) NOT NULL,
-  `pro_code` varchar(20) NOT NULL,
-  `pro_name` varchar(100) NOT NULL,
-  `pro_category` varchar(100) NOT NULL,
-  `pro_subcategory` varchar(50) NOT NULL,
-  `pro_brand` varchar(50) NOT NULL DEFAULT 'Herbalife',
-  `pro_mrp` int(10) NOT NULL,
-  `pro_price` int(20) NOT NULL,
-  `pro_dis15` int(10) NOT NULL,
-  `pro_dis25` int(10) NOT NULL,
-  `pro_dis35` int(11) NOT NULL,
-  `pro_dis42` int(11) NOT NULL,
-  `pro_dis50` int(11) NOT NULL,
-  `pro_quantity` int(20) NOT NULL,
-  `pro_curquantity` int(10) NOT NULL,
-  `pro_image` varchar(50) NOT NULL,
-  `pro_status` enum('used','unused') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `product`
---
-
-INSERT INTO `product` (`pro_id`, `pro_code`, `pro_name`, `pro_category`, `pro_subcategory`, `pro_brand`, `pro_mrp`, `pro_price`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`, `pro_quantity`, `pro_curquantity`, `pro_image`, `pro_status`) VALUES
-(1, '1006', 'Dino ', 'Ayurdevic Nutrition', 'Energy', 'Herbalife', 150, 100, 0, 0, 0, 0, 0, 500, 500, 'Screenshot 2024-04-08 120727.png', 'used');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `program`
 --
 
@@ -223,6 +191,30 @@ CREATE TABLE `program` (
   `program_fee` int(20) NOT NULL,
   `program_condition` varchar(50) NOT NULL,
   `program_mode` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sales`
+--
+
+CREATE TABLE `sales` (
+  `sales_id` int(11) NOT NULL,
+  `sales_proid` int(10) NOT NULL,
+  `sales_procode` varchar(20) NOT NULL,
+  `sales_proname` varchar(100) NOT NULL,
+  `sales_procat` varchar(100) NOT NULL,
+  `sales_prosubcat` varchar(50) NOT NULL,
+  `sales_mrp` varchar(50) NOT NULL DEFAULT 'Herbalife',
+  `sales_quan` varchar(10) NOT NULL,
+  `sales_vp` varchar(20) NOT NULL,
+  `sales_gst` varchar(10) NOT NULL,
+  `sales_dis` varchar(10) NOT NULL,
+  `sales_dispri` varchar(11) NOT NULL,
+  `sales_cus` varchar(11) NOT NULL,
+  `sales_address` varchar(11) NOT NULL,
+  `sales_total` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -362,16 +354,16 @@ ALTER TABLE `price`
   ADD PRIMARY KEY (`pri_id`);
 
 --
--- Indexes for table `product`
---
-ALTER TABLE `product`
-  ADD PRIMARY KEY (`pro_id`);
-
---
 -- Indexes for table `program`
 --
 ALTER TABLE `program`
   ADD PRIMARY KEY (`program_id`);
+
+--
+-- Indexes for table `sales`
+--
+ALTER TABLE `sales`
+  ADD PRIMARY KEY (`sales_id`);
 
 --
 -- Indexes for table `shake`
@@ -429,7 +421,7 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `price`
@@ -438,16 +430,16 @@ ALTER TABLE `price`
   MODIFY `pri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `product`
---
-ALTER TABLE `product`
-  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `program`
 --
 ALTER TABLE `program`
   MODIFY `program_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `sales`
+--
+ALTER TABLE `sales`
+  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `shake`

@@ -1,6 +1,7 @@
 <?php
 include './connect.php';
-error_reporting(0);
+// error_reporting(0);
+$sale_procode1 = $sale_cus1 = $sale_procat1 = $sale_prosubcat1 = $sale_address1 ="";
 session_start();
 if ($_SESSION["email"] == "") {
   header('location:admin-login.php');
@@ -36,32 +37,36 @@ if ($_SESSION["email"] == "") {
     include './topbar.php';
     ?>
     <?php
-    if (isset($_GET['pid'])) {
-      $proid = $_GET['pid'];
-      $p_query = mysqli_query($conn, "SELECT * FROM product WHERE pro_id = '$proid'");
-      $p_row1 = mysqli_fetch_array($p_query);
+    if (isset($_GET['sid'])) {
+      $saleid = $_GET['sid'];
+      $s_query = mysqli_query($conn, "SELECT * FROM sales WHERE sales_id = '$saleid'");
+      $s_row1 = mysqli_fetch_array($s_query);
 
-      $p_code1 = $p_row1['pro_code'];
-      $p_name1 = $p_row1['pro_name'];
-      $p_cat1 = $p_row1['pro_category'];
-      $p_sub1 = $p_row1['pro_subcategory'];
-      $p_brand1 = $p_row1['pro_brand'];
-      $p_pri1 = $p_row1['pro_price'];
-      $p_mrp1 = $p_row1['pro_mrp'];
-      $p_qua1 = $p_row1['pro_quantity'];
-      $p_img1 = $p_row1['pro_image'];
-      // $p_dis1 = $p_row1['pro_distribution'];
+      $sale_id1 = $s_row1['sales_id'];
+      $sale_proid1 = $s_row1['sales_proid'];
+      $sale_procode1 = $s_row1['sales_procode'];
+      $sale_proname1 = $s_row1['sales_proname'];
+      $sale_procat1 = $s_row1['sales_procat'];
+      $sale_prosubcat1 = $s_row1['sales_prosubcat'];
+      $sale_mrp1 = $s_row1['sales_mrp'];
+      $sale_quan1 = $s_row1['sales_quan'];
+      $sale_vp1 = $s_row1['sales_vp'];
+      $sale_gst1 = $s_row1['sales_gst'];
+      $sale_dis1 = $s_row1['sales_dis'];
+      $sale_dispri1 = $s_row1['sales_dispri'];
+      $sale_cus1 = $s_row1['sales_cus'];
+      $sale_address1 = $s_row1['sales_address'];
+      $sale_total1 = $s_row1['sales_total'];
+
     }
     // fetching the data from the URL for deleting the subject form
-    if (isset($_GET['pd_id'])) {
-      $dl_id = $_GET['pd_id'];
-      $dl_query = mysqli_query($conn, "SELECT * FROM product WHERE pro_id = '$dl_id'");
+    if (isset($_GET['sd_id'])) {
+      $dl_id = $_GET['sd_id'];
+      $dl_query = mysqli_query($conn, "SELECT * FROM sales WHERE sales_id = '$dl_id'");
       $dl_row1 = mysqli_fetch_array($dl_query);
-      $img = '../images/product/' . $dl_row1['pro_image'];
-      $del = mysqli_query($conn, "DELETE FROM product WHERE pro_id='$dl_id'");
+      $del = mysqli_query($conn, "DELETE FROM sales WHERE sales_id='$dl_id'");
       if ($del) {
-        unlink($img); //for deleting the existing image from the folder
-        header("location:admin-product.php");
+        header("location:admin-sales.php");
       } else {
         echo "Deletion Failed";
       }
@@ -125,7 +130,7 @@ if ($_SESSION["email"] == "") {
                 <h1 class="card-title">Sales</h1>
                 <p class="card-description">Add Product Sales Details</p>
                 <form method="post" class="forms-sample" enctype="multipart/form-data">
-                  <input type="hidden" name="pid" value="<?php echo $proid; ?>">
+                  <input type="hidden" name="salid" value="<?php echo $saleid; ?>">
                   <div class="row">
                     <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
@@ -151,13 +156,13 @@ if ($_SESSION["email"] == "") {
                     <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product Code</label>
-                        <input type="text" class="form-control" placeholder="Weight Gainer" name="procode" id="procode" required>
+                        <input type="text" class="form-control" placeholder="Weight Gainer" name="procode" id="procode" value="<?php echo $sale_procode1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
                         <label>Offline Customer Name</label>
-                        <input type="text" class="form-control" placeholder="Customer Name" name="provendo" required>
+                        <input type="text" class="form-control" placeholder="Customer Name" name="provendo" value="<?php echo $sale_cus1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -165,19 +170,19 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>Category</label>
-                        <input type="text" class="form-control" placeholder="Category" name="procat" id="procat" required>
+                        <input type="text" class="form-control" placeholder="Category" name="procat" id="procat" value="<?php echo $sale_procat1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>Subcategory</label>
-                        <input type="text" class="form-control" placeholder="Subcategory" name="prosubcat" id="prosubcat" required>
+                        <input type="text" class="form-control" placeholder="Subcategory" name="prosubcat" id="prosubcat" value="<?php echo $sale_prosubcat1; ?>" required>
                       </div>
                     </div>
                     <div class="col-5">
                       <div class="form-group">
                         <label>Address</label>
-                        <input type="text" class="form-control" placeholder="Address" name="proaddress" required>
+                        <input type="text" class="form-control" placeholder="Address" name="proaddress" value="<?php echo $sale_address1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -185,19 +190,19 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>MRP</label>
-                        <input type="number" class="form-control" name="promrp" id="promrp" required>
+                        <input type="number" class="form-control" name="promrp" id="promrp" value="<?php echo $sale_mrp1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>Quantity</label>
-                        <input type="number" class="form-control" name="proquant" value="<?php echo $p_qua1; ?>" required>
+                        <input type="number" class="form-control" name="proquant" value="<?php echo $sale_quan1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>VP</label>
-                        <input type="number" class="form-control" name="provp" required>
+                        <input type="number" class="form-control" name="provp" value="<?php echo $sale_vp1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -205,8 +210,7 @@ if ($_SESSION["email"] == "") {
                   <div class="col">
                       <div class="form-group">
                         <label>GST</label>
-                        
-                        <input type="number" class="form-control" name="properprice" required>
+                        <input type="number" class="form-control" name="properprice" value="<?php echo $sale_gst1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
@@ -224,7 +228,7 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>Percentage Price</label>
-                        <input type="number" class="form-control" name="properprice" id="properprice" readonly required>
+                        <input type="number" class="form-control" name="properprice" id="properprice" readonly value="<?php echo $sale_dispri1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -255,7 +259,7 @@ if ($_SESSION["email"] == "") {
           $pro_id = $_POST["pid"];
 
           if ($pro_id == '') {
-            $sql = mysqli_query($conn, "INSERT INTO product (pro_code, pro_name, pro_category, pro_subcategory, pro_brand, pro_price, pro_mrp, pro_quantity, pro_curquantity, pro_image)
+            $sql = mysqli_query($conn, "INSERT INTO sales (pro_code, pro_name, pro_category, pro_subcategory, pro_brand, pro_price, pro_mrp, pro_quantity, pro_curquantity, pro_image)
                                        VALUES ('$pcode','$pname','$pcat_name','$psubcat_name','$pbrand','$pprice', '$pmrp','$pquan','$pquan','$pimg')");
           } else {
             // Update existing material
@@ -325,6 +329,7 @@ if ($_SESSION["email"] == "") {
                         <th>Quantity</th>
                         <th>Current Quantity</th>
                         <th>VP</th>
+                        <th>GST</th>
                         <th>Discount Percentage</th>
                         <th>Percentage Amount</th>
                         <th>Total Price</th>
@@ -333,47 +338,50 @@ if ($_SESSION["email"] == "") {
                       </tr>
                     </thead>
                     <?php
-                    $sql = mysqli_query($conn, "SELECT * FROM product ORDER BY pro_id ");
+                    $sql = mysqli_query($conn, "SELECT * FROM sales ORDER BY sales_id ");
                     $serialNo = 1;
                     while ($row = mysqli_fetch_assoc($sql)) {
-                      $pro_id = $row['pro_id'];
-                      $pro_cod = $row['pro_code'];
-                      $pro_nam = $row['pro_name'];
-                      $pro_cat = $row['pro_category'];
-                      $pro_subcat = $row['pro_subcategory'];
-                      $pro_bra = $row['pro_brand'];
-                      $pro_mrp = $row['pro_mrp'];
-                      $pro_pri = $row['pro_price'];
-                      $pro_qua = $row['pro_quantity'];
-                      $pro_curqua = $row['pro_curquantity'];
-                      $pro_img = $row['pro_image'];
-                      $pro_sta = $row['pro_status'];
+                      $sale_id = $row['sales_id'];
+                      $sale_proid = $row['sales_proid'];
+                      $sale_procode = $row['sales_procode'];
+                      $sale_proname = $row['sales_proname'];
+                      $sale_procat = $row['sales_procat'];
+                      $sale_prosubcat = $row['sales_prosubcat'];
+                      $sale_mrp = $row['sales_mrp'];
+                      $sale_quan = $row['sales_quan'];
+                      $sale_vp = $row['sales_vp'];
+                      $sale_gst = $row['sales_gst'];
+                      $sale_dis = $row['sales_dis'];
+                      $sale_dispri = $row['sales_dispri'];
+                      $sale_cus = $row['sales_cus'];
+                      $sale_address = $row['sales_address'];
+                      $sale_total = $row['sales_total'];
 
-                      $pro_mrptotal = $pro_mrp * $pro_qua;
-                      $pro_purtotal = $pro_pri * $pro_qua;
-                      $pro_purprofit = $pro_mrptotal - $pro_purtotal;
-                      // $pro_sellprofit = $pro_mrp * ($pro_qua - $pro_dis);
+               
                     ?>
                       <tbody>
                         <tr>
                           <td class="py-1"><?php echo $serialNo++; ?></td>
-                          <td class="py-1">#<?php echo $pro_cod; ?></td>
-                          <td><?php echo $pro_nam; ?></td>
-                          <td><?php echo $pro_cat; ?></td>
-                          <td><?php echo $pro_subcat; ?></td>
-                          <td><?php echo $pro_bra; ?></td>
-                          <td><?php echo $pro_mrp; ?></td>
-                          <td><?php echo $pro_pri; ?></td>
-                          <td><?php echo $pro_qua; ?></td>
-                          <td><?php echo $pro_curqua; ?></td>
-                          <td><?php echo $pro_mrptotal; ?></td>
-                          <td><?php echo $pro_purtotal; ?></td>
+                          <td><?php echo $sale_cus; ?></td>
+                          <td><?php echo $sale_address; ?></td>
+                          <td class="py-1">#<?php echo $sale_procode; ?></td>
+                          <td><?php echo $sale_proname; ?></td>
+                          <td><?php echo $sale_procat; ?></td>
+                          <td><?php echo $sale_prosubcat; ?></td>
+                          <td><?php echo $sale_mrp; ?></td>
+                          <td><?php echo $sale_quan; ?></td>
+                          <td><?php echo $sale_quan; ?></td>
+                          <td><?php echo $sale_vp; ?></td>
+                          <td><?php echo $sale_gst; ?></td>
+                          <td><?php echo $sale_dis; ?></td>
+                          <td><?php echo $sale_dispri; ?></td>
+                          <td><?php echo $sale_total; ?></td>
                           <td>
-                            <a href="admin-product.php?pid=<?php echo $pro_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i>
+                            <a href="admin-sales.php?sid=<?php echo $sale_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i>
                             </a>
                           </td>
                           <td>
-                            <a href="admin-product.php?pd_id=<?php echo $pro_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i>
+                            <a href="admin-sales.php?sd_id=<?php echo $sale_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i>
                             </a>
                           </td>
                         </tr>
