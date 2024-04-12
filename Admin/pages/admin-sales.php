@@ -255,7 +255,15 @@ if ($_SESSION["email"] == "") {
           $sal_dis = $_POST["shdiscount"];
           $sal_dispri = $_POST["properprice"];
 
-          $sal_total = $_POST["properprice"];
+// Calculate subtotal
+$subtotal = $sal_dispri * $sal_quan;
+
+// Calculate GST (considering 18%)
+$gstAmount = ($subtotal * $sal_gst) / 100;
+
+// Calculate total including GST
+$sal_total = $subtotal + $gstAmount;
+
 
     // Determine if this is an INSERT or UPDATE operation based on saleid
     $sale_id = $_POST["saleid"];

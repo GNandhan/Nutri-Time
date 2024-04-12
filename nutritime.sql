@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2024 at 10:38 AM
+-- Generation Time: Apr 12, 2024 at 10:42 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -223,8 +223,7 @@ CREATE TABLE `sales` (
 --
 
 INSERT INTO `sales` (`sales_id`, `sales_proid`, `sales_procode`, `sales_proname`, `sales_procat`, `sales_prosubcat`, `sales_mrp`, `sales_quan`, `sales_vp`, `sales_gst`, `sales_dis`, `sales_dispri`, `sales_cus`, `sales_address`, `sales_total`) VALUES
-(1, 1, '1007', 'Heigher Protein', 'Ayurdevic Nutrition', 'Protein', '1000', '111', '55', '333', 'pro_dis15', '600', 'Jeslin Biju', 'iojdijewdeiwjdijewiodjewjifewriofoiref', '600'),
-(2, 0, '1004', 'Shakemate', 'Targeted Nutrition', 'Energy', '712', '151515', '141414', '131313', 'pro_dis42', '565', 'Jeslin Biju', 'yyyyyyyyyyyyyyyyyy', '565');
+(2, 0, '1004', 'Shakemate', 'Targeted Nutrition', 'Energy', '712', '5555', '4444', '3333', 'pro_dis15', '565', 'Jeslin Biju', 'yyyyyyyyyyyyyyyyyy', '565');
 
 -- --------------------------------------------------------
 
