@@ -1,7 +1,7 @@
 <?php
 include './connect.php';
 // error_reporting(0);
-$sale_procode1 = $sale_cus1 = $sale_procat1 = $sale_prosubcat1 = $sale_address1 ="";
+$sale_procode1 = $sale_proname1 = $sale_cus1 = $sale_procat1 = $sale_prosubcat1 = $sale_address1 ="";
 session_start();
 if ($_SESSION["email"] == "") {
   header('location:admin-login.php');
@@ -13,7 +13,7 @@ if ($_SESSION["email"] == "") {
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Admin Materials</title>
+  <title>Admin Sales</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
@@ -37,8 +37,8 @@ if ($_SESSION["email"] == "") {
     include './topbar.php';
     ?>
     <?php
-    if (isset($_GET['sid'])) {
-      $saleid = $_GET['sid'];
+    if (isset($_GET['saleid'])) {
+      $saleid = $_GET['saleid'];
       $s_query = mysqli_query($conn, "SELECT * FROM sales WHERE sales_id = '$saleid'");
       $s_row1 = mysqli_fetch_array($s_query);
 
@@ -129,8 +129,8 @@ if ($_SESSION["email"] == "") {
               <div class="card-body">
                 <h1 class="card-title">Sales</h1>
                 <p class="card-description">Add Product Sales Details</p>
-                <form method="post" class="forms-sample" enctype="multipart/form-data">
-                  <input type="hidden" name="salid" value="<?php echo $saleid; ?>">
+                <form method="post" class="forms-sample">
+                  <input type="hidden" name="saleid" value="<?php echo $saleid; ?>">
                   <div class="row">
                     <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
@@ -143,7 +143,7 @@ if ($_SESSION["email"] == "") {
                             $pro_id = $row["pro_id"];
                             $pro_name = $row["pro_name"];
                           ?>
-                            <option value="<?php echo $pro_name; ?>" <?php if ($row['pro_name'] == $sh_raw1) {
+                            <option value="<?php echo $pro_name; ?>" <?php if ($row['pro_name'] == $sale_proname1) {
                                                                         echo 'selected';
                                                                       } ?>><?php echo $pro_name; ?></option>
                           <?php
@@ -162,7 +162,7 @@ if ($_SESSION["email"] == "") {
                     <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
                         <label>Offline Customer Name</label>
-                        <input type="text" class="form-control" placeholder="Customer Name" name="provendo" value="<?php echo $sale_cus1; ?>" required>
+                        <input type="text" class="form-control" placeholder="Customer Name" name="provend" value="<?php echo $sale_cus1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -210,7 +210,7 @@ if ($_SESSION["email"] == "") {
                   <div class="col">
                       <div class="form-group">
                         <label>GST</label>
-                        <input type="number" class="form-control" name="properprice" value="<?php echo $sale_gst1; ?>" required>
+                        <input type="number" class="form-control" name="progst" value="<?php echo $sale_gst1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
@@ -242,48 +242,41 @@ if ($_SESSION["email"] == "") {
         <!-- PHP CODE FOR INSERTING THE DATA -->
         <?php
         if (isset($_POST["submitp"])) {
-          $pcode = $_POST["procode"];
-          $pname = $_POST["proname"];
-          $pcat_name = $_POST["procat"];
-          $psubcat_name = $_POST["prosubcat"];
-          $pbrand = "Herbalife";
-          $pmrp = $_POST["promrp"];
-          $pprice = $_POST["proprice"];
-          $pquan = $_POST["proquant"];
-          $pimg = $_FILES['proimg']['name'];
+          $sal_proname = $_POST["proname"];
+          $sal_procode = $_POST["procode"];
+          $sal_cus = $_POST["provend"];
+          $sal_procat = $_POST["procat"];
+          $sal_prosubcat = $_POST["prosubcat"];
+          $sal_address = $_POST["proaddress"];
+          $sal_mrp = $_POST["promrp"];
+          $sal_quan = $_POST["proquant"];
+          $sal_vp = $_POST["provp"];
+          $sal_gst = $_POST["progst"];
+          $sal_dis = $_POST["shdiscount"];
+          $sal_dispri = $_POST["properprice"];
 
-          // Image uploading formats
-          $filename = $_FILES['proimg']['name'];
-          $tempname = $_FILES['proimg']['tmp_name'];
-          // Fetch the material ID from the URL parameters
-          $pro_id = $_POST["pid"];
+          $sal_total = $_POST["properprice"];
 
-          if ($pro_id == '') {
-            $sql = mysqli_query($conn, "INSERT INTO sales (pro_code, pro_name, pro_category, pro_subcategory, pro_brand, pro_price, pro_mrp, pro_quantity, pro_curquantity, pro_image)
-                                       VALUES ('$pcode','$pname','$pcat_name','$psubcat_name','$pbrand','$pprice', '$pmrp','$pquan','$pquan','$pimg')");
-          } else {
-            // Update existing material
-            if ($filename) {
-              // Remove the existing image
-              $imgs = '../images/product/' . $pimg;
-              unlink($imgs);
-              // Update material with new image
-              $sql = mysqli_query($conn, "UPDATE product SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat_name', pro_subcategory='$psubcat_name', pro_brand='$pbrand', pro_price='$pprice', pro_mrp='$pmrp', pro_quantity='$pquan', pro_curquantity='$pquan', pro_image='$pimg' WHERE pro_id='$pro_id'");
-            } else {
-              // Update material without changing the image
-              $sql = mysqli_query($conn, "UPDATE product SET pro_code='$pcode', pro_name='$pname', pro_category='$pcat_name', pro_subcategory='$psubcat_name', pro_brand='$pbrand', pro_price='$pprice', pro_mrp='$pmrp', pro_quantity='$pquan', pro_curquantity='$pquan' WHERE pro_id='$pro_id'");
-            }
-          }
 
-          if ($sql == TRUE) {
-            // echo "<script type= 'text/javascript'>alert('New record created successfully');</script>";
-            move_uploaded_file($tempname, "../images/product/$filename");
-            echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
-          } else {
-            echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
-          }
-        }
-        ?>
+// Fetch the shake ID from the form
+$saleid = $_POST["saleid"];
+
+if($saleid=='') {
+$sql = mysqli_query($conn,"INSERT INTO sales (sales_procode, sales_proname, sales_procat, sales_prosubcat, sales_mrp, sales_quan, sales_vp, sales_gst, sales_dis, sales_dispri, sales_cus, sales_address, sales_total)
+                                         VALUES ('$sal_procode','$sal_proname','$sal_procat','$sal_prosubcat','$sal_mrp','$sal_quan','$sal_vp','$sal_gst','$sal_dis','$sal_dispri','$sal_cus','$sal_address','$sal_total')");
+}else{
+      // Update shake
+$sql = mysqli_query($conn, "UPDATE sales SET sales_procode='$sal_procode', sales_proname='$sal_proname', sales_procat='$sal_procat', sales_prosubcat='$sal_prosubcat', sales_mrp='$sal_mrp', sales_quan='$sal_quan', sales_vp='$sal_vp', sales_gst='$sal_gst', sales_dis='$sal_dis', sales_dispri='$sal_dispri', sales_cus='$sal_cus', sales_address='$sal_address', sales_total='$sal_total' WHERE sales_id='$saleid'");
+}
+
+if ($sql == TRUE){
+echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
+} 
+else{
+  echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
+}
+}
+?>
         <div class="row ">
           <!-- table view -->
           <div class="col-lg-12 grid-margin stretch-card">
@@ -341,7 +334,7 @@ if ($_SESSION["email"] == "") {
                     $sql = mysqli_query($conn, "SELECT * FROM sales ORDER BY sales_id ");
                     $serialNo = 1;
                     while ($row = mysqli_fetch_assoc($sql)) {
-                      $sale_id = $row['sales_id'];
+                      $saleid = $row['sales_id'];
                       $sale_proid = $row['sales_proid'];
                       $sale_procode = $row['sales_procode'];
                       $sale_proname = $row['sales_proname'];
@@ -377,11 +370,11 @@ if ($_SESSION["email"] == "") {
                           <td><?php echo $sale_dispri; ?></td>
                           <td><?php echo $sale_total; ?></td>
                           <td>
-                            <a href="admin-sales.php?sid=<?php echo $sale_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i>
+                            <a href="admin-sales.php?sid=<?php echo $saleid; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i>
                             </a>
                           </td>
                           <td>
-                            <a href="admin-sales.php?sd_id=<?php echo $sale_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i>
+                            <a href="admin-sales.php?sd_id=<?php echo $saleid; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i>
                             </a>
                           </td>
                         </tr>
