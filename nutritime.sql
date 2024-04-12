@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2024 at 08:07 AM
+-- Generation Time: Apr 12, 2024 at 10:38 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -131,7 +131,8 @@ INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`)
 ('nutriadmin@gmail.com', 7, '2024-04-05 06:36:58'),
 ('nutriadmin@gmail.com', 8, '2024-04-06 08:45:45'),
 ('nutriadmin@gmail.com', 9, '2024-04-11 06:47:13'),
-('nutriadmin@gmail.com', 10, '2024-04-12 06:55:39');
+('nutriadmin@gmail.com', 10, '2024-04-12 06:55:39'),
+('nutriadmin@gmail.com', 11, '2024-04-12 10:05:12');
 
 -- --------------------------------------------------------
 
@@ -170,7 +171,7 @@ CREATE TABLE `price` (
 
 INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subcat`, `pro_mrp`, `pro_price`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`, `pro_scoop`, `pro_scoop15`, `pro_scoop25`, `pro_scoop35`, `pro_scoop42`, `pro_scoop50`, `pro_quantity`, `pro_curquantity`, `pro_desc`, `pro_img`) VALUES
 (1, 'Formula 1', 1001, 'Targeted Nutrition', 'Brain Health', '2378', '2200', '2065', '1860', '1650', '1505', '1340', '20', '103.25', '93', '82.50', '75.25', '68', '30', '30', 'Get immune Health ', 'main page.jpg'),
-(2, 'Fiber Complex', 1002, 'Targeted Nutrition', 'Energy', '2792', '2600', '2425', '2180', '1940', '1765', '1570', '30', '80', '72', '64', '58', '52', '10', '10', '', 'main page.jpg'),
+(2, 'Fiber Complex', 1002, 'Targeted Nutrition', 'Energy', '2792', '2600', '2425', '2180', '1940', '1765', '1570', '30', '80', '72', '64', '58', '52', '10', '10', 'fiber intake capsules', 'main page.jpg'),
 (3, 'Protein', 1003, 'Targeted Nutrition', 'Energy', '1413', '1200', '1230', '1105', '980', '895', '795', '30', '41', '36.83', '32.67', '29.83', '26.50', '50', '50', '', 'download.jpeg'),
 (4, 'Shakemate', 1004, 'Targeted Nutrition', 'Energy', '712', '700', '660', '625', '590', '565', '535', '18', '36.67', '34.72', '32.78', '31.39', '29.72', '35', '35', '', 'download.jpeg'),
 (5, 'Afresh', 1005, 'Targeted Nutrition', 'Energy', '885', '800', '770', '690', '615', '560', '500', '25', '30.80', '27.60', '24.60', '22.40', '20', '18', '18', '', 'download.jpeg'),
@@ -204,18 +205,26 @@ CREATE TABLE `sales` (
   `sales_proid` int(10) NOT NULL,
   `sales_procode` varchar(20) NOT NULL,
   `sales_proname` varchar(100) NOT NULL,
-  `sales_procat` varchar(100) NOT NULL,
+  `sales_procat` varchar(50) NOT NULL,
   `sales_prosubcat` varchar(50) NOT NULL,
-  `sales_mrp` varchar(50) NOT NULL DEFAULT 'Herbalife',
+  `sales_mrp` varchar(10) NOT NULL,
   `sales_quan` varchar(10) NOT NULL,
   `sales_vp` varchar(20) NOT NULL,
   `sales_gst` varchar(10) NOT NULL,
   `sales_dis` varchar(10) NOT NULL,
   `sales_dispri` varchar(11) NOT NULL,
-  `sales_cus` varchar(11) NOT NULL,
-  `sales_address` varchar(11) NOT NULL,
+  `sales_cus` varchar(100) NOT NULL,
+  `sales_address` varchar(100) NOT NULL,
   `sales_total` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `sales`
+--
+
+INSERT INTO `sales` (`sales_id`, `sales_proid`, `sales_procode`, `sales_proname`, `sales_procat`, `sales_prosubcat`, `sales_mrp`, `sales_quan`, `sales_vp`, `sales_gst`, `sales_dis`, `sales_dispri`, `sales_cus`, `sales_address`, `sales_total`) VALUES
+(1, 1, '1007', 'Heigher Protein', 'Ayurdevic Nutrition', 'Protein', '1000', '111', '55', '333', 'pro_dis15', '600', 'Jeslin Biju', 'iojdijewdeiwjdijewiodjewjifewriofoiref', '600'),
+(2, 0, '1004', 'Shakemate', 'Targeted Nutrition', 'Energy', '712', '151515', '141414', '131313', 'pro_dis42', '565', 'Jeslin Biju', 'yyyyyyyyyyyyyyyyyy', '565');
 
 -- --------------------------------------------------------
 
@@ -421,7 +430,7 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `price`
@@ -439,7 +448,7 @@ ALTER TABLE `program`
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `shake`

@@ -1,6 +1,6 @@
 <?php
 include './connect.php';
-// error_reporting(0);
+error_reporting(0);
 $sale_procode1 = $sale_proname1 = $sale_cus1 = $sale_procat1 = $sale_prosubcat1 = $sale_address1 ="";
 session_start();
 if ($_SESSION["email"] == "") {
@@ -37,8 +37,8 @@ if ($_SESSION["email"] == "") {
     include './topbar.php';
     ?>
     <?php
-    if (isset($_GET['saleid'])) {
-      $saleid = $_GET['saleid'];
+    if (isset($_GET['sid'])) {
+      $saleid = $_GET['sid'];
       $s_query = mysqli_query($conn, "SELECT * FROM sales WHERE sales_id = '$saleid'");
       $s_row1 = mysqli_fetch_array($s_query);
 
@@ -232,7 +232,7 @@ if ($_SESSION["email"] == "") {
                       </div>
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-primary mr-2" name="submitp">Submit</button>
+                  <input type="submit" class="btn btn-primary mr-2" name="submitp" value="Submit">
                   <button type="reset" class="btn btn-light">Cancel</button>
                 </form>
               </div>
@@ -257,24 +257,22 @@ if ($_SESSION["email"] == "") {
 
           $sal_total = $_POST["properprice"];
 
-
-// Fetch the shake ID from the form
-$saleid = $_POST["saleid"];
-
-if($saleid=='') {
-$sql = mysqli_query($conn,"INSERT INTO sales (sales_procode, sales_proname, sales_procat, sales_prosubcat, sales_mrp, sales_quan, sales_vp, sales_gst, sales_dis, sales_dispri, sales_cus, sales_address, sales_total)
-                                         VALUES ('$sal_procode','$sal_proname','$sal_procat','$sal_prosubcat','$sal_mrp','$sal_quan','$sal_vp','$sal_gst','$sal_dis','$sal_dispri','$sal_cus','$sal_address','$sal_total')");
-}else{
-      // Update shake
-$sql = mysqli_query($conn, "UPDATE sales SET sales_procode='$sal_procode', sales_proname='$sal_proname', sales_procat='$sal_procat', sales_prosubcat='$sal_prosubcat', sales_mrp='$sal_mrp', sales_quan='$sal_quan', sales_vp='$sal_vp', sales_gst='$sal_gst', sales_dis='$sal_dis', sales_dispri='$sal_dispri', sales_cus='$sal_cus', sales_address='$sal_address', sales_total='$sal_total' WHERE sales_id='$saleid'");
-}
-
-if ($sql == TRUE){
-echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
-} 
-else{
-  echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
-}
+    // Determine if this is an INSERT or UPDATE operation based on saleid
+    $sale_id = $_POST["saleid"];
+    if (empty($sale_id)) {
+        // Perform INSERT operation
+        $sql = mysqli_query($conn, "INSERT INTO sales (sales_procode, sales_proname, sales_procat, sales_prosubcat, sales_mrp, sales_quan, sales_vp, sales_gst, sales_dis, sales_dispri, sales_cus, sales_address, sales_total)
+                                     VALUES ('$sal_procode','$sal_proname','$sal_procat','$sal_prosubcat','$sal_mrp','$sal_quan','$sal_vp','$sal_gst','$sal_dis','$sal_dispri','$sal_cus','$sal_address','$sal_total')");
+    } else {
+        // Perform UPDATE operation
+        $sql = mysqli_query($conn, "UPDATE sales SET sales_procode='$sal_procode', sales_proname='$sal_proname', sales_procat='$sal_procat', sales_prosubcat='$sal_prosubcat', sales_mrp='$sal_mrp', sales_quan='$sal_quan', sales_vp='$sal_vp', sales_gst='$sal_gst', sales_dis='$sal_dis', sales_dispri='$sal_dispri', sales_cus='$sal_cus', sales_address='$sal_address', sales_total='$sal_total' WHERE sales_id='$sale_id'");
+    }
+    // Check if the query was successful
+    if ($sql === TRUE) {
+        echo "<script>alert('Operation completed successfully.');</script>";
+    } else {
+        echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
+    }
 }
 ?>
         <div class="row ">
@@ -282,10 +280,10 @@ else{
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">Product</h4>
+                <h4 class="card-title">Sales</h4>
                 <div class="row">
                   <div class="col-md-9">
-                    <p class="card-description">Product Details</p>
+                    <p class="card-description">Product Sales Details</p>
                   </div>
                   <div class="col-md-3">
                     <div class="dropdown">
@@ -334,7 +332,7 @@ else{
                     $sql = mysqli_query($conn, "SELECT * FROM sales ORDER BY sales_id ");
                     $serialNo = 1;
                     while ($row = mysqli_fetch_assoc($sql)) {
-                      $saleid = $row['sales_id'];
+                      $sale_id = $row['sales_id'];
                       $sale_proid = $row['sales_proid'];
                       $sale_procode = $row['sales_procode'];
                       $sale_proname = $row['sales_proname'];
@@ -370,11 +368,11 @@ else{
                           <td><?php echo $sale_dispri; ?></td>
                           <td><?php echo $sale_total; ?></td>
                           <td>
-                            <a href="admin-sales.php?sid=<?php echo $saleid; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i>
+                            <a href="admin-sales.php?sid=<?php echo $sale_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i>
                             </a>
                           </td>
                           <td>
-                            <a href="admin-sales.php?sd_id=<?php echo $saleid; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i>
+                            <a href="admin-sales.php?sd_id=<?php echo $sale_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i>
                             </a>
                           </td>
                         </tr>
