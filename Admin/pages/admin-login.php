@@ -1,8 +1,8 @@
 <?php
- include './connect.php';
- error_reporting(0);
- session_start();
- $_SESSION["email"]='';
+include './connect.php';
+error_reporting(0);
+session_start();
+$_SESSION["email"] = '';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,9 +59,9 @@
     </div>
     <!-- page-body-wrapper ends -->
   </div>
-<!-- PHP CODE FOR CHECKING THE INSERTED FORM IS CORRECT OR NOT THEN LOGGED IN -->
-<?php
-if (isset($_POST["submitl"])) {
+  <!-- PHP CODE FOR CHECKING THE INSERTED FORM IS CORRECT OR NOT THEN LOGGED IN -->
+  <?php
+  if (isset($_POST["submitl"])) {
     $email = $_POST["email"];
     $password = $_POST["pass"];
 
@@ -69,30 +69,20 @@ if (isset($_POST["submitl"])) {
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
-        // Successful login
-        $loginTime = date("Y-m-d H:i:s");
-        $insertQuery = "INSERT INTO login_details (admin_username, login_time) VALUES ('$email', '$loginTime')";
-        mysqli_query($conn, $insertQuery);
+      // Successful login
+      $loginTime = date("Y-m-d H:i:s");
+      $insertQuery = "INSERT INTO login_details (admin_username, login_time) VALUES ('$email', '$loginTime')";
+      mysqli_query($conn, $insertQuery);
 
-        $_SESSION["email"] = $email;
-        $_SESSION["pass"] = $password;
+      $_SESSION["email"] = $email;
+      $_SESSION["pass"] = $password;
 
-        echo '<script type="text/javascript">window.location = "admin-dashboard.php"</script>';
+      echo '<script type="text/javascript">window.location = "admin-dashboard.php"</script>';
     } else {
-        echo "<script type='text/javascript'>alert('Error: Invalid credentials');</script>";
+      echo "<script type='text/javascript'>alert('Error: Invalid credentials');</script>";
     }
-}
-?>
-  <!-- container-scroller -->
-  <!-- plugins:js -->
-  <script src="../vendors/js/vendor.bundle.base.js"></script>
-  <!-- endinject -->
-  <!-- inject:js -->
-  <script src="../js/off-canvas.js"></script>
-  <script src="../js/hoverable-collapse.js"></script>
+  }
+  ?>
   <script src="../js/template.js"></script>
-  <script src="../js/settings.js"></script>
-  <script src="../js/todolist.js"></script>
-  <!-- endinject -->
 </body>
 </html>
