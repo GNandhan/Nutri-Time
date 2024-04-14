@@ -61,6 +61,8 @@ if(isset($_GET['userd_id']))
                   <table class="table table-striped">
                     <thead>
                       <tr>
+                      <th>Edit</th>
+                        <th>Delete</th>
                         <th>Customer Id</th>
                         <th>Customer Name</th>
                         <th>Age</th>
@@ -81,8 +83,7 @@ if(isset($_GET['userd_id']))
                         <th>Total Amount</th>
                         <th>Amount Paid</th>
                         <th>Remaining Amount</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+
                       </tr>
                     </thead>
 <?php  
@@ -107,6 +108,16 @@ while($row=mysqli_fetch_assoc($sql))
 ?>
                     <tbody>
                       <tr>
+                      <td>
+                          <a  class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
+                            <i class="ti-pencil-alt btn-icon-append"></i>
+                          </a>
+                        </td>
+                        <td>
+                          <a href="admin-customer.php?userd_id=<?php echo $cus_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete 
+                            <i class="ti-trash btn-icon-prepend"></i>
+                          </a>
+                        </td>
                         <td class="py-1">#<?php echo $serialNo++; ?></td>
                         <td><?php echo $name; ?></td>
                         <td><?php echo $cus_age; ?></td>
@@ -120,16 +131,6 @@ while($row=mysqli_fetch_assoc($sql))
                         <td><?php echo $cus_payment; ?></td>
                         <td><?php echo $cus_payment; ?></td>
                         <td><?php echo $cus_payment; ?></td>
-                        <td>
-                          <a  class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
-                            <i class="ti-pencil-alt btn-icon-append"></i>
-                          </a>
-                        </td>
-                        <td>
-                          <a href="admin-customer.php?userd_id=<?php echo $cus_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete 
-                            <i class="ti-trash btn-icon-prepend"></i>
-                          </a>
-                        </td>
                       </tr>
                     </tbody>
 <?php

@@ -167,6 +167,8 @@ else{
                   <table class="table table-striped">
                     <thead>
                       <tr>
+                      <th>Edit</th>
+                        <th>Delete</th>
                         <th>Slno</th>
                         <th>Staff Name</th>
                         <th>Username</th>
@@ -175,8 +177,7 @@ else{
                         <th>Gender</th>
                         <th>City</th>
                         <th>Phone No</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+
                       </tr>
                     </thead>
 <?php  
@@ -195,15 +196,7 @@ while($row=mysqli_fetch_assoc($sql))
 ?>
                     <tbody>
                       <tr>
-                        <td class="py-1"><?php echo $serialNo++; ?></td>
-                        <td><?php echo $st_name; ?></td>
-                        <td><?php echo $st_uname; ?></td>
-                        <td><?php echo $st_mail; ?></td>
-                        <td><?php echo $st_pass; ?></td>
-                        <td><?php echo $st_gender; ?></td>
-                        <td><?php echo $st_city; ?></td>
-                        <td><?php echo $st_phno; ?></td>
-                        <td>
+                      <td>
                           <a href="admin-staff.php?stid=<?php echo $st_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
                             <i class="ti-pencil-alt btn-icon-append"></i>
                           </a>
@@ -213,6 +206,15 @@ while($row=mysqli_fetch_assoc($sql))
                             <i class="ti-trash btn-icon-prepend"></i>
                           </a>
                         </td>
+                        <td class="py-1"><?php echo $serialNo++; ?></td>
+                        <td><?php echo $st_name; ?></td>
+                        <td><?php echo $st_uname; ?></td>
+                        <td><?php echo $st_mail; ?></td>
+                        <td><?php echo $st_pass; ?></td>
+                        <td><?php echo $st_gender; ?></td>
+                        <td><?php echo $st_city; ?></td>
+                        <td><?php echo $st_phno; ?></td>
+
                       </tr>
                     </tbody>
 <?php

@@ -110,10 +110,10 @@ while ($row = mysqli_fetch_assoc($query)) {
                         <select class="form-control" name="stomaterial" id="stomaterial" onchange="updatePrice()">
                             <option selected>Select the Product</option>
                               <?php 
-                    $query = mysqli_query($conn,"select * from product");
+                    $query = mysqli_query($conn,"select * from price");
                     while ($row = mysqli_fetch_assoc($query))
                       {
-                      $pro_id=$row["pro_id"];
+                      $pro_id=$row["pri_id"];
                       $pro_name=$row["pro_name"];
                   ?>
                     <option value="<?php echo $pro_name; ?>" <?php if($row['pro_name'] == $sh_raw1){echo 'selected';} ?> ><?php echo $pro_name; ?></option>
@@ -238,14 +238,14 @@ else{
                   <table class="table table-striped">
                     <thead>
                       <tr>
+                      <th>Edit</th>
+                        <th>Delete</th>
                         <th>Slno</th>
                         <th>Product</th>
                         <th>Quantity</th>
                         <th>Location</th>
                         <th>Price</th>
                         <th>Total</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
                       </tr>
                     </thead>
                     <?php  
@@ -266,15 +266,7 @@ while($row=mysqli_fetch_assoc($sql))
 ?>
                     <tbody>
                       <tr>
-                        <td class="py-1"><?php echo $serialNo++; ?></td>
-                        <td class="py-1"><?php echo $stock_name; ?></td>
-                        <td><?php echo $stock_comname; ?></td>
-                        <td><?php echo $stock_place; ?></td>
-                        <td><?php echo $stock_quan; ?></td>
-                        <td><?php echo $stock_pri; ?></td>
-                        <!-- <td><?php echo $stock_gst; ?></td> -->
-                        <!-- <td><?php echo $stock_total; ?></td> -->
-                        <td>
+                      <td>
                           <a href="admin-stock.php?stoid=<?php echo $stock_id; ?>"
                             class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i
                               class="ti-pencil-alt btn-icon-append"></i>
@@ -286,6 +278,15 @@ while($row=mysqli_fetch_assoc($sql))
                               class="ti-trash btn-icon-prepend"></i>
                           </a>
                         </td>
+                        <td class="py-1"><?php echo $serialNo++; ?></td>
+                        <td class="py-1"><?php echo $stock_name; ?></td>
+                        <td><?php echo $stock_comname; ?></td>
+                        <td><?php echo $stock_place; ?></td>
+                        <td><?php echo $stock_quan; ?></td>
+                        <td><?php echo $stock_pri; ?></td>
+                        <!-- <td><?php echo $stock_gst; ?></td> -->
+                        <!-- <td><?php echo $stock_total; ?></td> -->
+
                       </tr>
                     </tbody>
                     <?php

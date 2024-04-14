@@ -283,6 +283,8 @@ if ($_SESSION["email"] == "") {
                   <table class="table table-striped">
                     <thead>
                       <tr>
+                      <th>Edit</th>
+                        <th>Delete</th>
                         <th>Sl-no</th>
                         <th>Customer Name</th>
                         <th>Shake Img</th>
@@ -296,8 +298,7 @@ if ($_SESSION["email"] == "") {
                         <th>Discount</th>
                         <th>Service Charge</th>
                         <th>Total</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+
                       </tr>
                     </thead>
                     <?php
@@ -321,6 +322,16 @@ if ($_SESSION["email"] == "") {
                     ?>
                       <tbody>
                         <tr>
+                        <td>
+                            <a href="admin-shake.php?sid=<?php echo $sh_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit
+                              <i class="ti-pencil-alt btn-icon-append"></i>
+                            </a>
+                          </td>
+                          <td>
+                            <a href="admin-shake.php?sd_id=<?php echo $sh_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete
+                              <i class="ti-trash btn-icon-prepend"></i>
+                            </a>
+                          </td>
                           <td class="py-1"><?php echo $serialNo++; ?></td>
                           <td><?php echo $cu_name; ?></td>
                           <td><img src="../images/shake/<?php echo $sh_img; ?>" alt="" width="50" class="rounded-circle"></td>
@@ -334,16 +345,7 @@ if ($_SESSION["email"] == "") {
                           <td><?php echo $sh_discount; ?>%</td>
                           <td><?php echo $sh_expense; ?></td>
                           <td><?php echo $sh_total; ?></td>
-                          <td>
-                            <a href="admin-shake.php?sid=<?php echo $sh_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit
-                              <i class="ti-pencil-alt btn-icon-append"></i>
-                            </a>
-                          </td>
-                          <td>
-                            <a href="admin-shake.php?sd_id=<?php echo $sh_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete
-                              <i class="ti-trash btn-icon-prepend"></i>
-                            </a>
-                          </td>
+
                         </tr>
                       </tbody>
                     <?php

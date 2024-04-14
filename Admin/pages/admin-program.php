@@ -194,6 +194,8 @@ else {
                   <table class="table table-striped">
                     <thead>
                       <tr>
+                      <th>Edit</th>
+                        <th>Delete</th>
                         <th>sl-no</th>
                         <th>Program Name</th>
                         <th>Program images</th>
@@ -201,8 +203,7 @@ else {
                         <th>Fee</th>
                         <th>Program Conditions</th>
                         <th>Program Mode</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+
                       </tr>
                     </thead>
 <?php  
@@ -220,14 +221,7 @@ while($row=mysqli_fetch_assoc($sql))
 ?>
                     <tbody>
                       <tr>
-                        <td class="py-1"><?php echo $serialNo++; ?></td>
-                        <td><?php echo $pro_name; ?></td>
-                        <td><img src="../images/program/<?php echo $pro_img; ?>" alt=""></td>
-                        <td><?php echo $pro_dura; ?></td>
-                        <td><?php echo $pro_fee; ?></td>
-                        <td><?php echo $pro_con; ?></td>
-                        <td><?php echo $pro_mode; ?></td>
-                        <td>
+                      <td>
                           <a href="admin-program.php?prid=<?php echo $pro_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
                             <i class="ti-pencil-alt btn-icon-append"></i>
                           </a>
@@ -237,6 +231,14 @@ while($row=mysqli_fetch_assoc($sql))
                             <i class="ti-trash btn-icon-prepend"></i>
                           </a>
                         </td>
+                        <td class="py-1"><?php echo $serialNo++; ?></td>
+                        <td><?php echo $pro_name; ?></td>
+                        <td><img src="../images/program/<?php echo $pro_img; ?>" alt=""></td>
+                        <td><?php echo $pro_dura; ?></td>
+                        <td><?php echo $pro_fee; ?></td>
+                        <td><?php echo $pro_con; ?></td>
+                        <td><?php echo $pro_mode; ?></td>
+
                       </tr>
                     </tbody>
 <?php

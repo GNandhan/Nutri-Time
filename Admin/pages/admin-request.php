@@ -45,6 +45,8 @@
                   <table class="table table-striped">
                     <thead>
                       <tr>
+                      <th>Edit</th>
+                        <th>Delete</th>
                         <th>User Id</th>
                         <th>User Name</th>
                         <th>Customer Name</th>
@@ -57,12 +59,21 @@
                         <th>Total Amount</th>
                         <th>Amount Paid</th>
                         <th>Remaining Amount</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
+                      <td>
+                          <button class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
+                            <i class="ti-pencil-alt btn-icon-append"></i>
+                          </button>
+                        </td>
+                        <td>
+                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
+                            <i class="ti-trash btn-icon-prepend"></i>
+                          </button>
+                        </td>
                         <td class="py-1">#00A001</td>
                         <td>username 1</td>
                         <td>Customer 1</td>
@@ -75,16 +86,7 @@
                         <td>10,000</td>
                         <td>10,000</td>
                         <td>0</td>
-                        <td>
-                          <button class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
-                            <i class="ti-pencil-alt btn-icon-append"></i>
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn btn-inverse-danger btn-icon-text p-2">Delete 
-                            <i class="ti-trash btn-icon-prepend"></i>
-                          </button>
-                        </td>
+
                       </tr>
                     </tbody>
                   </table>
