@@ -1,5 +1,5 @@
 <?php
-include './connect.php'; // Assuming this file contains your database connection
+include './connect.php';
 
 if (isset($_POST['discount']) && isset($_POST['recipes'])) {
     $discount = $_POST['discount'];

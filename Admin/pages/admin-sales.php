@@ -260,7 +260,6 @@ $subtotal = $sal_dispri * $sal_quan;
 
 // Calculate GST (considering 18%)
 $gstAmount = ($subtotal * $sal_gst) / 100;
-
 // Calculate total including GST
 $sal_total = $subtotal + $gstAmount;
 
@@ -317,6 +316,8 @@ $sal_total = $subtotal + $gstAmount;
                   <table class="table table-striped">
                     <thead>
                       <tr>
+                      <th>Edit</th>
+                        <th>Delete</th>
                         <th>Slno</th>
                         <th>Offline Customer Name</th>
                         <th>Address</th>
@@ -332,8 +333,7 @@ $sal_total = $subtotal + $gstAmount;
                         <th>Discount Percentage</th>
                         <th>Percentage Amount</th>
                         <th>Total Price</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+
                       </tr>
                     </thead>
                     <?php
@@ -360,6 +360,14 @@ $sal_total = $subtotal + $gstAmount;
                     ?>
                       <tbody>
                         <tr>
+                        <td>
+                            <a href="admin-sales.php?sid=<?php echo $sale_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i>
+                            </a>
+                          </td>
+                          <td>
+                            <a href="admin-sales.php?sd_id=<?php echo $sale_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i>
+                            </a>
+                          </td>
                           <td class="py-1"><?php echo $serialNo++; ?></td>
                           <td><?php echo $sale_cus; ?></td>
                           <td><?php echo $sale_address; ?></td>
@@ -371,18 +379,11 @@ $sal_total = $subtotal + $gstAmount;
                           <td><?php echo $sale_quan; ?></td>
                           <td><?php echo $sale_quan; ?></td>
                           <td><?php echo $sale_vp; ?></td>
-                          <td><?php echo $sale_gst; ?></td>
-                          <td><?php echo $sale_dis; ?></td>
+                          <td><?php echo $sale_gst; ?>%</td>
+                          <td><?php echo $sale_dis; ?>%</td>
                           <td><?php echo $sale_dispri; ?></td>
                           <td><?php echo $sale_total; ?></td>
-                          <td>
-                            <a href="admin-sales.php?sid=<?php echo $sale_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i>
-                            </a>
-                          </td>
-                          <td>
-                            <a href="admin-sales.php?sd_id=<?php echo $sale_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i>
-                            </a>
-                          </td>
+
                         </tr>
                       </tbody>
                     <?php

@@ -1,7 +1,7 @@
 <?php
 include './connect.php';
-error_reporting(0);
-$sh_reci1 = $pro_id = $sh_name1 = $sh_goal1 = $sh_extra1 = $sh_extraprice1= $sh_expen1= $sh_raw1 = $sh_disc1 =''; //for declaring the variable and not to show errors in the page
+// error_reporting(0);
+$sh_reci1 = $pro_id = $sh_name1 = $sh_goal1 = $sh_extra1 = $sh_extraprice1 = $sh_expen1 = $sh_raw1 = $sh_disc1 = ''; //for declaring the variable and not to show errors in the page
 session_start();
 if ($_SESSION["email"] == "") {
   header('location:admin-login.php');
@@ -115,29 +115,29 @@ if ($_SESSION["email"] == "") {
                     </div>
                   </div>
                   <div class="row">
-                  <div class="col">
-    <div class="form-group">
-        <label for="exampleSelectGender">Shake Recipe</label><br>
-        <?php
-        $query = mysqli_query($conn, "SELECT * FROM price");
-        while ($row = mysqli_fetch_assoc($query)) {
-            $pro_name = $row["pro_name"];
-        ?>
-        <div class="form-check ml-4">
-            <input class="form-check-input" type="checkbox" name="shrecipe[]" value="<?php echo $pro_name; ?>" onchange="displayIngredientPrices()">
-            <label class="form-check-label"><?php echo $pro_name; ?></label>
-        </div>
-        <?php } ?>
-    </div>
-</div>
-<div class="col">
-    <div class="form-group">
-        <label>Ingredient Prices (MRP)</label>
-        <div id="ingredientPrices">
-            <!-- Ingredient prices will be dynamically updated here -->
-        </div>
-    </div>
-</div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="exampleSelectGender">Shake Recipe</label><br>
+                        <?php
+                        $query = mysqli_query($conn, "SELECT * FROM price");
+                        while ($row = mysqli_fetch_assoc($query)) {
+                          $pro_name = $row["pro_name"];
+                        ?>
+                          <div class="form-check ml-4">
+                            <input class="form-check-input" type="checkbox" name="shrecipe[]" value="<?php echo $pro_name; ?>" onchange="displayIngredientPrices()">
+                            <label class="form-check-label"><?php echo $pro_name; ?></label>
+                          </div>
+                        <?php } ?>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Ingredient Prices (MRP)</label>
+                        <div id="ingredientPrices">
+                          <!-- Ingredient prices will be dynamically updated here -->
+                        </div>
+                      </div>
+                    </div>
 
 
                     <div class="col">
@@ -251,8 +251,7 @@ if ($_SESSION["email"] == "") {
 
             if ($sh_id == '') {
               $sql = mysqli_query($conn, "INSERT INTO shake (shake_name, customer_id, customer_name, shake_goal, shake_recipes, shake_mrp, shake_extra, shake_extraprice, shake_discount, shake_expence, shake_total, shake_image)
-              VALUES ('$sh_name','$cus_name','$cus_name','$sh_goal','$sh_reci','$total_price','$sh_extra','$sh_extra_price','$sh_disc','$sh_sercharge','$total_cost','$sh_img')");
-
+                                                     VALUES ('$sh_name','$cus_name','$cus_name','$sh_goal','$sh_reci','$total_price','$sh_extra','$sh_extra_price','$sh_disc','$sh_sercharge','$total_cost','$sh_img')");
             } else {
               // Update existing material
               if ($filename) {
@@ -399,15 +398,14 @@ if ($_SESSION["email"] == "") {
       fileReader.readAsDataURL(input.files[0]);
     }
   </script>
- 
- <script>
+
+  <script>
 $(document).ready(function() {
-    // Function to handle change in discount select
     $('select[name="shdiscount"]').change(function() {
         var discount = $(this).val();
+        var selectedRecipes = [];
 
         // Collect selected recipe checkboxes
-        var selectedRecipes = [];
         $('input[name="shrecipe[]"]:checked').each(function() {
             selectedRecipes.push($(this).val());
         });
@@ -423,6 +421,10 @@ $(document).ready(function() {
                 var ingredientPrices = '';
                 $.each(response, function(key, value) {
                     ingredientPrices += '<div>' + key + ' Price: ' + value + '</div>';
+                    if (key === 'shake_mrp') {
+                        // Update total price (shake_mrp) input field
+                        $('input[name="number"]').val(value); // Assuming input name is 'number'
+                    }
                 });
                 $('#ingredientPrices').html(ingredientPrices);
             },
@@ -432,7 +434,8 @@ $(document).ready(function() {
         });
     });
 });
- </script>
+
+  </script>
   <!-- End plugin js for this page -->
   <!-- inject:js -->
   <script src="../js/off-canvas.js"></script>

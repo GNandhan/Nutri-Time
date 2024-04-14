@@ -69,7 +69,7 @@ if(isset($_GET['stod_id']))
 <!-- Fetching prices of all materials from the database -->
 <?php
 $material_prices = array();
-$query = mysqli_query($conn, "SELECT pro_name, pro_price FROM product");
+$query = mysqli_query($conn, "SELECT pro_name, pro_price FROM price");
 while ($row = mysqli_fetch_assoc($query)) {
     $material_prices[$row['pro_name']] = $row['pro_price'];
 }

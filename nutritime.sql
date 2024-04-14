@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2024 at 10:42 AM
+-- Generation Time: Apr 12, 2024 at 01:06 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -143,7 +143,7 @@ INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`)
 CREATE TABLE `price` (
   `pri_id` int(11) NOT NULL,
   `pro_name` varchar(50) NOT NULL,
-  `pro_code` int(20) NOT NULL,
+  `pro_code` varchar(20) NOT NULL,
   `pro_category` varchar(50) NOT NULL,
   `pro_subcat` varchar(50) NOT NULL,
   `pro_mrp` varchar(10) NOT NULL,
@@ -170,13 +170,12 @@ CREATE TABLE `price` (
 --
 
 INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subcat`, `pro_mrp`, `pro_price`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`, `pro_scoop`, `pro_scoop15`, `pro_scoop25`, `pro_scoop35`, `pro_scoop42`, `pro_scoop50`, `pro_quantity`, `pro_curquantity`, `pro_desc`, `pro_img`) VALUES
-(1, 'Formula 1', 1001, 'Targeted Nutrition', 'Brain Health', '2378', '2200', '2065', '1860', '1650', '1505', '1340', '20', '103.25', '93', '82.50', '75.25', '68', '30', '30', 'Get immune Health ', 'main page.jpg'),
-(2, 'Fiber Complex', 1002, 'Targeted Nutrition', 'Energy', '2792', '2600', '2425', '2180', '1940', '1765', '1570', '30', '80', '72', '64', '58', '52', '10', '10', 'fiber intake capsules', 'main page.jpg'),
-(3, 'Protein', 1003, 'Targeted Nutrition', 'Energy', '1413', '1200', '1230', '1105', '980', '895', '795', '30', '41', '36.83', '32.67', '29.83', '26.50', '50', '50', '', 'download.jpeg'),
-(4, 'Shakemate', 1004, 'Targeted Nutrition', 'Energy', '712', '700', '660', '625', '590', '565', '535', '18', '36.67', '34.72', '32.78', '31.39', '29.72', '35', '35', '', 'download.jpeg'),
-(5, 'Afresh', 1005, 'Targeted Nutrition', 'Energy', '885', '800', '770', '690', '615', '560', '500', '25', '30.80', '27.60', '24.60', '22.40', '20', '18', '18', '', 'download.jpeg'),
-(6, 'Dino ', 1006, 'Ayurdevic Nutrition', 'Energy', '150', '100', '90', '80', '70', '60', '50', '30', '10', '20', '30', '40', '50', '25', '25', 'pijpjpooeopgrefkrkgforekoferofrekfoerkfokreforepkfrekforekfreopfkoerkforeofkreoforekforkeofre', 'NightlY Glow 3.jpg'),
-(7, 'Heigher Protein', 1007, 'Ayurdevic Nutrition', 'Protein', '1000', '950', '900', '800', '700', '600', '500', '30', '888', '777', '666', '555', '444', '35', '', '32r3r32r32r2r32r32r32r32r32r32r32r32r32re23r32r32r32r32r32r', 'main page.jpg');
+(1, 'Formula 1', '1001', 'Targeted Nutrition', 'Brain Health', '2378', '2200', '2065', '1860', '1650', '1505', '1340', '20', '103.25', '93', '82.50', '75.25', '68', '', '', '', ''),
+(2, 'Fiber Complex', '1002', 'Targeted Nutrition', 'Energy', '2792', '2600', '2425', '2180', '1940', '1765', '1570', '30', '80', '72', '64', '58', '52', '', '', '', ''),
+(3, 'Protein', '1003', 'Targeted Nutrition', 'Energy', '1413', '1200', '1230', '1105', '980', '895', '795', '30', '41', '36.83', '32.67', '29.83', '26.50', '', '', '', ''),
+(4, 'Shakemate', '1004', 'Targeted Nutrition', 'Energy', '712', '700', '660', '625', '590', '565', '535', '18', '36.67', '34.72', '32.78', '31.39', '29.72', '', '', '', ''),
+(5, 'Afresh', '1005', 'Targeted Nutrition', 'Energy', '885', '800', '770', '690', '615', '560', '500', '25', '30.80', '27.60', '24.60', '22.40', '20', '', '', '', ''),
+(6, 'Dino ', '1006', 'Ayurdevic Nutrition', 'Energy', '150', '100', '90', '80', '70', '60', '50', '30', '10', '20', '30', '40', '50', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -217,13 +216,6 @@ CREATE TABLE `sales` (
   `sales_address` varchar(100) NOT NULL,
   `sales_total` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `sales`
---
-
-INSERT INTO `sales` (`sales_id`, `sales_proid`, `sales_procode`, `sales_proname`, `sales_procat`, `sales_prosubcat`, `sales_mrp`, `sales_quan`, `sales_vp`, `sales_gst`, `sales_dis`, `sales_dispri`, `sales_cus`, `sales_address`, `sales_total`) VALUES
-(2, 0, '1004', 'Shakemate', 'Targeted Nutrition', 'Energy', '712', '5555', '4444', '3333', 'pro_dis15', '565', 'Jeslin Biju', 'yyyyyyyyyyyyyyyyyy', '565');
 
 -- --------------------------------------------------------
 
@@ -447,7 +439,7 @@ ALTER TABLE `program`
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `shake`
