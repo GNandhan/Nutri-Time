@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2024 at 08:02 AM
+-- Generation Time: Apr 15, 2024 at 10:46 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -137,7 +137,8 @@ INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`)
 ('nutriadmin@gmail.com', 13, '2024-04-15 00:05:17'),
 ('nutriadmin@gmail.com', 14, '2024-04-15 00:06:05'),
 ('nutriadmin@gmail.com', 15, '2024-04-15 06:53:33'),
-('nutriadmin@gmail.com', 16, '2024-04-15 06:55:03');
+('nutriadmin@gmail.com', 16, '2024-04-15 06:55:03'),
+('nutriadmin@gmail.com', 17, '2024-04-15 08:04:43');
 
 -- --------------------------------------------------------
 
@@ -250,7 +251,8 @@ CREATE TABLE `shake` (
 --
 
 INSERT INTO `shake` (`shake_id`, `shake_name`, `customer_id`, `customer_name`, `shake_goal`, `shake_recipes`, `shake_mrp`, `shake_scoops`, `shake_extra`, `shake_extraprice`, `shake_discount`, `shake_expence`, `shake_total`, `shake_image`) VALUES
-(13, 'Club Shake', 0, 'Manu Alex', 'weight losser', 'Formula 1,Protein', '0', '', 'milk', '25', '25', '40', '100', 'Screenshot 2024-04-02 095348.png');
+(13, 'Club Shake', 0, 'Manu Alex', 'weight losser', 'Formula 1,Protein', '0', '', 'milk', '25', '25', '40', '100', 'Screenshot 2024-04-02 095348.png'),
+(15, 'Club Shake222', 0, 'Manu', 'Weight gainer222', 'Formula 1,Protein,Afresh,Dino ', '', '', 'Milk', '50', '25', '40', '100', 'main page.jpg');
 
 -- --------------------------------------------------------
 
@@ -426,7 +428,7 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `price`
@@ -450,7 +452,7 @@ ALTER TABLE `sales`
 -- AUTO_INCREMENT for table `shake`
 --
 ALTER TABLE `shake`
-  MODIFY `shake_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `shake_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `staff`
