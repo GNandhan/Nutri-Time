@@ -38,7 +38,7 @@
       transition: background-color 0.3s ease;
     }
     .nav-link:hover::after {
-      background-color: #FFC107;
+      background-color: #22CB30;
     }
     .form-icon {
       font-size: 1.2rem;
@@ -79,7 +79,7 @@
               <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-12 col-xl-7 order-2 order-lg-1">
                   <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign Up</p>
-                  <form class="mx-1 mx-md-4" method="post" enctype="multipart/form-data">
+                  <form class="mx-1 mx-md-4" method="post">
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="bi bi-egg-fried me-3 form-icon" style="color:rgb(34 203 48);"></i> <!-- Added form-icon class -->
                       <div class="form-outline flex-fill mb-0">
@@ -156,7 +156,7 @@
                       </div>
                     </div>
                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                      <button type="submit" class="btn rounded-pill text-white px-5 btn-lg" style="background-color:rgb(34 203 48);" name="submitu">Register</button>
+                      <input type="submit" class="btn rounded-pill text-white px-5 btn-lg" style="background-color:rgb(34 203 48);" name="submitu" value="Register">
                     </div>
                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                       <span>Already a User?</span> 
@@ -192,40 +192,26 @@
         $us_gender = $_POST["ugender"];
         $us_location = $_POST["ulocation"];
         $us_address = $_POST["uaddress"];
-        $us_img = $_FILES['shimg']['name'];
 
-        // Image uploading formats
-        $filename = $_FILES['shimg']['name'];
-        $tempname = $_FILES['shimg']['tmp_name'];
+ // Fetch the shake ID from the form
+ $sh_id = $_POST["shid"];
 
-        // Fetch the user ID from the form
-        $sh_id = $_POST["shid"];
+ if ($sh_id == '') {
+   $sql = mysqli_query($conn, "INSERT INTO customer (customer_name, customer_phno, customer_whatsapp, customer_email, customer_password, customer_gender, customer_blood, customer_address, customer_city)
+                                VALUES ('$us_name','$us_phno','$us_phno','$us_email','$us_pass','$us_gender','$us_blood','$us_address','$us_location')");
+ } else {
+   // Update shake
+   $sql = mysqli_query($conn, "UPDATE customer SET customer_name='$us_name', customer_phno='$us_phno', customer_whatsapp='$us_phno', customer_email='$us_email', customer_password='$us_pass', customer_gender='$us_gender', customer_blood='$us_blood', customer_address='$us_address', customer_city='$us_location' WHERE user_id='$sh_id'");
+ }
+ if ($sql == TRUE) {
+  echo "<script>alert('User registration successfully.'); window.location.href = './login.php';</script>";
+  exit; // Prevent further execution
+ } else {
+  echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
+ }
+}
 
-        if($sh_id == '') {
-            $sql = mysqli_query($conn, "INSERT INTO user (user_name, user_phno, user_email, user_password, user_gender, user_blood, user_address, user_city, user_image)
-                                                VALUES ('$us_name','$us_phno','$us_email','$us_pass','$us_gender','$us_blood','$us_address','$us_location','$us_img')");
-        } else {
-            // Update existing user
-            if ($filename) {
-                // Remove the existing image
-                $imgs = '../../Admin/images/user/' . $us_img;
-                unlink($imgs);
-                // Update user with new image
-                $sql = mysqli_query($conn, "UPDATE user SET user_name='$us_name', user_phno='$us_phno', user_email='$us_email', user_password='$us_pass', user_gender='$us_gender', user_blood='$us_blood', user_address='$us_address', user_city='$us_location', user_image='$us_img' WHERE user_id='$sh_id'");
-            } else {
-                // Update user without changing the image
-                $sql = mysqli_query($conn, "UPDATE user SET user_name='$us_name', user_phno='$us_phno', user_email='$us_email', user_password='$us_pass', user_gender='$us_gender', user_blood='$us_blood', user_address='$us_address', user_city='$us_location' WHERE user_id='$sh_id'");
-            }
-        }
 
-        if ($sql == TRUE) {
-          move_uploaded_file($tempname, "../../Admin/images/user/$filename");
-          echo "<script>alert('User registration successfully.'); window.location.href = './login.php';</script>";
-          exit; // Prevent further execution
-      } else {
-          echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
-      }
-    }
 ?>
 
  <!-- footer -->

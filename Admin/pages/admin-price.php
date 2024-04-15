@@ -110,31 +110,31 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>15%</label>
-                        <input type="number" class="form-control" style="border-radius: 15px;" name="dis15" value="<?php echo $p_dis151; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="dis15" value="<?php echo $p_dis151; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>25%</label>
-                        <input type="number" class="form-control" style="border-radius: 15px;" name="dis25" value="<?php echo $p_dis251; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="dis25" value="<?php echo $p_dis251; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>35%</label>
-                        <input type="number" class="form-control" style="border-radius: 15px;" name="dis35" value="<?php echo $p_dis351; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="dis35" value="<?php echo $p_dis351; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>42%</label>
-                        <input type="number" class="form-control" style="border-radius: 15px;" name="dis42" value="<?php echo $p_dis421; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="dis42" value="<?php echo $p_dis421; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>50%</label>
-                        <input type="number" class="form-control" style="border-radius: 15px;" name="dis50" value="<?php echo $p_dis501; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="dis50" value="<?php echo $p_dis501; ?>" required>
                       </div>
                     </div>
                   </div>

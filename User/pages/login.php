@@ -40,7 +40,7 @@
             transition: background-color 0.3s ease;
         }
         .nav-link:hover::after {
-            background-color: #FFC107;
+            background-color: #22CB30;
         }
         .form-icon {
             font-size: 1.2rem;
