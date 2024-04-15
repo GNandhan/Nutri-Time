@@ -9,6 +9,7 @@ if ($_SESSION["email"] == "") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -212,7 +213,9 @@ if ($_SESSION["email"] == "") {
           <!-- PHP CODE FOR INSERTING THE DATA -->
           <?php
           if (isset($_POST["submitsh"])) {
-            var_dump($_POST);
+            // Retrieve shake_mrp from the form
+            $sh_mrp = isset($_POST["number"]) ? floatval($_POST["number"]) : 0; // Default value if 'number' is not set
+            // var_dump($_POST);
             $sh_id = $_POST["shid"];
             $cus_name = $_POST["cusname"];
             $sh_name = $_POST["shname"];
@@ -222,7 +225,10 @@ if ($_SESSION["email"] == "") {
             // Convert array to comma-separated string
             $sh_reci = implode(",", $sh_reci_array);
 
-            $sh_price = $_POST["number"];
+            // Fetch ingredient prices from the global JavaScript variable
+            // $sh_mrp = $ingredientPrices['shake_mrp'];
+
+            // $sh_mrp = $_POST["number"];
             $sh_extra = $_POST["shextra"];
             $sh_extra_price = $_POST["shextra_price"];
             $sh_disc = $_POST["shdiscount"];
@@ -238,7 +244,7 @@ if ($_SESSION["email"] == "") {
 
             if ($sh_id == '') {
               $sql = mysqli_query($conn, "INSERT INTO shake (shake_name, customer_id, customer_name, shake_goal, shake_recipes, shake_mrp, shake_extra, shake_extraprice, shake_discount, shake_expence, shake_total, shake_image)
-                                                     VALUES ('$sh_name','$cus_name','$cus_name','$sh_goal','$sh_reci','$sh_price','$sh_extra','$sh_extra_price','$sh_disc','$sh_sercharge','$total_cost','$sh_img')");
+                                                     VALUES ('$sh_name','$cus_name','$cus_name','$sh_goal','$sh_reci','$sh_mrp','$sh_extra','$sh_extra_price','$sh_disc','$sh_sercharge','$total_cost','$sh_img')");
             } else {
               // Update existing material
               if ($filename) {
@@ -246,10 +252,10 @@ if ($_SESSION["email"] == "") {
                 $imgs = '../images/shake/' . $sh_img;
                 unlink($imgs);
                 // Update shake with new image
-                $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_mrp='$sh_price', shake_extra='$sh_extra', shake_extraprice='$sh_extra_price', shake_discount='$sh_disc', shake_expence='$sh_sercharge', shake_image='$sh_img' WHERE shake_id='$sh_id'");
+                $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_mrp='$sh_mrp', shake_extra='$sh_extra', shake_extraprice='$sh_extra_price', shake_discount='$sh_disc', shake_expence='$sh_sercharge', shake_image='$sh_img' WHERE shake_id='$sh_id'");
               } else {
                 // Update shake without changing the image
-                $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_mrp='$sh_price', shake_extra='$sh_extra', shake_extraprice='$sh_extra_price', shake_discount='$sh_disc', shake_expence='$sh_sercharge' WHERE shake_id='$sh_id'");
+                $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_mrp='$sh_mrp', shake_extra='$sh_extra', shake_extraprice='$sh_extra_price', shake_discount='$sh_disc', shake_expence='$sh_sercharge' WHERE shake_id='$sh_id'");
               }
             }
             if ($sql == TRUE) {
@@ -386,6 +392,8 @@ if ($_SESSION["email"] == "") {
     }
   </script>
   <script>
+    var ingredientPrices = {}; // Define global variable to store ingredient prices
+
     $(document).ready(function() {
       $('select[name="shdiscount"]').change(function() {
         var discount = $(this).val();
@@ -406,15 +414,22 @@ if ($_SESSION["email"] == "") {
           success: function(response) {
             var ingredientPrices = '';
             var totalMRP = 0;
+
+            // Loop through response to display prices and calculate total MRP
             $.each(response, function(key, value) {
               ingredientPrices += '<div>' + key + ' Price: ' + value + '</div>';
               if (key === 'shake_mrp') {
-                totalMRP = value;
+                totalMRP = parseFloat(value);
               }
             });
+
+            // Update ingredient prices HTML
             $('#ingredientPrices').html(ingredientPrices);
-            $('input[name="number"]').val(totalMRP); // Set hidden input field to calculated total MRP
+
+            // Set hidden input field to calculated total MRP
+            $('input[name="number"]').val(totalMRP);
           },
+
           error: function(xhr, status, error) {
             console.log(error);
           }
@@ -422,6 +437,7 @@ if ($_SESSION["email"] == "") {
       });
     });
   </script>
+
   <!-- End plugin js for this page -->
   <!-- inject:js -->
   <script src="../js/off-canvas.js"></script>
@@ -431,4 +447,5 @@ if ($_SESSION["email"] == "") {
   <script src="../js/todolist.js"></script>
   <!-- endinject -->
 </body>
+
 </html>
