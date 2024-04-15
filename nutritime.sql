@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2024 at 01:06 PM
+-- Generation Time: Apr 15, 2024 at 08:02 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -71,13 +71,12 @@ INSERT INTO `category` (`category_id`, `category_name`) VALUES
 
 CREATE TABLE `customer` (
   `customer_id` int(11) NOT NULL,
-  `customer_fname` varchar(50) NOT NULL,
-  `customer_lname` varchar(50) NOT NULL,
-  `customer_age` int(10) NOT NULL,
+  `customer_name` varchar(100) NOT NULL,
   `customer_phno` varchar(20) NOT NULL,
   `customer_whatsapp` varchar(20) NOT NULL,
   `customer_email` varchar(50) NOT NULL,
   `customer_password` varchar(50) NOT NULL,
+  `customer_blood` varchar(10) NOT NULL,
   `customer_gender` enum('Male','Female','Other') NOT NULL,
   `customer_address` varchar(100) NOT NULL,
   `customer_city` varchar(100) NOT NULL,
@@ -90,8 +89,9 @@ CREATE TABLE `customer` (
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`customer_id`, `customer_fname`, `customer_lname`, `customer_age`, `customer_phno`, `customer_whatsapp`, `customer_email`, `customer_password`, `customer_gender`, `customer_address`, `customer_city`, `customer_program`, `customer_payment`, `customer_type`) VALUES
-(1003, 'Manu', 'Alex', 20, '7854985687', '2147483647', 'manu123@gmail.com', 'manu123@', 'Male', 'thalaserry kannur', 'kannur', '', '', 'Online');
+INSERT INTO `customer` (`customer_id`, `customer_name`, `customer_phno`, `customer_whatsapp`, `customer_email`, `customer_password`, `customer_blood`, `customer_gender`, `customer_address`, `customer_city`, `customer_program`, `customer_payment`, `customer_type`) VALUES
+(1003, 'Manu', '7854985687', '2147483647', 'manu123@gmail.com', 'manu123@', '', 'Male', 'thalaserry kannur', 'kannur', '', '', 'Online'),
+(1005, 'Amal', '9865329865', '9865329865', 'amal123@gmail.com', 'amal123@', 'AB+', 'Male', 'kaloor po south road', 'Ernakulam', '', '', 'Online');
 
 -- --------------------------------------------------------
 
@@ -132,7 +132,12 @@ INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`)
 ('nutriadmin@gmail.com', 8, '2024-04-06 08:45:45'),
 ('nutriadmin@gmail.com', 9, '2024-04-11 06:47:13'),
 ('nutriadmin@gmail.com', 10, '2024-04-12 06:55:39'),
-('nutriadmin@gmail.com', 11, '2024-04-12 10:05:12');
+('nutriadmin@gmail.com', 11, '2024-04-12 10:05:12'),
+('nutriadmin@gmail.com', 12, '2024-04-14 22:33:16'),
+('nutriadmin@gmail.com', 13, '2024-04-15 00:05:17'),
+('nutriadmin@gmail.com', 14, '2024-04-15 00:06:05'),
+('nutriadmin@gmail.com', 15, '2024-04-15 06:53:33'),
+('nutriadmin@gmail.com', 16, '2024-04-15 06:55:03');
 
 -- --------------------------------------------------------
 
@@ -409,7 +414,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1005;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1006;
 
 --
 -- AUTO_INCREMENT for table `gallery`
@@ -421,7 +426,7 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `price`
