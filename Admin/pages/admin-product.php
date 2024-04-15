@@ -204,8 +204,8 @@ function updatePrice() {
                     </div> -->
                     <div class="col">
             <div class="form-group">
-                <label>Description</label>
-                <textarea class="form-control" name="prodesc" rows="1" placeholder="Enter Product Description"></textarea>
+                <label>HSL Code</label>
+                <textarea class="form-control" name="prodesc" rows="1" placeholder="Enter Product HSL Code"></textarea>
             </div>
         </div>
                   </div>
@@ -304,7 +304,7 @@ if (isset($_POST["submitp"])) {
                         <th>Product Code</th>
                         <!-- <th>Product Image</th> -->
                         <th>Product Name</th>
-                        <th>Description</th>
+                        <th>HSL Code</th>
                         <th>Quanity</th>
                         <th>Current Quantity</th>
                         <th>Category</th>
