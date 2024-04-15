@@ -192,7 +192,7 @@ function updatePrice() {
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col">
+                    <!-- <div class="col">
                       <div class="form-group">
                         <label>Product Image</label>
                         <div class="input-group mb-3">
@@ -201,7 +201,7 @@ function updatePrice() {
                         </div>
                         <img src="../images/material/<?php echo $p_img1; ?>" alt="" width="100">
                       </div>
-                    </div>
+                    </div> -->
                     <div class="col">
             <div class="form-group">
                 <label>Description</label>
@@ -227,7 +227,7 @@ if (isset($_POST["submitp"])) {
     $pprice = $_POST["proprice"];
     $pquant = $_POST["proquant"];
     $pdesc = $_POST["prodesc"];
-    $pimg = $_FILES['proimg']['name'];
+    // $pimg = $_FILES['proimg']['name'];
     
     // Update the record in the price table based on the selected product name
     $sql = "UPDATE price SET 
@@ -238,23 +238,21 @@ if (isset($_POST["submitp"])) {
             pro_price = '$pprice', 
             pro_quantity = '$pquant', 
             pro_desc = '$pdesc'";
+    // // Check if an image is uploaded
+    // if ($_FILES['proimg']['name']) {
+    //     // Remove the existing image file if it exists
+    //     $old_img = '../images/product/' . $pimg;
+    //     if (file_exists($old_img)) {
+    //         unlink($old_img);
+    //     }
+    //     // Upload the new image
+    //     $temp_img = $_FILES['proimg']['tmp_name'];
+    //     $new_img = '../images/product/' . $pimg;
+    //     move_uploaded_file($temp_img, $new_img);
 
-    // Check if an image is uploaded
-    if ($_FILES['proimg']['name']) {
-        // Remove the existing image file if it exists
-        $old_img = '../images/product/' . $pimg;
-        if (file_exists($old_img)) {
-            unlink($old_img);
-        }
-        
-        // Upload the new image
-        $temp_img = $_FILES['proimg']['tmp_name'];
-        $new_img = '../images/product/' . $pimg;
-        move_uploaded_file($temp_img, $new_img);
-
-        // Add the image path to the SQL update query
-        $sql .= ", pro_img = '$pimg'";
-    }
+    //     // Add the image path to the SQL update query
+    //     $sql .= ", pro_img = '$pimg'";
+    // }
 
     // Complete the SQL query based on the selected product name
     $sql .= " WHERE pro_name = '$pname'";
@@ -267,7 +265,6 @@ if (isset($_POST["submitp"])) {
     }
 }
 ?>
-
         <div class="row ">
           <!-- table view -->
           <div class="col-lg-12 grid-margin stretch-card">
@@ -305,7 +302,7 @@ if (isset($_POST["submitp"])) {
                       <th>Edit</th>
                         <th>Slno</th>
                         <th>Product Code</th>
-                        <th>Product Image</th>
+                        <!-- <th>Product Image</th> -->
                         <th>Product Name</th>
                         <th>Description</th>
                         <th>Quanity</th>
@@ -347,7 +344,7 @@ if (isset($_POST["submitp"])) {
                           </td> -->
                           <td class="py-1"><?php echo $serialNo++; ?></td>
                           <td class="py-1">#<?php echo $pro_cod; ?></td>
-                          <td><img src="../images/product/<?php echo $pro_img; ?>"  width="50" class="rounded-circle"></td>
+                          <!-- <td><img src="../images/product/<?php echo $pro_img; ?>"  width="50" class="rounded-circle"></td> -->
                           <td><?php echo $pro_nam; ?></td>
                           <td><?php echo $pro_desc; ?></td>
                           <td><?php echo $pro_qua; ?></td>
