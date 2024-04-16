@@ -133,7 +133,7 @@ if ($_SESSION["email"] == "") {
                         <label>Ingredient Prices (MRP)</label>
                         <div id="ingredientPrices">
                           <!-- Ingredient prices will be dynamically updated here -->
-                          <input type="hidden" name="number" value="<?php echo $sh_mrp; ?>">
+                          <input type="hidden" name="total_price" value="">
                         </div>
                       </div>
                     </div>
@@ -213,8 +213,7 @@ if ($_SESSION["email"] == "") {
           <!-- PHP CODE FOR INSERTING THE DATA -->
           <?php
           if (isset($_POST["submitsh"])) {
-            // Retrieve shake_mrp from the form
-            $sh_mrp = isset($_POST["number"]) ? floatval($_POST["number"]) : 0; // Default value if 'number' is not set
+            // Retrieve shake_mrp from the form // Default value if 'number' is not set
             // var_dump($_POST);
             $sh_id = $_POST["shid"];
             $cus_name = $_POST["cusname"];
@@ -236,6 +235,7 @@ if ($_SESSION["email"] == "") {
             $sh_img = $_FILES['shimg']['name'];
             // Calculate total cost after applying discount and adding service charge
             $total_cost = 100;
+            $sh_mrp = isset($_POST["total_price"]) ? $_POST["total_price"] : 0;
             // Image uploading formats
             $filename = $_FILES['shimg']['name'];
             $tempname = $_FILES['shimg']['tmp_name'];
@@ -395,47 +395,60 @@ if ($_SESSION["email"] == "") {
     var ingredientPrices = {}; // Define global variable to store ingredient prices
 
     $(document).ready(function() {
-      $('select[name="shdiscount"]').change(function() {
-        var discount = $(this).val();
-        var selectedRecipes = [];
-        // Collect selected recipe checkboxes
-        $('input[name="shrecipe[]"]:checked').each(function() {
-          selectedRecipes.push($(this).val());
-        });
-        // AJAX call to fetch prices of selected recipes based on the selected discount
-        $.ajax({
-          type: 'POST',
-          url: 'get_prices.php',
-          data: {
-            discount: discount,
-            recipes: selectedRecipes
-          },
-          dataType: 'json',
-          success: function(response) {
-            var ingredientPrices = '';
-            var totalMRP = 0;
+  $('select[name="shdiscount"]').change(function() {
+    var discount = $(this).val();
+    var selectedRecipes = [];
 
-            // Loop through response to display prices and calculate total MRP
-            $.each(response, function(key, value) {
-              ingredientPrices += '<div>' + key + ' Price: ' + value + '</div>';
-              if (key === 'shake_mrp') {
-                totalMRP = parseFloat(value);
-              }
-            });
+    // Collect selected recipe checkboxes
+    $('input[name="shrecipe[]"]:checked').each(function() {
+      selectedRecipes.push($(this).val());
+    });
 
-            // Update ingredient prices HTML
-            $('#ingredientPrices').html(ingredientPrices);
+    // AJAX call to fetch prices of selected recipes based on the selected discount
+    $.ajax({
+      type: 'POST',
+      url: 'get_prices.php',
+      data: {
+        discount: discount,
+        recipes: selectedRecipes
+      },
+      dataType: 'json',
+      success: function(response) {
+        var ingredientPrices = '';
+        var totalMRP = 0;
 
-            // Set hidden input field to calculated total MRP
-            $('input[name="number"]').val(totalMRP);
-          },
+        // Loop through response to display prices and calculate total MRP
+        $.each(response, function(key, value) {
+          if (key === 'shake_mrp') {
+            // Update hidden input field with the total price
+           // Inside the success callback of the AJAX request
+$('input[name="total_price"]').val(totalMRP);
 
-          error: function(xhr, status, error) {
-            console.log(error);
+            ingredientPrices += '<div>Total Price: ' + value + '</div>';
+          } else {
+            ingredientPrices += '<div>' + key + ' Price: ' + value + '</div>';
+          }
+
+          if (key === 'shake_mrp') {
+            totalMRP = parseFloat(value);
           }
         });
-      });
+
+        // Update ingredient prices HTML
+        $('#ingredientPrices').html(ingredientPrices);
+
+        // Set hidden input field to calculated total MRP
+        $('input[name="number"]').val(totalMRP);
+      },
+
+      error: function(xhr, status, error) {
+        console.log(error);
+      }
     });
+  });
+});
+
+
   </script>
 
   <!-- End plugin js for this page -->
