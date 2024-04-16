@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2024 at 12:34 PM
+-- Generation Time: Apr 16, 2024 at 01:54 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -285,16 +285,23 @@ CREATE TABLE `staff` (
 
 CREATE TABLE `stock` (
   `stock_id` int(11) NOT NULL,
-  `stock_place` varchar(50) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `stock_name` int(100) NOT NULL,
-  `stock_quantity` int(10) NOT NULL,
-  `stock_comname` varchar(100) NOT NULL,
-  `stock_price` int(50) NOT NULL,
-  `stock_gst` int(50) NOT NULL,
+  `stock_proid` int(11) NOT NULL,
+  `stock_proname` varchar(100) NOT NULL,
+  `stock_quantity` varchar(10) NOT NULL,
+  `stock_location` varchar(100) NOT NULL,
+  `stock_price` varchar(10) NOT NULL,
   `stock_total` int(50) NOT NULL,
   `stock_date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `stock`
+--
+
+INSERT INTO `stock` (`stock_id`, `stock_proid`, `stock_proname`, `stock_quantity`, `stock_location`, `stock_price`, `stock_total`, `stock_date`) VALUES
+(1, 0, 'Shakemate', '2', 'kollam', '700', 1400, '2024-04-16'),
+(5, 0, 'Protein', '10', 'palarivattom', '1200', 12000, '2024-04-16'),
+(6, 0, 'Formula 1', '3', 'kottayam', '2200', 6600, '2024-04-16');
 
 -- --------------------------------------------------------
 
@@ -470,7 +477,7 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `subcategory`
