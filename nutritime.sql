@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2024 at 07:19 AM
+-- Generation Time: Apr 16, 2024 at 09:42 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -251,7 +251,14 @@ CREATE TABLE `shake` (
 --
 
 INSERT INTO `shake` (`shake_id`, `shake_name`, `customer_id`, `customer_name`, `shake_goal`, `shake_recipes`, `shake_mrp`, `shake_scoops`, `shake_extra`, `shake_extraprice`, `shake_discount`, `shake_expence`, `shake_total`, `shake_image`) VALUES
-(1, 'Club Shake', 0, 'Manu', 'Weight gainer', 'Formula 1,Protein,Shakemate', '0', '', 'Milk', '50', '15', '40', '90', 'main page.jpg');
+(1, 'Club Shake', 0, 'Manu', 'Weight gainer', 'Formula 1,Protein,Shakemate', '0', '', 'Milk', '50', '15', '40', '90', 'main page.jpg'),
+(2, 'evening shake', 0, 'Amal', 'weight losser', 'Formula 1,Protein', '', '', 'milk, sugar, protein', '50', '15', '10', '60', 'main page.jpg'),
+(3, 'evening shake', 0, 'Amal', 'weight losser', 'Formula 1,Protein', '', '', 'milk, sugar, protein', '50', '15', '10', '60', 'main page.jpg'),
+(4, 'Club Shake222', 0, 'Manu', 'Weight gainer222', 'Formula 1,Protein', '0', '', 'water', '10', '50', '11', '21', 'main page.jpg'),
+(5, 'Club Shake222', 0, 'Manu', 'weight losser', 'Formula 1,Protein', '0', '', 'Milk', '20', '25', '40', '60', 'main page.jpg'),
+(6, 'Club Shake222', 0, 'Manu', 'Weight gainer222', 'Formula 1,Protein', '0', '', 'Milk', '50', '25', '10', '60', 'main page.jpg'),
+(7, 'Club Shake', 0, 'Manu', 'weight losser', 'Formula 1,Protein', '129.82999999999998', '', 'Milk', '50', '25', '60', '110', 'main page.jpg'),
+(8, 'Club Shake', 0, 'Amal', 'weight losser', 'Formula 1,Protein', '129.82999999999998', '', 'Milk, Butter', '20', '25', '40', '189.83', 'main page.jpg');
 
 -- --------------------------------------------------------
 
@@ -451,7 +458,7 @@ ALTER TABLE `sales`
 -- AUTO_INCREMENT for table `shake`
 --
 ALTER TABLE `shake`
-  MODIFY `shake_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `shake_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `staff`

@@ -43,7 +43,7 @@ if ($_SESSION["email"] == "") {
       $sh_cusname1 = $s_row1['customer_name'];
       $sh_goal1 = $s_row1['shake_goal'];
       $sh_reci1 = $s_row1['shake_recipes'];
-      $sh_mrp1 = $s_row1['shake_mrp'];
+      // $sh_mrp1 = $s_row1['shake_mrp'];
       $sh_scoop1 = $s_row1['shake_scoops'];
       $sh_extra1 = $s_row1['shake_extra'];
       $sh_extraprice1 = $s_row1['shake_extraprice'];
@@ -133,7 +133,6 @@ if ($_SESSION["email"] == "") {
                         <label>Ingredient Prices (MRP)</label>
                         <div id="ingredientPrices">
                           <!-- Ingredient prices will be dynamically updated here -->
-                          <input type="hidden" name="total_price" value="">
                         </div>
                       </div>
                     </div>
@@ -158,6 +157,12 @@ if ($_SESSION["email"] == "") {
                       </div>
                     </div>
                     <div class="col">
+                      <div class="col">
+                        <div class="form-group">
+                          <label>Ingredients Price Total</label>
+                          <input type="text" class="form-control" id="ingredientsPriceTotal" name="shmrp" readonly required>
+                        </div>
+                      </div>
                       <div class="col">
                         <div class="form-group">
                           <label>Extra Ingredients</label>
@@ -226,16 +231,15 @@ if ($_SESSION["email"] == "") {
 
             // Fetch ingredient prices from the global JavaScript variable
             // $sh_mrp = $ingredientPrices['shake_mrp'];
-
-            // $sh_mrp = $_POST["number"];
+            $sh_mrp = $_POST["shmrp"];
             $sh_extra = $_POST["shextra"];
             $sh_extra_price = $_POST["shextra_price"];
             $sh_disc = $_POST["shdiscount"];
             $sh_sercharge = $_POST["shcharge"];
             $sh_img = $_FILES['shimg']['name'];
             // Calculate total cost by adding service charge and extra ingredient price
-            $total_cost = floatval($sh_sercharge) + floatval($sh_extra_price);
-            $sh_mrp = isset($_POST["total_price"]) ? $_POST["total_price"] : 0;
+            $total_cost = floatval($sh_sercharge) + floatval($sh_extra_price)+ floatval($sh_mrp);
+            // Use existing value if not provided
             // Image uploading formats
             $filename = $_FILES['shimg']['name'];
             $tempname = $_FILES['shimg']['tmp_name'];
@@ -422,15 +426,11 @@ if ($_SESSION["email"] == "") {
               if (key === 'shake_mrp') {
                 // Update hidden input field with the total price
                 // Inside the success callback of the AJAX request
-                $('input[name="total_price"]').val(totalMRP);
+                totalMRP = parseFloat(value);
 
                 ingredientPrices += '<div>Total Price: ' + value + '</div>';
               } else {
                 ingredientPrices += '<div>' + key + ' Price: ' + value + '</div>';
-              }
-
-              if (key === 'shake_mrp') {
-                totalMRP = parseFloat(value);
               }
             });
 
@@ -438,7 +438,10 @@ if ($_SESSION["email"] == "") {
             $('#ingredientPrices').html(ingredientPrices);
 
             // Set hidden input field to calculated total MRP
-            $('input[name="number"]').val(totalMRP);
+            // Set value of Ingredients Price Total input field
+            $('#ingredientsPriceTotal').val(totalMRP);
+            // $('input[name="total_price"]').val(totalMRP);
+
           },
 
           error: function(xhr, status, error) {
@@ -448,7 +451,6 @@ if ($_SESSION["email"] == "") {
       });
     });
   </script>
-
   <!-- End plugin js for this page -->
   <!-- inject:js -->
   <script src="../js/off-canvas.js"></script>
