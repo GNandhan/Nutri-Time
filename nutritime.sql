@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2024 at 06:22 AM
+-- Generation Time: Apr 16, 2024 at 06:51 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -257,7 +257,13 @@ INSERT INTO `shake` (`shake_id`, `shake_name`, `customer_id`, `customer_name`, `
 (17, 'evening shake', 0, 'Manu', 'Nutrition', 'Formula 1,Fiber Complex', '', '', 'Milk', '20', '35', '40', '100', 'main page.jpg'),
 (18, 'oirjori43jri43j', 0, 'Manu', 'u7u7uu7uuu7u77u', 'Formula 1,Fiber Complex,Protein', '', '', 'Milk', '10', '15', '40', '', 'main page.jpg'),
 (19, 'Club Shake222', 0, 'Manu', 'Weight gainer222', 'Formula 1,Fiber Complex', '0', '', 'milk', '25', '42', '35', '100', 'main page.jpg'),
-(20, 'Club Shake', 0, 'Amal', 'weight losser', 'Formula 1,Fiber Complex,Protein,Shakemate', '0', '', 'Milk', '50', '15', '10', '100', 'main page.jpg');
+(20, 'Club Shake', 0, 'Amal', 'weight losser', 'Formula 1,Fiber Complex,Protein,Shakemate', '0', '', 'Milk', '50', '15', '10', '100', 'main page.jpg'),
+(21, 'Club Shake', 0, 'Amal', 'weight losser', 'Formula 1,Dino ', '0', '', 'Milk', '50', '35', '40', '100', 'main page.jpg'),
+(22, 'Club Shake', 0, 'Manu', 'Weight gainer', 'Formula 1,Protein', '', '', 'Milk', '50', '35', '40', '100', 'main page.jpg'),
+(23, 'Club Shake222', 0, 'Manu', 'Weight gainer222', 'Formula 1,Protein,Afresh', '', '', 'Milk', '20', '25', '40', '100', 'main page.jpg'),
+(24, 'Club Shake222', 0, 'Manu', 'Weight gainer222', 'Formula 1,Protein', '0', '', 'Milk, Butter', '50', '35', '10', '100', 'main page.jpg'),
+(25, 'Club Shake222', 0, 'Manu', 'Weight gainer222', 'Formula 1,Protein', '', '', 'Milk, Butter', '50', '35', '10', '100', 'main page.jpg'),
+(26, '5yg5y56y656y', 0, 'Amal', 'u7u7uu7uuu7u77u', 'Formula 1,Shakemate,Dino ', '0', '', 'milk, sugar, protein', '50', '15', '60', '100', 'main page.jpg');
 
 -- --------------------------------------------------------
 
@@ -457,7 +463,7 @@ ALTER TABLE `sales`
 -- AUTO_INCREMENT for table `shake`
 --
 ALTER TABLE `shake`
-  MODIFY `shake_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `shake_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `staff`
