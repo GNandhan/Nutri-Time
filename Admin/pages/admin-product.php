@@ -204,7 +204,7 @@ function updatePrice() {
                     </div> -->
                     <div class="col">
             <div class="form-group">
-                <label>HSL Code</label>
+                <label>HSN Code</label>
                 <textarea class="form-control" name="prodesc" rows="1" placeholder="Enter Product HSL Code"></textarea>
             </div>
         </div>
