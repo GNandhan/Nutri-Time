@@ -340,7 +340,6 @@ if ($_SESSION["email"] == "") {
                           <td><?php echo $sh_discount; ?>%</td>
                           <td><?php echo $sh_expense; ?></td>
                           <td><?php echo $sh_total; ?></td>
-
                         </tr>
                       </tbody>
                     <?php
