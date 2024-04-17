@@ -361,8 +361,6 @@ if ($_SESSION["email"] == "") {
                       $sale_cus = $row['sales_cus'];
                       $sale_address = $row['sales_address'];
                       $sale_total = $row['sales_total'];
-
-
                     ?>
                       <tbody>
                         <tr>
