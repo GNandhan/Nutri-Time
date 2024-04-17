@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2024 at 01:12 PM
+-- Generation Time: Apr 17, 2024 at 01:39 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -229,7 +229,8 @@ CREATE TABLE `sales` (
 --
 
 INSERT INTO `sales` (`sales_id`, `sales_proid`, `sales_procode`, `sales_proname`, `sales_procat`, `sales_prosubcat`, `sales_mrp`, `sales_quan`, `sales_vp`, `sales_gst`, `sales_dis`, `sales_dispri`, `sales_cus`, `sales_address`, `sales_total`) VALUES
-(4, 0, '1004', 'Shakemate', 'Targeted Nutrition', 'Energy', '712', '10', '21.75', '18', 'pro_dis15', '590', 'Jeslin Biju', 'thbheththntrhtyhyh', '6962');
+(4, 0, '1004', 'Shakemate', 'Targeted Nutrition', 'Energy', '712', '10', '21.75', '18', '15', '590', 'Jeslin Biju', 'thbheththntrhtyhyh', '6962'),
+(5, 0, '1001', 'Formula 1', 'Targeted Nutrition', 'Brain Health', '2378', '10', '15.95', '19', '25', '1860', 'Arun', 'iojdijewdeiwjdijewiodjewjifewriofoiref', '22134');
 
 -- --------------------------------------------------------
 
@@ -466,7 +467,7 @@ ALTER TABLE `program`
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `shake`
