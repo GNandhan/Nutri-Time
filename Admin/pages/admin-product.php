@@ -331,7 +331,7 @@ if ($_SESSION["email"] == "") {
                             </a>
                           </td> -->
                           <td class="py-1"><?php echo $serialNo++; ?></td>
-                          <td class="py-1">#<?php echo $pro_cod; ?></td>
+                          <td class="py-1"><?php echo $pro_cod; ?></td>
                           <!-- <td><img src="../images/product/<?php echo $pro_img; ?>"  width="50" class="rounded-circle"></td> -->
                           <td><?php echo $pro_nam; ?></td>
                           <td><?php echo $pro_hsn; ?></td>
