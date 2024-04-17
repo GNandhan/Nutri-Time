@@ -202,7 +202,7 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>VP</label>
-                        <input type="number" class="form-control" name="provp" value="<?php echo $sale_vp1; ?>" required>
+                        <input type="text" class="form-control" name="provp" value="<?php echo $sale_vp1; ?>" required>
                       </div>
                     </div>
                   </div>

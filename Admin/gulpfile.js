@@ -149,7 +149,7 @@ gulp.task('buildBaseVendorScripts', function() {
 
 /*Building vendor styles needed for basic template rendering*/
 gulp.task('buildBaseVendorStyles', function() {
-    return gulp.src(['./node_modules/perfect-scrollbar/css/perfect-scrollbar.css'])
+    return gulp.src(['./node_modules/perfect-scrollbar/css  /perfect-scrollbar.css'])
       .pipe(concat('vendor.bundle.base.css'))
       .pipe(gulp.dest('./vendors/css'));
 });

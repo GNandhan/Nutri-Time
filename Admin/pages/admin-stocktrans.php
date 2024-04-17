@@ -201,7 +201,7 @@ if ($_SESSION["email"] == "") {
                         <th>Edit</th>
                         <th>Delete</th>
                         <th>Slno</th>
-                        <th>Product</th>
+                        <th>Product</th> 
                         <th>Quantity</th>
                         <th>Location</th>
                         <!-- <th>Price</th> -->

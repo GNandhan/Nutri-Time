@@ -1,7 +1,7 @@
 <?php
 include './connect.php';
- error_reporting(0);
-$p_code1 =  $p_cat1 = $p_sub1 = $p_name1 ='';
+// error_reporting(0);
+$p_code1 =  $p_cat1 = $p_sub1 = $p_name1 =  $p_vp1 = $p_hsn1 ='';
 session_start();
 if ($_SESSION["email"] == "") {
   header('location:admin-login.php');
@@ -9,6 +9,7 @@ if ($_SESSION["email"] == "") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -28,6 +29,7 @@ if ($_SESSION["email"] == "") {
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
+
 <body>
   <!-- code for getteing the subcategory as per the actegory selected -->
   <div class="container-scroller">
@@ -46,11 +48,12 @@ if ($_SESSION["email"] == "") {
       $p_code1 = $p_row1['pro_code'];
       $p_cat1 = $p_row1['pro_category'];
       $p_sub1 = $p_row1['pro_subcat'];
+      $p_vp1 = $p_row1['pro_vp'];
       $p_mrp1 = $p_row1['pro_mrp'];
       $p_pri1 = $p_row1['pro_price'];
       $p_qua1 = $p_row1['pro_quantity'];
       $p_img1 = $p_row1['pro_img'];
-      // $p_dis1 = $p_row1['pro_distribution'];
+      $p_hsn1 = $p_row1['pro_hsn'];
     }
     // fetching the data from the URL for deleting the subject form
     if (isset($_GET['pd_id'])) {
@@ -68,56 +71,57 @@ if ($_SESSION["email"] == "") {
     }
     ?>
     <!-- Fetching prices of all materials from the database -->
-<?php
-$material_prices = array();
-$query = mysqli_query($conn, "SELECT pro_name, pro_mrp FROM price");
-while ($row = mysqli_fetch_assoc($query)) {
-    $material_prices[$row['pro_name']] = $row['pro_mrp'];
-}
-?>
-<!-- JavaScript to update the price field -->
-<script>
-  // Define a JavaScript object to store material prices
-  var materialPrices = <?php echo json_encode($material_prices); ?>;
-  
-// JavaScript to update the price, product code, category, subcategory, and purchase price fields
-function updatePrice() {
-  var selectedMaterial = document.getElementById("proname").value;
-  var priceInput = document.getElementById("promrp");
-  var codeInput = document.getElementById("procode");
-  var categoryInput = document.getElementById("procat");
-  var subcategoryInput = document.getElementById("prosubcat");
-  var purchasePriceInput = document.getElementById("proprice");
+    <?php
+    $material_prices = array();
+    $query = mysqli_query($conn, "SELECT pro_name, pro_mrp FROM price");
+    while ($row = mysqli_fetch_assoc($query)) {
+      $material_prices[$row['pro_name']] = $row['pro_mrp'];
+    }
+    ?>
+    <!-- JavaScript to update the price field -->
+    <script>
+      // Define a JavaScript object to store material prices
+      var materialPrices = <?php echo json_encode($material_prices); ?>;
 
-  // Set the price, code, category, subcategory, and purchase price fields based on selected material
-  if (selectedMaterial && materialPrices[selectedMaterial]) {
-    priceInput.value = materialPrices[selectedMaterial]; // Set MRP value
+      // JavaScript to update the price, product code, category, subcategory, and purchase price fields
+      function updatePrice() {
+        var selectedMaterial = document.getElementById("proname").value;
+        var priceInput = document.getElementById("promrp");
+        var codeInput = document.getElementById("procode");
+        var categoryInput = document.getElementById("procat");
+        var subcategoryInput = document.getElementById("prosubcat");
+        var purchasePriceInput = document.getElementById("proprice");
 
-    // AJAX request to fetch product details based on selected product name
-    $.post('get_product_details.php', { product_name: selectedMaterial }, function(data) {
-      var productDetails = JSON.parse(data);
-      if (productDetails && productDetails.pro_code) {
-        codeInput.value = productDetails.pro_code; // Set product code value
-        purchasePriceInput.value = productDetails.pro_price; // Set purchase price value
-        categoryInput.value = productDetails.pro_category; // Set category value
-        subcategoryInput.value = productDetails.pro_subcat; // Set subcategory value
-      } else {
-        codeInput.value = ""; // Clear product code if no data found
-        purchasePriceInput.value = ""; // Clear purchase price if no data found
-        categoryInput.value = ""; // Clear category if no data found
-        subcategoryInput.value = ""; // Clear subcategory if no data found
+        // Set the price, code, category, subcategory, and purchase price fields based on selected material
+        if (selectedMaterial && materialPrices[selectedMaterial]) {
+          priceInput.value = materialPrices[selectedMaterial]; // Set MRP value
+
+          // AJAX request to fetch product details based on selected product name
+          $.post('get_product_details.php', {
+            product_name: selectedMaterial
+          }, function(data) {
+            var productDetails = JSON.parse(data);
+            if (productDetails && productDetails.pro_code) {
+              codeInput.value = productDetails.pro_code; // Set product code value
+              purchasePriceInput.value = productDetails.pro_price; // Set purchase price value
+              categoryInput.value = productDetails.pro_category; // Set category value
+              subcategoryInput.value = productDetails.pro_subcat; // Set subcategory value
+            } else {
+              codeInput.value = ""; // Clear product code if no data found
+              purchasePriceInput.value = ""; // Clear purchase price if no data found
+              categoryInput.value = ""; // Clear category if no data found
+              subcategoryInput.value = ""; // Clear subcategory if no data found
+            }
+          });
+        } else {
+          priceInput.value = ""; // Clear the price field if no material is selected
+          codeInput.value = ""; // Clear the code field if no material is selected
+          purchasePriceInput.value = ""; // Clear the purchase price field if no material is selected
+          categoryInput.value = ""; // Clear the category field if no material is selected
+          subcategoryInput.value = ""; // Clear the subcategory field if no material is selected
+        }
       }
-    });
-  } else {
-    priceInput.value = ""; // Clear the price field if no material is selected
-    codeInput.value = ""; // Clear the code field if no material is selected
-    purchasePriceInput.value = ""; // Clear the purchase price field if no material is selected
-    categoryInput.value = ""; // Clear the category field if no material is selected
-    subcategoryInput.value = ""; // Clear the subcategory field if no material is selected
-  }
-}
-
-</script>
+    </script>
     <!-- partial -->
     <div class="main-panel">
       <div class="content-wrapper">
@@ -134,19 +138,20 @@ function updatePrice() {
                       <div class="form-group">
                         <label>Product Name</label>
                         <select class="form-control" name="proname" id="proname" onchange="updatePrice()">
-                        <option selected>Select the Product</option>
-                              <?php 
-                    $query = mysqli_query($conn,"select * from price");
-                    while ($row = mysqli_fetch_assoc($query))
-                      {
-                      $pro_id=$row["pro_id"];
-                      $pro_name=$row["pro_name"];
-                  ?>
-                    <option value="<?php echo $pro_name; ?>" <?php if($row['pro_name'] == $p_name1){echo 'selected';} ?> ><?php echo $pro_name; ?></option>
-                    <?php
-                      }
-                    ?>
-                            </select>
+                          <option selected>Select the Product</option>
+                          <?php
+                          $query = mysqli_query($conn, "select * from price");
+                          while ($row = mysqli_fetch_assoc($query)) {
+                            $pro_id = $row["pro_id"];
+                            $pro_name = $row["pro_name"];
+                          ?>
+                            <option value="<?php echo $pro_name; ?>" <?php if ($row['pro_name'] == $p_name1) {
+                                                                        echo 'selected';
+                                                                      } ?>><?php echo $pro_name; ?></option>
+                          <?php
+                          }
+                          ?>
+                        </select>
                       </div>
                     </div>
 
@@ -160,13 +165,13 @@ function updatePrice() {
                   <div class="row">
                     <div class="col">
                       <div class="form-group">
-                      <label>Category</label>
+                        <label>Category</label>
                         <input type="text" class="form-control" placeholder="Category" name="procat" id="procat" value="<?php echo $p_cat1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
-                      <label>Subcategory</label>
+                        <label>Subcategory</label>
                         <input type="text" class="form-control" placeholder="Subcategory" name="prosubcat" id="prosubcat" value="<?php echo $p_sub1; ?>" required>
                       </div>
                     </div>
@@ -192,22 +197,18 @@ function updatePrice() {
                     </div>
                   </div>
                   <div class="row">
-                    <!-- <div class="col">
-                      <div class="form-group">
-                        <label>Product Image</label>
-                        <div class="input-group mb-3">
-                          <input type="file" class="custom-file-input form-control file-upload-info" id="inputGroupFile01" name="proimg" onchange="displaySelectedFileName(this)" value="<?php echo $p_img1; ?>" required>
-                          <label class="input-group-text custom-file-label" for="inputGroupFile01">Choose file</label>
-                        </div>
-                        <img src="../images/material/<?php echo $p_img1; ?>" alt="" width="100">
-                      </div>
-                    </div> -->
                     <div class="col">
-            <div class="form-group">
-                <label>HSN Code</label>
-                <textarea class="form-control" name="prodesc" rows="1" placeholder="Enter Product HSL Code"></textarea>
-            </div>
-        </div>
+                      <div class="form-group">
+                        <label>VP</label>
+                        <input type="text" class="form-control" placeholder="Volume Point" name="provp" value="<?php echo $p_vp1; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label>HSN Code</label>
+                        <input type="text" class="form-control" placeholder="Enter Product HSL Code" name="prohsn" value="<?php echo $p_hsn1; ?>" required>
+                      </div>
+                    </div>
                   </div>
                   <button type="submit" class="btn btn-primary mr-2" name="submitp">Submit</button>
                   <a href="./admin-product.php" type="reset" class="btn btn-light">Cancel</a>
@@ -218,53 +219,39 @@ function updatePrice() {
         </div>
         <!-- PHP CODE FOR INSERTING THE DATA -->
         <?php
-if (isset($_POST["submitp"])) {
-    $pname = $_POST["proname"];
-    $pcode = $_POST["procode"];
-    $pcat = $_POST["procat"];
-    $psubcat = $_POST["prosubcat"];
-    $pmrp = $_POST["promrp"];
-    $pprice = $_POST["proprice"];
-    $pquant = $_POST["proquant"];
-    $pdesc = $_POST["prodesc"];
-    // $pimg = $_FILES['proimg']['name'];
-    
-    // Update the record in the price table based on the selected product name
-    $sql = "UPDATE price SET 
+        if (isset($_POST["submitp"])) {
+          $pname = $_POST["proname"];
+          $pcode = $_POST["procode"];
+          $pcat = $_POST["procat"];
+          $psubcat = $_POST["prosubcat"];
+          $pmrp = $_POST["promrp"];
+          $pprice = $_POST["proprice"];
+          $pquant = $_POST["proquant"];
+          $pvp = $_POST["provp"];
+          $phsn = $_POST["prohsn"];
+
+          // Update the record in the price table based on the selected product name
+          $sql = "UPDATE price SET 
             pro_code = '$pcode', 
             pro_category = '$pcat', 
             pro_subcat = '$psubcat', 
             pro_mrp = '$pmrp', 
             pro_price = '$pprice', 
             pro_quantity = '$pquant', 
-            pro_desc = '$pdesc'";
-    // // Check if an image is uploaded
-    // if ($_FILES['proimg']['name']) {
-    //     // Remove the existing image file if it exists
-    //     $old_img = '../images/product/' . $pimg;
-    //     if (file_exists($old_img)) {
-    //         unlink($old_img);
-    //     }
-    //     // Upload the new image
-    //     $temp_img = $_FILES['proimg']['tmp_name'];
-    //     $new_img = '../images/product/' . $pimg;
-    //     move_uploaded_file($temp_img, $new_img);
+            pro_vp = '$pvp', 
+            pro_hsn = '$phsn'";
 
-    //     // Add the image path to the SQL update query
-    //     $sql .= ", pro_img = '$pimg'";
-    // }
+          // Complete the SQL query based on the selected product name
+          $sql .= " WHERE pro_name = '$pname'";
 
-    // Complete the SQL query based on the selected product name
-    $sql .= " WHERE pro_name = '$pname'";
-
-    // Execute the SQL update query
-    if (mysqli_query($conn, $sql)) {
-        echo "<script>alert('Product details updated successfully');</script>";
-    } else {
-        echo "<script>alert('Error updating product details');</script>";
-    }
-}
-?>
+          // Execute the SQL update query
+          if (mysqli_query($conn, $sql)) {
+            echo "<script>alert('Product details updated successfully');</script>";
+          } else {
+            echo "<script>alert('Error updating product details');</script>";
+          }
+        }
+        ?>
         <div class="row ">
           <!-- table view -->
           <div class="col-lg-12 grid-margin stretch-card">
@@ -299,7 +286,7 @@ if (isset($_POST["submitp"])) {
                   <table class="table table-striped">
                     <thead>
                       <tr>
-                      <th>Edit</th>
+                        <th>Edit</th>
                         <th>Slno</th>
                         <th>Product Code</th>
                         <!-- <th>Product Image</th> -->
@@ -309,6 +296,7 @@ if (isset($_POST["submitp"])) {
                         <th>Current Quantity</th>
                         <th>Category</th>
                         <th>Subcategory</th>
+                        <th>VP</th>
                         <th>MRP</th>
                         <th>Purchased Price</th>
                         <th>Purchased Total</th>
@@ -322,11 +310,12 @@ if (isset($_POST["submitp"])) {
                       $pro_cod = $row['pro_code'];
                       $pro_img = $row['pro_img'];
                       $pro_nam = $row['pro_name'];
-                      $pro_desc = $row['pro_desc'];
+                      $pro_hsn = $row['pro_hsn'];
                       $pro_qua = $row['pro_quantity'];
                       $pro_curqua = $row['pro_quantity'];
                       $pro_cat = $row['pro_category'];
                       $pro_subcat = $row['pro_subcat'];
+                      $pro_vp = $row['pro_vp'];
                       $pro_mrp = $row['pro_mrp'];
                       $pro_price = $row['pro_price'];;
 
@@ -334,7 +323,7 @@ if (isset($_POST["submitp"])) {
                     ?>
                       <tbody>
                         <tr>
-                        <td>
+                          <td>
                             <a href="admin-product.php?pid=<?php echo $pro_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i>
                             </a>
                           </td>
@@ -346,11 +335,12 @@ if (isset($_POST["submitp"])) {
                           <td class="py-1">#<?php echo $pro_cod; ?></td>
                           <!-- <td><img src="../images/product/<?php echo $pro_img; ?>"  width="50" class="rounded-circle"></td> -->
                           <td><?php echo $pro_nam; ?></td>
-                          <td><?php echo $pro_desc; ?></td>
+                          <td><?php echo $pro_hsn; ?></td>
                           <td><?php echo $pro_qua; ?></td>
                           <td><?php echo $pro_curqua; ?></td>
                           <td><?php echo $pro_cat; ?></td>
                           <td><?php echo $pro_subcat; ?></td>
+                          <td><?php echo $pro_vp; ?></td>
                           <td><?php echo $pro_mrp; ?></td>
                           <td><?php echo $pro_price; ?></td>
                           <td><?php echo $pro_purtotal; ?></td>
@@ -422,4 +412,5 @@ if (isset($_POST["submitp"])) {
   <script src="../js/select2.js"></script>
   <!-- End custom js for this page-->
 </body>
+
 </html>
