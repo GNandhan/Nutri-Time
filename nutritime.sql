@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2024 at 01:54 PM
+-- Generation Time: Apr 17, 2024 at 01:12 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -159,6 +159,7 @@ CREATE TABLE `price` (
   `pro_dis35` varchar(10) NOT NULL,
   `pro_dis42` varchar(10) NOT NULL,
   `pro_dis50` varchar(10) NOT NULL,
+  `pro_vp` varchar(100) NOT NULL,
   `pro_scoop` varchar(10) NOT NULL,
   `pro_scoop15` varchar(10) NOT NULL,
   `pro_scoop25` varchar(10) NOT NULL,
@@ -167,7 +168,7 @@ CREATE TABLE `price` (
   `pro_scoop50` varchar(10) NOT NULL,
   `pro_quantity` varchar(10) NOT NULL,
   `pro_curquantity` varchar(10) NOT NULL,
-  `pro_desc` varchar(200) NOT NULL,
+  `pro_hsn` varchar(200) NOT NULL,
   `pro_img` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -175,13 +176,13 @@ CREATE TABLE `price` (
 -- Dumping data for table `price`
 --
 
-INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subcat`, `pro_mrp`, `pro_price`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`, `pro_scoop`, `pro_scoop15`, `pro_scoop25`, `pro_scoop35`, `pro_scoop42`, `pro_scoop50`, `pro_quantity`, `pro_curquantity`, `pro_desc`, `pro_img`) VALUES
-(1, 'Formula 1', '1001', 'Targeted Nutrition', 'Brain Health', '2378', '2200', '2065', '1860', '1650', '1505', '1340', '20', '103.25', '93', '82.50', '75.25', '68', '', '', '', ''),
-(2, 'Fiber Complex', '1002', 'Targeted Nutrition', 'Energy', '2792', '2600', '2425', '2180', '1940', '1765', '1570', '30', '80', '72', '64', '58', '52', '15', '', 'kooooooooooooooooooooooooooooooooooooooooooooooooo', ''),
-(3, 'Protein', '1003', 'Targeted Nutrition', 'Energy', '1413', '1200', '1230', '1105', '980', '895', '795', '30', '41', '36.83', '32.67', '29.83', '26.50', '10', '', 'pokpokpokopopopkkkokopkookok', ''),
-(4, 'Shakemate', '1004', 'Targeted Nutrition', 'Energy', '712', '700', '660', '625', '590', '565', '535', '18', '36.67', '34.72', '32.78', '31.39', '29.72', '', '', '', ''),
-(5, 'Afresh', '1005', 'Targeted Nutrition', 'Energy', '885', '800', '770', '690', '615', '560', '500', '25', '30.80', '27.60', '24.60', '22.40', '20', '', '', '', ''),
-(6, 'Dino ', '1006', 'Ayurdevic Nutrition', 'Energy', '150', '100', '90', '80', '70', '60', '50', '30', '10', '20', '30', '40', '50', '', '', '', '');
+INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subcat`, `pro_mrp`, `pro_price`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`, `pro_vp`, `pro_scoop`, `pro_scoop15`, `pro_scoop25`, `pro_scoop35`, `pro_scoop42`, `pro_scoop50`, `pro_quantity`, `pro_curquantity`, `pro_hsn`, `pro_img`) VALUES
+(1, 'Formula 1', '1001', 'Targeted Nutrition', 'Brain Health', '2378', '2200', '2065', '1860', '1650', '1505', '1340', '12.75', '20', '103.25', '93', '82.50', '75.25', '68', '10', '', '785487', ''),
+(2, 'Fiber Complex', '1002', 'Targeted Nutrition', 'Energy', '2792', '2600', '2425', '2180', '1940', '1765', '1570', '', '30', '80', '72', '64', '58', '52', '15', '', 'kooooooooooooooooooooooooooooooooooooooooooooooooo', ''),
+(3, 'Protein', '1003', 'Targeted Nutrition', 'Energy', '1413', '1200', '1230', '1105', '980', '895', '795', '', '30', '41', '36.83', '32.67', '29.83', '26.50', '10', '', 'pokpokpokopopopkkkokopkookok', ''),
+(4, 'Shakemate', '1004', 'Targeted Nutrition', 'Energy', '712', '700', '660', '625', '590', '565', '535', '', '18', '36.67', '34.72', '32.78', '31.39', '29.72', '10', '', '654698', ''),
+(5, 'Afresh', '1005', 'Targeted Nutrition', 'Energy', '885', '800', '770', '690', '615', '560', '500', '', '25', '30.80', '27.60', '24.60', '22.40', '20', '5', '', '986587', ''),
+(6, 'Dino ', '1006', 'Ayurdevic Nutrition', 'Energy', '150', '100', '90', '80', '70', '60', '50', '', '30', '10', '20', '30', '40', '50', '12', '', '6598875498', '');
 
 -- --------------------------------------------------------
 
@@ -222,6 +223,13 @@ CREATE TABLE `sales` (
   `sales_address` varchar(100) NOT NULL,
   `sales_total` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `sales`
+--
+
+INSERT INTO `sales` (`sales_id`, `sales_proid`, `sales_procode`, `sales_proname`, `sales_procat`, `sales_prosubcat`, `sales_mrp`, `sales_quan`, `sales_vp`, `sales_gst`, `sales_dis`, `sales_dispri`, `sales_cus`, `sales_address`, `sales_total`) VALUES
+(4, 0, '1004', 'Shakemate', 'Targeted Nutrition', 'Energy', '712', '10', '21.75', '18', 'pro_dis15', '590', 'Jeslin Biju', 'thbheththntrhtyhyh', '6962');
 
 -- --------------------------------------------------------
 
@@ -300,8 +308,7 @@ CREATE TABLE `stock` (
 
 INSERT INTO `stock` (`stock_id`, `stock_proid`, `stock_proname`, `stock_quantity`, `stock_location`, `stock_price`, `stock_total`, `stock_date`) VALUES
 (1, 0, 'Shakemate', '2', 'kollam', '700', 1400, '2024-04-16'),
-(5, 0, 'Protein', '10', 'palarivattom', '1200', 12000, '2024-04-16'),
-(6, 0, 'Formula 1', '3', 'kottayam', '2200', 6600, '2024-04-16');
+(5, 0, 'Protein', '10', 'palarivattom', '1200', 12000, '2024-04-16');
 
 -- --------------------------------------------------------
 
@@ -459,7 +466,7 @@ ALTER TABLE `program`
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `shake`
