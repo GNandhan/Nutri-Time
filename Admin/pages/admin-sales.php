@@ -1,7 +1,7 @@
 <?php
 include './connect.php';
 error_reporting(0);
-$sale_procode1 = $sale_proname1 = $sale_cus1 = $sale_procat1 = $sale_prosubcat1 = $sale_address1 ="";
+$sale_procode1 = $sale_proname1 = $sale_cus1 = $sale_procat1 = $sale_prosubcat1 = $sale_address1 = "";
 session_start();
 if ($_SESSION["email"] == "") {
   header('location:admin-login.php');
@@ -9,6 +9,7 @@ if ($_SESSION["email"] == "") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -28,6 +29,7 @@ if ($_SESSION["email"] == "") {
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
+
 <body>
   <!-- code for getteing the subcategory as per the actegory selected -->
   <div class="container-scroller">
@@ -57,7 +59,6 @@ if ($_SESSION["email"] == "") {
       $sale_cus1 = $s_row1['sales_cus'];
       $sale_address1 = $s_row1['sales_address'];
       $sale_total1 = $s_row1['sales_total'];
-
     }
     // fetching the data from the URL for deleting the subject form
     if (isset($_GET['sd_id'])) {
@@ -207,7 +208,7 @@ if ($_SESSION["email"] == "") {
                     </div>
                   </div>
                   <div class="row">
-                  <div class="col">
+                    <div class="col">
                       <div class="form-group">
                         <label>GST</label>
                         <input type="number" class="form-control" name="progst" value="<?php echo $sale_gst1; ?>" required>
@@ -252,36 +253,41 @@ if ($_SESSION["email"] == "") {
           $sal_quan = $_POST["proquant"];
           $sal_vp = $_POST["provp"];
           $sal_gst = $_POST["progst"];
-          $sal_dis = $_POST["shdiscount"];
+          // $sal_dis = $_POST["shdiscount"];
+              // Extract the numeric portion of the discount percentage
+    $discountValue = $_POST["shdiscount"];
+    $numericDiscount = filter_var($discountValue, FILTER_SANITIZE_NUMBER_INT);
+
+    // Now $numericDiscount contains only the numeric value (e.g., "15", "25", etc.)
+    $sal_dis = $numericDiscount; // Use this numeric value for further processing
+
           $sal_dispri = $_POST["properprice"];
 
-// Calculate subtotal
-$subtotal = $sal_dispri * $sal_quan;
+          // Calculate subtotal
+          $subtotal = $sal_dispri * $sal_quan;
+          // Calculate GST (considering 18%)
+          $gstAmount = ($subtotal * $sal_gst) / 100;
+          // Calculate total including GST
+          $sal_total = $subtotal + $gstAmount;
 
-// Calculate GST (considering 18%)
-$gstAmount = ($subtotal * $sal_gst) / 100;
-// Calculate total including GST
-$sal_total = $subtotal + $gstAmount;
-
-
-    // Determine if this is an INSERT or UPDATE operation based on saleid
-    $sale_id = $_POST["saleid"];
-    if (empty($sale_id)) {
-        // Perform INSERT operation
-        $sql = mysqli_query($conn, "INSERT INTO sales (sales_procode, sales_proname, sales_procat, sales_prosubcat, sales_mrp, sales_quan, sales_vp, sales_gst, sales_dis, sales_dispri, sales_cus, sales_address, sales_total)
+          // Determine if this is an INSERT or UPDATE operation based on saleid
+          $sale_id = $_POST["saleid"];
+          if (empty($sale_id)) {
+            // Perform INSERT operation
+            $sql = mysqli_query($conn, "INSERT INTO sales (sales_procode, sales_proname, sales_procat, sales_prosubcat, sales_mrp, sales_quan, sales_vp, sales_gst, sales_dis, sales_dispri, sales_cus, sales_address, sales_total)
                                      VALUES ('$sal_procode','$sal_proname','$sal_procat','$sal_prosubcat','$sal_mrp','$sal_quan','$sal_vp','$sal_gst','$sal_dis','$sal_dispri','$sal_cus','$sal_address','$sal_total')");
-    } else {
-        // Perform UPDATE operation
-        $sql = mysqli_query($conn, "UPDATE sales SET sales_procode='$sal_procode', sales_proname='$sal_proname', sales_procat='$sal_procat', sales_prosubcat='$sal_prosubcat', sales_mrp='$sal_mrp', sales_quan='$sal_quan', sales_vp='$sal_vp', sales_gst='$sal_gst', sales_dis='$sal_dis', sales_dispri='$sal_dispri', sales_cus='$sal_cus', sales_address='$sal_address', sales_total='$sal_total' WHERE sales_id='$sale_id'");
-    }
-    // Check if the query was successful
-    if ($sql === TRUE) {
-        echo "<script>alert('Operation completed successfully.');</script>";
-    } else {
-        echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
-    }
-}
-?>
+          } else {
+            // Perform UPDATE operation
+            $sql = mysqli_query($conn, "UPDATE sales SET sales_procode='$sal_procode', sales_proname='$sal_proname', sales_procat='$sal_procat', sales_prosubcat='$sal_prosubcat', sales_mrp='$sal_mrp', sales_quan='$sal_quan', sales_vp='$sal_vp', sales_gst='$sal_gst', sales_dis='$sal_dis', sales_dispri='$sal_dispri', sales_cus='$sal_cus', sales_address='$sal_address', sales_total='$sal_total' WHERE sales_id='$sale_id'");
+          }
+          // Check if the query was successful
+          if ($sql === TRUE) {
+            echo "<script>alert('Operation completed successfully.');</script>";
+          } else {
+            echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
+          }
+        }
+        ?>
         <div class="row ">
           <!-- table view -->
           <div class="col-lg-12 grid-margin stretch-card">
@@ -316,7 +322,7 @@ $sal_total = $subtotal + $gstAmount;
                   <table class="table table-striped">
                     <thead>
                       <tr>
-                      <th>Edit</th>
+                        <th>Edit</th>
                         <th>Delete</th>
                         <th>Slno</th>
                         <th>Offline Customer Name</th>
@@ -356,11 +362,11 @@ $sal_total = $subtotal + $gstAmount;
                       $sale_address = $row['sales_address'];
                       $sale_total = $row['sales_total'];
 
-               
+
                     ?>
                       <tbody>
                         <tr>
-                        <td>
+                          <td>
                             <a href="admin-sales.php?sid=<?php echo $sale_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i>
                             </a>
                           </td>
@@ -371,7 +377,7 @@ $sal_total = $subtotal + $gstAmount;
                           <td class="py-1"><?php echo $serialNo++; ?></td>
                           <td><?php echo $sale_cus; ?></td>
                           <td><?php echo $sale_address; ?></td>
-                          <td class="py-1">#<?php echo $sale_procode; ?></td>
+                          <td class="py-1"><?php echo $sale_procode; ?></td>
                           <td><?php echo $sale_proname; ?></td>
                           <td><?php echo $sale_procat; ?></td>
                           <td><?php echo $sale_prosubcat; ?></td>
