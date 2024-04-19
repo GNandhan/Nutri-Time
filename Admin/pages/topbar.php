@@ -134,8 +134,8 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="admin-program.php">Add Program</a></li>
                 <li class="nav-item"> <a class="nav-link" href="admin-request.php">View Request</a></li>
-                <li class="nav-item"> <a class="nav-link" href="admin-attendence.php">Mark Attendence</a></li>
-                <li class="nav-item"> <a class="nav-link" href="admin-viewattendence.php">View Attendence</a></li>
+                <!-- <li class="nav-item"> <a class="nav-link" href="admin-attendence.php">Mark Attendence</a></li>
+                <li class="nav-item"> <a class="nav-link" href="admin-viewattendence.php">View Attendence</a></li> -->
               </ul>
             </div>
           </li>

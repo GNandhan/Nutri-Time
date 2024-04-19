@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2024 at 01:53 PM
+-- Generation Time: Apr 19, 2024 at 01:01 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -71,27 +71,34 @@ INSERT INTO `category` (`category_id`, `category_name`) VALUES
 
 CREATE TABLE `customer` (
   `customer_id` int(11) NOT NULL,
+  `customer_code` varchar(50) NOT NULL,
   `customer_name` varchar(100) NOT NULL,
   `customer_phno` varchar(20) NOT NULL,
   `customer_whatsapp` varchar(20) NOT NULL,
+  `customer_age` varchar(10) NOT NULL,
+  `customer_gender` varchar(25) NOT NULL,
   `customer_email` varchar(50) NOT NULL,
   `customer_password` varchar(50) NOT NULL,
-  `customer_blood` varchar(10) NOT NULL,
-  `customer_gender` enum('Male','Female','Other') NOT NULL,
+  `customer_city` varchar(50) NOT NULL,
   `customer_address` varchar(100) NOT NULL,
-  `customer_city` varchar(100) NOT NULL,
-  `customer_program` varchar(100) NOT NULL,
-  `customer_payment` varchar(100) NOT NULL,
-  `customer_type` enum('Online','Offilne') NOT NULL
+  `customer_weightbeg` varchar(10) NOT NULL,
+  `customer_weightcur` varchar(10) NOT NULL,
+  `customer_weightdif` varchar(10) NOT NULL,
+  `customer_program` varchar(50) NOT NULL,
+  `customer_type` enum('Online','Offilne') NOT NULL,
+  `customer_nodays` varchar(10) NOT NULL,
+  `customer_total` varchar(10) NOT NULL,
+  `customer_paid` varchar(10) NOT NULL,
+  `customer_remain` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`customer_id`, `customer_name`, `customer_phno`, `customer_whatsapp`, `customer_email`, `customer_password`, `customer_blood`, `customer_gender`, `customer_address`, `customer_city`, `customer_program`, `customer_payment`, `customer_type`) VALUES
-(1003, 'Manu', '7854985687', '2147483647', 'manu123@gmail.com', 'manu123@', '', 'Male', 'thalaserry kannur', 'kannur', '', '', 'Online'),
-(1005, 'Amal', '9865329865', '9865329865', 'amal123@gmail.com', 'amal123@', 'AB+', 'Male', 'kaloor po south road', 'Ernakulam', '', '', 'Online');
+INSERT INTO `customer` (`customer_id`, `customer_code`, `customer_name`, `customer_phno`, `customer_whatsapp`, `customer_age`, `customer_gender`, `customer_email`, `customer_password`, `customer_city`, `customer_address`, `customer_weightbeg`, `customer_weightcur`, `customer_weightdif`, `customer_program`, `customer_type`, `customer_nodays`, `customer_total`, `customer_paid`, `customer_remain`) VALUES
+(1003, 'CUS1001', 'Manu', '7854985687', '2147483647', '25', 'Male', 'manu123@gmail.com', 'manu123@', 'Kozhikode', 'veluvil po mavoor, kozhikode', '74', '62', '12', 'Weight Losing', 'Online', '30', '15000', '7000', '8000'),
+(1005, '', 'Amal', '9865329865', '9865329865', '', '', 'amal123@gmail.com', 'amal123@', '', '', '', '', '', '', 'Online', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -308,8 +315,7 @@ CREATE TABLE `stock` (
 --
 
 INSERT INTO `stock` (`stock_id`, `stock_proid`, `stock_proname`, `stock_quantity`, `stock_location`, `stock_price`, `stock_total`, `stock_date`) VALUES
-(1, 0, 'Shakemate', '2', 'kollam', '700', 1400, '2024-04-16'),
-(5, 0, 'Protein', '10', 'palarivattom', '1200', 12000, '2024-04-16');
+(7, 0, 'Formula 1', '5', 'kollam', '2200', 11000, '2024-04-18');
 
 -- --------------------------------------------------------
 
@@ -485,7 +491,7 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `subcategory`

@@ -29,6 +29,32 @@ if ($_SESSION["email"] == "") {
     include './topbar.php';
     ?>
     <?php
+        if (isset($_GET['custid'])) {
+          $cusid = $_GET['custid'];
+          $p_query = mysqli_query($conn, "SELECT * FROM customer WHERE customer_id = '$cusid'");
+          $p_row1 = mysqli_fetch_array($p_query);
+
+          $cus_id1 = $p_row1['customer_id'];
+          $cus_code1 = $p_row1['customer_code'];
+          $cus_name1 = $p_row1['customer_name'];
+          $cus_phno1 = $p_row1['customer_phno'];
+          $cus_whatphno1 = $p_row1['customer_whatsapp'];
+          $cus_age1 = $p_row1['customer_age'];
+          $cus_gender1 = $p_row1['customer_gender'];
+          $cus_email1 = $p_row1['customer_email'];
+          $cus_password1 = $p_row1['customer_password'];
+          $cus_city1 = $p_row1['customer_city'];
+          $cus_address1 = $p_row1['customer_address'];
+          $cus_weightbeg1 = $p_row1['customer_weightbeg'];
+          $cus_weightcur1 = $p_row1['customer_weightcur'];
+          $cus_weightdif1 = $p_row1['customer_weightdif'];
+          $cus_program1 = $p_row1['customer_program'];
+          $cus_type1 = $p_row1['customer_type'];
+          $cus_nodays1 = $p_row1['customer_nodays'];
+          $cus_total1 = $p_row1['customer_total'];
+          $cus_paid1 = $p_row1['customer_paid'];
+          $cus_remain1 = $p_row1['customer_remain'];
+        }
     // fetching the data from the URL for deleting the subject form
     if (isset($_GET['userd_id'])) {
       $dl_id = $_GET['userd_id'];
@@ -52,30 +78,30 @@ if ($_SESSION["email"] == "") {
                 <h1 class="card-title">Customer Details</h1>
                 <p class="card-description">Add Customer Details</p>
                 <form method="post" class="forms-sample" enctype="multipart/form-data">
-                  <input type="hidden" name="prid" value="<?php echo $priid; ?>">
+                  <input type="hidden" name="custid" value="<?php echo $cusid; ?>">
                   <div class="row">
                     <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
                         <label>Customer Id</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodcode" value="<?php echo $p_code1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="cuscode" value="<?php echo $cus_code1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
                         <label>Customer Name</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodname" value="<?php echo $p_name1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="cusname" value="<?php echo $cus_name1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
                         <label>Customer Phno</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodmrp" value="<?php echo $p_mrp1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="cusphno" value="<?php echo $cus_phno1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
                         <label>Whatsapp No</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodpur" value="<?php echo $p_pri1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="cuswhat" value="<?php echo $cus_whatphno1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -83,31 +109,31 @@ if ($_SESSION["email"] == "") {
                   <div class="col-lg col-md col-sm col-6">
                       <div class="form-group">
                         <label>Age</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodcat" value="<?php echo $p_cat1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="cusage" value="<?php echo $cus_age1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg col-md col-sm col-6">
                       <div class="form-group">
                         <label>Gender</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodcat" value="<?php echo $p_cat1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="cusgender" value="<?php echo $cus_gender1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg col-md col-sm col-6">
                       <div class="form-group">
                         <label>Email Id</label>
-                        <input type="email" class="form-control" style="border-radius: 15px;" name="prodcat" value="<?php echo $p_cat1; ?>" required>
+                        <input type="email" class="form-control" style="border-radius: 15px;" name="cusemail" value="<?php echo $cus_email1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg col-md col-sm col-6">
                       <div class="form-group">
                         <label>Weight (begining)</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodcat" value="<?php echo $p_cat1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="cusweibg" value="<?php echo $cus_weightbeg1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg col-md col-sm col-6">
                       <div class="form-group">
                         <label>Weight(Current)</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodcat" value="<?php echo $p_cat1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="cusweicu" value="<?php echo $cus_weightcur1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -115,13 +141,13 @@ if ($_SESSION["email"] == "") {
                   <div class="col">
                       <div class="form-group">
                         <label>City</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodcat" value="<?php echo $p_cat1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="cuscity" value="<?php echo $cus_city1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>Address</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodcat" value="<?php echo $p_cat1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="cusaddress" value="<?php echo $cus_address1; ?>" required>
                       </div>
                     </div>
                   </div> 
@@ -130,13 +156,19 @@ if ($_SESSION["email"] == "") {
                   <div class="col">
                       <div class="form-group">
                         <label>Program</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodcat" value="<?php echo $p_cat1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="cusprogram" value="<?php echo $cus_program1; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Program Type</label>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="cusprgtype" value="<?php echo $cus_type1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>No of Days</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodcat" value="<?php echo $p_cat1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -144,19 +176,19 @@ if ($_SESSION["email"] == "") {
                   <div class="col">
                       <div class="form-group">
                         <label>Total Amount</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodcat" value="<?php echo $p_cat1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="custotal" value="<?php echo $cus_total1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>Amount Paid</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodcat" value="<?php echo $p_cat1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="cuspaid" value="<?php echo $cus_paid1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>Remaining Amount</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodcat" value="<?php echo $p_cat1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 15px;" name="cusrem" value="<?php echo $cus_remain1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -170,28 +202,35 @@ if ($_SESSION["email"] == "") {
         <!-- PHP CODE FOR INSERTING THE DATA -->
         <?php
         if (isset($_POST["submitp"])) {
-          $pcode = $_POST["prodcode"];
-          $pname = $_POST["prodname"];
-          $pcat = $_POST["prodcat"];
-          $psubcat = $_POST["prodsubcat"];
-          $pmrp = $_POST["prodmrp"];
-          $ppur = $_POST["prodpur"];
-          $pdis15 = $_POST["dis15"];
-          $pdis25 = $_POST["dis25"];
-          $pdis35 = $_POST["dis35"];
-          $pdis42 = $_POST["dis42"];
-          $pdis50 = $_POST["dis50"];
+          $ccode = $_POST["cuscode"];
+          $cname = $_POST["cusname"];
+          $cphno = $_POST["cusphno"];
+          $cwhat = $_POST["cuswhat"];
+          $cage = $_POST["cusage"];
+          $cgender = $_POST["cusgender"];
+          $cmail = $_POST["cusemail"];
+          $cweibg = $_POST["cusweibg"];
+          $cweicu = $_POST["cusweicu"];
+          $cweidif = $_POST["cusweicu"];
+          $ccity = $_POST["cuscity"];
+          $caddress = $_POST["cusaddress"];
+          $cprogram = $_POST["cusprogram"];
+          $cprgtype = $_POST["cusprgtype"];
+          $cnodays = $_POST["cusnoday"];
+          $ctotal = $_POST["custotal"];
+          $cpaid = $_POST["cuspaid"];
+          $crem = $_POST["cusrem"];
 
 
           // Fetch the shake ID from the form
-          $pri_id = $_POST["prid"];
+          $cus_id = $_POST["custid"];
 
-          if ($pri_id == '') {
-            $sql = mysqli_query($conn, "INSERT INTO price (pro_name, pro_code, pro_category, pro_subcat, pro_mrp, pro_price, pro_dis15, pro_dis25, pro_dis35, pro_dis42, pro_dis50)
-                                         VALUES ('$pname','$pcode','$pcat','$psubcat','$pmrp','$ppur','$pdis15','$pdis25','$pdis35','$pdis42','$pdis50' )");
+          if ($cus_id == '') {
+            $sql = mysqli_query($conn, "INSERT INTO customer (customer_code, customer_name, customer_phno, customer_whatsapp, customer_age, customer_gender, customer_email, customer_city, customer_address, customer_weightbeg, customer_weightcur, customer_weightdif, customer_program, customer_type, customer_nodays, customer_total, customer_paid, customer_remain)
+                                         VALUES ('$ccode','$cname','$cphno','$cwhat','$cage','$cgender','$cmail','$ccity','$caddress','$cweibg','$cweicu','$cweidif','$cprogram','$cprgtype','$cnodays','$ctotal','$cpaid','$crem')");
           } else {
             // Update shake
-            $sql = mysqli_query($conn, "UPDATE price SET pro_name='$pname', pro_code='$pcode', pro_category='$pcat', pro_subcat='$psubcat', pro_mrp='$pmrp', pro_price='$ppur', pro_dis15='$pdis15', pro_dis25='$pdis25', pro_dis35='$pdis35', pro_dis42='$pdis42', pro_dis50='$pdis50' WHERE pri_id='$pri_id'");
+            $sql = mysqli_query($conn, "UPDATE customer SET customer_code='$ccode', customer_name='$cname', customer_phno='$cphno', customer_whatsapp='$cwhat', customer_age='$pmrp', customer_gender='$ppur', customer_email='$pdis15', customer_city='$pdis25', customer_address='$pdis35', customer_weightbeg='$pdis42', customer_weightcur='$pdis50', customer_weightdif='$pdis50', customer_program='$pdis50', customer_type='$pdis50', customer_nodays='$pdis50', customer_total='$pdis50', customer_paid='$pdis50', customer_remain='$pdis50' WHERE customer_id='$cus_id'");
           }
           if ($sql == TRUE) {
             echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
@@ -226,6 +265,7 @@ if ($_SESSION["email"] == "") {
                         <th>Weight (Current)</th>
                         <th>Weight Difference</th>
                         <th>Program</th>
+                        <th>Program Type</th>
                         <th>No of days</th>
                         <th>Total Amount</th>
                         <th>Amount Paid</th>
@@ -237,36 +277,48 @@ if ($_SESSION["email"] == "") {
                     $serialNo = 1;
                     while ($row = mysqli_fetch_assoc($sql)) {
                       $cus_id = $row['customer_id'];
-                      $cus_fname = $row['customer_fname'];
-                      $cus_lname = $row['customer_lname'];
-                      $cus_age = $row['customer_age'];
+                      $cus_code = $row['customer_code'];
+                      $cus_name = $row['customer_name'];
                       $cus_phno = $row['customer_phno'];
-                      $cus_whatsapp = $row['customer_whatsapp'];
-                      $cus_mail = $row['customer_email'];
+                      $cus_whatphno = $row['customer_whatsapp'];
+                      $cus_age = $row['customer_age'];
                       $cus_gender = $row['customer_gender'];
-                      $cus_address = $row['customer_address'];
+                      $cus_email = $row['customer_email'];
+                      $cus_password = $row['customer_password'];
                       $cus_city = $row['customer_city'];
+                      $cus_address = $row['customer_address'];
+                      $cus_weightbeg = $row['customer_weightbeg'];
+                      $cus_weightcur = $row['customer_weightcur'];
+                      $cus_weightdif = $row['customer_weightdif'];
                       $cus_program = $row['customer_program'];
-                      $cus_payment = $row['customer_payment'];
-                      $name = $cus_fname . " " . $cus_lname;
+                      $cus_type = $row['customer_type'];
+                      $cus_nodays = $row['customer_nodays'];
+                      $cus_total = $row['customer_total'];
+                      $cus_paid = $row['customer_paid'];
+                      $cus_remain = $row['customer_remain'];
                     ?>
                       <tbody>
                         <tr>
-                          <td><a class="btn btn-inverse-secondary btn-icon-text p-2">Edit <i class="ti-pencil-alt btn-icon-append"></i></a></td>
+                          <td><a href="admin-customer.php?custid=<?php echo $cus_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit <i class="ti-pencil-alt btn-icon-append"></i></a></td>
                           <td><a href="admin-customer.php?userd_id=<?php echo $cus_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a></td>
-                          <td class="py-1">#<?php echo $serialNo++; ?></td>
-                          <td><?php echo $name; ?></td>
+                          <td class="py-1"><?php echo $cus_code; ?></td>
+                          <td><?php echo $cus_name; ?></td>
+                          <td><?php echo $cus_phno; ?></td>
+                          <td><?php echo $cus_whatphno; ?></td>
                           <td><?php echo $cus_age; ?></td>
                           <td><?php echo $cus_gender; ?></td>
-                          <td><?php echo $cus_phno; ?></td>
-                          <td><?php echo $cus_whatsapp; ?></td>
-                          <td><?php echo $cus_mail; ?></td>
+                          <td><?php echo $cus_email; ?></td>
                           <td><?php echo $cus_city; ?></td>
                           <td><?php echo $cus_address; ?></td>
+                          <td><?php echo $cus_weightbeg; ?></td>
+                          <td><?php echo $cus_weightcur; ?></td>
+                          <td><?php echo $cus_weightdif; ?></td>
                           <td><?php echo $cus_program; ?></td>
-                          <td><?php echo $cus_payment; ?></td>
-                          <td><?php echo $cus_payment; ?></td>
-                          <td><?php echo $cus_payment; ?></td>
+                          <td><?php echo $cus_type; ?></td>
+                          <td><?php echo $cus_nodays; ?></td>
+                          <td><?php echo $cus_total; ?></td>
+                          <td><?php echo $cus_paid; ?></td>
+                          <td><?php echo $cus_remain; ?></td>
                         </tr>
                       </tbody>
                     <?php
