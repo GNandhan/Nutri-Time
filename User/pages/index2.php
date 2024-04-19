@@ -305,7 +305,7 @@
     <!-- Our Specialities -->
     <div class="b-example-divider"></div>
     <div class="container px-4">
-      <h2 class="pb-2 border-bottom">Our <span class="text-success">&nbsp;Specialities</span></h2>
+      <h2 class="pb-2 border-bottom">Our <span class="text-success"> &nbsp; Specialities</span></h2>
       <div class="row row-cols-1 row-cols-md-2 g-5 py-5 align-items-md-center">
         <div class="col-lg-5 col-md col-sm col d-flex flex-column align-items-start gap-2">
           <h2 class="fw-bold text-body-emphasis">Nutri-time</h2>

@@ -146,14 +146,14 @@ if ($_SESSION["email"] == "") {
                           ?>
                             <option value="<?php echo $pro_name; ?>" <?php if ($row['pro_name'] == $p_name1) {
                                                                         echo 'selected';
-                                                                      } ?>><?php echo $pro_name; ?></option>
+                                                                      } ?>><?php echo $pro_name; ?>
+                            </option>
                           <?php
                           }
                           ?>
                         </select>
                       </div>
                     </div>
-
                     <div class="col-lg-6 col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product Code</label>
@@ -391,7 +391,6 @@ if ($_SESSION["email"] == "") {
       fileReader.readAsDataURL(input.files[0]);
     }
   </script>
-
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
@@ -411,5 +410,4 @@ if ($_SESSION["email"] == "") {
   <script src="../js/select2.js"></script>
   <!-- End custom js for this page-->
 </body>
-
 </html>
