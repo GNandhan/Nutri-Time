@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2024 at 01:01 PM
+-- Generation Time: Apr 20, 2024 at 09:13 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -97,8 +97,10 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`customer_id`, `customer_code`, `customer_name`, `customer_phno`, `customer_whatsapp`, `customer_age`, `customer_gender`, `customer_email`, `customer_password`, `customer_city`, `customer_address`, `customer_weightbeg`, `customer_weightcur`, `customer_weightdif`, `customer_program`, `customer_type`, `customer_nodays`, `customer_total`, `customer_paid`, `customer_remain`) VALUES
-(1003, 'CUS1001', 'Manu', '7854985687', '2147483647', '25', 'Male', 'manu123@gmail.com', 'manu123@', 'Kozhikode', 'veluvil po mavoor, kozhikode', '74', '62', '12', 'Weight Losing', 'Online', '30', '15000', '7000', '8000'),
-(1005, '', 'Amal', '9865329865', '9865329865', '', '', 'amal123@gmail.com', 'amal123@', '', '', '', '', '', '', 'Online', '', '', '', '');
+(1003, 'CUS10012', 'Manu', '7854985687', '2147483647', '25', 'Male', 'manu123@gmail.com', 'manu123@', 'Kozhikode', 'veluvil po mavoor, kozhikode', '74', '62', '62', 'Weight Losing', '', '30', '15000', '7000', '8000'),
+(1005, 'CUS10013', 'Amal', '9865329865', '9865329865', '26', 'Male', 'amal123@gmail.com', 'amal123@', 'Thalayolaparambu', '3rd floor, Thalayolaparambu, po', '65', '63', '63', 'Weight losing', 'Online', '20', '12000', '8000', '4000'),
+(1006, '1001', 'Albin', '9865875498', '9865542187', '25', 'Male', 'albin12@gmail.com', '', 'Vallaserry', '3rd floor, vallaserry, po', '75', '72', '72', 'Weight losing', '', '25', '10000', '8000', '2000'),
+(1007, 'CUS10016', 'Amal', '986585498', '6598659865', '45', 'Male', 'amal123@gmail.com', '', 'Kochi', '3rd floor, kochi, po', '98', '90', '8', 'Fat Reducer', 'Online', '60', '16000', '7000', '9000');
 
 -- --------------------------------------------------------
 
@@ -443,7 +445,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1006;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1008;
 
 --
 -- AUTO_INCREMENT for table `gallery`

@@ -211,7 +211,7 @@ if ($_SESSION["email"] == "") {
           $cmail = $_POST["cusemail"];
           $cweibg = $_POST["cusweibg"];
           $cweicu = $_POST["cusweicu"];
-          $cweidif = $_POST["cusweicu"];
+          $cweidif = $cweibg - $cweicu;
           $ccity = $_POST["cuscity"];
           $caddress = $_POST["cusaddress"];
           $cprogram = $_POST["cusprogram"];
@@ -230,7 +230,7 @@ if ($_SESSION["email"] == "") {
                                          VALUES ('$ccode','$cname','$cphno','$cwhat','$cage','$cgender','$cmail','$ccity','$caddress','$cweibg','$cweicu','$cweidif','$cprogram','$cprgtype','$cnodays','$ctotal','$cpaid','$crem')");
           } else {
             // Update shake
-            $sql = mysqli_query($conn, "UPDATE customer SET customer_code='$ccode', customer_name='$cname', customer_phno='$cphno', customer_whatsapp='$cwhat', customer_age='$pmrp', customer_gender='$ppur', customer_email='$pdis15', customer_city='$pdis25', customer_address='$pdis35', customer_weightbeg='$pdis42', customer_weightcur='$pdis50', customer_weightdif='$pdis50', customer_program='$pdis50', customer_type='$pdis50', customer_nodays='$pdis50', customer_total='$pdis50', customer_paid='$pdis50', customer_remain='$pdis50' WHERE customer_id='$cus_id'");
+            $sql = mysqli_query($conn, "UPDATE customer SET customer_code='$ccode', customer_name='$cname', customer_phno='$cphno', customer_whatsapp='$cwhat', customer_age='$cage', customer_gender='$cgender', customer_email='$cmail', customer_city='$ccity', customer_address='$caddress', customer_weightbeg='$cweibg', customer_weightcur='$cweicu', customer_weightdif='$cweidif', customer_program='$cprogram', customer_type='$cprgtype', customer_nodays='$cnodays', customer_total='$ctotal', customer_paid='$cpaid', customer_remain='$crem' WHERE customer_id='$cus_id'");
           }
           if ($sql == TRUE) {
             echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
@@ -309,10 +309,10 @@ if ($_SESSION["email"] == "") {
                           <td><?php echo $cus_gender; ?></td>
                           <td><?php echo $cus_email; ?></td>
                           <td><?php echo $cus_city; ?></td>
-                          <td><?php echo $cus_address; ?></td>
-                          <td><?php echo $cus_weightbeg; ?></td>
-                          <td><?php echo $cus_weightcur; ?></td>
-                          <td><?php echo $cus_weightdif; ?></td>
+                          <td><?php echo $cus_address; ?></td>  
+                          <td><?php echo $cus_weightbeg; ?>Kg</td>
+                          <td><?php echo $cus_weightcur; ?>Kg</td>
+                          <td><?php echo $cus_weightdif; ?>Kg</td>
                           <td><?php echo $cus_program; ?></td>
                           <td><?php echo $cus_type; ?></td>
                           <td><?php echo $cus_nodays; ?></td>
