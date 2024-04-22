@@ -146,13 +146,13 @@
               <i class="menu-arrow"></i>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="admin-timetable.php">
               <i class="icon-head menu-icon"></i>
               <span class="menu-title">Time table</span>
               <i class="menu-arrow"></i>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link" href="admin-staff.php">
               <i class="icon-ban menu-icon"></i>
@@ -163,7 +163,14 @@
           <li class="nav-item">
             <a class="nav-link" href="admin-message.php">
               <i class="ti-share menu-icon"></i>
-              <span class="menu-title">Messaging</span>
+              <span class="menu-title">Message</span>
+              <i class="menu-arrow"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="admin-message2.php">
+              <i class="ti-share menu-icon"></i>
+              <span class="menu-title">Message2</span>
               <i class="menu-arrow"></i>
             </a>
           </li>

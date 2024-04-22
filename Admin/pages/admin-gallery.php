@@ -29,7 +29,6 @@
  </head>
  <body>
    <div class="container-scroller">
-     <!-- partial:../../partials/_navbar.html -->
      <!-- including the sidebar,navbar -->
      <?php
       include './topbar.php';

@@ -53,6 +53,7 @@ if ($_SESSION["email"] == "") {
       $p_dis351 = $p_row1['pro_dis35'];
       $p_dis421 = $p_row1['pro_dis42'];
       $p_dis501 = $p_row1['pro_dis50'];
+      $p_vp1 = $p_row1['pro_vp'];
     }
     // fetching the data from the URL for deleting the subject form
     if (isset($_GET['pd_id'])) {
@@ -151,6 +152,12 @@ if ($_SESSION["email"] == "") {
                         <input type="text" class="form-control" style="border-radius: 15px;" name="prodsubcat" value="<?php echo $p_subcat1; ?>" required>
                       </div>
                     </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label>VP</label>
+                        <input type="text" class="form-control" placeholder="Volume Point" name="provp" value="<?php echo $p_vp1; ?>" required>
+                      </div>
+                    </div>
                   </div>
                   <button type="submit" class="btn btn-primary mr-2" name="submitp">Submit</button>
                   <a href="./admin-price.php" type="reset" class="btn btn-light">Cancel</a>
@@ -173,17 +180,18 @@ if ($_SESSION["email"] == "") {
           $pdis35 = $_POST["dis35"];
           $pdis42 = $_POST["dis42"];
           $pdis50 = $_POST["dis50"];
+          $pvp = $_POST["provp"];
 
 
           // Fetch the shake ID from the form
           $pri_id = $_POST["prid"];
 
           if ($pri_id == '') {
-            $sql = mysqli_query($conn, "INSERT INTO price (pro_name, pro_code, pro_category, pro_subcat, pro_mrp, pro_price, pro_dis15, pro_dis25, pro_dis35, pro_dis42, pro_dis50)
-                                         VALUES ('$pname','$pcode','$pcat','$psubcat','$pmrp','$ppur','$pdis15','$pdis25','$pdis35','$pdis42','$pdis50' )");
+            $sql = mysqli_query($conn, "INSERT INTO price (pro_name, pro_code, pro_category, pro_subcat, pro_mrp, pro_price, pro_dis15, pro_dis25, pro_dis35, pro_dis42, pro_dis50,pro_vp)
+                                         VALUES ('$pname','$pcode','$pcat','$psubcat','$pmrp','$ppur','$pdis15','$pdis25','$pdis35','$pdis42','$pdis50','$pvp' )");
           } else {
             // Update shake
-            $sql = mysqli_query($conn, "UPDATE price SET pro_name='$pname', pro_code='$pcode', pro_category='$pcat', pro_subcat='$psubcat', pro_mrp='$pmrp', pro_price='$ppur', pro_dis15='$pdis15', pro_dis25='$pdis25', pro_dis35='$pdis35', pro_dis42='$pdis42', pro_dis50='$pdis50' WHERE pri_id='$pri_id'");
+            $sql = mysqli_query($conn, "UPDATE price SET pro_name='$pname', pro_code='$pcode', pro_category='$pcat', pro_subcat='$psubcat', pro_mrp='$pmrp', pro_price='$ppur', pro_dis15='$pdis15', pro_dis25='$pdis25', pro_dis35='$pdis35', pro_dis42='$pdis42', pro_dis50='$pdis50', pro_vp='$pvp' WHERE pri_id='$pri_id'");
           }
           if ($sql == TRUE) {
             echo "<script type='text/javascript'>('Operation completed successfully.');</script>";

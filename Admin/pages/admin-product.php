@@ -90,6 +90,7 @@ if ($_SESSION["email"] == "") {
         var categoryInput = document.getElementById("procat");
         var subcategoryInput = document.getElementById("prosubcat");
         var purchasePriceInput = document.getElementById("proprice");
+        var vpInput = document.getElementById("provp");
 
         // Set the price, code, category, subcategory, and purchase price fields based on selected material
         if (selectedMaterial && materialPrices[selectedMaterial]) {
@@ -105,11 +106,13 @@ if ($_SESSION["email"] == "") {
               purchasePriceInput.value = productDetails.pro_price; // Set purchase price value
               categoryInput.value = productDetails.pro_category; // Set category value
               subcategoryInput.value = productDetails.pro_subcat; // Set subcategory value
+              vpInput.value = productDetails.pro_vp; // Set Volume Point value
             } else {
               codeInput.value = ""; // Clear product code if no data found
               purchasePriceInput.value = ""; // Clear purchase price if no data found
               categoryInput.value = ""; // Clear category if no data found
               subcategoryInput.value = ""; // Clear subcategory if no data found
+              vpInput.value = ""; // Clear Volume Point if no data found
             }
           });
         } else {
@@ -118,6 +121,7 @@ if ($_SESSION["email"] == "") {
           purchasePriceInput.value = ""; // Clear the purchase price field if no material is selected
           categoryInput.value = ""; // Clear the category field if no material is selected
           subcategoryInput.value = ""; // Clear the subcategory field if no material is selected
+          vpInput.value = ""; // Clear the Volume Point field if no material is selected
         }
       }
     </script>
@@ -199,7 +203,7 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>VP</label>
-                        <input type="text" class="form-control" placeholder="Volume Point" name="provp" value="<?php echo $p_vp1; ?>" required>
+                        <input type="text" class="form-control" placeholder="Volume Point" name="provp" id="provp" value="<?php echo $p_vp1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
@@ -228,6 +232,7 @@ if ($_SESSION["email"] == "") {
           $pquant = $_POST["proquant"];
           $pvp = $_POST["provp"];
           $phsn = $_POST["prohsn"];
+          $pvptotal = $pvp * $pquant;
 
           // Update the record in the price table based on the selected product name
           $sql = "UPDATE price SET 
@@ -237,7 +242,9 @@ if ($_SESSION["email"] == "") {
             pro_mrp = '$pmrp', 
             pro_price = '$pprice', 
             pro_quantity = '$pquant', 
+            pro_curquantity = '$pquant', 
             pro_vp = '$pvp', 
+            pro_vptotal = '$pvptotal', 
             pro_hsn = '$phsn'";
 
           // Complete the SQL query based on the selected product name
@@ -296,6 +303,7 @@ if ($_SESSION["email"] == "") {
                         <th>Category</th>
                         <th>Subcategory</th>
                         <th>VP</th>
+                        <th>VP Total</th>
                         <th>MRP</th>
                         <th>Purchased Price</th>
                         <th>Purchased Total</th>
@@ -315,6 +323,7 @@ if ($_SESSION["email"] == "") {
                       $pro_cat = $row['pro_category'];
                       $pro_subcat = $row['pro_subcat'];
                       $pro_vp = $row['pro_vp'];
+                      $pro_vptotal = $row['pro_vptotal'];
                       $pro_mrp = $row['pro_mrp'];
                       $pro_price = $row['pro_price'];;
 
@@ -340,6 +349,7 @@ if ($_SESSION["email"] == "") {
                           <td><?php echo $pro_cat; ?></td>
                           <td><?php echo $pro_subcat; ?></td>
                           <td><?php echo $pro_vp; ?></td>
+                          <td><?php echo $pro_vptotal; ?></td>
                           <td><?php echo $pro_mrp; ?></td>
                           <td><?php echo $pro_price; ?></td>
                           <td><?php echo $pro_purtotal; ?></td>

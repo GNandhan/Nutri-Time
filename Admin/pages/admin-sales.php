@@ -93,6 +93,8 @@ if ($_SESSION["email"] == "") {
         var codeInput = document.getElementById("procode");
         var categoryInput = document.getElementById("procat");
         var subcategoryInput = document.getElementById("prosubcat");
+        var vpInput = document.getElementById("provp");
+        var quaInput = document.getElementById("procurqua");
 
         // Set the price, code, category, subcategory, and purchase price fields based on selected material
         if (selectedMaterial && materialPrices[selectedMaterial]) {
@@ -107,6 +109,8 @@ if ($_SESSION["email"] == "") {
               codeInput.value = productDetails.pro_code; // Set product code value
               categoryInput.value = productDetails.pro_category; // Set category value
               subcategoryInput.value = productDetails.pro_subcat; // Set subcategory value
+              vpInput.value = productDetails.pro_vp; // Set vp value
+              quaInput.value = productDetails.pro_curquantity; // Set vp value
             } else {
               codeInput.value = ""; // Clear product code if no data found
               categoryInput.value = ""; // Clear category if no data found
@@ -197,13 +201,13 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>Quantity</label>
-                        <input type="number" class="form-control" name="proquant" value="<?php echo $sale_quan1; ?>" required>
+                        <input type="number" class="form-control" name="proquant" id="procurqua" value="<?php echo $sale_quan1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>VP</label>
-                        <input type="text" class="form-control" name="provp" value="<?php echo $sale_vp1; ?>" required>
+                        <input type="text" class="form-control" name="provp"  id="provp" value="<?php echo $sale_vp1; ?>" required>
                       </div>
                     </div>
                   </div>

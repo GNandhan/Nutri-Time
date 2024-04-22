@@ -11,9 +11,6 @@ $_SESSION["email"] = '';
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Nutri-Time: Admin-Login</title>
-  <link rel="stylesheet" href="../vendors/feather/feather.css">
-  <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
   <link rel="icon" href="../images/icon-small.png" />
 </head>
@@ -38,28 +35,13 @@ $_SESSION["email"] = '';
                 <div class="mt-3">
                   <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" name="submitl">SIGN IN</button>
                 </div>
-                <div class="my-2 d-flex justify-content-between align-items-center">
-                  <!-- <div class="form-check">
-                    <label class="form-check-label text-muted">
-                      <input type="checkbox" class="form-check-input">
-                      Keep me signed in
-                    </label>
-                  </div> -->
-                  <!-- <a href="#" class="auth-link text-black">Forgot password?</a> -->
-                </div>
-                <!-- <div class="text-center mt-4 font-weight-light">
-                  Don't have an account? <a href="admin-register.html" class="text-primary">Create</a>
-                </div> -->
               </form>
             </div>
           </div>
         </div>
       </div>
-      <!-- content-wrapper ends -->
     </div>
-    <!-- page-body-wrapper ends -->
   </div>
-  <!-- PHP CODE FOR CHECKING THE INSERTED FORM IS CORRECT OR NOT THEN LOGGED IN -->
   <?php
   if (isset($_POST["submitl"])) {
     $email = $_POST["email"];
