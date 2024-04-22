@@ -1,7 +1,7 @@
 <?php
 include './connect.php';
-error_reporting(0);
-$sale_procode1 = $sale_proname1 = $sale_cus1 = $sale_procat1 = $sale_prosubcat1 = $sale_address1 = "";
+// error_reporting(0);
+$sale_procode1 = $sale_proname1 = $sale_vp1 = $sale_cus1 = $sale_procat1 = $sale_prosubcat1 = $sale_address1 = "";
 session_start();
 if ($_SESSION["email"] == "") {
   header('location:admin-login.php');
@@ -207,7 +207,7 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>VP</label>
-                        <input type="text" class="form-control" name="provp"  id="provp" value="<?php echo $sale_vp1; ?>" required>
+                        <input type="text" class="form-control" name="provp" id="provp" value="<?php echo $sale_vp1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -256,16 +256,20 @@ if ($_SESSION["email"] == "") {
           $sal_mrp = $_POST["promrp"];
           $sal_quan = $_POST["proquant"];
           $sal_vp = $_POST["provp"];
+          $sal_vptotal = $sal_vp * $sal_quan;
           $sal_gst = $_POST["progst"];
-          // $sal_dis = $_POST["shdiscount"];
-              // Extract the numeric portion of the discount percentage
-    $discountValue = $_POST["shdiscount"];
-    $numericDiscount = filter_var($discountValue, FILTER_SANITIZE_NUMBER_INT);
-
-    // Now $numericDiscount contains only the numeric value (e.g., "15", "25", etc.)
-    $sal_dis = $numericDiscount; // Use this numeric value for further processing
-
+          // Extract the numeric portion of the discount percentage
+          $discountValue = $_POST["shdiscount"];
+          $numericDiscount = filter_var($discountValue, FILTER_SANITIZE_NUMBER_INT);
+          // Now $numericDiscount contains only the numeric value (e.g., "15", "25", etc.)
+          $sal_dis = $numericDiscount; // Use this numeric value for further processing
           $sal_dispri = $_POST["properprice"];
+
+          $sal_curquan_query = mysqli_query($conn, "SELECT pro_curquantity FROM price ");
+          $sal_curquan_row = mysqli_fetch_assoc($sal_curquan_query);
+          $sal_curquan = $sal_curquan_row['pro_curquantity'];
+
+          $sal_curquan1 = $sal_curquan - $sal_quan;
 
           // Calculate subtotal
           $subtotal = $sal_dispri * $sal_quan;
@@ -276,14 +280,17 @@ if ($_SESSION["email"] == "") {
 
           // Determine if this is an INSERT or UPDATE operation based on saleid
           $sale_id = $_POST["saleid"];
-          if (empty($sale_id)) {
+          // if (empty($sale_id)) {
             // Perform INSERT operation
-            $sql = mysqli_query($conn, "INSERT INTO sales (sales_procode, sales_proname, sales_procat, sales_prosubcat, sales_mrp, sales_quan, sales_vp, sales_gst, sales_dis, sales_dispri, sales_cus, sales_address, sales_total)
-                                     VALUES ('$sal_procode','$sal_proname','$sal_procat','$sal_prosubcat','$sal_mrp','$sal_quan','$sal_vp','$sal_gst','$sal_dis','$sal_dispri','$sal_cus','$sal_address','$sal_total')");
-          } else {
+            $sql = mysqli_query($conn, "INSERT INTO sales (sales_procode, sales_proname, sales_procat, sales_prosubcat, sales_mrp, sales_quan, sales_vp, sales_vptotal, sales_gst, sales_dis, sales_dispri, sales_cus, sales_address, sales_total)
+            VALUES ('$sal_procode','$sal_proname','$sal_procat','$sal_prosubcat','$sal_mrp','$sal_quan','$sal_vp', '$sal_vptotal','$sal_gst','$sal_dis','$sal_dispri','$sal_cus','$sal_address','$sal_total')");
+
+            $sql = mysqli_query($conn, "UPDATE price SET pro_curquantity='$sal_curquan1' WHERE pro_name='$sal_proname'");
+
+          // } else {
             // Perform UPDATE operation
-            $sql = mysqli_query($conn, "UPDATE sales SET sales_procode='$sal_procode', sales_proname='$sal_proname', sales_procat='$sal_procat', sales_prosubcat='$sal_prosubcat', sales_mrp='$sal_mrp', sales_quan='$sal_quan', sales_vp='$sal_vp', sales_gst='$sal_gst', sales_dis='$sal_dis', sales_dispri='$sal_dispri', sales_cus='$sal_cus', sales_address='$sal_address', sales_total='$sal_total' WHERE sales_id='$sale_id'");
-          }
+            // $sql = mysqli_query($conn, "UPDATE sales SET sales_procode='$sal_procode', sales_proname='$sal_proname', sales_procat='$sal_procat', sales_prosubcat='$sal_prosubcat', sales_mrp='$sal_mrp', sales_quan='$sal_quan', sales_vp='$sal_vp', sales_vptotal='$sal_vptotal', sales_gst='$sal_gst', sales_dis='$sal_dis', sales_dispri='$sal_dispri', sales_cus='$sal_cus', sales_address='$sal_address', sales_total='$sal_total' WHERE sales_id='$sale_id'");
+          // }
           // Check if the query was successful
           if ($sql === TRUE) {
             echo "<script>alert('Operation completed successfully.');</script>";
@@ -336,9 +343,10 @@ if ($_SESSION["email"] == "") {
                         <th>Category</th>
                         <th>Subcategory</th>
                         <th>MRP</th>
-                        <th>Quantity</th>
+                        <th>Sales Quantity</th>
                         <th>Current Quantity</th>
                         <th>VP</th>
+                        <th>VP Total</th>
                         <th>GST</th>
                         <th>Discount Percentage</th>
                         <th>Percentage Amount</th>
@@ -358,7 +366,10 @@ if ($_SESSION["email"] == "") {
                       $sale_prosubcat = $row['sales_prosubcat'];
                       $sale_mrp = $row['sales_mrp'];
                       $sale_quan = $row['sales_quan'];
+
+
                       $sale_vp = $row['sales_vp'];
+                      $sale_vptotal = $row['sales_vptotal'];
                       $sale_gst = $row['sales_gst'];
                       $sale_dis = $row['sales_dis'];
                       $sale_dispri = $row['sales_dispri'];
@@ -385,8 +396,9 @@ if ($_SESSION["email"] == "") {
                           <td><?php echo $sale_prosubcat; ?></td>
                           <td><?php echo $sale_mrp; ?></td>
                           <td><?php echo $sale_quan; ?></td>
-                          <td><?php echo $sale_quan; ?></td>
+                          <td><?php echo $currentQuantity; ?></td>
                           <td><?php echo $sale_vp; ?></td>
+                          <td><?php echo $sale_vptotal; ?></td>
                           <td><?php echo $sale_gst; ?>%</td>
                           <td><?php echo $sale_dis; ?>%</td>
                           <td><?php echo $sale_dispri; ?></td>

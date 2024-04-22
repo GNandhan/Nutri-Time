@@ -1,6 +1,7 @@
 <?php
 include './connect.php';
-error_reporting(0);
+// error_reporting(0);
+$stoloct1 = $stoqua1 =  $sh_raw1 = "";
 session_start();
 if ($_SESSION["email"] == "") {
   header('location:admin-login.php');
@@ -30,6 +31,7 @@ if ($_SESSION["email"] == "") {
 </head>
 
 <body>
+
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
     <!-- including the sidebar,navbar -->
@@ -82,15 +84,14 @@ if ($_SESSION["email"] == "") {
       function updatePrice() {
         var selectedMaterial = document.getElementById("stomaterial").value;
         var priceInput = document.getElementById("stopri");
-        var priIdInput = document.getElementById("pri_id");
+        var quantityInput = document.getElementById("stocurqua");
 
-        // Retrieve the pri_id associated with the selected product using materialPrices object
         if (selectedMaterial && materialPrices[selectedMaterial]) {
-          priceInput.value = materialPrices[selectedMaterial]; // Set the price input
-          priIdInput.value = materialPrices[selectedMaterial].pri_id; // Set the pri_id in the hidden field
+          priceInput.value = materialPrices[selectedMaterial]; // Set the purchase price input
+          quantityInput.value = document.querySelector('#stomaterial option:checked').getAttribute('data-quantity'); // Retrieve and set the product quantity input
         } else {
           priceInput.value = "";
-          priIdInput.value = ""; // Clear pri_id if no material is selected
+          quantityInput.value = ""; // Clear fields if no material is selected
         }
       }
     </script>
@@ -112,14 +113,15 @@ if ($_SESSION["email"] == "") {
                         <select class="form-control" name="stomaterial" id="stomaterial" onchange="updatePrice()">
                           <option selected>Select the Product</option>
                           <?php
-                          $query = mysqli_query($conn, "SELECT pri_id, pro_name FROM price");
+                          $query = mysqli_query($conn, "SELECT pri_id, pro_name, pro_curquantity FROM price");
                           while ($row = mysqli_fetch_assoc($query)) {
                             $pro_id = $row["pri_id"];
                             $pro_name = $row["pro_name"];
+                            $pro_quantity = $row["pro_curquantity"];
                           ?>
-                            <option value="<?php echo $pro_name; ?>" <?php if ($row['pro_name'] == $sh_raw1) {
-                                                                        echo 'selected';
-                                                                      } ?>><?php echo $pro_name; ?></option>
+                            <option value="<?php echo $pro_name; ?>" data-quantity="<?php echo $pro_quantity; ?>" <?php if ($row['pro_name'] == $sh_raw1) {
+                                                                                                                    echo 'selected';
+                                                                                                                  } ?>><?php echo $pro_name; ?></option>
                           <?php
                           }
                           ?>
@@ -129,7 +131,7 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>Quantity</label>
-                        <input type="text" class="form-control" name="stoqua" value="<?php echo $stoqua1; ?>" required>
+                        <input type="text" class="form-control" name="stoqua" id="stocurqua" value="<?php echo $stoqua1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -201,8 +203,9 @@ if ($_SESSION["email"] == "") {
                         <th>Edit</th>
                         <th>Delete</th>
                         <th>Slno</th>
-                        <th>Product</th> 
+                        <th>Product</th>
                         <th>Quantity</th>
+                        <th>Remaining Quantity</th>
                         <th>Location</th>
                         <!-- <th>Price</th> -->
                         <th>Total</th>
@@ -219,6 +222,10 @@ if ($_SESSION["email"] == "") {
                       $stock_price = $row['stock_price'];
                       $stock_total = $row['stock_total'];
                       $stock_date = $row['stock_date'];
+                      $sql = mysqli_query($conn, "SELECT pro_curquantity FROM price ");
+                      while ($row = mysqli_fetch_assoc($sql)) {
+                        $stock_curquan1 = $row['pro_curquantity'];
+                      }
                     ?>
                       <tbody>
                         <tr>
@@ -233,6 +240,7 @@ if ($_SESSION["email"] == "") {
                           <td class="py-1"><?php echo $serialNo++; ?></td>
                           <td class="py-1"><?php echo $stock_product; ?></td>
                           <td><?php echo $stock_quan; ?></td>
+                          <td><?php echo $stock_curquan1; ?></td>
                           <td><?php echo $stock_location; ?></td>
                           <td><?php echo $stock_total; ?></td>
                         </tr>

@@ -81,7 +81,6 @@ if ($_SESSION["email"] == "") {
     <script>
       // Define a JavaScript object to store material prices
       var materialPrices = <?php echo json_encode($material_prices); ?>;
-
       // JavaScript to update the price, product code, category, subcategory, and purchase price fields
       function updatePrice() {
         var selectedMaterial = document.getElementById("proname").value;
@@ -209,7 +208,7 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>HSN Code</label>
-                        <input type="text" class="form-control" placeholder="Enter Product HSL Code" name="prohsn" value="<?php echo $p_hsn1; ?>" required>
+                        <input type="text" class="form-control" placeholder="Enter Product HSN Code" name="prohsn" value="<?php echo $p_hsn1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -319,7 +318,7 @@ if ($_SESSION["email"] == "") {
                       $pro_nam = $row['pro_name'];
                       $pro_hsn = $row['pro_hsn'];
                       $pro_qua = $row['pro_quantity'];
-                      $pro_curqua = $row['pro_quantity'];
+                      $pro_curqua = $row['pro_curquantity'];
                       $pro_cat = $row['pro_category'];
                       $pro_subcat = $row['pro_subcat'];
                       $pro_vp = $row['pro_vp'];
