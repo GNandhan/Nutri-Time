@@ -235,7 +235,7 @@ if ($_SESSION["email"] == "") {
                           </td>
                           <td>
                             <a href="admin-stocktrans.php?stod_id=<?php echo $stock_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i>
-                            </a>
+                            </a>4
                           </td>
                           <td class="py-1"><?php echo $serialNo++; ?></td>
                           <td class="py-1"><?php echo $stock_product; ?></td>
