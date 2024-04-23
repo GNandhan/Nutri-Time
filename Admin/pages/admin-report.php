@@ -36,7 +36,7 @@
                             <p class="card-description">Complete Sales and Overview Report Details</p>
                             </div>
                         <div class="col-12 col-xl-4 mb-4 mb-xl-0 text-right">
-                                <button class="btn btn-primary">Export</button>
+                                <button class="btn btn-primary rounded-pill">Export</button>
                         </div>
                 </div>
                 <div class="table-responsive">

@@ -73,13 +73,13 @@ if(isset($_GET['std_id']))
                       <div class="col">
                         <div class="form-group">
                           <label for="exampleInputName1">Staff Name</label>
-                          <input type="text" class="form-control" placeholder="Name" name="stname" value="<?php echo $st_name1; ?>"  required>
+                          <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Name" name="stname" value="<?php echo $st_name1; ?>"  required>
                         </div>
                       </div>
                     <div class="col">
                       <div class="form-group">
                         <label for="exampleInputEmail3">Username</label>
-                        <input type="text" class="form-control" placeholder="Username" name="stusername" value="<?php echo $st_uname1; ?>"  required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Username" name="stusername" value="<?php echo $st_uname1; ?>"  required>
                       </div>
                     </div>
                   </div>
@@ -87,13 +87,13 @@ if(isset($_GET['std_id']))
                     <div class="col">
                       <div class="form-group">
                         <label for="exampleInputPassword4">Email Id</label>
-                        <input type="email" class="form-control" placeholder="abc123@gmail.com" name="stmail" value="<?php echo $st_mail1; ?>"  required>
+                        <input type="email" class="form-control" style="border-radius: 16px;" placeholder="abc123@gmail.com" name="stmail" value="<?php echo $st_mail1; ?>"  required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label for="exampleInputPassword4">Password</label>
-                        <input type="password" class="form-control" placeholder="Password" name="stpass" value="<?php echo $st_pass1; ?>"  required>
+                        <input type="password" class="form-control" style="border-radius: 16px;" placeholder="Password" name="stpass" value="<?php echo $st_pass1; ?>"  required>
                       </div>
                     </div>
                   </div>
@@ -101,7 +101,7 @@ if(isset($_GET['std_id']))
                     <div class="col">
                       <div class="form-group">
                         <label for="exampleSelectGender">Gender</label>
-                          <select class="form-control" name="stgender" required>
+                          <select class="form-control" style="border-radius: 16px;" name="stgender" required>
                             <option <?php if($st_gender1=='Male' ) echo 'selected' ; ?> value="Male">Male</option>
                             <option <?php if($st_gender1=='Female' ) echo 'selected' ; ?> value="Female">Female</option>
                             <option <?php if($st_gender1=='Other' ) echo 'selected' ; ?> value="Other">Other</option>
@@ -111,18 +111,18 @@ if(isset($_GET['std_id']))
                     <div class="col">
                       <div class="form-group">
                         <label for="exampleInputCity1">City</label>
-                        <input type="text" class="form-control" name="stcity" value="<?php echo $st_city1; ?>"  required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="stcity" value="<?php echo $st_city1; ?>"  required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label for="exampleInputCity1">Phone No</label>
-                        <input type="text" class="form-control" name="stphno" value="<?php echo $st_phno1; ?>"  required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="stphno" value="<?php echo $st_phno1; ?>"  required>
                       </div>
                     </div>
                   </div>
-                    <button type="submit" class="btn btn-primary mr-2" name="submitst">Submit</button>
-                    <button class="btn btn-light">Cancel</button>
+                    <button type="submit" class="btn btn-primary mr-2 rounded-pill" name="submitst">Submit</button>
+                    <button class="btn btn-light rounded-pill">Cancel</button>
                   </form>
                 </div>
               </div>

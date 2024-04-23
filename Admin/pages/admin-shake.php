@@ -82,7 +82,7 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>Customer Name</label>
-                        <select class="form-control" name="cusname">
+                        <select class="form-control" style="border-radius: 16px;" name="cusname">
                           <option selected>Select Customers</option>
                           <?php
                           $query = mysqli_query($conn, "SELECT * FROM customer");
@@ -102,13 +102,13 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>Shake Name</label>
-                        <input type="text" class="form-control" placeholder="#00A001" name="shname" value="<?php echo $sh_name1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" placeholder="#00A001" name="shname" value="<?php echo $sh_name1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>Shake Goal</label>
-                        <input type="text" class="form-control" placeholder="Weight Gainer" name="shgoal" value="<?php echo $sh_goal1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Weight Gainer" name="shgoal" value="<?php echo $sh_goal1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -149,7 +149,7 @@ if ($_SESSION["email"] == "") {
                             <li>
                               <div class="form-group mb-2">
                                 <!-- <label><?php echo $pro_name; ?> Scoops</label> -->
-                                <input type="number" class="form-control" style="height: 8px; width: aut0;" name="<?php echo $pro_name; ?>_scoops" value="<?php echo $pro_scoop; ?>">
+                                <input type="number" class="form-control" style="border-radius: 16px;" style="height: 8px; width: aut0;" name="<?php echo $pro_name; ?>_scoops" value="<?php echo $pro_scoop; ?>">
                               </div>
                             </li>
                           <?php } ?>
@@ -160,19 +160,19 @@ if ($_SESSION["email"] == "") {
                       <div class="col">
                         <div class="form-group">
                           <label>Ingredients Price Total</label>
-                          <input type="text" class="form-control" id="ingredientsPriceTotal" name="shmrp" readonly required>
+                          <input type="text" class="form-control" style="border-radius: 16px;" id="ingredientsPriceTotal" name="shmrp" readonly required>
                         </div>
                       </div>
                       <div class="col">
                         <div class="form-group">
                           <label>Extra Ingredients</label>
-                          <input type="text" class="form-control" name="shextra" value="<?php echo $sh_extra1; ?>" required>
+                          <input type="text" class="form-control" style="border-radius: 16px;" name="shextra" value="<?php echo $sh_extra1; ?>" required>
                         </div>
                       </div>
                       <div class="col">
                         <div class="form-group">
                           <label>Extra Ingredient Price</label>
-                          <input type="text" class="form-control" name="shextra_price" value="<?php echo $sh_extraprice1; ?>" required>
+                          <input type="text" class="form-control" style="border-radius: 16px;" name="shextra_price" value="<?php echo $sh_extraprice1; ?>" required>
                         </div>
                       </div>
                     </div>
@@ -181,7 +181,7 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>Discount %</label>
-                        <select class="form-control" name="shdiscount" required>
+                        <select class="form-control" style="border-radius: 16px;" name="shdiscount" required>
                           <option selected>Select Discount Percentage</option>
                           <option value="15" <?php if ($sh_disc1 == 15) echo "selected"; ?>>15%</option>
                           <option value="25" <?php if ($sh_disc1 == 25) echo "selected"; ?>>25%</option>
@@ -194,7 +194,7 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>Service Charge</label>
-                        <input type="text" class="form-control" name="shcharge" value="<?php echo $sh_expen1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="shcharge" value="<?php echo $sh_expen1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
@@ -208,8 +208,8 @@ if ($_SESSION["email"] == "") {
                       </div>
                     </div>
                   </div>
-                  <input type="submit" class="btn btn-primary mr-2" name="submitsh" value="Submit">
-                  <a href="./admin-shake.php" class="btn btn-light">Cancel</a>
+                  <input type="submit" class="btn btn-primary mr-2 rounded-pill" name="submitsh" value="Submit">
+                  <a href="./admin-shake.php" class="btn btn-light rounded-pill">Cancel</a>
                 </form>
               </div>
               <!-- Form Closed -->

@@ -46,9 +46,9 @@ if ($_SESSION["email"] == "") {
                     <label for="exampleTextarea1">Message content</label>
                     <textarea class="form-control" id="exampleTextarea1" rows="4" placeholder="Thank You For choosing Nutri-Time. Your Program Id id #00Ad001"></textarea>
                   </div>
-                  <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#staticBackdrop">Send individually</button>
-                  <button type="submit" class="btn btn-primary mr-2">Broadcast</button>
-                  <button class="btn btn-light">Cancel</button>
+                  <button type="button" class="btn btn-primary mr-2 rounded-pill" data-toggle="modal" data-target="#staticBackdrop">Send individually</button>
+                  <button type="submit" class="btn btn-primary mr-2 rounded-pill">Broadcast</button>
+                  <button class="btn btn-light rounded-pill">Cancel</button>
                   <!-- Modal -->
                   <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -75,8 +75,8 @@ if ($_SESSION["email"] == "") {
                           </table>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary" data-dismiss="modal">Send Message</button>
+                          <button type="button" class="btn btn-secondary rounded-pill" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary rounded-pill" data-dismiss="modal">Send Message</button>
                         </div>
                       </div>
                     </div>

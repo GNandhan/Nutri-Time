@@ -70,7 +70,7 @@
                    <input type="hidden" name="gallid" value="<?php echo $gl_id; ?>">
                    <div class="form-group">
                      <label for="exampleTextarea1">Img Description</label>
-                     <input type="text" class="form-control" style="border-radius: 15px;" name="galldis" value="<?php echo $gl_dis1; ?>">
+                     <input type="text" class="form-control" style="border-radius: 16px;" name="galldis" value="<?php echo $gl_dis1; ?>">
                    </div>
                    <div class="form-group">
                      <label for="exampleTextarea1">Add Images</label>
@@ -80,8 +80,8 @@
                        <input type="hidden" name="current_shimg" value="<?php echo $gl_img1; ?>">
                      </div>
                    </div>
-                   <button type="submit" class="btn btn-primary mr-2" name="submitg">Upload</button>
-                   <a href="./admin-gallery.php" class="btn btn-light">Cancel</a>
+                   <button type="submit" class="btn btn-primary mr-2 rounded-pill" name="submitg">Upload</button>
+                   <a href="./admin-gallery.php" class="btn btn-light rounded-pill">Cancel</a>
                  </form>
                </div>
              </div>

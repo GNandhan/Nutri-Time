@@ -79,7 +79,7 @@ if ($_SESSION["email"] == "") {
                     <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product Name</label>
-                        <select class="form-control" style="border-radius: 15px;" name="proname" id="proname">
+                        <select class="form-control" style="border-radius: 16px;" name="proname" id="proname">
                           <option selected>Select the Product</option>
                           <?php
                           $query = mysqli_query($conn, "select * from price");
@@ -99,7 +99,7 @@ if ($_SESSION["email"] == "") {
                     <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
                         <label>No of Scoops</label>
-                        <input type="number" class="form-control" style="border-radius: 15px;" name="scoop" value="<?php echo $p_scoop1; ?>" required>
+                        <input type="number" class="form-control" style="border-radius: 16px;" name="scoop" value="<?php echo $p_scoop1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -108,36 +108,36 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>15%</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="scoop15" value="<?php echo $p_scoop151; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="scoop15" value="<?php echo $p_scoop151; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>25%</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="scoop25" value="<?php echo $p_scoop251; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="scoop25" value="<?php echo $p_scoop251; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>35%</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="scoop35" value="<?php echo $p_scoop351; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="scoop35" value="<?php echo $p_scoop351; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>42%</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="scoop42" value="<?php echo $p_scoop421; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="scoop42" value="<?php echo $p_scoop421; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>50%</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="scoop50" value="<?php echo $p_scoop501; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="scoop50" value="<?php echo $p_scoop501; ?>" required>
                       </div>
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-primary mr-2" name="submitp">Submit</button>
-                  <a href="./admin-scoopprice.php" type="reset" class="btn btn-light">Cancel</a>
+                  <button type="submit" class="btn btn-primary mr-2 rounded-pill" name="submitp">Submit</button>
+                  <a href="./admin-scoopprice.php" type="reset" class="btn btn-light rounded-pill">Cancel</a>
                 </form>
               </div>
             </div>
@@ -196,7 +196,7 @@ if ($_SESSION["email"] == "") {
                   <div class="col-md-9">
                     <p class="card-description">Product Discount Details</p>
                   </div>
-                  <div class="col-md-3">
+                  <!-- <div class="col-md-3">
                     <div class="dropdown">
                       <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Filter By:
@@ -211,10 +211,9 @@ if ($_SESSION["email"] == "") {
                           <input type="checkbox" id="checkSubcategory" class="filter-checkbox" value="subcategory">
                           <label for="checkSubcategory">Unused Product</label>
                         </div>
-                        <!-- Add more checkbox items for other filter options -->
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="table-responsive">
                   <table class="table table-striped">

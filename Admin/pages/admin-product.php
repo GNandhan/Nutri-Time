@@ -54,20 +54,6 @@ if ($_SESSION["email"] == "") {
       $p_img1 = $p_row1['pro_img'];
       $p_hsn1 = $p_row1['pro_hsn'];
     }
-    // fetching the data from the URL for deleting the subject form
-    if (isset($_GET['pd_id'])) {
-      $dl_id = $_GET['pd_id'];
-      $dl_query = mysqli_query($conn, "SELECT * FROM price WHERE pri_id = '$dl_id'");
-      $dl_row1 = mysqli_fetch_array($dl_query);
-      $img = '../images/product/' . $dl_row1['pro_image'];
-      $del = mysqli_query($conn, "DELETE FROM price WHERE pri_id='$dl_id'");
-      if ($del) {
-        unlink($img); //for deleting the existing image from the folder
-        header("location:admin-product.php");
-      } else {
-        echo "Deletion Failed";
-      }
-    }
     ?>
     <!-- Fetching prices of all materials from the database -->
     <?php
@@ -139,7 +125,7 @@ if ($_SESSION["email"] == "") {
                     <div class="col-lg-6 col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product Name</label>
-                        <select class="form-control" name="proname" id="proname" onchange="updatePrice()">
+                        <select class="form-control" style="border-radius: 16px;" name="proname" id="proname" onchange="updatePrice()">
                           <option selected>Select the Product</option>
                           <?php
                           $query = mysqli_query($conn, "select * from price");
@@ -160,7 +146,7 @@ if ($_SESSION["email"] == "") {
                     <div class="col-lg-6 col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product Code</label>
-                        <input type="text" class="form-control" placeholder="Weight Gainer" name="procode" id="procode" value="<?php echo $p_code1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Weight Gainer" name="procode" id="procode" value="<?php echo $p_code1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -168,13 +154,13 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>Category</label>
-                        <input type="text" class="form-control" placeholder="Category" name="procat" id="procat" value="<?php echo $p_cat1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Category" name="procat" id="procat" value="<?php echo $p_cat1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>Subcategory</label>
-                        <input type="text" class="form-control" placeholder="Subcategory" name="prosubcat" id="prosubcat" value="<?php echo $p_sub1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Subcategory" name="prosubcat" id="prosubcat" value="<?php echo $p_sub1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -182,19 +168,19 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>MRP</label>
-                        <input type="number" class="form-control" name="promrp" id="promrp" value="<?php echo $p_mrp1; ?>" required>
+                        <input type="number" class="form-control" style="border-radius: 16px;" name="promrp" id="promrp" value="<?php echo $p_mrp1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>Purchased Price</label>
-                        <input type="number" class="form-control" name="proprice" id="proprice" value="<?php echo $p_pri1; ?>" required>
+                        <input type="number" class="form-control" style="border-radius: 16px;" name="proprice" id="proprice" value="<?php echo $p_pri1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>Quantity</label>
-                        <input type="number" class="form-control" name="proquant" value="<?php echo $p_qua1; ?>" required>
+                        <input type="number" class="form-control" style="border-radius: 16px;" name="proquant" value="<?php echo $p_qua1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -202,18 +188,18 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>VP</label>
-                        <input type="text" class="form-control" placeholder="Volume Point" name="provp" id="provp" value="<?php echo $p_vp1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Volume Point" name="provp" id="provp" value="<?php echo $p_vp1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>HSN Code</label>
-                        <input type="text" class="form-control" placeholder="Enter Product HSN Code" name="prohsn" value="<?php echo $p_hsn1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Enter Product HSN Code" name="prohsn" value="<?php echo $p_hsn1; ?>" required>
                       </div>
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-primary mr-2" name="submitp">Submit</button>
-                  <a href="./admin-product.php" type="reset" class="btn btn-light">Cancel</a>
+                  <button type="submit" class="btn btn-primary mr-2 rounded-pill" name="submitp">Submit</button>
+                  <a href="./admin-product.php" type="reset" class="btn btn-light rounded-pill">Cancel</a>
                 </form>
               </div>
             </div>
@@ -221,42 +207,51 @@ if ($_SESSION["email"] == "") {
         </div>
         <!-- PHP CODE FOR INSERTING THE DATA -->
         <?php
-        if (isset($_POST["submitp"])) {
-          $pname = $_POST["proname"];
-          $pcode = $_POST["procode"];
-          $pcat = $_POST["procat"];
-          $psubcat = $_POST["prosubcat"];
-          $pmrp = $_POST["promrp"];
-          $pprice = $_POST["proprice"];
-          $pquant = $_POST["proquant"];
-          $pvp = $_POST["provp"];
-          $phsn = $_POST["prohsn"];
-          $pvptotal = $pvp * $pquant;
+if (isset($_POST["submitp"])) {
+    $pname = $_POST["proname"];
+    $pcode = $_POST["procode"];
+    $pcat = $_POST["procat"];
+    $psubcat = $_POST["prosubcat"];
+    $pmrp = $_POST["promrp"];
+    $pprice = $_POST["proprice"];
+    $pquant = $_POST["proquant"]; // This is the new quantity from the form
+    $pvp = $_POST["provp"];
+    $phsn = $_POST["prohsn"];
+    $pvptotal = $pvp * $pquant;
 
-          // Update the record in the price table based on the selected product name
-          $sql = "UPDATE price SET 
-            pro_code = '$pcode', 
-            pro_category = '$pcat', 
-            pro_subcat = '$psubcat', 
-            pro_mrp = '$pmrp', 
-            pro_price = '$pprice', 
-            pro_quantity = '$pquant', 
-            pro_curquantity = '$pquant', 
-            pro_vp = '$pvp', 
-            pro_vptotal = '$pvptotal', 
-            pro_hsn = '$phsn'";
+    // Fetch existing quantity from the database
+    $query = mysqli_query($conn, "SELECT pro_quantity, pro_curquantity FROM price WHERE pro_name = '$pname'");
+    $row = mysqli_fetch_assoc($query);
+    $existingQuantity = $row['pro_quantity'];
+    $existingcurQuantity = $row['pro_curquantity'];
 
-          // Complete the SQL query based on the selected product name
-          $sql .= " WHERE pro_name = '$pname'";
+    // Calculate new quantity (add new quantity to existing quantity)
+    $newQuantity = (int)$existingQuantity + (int)$pquant;
+    $newcurQuantity = (int)$existingcurQuantity + (int)$pquant;
 
-          // Execute the SQL update query
-          if (mysqli_query($conn, $sql)) {
-            echo "<script>alert('Product details updated successfully');</script>";
-          } else {
-            echo "<script>alert('Error updating product details');</script>";
-          }
-        }
-        ?>
+    // Update the record in the price table
+    $sql = "UPDATE price SET 
+        pro_code = '$pcode', 
+        pro_category = '$pcat', 
+        pro_subcat = '$psubcat', 
+        pro_mrp = '$pmrp', 
+        pro_price = '$pprice', 
+        pro_quantity = '$newQuantity',  -- Update pro_quantity by adding new quantity
+        pro_curquantity = '$newcurQuantity', 
+        pro_vp = '$pvp', 
+        pro_vptotal = '$pvptotal', 
+        pro_hsn = '$phsn'
+        WHERE pro_name = '$pname'";
+
+    // Execute the SQL update query
+    if (mysqli_query($conn, $sql)) {
+        echo "<script>alert('Product details updated successfully');</script>";
+    } else {
+        echo "<script>alert('Error updating product details');</script>";
+    }
+}
+?>
+
         <div class="row ">
           <!-- table view -->
           <div class="col-lg-12 grid-margin stretch-card">
@@ -267,7 +262,7 @@ if ($_SESSION["email"] == "") {
                   <div class="col-md-9">
                     <p class="card-description">Product Details</p>
                   </div>
-                  <div class="col-md-3">
+                  <!-- <div class="col-md-3">
                     <div class="dropdown">
                       <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Filter By:
@@ -282,10 +277,9 @@ if ($_SESSION["email"] == "") {
                           <input type="checkbox" id="checkSubcategory" class="filter-checkbox" value="subcategory">
                           <label for="checkSubcategory">Unused Product</label>
                         </div>
-                        <!-- Add more checkbox items for other filter options -->
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="table-responsive">
                   <table class="table table-striped">

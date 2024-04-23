@@ -110,7 +110,7 @@ if ($_SESSION["email"] == "") {
                     <div class="col-lg-6 col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product</label>
-                        <select class="form-control" name="stomaterial" id="stomaterial" onchange="updatePrice()">
+                        <select class="form-control" style="border-radius: 16px;" name="stomaterial" id="stomaterial" onchange="updatePrice()">
                           <option selected>Select the Product</option>
                           <?php
                           $query = mysqli_query($conn, "SELECT pri_id, pro_name, pro_curquantity FROM price");
@@ -131,7 +131,7 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>Quantity</label>
-                        <input type="text" class="form-control" name="stoqua" id="stocurqua" value="<?php echo $stoqua1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="stoqua" id="stocurqua" value="<?php echo $stoqua1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -139,18 +139,18 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>Location</label>
-                        <input type="text" class="form-control" name="stoloc" value="<?php echo $stoloct1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="stoloc" value="<?php echo $stoloct1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>Purchased Price</label>
-                        <input type="number" class="form-control" name="stopri" id="stopri" required>
+                        <input type="number" class="form-control" style="border-radius: 16px;" name="stopri" id="stopri" required>
                       </div>
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-primary mr-2" name="submitsto">Submit</button>
-                  <button class="btn btn-light">Cancel</button>
+                  <button type="submit" class="btn btn-primary mr-2 rounded-pill" name="submitsto">Submit</button>
+                  <button class="btn btn-light rounded-pill">Cancel</button>
                 </form>
               </div>
             </div>

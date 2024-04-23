@@ -84,25 +84,25 @@ if ($_SESSION["email"] == "") {
                     <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product Code</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodcode" value="<?php echo $p_code1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;"  name="prodcode" value="<?php echo $p_code1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product Name</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodname" value="<?php echo $p_name1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;"  name="prodname" value="<?php echo $p_name1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product MRP</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodmrp" value="<?php echo $p_mrp1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;"  name="prodmrp" value="<?php echo $p_mrp1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product Purchase Price</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodpur" value="<?php echo $p_pri1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;"  name="prodpur" value="<?php echo $p_pri1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -111,31 +111,31 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>15%</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="dis15" value="<?php echo $p_dis151; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;"  name="dis15" value="<?php echo $p_dis151; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>25%</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="dis25" value="<?php echo $p_dis251; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;"  name="dis25" value="<?php echo $p_dis251; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>35%</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="dis35" value="<?php echo $p_dis351; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;"  name="dis35" value="<?php echo $p_dis351; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>42%</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="dis42" value="<?php echo $p_dis421; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;"  name="dis42" value="<?php echo $p_dis421; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>50%</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="dis50" value="<?php echo $p_dis501; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;"  name="dis50" value="<?php echo $p_dis501; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -143,24 +143,24 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>Category</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodcat" value="<?php echo $p_cat1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;"  name="prodcat" value="<?php echo $p_cat1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>Subcategory</label>
-                        <input type="text" class="form-control" style="border-radius: 15px;" name="prodsubcat" value="<?php echo $p_subcat1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;"  name="prodsubcat" value="<?php echo $p_subcat1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>VP</label>
-                        <input type="text" class="form-control" placeholder="Volume Point" name="provp" value="<?php echo $p_vp1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Volume Point" name="provp" value="<?php echo $p_vp1; ?>" required>
                       </div>
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-primary mr-2" name="submitp">Submit</button>
-                  <a href="./admin-price.php" type="reset" class="btn btn-light">Cancel</a>
+                  <button type="submit" class="btn btn-primary mr-2 rounded-pill" name="submitp">Submit</button>
+                  <a href="./admin-price.php" type="reset" class="btn btn-light rounded-pill">Cancel</a>
                 </form>
               </div>
             </div>
@@ -210,7 +210,7 @@ if ($_SESSION["email"] == "") {
                   <div class="col-md-9">
                     <p class="card-description">Product Discount Details</p>
                   </div>
-                  <div class="col-md-3">
+                  <!-- <div class="col-md-3">
                     <div class="dropdown">
                       <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Filter By:
@@ -225,10 +225,9 @@ if ($_SESSION["email"] == "") {
                           <input type="checkbox" id="checkSubcategory" class="filter-checkbox" value="subcategory">
                           <label for="checkSubcategory">Unused Product</label>
                         </div>
-                        <!-- Add more checkbox items for other filter options -->
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="table-responsive">
                   <table class="table table-striped">
@@ -243,6 +242,7 @@ if ($_SESSION["email"] == "") {
                         <th>Subcategory</th>
                         <th>MRP</th>
                         <th>Purchased Price</th>
+                        <th>VP</th>
                         <th>15% Discount</th>
                         <th>25% Discount</th>
                         <th>35% Discount</th>
@@ -261,6 +261,7 @@ if ($_SESSION["email"] == "") {
                       $pri_subcat = $row['pro_subcat'];
                       $pri_mrp = $row['pro_mrp'];
                       $pri_pri = $row['pro_price'];
+                      $pri_vp = $row['pro_vp'];
                       $pri_dis15 = $row['pro_dis15'];
                       $pri_dis25 = $row['pro_dis25'];
                       $pri_dis35 = $row['pro_dis35'];
@@ -278,6 +279,7 @@ if ($_SESSION["email"] == "") {
                           <td><?php echo $pri_subcat; ?></td>
                           <td><?php echo $pri_mrp; ?></td>
                           <td><?php echo $pri_pri; ?></td>
+                          <td><?php echo $pri_vp; ?></td>
                           <td><?php echo $pri_dis15; ?></td>
                           <td><?php echo $pri_dis25; ?></td>
                           <td><?php echo $pri_dis35; ?></td>

@@ -79,13 +79,13 @@ if(isset($_GET['prd_id']))
                       <div class="col">
                         <div class="form-group">
                           <label>Program Name</label>
-                          <input type="text" class="form-control"  placeholder="Weight Gainer" name="pname" value="<?php echo $pr_name1; ?>" required>
+                          <input type="text" class="form-control" style="border-radius: 16px;"  placeholder="Weight Gainer" name="pname" value="<?php echo $pr_name1; ?>" required>
                         </div>
                       </div>
                       <div class="col">
                         <div class="form-group">
                           <label>Purpose</label>
-                          <input type="text" class="form-control"  placeholder="Weight Gainer" name="ppurpose" value="<?php echo $pr_purpose1; ?>" required>
+                          <input type="text" class="form-control" style="border-radius: 16px;"  placeholder="Weight Gainer" name="ppurpose" value="<?php echo $pr_purpose1; ?>" required>
                         </div>
                       </div>
                     </div> 
@@ -93,7 +93,7 @@ if(isset($_GET['prd_id']))
                       <div class="col">
                         <div class="form-group">
                           <label for="exampleSelectGender">Duration</label>
-                            <select class="form-control"  name="pduration" required>
+                            <select class="form-control" style="border-radius: 16px;"  name="pduration" required>
                               <option <?php if($pr_dur1=='10 Days' ) echo 'selected' ; ?> value="10-Days">10 Days</option>
                               <option <?php if($pr_dur1=='20 Days' ) echo 'selected' ; ?> value="20-Days">20 Days</option>
                               <option <?php if($pr_dur1=='25 Days' ) echo 'selected' ; ?> value="25-Days">25 Days</option>
@@ -103,7 +103,7 @@ if(isset($_GET['prd_id']))
                       <div class="col">
                         <div class="form-group">
                           <label>Fee (per/month)</label>
-                          <input type="number" class="form-control" name="pfee" value="<?php echo $pr_fee1; ?>" required>
+                          <input type="number" class="form-control" style="border-radius: 16px;" name="pfee" value="<?php echo $pr_fee1; ?>" required>
                         </div>
                       </div>
                     </div>      
@@ -111,13 +111,13 @@ if(isset($_GET['prd_id']))
                       <div class="col">
                         <div class="form-group">
                           <label>Program Condition</label>
-                          <input type="text" class="form-control"  name="pcond" value="<?php echo $pr_cond1; ?>" required>
+                          <input type="text" class="form-control" style="border-radius: 16px;"  name="pcond" value="<?php echo $pr_cond1; ?>" required>
                         </div> 
                       </div>
                       <div class="col">
                         <div class="form-group">
                           <label for="exampleSelectGender">Program Mode</label>
-                            <select class="form-control"  name="pmode"  required>
+                            <select class="form-control" style="border-radius: 16px;"  name="pmode"  required>
                               <option <?php if($pr_mode1=='Online' ) echo 'selected' ; ?> value="Online">Online</option>
                               <option <?php if($pr_mode1=='Offline' ) echo 'selected' ; ?> value="Offline">Offline</option>
                             </select>
@@ -127,16 +127,16 @@ if(isset($_GET['prd_id']))
                         <div class="form-group">
                           <label>Program Image</label>
                            <div class="input-group mb-3">
-                            <input type="file" class="custom-file-input form-control file-upload-info" id="inputGroupFile01" name="prgimg" onchange="displaySelectedFileName(this)"  value="<?php echo $pr_img1; ?>" required>
+                            <input type="file" class="custom-file-input form-control file-upload-info"  style="border-radius: 16px;" id="inputGroupFile01" name="prgimg" onchange="displaySelectedFileName(this)"  value="<?php echo $pr_img1; ?>" required>
                             <label class="input-group-text custom-file-label" for="inputGroupFile01">Choose file</label>
-                            <input type="hidden" name="current_primg" value="<?php echo $pr_img1; ?>">
+                            <input type="hidden"  style="border-radius: 16px;" name="current_primg" value="<?php echo $pr_img1; ?>">
                             </div>
                         </div>
                       </div>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary mr-2"  name="submitpr">Submit</button>
-                    <a href="./admin-program.php" class="btn btn-light">Cancel</a>
+                    <button type="submit" class="btn btn-primary mr-2 rounded-pill"  name="submitpr">Submit</button>
+                    <a href="./admin-program.php" class="btn btn-light rounded-pill">Cancel</a>
                   </form>
                 </div>
                 <!-- Form Closed -->

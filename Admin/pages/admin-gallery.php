@@ -70,7 +70,7 @@
                    <input type="hidden" name="gallid" value="<?php echo $gl_id; ?>">
                    <div class="form-group">
                      <label for="exampleTextarea1">Img Description</label>
-                     <input type="text" class="form-control" style="border-radius: 15px;" name="galldis" value="<?php echo $gl_dis1; ?>">
+                     <input type="text" class="form-control" style="border-radius: 16px;" name="galldis" value="<?php echo $gl_dis1; ?>">
                    </div>
                    <div class="form-group">
                      <label for="exampleTextarea1">Add Images</label>
