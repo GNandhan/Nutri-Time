@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2024 at 07:21 AM
+-- Generation Time: Apr 23, 2024 at 01:37 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -74,7 +74,7 @@ CREATE TABLE `customer` (
   `customer_code` varchar(50) NOT NULL,
   `customer_name` varchar(100) NOT NULL,
   `customer_phno` varchar(20) NOT NULL,
-  `customer_whatsapp` varchar(20) NOT NULL,
+  `customer_invited` varchar(50) NOT NULL,
   `customer_age` varchar(10) NOT NULL,
   `customer_gender` varchar(25) NOT NULL,
   `customer_email` varchar(50) NOT NULL,
@@ -96,7 +96,7 @@ CREATE TABLE `customer` (
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`customer_id`, `customer_code`, `customer_name`, `customer_phno`, `customer_whatsapp`, `customer_age`, `customer_gender`, `customer_email`, `customer_password`, `customer_city`, `customer_address`, `customer_weightbeg`, `customer_weightcur`, `customer_weightdif`, `customer_program`, `customer_type`, `customer_nodays`, `customer_total`, `customer_paid`, `customer_remain`) VALUES
+INSERT INTO `customer` (`customer_id`, `customer_code`, `customer_name`, `customer_phno`, `customer_invited`, `customer_age`, `customer_gender`, `customer_email`, `customer_password`, `customer_city`, `customer_address`, `customer_weightbeg`, `customer_weightcur`, `customer_weightdif`, `customer_program`, `customer_type`, `customer_nodays`, `customer_total`, `customer_paid`, `customer_remain`) VALUES
 (1003, 'CUS10012', 'Manu', '7854985687', '2147483647', '25', 'Male', 'manu123@gmail.com', 'manu123@', 'Kozhikode', 'veluvil po mavoor, kozhikode', '74', '62', '62', 'Weight Losing', '', '30', '15000', '7000', '8000'),
 (1005, 'CUS10013', 'Amal', '9865329865', '9865329865', '26', 'Male', 'amal123@gmail.com', 'amal123@', 'Thalayolaparambu', '3rd floor, Thalayolaparambu, po', '65', '63', '63', 'Weight losing', 'Online', '20', '12000', '8000', '4000'),
 (1006, '1001', 'Albin', '9865875498', '9865542187', '25', 'Male', 'albin12@gmail.com', '', 'Vallaserry', '3rd floor, vallaserry, po', '75', '72', '72', 'Weight losing', '', '25', '10000', '8000', '2000'),
@@ -125,32 +125,6 @@ CREATE TABLE `login_details` (
   `login_details_id` int(11) NOT NULL,
   `login_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `login_details`
---
-
-INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`) VALUES
-('nutriadmin@gmail.com', 1, '2024-04-02 12:57:31'),
-('nutriadmin@gmail.com', 2, '2024-04-02 13:19:46'),
-('nutriadmin@gmail.com', 3, '2024-04-03 07:50:39'),
-('nutriadmin@gmail.com', 4, '2024-04-03 08:17:20'),
-('nutriadmin@gmail.com', 5, '2024-04-04 05:54:29'),
-('nutriadmin@gmail.com', 6, '2024-04-04 05:59:11'),
-('nutriadmin@gmail.com', 7, '2024-04-05 06:36:58'),
-('nutriadmin@gmail.com', 8, '2024-04-06 08:45:45'),
-('nutriadmin@gmail.com', 9, '2024-04-11 06:47:13'),
-('nutriadmin@gmail.com', 10, '2024-04-12 06:55:39'),
-('nutriadmin@gmail.com', 11, '2024-04-12 10:05:12'),
-('nutriadmin@gmail.com', 12, '2024-04-14 22:33:16'),
-('nutriadmin@gmail.com', 13, '2024-04-15 00:05:17'),
-('nutriadmin@gmail.com', 14, '2024-04-15 00:06:05'),
-('nutriadmin@gmail.com', 15, '2024-04-15 06:53:33'),
-('nutriadmin@gmail.com', 16, '2024-04-15 06:55:03'),
-('nutriadmin@gmail.com', 17, '2024-04-15 08:04:43'),
-('nutriadmin@gmail.com', 18, '2024-04-20 11:39:56'),
-('nutriadmin@gmail.com', 19, '2024-04-20 11:52:17'),
-('nutriadmin@gmail.com', 20, '2024-04-22 06:01:49');
 
 -- --------------------------------------------------------
 
@@ -472,7 +446,7 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `price`

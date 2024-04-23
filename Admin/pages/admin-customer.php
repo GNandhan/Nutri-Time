@@ -320,6 +320,11 @@ if ($_SESSION["email"] == "") {
                         <th>BMI</th>
                         <th>Muscle Mass</th>
                         <th>TSF</th>
+                        <th>Program</th>
+                        <th>Program Type</th>
+                        <th>No of Days</th>
+                        <th>Total Amount</th>
+                        <th>Amount Paid</th>
                         <th>Remaining Amount</th>
                       </tr>
                     </thead>
