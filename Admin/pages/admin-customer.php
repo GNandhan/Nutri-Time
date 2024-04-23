@@ -8,6 +8,7 @@ if ($_SESSION["email"] == "") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -22,6 +23,7 @@ if ($_SESSION["email"] == "") {
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
+
 <body>
   <div class="container-scroller">
     <!-- including the sidebar,navbar -->
@@ -29,32 +31,32 @@ if ($_SESSION["email"] == "") {
     include './topbar.php';
     ?>
     <?php
-        if (isset($_GET['custid'])) {
-          $cusid = $_GET['custid'];
-          $p_query = mysqli_query($conn, "SELECT * FROM customer WHERE customer_id = '$cusid'");
-          $p_row1 = mysqli_fetch_array($p_query);
+    if (isset($_GET['custid'])) {
+      $cusid = $_GET['custid'];
+      $p_query = mysqli_query($conn, "SELECT * FROM customer WHERE customer_id = '$cusid'");
+      $p_row1 = mysqli_fetch_array($p_query);
 
-          $cus_id1 = $p_row1['customer_id'];
-          $cus_code1 = $p_row1['customer_code'];
-          $cus_name1 = $p_row1['customer_name'];
-          $cus_phno1 = $p_row1['customer_phno'];
-          $cus_whatphno1 = $p_row1['customer_whatsapp'];
-          $cus_age1 = $p_row1['customer_age'];
-          $cus_gender1 = $p_row1['customer_gender'];
-          $cus_email1 = $p_row1['customer_email'];
-          $cus_password1 = $p_row1['customer_password'];
-          $cus_city1 = $p_row1['customer_city'];
-          $cus_address1 = $p_row1['customer_address'];
-          $cus_weightbeg1 = $p_row1['customer_weightbeg'];
-          $cus_weightcur1 = $p_row1['customer_weightcur'];
-          $cus_weightdif1 = $p_row1['customer_weightdif'];
-          $cus_program1 = $p_row1['customer_program'];
-          $cus_type1 = $p_row1['customer_type'];
-          $cus_nodays1 = $p_row1['customer_nodays'];
-          $cus_total1 = $p_row1['customer_total'];
-          $cus_paid1 = $p_row1['customer_paid'];
-          $cus_remain1 = $p_row1['customer_remain'];
-        }
+      $cus_id1 = $p_row1['customer_id'];
+      $cus_code1 = $p_row1['customer_code'];
+      $cus_name1 = $p_row1['customer_name'];
+      $cus_phno1 = $p_row1['customer_phno'];
+      $cus_whatphno1 = $p_row1['customer_whatsapp'];
+      $cus_age1 = $p_row1['customer_age'];
+      $cus_gender1 = $p_row1['customer_gender'];
+      $cus_email1 = $p_row1['customer_email'];
+      $cus_password1 = $p_row1['customer_password'];
+      $cus_city1 = $p_row1['customer_city'];
+      $cus_address1 = $p_row1['customer_address'];
+      $cus_weightbeg1 = $p_row1['customer_weightbeg'];
+      $cus_weightcur1 = $p_row1['customer_weightcur'];
+      $cus_weightdif1 = $p_row1['customer_weightdif'];
+      $cus_program1 = $p_row1['customer_program'];
+      $cus_type1 = $p_row1['customer_type'];
+      $cus_nodays1 = $p_row1['customer_nodays'];
+      $cus_total1 = $p_row1['customer_total'];
+      $cus_paid1 = $p_row1['customer_paid'];
+      $cus_remain1 = $p_row1['customer_remain'];
+    }
     // fetching the data from the URL for deleting the subject form
     if (isset($_GET['userd_id'])) {
       $dl_id = $_GET['userd_id'];
@@ -71,7 +73,7 @@ if ($_SESSION["email"] == "") {
     <!-- partial -->
     <div class="main-panel">
       <div class="content-wrapper">
-      <div class="row">
+        <div class="row">
           <div class="col-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
@@ -80,112 +82,159 @@ if ($_SESSION["email"] == "") {
                 <form method="post" class="forms-sample" enctype="multipart/form-data">
                   <input type="hidden" name="custid" value="<?php echo $cusid; ?>">
                   <div class="row">
-                    <div class="col-lg col-md col-sm col-12">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-12">
                       <div class="form-group">
                         <label>Customer Id</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cuscode" value="<?php echo $cus_code1; ?>" required>
                       </div>
                     </div>
-                    <div class="col-lg col-md col-sm col-12">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-12">
                       <div class="form-group">
                         <label>Customer Name</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusname" value="<?php echo $cus_name1; ?>" required>
                       </div>
                     </div>
-                    <div class="col-lg col-md col-sm col-12">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-12">
                       <div class="form-group">
                         <label>Customer Phno</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusphno" value="<?php echo $cus_phno1; ?>" required>
                       </div>
                     </div>
-                    <div class="col-lg col-md col-sm col-12">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-12">
                       <div class="form-group">
-                        <label>Whatsapp No</label>
+                        <label>Invited By</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cuswhat" value="<?php echo $cus_whatphno1; ?>" required>
                       </div>
                     </div>
-                  </div>
-                  <div class="row">
-                  <div class="col-lg col-md col-sm col-6">
+                    <div class="col-lg-2 col-md-4 col-sm-4 col-6">
                       <div class="form-group">
                         <label>Age</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusage" value="<?php echo $cus_age1; ?>" required>
                       </div>
                     </div>
-                    <div class="col-lg col-md col-sm col-6">
+                    <div class="col-lg-2 col-md-4 col-sm-4 col-6">
+                      <div class="form-group">
+                        <label>Body Age</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusage" value="<?php echo $cus_age1; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-6">
                       <div class="form-group">
                         <label>Gender</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusgender" value="<?php echo $cus_gender1; ?>" required>
                       </div>
                     </div>
-                    <div class="col-lg col-md col-sm col-6">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-12">
                       <div class="form-group">
                         <label>Email Id</label>
                         <input type="email" class="form-control" style="border-radius: 16px;" name="cusemail" value="<?php echo $cus_email1; ?>" required>
                       </div>
                     </div>
-                    <div class="col-lg col-md col-sm col-6">
+                    <div class="col-lg-2 col-md-4 col-sm-4 col-6">
                       <div class="form-group">
-                        <label>Weight (begining)</label>
+                        <label>Date of Joining</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusweibg" value="<?php echo $cus_weightbeg1; ?>" required>
                       </div>
                     </div>
-                    <div class="col-lg col-md col-sm col-6">
-                      <div class="form-group">
-                        <label>Weight(Current)</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusweicu" value="<?php echo $cus_weightcur1; ?>" required>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                  <div class="col">
+                    <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
                         <label>City</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cuscity" value="<?php echo $cus_city1; ?>" required>
                       </div>
                     </div>
-                    <div class="col">
+                    <div class="col-lg-6 col-md col-sm col-12">
                       <div class="form-group">
                         <label>Address</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusaddress" value="<?php echo $cus_address1; ?>" required>
                       </div>
                     </div>
-                  </div> 
-                <p class="card-description">Add Program Details</p> <hr>
-                <div class="row">
-                  <div class="col">
+                  </div>
+                  <p class="card-description">Add Evaluation Record</p>
+                  <hr>
+                  <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-4">
+                      <div class="form-group">
+                        <label>Height</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusprogram" value="<?php echo $cus_program1; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-4">
+                      <div class="form-group">
+                        <label>Weight</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusprgtype" value="<?php echo $cus_type1; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-4">
+                      <div class="form-group">
+                        <label>Fat %</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-4">
+                      <div class="form-group">
+                        <label>VCF</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-4">
+                      <div class="form-group">
+                        <label>BMR</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-4">
+                      <div class="form-group">
+                        <label>BMI</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-4">
+                      <div class="form-group">
+                        <label>Muscle Mass</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-4">
+                      <div class="form-group">
+                        <label>TCF</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="card-description">Add Program Details</p>
+                  <hr>
+                  <div class="row">
+                    <div class="col-lg-3 col-md col-sm-4 col-6">
                       <div class="form-group">
                         <label>Program</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusprogram" value="<?php echo $cus_program1; ?>" required>
                       </div>
                     </div>
-                    <div class="col">
+                    <div class="col-lg-3 col-md col-sm-4 col-6">
                       <div class="form-group">
                         <label>Program Type</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusprgtype" value="<?php echo $cus_type1; ?>" required>
                       </div>
                     </div>
-                    <div class="col">
+                    <div class="col-lg-2 col-md col-sm-4 col-6">
                       <div class="form-group">
                         <label>No of Days</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
                       </div>
                     </div>
-                  </div>
-                  <div class="row">
-                  <div class="col">
+                    <div class="col-lg-2 col-md col-sm-4 col-6">
                       <div class="form-group">
                         <label>Total Amount</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="custotal" value="<?php echo $cus_total1; ?>" required>
                       </div>
                     </div>
-                    <div class="col">
+                    <div class="col-lg-2 col-md col-sm-4 col-6">
                       <div class="form-group">
                         <label>Amount Paid</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cuspaid" value="<?php echo $cus_paid1; ?>" required>
                       </div>
                     </div>
-                    <div class="col">
+                    <div class="col-lg-3 col-md col-sm-4 col-6">
                       <div class="form-group">
                         <label>Remaining Amount</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusrem" value="<?php echo $cus_remain1; ?>" required>
@@ -193,7 +242,7 @@ if ($_SESSION["email"] == "") {
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary mr-2 rounded-pill" name="submitp">Submit</button>
-                  <a href="./admin-price.php" type="reset" class="btn btn-light rounded-pill">Cancel</a>
+                  <a href="./admin-customer.php" type="reset" class="btn btn-light rounded-pill">Cancel</a>
                 </form>
               </div>
             </div>
@@ -255,20 +304,22 @@ if ($_SESSION["email"] == "") {
                         <th>Customer Id</th>
                         <th>Customer Name</th>
                         <th>Phno</th>
-                        <th>WhatsappNo</th>
+                        <th>Invited By</th>
                         <th>Age</th>
+                        <th>Body Age</th>
                         <th>Gender</th>
                         <th>Mail</th>
+                        <th>DOJ</th>
                         <th>City</th>
                         <th>Address</th>
-                        <th>Weight (Begining)</th>
-                        <th>Weight (Current)</th>
-                        <th>Weight Difference</th>
-                        <th>Program</th>
-                        <th>Program Type</th>
-                        <th>No of days</th>
-                        <th>Total Amount</th>
-                        <th>Amount Paid</th>
+                        <th>Height</th>
+                        <th>Weight</th>
+                        <th>Fat %</th>
+                        <th>VCF</th>
+                        <th>BMR</th>
+                        <th>BMI</th>
+                        <th>Muscle Mass</th>
+                        <th>TSF</th>
                         <th>Remaining Amount</th>
                       </tr>
                     </thead>
@@ -309,7 +360,7 @@ if ($_SESSION["email"] == "") {
                           <td><?php echo $cus_gender; ?></td>
                           <td><?php echo $cus_email; ?></td>
                           <td><?php echo $cus_city; ?></td>
-                          <td><?php echo $cus_address; ?></td>  
+                          <td><?php echo $cus_address; ?></td>
                           <td><?php echo $cus_weightbeg; ?>Kg</td>
                           <td><?php echo $cus_weightcur; ?>Kg</td>
                           <td><?php echo $cus_weightdif; ?>Kg</td>
@@ -349,4 +400,5 @@ if ($_SESSION["email"] == "") {
   <script src="../js/off-canvas.js"></script>
   <script src="../js/template.js"></script>
 </body>
+
 </html>
