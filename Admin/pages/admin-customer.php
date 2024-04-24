@@ -1,6 +1,7 @@
 <?php
 include './connect.php';
-error_reporting(0);
+// error_reporting(0);
+$cus_id1= $cus_code1= $cus_name1= $cus_phno1= $cus_invite1= $cus_age1= $cus_bodyage1= $cus_gender1= $cus_email1= $cus_doj1= $cus_city1= $cus_address1= $cus_height1= $cus_weight1= $cus_fat1= $cus_vcf1= $cus_bmr1= $cus_bmi1= $cus_mm1= $cus_tsf1= $cus_waketime1= $cus_tea1= $cus_breakfast1= $cus_lunch1= $cus_snack1= $cus_dinner1= $cus_veg_nonveg1= $cus_waterintake1= $cus_cond11= $cus_cond21= $cus_cond31= $cus_prg1= $cus_prgtype1= $cus_nodays1= $cus_total1= $cus_paid1= $cus_remain1= "";
 session_start();
 if ($_SESSION["email"] == "") {
   header('location:admin-login.php');
@@ -121,7 +122,7 @@ if ($_SESSION["email"] == "") {
                     <div class="col-lg-3 col-md-4 col-sm-4 col-12">
                       <div class="form-group">
                         <label>Invited By</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cuswhat" value="<?php echo $cus_whatphno1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusinvite" value="<?php echo $cus_invite1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg-2 col-md-4 col-sm-4 col-6">
@@ -133,7 +134,7 @@ if ($_SESSION["email"] == "") {
                     <div class="col-lg-2 col-md-4 col-sm-4 col-6">
                       <div class="form-group">
                         <label>Body Age</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusage" value="<?php echo $cus_age1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusbodyage" value="<?php echo $cus_bodyage1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-4 col-12">
@@ -151,7 +152,7 @@ if ($_SESSION["email"] == "") {
                     <div class="col-lg-2 col-md-4 col-sm-4 col-6">
                       <div class="form-group">
                         <label>Date of Joining</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusweibg" value="<?php echo $cus_weightbeg1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusdoj" value="<?php echo $cus_doj1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg col-md col-sm col-6">
@@ -173,49 +174,49 @@ if ($_SESSION["email"] == "") {
                     <div class="col-lg-2 col-md-3 col-sm-3 col-4">
                       <div class="form-group">
                         <label>Height</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusprogram" value="<?php echo $cus_program1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusheight" value="<?php echo $cus_height1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg-2 col-md-3 col-sm-3 col-4">
                       <div class="form-group">
                         <label>Weight</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusprgtype" value="<?php echo $cus_type1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusweight" value="<?php echo $cus_weight1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg-2 col-md-3 col-sm-3 col-4">
                       <div class="form-group">
                         <label>Fat %</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusfat" value="<?php echo $cus_fat1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg-2 col-md-3 col-sm-3 col-4">
                       <div class="form-group">
                         <label>VCF</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusvcf" value="<?php echo $cus_vcf1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg-2 col-md-3 col-sm-3 col-4">
                       <div class="form-group">
                         <label>BMR</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusbmr" value="<?php echo $cus_bmr1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg-2 col-md-3 col-sm-3 col-4">
                       <div class="form-group">
                         <label>BMI</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusbmi" value="<?php echo $cus_bmi1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg-2 col-md-3 col-sm-3 col-6">
                       <div class="form-group">
                         <label>Muscle Mass</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusmm" value="<?php echo $cus_mm1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg-2 col-md-3 col-sm-3 col-6">
                       <div class="form-group">
                         <label>TCF</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="custcf" value="<?php echo $cus_tsf1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -225,49 +226,49 @@ if ($_SESSION["email"] == "") {
                     <div class="col-lg-3 col-md-3 col-sm-3 col-6">
                       <div class="form-group">
                         <label>Wake-Up Time</label>
-                        <input type="time" class="form-control" style="border-radius: 16px;" name="cusprogram" value="<?php echo $cus_program1; ?>" required>
+                        <input type="time" class="form-control" style="border-radius: 16px;" name="cuswaketime" value="<?php echo $cus_waketime1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3 col-6">
                       <div class="form-group">
                         <label>Tea/ Coffee</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusprgtype" value="<?php echo $cus_type1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="custea" value="<?php echo $cus_tea1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3 col-6">
                       <div class="form-group">
                         <label>Breakfast</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusbreakfast" value="<?php echo $cus_breakfast1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3 col-6">
                       <div class="form-group">
                         <label>Lunch</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cuslunch" value="<?php echo $cus_lunch1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3 col-6">
                       <div class="form-group">
                         <label>Snacks</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cussnack" value="<?php echo $cus_snack1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3 col-6">
                       <div class="form-group">
                         <label>Dinner</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusdinner" value="<?php echo $cus_dinner1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3 col-6">
                       <div class="form-group">
                         <label>Veg / Non-Veg</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusveg" value="<?php echo $cus_veg_nonveg1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3 col-6">
                       <div class="form-group">
                         <label>Water Intake</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cuswaterintake" value="<?php echo $cus_waterintake1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -277,19 +278,19 @@ if ($_SESSION["email"] == "") {
                     <div class="col-lg col-md col-sm-4 col-6">
                       <div class="form-group">
                         <label>Condition 1</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusprogram" value="<?php echo $cus_program1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cuscond1" value="<?php echo $cus_cond11; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg col-md col-sm-4 col-6">
                       <div class="form-group">
                         <label>Condition 2</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusprgtype" value="<?php echo $cus_type1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cuscond2" value="<?php echo $cus_cond21; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg-12 col-md col-sm-4 col-12">
                       <div class="form-group">
                         <label>Condition 3</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusprgtype" value="<?php echo $cus_type1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cuscond3" value="<?php echo $cus_cond31; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -299,13 +300,13 @@ if ($_SESSION["email"] == "") {
                     <div class="col-lg-3 col-md col-sm-4 col-6">
                       <div class="form-group">
                         <label>Program</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusprogram" value="<?php echo $cus_program1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusprogram" value="<?php echo $cus_prg1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg-3 col-md col-sm-4 col-6">
                       <div class="form-group">
                         <label>Program Type</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusprgtype" value="<?php echo $cus_type1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusprgtype" value="<?php echo $cus_prgtype1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg-2 col-md col-sm-4 col-6">
@@ -346,32 +347,49 @@ if ($_SESSION["email"] == "") {
           $ccode = $_POST["cuscode"];
           $cname = $_POST["cusname"];
           $cphno = $_POST["cusphno"];
-          $cwhat = $_POST["cuswhat"];
+          $cinvite = $_POST["cusinvite"];
           $cage = $_POST["cusage"];
+          $cbodyage = $_POST["cusbodyage"];
           $cgender = $_POST["cusgender"];
-          $cmail = $_POST["cusemail"];
-          $cweibg = $_POST["cusweibg"];
-          $cweicu = $_POST["cusweicu"];
-          $cweidif = $cweibg - $cweicu;
+          $cemail = $_POST["cusemail"];
+          $cdoj = $_POST["cusdoj"];
           $ccity = $_POST["cuscity"];
           $caddress = $_POST["cusaddress"];
+          $cheight = $_POST["cusheight"];
+          $cweight = $_POST["cusweight"];
+          $cfat = $_POST["cusfat"];
+          $cvcf = $_POST["cusvcf"];
+          $cbmr = $_POST["cusbmr"];
+          $cbmi = $_POST["cusbmi"];
+          $cmm = $_POST["cusmm"];
+          $ctcf = $_POST["custcf"];
+          $cwaketime = $_POST["cuswaketime"];
+          $ctea = $_POST["custea"];
+          $cbreakfast = $_POST["cusbreakfast"];
+          $clunch = $_POST["cuslunch"];
+          $csnack = $_POST["cussnack"];
+          $cdinner = $_POST["cusdinner"];
+          $cveg = $_POST["cusveg"];
+          $cwaterintake = $_POST["cuswaterintake"];
+          $ccond1 = $_POST["cuscond1"];
+          $ccond2 = $_POST["cuscond2"];
+          $ccond3 = $_POST["cuscond3"];
           $cprogram = $_POST["cusprogram"];
           $cprgtype = $_POST["cusprgtype"];
-          $cnodays = $_POST["cusnoday"];
+          $cnoday = $_POST["cusnoday"];
           $ctotal = $_POST["custotal"];
           $cpaid = $_POST["cuspaid"];
           $crem = $_POST["cusrem"];
-
 
           // Fetch the shake ID from the form
           $cus_id = $_POST["custid"];
 
           if ($cus_id == '') {
-            $sql = mysqli_query($conn, "INSERT INTO customer (customer_code, customer_name, customer_phno, customer_whatsapp, customer_age, customer_gender, customer_email, customer_city, customer_address, customer_weightbeg, customer_weightcur, customer_weightdif, customer_program, customer_type, customer_nodays, customer_total, customer_paid, customer_remain)
-                                         VALUES ('$ccode','$cname','$cphno','$cwhat','$cage','$cgender','$cmail','$ccity','$caddress','$cweibg','$cweicu','$cweidif','$cprogram','$cprgtype','$cnodays','$ctotal','$cpaid','$crem')");
+            $sql = mysqli_query($conn, "INSERT INTO customer (cust_code, cust_name, cust_phno, cust_invited, cust_age, cust_bodyage, cust_gender, cust_email, cust_doj, cust_city, cust_address, cust_height, cust_weight, cust_fat, cust_vcf, cust_bmr, cust_bmi, cust_mm, cust_tsf, cust_waketime, cust_tea, cust_breakfast, cust_lunch, cust_snack, cust_dinner, cust_veg_nonveg, cust_waterintake, cust_cond1, cust_cond2, cust_cond3, cust_prg, cust_prgtype, cust_noday, cust_total, cust_paid, cust_remain)
+                                         VALUES ('$ccode','$cname','$cphno','$cinvite','$cage','$cbodyage','$cgender','$cemail','$cdoj','$ccity','$caddress','$cheight','$cweight','$cfat','$cvcf','$cbmr','$cbmi','$cmm','$ctcf','$cwaketime','$ctea','$cbreakfast','$clunch','$csnack','$cdinner','$cveg','$cwaterintake','$ccond1','$ccond2','$ccond3','$cprogram','$cprgtype','$cnoday','$ctotal','$cpaid','$crem',)");
           } else {
             // Update shake
-            $sql = mysqli_query($conn, "UPDATE customer SET customer_code='$ccode', customer_name='$cname', customer_phno='$cphno', customer_whatsapp='$cwhat', customer_age='$cage', customer_gender='$cgender', customer_email='$cmail', customer_city='$ccity', customer_address='$caddress', customer_weightbeg='$cweibg', customer_weightcur='$cweicu', customer_weightdif='$cweidif', customer_program='$cprogram', customer_type='$cprgtype', customer_nodays='$cnodays', customer_total='$ctotal', customer_paid='$cpaid', customer_remain='$crem' WHERE customer_id='$cus_id'");
+            $sql = mysqli_query($conn, "UPDATE customer SET cust_code='$ccode', cust_name='$cname', cust_phno='$cphno', cust_invited='$cinvite', cust_age='$cage', cust_bodyage='$cbodyage', cust_gender='$cgender', cust_email='$cemail', cust_doj='$cdoj', cust_city='$ccity', cust_address='$caddress', cust_height='$cheight', cust_weight='$cweight', cust_fat='$cfat', cust_vcf='$cvcf', cust_bmr='$cbmr', cust_bmi='$cbmi', cust_mm='$cmm', cust_tsf='$ctcf', cust_waketime='$cwaketime', cust_tea='$ctea', cust_breakfast='$cbreakfast', cust_lunch='$clunch', cust_snack='$csnack', cust_dinner='$cdinner', cust_veg_nonveg='$cveg', cust_waterintake='$cwaterintake', cust_cond1='$ccond1', cust_cond2='$ccond2', cust_cond3='$ccond3', cust_prg='$cprogram', cust_prgtype='$cprgtype', cust_noday='$cnoday', cust_total='$ctotal', cust_paid='$cpaid', cust_remain='$crem' WHERE cust_id='$cus_id'");
           }
           if ($sql == TRUE) {
             echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
