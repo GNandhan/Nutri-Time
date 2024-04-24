@@ -182,12 +182,11 @@ if ($_SESSION["email"] == "") {
           $pdis50 = $_POST["dis50"];
           $pvp = $_POST["provp"];
 
-
           // Fetch the shake ID from the form
           $pri_id = $_POST["prid"];
 
           if ($pri_id == '') {
-            $sql = mysqli_query($conn, "INSERT INTO price (pro_name, pro_code, pro_category, pro_subcat, pro_mrp, pro_price, pro_dis15, pro_dis25, pro_dis35, pro_dis42, pro_dis50,pro_vp)
+            $sql = mysqli_query($conn, "INSERT INTO price (pro_name, pro_code, pro_category, pro_subcat, pro_mrp, pro_price, pro_dis15, pro_dis25, pro_dis35, pro_dis42, pro_dis50, pro_vp)
                                          VALUES ('$pname','$pcode','$pcat','$psubcat','$pmrp','$ppur','$pdis15','$pdis25','$pdis35','$pdis42','$pdis50','$pvp' )");
           } else {
             // Update shake

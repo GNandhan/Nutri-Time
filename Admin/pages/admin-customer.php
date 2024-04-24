@@ -32,8 +32,8 @@ if ($_SESSION["email"] == "") {
     include './topbar.php';
     ?>
     <?php
-    if (isset($_GET['custid'])) {
-      $cusid = $_GET['custid'];
+    if (isset($_GET['cusid'])) {
+      $cusid = $_GET['cusid'];
       $p_query = mysqli_query($conn, "SELECT * FROM customer WHERE cust_id = '$cusid'");
       $p_row1 = mysqli_fetch_array($p_query);
 
@@ -77,8 +77,8 @@ if ($_SESSION["email"] == "") {
 
     }
     // fetching the data from the URL for deleting the subject form
-    if (isset($_GET['userd_id'])) {
-      $dl_id = $_GET['userd_id'];
+    if (isset($_GET['cusdid'])) {
+      $dl_id = $_GET['cusdid'];
       $dl_query = mysqli_query($conn, "SELECT * FROM customer WHERE cust_id = '$dl_id'");
       $dl_row1 = mysqli_fetch_array($dl_query);
       $del = mysqli_query($conn, "DELETE FROM customer WHERE cust_id='$dl_id'");
@@ -98,7 +98,7 @@ if ($_SESSION["email"] == "") {
               <div class="card-body">
                 <h1 class="card-title">Customer Details</h1>
                 <p class="card-description">Add Customer Details</p>
-                <form method="post" class="forms-sample" enctype="multipart/form-data">
+                <form method="post" class="forms-sample">
                   <input type="hidden" name="custid" value="<?php echo $cusid; ?>">
                   <div class="row">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-6">
@@ -384,9 +384,9 @@ if ($_SESSION["email"] == "") {
           // Fetch the shake ID from the form
           $cus_id = $_POST["custid"];
 
-          if ($cus_id == '') {
+          if($cus_id=='') {
             $sql = mysqli_query($conn, "INSERT INTO customer (cust_code, cust_name, cust_phno, cust_invited, cust_age, cust_bodyage, cust_gender, cust_email, cust_doj, cust_city, cust_address, cust_height, cust_weight, cust_fat, cust_vcf, cust_bmr, cust_bmi, cust_mm, cust_tsf, cust_waketime, cust_tea, cust_breakfast, cust_lunch, cust_snack, cust_dinner, cust_veg_nonveg, cust_waterintake, cust_cond1, cust_cond2, cust_cond3, cust_prg, cust_prgtype, cust_noday, cust_total, cust_paid, cust_remain)
-                                         VALUES ('$ccode','$cname','$cphno','$cinvite','$cage','$cbodyage','$cgender','$cemail','$cdoj','$ccity','$caddress','$cheight','$cweight','$cfat','$cvcf','$cbmr','$cbmi','$cmm','$ctcf','$cwaketime','$ctea','$cbreakfast','$clunch','$csnack','$cdinner','$cveg','$cwaterintake','$ccond1','$ccond2','$ccond3','$cprogram','$cprgtype','$cnoday','$ctotal','$cpaid','$crem',)");
+                                                      VALUES ('$ccode','$cname','$cphno','$cinvite','$cage','$cbodyage','$cgender','$cemail','$cdoj','$ccity','$caddress','$cheight','$cweight','$cfat','$cvcf','$cbmr','$cbmi','$cmm','$ctcf','$cwaketime','$ctea','$cbreakfast','$clunch','$csnack','$cdinner','$cveg','$cwaterintake','$ccond1','$ccond2','$ccond3','$cprogram','$cprgtype','$cnoday','$ctotal','$cpaid','$crem')");
           } else {
             // Update shake
             $sql = mysqli_query($conn, "UPDATE customer SET cust_code='$ccode', cust_name='$cname', cust_phno='$cphno', cust_invited='$cinvite', cust_age='$cage', cust_bodyage='$cbodyage', cust_gender='$cgender', cust_email='$cemail', cust_doj='$cdoj', cust_city='$ccity', cust_address='$caddress', cust_height='$cheight', cust_weight='$cweight', cust_fat='$cfat', cust_vcf='$cvcf', cust_bmr='$cbmr', cust_bmi='$cbmi', cust_mm='$cmm', cust_tsf='$ctcf', cust_waketime='$cwaketime', cust_tea='$ctea', cust_breakfast='$cbreakfast', cust_lunch='$clunch', cust_snack='$csnack', cust_dinner='$cdinner', cust_veg_nonveg='$cveg', cust_waterintake='$cwaterintake', cust_cond1='$ccond1', cust_cond2='$ccond2', cust_cond3='$ccond3', cust_prg='$cprogram', cust_prgtype='$cprgtype', cust_noday='$cnoday', cust_total='$ctotal', cust_paid='$cpaid', cust_remain='$crem' WHERE cust_id='$cus_id'");
@@ -493,8 +493,8 @@ if ($_SESSION["email"] == "") {
                     ?>
                       <tbody>
                         <tr>
-                          <td><a href="admin-customer.php?custid=<?php echo $cus_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit <i class="ti-pencil-alt btn-icon-append"></i></a></td>
-                          <td><a href="admin-customer.php?userd_id=<?php echo $cus_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a></td>
+                          <td><a href="admin-customer.php?cusid=<?php echo $cus_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit <i class="ti-pencil-alt btn-icon-append"></i></a></td>
+                          <td><a href="admin-customer.php?cusdid=<?php echo $cus_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a></td>
                           <td class="py-1"><?php echo $cus_code; ?></td>
                           <td><?php echo $cus_name; ?></td>
                           <td><?php echo $cus_phno; ?></td>
