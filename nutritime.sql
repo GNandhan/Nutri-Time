@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2024 at 01:37 PM
+-- Generation Time: Apr 24, 2024 at 06:26 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -70,37 +70,55 @@ INSERT INTO `category` (`category_id`, `category_name`) VALUES
 --
 
 CREATE TABLE `customer` (
-  `customer_id` int(11) NOT NULL,
-  `customer_code` varchar(50) NOT NULL,
-  `customer_name` varchar(100) NOT NULL,
-  `customer_phno` varchar(20) NOT NULL,
-  `customer_invited` varchar(50) NOT NULL,
-  `customer_age` varchar(10) NOT NULL,
-  `customer_gender` varchar(25) NOT NULL,
-  `customer_email` varchar(50) NOT NULL,
-  `customer_password` varchar(50) NOT NULL,
-  `customer_city` varchar(50) NOT NULL,
-  `customer_address` varchar(100) NOT NULL,
-  `customer_weightbeg` varchar(10) NOT NULL,
-  `customer_weightcur` varchar(10) NOT NULL,
-  `customer_weightdif` varchar(10) NOT NULL,
-  `customer_program` varchar(50) NOT NULL,
-  `customer_type` enum('Online','Offilne') NOT NULL,
-  `customer_nodays` varchar(10) NOT NULL,
-  `customer_total` varchar(10) NOT NULL,
-  `customer_paid` varchar(10) NOT NULL,
-  `customer_remain` varchar(10) NOT NULL
+  `cust_id` int(11) NOT NULL,
+  `cust_code` varchar(50) NOT NULL,
+  `cust_name` varchar(100) NOT NULL,
+  `cust_phno` varchar(20) NOT NULL,
+  `cust_invited` varchar(50) NOT NULL,
+  `cust_age` varchar(10) NOT NULL,
+  `cust_bodyage` varchar(10) NOT NULL,
+  `cust_gender` varchar(25) NOT NULL,
+  `cust_email` varchar(50) NOT NULL,
+  `cust_password` varchar(50) NOT NULL,
+  `cust_doj` varchar(50) NOT NULL,
+  `cust_city` varchar(50) NOT NULL,
+  `cust_address` varchar(100) NOT NULL,
+  `cust_height` varchar(10) NOT NULL,
+  `cust_weight` varchar(10) NOT NULL,
+  `cust_fat` varchar(10) NOT NULL,
+  `cust_vcf` varchar(50) NOT NULL,
+  `cust_bmr` varchar(10) NOT NULL,
+  `cust_bmi` varchar(10) NOT NULL,
+  `cust_mm` varchar(10) NOT NULL,
+  `cust_tsf` varchar(10) NOT NULL,
+  `cust_waketime` varchar(10) NOT NULL,
+  `cust_tea` varchar(50) NOT NULL,
+  `cust_breakfast` varchar(100) NOT NULL,
+  `cust_lunch` varchar(100) NOT NULL,
+  `cust_snack` varchar(100) NOT NULL,
+  `cust_dinner` varchar(100) NOT NULL,
+  `cust_veg_nonveg` varchar(50) NOT NULL,
+  `cust_waterintake` varchar(10) NOT NULL,
+  `cust_cond1` varchar(100) NOT NULL,
+  `cust_cond2` varchar(100) NOT NULL,
+  `cust_cond3` varchar(100) NOT NULL,
+  `cust_prg` varchar(50) NOT NULL,
+  `cust_prgtype` varchar(20) NOT NULL,
+  `cust_noday` varchar(10) NOT NULL,
+  `cust_total` varchar(20) NOT NULL,
+  `cust_paid` varchar(20) NOT NULL,
+  `cust_remain` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`customer_id`, `customer_code`, `customer_name`, `customer_phno`, `customer_invited`, `customer_age`, `customer_gender`, `customer_email`, `customer_password`, `customer_city`, `customer_address`, `customer_weightbeg`, `customer_weightcur`, `customer_weightdif`, `customer_program`, `customer_type`, `customer_nodays`, `customer_total`, `customer_paid`, `customer_remain`) VALUES
-(1003, 'CUS10012', 'Manu', '7854985687', '2147483647', '25', 'Male', 'manu123@gmail.com', 'manu123@', 'Kozhikode', 'veluvil po mavoor, kozhikode', '74', '62', '62', 'Weight Losing', '', '30', '15000', '7000', '8000'),
-(1005, 'CUS10013', 'Amal', '9865329865', '9865329865', '26', 'Male', 'amal123@gmail.com', 'amal123@', 'Thalayolaparambu', '3rd floor, Thalayolaparambu, po', '65', '63', '63', 'Weight losing', 'Online', '20', '12000', '8000', '4000'),
-(1006, '1001', 'Albin', '9865875498', '9865542187', '25', 'Male', 'albin12@gmail.com', '', 'Vallaserry', '3rd floor, vallaserry, po', '75', '72', '72', 'Weight losing', '', '25', '10000', '8000', '2000'),
-(1007, 'CUS10016', 'Amal', '986585498', '6598659865', '45', 'Male', 'amal123@gmail.com', '', 'Kochi', '3rd floor, kochi, po', '98', '90', '8', 'Fat Reducer', 'Online', '60', '16000', '7000', '9000');
+INSERT INTO `customer` (`cust_id`, `cust_code`, `cust_name`, `cust_phno`, `cust_invited`, `cust_age`, `cust_bodyage`, `cust_gender`, `cust_email`, `cust_password`, `cust_doj`, `cust_city`, `cust_address`, `cust_height`, `cust_weight`, `cust_fat`, `cust_vcf`, `cust_bmr`, `cust_bmi`, `cust_mm`, `cust_tsf`, `cust_waketime`, `cust_tea`, `cust_breakfast`, `cust_lunch`, `cust_snack`, `cust_dinner`, `cust_veg_nonveg`, `cust_waterintake`, `cust_cond1`, `cust_cond2`, `cust_cond3`, `cust_prg`, `cust_prgtype`, `cust_noday`, `cust_total`, `cust_paid`, `cust_remain`) VALUES
+(1003, 'CUS10012', 'Manu', '7854985687', '2147483647', '25', '', 'Male', 'manu123@gmail.com', 'manu123@', '', 'Kozhikode', 'veluvil po mavoor, kozhikode', '74', '62', '62', 'Weight Losing', '', '30', '15000', '7000', '8000', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(1005, 'CUS10013', 'Amal', '9865329865', '9865329865', '26', '', 'Male', 'amal123@gmail.com', 'amal123@', '', 'Thalayolaparambu', '3rd floor, Thalayolaparambu, po', '65', '63', '63', 'Weight losing', 'Online', '20', '12000', '8000', '4000', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(1006, '1001', 'Albin', '9865875498', '9865542187', '25', '', 'Male', 'albin12@gmail.com', '', '', 'Vallaserry', '3rd floor, vallaserry, po', '75', '72', '72', 'Weight losing', '', '25', '10000', '8000', '2000', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(1007, 'CUS10016', 'Amal', '986585498', '6598659865', '45', '', 'Male', 'amal123@gmail.com', '', '', 'Kochi', '3rd floor, kochi, po', '98', '90', '8', 'Fat Reducer', 'Online', '60', '16000', '7000', '9000', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -358,7 +376,7 @@ ALTER TABLE `category`
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
-  ADD PRIMARY KEY (`customer_id`);
+  ADD PRIMARY KEY (`cust_id`);
 
 --
 -- Indexes for table `gallery`
@@ -434,7 +452,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1008;
+  MODIFY `cust_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1008;
 
 --
 -- AUTO_INCREMENT for table `gallery`
