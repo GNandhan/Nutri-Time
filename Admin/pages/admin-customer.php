@@ -82,13 +82,13 @@ if ($_SESSION["email"] == "") {
                 <form method="post" class="forms-sample" enctype="multipart/form-data">
                   <input type="hidden" name="custid" value="<?php echo $cusid; ?>">
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 col-sm-4 col-12">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-6">
                       <div class="form-group">
                         <label>Customer Id</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cuscode" value="<?php echo $cus_code1; ?>" required>
                       </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-4 col-12">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-6">
                       <div class="form-group">
                         <label>Customer Name</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusname" value="<?php echo $cus_name1; ?>" required>
@@ -118,7 +118,7 @@ if ($_SESSION["email"] == "") {
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusage" value="<?php echo $cus_age1; ?>" required>
                       </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-4 col-6">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-12">
                       <div class="form-group">
                         <label>Gender</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusgender" value="<?php echo $cus_gender1; ?>" required>
@@ -136,7 +136,7 @@ if ($_SESSION["email"] == "") {
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusweibg" value="<?php echo $cus_weightbeg1; ?>" required>
                       </div>
                     </div>
-                    <div class="col-lg col-md col-sm col-12">
+                    <div class="col-lg col-md col-sm col-6">
                       <div class="form-group">
                         <label>City</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cuscity" value="<?php echo $cus_city1; ?>" required>
@@ -188,16 +188,90 @@ if ($_SESSION["email"] == "") {
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
                       </div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-4">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-6">
                       <div class="form-group">
                         <label>Muscle Mass</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
                       </div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-4">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-6">
                       <div class="form-group">
                         <label>TCF</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="card-description">Add Eating Habits</p>
+                  <hr>
+                  <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-6">
+                      <div class="form-group">
+                        <label>Wake-Up Time</label>
+                        <input type="time" class="form-control" style="border-radius: 16px;" name="cusprogram" value="<?php echo $cus_program1; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-6">
+                      <div class="form-group">
+                        <label>Tea/ Coffee</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusprgtype" value="<?php echo $cus_type1; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-6">
+                      <div class="form-group">
+                        <label>Breakfast</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-6">
+                      <div class="form-group">
+                        <label>Lunch</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-6">
+                      <div class="form-group">
+                        <label>Snacks</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-6">
+                      <div class="form-group">
+                        <label>Dinner</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-6">
+                      <div class="form-group">
+                        <label>Veg / Non-Veg</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-6">
+                      <div class="form-group">
+                        <label>Water Intake</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>" required>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="card-description">Add Health Conditions</p>
+                  <hr>
+                  <div class="row">
+                    <div class="col-lg col-md col-sm-4 col-6">
+                      <div class="form-group">
+                        <label>Condition 1</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusprogram" value="<?php echo $cus_program1; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col-lg col-md col-sm-4 col-6">
+                      <div class="form-group">
+                        <label>Condition 2</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusprgtype" value="<?php echo $cus_type1; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col-lg-12 col-md col-sm-4 col-12">
+                      <div class="form-group">
+                        <label>Condition 3</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusprgtype" value="<?php echo $cus_type1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -320,6 +394,17 @@ if ($_SESSION["email"] == "") {
                         <th>BMI</th>
                         <th>Muscle Mass</th>
                         <th>TSF</th>
+                        <th>Wake-Up Time</th>
+                        <th>Tea/ Coffee</th>
+                        <th>Breakfast</th>
+                        <th>Lunch</th>
+                        <th>Snacks</th>
+                        <th>Dinner</th>
+                        <th>Veg/Non-Veg</th>
+                        <th>Water Intake</th>
+                        <th>Condition 1</th>
+                        <th>Condition 2</th>
+                        <th>Condition 3</th>
                         <th>Program</th>
                         <th>Program Type</th>
                         <th>No of Days</th>
