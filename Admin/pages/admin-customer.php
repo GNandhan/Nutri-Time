@@ -33,36 +33,54 @@ if ($_SESSION["email"] == "") {
     <?php
     if (isset($_GET['custid'])) {
       $cusid = $_GET['custid'];
-      $p_query = mysqli_query($conn, "SELECT * FROM customer WHERE customer_id = '$cusid'");
+      $p_query = mysqli_query($conn, "SELECT * FROM customer WHERE cust_id = '$cusid'");
       $p_row1 = mysqli_fetch_array($p_query);
 
-      $cus_id1 = $p_row1['customer_id'];
-      $cus_code1 = $p_row1['customer_code'];
-      $cus_name1 = $p_row1['customer_name'];
-      $cus_phno1 = $p_row1['customer_phno'];
-      $cus_whatphno1 = $p_row1['customer_whatsapp'];
-      $cus_age1 = $p_row1['customer_age'];
-      $cus_gender1 = $p_row1['customer_gender'];
-      $cus_email1 = $p_row1['customer_email'];
-      $cus_password1 = $p_row1['customer_password'];
-      $cus_city1 = $p_row1['customer_city'];
-      $cus_address1 = $p_row1['customer_address'];
-      $cus_weightbeg1 = $p_row1['customer_weightbeg'];
-      $cus_weightcur1 = $p_row1['customer_weightcur'];
-      $cus_weightdif1 = $p_row1['customer_weightdif'];
-      $cus_program1 = $p_row1['customer_program'];
-      $cus_type1 = $p_row1['customer_type'];
-      $cus_nodays1 = $p_row1['customer_nodays'];
-      $cus_total1 = $p_row1['customer_total'];
-      $cus_paid1 = $p_row1['customer_paid'];
-      $cus_remain1 = $p_row1['customer_remain'];
+      $cus_id1 = $p_row1['cust_id'];
+      $cus_code1 = $p_row1['cust_code'];
+      $cus_name1 = $p_row1['cust_name'];
+      $cus_phno1 = $p_row1['cust_phno'];
+      $cus_invite1 = $p_row1['cust_invited'];
+      $cus_age1 = $p_row1['cust_age'];
+      $cus_bodyage1 = $p_row1['cust_bodyage'];
+      $cus_gender1 = $p_row1['cust_gender'];
+      $cus_email1 = $p_row1['cust_email'];
+      $cus_doj1 = $p_row1['cust_doj'];
+      $cus_city1 = $p_row1['cust_city'];
+      $cus_address1 = $p_row1['cust_address'];
+      $cus_height1 = $p_row1['cust_height'];
+      $cus_weight1 = $p_row1['cust_weight'];
+      $cus_fat1 = $p_row1['cust_fat'];
+      $cus_vcf1 = $p_row1['cust_vcf'];
+      $cus_bmr1 = $p_row1['cust_bmr'];
+      $cus_bmi1 = $p_row1['cust_bmi'];
+      $cus_mm1 = $p_row1['cust_mm'];
+      $cus_tsf1 = $p_row1['cust_tsf'];
+      $cus_waketime1 = $p_row1['cust_waketime'];
+      $cus_tea1 = $p_row1['cust_tea'];
+      $cus_breakfast1 = $p_row1['cust_breakfast'];
+      $cus_lunch1 = $p_row1['cust_lunch'];
+      $cus_snack1 = $p_row1['cust_snack'];
+      $cus_dinner1 = $p_row1['cust_dinner'];
+      $cus_veg_nonveg1 = $p_row1['cust_veg_nonveg'];
+      $cus_waterintake1 = $p_row1['cust_waterintake'];
+      $cus_cond11 = $p_row1['cust_cond1'];
+      $cus_cond21 = $p_row1['cust_cond2'];
+      $cus_cond31 = $p_row1['cust_cond3'];
+      $cus_prg1 = $p_row1['cust_prg'];
+      $cus_prgtype1 = $p_row1['cust_prgtype'];
+      $cus_nodays1 = $p_row1['cust_noday'];
+      $cus_total1 = $p_row1['cust_total'];
+      $cus_paid1 = $p_row1['cust_paid'];
+      $cus_remain1 = $p_row1['cust_remain'];
+
     }
     // fetching the data from the URL for deleting the subject form
     if (isset($_GET['userd_id'])) {
       $dl_id = $_GET['userd_id'];
-      $dl_query = mysqli_query($conn, "SELECT * FROM customer WHERE customer_id = '$dl_id'");
+      $dl_query = mysqli_query($conn, "SELECT * FROM customer WHERE cust_id = '$dl_id'");
       $dl_row1 = mysqli_fetch_array($dl_query);
-      $del = mysqli_query($conn, "DELETE FROM customer WHERE customer_id='$dl_id'");
+      $del = mysqli_query($conn, "DELETE FROM customer WHERE cust_id='$dl_id'");
       if ($del) { //for deleting the existing image from the folder
         header("location:admin-customer.php");
       } else {
@@ -414,29 +432,46 @@ if ($_SESSION["email"] == "") {
                       </tr>
                     </thead>
                     <?php
-                    $sql = mysqli_query($conn, "SELECT * FROM customer ORDER BY customer_id ");
+                    $sql = mysqli_query($conn, "SELECT * FROM customer ORDER BY cust_id ");
                     $serialNo = 1;
                     while ($row = mysqli_fetch_assoc($sql)) {
-                      $cus_id = $row['customer_id'];
-                      $cus_code = $row['customer_code'];
-                      $cus_name = $row['customer_name'];
-                      $cus_phno = $row['customer_phno'];
-                      $cus_whatphno = $row['customer_whatsapp'];
-                      $cus_age = $row['customer_age'];
-                      $cus_gender = $row['customer_gender'];
-                      $cus_email = $row['customer_email'];
-                      $cus_password = $row['customer_password'];
-                      $cus_city = $row['customer_city'];
-                      $cus_address = $row['customer_address'];
-                      $cus_weightbeg = $row['customer_weightbeg'];
-                      $cus_weightcur = $row['customer_weightcur'];
-                      $cus_weightdif = $row['customer_weightdif'];
-                      $cus_program = $row['customer_program'];
-                      $cus_type = $row['customer_type'];
-                      $cus_nodays = $row['customer_nodays'];
-                      $cus_total = $row['customer_total'];
-                      $cus_paid = $row['customer_paid'];
-                      $cus_remain = $row['customer_remain'];
+                      $cus_id = $row['cust_id'];
+                      $cus_code = $row['cust_code'];
+                      $cus_name = $row['cust_name'];
+                      $cus_phno = $row['cust_phno'];
+                      $cus_invite = $row['cust_invited'];
+                      $cus_age = $row['cust_age'];
+                      $cus_bodyage = $row['cust_bodyage'];
+                      $cus_gender = $row['cust_gender'];
+                      $cus_email = $row['cust_email'];
+                      $cus_doj = $row['cust_doj'];
+                      $cus_city = $row['cust_city'];
+                      $cus_address = $row['cust_address'];
+                      $cus_height = $row['cust_height'];
+                      $cus_weight = $row['cust_weight'];
+                      $cus_fat = $row['cust_fat'];
+                      $cus_vcf = $row['cust_vcf'];
+                      $cus_bmr = $row['cust_bmr'];
+                      $cus_bmi = $row['cust_bmi'];
+                      $cus_mm = $row['cust_mm'];
+                      $cus_tsf = $row['cust_tsf'];
+                      $cus_waketime = $row['cust_waketime'];
+                      $cus_tea = $row['cust_tea'];
+                      $cus_breakfast = $row['cust_breakfast'];
+                      $cus_lunch = $row['cust_lunch'];
+                      $cus_snack = $row['cust_snack'];
+                      $cus_dinner = $row['cust_dinner'];
+                      $cus_veg_nonveg = $row['cust_veg_nonveg'];
+                      $cus_waterintake = $row['cust_waterintake'];
+                      $cus_cond1 = $row['cust_cond1'];
+                      $cus_cond2 = $row['cust_cond2'];
+                      $cus_cond3 = $row['cust_cond3'];
+                      $cus_prg = $row['cust_prg'];
+                      $cus_prgtype = $row['cust_prgtype'];
+                      $cus_nodays = $row['cust_noday'];
+                      $cus_total = $row['cust_total'];
+                      $cus_paid = $row['cust_paid'];
+                      $cus_remain = $row['cust_remain'];
                     ?>
                       <tbody>
                         <tr>
@@ -445,17 +480,35 @@ if ($_SESSION["email"] == "") {
                           <td class="py-1"><?php echo $cus_code; ?></td>
                           <td><?php echo $cus_name; ?></td>
                           <td><?php echo $cus_phno; ?></td>
-                          <td><?php echo $cus_whatphno; ?></td>
+                          <td><?php echo $cus_invite; ?></td>
                           <td><?php echo $cus_age; ?></td>
+                          <td><?php echo $cus_bodyage; ?></td>
                           <td><?php echo $cus_gender; ?></td>
                           <td><?php echo $cus_email; ?></td>
+                          <td><?php echo $cus_doj; ?></td>
                           <td><?php echo $cus_city; ?></td>
                           <td><?php echo $cus_address; ?></td>
-                          <td><?php echo $cus_weightbeg; ?>Kg</td>
-                          <td><?php echo $cus_weightcur; ?>Kg</td>
-                          <td><?php echo $cus_weightdif; ?>Kg</td>
-                          <td><?php echo $cus_program; ?></td>
-                          <td><?php echo $cus_type; ?></td>
+                          <td><?php echo $cus_height; ?>Kg</td>
+                          <td><?php echo $cus_weight; ?>Kg</td>
+                          <td><?php echo $cus_fat; ?></td>
+                          <td><?php echo $cus_vcf; ?></td>
+                          <td><?php echo $cus_bmr; ?></td>
+                          <td><?php echo $cus_bmi; ?></td>
+                          <td><?php echo $cus_mm; ?></td>
+                          <td><?php echo $cus_tsf; ?></td>
+                          <td><?php echo $cus_waketime; ?></td>
+                          <td><?php echo $cus_tea; ?></td>
+                          <td><?php echo $cus_breakfast; ?></td>
+                          <td><?php echo $cus_lunch; ?></td>
+                          <td><?php echo $cus_snack; ?></td>
+                          <td><?php echo $cus_dinner; ?></td>
+                          <td><?php echo $cus_veg_nonveg; ?></td>
+                          <td><?php echo $cus_waterintake; ?></td>
+                          <td><?php echo $cus_cond1; ?></td>
+                          <td><?php echo $cus_cond2; ?></td>
+                          <td><?php echo $cus_cond3; ?></td>
+                          <td><?php echo $cus_prg; ?></td>
+                          <td><?php echo $cus_prgtype; ?></td>
                           <td><?php echo $cus_nodays; ?></td>
                           <td><?php echo $cus_total; ?></td>
                           <td><?php echo $cus_paid; ?></td>
