@@ -1,7 +1,7 @@
 <?php
 include './connect.php';
 // error_reporting(0);
-$p_code1 =  $p_cat1 = $p_sub1 = $p_name1 =  $p_vp1 = $p_hsn1 = $p_assoc1 = '';
+$p_code1 =  $p_cat1 = $p_sub1 = $p_name1 =  $p_vp1 = $p_hsn1 = $p_assoc1 = $p_associate1 = '';
 session_start();
 if ($_SESSION["email"] == "") {
   header('location:admin-login.php');
@@ -46,6 +46,7 @@ if ($_SESSION["email"] == "") {
       $p_name1 = $p_row1['pro_name'];
       $p_code1 = $p_row1['pro_code'];
       $p_assoc1 = $p_row1['pro_associate'];
+      $p_associate1 = $p_row1['pro_association'];
       $p_cat1 = $p_row1['pro_category'];
       $p_sub1 = $p_row1['pro_subcat'];
       $p_vp1 = $p_row1['pro_vp'];
@@ -78,6 +79,7 @@ if ($_SESSION["email"] == "") {
         var purchasePriceInput = document.getElementById("proprice");
         var vpInput = document.getElementById("provp");
         var associateNameInput = document.getElementById("proassoc");
+        var associationInput = document.getElementById("proassociation");
 
         // Set the price, code, category, subcategory, and purchase price fields based on selected material
         if (selectedMaterial && materialPrices[selectedMaterial]) {
@@ -95,6 +97,7 @@ if ($_SESSION["email"] == "") {
               subcategoryInput.value = productDetails.pro_subcat; // Set subcategory value
               vpInput.value = productDetails.pro_vp; // Set Volume Point value
               associateNameInput.value = productDetails.pro_associate; // Set associate name value
+              associationInput.value = productDetails.pro_association; // Set associate name value
             } else {
               codeInput.value = ""; // Clear product code if no data found
               purchasePriceInput.value = ""; // Clear purchase price if no data found
@@ -102,6 +105,7 @@ if ($_SESSION["email"] == "") {
               subcategoryInput.value = ""; // Clear subcategory if no data found
               vpInput.value = ""; // Clear Volume Point if no data found
               associateNameInput.value = ""; // Clear associate name if no data found
+              associationInput.value = ""; // Clear association if no data found
             }
           });
         } else {
@@ -112,6 +116,7 @@ if ($_SESSION["email"] == "") {
           subcategoryInput.value = ""; // Clear the subcategory field if no material is selected
           vpInput.value = ""; // Clear the Volume Point field if no material is selected
           associateNameInput.value = ""; // Clear the associate name field if no material is selected
+          associationInput.value = ""; // Clear the association field if no material is selected
         }
       }
     </script>
@@ -160,6 +165,12 @@ if ($_SESSION["email"] == "") {
                       <div class="form-group">
                         <label>Associate Name</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Enter Associate Name" name="proassoc" id="proassoc" value="<?php echo $p_assoc1; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Association</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Enter Association" name="proassociation" id="proassociation" value="<?php echo $p_associate1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
@@ -222,6 +233,7 @@ if (isset($_POST["submitp"])) {
     $pname = $_POST["proname"];
     $pcode = $_POST["procode"];
     $passoc = $_POST["proassoc"];
+    $passociate = $_POST["proassociation"];
     $pcat = $_POST["procat"];
     $psubcat = $_POST["prosubcat"];
     $pmrp = $_POST["promrp"];
@@ -245,6 +257,7 @@ if (isset($_POST["submitp"])) {
     $sql = "UPDATE price SET 
         pro_code = '$pcode', 
         pro_associate = '$passoc', 
+        pro_association = '$passociate', 
         pro_category = '$pcat', 
         pro_subcat = '$psubcat', 
         pro_mrp = '$pmrp', 
@@ -304,6 +317,7 @@ if (isset($_POST["submitp"])) {
                         <!-- <th>Product Image</th> -->
                         <th>Product Name</th>
                         <th>Associate Name</th>
+                        <th>Association</th>
                         <th>HSL Code</th>
                         <th>Quanity</th>
                         <th>Current Quantity</th>
@@ -325,6 +339,7 @@ if (isset($_POST["submitp"])) {
                       $pro_img = $row['pro_img'];
                       $pro_nam = $row['pro_name'];
                       $pro_assoc = $row['pro_associate'];
+                      $pro_association = $row['pro_association'];
                       $pro_hsn = $row['pro_hsn'];
                       $pro_qua = $row['pro_quantity'];
                       $pro_curqua = $row['pro_curquantity'];
@@ -352,6 +367,7 @@ if (isset($_POST["submitp"])) {
                           <!-- <td><img src="../images/product/<?php echo $pro_img; ?>"  width="50" class="rounded-circle"></td> -->
                           <td><?php echo $pro_nam; ?></td>
                           <td><?php echo $pro_assoc; ?></td>
+                          <td><?php echo $pro_association; ?></td>
                           <td><?php echo $pro_hsn; ?></td>
                           <td><?php echo $pro_qua; ?></td>
                           <td><?php echo $pro_curqua; ?></td>
