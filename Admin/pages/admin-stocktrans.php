@@ -138,7 +138,7 @@ if ($_SESSION["email"] == "") {
                   <div class="row">
                     <div class="col">
                       <div class="form-group">
-                        <label>Location</label>
+                        <label>Associate / Location</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="stoloc" value="<?php echo $stoloct1; ?>" required>
                       </div>
                     </div>
@@ -235,7 +235,7 @@ if ($_SESSION["email"] == "") {
                           </td>
                           <td>
                             <a href="admin-stocktrans.php?stod_id=<?php echo $stock_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i>
-                            </a>4
+                            </a>
                           </td>
                           <td class="py-1"><?php echo $serialNo++; ?></td>
                           <td class="py-1"><?php echo $stock_product; ?></td>

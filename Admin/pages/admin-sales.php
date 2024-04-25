@@ -1,7 +1,7 @@
 <?php
 include './connect.php';
 // error_reporting(0);
-$sale_procode1 = $sale_proname1 = $sale_vp1 = $sale_cus1 = $sale_procat1 = $sale_prosubcat1 = $sale_address1 = $sale_assoc1 = "";
+$sale_procode1 = $sale_proname1 = $sale_vp1 = $sale_cus1 = $sale_procat1 = $sale_prosubcat1 = $sale_address1 = "";
 session_start();
 if ($_SESSION["email"] == "") {
   header('location:admin-login.php');
@@ -59,7 +59,6 @@ if ($_SESSION["email"] == "") {
       $sale_cus1 = $s_row1['sales_cus'];
       $sale_address1 = $s_row1['sales_address'];
       $sale_total1 = $s_row1['sales_total'];
-      $sale_assoc1 = $s_row1['sales_assoc'];
     }
     // fetching the data from the URL for deleting the subject form
     if (isset($_GET['sd_id'])) {
@@ -96,7 +95,6 @@ if ($_SESSION["email"] == "") {
         var subcategoryInput = document.getElementById("prosubcat");
         var vpInput = document.getElementById("provp");
         var quaInput = document.getElementById("procurqua");
-        var assocInput = document.getElementById("proassoc");
 
         // Set the price, code, category, subcategory, and purchase price fields based on selected material
         if (selectedMaterial && materialPrices[selectedMaterial]) {
@@ -113,7 +111,6 @@ if ($_SESSION["email"] == "") {
               subcategoryInput.value = productDetails.pro_subcat; // Set subcategory value
               vpInput.value = productDetails.pro_vp; // Set vp value
               quaInput.value = productDetails.pro_curquantity; // Set vp value
-              assocInput.value = productDetails.pro_associate; // Set vp value
             } else {
               codeInput.value = ""; // Clear product code if no data found
               categoryInput.value = ""; // Clear category if no data found
@@ -175,12 +172,6 @@ if ($_SESSION["email"] == "") {
                     </div>
                   </div>
                   <div class="row">
-                  <div class="col">
-                      <div class="form-group">
-                        <label>Associate Name</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Associate Name" name="proassoc" id="proassoc" value="<?php echo $sale_assoc1; ?>" required>
-                      </div>
-                    </div>
                     <div class="col">
                       <div class="form-group">
                         <label>Category</label>
@@ -258,7 +249,6 @@ if ($_SESSION["email"] == "") {
         if (isset($_POST["submitp"])) {
           $sal_proname = $_POST["proname"];
           $sal_procode = $_POST["procode"];
-          $sal_proassoc = $_POST["proassoc"];
           $sal_cus = $_POST["provend"];
           $sal_procat = $_POST["procat"];
           $sal_prosubcat = $_POST["prosubcat"];
@@ -291,15 +281,15 @@ if ($_SESSION["email"] == "") {
           // Determine if this is an INSERT or UPDATE operation based on saleid
           $sale_id = $_POST["saleid"];
           // if (empty($sale_id)) {
-            // Perform INSERT operation
-            $sql = mysqli_query($conn, "INSERT INTO sales (sales_procode, sales_proname, sales_procat, sales_prosubcat, sales_mrp, sales_quan, sales_vp, sales_vptotal, sales_gst, sales_dis, sales_dispri, sales_cus, sales_address, sales_total, sales_assoc)
-            VALUES ('$sal_procode','$sal_proname','$sal_procat','$sal_prosubcat','$sal_mrp','$sal_quan','$sal_vp', '$sal_vptotal','$sal_gst','$sal_dis','$sal_dispri','$sal_cus','$sal_address','$sal_total','$sal_proassoc')");
+          // Perform INSERT operation
+          $sql = mysqli_query($conn, "INSERT INTO sales (sales_procode, sales_proname, sales_procat, sales_prosubcat, sales_mrp, sales_quan, sales_vp, sales_vptotal, sales_gst, sales_dis, sales_dispri, sales_cus, sales_address, sales_total)
+                                                    VALUES ('$sal_procode','$sal_proname','$sal_procat','$sal_prosubcat','$sal_mrp','$sal_quan','$sal_vp', '$sal_vptotal','$sal_gst','$sal_dis','$sal_dispri','$sal_cus','$sal_address','$sal_total')");
 
-            $sql = mysqli_query($conn, "UPDATE price SET pro_curquantity='$sal_curquan1' WHERE pro_name='$sal_proname'");
+          $sql = mysqli_query($conn, "UPDATE price SET pro_curquantity='$sal_curquan1' WHERE pro_name='$sal_proname'");
 
           // } else {
-            // Perform UPDATE operation
-            // $sql = mysqli_query($conn, "UPDATE sales SET sales_procode='$sal_procode', sales_proname='$sal_proname', sales_procat='$sal_procat', sales_prosubcat='$sal_prosubcat', sales_mrp='$sal_mrp', sales_quan='$sal_quan', sales_vp='$sal_vp', sales_vptotal='$sal_vptotal', sales_gst='$sal_gst', sales_dis='$sal_dis', sales_dispri='$sal_dispri', sales_cus='$sal_cus', sales_address='$sal_address', sales_total='$sal_total' WHERE sales_id='$sale_id'");
+          // Perform UPDATE operation
+          // $sql = mysqli_query($conn, "UPDATE sales SET sales_procode='$sal_procode', sales_proname='$sal_proname', sales_procat='$sal_procat', sales_prosubcat='$sal_prosubcat', sales_mrp='$sal_mrp', sales_quan='$sal_quan', sales_vp='$sal_vp', sales_vptotal='$sal_vptotal', sales_gst='$sal_gst', sales_dis='$sal_dis', sales_dispri='$sal_dispri', sales_cus='$sal_cus', sales_address='$sal_address', sales_total='$sal_total' WHERE sales_id='$sale_id'");
           // }
           // Check if the query was successful
           if ($sql === TRUE) {
@@ -349,7 +339,6 @@ if ($_SESSION["email"] == "") {
                         <th>Address</th>
                         <th>Product Code</th>
                         <th>Product Name</th>
-                        <th>Associate Name</th>
                         <th>Category</th>
                         <th>Subcategory</th>
                         <th>MRP</th>
@@ -361,7 +350,6 @@ if ($_SESSION["email"] == "") {
                         <th>Discount Percentage</th>
                         <th>Percentage Amount</th>
                         <th>Total Price</th>
-
                       </tr>
                     </thead>
                     <?php
@@ -372,11 +360,17 @@ if ($_SESSION["email"] == "") {
                       $sale_proid = $row['sales_proid'];
                       $sale_procode = $row['sales_procode'];
                       $sale_proname = $row['sales_proname'];
-                      $sale_assoc = $row['sales_assoc'];
                       $sale_procat = $row['sales_procat'];
                       $sale_prosubcat = $row['sales_prosubcat'];
                       $sale_mrp = $row['sales_mrp'];
                       $sale_quan = $row['sales_quan'];
+
+                      // Fetch current quantity from the price table based on the product name
+                      $currentQuantity = 0; // Default value if no quantity found
+                      $currentQuantityQuery = mysqli_query($conn, "SELECT pro_curquantity FROM price WHERE pro_name = '$sale_proname'");
+                      if ($currentQuantityRow = mysqli_fetch_assoc($currentQuantityQuery)) {
+                        $currentQuantity = $currentQuantityRow['pro_curquantity'];
+                      }
 
                       $sale_vp = $row['sales_vp'];
                       $sale_vptotal = $row['sales_vptotal'];
@@ -389,20 +383,15 @@ if ($_SESSION["email"] == "") {
                     ?>
                       <tbody>
                         <tr>
-                          <td>
-                            <a href="admin-sales.php?sid=<?php echo $sale_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i>
-                            </a>
+                          <td><a href="admin-sales.php?sid=<?php echo $sale_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i></a>
                           </td>
-                          <td>
-                            <a href="admin-sales.php?sd_id=<?php echo $sale_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i>
-                            </a>
+                          <td><a href="admin-sales.php?sd_id=<?php echo $sale_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a>
                           </td>
                           <td class="py-1"><?php echo $serialNo++; ?></td>
                           <td><?php echo $sale_cus; ?></td>
                           <td><?php echo $sale_address; ?></td>
                           <td class="py-1"><?php echo $sale_procode; ?></td>
                           <td><?php echo $sale_proname; ?></td>
-                          <td><?php echo $sale_assoc; ?></td>
                           <td><?php echo $sale_procat; ?></td>
                           <td><?php echo $sale_prosubcat; ?></td>
                           <td><?php echo $sale_mrp; ?></td>
@@ -444,7 +433,6 @@ if ($_SESSION["email"] == "") {
   <!-- container-scroller -->
   <!-- plugins:js -->
 
-
   <script>
     function updateDiscount() {
       var selectedDiscount = document.getElementById("shdiscount").value;
@@ -460,7 +448,6 @@ if ($_SESSION["email"] == "") {
       });
     }
   </script>
-
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
