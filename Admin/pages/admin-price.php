@@ -162,7 +162,7 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>Associate Name</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Associate Name" name="proasso" value="<?php echo $p_asso1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Associate Name" name="proasso" value="<?php echo $p_asso1; ?>">
                       </div>
                     </div>
                   </div>
