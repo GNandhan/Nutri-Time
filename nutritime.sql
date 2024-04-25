@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2024 at 01:31 PM
+-- Generation Time: Apr 25, 2024 at 01:39 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -214,8 +214,16 @@ CREATE TABLE `program` (
   `program_duration` varchar(50) NOT NULL,
   `program_fee` int(20) NOT NULL,
   `program_condition` varchar(50) NOT NULL,
-  `program_mode` varchar(50) NOT NULL
+  `program_mode` varchar(50) NOT NULL,
+  `program_purpose` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `program`
+--
+
+INSERT INTO `program` (`program_id`, `program_name`, `program_img`, `program_duration`, `program_fee`, `program_condition`, `program_mode`, `program_purpose`) VALUES
+(1, 'Fitness diet', 'main page.jpg', '20-Days', 15000, 'Strict diet should be followed', 'Offline', 'protein diet and weight management');
 
 -- --------------------------------------------------------
 
@@ -499,7 +507,7 @@ ALTER TABLE `price`
 -- AUTO_INCREMENT for table `program`
 --
 ALTER TABLE `program`
-  MODIFY `program_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `program_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `sales`
