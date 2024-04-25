@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2024 at 01:47 PM
+-- Generation Time: Apr 25, 2024 at 08:08 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -115,10 +115,13 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`cust_id`, `cust_code`, `cust_name`, `cust_phno`, `cust_invited`, `cust_age`, `cust_bodyage`, `cust_gender`, `cust_email`, `cust_password`, `cust_doj`, `cust_city`, `cust_address`, `cust_height`, `cust_weight`, `cust_fat`, `cust_vcf`, `cust_bmr`, `cust_bmi`, `cust_mm`, `cust_tsf`, `cust_waketime`, `cust_tea`, `cust_breakfast`, `cust_lunch`, `cust_snack`, `cust_dinner`, `cust_veg_nonveg`, `cust_waterintake`, `cust_cond1`, `cust_cond2`, `cust_cond3`, `cust_prg`, `cust_prgtype`, `cust_noday`, `cust_total`, `cust_paid`, `cust_remain`) VALUES
-(1003, 'CUS10012', 'Manu', '7854985687', 'Ashraf', '25', '26', 'Male', 'manu123@gmail.com', 'manu123@', '20-10-2023', 'Kozhikode', 'veluvil po mavoor, kozhikode', '175', '62', '15', '10', '11', '12', '13', '14', '09:29', 'Green Tea', 'Idly, Sambar', 'Chicken Biriyani', 'ladoo', 'Mandi', 'Non-veg', '2 litre', 'Diabeted', 'Cancer', 'High BP', 'Weight lose', 'Online', '20', '10000', '8000', '4000'),
+(1003, 'CUS10012', 'Kareem', '7854985687', 'Ashraf', '25', '26', 'Male', 'manu123@gmail.com', 'manu123@', '20-10-2023', 'Kozhikode', 'veluvil po mavoor, kozhikode', '175', '62', '15', '10', '11', '12', '13', '14', '09:29', 'Green Tea', 'Idly, Sambar', 'Chicken Biriyani', 'ladoo', 'Mandi', 'Non-veg', '2 litre', 'Diabeted', 'Cancer', 'High BP', 'Weight lose', 'Online', '20', '10000', '8000', '4000'),
 (1005, 'CUS10013', 'Amal', '9865329865', 'Ashraf', '26', '27', 'Male', 'amal123@gmail.com', 'amal123@', '01-05-2023', 'Thalayolaparambu', '3rd floor, Thalayolaparambu, po', '165', '63', '32', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
 (1006, '1001', 'Albin', '9865875498', 'Ashraf', '25', '26', 'Male', 'albin12@gmail.com', 'albin12@', '11-03-2023', 'Vallaserry', '3rd floor, vallaserry, po', '152', '72', '26', '001', '002', '003', '004', '005', '16:51', 'Black Coffee', 'Noodles', 'Mandi', 'fries', 'Mandi', 'Non-veg', '1 litre', 'belly fat', 'blood cancer', 'nutrition effectency', 'Fat Reducer', 'Offline', '25', '16000', '7000', '9000'),
-(1007, 'CUS10016', 'Amal', '986585498', 'Ashraf', '45', '46', 'Male', 'amal123@gmail.com', 'amal123@', '07-04-2023', 'Kochi', '3rd floor, kochi, po', '182', '90', '72', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+(1007, 'CUS10016', 'Amal', '986585498', 'Ashraf', '45', '46', 'Male', 'amal123@gmail.com', 'amal123@', '07-04-2023', 'Kochi', '3rd floor, kochi, po', '182', '90', '72', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(1008, 'CUS10026', 'Melow', '9887659854', 'Amal', '25', '26', 'Female', 'melow12@gmail.com', '', '15-04-2023', 'Kochi', '3rd floor, kochi, po', '154', '78', '24', '001', '002', '003', '004', '14', '00:57', 'okkokook', 'Noodles', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '1 litre', 'belly fat', 'blood cancer', 'nutrition effectency', 'Weight lose', 'Offline', '20', '12000', '8000', '11000'),
+(1009, 'CUS10026', 'Mathew', '9887659854', 'Amal', '25', '26', 'Female', 'melow12@gmail.com', '', '15-04-2023', 'Kochi', '3rd floor, kochi, po', '154', '78', '24', '001', '002', '003', '004', '14', '00:57', 'okkokook', 'Noodles', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '1 litre', 'belly fat', 'blood cancer', 'nutrition effectency', 'Weight lose', 'Offline', '20', '12000', '8000', '11000'),
+(1010, 'CUS10027', 'Abdul', '9887659854', 'Amal', '38', '39', 'Male', 'abdul12@gmail.com', '', '20-06-2024', 'Kochi', '3rd floor, kochi, po', '163', '96', '24', '001', '002', '003', '004', '005', '11:09', 'Black Coffee', 'Idly, Sambar', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '2 litre', 'Diabeted', 'Cancer', 'High BP', 'Weight lose', 'Offline', '20', '12000', '8000', '4000');
 
 -- --------------------------------------------------------
 
@@ -143,6 +146,13 @@ CREATE TABLE `login_details` (
   `login_details_id` int(11) NOT NULL,
   `login_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `login_details`
+--
+
+INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`) VALUES
+('nutriadmin@gmail.com', 1, '2024-04-25 06:00:05');
 
 -- --------------------------------------------------------
 
@@ -174,20 +184,22 @@ CREATE TABLE `price` (
   `pro_quantity` varchar(10) NOT NULL,
   `pro_curquantity` varchar(10) NOT NULL,
   `pro_hsn` varchar(200) NOT NULL,
-  `pro_img` varchar(100) NOT NULL
+  `pro_img` varchar(100) NOT NULL,
+  `pro_associate` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `price`
 --
 
-INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subcat`, `pro_mrp`, `pro_price`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`, `pro_vp`, `pro_vptotal`, `pro_scoop`, `pro_scoop15`, `pro_scoop25`, `pro_scoop35`, `pro_scoop42`, `pro_scoop50`, `pro_quantity`, `pro_curquantity`, `pro_hsn`, `pro_img`) VALUES
-(1, 'Formula 1', '1001', 'Targeted Nutrition', 'Brain Health', '2378', '2200', '2065', '1860', '1650', '1505', '1340', '12.75', '127.5', '20', '103.25', '93', '82.50', '75.25', '68', '120', '10', '986587548', ''),
-(2, 'Fiber Complex', '1002', 'Targeted Nutrition', 'Energy', '2792', '2600', '2425', '2180', '1940', '1765', '1570', '22.45', '224.5', '30', '80', '72', '64', '58', '52', '20', '15', '98658754', ''),
-(3, 'Protein', '1003', 'Targeted Nutrition', 'Energy', '1413', '1200', '1230', '1105', '980', '895', '795', '12.75', '144', '30', '41', '36.83', '32.67', '29.83', '26.50', '12', '12', '221144', ''),
-(4, 'Shakemate', '1004', 'Targeted Nutrition', 'Energy', '712', '700', '660', '625', '590', '565', '535', '15.95', '300', '18', '36.67', '34.72', '32.78', '31.39', '29.72', '20', '20', '562345', ''),
-(5, 'Afresh', '1005', 'Targeted Nutrition', 'Energy', '885', '800', '770', '690', '615', '560', '500', '22.45', '763.3', '25', '30.80', '27.60', '24.60', '22.40', '20', '64', '48', '9865875498', ''),
-(6, 'Dino ', '1006', 'Ayurdevic Nutrition', 'Energy', '150', '100', '90', '80', '70', '60', '50', '23.70', '237', '30', '10', '20', '30', '40', '50', '10', '10', '785487', '');
+INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subcat`, `pro_mrp`, `pro_price`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`, `pro_vp`, `pro_vptotal`, `pro_scoop`, `pro_scoop15`, `pro_scoop25`, `pro_scoop35`, `pro_scoop42`, `pro_scoop50`, `pro_quantity`, `pro_curquantity`, `pro_hsn`, `pro_img`, `pro_associate`) VALUES
+(1, 'Formula 1', '1001', 'Targeted Nutrition', 'Brain Health', '2378', '2200', '2065', '1860', '1650', '1505', '1340', '12.75', '127.5', '20', '103.25', '93', '82.50', '75.25', '68', '120', '10', '986587548', '', 'Ashraf'),
+(2, 'Fiber Complex', '1002', 'Targeted Nutrition', 'Energy', '2792', '2600', '2425', '2180', '1940', '1765', '1570', '22.45', '224.5', '30', '80', '72', '64', '58', '52', '20', '15', '98658754', '', 'Ashraf'),
+(3, 'Protein', '1003', 'Targeted Nutrition', 'Energy', '1413', '1200', '1230', '1105', '980', '895', '795', '12.75', '144', '30', '41', '36.83', '32.67', '29.83', '26.50', '12', '12', '221144', '', 'Ashraf'),
+(4, 'Shakemate', '1004', 'Targeted Nutrition', 'Energy', '712', '700', '660', '625', '590', '565', '535', '15.95', '300', '18', '36.67', '34.72', '32.78', '31.39', '29.72', '20', '20', '562345', '', ''),
+(5, 'Afresh', '1005', 'Targeted Nutrition', 'Energy', '885', '800', '770', '690', '615', '560', '500', '22.45', '763.3', '25', '30.80', '27.60', '24.60', '22.40', '20', '64', '48', '9865875498', '', ''),
+(6, 'Dino ', '1006', 'Ayurdevic Nutrition', 'Energy', '150', '100', '90', '80', '70', '60', '50', '23.70', '237', '30', '10', '20', '30', '40', '50', '10', '10', '785487', '', ''),
+(11, 'Weigh-protein', '1007', 'Targeted Nutrition', 'Protein', '1540', '1500', '225', '375', '525', '630', '750', '12.75', '178.5', '', '', '', '', '', '', '14', '14', '87458745', '', 'Ashraf');
 
 -- --------------------------------------------------------
 
@@ -452,7 +464,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `cust_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1008;
+  MODIFY `cust_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1011;
 
 --
 -- AUTO_INCREMENT for table `gallery`
@@ -464,13 +476,13 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `price`
 --
 ALTER TABLE `price`
-  MODIFY `pri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `pri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `program`
