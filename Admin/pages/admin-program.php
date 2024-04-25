@@ -163,14 +163,16 @@ if(isset($_POST["submitpr"]))
   $pr_id = $_POST["prid"];
 
     if($pr_id==''){
-      $sql = mysqli_query($conn,"INSERT INTO program (program_name, program_duration, program_fee, program_condition, program_mode, program_img) 
+      $sql = mysqli_query($conn,"INSERT INTO program (program_name, program_purpose, program_duration, program_fee, program_condition, program_mode, program_img) 
                          VALUES ('$pr_name','$pr_purpose','$pr_dur','$pr_fee','$pr_cond','$pr_mode', '$pr_img')");
     }
     else {
         if ($filename) {
             // Remove the existing image
             $imgs = '../images/program/' . $pr_img;
-            unlink($imgs);
+            if (file_exists($imgs)) {
+              unlink($imgs);
+          }          
             // Update shake with new image
             $sql = mysqli_query($conn, "UPDATE program SET program_name='$pr_name', program_img='$pr_img', program_purpose='$pr_purpose', program_duration='$pr_dur', program_fee='$pr_fee', program_condition='$pr_cond', program_mode='$pr_mode' WHERE program_id='$pr_id'");
         }
