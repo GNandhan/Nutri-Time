@@ -40,6 +40,7 @@ if ($_SESSION["email"] == "") {
       $s_row1 = mysqli_fetch_array($s_query);
 
       $sh_name1 = $s_row1['shake_name'];
+      $sh_assoc1 = $s_row1['shake_assoc'];
       $sh_cusname1 = $s_row1['customer_name'];
       $sh_goal1 = $s_row1['shake_goal'];
       $sh_reci1 = $s_row1['shake_recipes'];
@@ -181,7 +182,7 @@ if ($_SESSION["email"] == "") {
                   <div class="col">
                       <div class="form-group">
                         <label>Associate Name</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="shcharge" placeholder="Enter Asssociate name" value="<?php echo $sh_expen1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="shassoc" placeholder="Enter Asssociate name" value="<?php echo $sh_assoc1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
@@ -255,6 +256,7 @@ if ($_SESSION["email"] == "") {
             $sh_extra_price = $_POST["shextra_price"];
             $sh_disc = $_POST["shdiscount"];
             $sh_sercharge = $_POST["shcharge"];
+            $sh_assoc = $_POST["shassoc"];
             $sh_img = $_FILES['shimg']['name'];
             // Calculate total cost by adding service charge and extra ingredient price
             $total_cost = floatval($sh_sercharge) + floatval($sh_extra_price) + floatval($sh_mrp);
@@ -266,8 +268,8 @@ if ($_SESSION["email"] == "") {
             $sh_id = $_POST["shid"];
 
             if ($sh_id == '') {
-              $sql = mysqli_query($conn, "INSERT INTO shake (shake_name, customer_id, customer_name, shake_goal, shake_recipes, shake_mrp, shake_extra, shake_extraprice, shake_discount, shake_expence, shake_total, shake_image)
-                                                     VALUES ('$sh_name','$cus_name','$cus_name','$sh_goal','$sh_reci','$sh_mrp','$sh_extra','$sh_extra_price','$sh_disc','$sh_sercharge','$total_cost','$sh_img')");
+              $sql = mysqli_query($conn, "INSERT INTO shake (shake_name,shake_assoc, customer_id, customer_name, shake_goal, shake_recipes, shake_mrp, shake_extra, shake_extraprice, shake_discount, shake_expence, shake_total, shake_image)
+                                                     VALUES ('$sh_name','$sh_assoc','$cus_name','$cus_name','$sh_goal','$sh_reci','$sh_mrp','$sh_extra','$sh_extra_price','$sh_disc','$sh_sercharge','$total_cost','$sh_img')");
             } else {
               // Update existing material
               if ($filename) {
@@ -275,10 +277,10 @@ if ($_SESSION["email"] == "") {
                 $imgs = '../images/shake/' . $sh_img;
                 unlink($imgs);
                 // Update shake with new image
-                $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_mrp='$sh_mrp', shake_extra='$sh_extra', shake_extraprice='$sh_extra_price', shake_discount='$sh_disc', shake_expence='$sh_sercharge', shake_image='$sh_img' WHERE shake_id='$sh_id'");
+                $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_assoc='$sh_assoc', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_mrp='$sh_mrp', shake_extra='$sh_extra', shake_extraprice='$sh_extra_price', shake_discount='$sh_disc', shake_expence='$sh_sercharge', shake_image='$sh_img' WHERE shake_id='$sh_id'");
               } else {
                 // Update shake without changing the image
-                $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_mrp='$sh_mrp', shake_extra='$sh_extra', shake_extraprice='$sh_extra_price', shake_discount='$sh_disc', shake_expence='$sh_sercharge' WHERE shake_id='$sh_id'");
+                $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_assoc='$sh_assoc', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_mrp='$sh_mrp', shake_extra='$sh_extra', shake_extraprice='$sh_extra_price', shake_discount='$sh_disc', shake_expence='$sh_sercharge' WHERE shake_id='$sh_id'");
               }
             }
             if ($sql == TRUE) {
@@ -305,6 +307,7 @@ if ($_SESSION["email"] == "") {
                         <th>Customer Name</th>
                         <th>Shake Img</th>
                         <th>Shake Name</th>
+                        <th>Associate Name</th>
                         <th>Shake Goal</th>
                         <th>Recipes</th>
                         <th>MRP</th>
@@ -324,6 +327,7 @@ if ($_SESSION["email"] == "") {
                       $cu_name = $row['customer_name'];
                       $sh_img = $row['shake_image'];
                       $sh_name = $row['shake_name'];
+                      $sh_assoc = $row['shake_assoc'];
                       $sh_goal = $row['shake_goal'];
                       $sh_recipe = $row['shake_recipes'];
                       $sh_mrp = $row['shake_mrp'];
@@ -350,6 +354,7 @@ if ($_SESSION["email"] == "") {
                           <td><?php echo $cu_name; ?></td>
                           <td><img src="../images/shake/<?php echo $sh_img; ?>" alt="" width="50" class="rounded-circle"></td>
                           <td><?php echo $sh_name; ?></td>
+                          <td><?php echo $sh_assoc; ?></td>
                           <td><?php echo $sh_goal; ?></td>
                           <td><?php echo $sh_recipe; ?></td>
                           <td><?php echo $sh_mrp; ?></td>

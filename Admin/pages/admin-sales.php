@@ -1,7 +1,7 @@
 <?php
 include './connect.php';
 // error_reporting(0);
-$sale_procode1 = $sale_proname1 = $sale_vp1 = $sale_cus1 = $sale_procat1 = $sale_prosubcat1 = $sale_address1 = "";
+$sale_procode1 = $sale_proname1 = $sale_vp1 = $sale_cus1 = $sale_procat1 = $sale_prosubcat1 = $sale_address1 = $sale_assoc1 = "";
 session_start();
 if ($_SESSION["email"] == "") {
   header('location:admin-login.php');
@@ -59,6 +59,7 @@ if ($_SESSION["email"] == "") {
       $sale_cus1 = $s_row1['sales_cus'];
       $sale_address1 = $s_row1['sales_address'];
       $sale_total1 = $s_row1['sales_total'];
+      $sale_assoc1 = $s_row1['sales_assoc'];
     }
     // fetching the data from the URL for deleting the subject form
     if (isset($_GET['sd_id'])) {
@@ -95,6 +96,7 @@ if ($_SESSION["email"] == "") {
         var subcategoryInput = document.getElementById("prosubcat");
         var vpInput = document.getElementById("provp");
         var quaInput = document.getElementById("procurqua");
+        var assocInput = document.getElementById("proassoc");
 
         // Set the price, code, category, subcategory, and purchase price fields based on selected material
         if (selectedMaterial && materialPrices[selectedMaterial]) {
@@ -111,6 +113,7 @@ if ($_SESSION["email"] == "") {
               subcategoryInput.value = productDetails.pro_subcat; // Set subcategory value
               vpInput.value = productDetails.pro_vp; // Set vp value
               quaInput.value = productDetails.pro_curquantity; // Set vp value
+              assocInput.value = productDetails.pro_associate; // Set vp value
             } else {
               codeInput.value = ""; // Clear product code if no data found
               categoryInput.value = ""; // Clear category if no data found
@@ -172,6 +175,12 @@ if ($_SESSION["email"] == "") {
                     </div>
                   </div>
                   <div class="row">
+                  <div class="col">
+                      <div class="form-group">
+                        <label>Associate Name</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Associate Name" name="proassoc" id="proassoc" value="<?php echo $sale_assoc1; ?>" required>
+                      </div>
+                    </div>
                     <div class="col">
                       <div class="form-group">
                         <label>Category</label>
@@ -249,6 +258,7 @@ if ($_SESSION["email"] == "") {
         if (isset($_POST["submitp"])) {
           $sal_proname = $_POST["proname"];
           $sal_procode = $_POST["procode"];
+          $sal_proassoc = $_POST["proassoc"];
           $sal_cus = $_POST["provend"];
           $sal_procat = $_POST["procat"];
           $sal_prosubcat = $_POST["prosubcat"];
@@ -282,8 +292,8 @@ if ($_SESSION["email"] == "") {
           $sale_id = $_POST["saleid"];
           // if (empty($sale_id)) {
             // Perform INSERT operation
-            $sql = mysqli_query($conn, "INSERT INTO sales (sales_procode, sales_proname, sales_procat, sales_prosubcat, sales_mrp, sales_quan, sales_vp, sales_vptotal, sales_gst, sales_dis, sales_dispri, sales_cus, sales_address, sales_total)
-            VALUES ('$sal_procode','$sal_proname','$sal_procat','$sal_prosubcat','$sal_mrp','$sal_quan','$sal_vp', '$sal_vptotal','$sal_gst','$sal_dis','$sal_dispri','$sal_cus','$sal_address','$sal_total')");
+            $sql = mysqli_query($conn, "INSERT INTO sales (sales_procode, sales_proname, sales_procat, sales_prosubcat, sales_mrp, sales_quan, sales_vp, sales_vptotal, sales_gst, sales_dis, sales_dispri, sales_cus, sales_address, sales_total, sales_assoc)
+            VALUES ('$sal_procode','$sal_proname','$sal_procat','$sal_prosubcat','$sal_mrp','$sal_quan','$sal_vp', '$sal_vptotal','$sal_gst','$sal_dis','$sal_dispri','$sal_cus','$sal_address','$sal_total','$sal_proassoc')");
 
             $sql = mysqli_query($conn, "UPDATE price SET pro_curquantity='$sal_curquan1' WHERE pro_name='$sal_proname'");
 
@@ -339,6 +349,7 @@ if ($_SESSION["email"] == "") {
                         <th>Address</th>
                         <th>Product Code</th>
                         <th>Product Name</th>
+                        <th>Associate Name</th>
                         <th>Category</th>
                         <th>Subcategory</th>
                         <th>MRP</th>
@@ -361,11 +372,11 @@ if ($_SESSION["email"] == "") {
                       $sale_proid = $row['sales_proid'];
                       $sale_procode = $row['sales_procode'];
                       $sale_proname = $row['sales_proname'];
+                      $sale_assoc = $row['sales_assoc'];
                       $sale_procat = $row['sales_procat'];
                       $sale_prosubcat = $row['sales_prosubcat'];
                       $sale_mrp = $row['sales_mrp'];
                       $sale_quan = $row['sales_quan'];
-
 
                       $sale_vp = $row['sales_vp'];
                       $sale_vptotal = $row['sales_vptotal'];
@@ -391,6 +402,7 @@ if ($_SESSION["email"] == "") {
                           <td><?php echo $sale_address; ?></td>
                           <td class="py-1"><?php echo $sale_procode; ?></td>
                           <td><?php echo $sale_proname; ?></td>
+                          <td><?php echo $sale_assoc; ?></td>
                           <td><?php echo $sale_procat; ?></td>
                           <td><?php echo $sale_prosubcat; ?></td>
                           <td><?php echo $sale_mrp; ?></td>
