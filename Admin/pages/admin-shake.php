@@ -87,12 +87,12 @@ if ($_SESSION["email"] == "") {
                           <?php
                           $query = mysqli_query($conn, "SELECT * FROM customer");
                           while ($row = mysqli_fetch_assoc($query)) {
-                            $cus_id = $row["customer_id "];
-                            $cus_name = $row["customer_name"];
+                            $cus_id = $row["cust_id "];
+                            $cus_name = $row["cust_name"];
                             // $cus_lname = $row["customer_lname"];
                             // $fullname = $cus_fname . ' ' . $cus_lname;
                           ?>
-                            <option value="<?php echo $cus_name; ?>" <?php if ($row['customer_name'] == $sh_name1) ?>><?php echo $cus_name; ?></option>
+                            <option value="<?php echo $cus_name; ?>" <?php if ($row['cust_name'] == $sh_name1) ?>><?php echo $cus_name; ?></option>
                           <?php
                           }
                           ?>
@@ -178,6 +178,12 @@ if ($_SESSION["email"] == "") {
                     </div>
                   </div>
                   <div class="row">
+                  <div class="col">
+                      <div class="form-group">
+                        <label>Associate Name</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="shcharge" placeholder="Enter Asssociate name" value="<?php echo $sh_expen1; ?>" required>
+                      </div>
+                    </div>
                     <div class="col">
                       <div class="form-group">
                         <label>Discount %</label>
@@ -208,6 +214,20 @@ if ($_SESSION["email"] == "") {
                       </div>
                     </div>
                   </div>
+                  <div class="row">
+                    <!-- <div class="col">
+                      <div class="form-group">
+                        <label>Associate Name</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="shcharge" value="<?php echo $sh_expen1; ?>" required>
+                      </div>
+                    </div> -->
+                    <!-- <div class="col">
+                      <div class="form-group">
+                        <label>Association</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="shcharge" value="<?php echo $sh_expen1; ?>" required>
+                      </div>
+                    </div> -->
+                  </div>
                   <input type="submit" class="btn btn-primary mr-2 rounded-pill" name="submitsh" value="Submit">
                   <a href="./admin-shake.php" class="btn btn-light rounded-pill">Cancel</a>
                 </form>
@@ -237,7 +257,7 @@ if ($_SESSION["email"] == "") {
             $sh_sercharge = $_POST["shcharge"];
             $sh_img = $_FILES['shimg']['name'];
             // Calculate total cost by adding service charge and extra ingredient price
-            $total_cost = floatval($sh_sercharge) + floatval($sh_extra_price)+ floatval($sh_mrp);
+            $total_cost = floatval($sh_sercharge) + floatval($sh_extra_price) + floatval($sh_mrp);
             // Use existing value if not provided
             // Image uploading formats
             $filename = $_FILES['shimg']['name'];
