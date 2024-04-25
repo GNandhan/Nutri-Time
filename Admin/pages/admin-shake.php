@@ -228,7 +228,6 @@ if ($_SESSION["email"] == "") {
             $sh_reci_array = isset($_POST["shrecipe"]) ? $_POST["shrecipe"] : array();
             // Convert array to comma-separated string
             $sh_reci = implode(",", $sh_reci_array);
-
             // Fetch ingredient prices from the global JavaScript variable
             // $sh_mrp = $ingredientPrices['shake_mrp'];
             $sh_mrp = $_POST["shmrp"];
