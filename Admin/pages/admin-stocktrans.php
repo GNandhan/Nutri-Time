@@ -1,7 +1,7 @@
 <?php
 include './connect.php';
 // error_reporting(0);
-$stoloct1 = $stoqua1 =  $sh_raw1 = "";
+$stoloct1 = $stoqua1 =  $sh_raw1 = $sto_id = "";
 session_start();
 if ($_SESSION["email"] == "") {
   header('location:admin-login.php');
@@ -42,7 +42,7 @@ if ($_SESSION["email"] == "") {
     if (isset($_GET['stoid'])) {
       $stoid = $_GET['stoid'];
       $sto_query = mysqli_query($conn, "SELECT * FROM stock WHERE stock_id = '$stoid'");
-      $sto_row1 = mysqli_fetch_array($p_query);
+      $sto_row1 = mysqli_fetch_array($sto_query);
 
       $stoloct1 = $sto_row1['stock_place'];
       $stomat1 = $sto_row1['stock_name'];
@@ -105,7 +105,7 @@ if ($_SESSION["email"] == "") {
                 <h1 class="card-title">Stock Transfer</h1>
                 <p class="card-description">Stock Transfer Details</p>
                 <form method="post" class="forms-sample" enctype="multipart/form-data">
-                  <input type="hidden" name="pri_id" id="pri_id">
+                  <input type="hidden" name="pri_id" id="pri_id" value="<?php echo $stoid; ?>">
                   <div class="row">
                     <div class="col-lg-6 col-md col-sm col-12">
                       <div class="form-group">
@@ -163,27 +163,28 @@ if ($_SESSION["email"] == "") {
           $stoqua = $_POST["stoqua"];
           $stoloct = $_POST["stoloc"];
           $stopri = $_POST["stopri"];
-          $priId = $_POST["pri_id"];
 
           // $total = $stopri * ($stogst / 100);
           $stototal = intval($stoqua) * intval($stopri);
 
           // Fetch the shake ID from the form
-          $sto_id = $_POST["stoid"];
-
+          $sto_id = $_POST["pri_id"];
           if ($sto_id == '') {
-            $sql = mysqli_query($conn, "INSERT INTO stock (stock_proid, stock_proname, stock_quantity, stock_location, stock_price, stock_total, stock_date)
-                                         VALUES ('$priId','$stomat','$stoqua','$stoloct','$stopri','$stototal', NOW())");
+              // Insert new record
+              $sql = mysqli_query($conn, "INSERT INTO stock (stock_proname, stock_quantity, stock_associate, stock_price, stock_total, stock_date)
+                                           VALUES ('$stomat', $stoqua, '$stoloct', $stopri, $stototal, NOW())");
           } else {
-            // Update shake
-            $sql = mysqli_query($conn, "UPDATE stock SET stock_proid='$priId', stock_proname='$stomat', stock_quantity='$stoqua', stock_location='$stoloct', stock_price='$stopri', stock_total='$stototal' WHERE stock_id='$sto_id'");
+              // Update existing record
+              $sql = mysqli_query($conn, "UPDATE stock SET stock_proname='$stomat', stock_quantity=$stoqua, stock_associate='$stoloct', 
+                                           stock_price=$stopri, stock_total=$stototal WHERE stock_id='$sto_id'");
           }
-          if ($sql == TRUE) {
-            echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
+          if ($sql) {
+              echo "<script>alert('Operation completed successfully.');</script>";
+              header("location:admin-stocktrans.php"); // Redirect after successful operation
           } else {
-            echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
+              echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
           }
-        }
+      }
         ?>
         <div class="row ">
           <!-- table view -->
@@ -205,10 +206,11 @@ if ($_SESSION["email"] == "") {
                         <th>Slno</th>
                         <th>Product</th>
                         <th>Quantity</th>
-                        <th>Remaining Quantity</th>
-                        <th>Location</th>
-                        <!-- <th>Price</th> -->
+                        <!-- <th>Remaining Quantity</th> -->
+                        <th>Location/Associate</th>
+                        <th>Price</th>
                         <th>Total</th>
+                        <th>Date</th>
                       </tr>
                     </thead>
                     <?php
@@ -218,14 +220,14 @@ if ($_SESSION["email"] == "") {
                       $stock_id = $row['stock_id'];
                       $stock_product = $row['stock_proname'];
                       $stock_quan = $row['stock_quantity'];
-                      $stock_location = $row['stock_location'];
+                      $stock_location = $row['stock_associate'];
                       $stock_price = $row['stock_price'];
                       $stock_total = $row['stock_total'];
                       $stock_date = $row['stock_date'];
-                      $sql = mysqli_query($conn, "SELECT pro_curquantity FROM price ");
-                      while ($row = mysqli_fetch_assoc($sql)) {
-                        $stock_curquan1 = $row['pro_curquantity'];
-                      }
+                      // $sql = mysqli_query($conn, "SELECT pro_curquantity FROM price WHERE pro_name ='$stock_product' ");
+                      // while ($row = mysqli_fetch_assoc($sql)) {
+                      //   $stock_curquan1 = $row['pro_curquantity'];
+                      // }
                     ?>
                       <tbody>
                         <tr>
@@ -240,9 +242,11 @@ if ($_SESSION["email"] == "") {
                           <td class="py-1"><?php echo $serialNo++; ?></td>
                           <td class="py-1"><?php echo $stock_product; ?></td>
                           <td><?php echo $stock_quan; ?></td>
-                          <td><?php echo $stock_curquan1; ?></td>
+                          <!-- <td><?php echo $stock_curquan1; ?></td> -->
                           <td><?php echo $stock_location; ?></td>
+                          <td><?php echo $stock_price; ?></td>
                           <td><?php echo $stock_total; ?></td>
+                          <td><?php echo $stock_date; ?></td>
                         </tr>
                       </tbody>
                     <?php
