@@ -1,7 +1,7 @@
 <?php
 include './connect.php';
 // error_reporting(0);
-$cus_id1= $cus_code1= $cus_name1= $cus_phno1= $cus_invite1= $cus_age1= $cus_bodyage1= $cus_gender1= $cus_email1= $cus_doj1= $cus_city1= $cus_address1= $cus_height1= $cus_weight1= $cus_fat1= $cus_vcf1= $cus_bmr1= $cus_bmi1= $cus_mm1= $cus_tsf1= $cus_waketime1= $cus_tea1= $cus_breakfast1= $cus_lunch1= $cus_snack1= $cus_dinner1= $cus_veg_nonveg1= $cus_waterintake1= $cus_cond11= $cus_cond21= $cus_cond31= $cus_prg1= $cus_prgtype1= $cus_nodays1= $cus_total1= $cus_paid1= $cus_remain1= "";
+$cus_id1= $cus_code1= $cus_name1= $cus_phno1= $cus_invite1= $cus_age1= $cus_bodyage1= $cus_gender1= $cus_email1= $cus_doj1= $cus_city1= $cus_address1= $cus_height1= $cus_weight1= $cus_fat1= $cus_vcf1= $cus_bmr1= $cus_bmi1= $cus_mm1= $cus_tsf1= $cus_waketime1= $cus_tea1= $cus_breakfast1= $cus_lunch1= $cus_snack1= $cus_dinner1= $cus_veg_nonveg1= $cus_waterintake1= $cus_cond11= $cus_cond21= $cus_cond31= $cus_prg1= $cus_prgtype1= $cus_nodays1= $cus_total1= $cus_paid1= $cus_remain1= $cusid ="";
 session_start();
 if ($_SESSION["email"] == "") {
   header('location:admin-login.php');
@@ -384,7 +384,7 @@ if ($_SESSION["email"] == "") {
           // Fetch the shake ID from the form
           $cus_id = $_POST["custid"];
 
-          if($cus_id=='') {
+          if ($cus_id == '') {
             $sql = mysqli_query($conn, "INSERT INTO customer (cust_code, cust_name, cust_phno, cust_invited, cust_age, cust_bodyage, cust_gender, cust_email, cust_doj, cust_city, cust_address, cust_height, cust_weight, cust_fat, cust_vcf, cust_bmr, cust_bmi, cust_mm, cust_tsf, cust_waketime, cust_tea, cust_breakfast, cust_lunch, cust_snack, cust_dinner, cust_veg_nonveg, cust_waterintake, cust_cond1, cust_cond2, cust_cond3, cust_prg, cust_prgtype, cust_noday, cust_total, cust_paid, cust_remain)
                                                       VALUES ('$ccode','$cname','$cphno','$cinvite','$cage','$cbodyage','$cgender','$cemail','$cdoj','$ccity','$caddress','$cheight','$cweight','$cfat','$cvcf','$cbmr','$cbmi','$cmm','$ctcf','$cwaketime','$ctea','$cbreakfast','$clunch','$csnack','$cdinner','$cveg','$cwaterintake','$ccond1','$ccond2','$ccond3','$cprogram','$cprgtype','$cnoday','$ctotal','$cpaid','$crem')");
           } else {

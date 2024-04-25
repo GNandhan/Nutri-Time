@@ -44,6 +44,7 @@ if ($_SESSION["email"] == "") {
 
       $p_code1 = $p_row1['pro_code'];
       $p_name1 = $p_row1['pro_name'];
+      $p_asso1 = $p_row1['pro_associate'];
       $p_cat1 = $p_row1['pro_category'];
       $p_subcat1 = $p_row1['pro_subcat'];
       $p_mrp1 = $p_row1['pro_mrp'];
@@ -158,6 +159,12 @@ if ($_SESSION["email"] == "") {
                         <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Volume Point" name="provp" value="<?php echo $p_vp1; ?>" required>
                       </div>
                     </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Associate Name</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Associate Name" name="proasso" value="<?php echo $p_asso1; ?>" required>
+                      </div>
+                    </div>
                   </div>
                   <button type="submit" class="btn btn-primary mr-2 rounded-pill" name="submitp">Submit</button>
                   <a href="./admin-price.php" type="reset" class="btn btn-light rounded-pill">Cancel</a>
@@ -181,19 +188,21 @@ if ($_SESSION["email"] == "") {
           $pdis42 = $_POST["dis42"];
           $pdis50 = $_POST["dis50"];
           $pvp = $_POST["provp"];
+          $passo = $_POST["proasso"];
 
           // Fetch the shake ID from the form
           $pri_id = $_POST["prid"];
 
           if ($pri_id == '') {
-            $sql = mysqli_query($conn, "INSERT INTO price (pro_name, pro_code, pro_category, pro_subcat, pro_mrp, pro_price, pro_dis15, pro_dis25, pro_dis35, pro_dis42, pro_dis50, pro_vp)
-                                         VALUES ('$pname','$pcode','$pcat','$psubcat','$pmrp','$ppur','$pdis15','$pdis25','$pdis35','$pdis42','$pdis50','$pvp' )");
+            $sql = mysqli_query($conn, "INSERT INTO price (pro_name, pro_code, pro_category, pro_subcat, pro_mrp, pro_price, pro_dis15, pro_dis25, pro_dis35, pro_dis42, pro_dis50, pro_vp, pro_associate)
+                                         VALUES ('$pname','$pcode','$pcat','$psubcat','$pmrp','$ppur','$pdis15','$pdis25','$pdis35','$pdis42','$pdis50','$pvp','$passo' )");
           } else {
             // Update shake
-            $sql = mysqli_query($conn, "UPDATE price SET pro_name='$pname', pro_code='$pcode', pro_category='$pcat', pro_subcat='$psubcat', pro_mrp='$pmrp', pro_price='$ppur', pro_dis15='$pdis15', pro_dis25='$pdis25', pro_dis35='$pdis35', pro_dis42='$pdis42', pro_dis50='$pdis50', pro_vp='$pvp' WHERE pri_id='$pri_id'");
+            $sql = mysqli_query($conn, "UPDATE price SET pro_name='$pname', pro_code='$pcode', pro_category='$pcat', pro_subcat='$psubcat', pro_mrp='$pmrp', pro_price='$ppur', pro_dis15='$pdis15', pro_dis25='$pdis25', pro_dis35='$pdis35', pro_dis42='$pdis42', pro_dis50='$pdis50', pro_vp='$pvp', pro_associate='$passo' WHERE pri_id='$pri_id'");
           }
           if ($sql == TRUE) {
             echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
+            echo "<script>document.querySelector('form').reset();</script>";
           } else {
             echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
           }
@@ -237,6 +246,7 @@ if ($_SESSION["email"] == "") {
                         <th>Slno</th>
                         <th>Product Code</th>
                         <th>Product Name</th>
+                        <th>Associate Name</th>
                         <th>Category</th>
                         <th>Subcategory</th>
                         <th>MRP</th>
@@ -256,6 +266,7 @@ if ($_SESSION["email"] == "") {
                       $pri_id = $row['pri_id'];
                       $pri_cod = $row['pro_code'];
                       $pri_nam = $row['pro_name'];
+                      $pri_asso = $row['pro_associate'];
                       $pri_cat = $row['pro_category'];
                       $pri_subcat = $row['pro_subcat'];
                       $pri_mrp = $row['pro_mrp'];
@@ -274,6 +285,7 @@ if ($_SESSION["email"] == "") {
                           <td class="py-1"><?php echo $serialNo++; ?></td>
                           <td class="py-1">#<?php echo $pri_cod; ?></td>
                           <td><?php echo $pri_nam; ?></td>
+                          <td><?php echo $pri_asso; ?></td>
                           <td><?php echo $pri_cat; ?></td>
                           <td><?php echo $pri_subcat; ?></td>
                           <td><?php echo $pri_mrp; ?></td>

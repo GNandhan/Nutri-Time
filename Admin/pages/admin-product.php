@@ -151,6 +151,12 @@ if ($_SESSION["email"] == "") {
                     </div>
                   </div>
                   <div class="row">
+                  <div class="col">
+                      <div class="form-group">
+                        <label>Associate Name</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Enter Associate Name" name="procat" id="procat" value="<?php echo $p_cat1; ?>" required>
+                      </div>
+                    </div>
                     <div class="col">
                       <div class="form-group">
                         <label>Category</label>
