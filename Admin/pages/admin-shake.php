@@ -1,7 +1,7 @@
 <?php
 include './connect.php';
 // error_reporting(0);
-$sh_reci1 = $pro_id = $sh_name1 = $sh_goal1 = $sh_extra1 = $sh_extraprice1 = $sh_expen1 = $sh_raw1 = $sh_disc1 = $sh_id = ''; //for declaring the variable and not to show errors in the page
+$sh_reci1 = $pro_id = $sh_name1 = $sh_goal1 = $sh_extra1 = $sh_extraprice1 = $sh_expen1 = $sh_raw1 = $sh_disc1 = $sh_id =  $sh_assoc1 = ''; //for declaring the variable and not to show errors in the page
 session_start();
 if ($_SESSION["email"] == "") {
   header('location:admin-login.php');
