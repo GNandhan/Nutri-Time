@@ -82,7 +82,7 @@ if(isset($_GET['prd_id']))
                         <div class="form-group">
                           <label>Program Image</label>
                            <div class="input-group mb-3">
-                            <input type="file" class="custom-file-input form-control file-upload-info"  style="border-radius: 16px;" id="inputGroupFile01" name="prgimg" onchange="displaySelectedFileName(this)"  value="<?php echo $pr_img1; ?>" required>
+                            <input type="file" class="custom-file-input form-control file-upload-info"  style="border-radius: 16px;" id="inputGroupFile01" name="pimg" onchange="displaySelectedFileName(this)"  value="<?php echo $pr_img1; ?>" required>
                             <label class="input-group-text custom-file-label" for="inputGroupFile01">Choose file</label>
                             <input type="hidden"  style="border-radius: 16px;" name="current_primg" value="<?php echo $pr_img1; ?>">
                             </div>
@@ -92,20 +92,10 @@ if(isset($_GET['prd_id']))
                     <div class="row">
                       <div class="col">
                         <div class="form-group">
-                          <label>Program Condition</label>
-                          <input type="text" class="form-control" style="border-radius: 16px;"  name="pcond" value="<?php echo $pr_cond1; ?>" required>
+                          <label>Product Description</label>
+                          <textarea class="form-control" name="pdesc" rows="3"></textarea>
                         </div> 
                       </div>
-                      <div class="col">
-                        <div class="form-group">
-                          <label for="exampleSelectGender">Program Mode</label>
-                            <select class="form-control" style="border-radius: 16px;"  name="pmode"  required>
-                              <option <?php if($pr_mode1=='Online' ) echo 'selected' ; ?> value="Online">Online</option>
-                              <option <?php if($pr_mode1=='Offline' ) echo 'selected' ; ?> value="Offline">Offline</option>
-                            </select>
-                        </div>
-                      </div>
-
                     </div>
                     
                     <button type="submit" class="btn btn-primary mr-2 rounded-pill"  name="submitpr">Submit</button>
@@ -119,37 +109,32 @@ if(isset($_GET['prd_id']))
 <?php
 if(isset($_POST["submitpr"])) 
 { 
-    $pr_id= $_POST["prid"];
-    $pr_name= $_POST["pname"];
-    $pr_purpose= $_POST["ppurpose"];
-    $pr_dur= $_POST["pduration"];
-    $pr_fee= $_POST["pfee"];
-    $pr_cond= $_POST["pcond"];
-    $pr_mode= $_POST["pmode"];
-    $pr_img = $_FILES['prgimg']['name'];
+    $pro_name= $_POST["pname"];
+    $pro_desc= $_POST["pdesc"];
+    $pro_img = $_FILES['pimg']['name'];
 
     // Image uploading formats
-    $filename = $_FILES['prgimg']['name'];
-    $tempname = $_FILES['prgimg']['tmp_name'];
+    $filename = $_FILES['pimg']['name'];
+    $tempname = $_FILES['pimg']['tmp_name'];
   
   // Fetch the shake ID from the form
-  $pr_id = $_POST["prid"];
+  $pro_id = $_POST["prid"];
 
-    if($pr_id==''){
+    if($pro_id==''){
       $sql = mysqli_query($conn,"INSERT INTO product (product_name, product_img, product_desc) 
-                         VALUES ('$pr_name','$pr_purpose','$pr_dur')");
+                         VALUES ('$pro_name','$pro_img','$pro_desc')");
     }
     else {
         if ($filename) {
             // Remove the existing image
-            $imgs = '../images/program/' . $pr_img;
+            $imgs = '../images/product/' . $pr_img;
             if (file_exists($imgs)) {
               unlink($imgs);
           }          
             // Update shake with new image
-            $sql = mysqli_query($conn, "UPDATE product SET product_name='$pr_name', product_img='$pr_img', product_desc='$pr_purpose' WHERE product_id='$pr_id'");
+            $sql = mysqli_query($conn, "UPDATE product SET product_name='$pro_name', product_img='$pro_img', product_desc='$pro_desc' WHERE product_id='$pro_id'");
         }
-      $sql = mysqli_query($conn, "UPDATE product SET product_name='$pr_name', product_desc='$pr_purpose'  WHERE product_id='$pr_id'");
+      $sql = mysqli_query($conn, "UPDATE product SET product_name='$pro_name', product_desc='$pro_desc'  WHERE product_id='$pro_id'");
   }
 if ($sql == TRUE) {
 move_uploaded_file($tempname, "../images/product/$filename");
