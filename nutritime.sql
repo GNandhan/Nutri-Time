@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2024 at 01:39 PM
+-- Generation Time: Apr 26, 2024 at 05:39 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -153,7 +153,8 @@ CREATE TABLE `login_details` (
 
 INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`) VALUES
 ('nutriadmin@gmail.com', 1, '2024-04-25 06:00:05'),
-('nutriadmin@gmail.com', 2, '2024-04-25 08:42:33');
+('nutriadmin@gmail.com', 2, '2024-04-25 08:42:33'),
+('nutriadmin@gmail.com', 3, '2024-04-26 16:58:42');
 
 -- --------------------------------------------------------
 
@@ -200,6 +201,19 @@ INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subc
 (5, 'Afresh', '1005', 'Targeted Nutrition', 'Energy', '885', '800', '770', '690', '615', '560', '500', '22.45', '763.3', '25', '30.80', '27.60', '24.60', '22.40', '20', '64', '48', '9865875498', ''),
 (6, 'Dino ', '1006', 'Ayurdevic Nutrition', 'Energy', '150', '100', '90', '80', '70', '60', '50', '23.70', '474', '30', '10', '20', '30', '40', '50', '30', '30', '986598', ''),
 (11, 'Weigh-protein', '1007', 'Targeted Nutrition', 'Protein', '1540', '1500', '225', '375', '525', '630', '750', '12.75', '178.5', '', '', '', '', '', '', '14', '14', '87458745', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product`
+--
+
+CREATE TABLE `product` (
+  `product_id` int(11) NOT NULL,
+  `product_name` varchar(50) NOT NULL,
+  `product_img` varchar(100) NOT NULL,
+  `product_desc` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -297,7 +311,7 @@ CREATE TABLE `shake` (
 
 INSERT INTO `shake` (`shake_id`, `shake_name`, `shake_assoc`, `customer_id`, `customer_name`, `shake_goal`, `shake_recipes`, `shake_mrp`, `shake_scoops`, `shake_extra`, `shake_extraprice`, `shake_discount`, `shake_expence`, `shake_total`, `shake_image`) VALUES
 (1, 'Club Shake', 'Ashraf', 0, 'Manu', 'Weight gainer', 'Formula 1,Fiber Complex,Shakemate', '219.92000000000002', '', 'Milk', '50', '15', '40', '90', 'bg2.jpg'),
-(2, 'evening shake', '', 0, 'Amal', 'weight losser', 'Formula 1,Protein', '', '', 'milk, sugar, protein', '50', '15', '10', '60', 'main page.jpg'),
+(2, 'evening shake', 'Ashraf', 0, 'Amal', 'weight losser', 'Formula 1,Dino ', '115.25', '', 'milk, sugar, protein', '50', '42', '10', '60', 'main page.jpg'),
 (3, 'evening shake', '', 0, 'Amal', 'weight losser', 'Formula 1,Protein', '', '', 'milk, sugar, protein', '50', '15', '10', '60', 'main page.jpg'),
 (4, 'Club Shake222', '', 0, 'Manu', 'Weight gainer222', 'Formula 1,Protein', '0', '', 'water', '10', '50', '11', '21', 'main page.jpg'),
 (5, 'Club Shake222', '', 0, 'Manu', 'weight losser', 'Formula 1,Protein', '0', '', 'Milk', '20', '25', '40', '60', 'main page.jpg'),
@@ -428,6 +442,12 @@ ALTER TABLE `price`
   ADD PRIMARY KEY (`pri_id`);
 
 --
+-- Indexes for table `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`product_id`);
+
+--
 -- Indexes for table `program`
 --
 ALTER TABLE `program`
@@ -495,13 +515,19 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `price`
 --
 ALTER TABLE `price`
   MODIFY `pri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `product`
+--
+ALTER TABLE `product`
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `program`
