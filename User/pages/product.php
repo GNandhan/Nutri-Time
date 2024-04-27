@@ -49,14 +49,12 @@
       <div class="card border-0 shadow-lg rounded-5">
         <div class="row text-center p-4">
         <?php  
-            $sql = mysqli_query($conn, "SELECT * FROM price ORDER BY pri_id");
+            $sql = mysqli_query($conn, "SELECT * FROM product ORDER BY product_id");
             $modalIndex = 0;
             while ($row = mysqli_fetch_assoc($sql)) {
-                $pro_name = $row['pro_name'];
-                $pro_cat = $row['pro_category'];
-                $pro_cat = $row['pro_subcat'];
-                $pro_img = $row['pro_img'];
-                $pro_desc = $row['pro_desc'];
+                $pro_name = $row['product_name'];
+                $pro_img = $row['product_img'];
+                $pro_desc = $row['product_desc'];
                 $modalIndex++;
             ?>
 <div class="col-lg-3 col-md col-sm-6 col my-3">

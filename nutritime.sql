@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2024 at 09:13 AM
+-- Generation Time: Apr 27, 2024 at 09:22 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -143,6 +143,13 @@ CREATE TABLE `gallery` (
   `gallery_img` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `gallery`
+--
+
+INSERT INTO `gallery` (`gallery_id`, `gallery_dis`, `gallery_img`) VALUES
+(1, 'first image', 'NightlY Glow 3.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -233,7 +240,8 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `product_name`, `product_img`, `product_desc`) VALUES
-(1, 'Product 1', 'bg2.jpg', 'ygbyybybyby');
+(1, 'Product 1', 'bg2.jpg', 'ygbyybybyby'),
+(3, 'Fitness diet', 'bg3.jpg', 'okoookoookokokok');
 
 -- --------------------------------------------------------
 
@@ -532,7 +540,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `gallery_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `gallery_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `login_details`
@@ -550,7 +558,7 @@ ALTER TABLE `price`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `program`
