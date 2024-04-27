@@ -1,7 +1,7 @@
 <?php
 include './connect.php';
 // error_reporting(0);
-$cus_id1= $cus_code1= $cus_name1= $cus_phno1= $cus_invite1= $cus_age1= $cus_bodyage1= $cus_gender1= $cus_email1= $cus_doj1= $cus_city1= $cus_address1= $cus_height1= $cus_weight1= $cus_fat1= $cus_vcf1= $cus_bmr1= $cus_bmi1= $cus_mm1= $cus_tsf1= $cus_waketime1= $cus_tea1= $cus_breakfast1= $cus_lunch1= $cus_snack1= $cus_dinner1= $cus_veg_nonveg1= $cus_waterintake1= $cus_cond11= $cus_cond21= $cus_cond31= $cus_cond41= $cus_cond51= $cus_cond61= $cus_cond71= $cus_cond81= $cus_prg1= $cus_prgtype1= $cus_nodays1= $cus_total1= $cus_paid1= $cus_remain1= $cusid ="";
+$cus_id1= $cus_code1= $cus_name1= $cus_phno1= $cus_invite1= $cus_age1= $cus_bodyage1= $cus_gender1= $cus_email1= $cus_doj1= $cus_city1= $cus_address1= $cus_height1= $cus_weight1= $cus_idleweight1= $cus_fat1= $cus_vcf1= $cus_bmr1= $cus_bmi1= $cus_mm1= $cus_tsf1= $cus_waketime1= $cus_tea1= $cus_breakfast1= $cus_lunch1= $cus_snack1= $cus_dinner1= $cus_veg_nonveg1= $cus_waterintake1= $cus_cond11= $cus_cond21= $cus_cond31= $cus_cond41= $cus_cond51= $cus_cond61= $cus_cond71= $cus_cond81= $cus_prg1= $cus_prgtype1= $cus_nodays1= $cus_total1= $cus_paid1= $cus_remain1= $cusid ="";
 session_start();
 if ($_SESSION["email"] == "") {
   header('location:admin-login.php');
@@ -51,6 +51,7 @@ if ($_SESSION["email"] == "") {
       $cus_address1 = $p_row1['cust_address'];
       $cus_height1 = $p_row1['cust_height'];
       $cus_weight1 = $p_row1['cust_weight'];
+      $cus_idleweight1 = $p_row1['cust_idleweight'];
       $cus_fat1 = $p_row1['cust_fat'];
       $cus_vcf1 = $p_row1['cust_vcf'];
       $cus_bmr1 = $p_row1['cust_bmr'];
@@ -186,6 +187,12 @@ if ($_SESSION["email"] == "") {
                       <div class="form-group">
                         <label>Weight</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusweight" value="<?php echo $cus_weight1; ?>">
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-4">
+                      <div class="form-group">
+                        <label>Idle Weight</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusidleweight" value="<?php echo $cus_idleweight1; ?>">
                       </div>
                     </div>
                     <div class="col-lg-2 col-md-3 col-sm-3 col-4">
@@ -392,6 +399,7 @@ if ($_SESSION["email"] == "") {
           $caddress = $_POST["cusaddress"];
           $cheight = $_POST["cusheight"];
           $cweight = $_POST["cusweight"];
+          $cidleweight = $_POST["cusidleweight"];
           $cfat = $_POST["cusfat"];
           $cvcf = $_POST["cusvcf"];
           $cbmr = $_POST["cusbmr"];
@@ -426,11 +434,11 @@ if ($_SESSION["email"] == "") {
           $cus_id = $_POST["custid"];
 
           if ($cus_id == '') {
-            $sql = mysqli_query($conn, "INSERT INTO customer (cust_code, cust_name, cust_phno, cust_invited, cust_age, cust_bodyage, cust_gender, cust_email, cust_doj, cust_city, cust_address, cust_height, cust_weight, cust_fat, cust_vcf, cust_bmr, cust_bmi, cust_mm, cust_tsf, cust_waketime, cust_tea, cust_breakfast, cust_lunch, cust_snack, cust_dinner, cust_veg_nonveg, cust_waterintake, cust_cond1, cust_cond2, cust_cond3, cust_cond4, cust_cond5, cust_cond6, cust_cond7, cust_cond8, cust_prg, cust_prgtype, cust_noday, cust_total, cust_paid, cust_remain, cust_date)
-                                                      VALUES ('$ccode','$cname','$cphno','$cinvite','$cage','$cbodyage','$cgender','$cemail','$cdoj','$ccity','$caddress','$cheight','$cweight','$cfat','$cvcf','$cbmr','$cbmi','$cmm','$ctcf','$cwaketime','$ctea','$cbreakfast','$clunch','$csnack','$cdinner','$cveg','$cwaterintake','$ccond1','$ccond2','$ccond3','$ccond4','$ccond5','$ccond6','$ccond7','$ccond8','$cprogram','$cprgtype','$cnoday','$ctotal','$cpaid','$crem','$cdate')");
+            $sql = mysqli_query($conn, "INSERT INTO customer (cust_code, cust_name, cust_phno, cust_invited, cust_age, cust_bodyage, cust_gender, cust_email, cust_doj, cust_city, cust_address, cust_height, cust_weight, cust_idleweight, cust_fat, cust_vcf, cust_bmr, cust_bmi, cust_mm, cust_tsf, cust_waketime, cust_tea, cust_breakfast, cust_lunch, cust_snack, cust_dinner, cust_veg_nonveg, cust_waterintake, cust_cond1, cust_cond2, cust_cond3, cust_cond4, cust_cond5, cust_cond6, cust_cond7, cust_cond8, cust_prg, cust_prgtype, cust_noday, cust_total, cust_paid, cust_remain, cust_date)
+                                                      VALUES ('$ccode','$cname','$cphno','$cinvite','$cage','$cbodyage','$cgender','$cemail','$cdoj','$ccity','$caddress','$cheight','$cweight','$cidleweight','$cfat','$cvcf','$cbmr','$cbmi','$cmm','$ctcf','$cwaketime','$ctea','$cbreakfast','$clunch','$csnack','$cdinner','$cveg','$cwaterintake','$ccond1','$ccond2','$ccond3','$ccond4','$ccond5','$ccond6','$ccond7','$ccond8','$cprogram','$cprgtype','$cnoday','$ctotal','$cpaid','$crem','$cdate')");
           } else {
             // Update shake
-            $sql = mysqli_query($conn, "UPDATE customer SET cust_code='$ccode', cust_name='$cname', cust_phno='$cphno', cust_invited='$cinvite', cust_age='$cage', cust_bodyage='$cbodyage', cust_gender='$cgender', cust_email='$cemail', cust_doj='$cdoj', cust_city='$ccity', cust_address='$caddress', cust_height='$cheight', cust_weight='$cweight', cust_fat='$cfat', cust_vcf='$cvcf', cust_bmr='$cbmr', cust_bmi='$cbmi', cust_mm='$cmm', cust_tsf='$ctcf', cust_waketime='$cwaketime', cust_tea='$ctea', cust_breakfast='$cbreakfast', cust_lunch='$clunch', cust_snack='$csnack', cust_dinner='$cdinner', cust_veg_nonveg='$cveg', cust_waterintake='$cwaterintake', cust_cond1='$ccond1', cust_cond2='$ccond2', cust_cond3='$ccond3', cust_cond4='$ccond4', cust_cond5='$ccond5', cust_cond6='$ccond6', cust_cond7='$ccond7', cust_cond8='$ccond8', cust_prg='$cprogram', cust_prgtype='$cprgtype', cust_noday='$cnoday', cust_total='$ctotal', cust_paid='$cpaid', cust_remain='$crem', cust_date='$cdate' WHERE cust_id='$cus_id'");
+            $sql = mysqli_query($conn, "UPDATE customer SET cust_code='$ccode', cust_name='$cname', cust_phno='$cphno', cust_invited='$cinvite', cust_age='$cage', cust_bodyage='$cbodyage', cust_gender='$cgender', cust_email='$cemail', cust_doj='$cdoj', cust_city='$ccity', cust_address='$caddress', cust_height='$cheight', cust_weight='$cweight', cust_idleweight='$cidleweight', cust_fat='$cfat', cust_vcf='$cvcf', cust_bmr='$cbmr', cust_bmi='$cbmi', cust_mm='$cmm', cust_tsf='$ctcf', cust_waketime='$cwaketime', cust_tea='$ctea', cust_breakfast='$cbreakfast', cust_lunch='$clunch', cust_snack='$csnack', cust_dinner='$cdinner', cust_veg_nonveg='$cveg', cust_waterintake='$cwaterintake', cust_cond1='$ccond1', cust_cond2='$ccond2', cust_cond3='$ccond3', cust_cond4='$ccond4', cust_cond5='$ccond5', cust_cond6='$ccond6', cust_cond7='$ccond7', cust_cond8='$ccond8', cust_prg='$cprogram', cust_prgtype='$cprgtype', cust_noday='$cnoday', cust_total='$ctotal', cust_paid='$cpaid', cust_remain='$crem', cust_date='$cdate' WHERE cust_id='$cus_id'");
           }
           if ($sql == TRUE) {
             echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
@@ -466,6 +474,7 @@ if ($_SESSION["email"] == "") {
                         <th>Address</th>
                         <th>Height</th>
                         <th>Weight</th>
+                        <th>Idle Weight</th>
                         <th>Fat %</th>
                         <th>VCF</th>
                         <th>BMR</th>
@@ -514,6 +523,7 @@ if ($_SESSION["email"] == "") {
                       $cus_address = $row['cust_address'];
                       $cus_height = $row['cust_height'];
                       $cus_weight = $row['cust_weight'];
+                      $cus_idleweight = $row['cust_idleweight'];
                       $cus_fat = $row['cust_fat'];
                       $cus_vcf = $row['cust_vcf'];
                       $cus_bmr = $row['cust_bmr'];
@@ -560,8 +570,9 @@ if ($_SESSION["email"] == "") {
                           <td><?php echo $cus_doj; ?></td>
                           <td><?php echo $cus_city; ?></td>
                           <td><?php echo $cus_address; ?></td>
-                          <td><?php echo $cus_height; ?>Kg</td>
-                          <td><?php echo $cus_weight; ?>Kg</td>
+                          <td><?php echo $cus_height; ?>Cm</td>
+                          <td><?php echo $cus_weight; ?>Cm</td>
+                          <td><?php echo $cus_idleweight; ?>Cm</td>
                           <td><?php echo $cus_fat; ?></td>
                           <td><?php echo $cus_vcf; ?></td>
                           <td><?php echo $cus_bmr; ?></td>
