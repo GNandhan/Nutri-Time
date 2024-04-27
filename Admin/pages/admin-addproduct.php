@@ -75,16 +75,16 @@ if(isset($_GET['prd_id']))
                       <div class="col">
                         <div class="form-group">
                           <label>Program Name</label>
-                          <input type="text" class="form-control" style="border-radius: 16px;"  placeholder="Weight Gainer" name="pname" value="<?php echo $pr_name1; ?>" required>
+                          <input type="text" class="form-control" style="border-radius: 16px;"  placeholder="Weight Gainer" name="pname" value="<?php echo $pro_name1; ?>" required>
                         </div>
                       </div>
                       <div class="col">
                         <div class="form-group">
                           <label>Program Image</label>
                            <div class="input-group mb-3">
-                            <input type="file" class="custom-file-input form-control file-upload-info"  style="border-radius: 16px;" id="inputGroupFile01" name="pimg" onchange="displaySelectedFileName(this)"  value="<?php echo $pr_img1; ?>" required>
+                            <input type="file" class="custom-file-input form-control file-upload-info"  style="border-radius: 16px;" id="inputGroupFile01" name="pimg" onchange="displaySelectedFileName(this)"  value="<?php echo $pro_img1; ?>" required>
                             <label class="input-group-text custom-file-label" for="inputGroupFile01">Choose file</label>
-                            <input type="hidden"  style="border-radius: 16px;" name="current_primg" value="<?php echo $pr_img1; ?>">
+                            <input type="hidden"  style="border-radius: 16px;" name="current_primg" value="<?php echo $pro_img1; ?>">
                             </div>
                         </div>
                       </div>

@@ -123,8 +123,7 @@ if(isset($_GET['prd_id']))
                             </select>
                         </div>
                       </div>
-                      <div class="col">
-                        <div class="form-group">
+brave                        <div class="form-group">
                           <label>Program Image</label>
                            <div class="input-group mb-3">
                             <input type="file" class="custom-file-input form-control file-upload-info"  style="border-radius: 16px;" id="inputGroupFile01" name="prgimg" onchange="displaySelectedFileName(this)"  value="<?php echo $pr_img1; ?>" required>
