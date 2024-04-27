@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2024 at 09:22 AM
+-- Generation Time: Apr 27, 2024 at 10:25 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -148,7 +148,8 @@ CREATE TABLE `gallery` (
 --
 
 INSERT INTO `gallery` (`gallery_id`, `gallery_dis`, `gallery_img`) VALUES
-(1, 'first image', 'NightlY Glow 3.jpg');
+(1, 'first image', 'NightlY Glow 3.jpg'),
+(2, 'mmm', 'bg3.jpg');
 
 -- --------------------------------------------------------
 
@@ -253,20 +254,18 @@ CREATE TABLE `program` (
   `program_id` int(11) NOT NULL,
   `program_name` varchar(50) NOT NULL,
   `program_img` varchar(50) NOT NULL,
-  `program_duration` varchar(50) NOT NULL,
-  `program_fee` int(20) NOT NULL,
-  `program_condition` varchar(50) NOT NULL,
-  `program_mode` varchar(50) NOT NULL,
-  `program_purpose` varchar(100) NOT NULL
+  `program_date` varchar(50) NOT NULL,
+  `program_time` varchar(20) NOT NULL,
+  `program_venue` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `program`
 --
 
-INSERT INTO `program` (`program_id`, `program_name`, `program_img`, `program_duration`, `program_fee`, `program_condition`, `program_mode`, `program_purpose`) VALUES
-(1, 'Fitness diet', 'main page.jpg', '20-Days', 15000, 'Strict diet should be followed', 'Offline', 'protein diet and weight management'),
-(2, 'Weight Gainer', 'NightlY Glow 3.jpg', '10-Days', 15000, 'Strict diet should be followed', 'Online', 'protein diet and weight management');
+INSERT INTO `program` (`program_id`, `program_name`, `program_img`, `program_date`, `program_time`, `program_venue`) VALUES
+(1, 'Fitness diet', 'bg2.jpg', '2024-04-09', '01:42', 'Strict diet should be followed'),
+(2, 'Weight Gainer', 'NightlY Glow 3.jpg', '10-Days', '15000', 'Strict diet should be followed');
 
 -- --------------------------------------------------------
 
@@ -333,24 +332,25 @@ CREATE TABLE `shake` (
   `shake_discount` varchar(50) NOT NULL,
   `shake_expence` varchar(25) NOT NULL,
   `shake_total` varchar(50) NOT NULL,
-  `shake_image` varchar(100) NOT NULL
+  `shake_image` varchar(100) NOT NULL,
+  `shake_date` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `shake`
 --
 
-INSERT INTO `shake` (`shake_id`, `shake_name`, `shake_assoc`, `customer_id`, `customer_name`, `shake_goal`, `shake_recipes`, `shake_mrp`, `shake_scoops`, `shake_extra`, `shake_extraprice`, `shake_discount`, `shake_expence`, `shake_total`, `shake_image`) VALUES
-(1, 'Club Shake', 'Ashraf', 0, 'Manu', 'Weight gainer', 'Formula 1,Fiber Complex,Shakemate', '219.92000000000002', '', 'Milk', '50', '15', '40', '90', 'bg2.jpg'),
-(2, 'evening shake', 'Ashraf', 0, 'Amal', 'weight losser', 'Formula 1,Dino ', '115.25', '', 'milk, sugar, protein', '50', '42', '10', '60', 'main page.jpg'),
-(3, 'evening shake', '', 0, 'Amal', 'weight losser', 'Formula 1,Protein', '', '', 'milk, sugar, protein', '50', '15', '10', '60', 'main page.jpg'),
-(4, 'Club Shake222', '', 0, 'Manu', 'Weight gainer222', 'Formula 1,Protein', '0', '', 'water', '10', '50', '11', '21', 'main page.jpg'),
-(5, 'Club Shake222', '', 0, 'Manu', 'weight losser', 'Formula 1,Protein', '0', '', 'Milk', '20', '25', '40', '60', 'main page.jpg'),
-(6, 'Club Shake222', '', 0, 'Manu', 'Weight gainer222', 'Formula 1,Protein', '0', '', 'Milk', '50', '25', '10', '60', 'main page.jpg'),
-(7, 'Club Shake', '', 0, 'Manu', 'weight losser', 'Formula 1,Protein', '129.82999999999998', '', 'Milk', '50', '25', '60', '110', 'main page.jpg'),
-(8, 'Club Shake', '', 0, 'Amal', 'weight losser', 'Formula 1,Protein', '129.82999999999998', '', 'Milk, Butter', '20', '25', '40', '189.83', 'main page.jpg'),
-(9, 'Club Shake', '', 0, 'Amal', 'Weight gainer222', 'Formula 1,Fiber Complex', '183.25', '', 'Milk, Butter', '20', '15', '50', '253.25', 'main page.jpg'),
-(10, 'Dino Shake', '', 0, 'Melow', 'weight losser', 'Formula 1,Fiber Complex,Shakemate', '199.72', '', 'milk boost, butter', '60', '25', '50', '309.72', 'bg3.jpg');
+INSERT INTO `shake` (`shake_id`, `shake_name`, `shake_assoc`, `customer_id`, `customer_name`, `shake_goal`, `shake_recipes`, `shake_mrp`, `shake_scoops`, `shake_extra`, `shake_extraprice`, `shake_discount`, `shake_expence`, `shake_total`, `shake_image`, `shake_date`) VALUES
+(1, 'Club Shake', 'Ashraf', 0, 'Manu', 'Weight gainer', 'Formula 1,Fiber Complex,Shakemate', '219.92000000000002', '', 'Milk', '50', '15', '40', '90', 'bg2.jpg', ''),
+(2, 'evening shake', 'Ashraf', 0, 'Amal', 'weight losser', 'Formula 1,Dino ', '115.25', '', 'milk, sugar, protein', '50', '42', '10', '60', 'main page.jpg', ''),
+(3, 'evening shake', '', 0, 'Amal', 'weight losser', 'Formula 1,Protein', '', '', 'milk, sugar, protein', '50', '15', '10', '60', 'main page.jpg', ''),
+(4, 'Club Shake222', '', 0, 'Manu', 'Weight gainer222', 'Formula 1,Protein', '0', '', 'water', '10', '50', '11', '21', 'main page.jpg', ''),
+(5, 'Club Shake222', '', 0, 'Manu', 'weight losser', 'Formula 1,Protein', '0', '', 'Milk', '20', '25', '40', '60', 'main page.jpg', ''),
+(6, 'Club Shake222', '', 0, 'Manu', 'Weight gainer222', 'Formula 1,Protein', '0', '', 'Milk', '50', '25', '10', '60', 'main page.jpg', ''),
+(7, 'Club Shake', '', 0, 'Manu', 'weight losser', 'Formula 1,Protein', '129.82999999999998', '', 'Milk', '50', '25', '60', '110', 'main page.jpg', ''),
+(8, 'Club Shake', '', 0, 'Amal', 'weight losser', 'Formula 1,Protein', '129.82999999999998', '', 'Milk, Butter', '20', '25', '40', '189.83', 'main page.jpg', ''),
+(9, 'Club Shake', '', 0, 'Amal', 'Weight gainer222', 'Formula 1,Fiber Complex', '183.25', '', 'Milk, Butter', '20', '15', '50', '253.25', 'main page.jpg', ''),
+(10, 'Dino Shake', '', 0, 'Melow', 'weight losser', 'Formula 1,Fiber Complex,Shakemate', '199.72', '', 'milk boost, butter', '60', '25', '50', '309.72', 'bg3.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -391,7 +391,7 @@ CREATE TABLE `stock` (
 --
 
 INSERT INTO `stock` (`stock_id`, `stock_proid`, `stock_proname`, `stock_quantity`, `stock_associate`, `stock_price`, `stock_total`, `stock_date`) VALUES
-(7, 0, 'Formula 1', '5', 'kollam', '2200', 11000, '2024-04-18'),
+(7, 0, 'Formula 1', '22', 'kollam', '2200', 48400, '0000-00-00'),
 (8, 0, 'Afresh', '8', 'Trivandrum', '800', 6400, '2024-04-22'),
 (9, 0, 'Fiber Complex', '5', 'palarivattom', '2600', 13000, '2024-04-25'),
 (10, 0, 'Fiber Complex', '5', 'palarivattom', '2600', 13000, '2024-04-25'),
@@ -540,7 +540,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `gallery_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `gallery_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `login_details`
