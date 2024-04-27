@@ -158,7 +158,7 @@ if ($_SESSION["email"] == "") {
                     <div class="col-lg-2 col-md-4 col-sm-4 col-6">
                       <div class="form-group">
                         <label>Date of Joining</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusdoj" value="<?php echo $cus_doj1; ?>">
+                        <input type="date" class="form-control" style="border-radius: 16px;" name="cusdoj" value="<?php echo $cus_doj1; ?>">
                       </div>
                     </div>
                     <div class="col-lg col-md col-sm col-6">
@@ -371,7 +371,7 @@ if ($_SESSION["email"] == "") {
                     </div>
                     <div class="col-lg-2 col-md col-sm-4 col-6">
                       <div class="form-group">
-                        <label>Date</label>
+                        <label>Program Ending Date</label>
                         <input type="date" class="form-control" style="border-radius: 16px;" name="cusdate" value="<?php echo $cus_date1; ?>">
                       </div>
                     </div>
@@ -460,8 +460,7 @@ if ($_SESSION["email"] == "") {
                       <tr>
                         <th>Edit</th>
                         <th>Delete</th>
-                        <th>Date</th>
-                        <th>Customer Id</th>
+                        <th>Customer Code</th>
                         <th>Customer Name</th>
                         <th>Phno</th>
                         <th>Invited By</th>
@@ -469,7 +468,8 @@ if ($_SESSION["email"] == "") {
                         <th>Body Age</th>
                         <th>Gender</th>
                         <th>Mail</th>
-                        <th>DOJ</th>
+                        <th>Joining Date</th>
+                        <th>Ending Date</th>
                         <th>City</th>
                         <th>Address</th>
                         <th>Height</th>
@@ -558,8 +558,8 @@ if ($_SESSION["email"] == "") {
                         <tr>
                           <td><a href="admin-customer.php?cusid=<?php echo $cus_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit <i class="ti-pencil-alt btn-icon-append"></i></a></td>
                           <td><a href="admin-customer.php?cusdid=<?php echo $cus_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a></td>
-                          <td><?php echo $cus_date; ?></td>
-                          <td class="py-1"><?php echo $cus_code; ?></td>
+                          <!-- <td class="py-1"><?php echo $cus_code; ?></td> -->
+                          <td class="py-1"><a href="admin-customerdetails.php?prid=<?php echo $cus_id; ?>" class="text-dark"><?php echo $cus_code; ?></a></td>
                           <td><?php echo $cus_name; ?></td>
                           <td><?php echo $cus_phno; ?></td>
                           <td><?php echo $cus_invite; ?></td>
@@ -568,6 +568,7 @@ if ($_SESSION["email"] == "") {
                           <td><?php echo $cus_gender; ?></td>
                           <td><?php echo $cus_email; ?></td>
                           <td><?php echo $cus_doj; ?></td>
+                          <td><?php echo $cus_date; ?></td>
                           <td><?php echo $cus_city; ?></td>
                           <td><?php echo $cus_address; ?></td>
                           <td><?php echo $cus_height; ?>Cm</td>

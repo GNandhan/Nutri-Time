@@ -83,10 +83,10 @@
           <div><?php echo $pro_cat; ?></div>
           <div><?php echo $pro_desc; ?></div>
       </div>
-      <div class="modal-footer">
+      <!-- <div class="modal-footer"> -->
         <!-- <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button> -->
-        <button type="button" class="btn text-white" style="background-color: rgb(44, 202, 44);">Buy Now</button>
-      </div>
+        <!-- <button type="button" class="btn text-white" style="background-color: rgb(44, 202, 44);">Buy Now</button> -->
+      <!-- </div> -->
     </div>
   </div>
 </div>

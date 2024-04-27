@@ -57,11 +57,9 @@
         {
             $prg_name=$row['program_name'];
             $prg_img=$row['program_img'];
-            $prg_purp=$row['program_purpose'];
-            $prg_dur=$row['program_duration'];
-            $prg_age=$row['program_age'];
-            $prg_con=$row['program_condition']; 
-            $prg_mode=$row['program_mode'];
+            $prg_date=$row['program_date'];
+            $prg_time=$row['program_time'];
+            $prg_venue=$row['program_venue'];
             // Get the color for this card
             $color = $colors[$color_index % count($colors)]; // Use modulo to loop through colors
             // Increment color index for next card
@@ -72,7 +70,8 @@
                 <div class="image-container rounded-circle overflow-hidden border border-3 border-light-subtle shadow z-3 position-absolute" style="width: 120px; height: 120px; margin: auto; top: -60px; left: 0; right: 0; background-image: url('../../Admin/images/program/<?php echo $prg_img; ?>'); background-size: cover; background-position: center;"></div>
                 <div class="card-body pt-4">
                     <h5 class="card-title text-uppercase"><?php echo $prg_name; ?></h5>
-                    <p class="card-text"><?php echo $prg_con; ?></p>
+                    <p class="card-text"><?php echo $prg_date; ?></p>
+                    <p class="card-text"><?php echo $prg_venue; ?></p>
                 </div>
                 <div class="card-footer text-secondary bg-transparent border-top"><?php echo $prg_mode; ?></div>
             </div>
@@ -88,15 +87,13 @@
       <div class="modal-body">
         <img src="../../Admin/images/program/<?php echo $prg_img; ?>" class="rounded-4" alt="Product Image" width="100%">
             <div>Program name: <?php echo $prg_name; ?></div>
-          <div><?php echo $prg_purp; ?></div>
-          <div><?php echo $prg_dur; ?></div>
-          <div><?php echo $prg_age; ?></div>
-          <div><?php echo $prg_con; ?></div>
-          <div><?php echo $prg_mode; ?></div>
+          <div><?php echo $prg_date; ?></div>
+          <div><?php echo $prg_time; ?></div>
+          <div><?php echo $prg_venue; ?></div>
       </div>
-      <div class="modal-footer">
+      <!-- <div class="modal-footer">
     <a href="./login.php" class="btn text-white" style="background-color: rgb(44, 202, 44);">Request</a>
-</div>
+</div> -->
     </div>
   </div>
 </div>
