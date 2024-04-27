@@ -39,11 +39,9 @@ if ($_SESSION["email"] == "") {
       $pr_row1 = mysqli_fetch_array($pr_query);
 
       $pr_name1 = $pr_row1['program_name'];
-      $pr_purpose1 = $pr_row1['program_purpose'];
-      $pr_dur1 = $pr_row1['program_duration'];
-      $pr_fee1 = $pr_row1['program_fee'];
-      $pr_cond1 = $pr_row1['program_condition'];
-      $pr_mode1 = $pr_row1['program_mode'];
+      $pr_date1 = $pr_row1['program_date'];
+      $pr_time1 = $pr_row1['program_time'];
+      $pr_location1 = $pr_row1['program_venue'];
       $pr_img1 = $pr_row1['program_img'];
     }
     // fetching the data from the URL for deleting the subject form
@@ -77,48 +75,27 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>Program Name</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Weight Gainer" name="pname" value="<?php echo $pr_name1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Enter Program name" name="pname" value="<?php echo $pr_name1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
-                        <label>Purpose</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Weight Gainer" name="ppurpose" value="<?php echo $pr_purpose1; ?>" required>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col">
-                      <div class="form-group">
-                        <label for="exampleSelectGender">Duration</label>
-                        <select class="form-control" style="border-radius: 16px;" name="pduration" required>
-                          <option <?php if ($pr_dur1 == '10 Days') echo 'selected'; ?> value="10-Days">10 Days</option>
-                          <option <?php if ($pr_dur1 == '20 Days') echo 'selected'; ?> value="20-Days">20 Days</option>
-                          <option <?php if ($pr_dur1 == '25 Days') echo 'selected'; ?> value="25-Days">25 Days</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <div class="form-group">
-                        <label>Fee (per/month)</label>
-                        <input type="number" class="form-control" style="border-radius: 16px;" name="pfee" value="<?php echo $pr_fee1; ?>" required>
+                        <label>Venue / Location</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Enter Location" name="plocation" value="<?php echo $pr_location1; ?>" required>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col">
                       <div class="form-group">
-                        <label>Program Condition</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="pcond" value="<?php echo $pr_cond1; ?>" required>
+                        <label>Program Date</label>
+                        <input type="date" class="form-control" style="border-radius: 16px;" name="pdate" value="<?php echo $pr_date1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
-                        <label for="exampleSelectGender">Program Mode</label>
-                        <select class="form-control" style="border-radius: 16px;" name="pmode" required>
-                          <option <?php if ($pr_mode1 == 'Online') echo 'selected'; ?> value="Online">Online</option>
-                          <option <?php if ($pr_mode1 == 'Offline') echo 'selected'; ?> value="Offline">Offline</option>
-                        </select>
+                        <label for="exampleSelectGender">Program Time</label>
+                        <input type="time" class="form-control" style="border-radius: 16px;" name="ptime" value="<?php echo $pr_time1; ?>" required>
                       </div>
                     </div>
                     <div class="form-group">
@@ -144,11 +121,9 @@ if ($_SESSION["email"] == "") {
         if (isset($_POST["submitpr"])) {
           $pr_id = $_POST["prid"];
           $pr_name = $_POST["pname"];
-          $pr_purpose = $_POST["ppurpose"];
-          $pr_dur = $_POST["pduration"];
-          $pr_fee = $_POST["pfee"];
-          $pr_cond = $_POST["pcond"];
-          $pr_mode = $_POST["pmode"];
+          $pr_location = $_POST["plocation"];
+          $pr_date = $_POST["pdate"];
+          $pr_time = $_POST["ptime"];
           $pr_img = $_FILES['prgimg']['name'];
 
           // Image uploading formats
@@ -159,8 +134,8 @@ if ($_SESSION["email"] == "") {
           $pr_id = $_POST["prid"];
 
           if ($pr_id == '') {
-            $sql = mysqli_query($conn, "INSERT INTO program (program_name, program_purpose, program_duration, program_fee, program_condition, program_mode, program_img) 
-                         VALUES ('$pr_name','$pr_purpose','$pr_dur','$pr_fee','$pr_cond','$pr_mode', '$pr_img')");
+            $sql = mysqli_query($conn, "INSERT INTO program (program_name, program_date, program_time, program_venue, program_img) 
+                         VALUES ('$pr_name','$pr_date','$pr_time','$pr_location','$pr_img')");
           } else {
             if ($filename) {
               // Remove the existing image
@@ -169,9 +144,9 @@ if ($_SESSION["email"] == "") {
                 unlink($imgs);
               }
               // Update shake with new image
-              $sql = mysqli_query($conn, "UPDATE program SET program_name='$pr_name', program_img='$pr_img', program_purpose='$pr_purpose', program_duration='$pr_dur', program_fee='$pr_fee', program_condition='$pr_cond', program_mode='$pr_mode' WHERE program_id='$pr_id'");
+              $sql = mysqli_query($conn, "UPDATE program SET program_name='$pr_name', program_img='$pr_img', program_date='$pr_date', program_time='$pr_time', program_venue='$pr_location' WHERE program_id='$pr_id'");
             }
-            $sql = mysqli_query($conn, "UPDATE program SET program_name='$pr_name', program_purpose='$pr_purpose', program_duration='$pr_dur', program_fee='$pr_fee', program_condition='$pr_cond', program_mode='$pr_mode' WHERE program_id='$pr_id'");
+            $sql = mysqli_query($conn, "UPDATE program SET program_name='$pr_name', program_date='$pr_date', program_time='$pr_time', program_venue='$pr_location' WHERE program_id='$pr_id'");
           }
           if ($sql == TRUE) {
             move_uploaded_file($tempname, "../images/program/$filename");
@@ -196,11 +171,9 @@ if ($_SESSION["email"] == "") {
                       <th>sl-no</th>
                       <th>Program Name</th>
                       <th>Program images</th>
-                      <th>Duration</th>
-                      <th>Fee</th>
-                      <th>Program Conditions</th>
-                      <th>Program Mode</th>
-
+                      <th>Date</th>
+                      <th>Time</th>
+                      <th>Program Venue</th>
                     </tr>
                   </thead>
                   <?php
@@ -210,10 +183,9 @@ if ($_SESSION["email"] == "") {
                     $pro_id = $row['program_id'];
                     $pro_name = $row['program_name'];
                     $pro_img = $row['program_img'];
-                    $pro_dura = $row['program_duration'];
-                    $pro_fee = $row['program_fee'];
-                    $pro_con = $row['program_condition'];
-                    $pro_mode = $row['program_mode'];
+                    $pro_date = $row['program_date'];
+                    $pro_time = $row['program_time'];
+                    $pro_venue = $row['program_venue'];
                   ?>
                     <tbody>
                       <tr>
@@ -230,10 +202,9 @@ if ($_SESSION["email"] == "") {
                         <td class="py-1"><?php echo $serialNo++; ?></td>
                         <td><?php echo $pro_name; ?></td>
                         <td><img src="../images/program/<?php echo $pro_img; ?>" alt=""></td>
-                        <td><?php echo $pro_dura; ?></td>
-                        <td><?php echo $pro_fee; ?></td>
-                        <td><?php echo $pro_con; ?></td>
-                        <td><?php echo $pro_mode; ?></td>
+                        <td><?php echo $pro_date; ?></td>
+                        <td><?php echo $pro_time; ?></td>
+                        <td><?php echo $pro_venue; ?></td>
 
                       </tr>
                     </tbody>

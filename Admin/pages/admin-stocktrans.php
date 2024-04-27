@@ -1,7 +1,7 @@
 <?php
 include './connect.php';
 // error_reporting(0);
-$stoloct1 = $stoqua1 =  $sh_raw1 = $sto_id = "";
+$stoloct1 = $stoqua1 =  $sh_raw1 = $sto_id = $stoassoc1 = "";
 session_start();
 if ($_SESSION["email"] == "") {
   header('location:admin-login.php');
@@ -44,13 +44,11 @@ if ($_SESSION["email"] == "") {
       $sto_query = mysqli_query($conn, "SELECT * FROM stock WHERE stock_id = '$stoid'");
       $sto_row1 = mysqli_fetch_array($sto_query);
 
-      $stoloct1 = $sto_row1['stock_place'];
-      $stomat1 = $sto_row1['stock_name'];
+      $stoproname1 = $sto_row1['stock_proname'];
       $stoqua1 = $sto_row1['stock_quantity'];
-      $stocom1 = $sto_row1['stock_comname'];
-      $stopri1 = $sto_row1['stock_price'];
-      $stogst1 = $sto_row1['stock_gst'];
-      $stototal1 = $sto_row1['stock_total'];
+      $stoassoc1 = $sto_row1['stock_associate'];
+      $storpri1 = $sto_row1['stock_price'];
+      $stodate1 = $sto_row1['stock_date'];
     }
     // fetching the data from the URL for deleting the subject form
     if (isset($_GET['stod_id'])) {
@@ -139,13 +137,19 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>Associate / Location</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="stoloc" value="<?php echo $stoloct1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="stoloc" value="<?php echo $stoassoc1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>Purchased Price</label>
-                        <input type="number" class="form-control" style="border-radius: 16px;" name="stopri" id="stopri" required>
+                        <input type="number" class="form-control" style="border-radius: 16px;" name="stopri" id="stopri" value="<?php echo $storpri1; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Stock Transfer Date</label>
+                        <input type="date" class="form-control" style="border-radius: 16px;" name="stodate"  value="<?php echo $stodate1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -163,6 +167,7 @@ if ($_SESSION["email"] == "") {
           $stoqua = $_POST["stoqua"];
           $stoloct = $_POST["stoloc"];
           $stopri = $_POST["stopri"];
+          $stodate = $_POST["stodate"];
 
           // $total = $stopri * ($stogst / 100);
           $stototal = intval($stoqua) * intval($stopri);
@@ -172,15 +177,14 @@ if ($_SESSION["email"] == "") {
           if ($sto_id == '') {
               // Insert new record
               $sql = mysqli_query($conn, "INSERT INTO stock (stock_proname, stock_quantity, stock_associate, stock_price, stock_total, stock_date)
-                                           VALUES ('$stomat', $stoqua, '$stoloct', $stopri, $stototal, NOW())");
+                                           VALUES ('$stomat', $stoqua, '$stoloct', $stopri, $stototal, $stodate");
           } else {
               // Update existing record
-              $sql = mysqli_query($conn, "UPDATE stock SET stock_proname='$stomat', stock_quantity=$stoqua, stock_associate='$stoloct', 
-                                           stock_price=$stopri, stock_total=$stototal WHERE stock_id='$sto_id'");
+              $sql = mysqli_query($conn, "UPDATE stock SET stock_proname='$stomat', stock_quantity=$stoqua, stock_associate='$stoloct', stock_price=$stopri, stock_total=$stototal, stock_date=$stodate WHERE stock_id='$sto_id'");
           }
           if ($sql) {
               echo "<script>alert('Operation completed successfully.');</script>";
-              header("location:admin-stocktrans.php"); // Redirect after successful operation
+      // Redirect after successful operation
           } else {
               echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
           }
@@ -204,13 +208,13 @@ if ($_SESSION["email"] == "") {
                         <th>Edit</th>
                         <th>Delete</th>
                         <th>Slno</th>
+                        <th>Stock Transfer Date</th>
                         <th>Product</th>
                         <th>Quantity</th>
                         <!-- <th>Remaining Quantity</th> -->
                         <th>Location/Associate</th>
                         <th>Price</th>
                         <th>Total</th>
-                        <th>Date</th>
                       </tr>
                     </thead>
                     <?php
@@ -240,13 +244,13 @@ if ($_SESSION["email"] == "") {
                             </a>
                           </td>
                           <td class="py-1"><?php echo $serialNo++; ?></td>
+                          <td><?php echo $stock_date; ?></td>
                           <td class="py-1"><?php echo $stock_product; ?></td>
                           <td><?php echo $stock_quan; ?></td>
                           <!-- <td><?php echo $stock_curquan1; ?></td> -->
                           <td><?php echo $stock_location; ?></td>
                           <td><?php echo $stock_price; ?></td>
                           <td><?php echo $stock_total; ?></td>
-                          <td><?php echo $stock_date; ?></td>
                         </tr>
                       </tbody>
                     <?php
