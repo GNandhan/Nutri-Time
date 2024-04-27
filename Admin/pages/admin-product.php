@@ -53,6 +53,7 @@ if ($_SESSION["email"] == "") {
       $p_qua1 = $p_row1['pro_quantity'];
       $p_img1 = $p_row1['pro_img'];
       $p_hsn1 = $p_row1['pro_hsn'];
+      $p_date1 = $p_row1['pro_date'];
     }
     ?>
     <!-- Fetching prices of all materials from the database -->
@@ -197,6 +198,12 @@ if ($_SESSION["email"] == "") {
                         <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Enter Product HSN Code" name="prohsn" value="<?php echo $p_hsn1; ?>" required>
                       </div>
                     </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Purchase date</label>
+                        <input type="date" class="form-control" style="border-radius: 16px;" placeholder="Enter Product Purchase date" name="prodate" value="<?php echo $p_date1; ?>" required>
+                      </div>
+                    </div>
                   </div>
                   <button type="submit" class="btn btn-primary mr-2 rounded-pill" name="submitp">Submit</button>
                   <a href="./admin-product.php" type="reset" class="btn btn-light rounded-pill">Cancel</a>
@@ -217,6 +224,7 @@ if (isset($_POST["submitp"])) {
     $pquant = $_POST["proquant"]; // This is the new quantity from the form
     $pvp = $_POST["provp"];
     $phsn = $_POST["prohsn"];
+    $pdate = $_POST["prodate"];
     $pvptotal = $pvp * $pquant;
 
     // Fetch existing quantity from the database
@@ -240,7 +248,8 @@ if (isset($_POST["submitp"])) {
         pro_curquantity = '$newcurQuantity', 
         pro_vp = '$pvp', 
         pro_vptotal = '$pvptotal', 
-        pro_hsn = '$phsn'
+        pro_hsn = '$phsn',
+        pro_date = '$pdate'
         WHERE pro_name = '$pname'";
 
     // Execute the SQL update query
@@ -287,6 +296,7 @@ if (isset($_POST["submitp"])) {
                       <tr>
                         <th>Edit</th>
                         <th>Slno</th>
+                        <th>Purchase Date</th>
                         <th>Product Code</th>
                         <!-- <th>Product Image</th> -->
                         <th>Product Name</th>
@@ -318,7 +328,8 @@ if (isset($_POST["submitp"])) {
                       $pro_vp = $row['pro_vp'];
                       $pro_vptotal = $row['pro_vptotal'];
                       $pro_mrp = $row['pro_mrp'];
-                      $pro_price = $row['pro_price'];;
+                      $pro_price = $row['pro_price'];
+                      $pro_date = $row['pro_date'];
 
                       $pro_purtotal = (int)$pro_price * (int)$pro_qua;
                     ?>
@@ -333,6 +344,7 @@ if (isset($_POST["submitp"])) {
                             </a>
                           </td> -->
                           <td class="py-1"><?php echo $serialNo++; ?></td>
+                          <td class="py-1"><?php echo $pro_date; ?></td>
                           <td class="py-1"><?php echo $pro_cod; ?></td>
                           <!-- <td><img src="../images/product/<?php echo $pro_img; ?>"  width="50" class="rounded-circle"></td> -->
                           <td><?php echo $pro_nam; ?></td>
