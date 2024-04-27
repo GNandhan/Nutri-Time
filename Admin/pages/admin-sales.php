@@ -59,6 +59,7 @@ if ($_SESSION["email"] == "") {
       $sale_cus1 = $s_row1['sales_cus'];
       $sale_address1 = $s_row1['sales_address'];
       $sale_total1 = $s_row1['sales_total'];
+      $sale_date1 = $s_row1['sales_date'];
     }
     // fetching the data from the URL for deleting the subject form
     if (isset($_GET['sd_id'])) {
@@ -236,6 +237,12 @@ if ($_SESSION["email"] == "") {
                         <input type="number" class="form-control" style="border-radius: 16px;" name="properprice" id="properprice" readonly value="<?php echo $sale_dispri1; ?>" required>
                       </div>
                     </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Sales Date</label>
+                        <input type="date" class="form-control" style="border-radius: 16px;" name="prodate" value="<?php echo $sale_date1; ?>" required>
+                      </div>
+                    </div>
                   </div>
                   <input type="submit" class="btn btn-primary mr-2 rounded-pill" name="submitp" value="Submit">
                   <button type="reset" class="btn btn-light rounded-pill">Cancel</button>
@@ -256,6 +263,7 @@ if ($_SESSION["email"] == "") {
           $sal_mrp = $_POST["promrp"];
           $sal_quan = $_POST["proquant"];
           $sal_vp = $_POST["provp"];
+          $sal_date = $_POST["prodate"];
           $sal_vptotal = $sal_vp * $sal_quan;
           $sal_gst = $_POST["progst"];
           // Extract the numeric portion of the discount percentage
@@ -282,8 +290,8 @@ if ($_SESSION["email"] == "") {
           $sale_id = $_POST["saleid"];
           // if (empty($sale_id)) {
           // Perform INSERT operation
-          $sql = mysqli_query($conn, "INSERT INTO sales (sales_procode, sales_proname, sales_procat, sales_prosubcat, sales_mrp, sales_quan, sales_vp, sales_vptotal, sales_gst, sales_dis, sales_dispri, sales_cus, sales_address, sales_total)
-                                                    VALUES ('$sal_procode','$sal_proname','$sal_procat','$sal_prosubcat','$sal_mrp','$sal_quan','$sal_vp', '$sal_vptotal','$sal_gst','$sal_dis','$sal_dispri','$sal_cus','$sal_address','$sal_total')");
+          $sql = mysqli_query($conn, "INSERT INTO sales (sales_procode, sales_proname, sales_procat, sales_prosubcat, sales_mrp, sales_quan, sales_vp, sales_vptotal, sales_gst, sales_dis, sales_dispri, sales_cus, sales_address, sales_total, sales_date)
+                                                    VALUES ('$sal_procode','$sal_proname','$sal_procat','$sal_prosubcat','$sal_mrp','$sal_quan','$sal_vp', '$sal_vptotal','$sal_gst','$sal_dis','$sal_dispri','$sal_cus','$sal_address','$sal_total','$sal_date')");
 
           $sql = mysqli_query($conn, "UPDATE price SET pro_curquantity='$sal_curquan1' WHERE pro_name='$sal_proname'");
 
@@ -335,6 +343,7 @@ if ($_SESSION["email"] == "") {
                         <th>Edit</th>
                         <th>Delete</th>
                         <th>Slno</th>
+                        <th>Sales Date</th>
                         <th>Offline Customer Name</th>
                         <th>Address</th>
                         <th>Product Code</th>
@@ -364,6 +373,7 @@ if ($_SESSION["email"] == "") {
                       $sale_prosubcat = $row['sales_prosubcat'];
                       $sale_mrp = $row['sales_mrp'];
                       $sale_quan = $row['sales_quan'];
+                      $sale_date = $row['sales_date'];
 
                       // Fetch current quantity from the price table based on the product name
                       $currentQuantity = 0; // Default value if no quantity found
@@ -388,6 +398,7 @@ if ($_SESSION["email"] == "") {
                           <td><a href="admin-sales.php?sd_id=<?php echo $sale_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a>
                           </td>
                           <td class="py-1"><?php echo $serialNo++; ?></td>
+                          <td><?php echo $sale_date; ?></td>
                           <td><?php echo $sale_cus; ?></td>
                           <td><?php echo $sale_address; ?></td>
                           <td class="py-1"><?php echo $sale_procode; ?></td>
