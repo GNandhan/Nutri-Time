@@ -1,7 +1,7 @@
 <?php
 include './connect.php';
 // error_reporting(0);
-$cus_id1= $cus_code1= $cus_name1= $cus_phno1= $cus_invite1= $cus_age1= $cus_bodyage1= $cus_gender1= $cus_email1= $cus_doj1= $cus_city1= $cus_address1= $cus_height1= $cus_weight1= $cus_fat1= $cus_vcf1= $cus_bmr1= $cus_bmi1= $cus_mm1= $cus_tsf1= $cus_waketime1= $cus_tea1= $cus_breakfast1= $cus_lunch1= $cus_snack1= $cus_dinner1= $cus_veg_nonveg1= $cus_waterintake1= $cus_cond11= $cus_cond21= $cus_cond31= $cus_prg1= $cus_prgtype1= $cus_nodays1= $cus_total1= $cus_paid1= $cus_remain1= $cusid ="";
+$cus_id1= $cus_code1= $cus_name1= $cus_phno1= $cus_invite1= $cus_age1= $cus_bodyage1= $cus_gender1= $cus_email1= $cus_doj1= $cus_city1= $cus_address1= $cus_height1= $cus_weight1= $cus_fat1= $cus_vcf1= $cus_bmr1= $cus_bmi1= $cus_mm1= $cus_tsf1= $cus_waketime1= $cus_tea1= $cus_breakfast1= $cus_lunch1= $cus_snack1= $cus_dinner1= $cus_veg_nonveg1= $cus_waterintake1= $cus_cond11= $cus_cond21= $cus_cond31= $cus_cond41= $cus_cond51= $cus_cond61= $cus_cond71= $cus_cond81= $cus_prg1= $cus_prgtype1= $cus_nodays1= $cus_total1= $cus_paid1= $cus_remain1= $cusid ="";
 session_start();
 if ($_SESSION["email"] == "") {
   header('location:admin-login.php');
@@ -78,7 +78,7 @@ if ($_SESSION["email"] == "") {
       $cus_nodays1 = $p_row1['cust_noday'];
       $cus_total1 = $p_row1['cust_total'];
       $cus_paid1 = $p_row1['cust_paid'];
-      $cus_remain1 = $p_row1['cust_remain'];
+      $cus_date1 = $p_row1['cust_date'];
 
     }
     // fetching the data from the URL for deleting the subject form
@@ -280,49 +280,49 @@ if ($_SESSION["email"] == "") {
                   <p class="card-description">Add Health Conditions</p>
                   <hr>
                   <div class="row">
-                    <div class="col-lg col-md col-sm-4 col-6">
+                    <div class="col-lg-4 col-md col-sm-4 col-6">
                       <div class="form-group">
                         <label>Condition 1</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cuscond1" value="<?php echo $cus_cond11; ?>">
                       </div>
                     </div>
-                    <div class="col-lg col-md col-sm-4 col-6">
+                    <div class="col-lg-4 col-md col-sm-4 col-6">
                       <div class="form-group">
                         <label>Condition 2</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cuscond2" value="<?php echo $cus_cond21; ?>">
                       </div>
                     </div>
-                    <div class="col-lg col-md col-sm-4 col-12">
+                    <div class="col-lg-4 col-md col-sm-4 col-12">
                       <div class="form-group">
                         <label>Condition 3</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cuscond3" value="<?php echo $cus_cond31; ?>">
                       </div>
                     </div>
-                    <div class="col-lg col-md col-sm-4 col-12">
+                    <div class="col-lg-4 col-md col-sm-4 col-12">
                       <div class="form-group">
                         <label>Condition 4</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cuscond4" value="<?php echo $cus_cond41; ?>">
                       </div>
                     </div>
-                    <div class="col-lg col-md col-sm-4 col-12">
+                    <div class="col-lg-4 col-md col-sm-4 col-12">
                       <div class="form-group">
                         <label>Condition 5</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cuscond5" value="<?php echo $cus_cond51; ?>">
                       </div>
                     </div>
-                    <div class="col-lg col-md col-sm-4 col-12">
+                    <div class="col-lg-4 col-md col-sm-4 col-12">
                       <div class="form-group">
                         <label>Condition 6</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cuscond6" value="<?php echo $cus_cond61; ?>">
                       </div>
                     </div>
-                    <div class="col-lg col-md col-sm-4 col-12">
+                    <div class="col-lg-4 col-md col-sm-4 col-12">
                       <div class="form-group">
                         <label>Condition 7</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cuscond7" value="<?php echo $cus_cond71; ?>">
                       </div>
                     </div>
-                    <div class="col-lg col-md col-sm-4 col-12">
+                    <div class="col-lg-4 col-md col-sm-4 col-12">
                       <div class="form-group">
                         <label>Condition 8</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cuscond8" value="<?php echo $cus_cond81; ?>">
@@ -362,10 +362,10 @@ if ($_SESSION["email"] == "") {
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cuspaid" value="<?php echo $cus_paid1; ?>">
                       </div>
                     </div>
-                    <div class="col-lg-3 col-md col-sm-4 col-6">
+                    <div class="col-lg-2 col-md col-sm-4 col-6">
                       <div class="form-group">
-                        <label>Remaining Amount</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusrem" value="<?php echo $cus_remain1; ?>">
+                        <label>Date</label>
+                        <input type="date" class="form-control" style="border-radius: 16px;" name="cusdate" value="<?php echo $cus_date1; ?>">
                       </div>
                     </div>
                   </div>
@@ -419,17 +419,18 @@ if ($_SESSION["email"] == "") {
           $cnoday = $_POST["cusnoday"];
           $ctotal = $_POST["custotal"];
           $cpaid = $_POST["cuspaid"];
-          $crem = $_POST["cusrem"];
+          $cdate = $_POST["cusdate"];
+          $crem = $ctotal - $cpaid;
 
           // Fetch the shake ID from the form
           $cus_id = $_POST["custid"];
 
           if ($cus_id == '') {
-            $sql = mysqli_query($conn, "INSERT INTO customer (cust_code, cust_name, cust_phno, cust_invited, cust_age, cust_bodyage, cust_gender, cust_email, cust_doj, cust_city, cust_address, cust_height, cust_weight, cust_fat, cust_vcf, cust_bmr, cust_bmi, cust_mm, cust_tsf, cust_waketime, cust_tea, cust_breakfast, cust_lunch, cust_snack, cust_dinner, cust_veg_nonveg, cust_waterintake, cust_cond1, cust_cond2, cust_cond3, cust_cond4, cust_cond5, cust_cond6, cust_cond7, cust_cond8, cust_prg, cust_prgtype, cust_noday, cust_total, cust_paid, cust_remain)
-                                                      VALUES ('$ccode','$cname','$cphno','$cinvite','$cage','$cbodyage','$cgender','$cemail','$cdoj','$ccity','$caddress','$cheight','$cweight','$cfat','$cvcf','$cbmr','$cbmi','$cmm','$ctcf','$cwaketime','$ctea','$cbreakfast','$clunch','$csnack','$cdinner','$cveg','$cwaterintake','$ccond1','$ccond2','$ccond3','$ccond4','$ccond5','$ccond6','$ccond7','$ccond8','$cprogram','$cprgtype','$cnoday','$ctotal','$cpaid','$crem')");
+            $sql = mysqli_query($conn, "INSERT INTO customer (cust_code, cust_name, cust_phno, cust_invited, cust_age, cust_bodyage, cust_gender, cust_email, cust_doj, cust_city, cust_address, cust_height, cust_weight, cust_fat, cust_vcf, cust_bmr, cust_bmi, cust_mm, cust_tsf, cust_waketime, cust_tea, cust_breakfast, cust_lunch, cust_snack, cust_dinner, cust_veg_nonveg, cust_waterintake, cust_cond1, cust_cond2, cust_cond3, cust_cond4, cust_cond5, cust_cond6, cust_cond7, cust_cond8, cust_prg, cust_prgtype, cust_noday, cust_total, cust_paid, cust_remain, cust_date)
+                                                      VALUES ('$ccode','$cname','$cphno','$cinvite','$cage','$cbodyage','$cgender','$cemail','$cdoj','$ccity','$caddress','$cheight','$cweight','$cfat','$cvcf','$cbmr','$cbmi','$cmm','$ctcf','$cwaketime','$ctea','$cbreakfast','$clunch','$csnack','$cdinner','$cveg','$cwaterintake','$ccond1','$ccond2','$ccond3','$ccond4','$ccond5','$ccond6','$ccond7','$ccond8','$cprogram','$cprgtype','$cnoday','$ctotal','$cpaid','$crem','$cdate')");
           } else {
             // Update shake
-            $sql = mysqli_query($conn, "UPDATE customer SET cust_code='$ccode', cust_name='$cname', cust_phno='$cphno', cust_invited='$cinvite', cust_age='$cage', cust_bodyage='$cbodyage', cust_gender='$cgender', cust_email='$cemail', cust_doj='$cdoj', cust_city='$ccity', cust_address='$caddress', cust_height='$cheight', cust_weight='$cweight', cust_fat='$cfat', cust_vcf='$cvcf', cust_bmr='$cbmr', cust_bmi='$cbmi', cust_mm='$cmm', cust_tsf='$ctcf', cust_waketime='$cwaketime', cust_tea='$ctea', cust_breakfast='$cbreakfast', cust_lunch='$clunch', cust_snack='$csnack', cust_dinner='$cdinner', cust_veg_nonveg='$cveg', cust_waterintake='$cwaterintake', cust_cond1='$ccond1', cust_cond2='$ccond2', cust_cond3='$ccond3', cust_cond4='$ccond4', cust_cond5='$ccond5', cust_cond6='$ccond6', cust_cond7='$ccond7', cust_cond8='$ccond8', cust_prg='$cprogram', cust_prgtype='$cprgtype', cust_noday='$cnoday', cust_total='$ctotal', cust_paid='$cpaid', cust_remain='$crem' WHERE cust_id='$cus_id'");
+            $sql = mysqli_query($conn, "UPDATE customer SET cust_code='$ccode', cust_name='$cname', cust_phno='$cphno', cust_invited='$cinvite', cust_age='$cage', cust_bodyage='$cbodyage', cust_gender='$cgender', cust_email='$cemail', cust_doj='$cdoj', cust_city='$ccity', cust_address='$caddress', cust_height='$cheight', cust_weight='$cweight', cust_fat='$cfat', cust_vcf='$cvcf', cust_bmr='$cbmr', cust_bmi='$cbmi', cust_mm='$cmm', cust_tsf='$ctcf', cust_waketime='$cwaketime', cust_tea='$ctea', cust_breakfast='$cbreakfast', cust_lunch='$clunch', cust_snack='$csnack', cust_dinner='$cdinner', cust_veg_nonveg='$cveg', cust_waterintake='$cwaterintake', cust_cond1='$ccond1', cust_cond2='$ccond2', cust_cond3='$ccond3', cust_cond4='$ccond4', cust_cond5='$ccond5', cust_cond6='$ccond6', cust_cond7='$ccond7', cust_cond8='$ccond8', cust_prg='$cprogram', cust_prgtype='$cprgtype', cust_noday='$cnoday', cust_total='$ctotal', cust_paid='$cpaid', cust_remain='$crem', cust_date='$cdate' WHERE cust_id='$cus_id'");
           }
           if ($sql == TRUE) {
             echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
@@ -451,6 +452,7 @@ if ($_SESSION["email"] == "") {
                       <tr>
                         <th>Edit</th>
                         <th>Delete</th>
+                        <th>Date</th>
                         <th>Customer Id</th>
                         <th>Customer Name</th>
                         <th>Phno</th>
@@ -540,11 +542,13 @@ if ($_SESSION["email"] == "") {
                       $cus_total = $row['cust_total'];
                       $cus_paid = $row['cust_paid'];
                       $cus_remain = $row['cust_remain'];
+                      $cus_date = $row['cust_date'];
                     ?>
                       <tbody>
                         <tr>
                           <td><a href="admin-customer.php?cusid=<?php echo $cus_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit <i class="ti-pencil-alt btn-icon-append"></i></a></td>
                           <td><a href="admin-customer.php?cusdid=<?php echo $cus_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a></td>
+                          <td><?php echo $cus_date; ?></td>
                           <td class="py-1"><?php echo $cus_code; ?></td>
                           <td><?php echo $cus_name; ?></td>
                           <td><?php echo $cus_phno; ?></td>
