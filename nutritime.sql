@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2024 at 05:39 PM
+-- Generation Time: Apr 27, 2024 at 07:04 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -154,7 +154,11 @@ CREATE TABLE `login_details` (
 INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`) VALUES
 ('nutriadmin@gmail.com', 1, '2024-04-25 06:00:05'),
 ('nutriadmin@gmail.com', 2, '2024-04-25 08:42:33'),
-('nutriadmin@gmail.com', 3, '2024-04-26 16:58:42');
+('nutriadmin@gmail.com', 3, '2024-04-26 16:58:42'),
+('nutriadmin@gmail.com', 4, '2024-04-26 18:37:41'),
+('nutriadmin@gmail.com', 5, '2024-04-26 18:40:51'),
+('nutriadmin@gmail.com', 6, '2024-04-26 18:40:55'),
+('nutriadmin@gmail.com', 7, '2024-04-27 07:03:02');
 
 -- --------------------------------------------------------
 
@@ -214,6 +218,13 @@ CREATE TABLE `product` (
   `product_img` varchar(100) NOT NULL,
   `product_desc` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`product_id`, `product_name`, `product_img`, `product_desc`) VALUES
+(1, 'Product 1', 'main page.jpg', 'ygbyybybyby');
 
 -- --------------------------------------------------------
 
@@ -515,7 +526,7 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `price`
@@ -527,7 +538,7 @@ ALTER TABLE `price`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `program`
