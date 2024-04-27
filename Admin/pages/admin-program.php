@@ -1,14 +1,14 @@
 <?php
- include './connect.php';
- error_reporting(0);
- session_start();
- if($_SESSION["email"]=="")
- {
-    header('location:admin-login.php');
- }
+include './connect.php';
+error_reporting(0);
+session_start();
+if ($_SESSION["email"] == "") {
+  header('location:admin-login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -24,211 +24,206 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
+
 <body>
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
- <!-- including the sidebar,navbar -->
-<?php
-  include './topbar.php';
-?>
-<?php
-if(isset($_GET['prid']))
-{
-    $progid = $_GET['prid'];
-    $pr_query = mysqli_query($conn,"SELECT * FROM program WHERE program_id = '$progid'");
-    $pr_row1=mysqli_fetch_array($pr_query);
+    <!-- including the sidebar,navbar -->
+    <?php
+    include './topbar.php';
+    ?>
+    <?php
+    if (isset($_GET['prid'])) {
+      $progid = $_GET['prid'];
+      $pr_query = mysqli_query($conn, "SELECT * FROM program WHERE program_id = '$progid'");
+      $pr_row1 = mysqli_fetch_array($pr_query);
 
-        $pr_name1 = $pr_row1['program_name'];
-        $pr_purpose1 = $pr_row1['program_purpose'];
-        $pr_dur1 = $pr_row1['program_duration']; 
-        $pr_fee1 = $pr_row1['program_fee']; 
-        $pr_cond1 = $pr_row1['program_condition']; 
-        $pr_mode1 = $pr_row1['program_mode']; 
-        $pr_img1 = $pr_row1['program_img']; 
-}
-// fetching the data from the URL for deleting the subject form
-if(isset($_GET['prd_id']))
-{
-    $dl_id = $_GET['prd_id'];
-    $dl_query = mysqli_query($conn,"SELECT * FROM program WHERE program_id = '$dl_id'");
-    $dl_row1=mysqli_fetch_array($dl_query);
-    $img = '../images/program/'.$dl_row1['program_img'];
-    $del = mysqli_query($conn,"DELETE FROM program WHERE program_id='$dl_id'");
-    if($del){
+      $pr_name1 = $pr_row1['program_name'];
+      $pr_purpose1 = $pr_row1['program_purpose'];
+      $pr_dur1 = $pr_row1['program_duration'];
+      $pr_fee1 = $pr_row1['program_fee'];
+      $pr_cond1 = $pr_row1['program_condition'];
+      $pr_mode1 = $pr_row1['program_mode'];
+      $pr_img1 = $pr_row1['program_img'];
+    }
+    // fetching the data from the URL for deleting the subject form
+    if (isset($_GET['prd_id'])) {
+      $dl_id = $_GET['prd_id'];
+      $dl_query = mysqli_query($conn, "SELECT * FROM program WHERE program_id = '$dl_id'");
+      $dl_row1 = mysqli_fetch_array($dl_query);
+      $img = '../images/program/' . $dl_row1['program_img'];
+      $del = mysqli_query($conn, "DELETE FROM program WHERE program_id='$dl_id'");
+      if ($del) {
         unlink($img); //for deleting the existing image from the folder
         header("location:admin-program.php");
-    }
-    else{
+      } else {
         echo "Deletion Failed";
-    }    
-}
-?>
-      <!-- partial -->
-      <div class="main-panel">          
-        <div class="content-wrapper">
-          <div class="row">
-            <div class="col-12 grid-margin stretch-card">
-              <div class="card">
-                <!-- Form -->
-                <div class="card-body">
-                  <h1 class="card-title">Program</h1>
-                  <p class="card-description">Add Program Details</p>
-                  <form method="post"  enctype="multipart/form-data" class="forms-sample">
+      }
+    }
+    ?>
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <div class="row">
+          <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+              <!-- Form -->
+              <div class="card-body">
+                <h1 class="card-title">Program</h1>
+                <p class="card-description">Add Program Details</p>
+                <form method="post" enctype="multipart/form-data" class="forms-sample">
                   <input type="hidden" name="prid" value="<?php echo $progid; ?>">
-                    <div class="row">
-                      <div class="col">
-                        <div class="form-group">
-                          <label>Program Name</label>
-                          <input type="text" class="form-control" style="border-radius: 16px;"  placeholder="Weight Gainer" name="pname" value="<?php echo $pr_name1; ?>" required>
-                        </div>
-                      </div>
-                      <div class="col">
-                        <div class="form-group">
-                          <label>Purpose</label>
-                          <input type="text" class="form-control" style="border-radius: 16px;"  placeholder="Weight Gainer" name="ppurpose" value="<?php echo $pr_purpose1; ?>" required>
-                        </div>
-                      </div>
-                    </div> 
-                    <div class="row">
-                      <div class="col">
-                        <div class="form-group">
-                          <label for="exampleSelectGender">Duration</label>
-                            <select class="form-control" style="border-radius: 16px;"  name="pduration" required>
-                              <option <?php if($pr_dur1=='10 Days' ) echo 'selected' ; ?> value="10-Days">10 Days</option>
-                              <option <?php if($pr_dur1=='20 Days' ) echo 'selected' ; ?> value="20-Days">20 Days</option>
-                              <option <?php if($pr_dur1=='25 Days' ) echo 'selected' ; ?> value="25-Days">25 Days</option>
-                            </select>
-                        </div>
-                      </div>
-                      <div class="col">
-                        <div class="form-group">
-                          <label>Fee (per/month)</label>
-                          <input type="number" class="form-control" style="border-radius: 16px;" name="pfee" value="<?php echo $pr_fee1; ?>" required>
-                        </div>
-                      </div>
-                    </div>      
-                    <div class="row">
-                      <div class="col">
-                        <div class="form-group">
-                          <label>Program Condition</label>
-                          <input type="text" class="form-control" style="border-radius: 16px;"  name="pcond" value="<?php echo $pr_cond1; ?>" required>
-                        </div> 
-                      </div>
-                      <div class="col">
-                        <div class="form-group">
-                          <label for="exampleSelectGender">Program Mode</label>
-                            <select class="form-control" style="border-radius: 16px;"  name="pmode"  required>
-                              <option <?php if($pr_mode1=='Online' ) echo 'selected' ; ?> value="Online">Online</option>
-                              <option <?php if($pr_mode1=='Offline' ) echo 'selected' ; ?> value="Offline">Offline</option>
-                            </select>
-                        </div>
-                      </div>
-brave                        <div class="form-group">
-                          <label>Program Image</label>
-                           <div class="input-group mb-3">
-                            <input type="file" class="custom-file-input form-control file-upload-info"  style="border-radius: 16px;" id="inputGroupFile01" name="prgimg" onchange="displaySelectedFileName(this)"  value="<?php echo $pr_img1; ?>" required>
-                            <label class="input-group-text custom-file-label" for="inputGroupFile01">Choose file</label>
-                            <input type="hidden"  style="border-radius: 16px;" name="current_primg" value="<?php echo $pr_img1; ?>">
-                            </div>
-                        </div>
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Program Name</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Weight Gainer" name="pname" value="<?php echo $pr_name1; ?>" required>
                       </div>
                     </div>
-                    
-                    <button type="submit" class="btn btn-primary mr-2 rounded-pill"  name="submitpr">Submit</button>
-                    <a href="./admin-program.php" class="btn btn-light rounded-pill">Cancel</a>
-                  </form>
-                </div>
-                <!-- Form Closed -->
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Purpose</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Weight Gainer" name="ppurpose" value="<?php echo $pr_purpose1; ?>" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="exampleSelectGender">Duration</label>
+                        <select class="form-control" style="border-radius: 16px;" name="pduration" required>
+                          <option <?php if ($pr_dur1 == '10 Days') echo 'selected'; ?> value="10-Days">10 Days</option>
+                          <option <?php if ($pr_dur1 == '20 Days') echo 'selected'; ?> value="20-Days">20 Days</option>
+                          <option <?php if ($pr_dur1 == '25 Days') echo 'selected'; ?> value="25-Days">25 Days</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Fee (per/month)</label>
+                        <input type="number" class="form-control" style="border-radius: 16px;" name="pfee" value="<?php echo $pr_fee1; ?>" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Program Condition</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="pcond" value="<?php echo $pr_cond1; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="exampleSelectGender">Program Mode</label>
+                        <select class="form-control" style="border-radius: 16px;" name="pmode" required>
+                          <option <?php if ($pr_mode1 == 'Online') echo 'selected'; ?> value="Online">Online</option>
+                          <option <?php if ($pr_mode1 == 'Offline') echo 'selected'; ?> value="Offline">Offline</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Program Image</label>
+                      <div class="input-group mb-3">
+                        <input type="file" class="custom-file-input form-control file-upload-info" style="border-radius: 16px;" id="inputGroupFile01" name="prgimg" onchange="displaySelectedFileName(this)" value="<?php echo $pr_img1; ?>" required>
+                        <label class="input-group-text custom-file-label" for="inputGroupFile01">Choose file</label>
+                        <input type="hidden" style="border-radius: 16px;" name="current_primg" value="<?php echo $pr_img1; ?>">
+                      </div>
+                    </div>
+                  </div>
               </div>
+
+              <button type="submit" class="btn btn-primary mr-2 rounded-pill" name="submitpr">Submit</button>
+              <a href="./admin-program.php" class="btn btn-light rounded-pill">Cancel</a>
+              </form>
             </div>
-<!-- PHP CODE FOR INSERTING THE DATA -->
-<?php
-if(isset($_POST["submitpr"])) 
-{ 
-    $pr_id= $_POST["prid"];
-    $pr_name= $_POST["pname"];
-    $pr_purpose= $_POST["ppurpose"];
-    $pr_dur= $_POST["pduration"];
-    $pr_fee= $_POST["pfee"];
-    $pr_cond= $_POST["pcond"];
-    $pr_mode= $_POST["pmode"];
-    $pr_img = $_FILES['prgimg']['name'];
+            <!-- Form Closed -->
+          </div>
+        </div>
+        <!-- PHP CODE FOR INSERTING THE DATA -->
+        <?php
+        if (isset($_POST["submitpr"])) {
+          $pr_id = $_POST["prid"];
+          $pr_name = $_POST["pname"];
+          $pr_purpose = $_POST["ppurpose"];
+          $pr_dur = $_POST["pduration"];
+          $pr_fee = $_POST["pfee"];
+          $pr_cond = $_POST["pcond"];
+          $pr_mode = $_POST["pmode"];
+          $pr_img = $_FILES['prgimg']['name'];
 
-    // Image uploading formats
-    $filename = $_FILES['prgimg']['name'];
-    $tempname = $_FILES['prgimg']['tmp_name'];
-  
-  // Fetch the shake ID from the form
-  $pr_id = $_POST["prid"];
+          // Image uploading formats
+          $filename = $_FILES['prgimg']['name'];
+          $tempname = $_FILES['prgimg']['tmp_name'];
 
-    if($pr_id==''){
-      $sql = mysqli_query($conn,"INSERT INTO program (program_name, program_purpose, program_duration, program_fee, program_condition, program_mode, program_img) 
+          // Fetch the shake ID from the form
+          $pr_id = $_POST["prid"];
+
+          if ($pr_id == '') {
+            $sql = mysqli_query($conn, "INSERT INTO program (program_name, program_purpose, program_duration, program_fee, program_condition, program_mode, program_img) 
                          VALUES ('$pr_name','$pr_purpose','$pr_dur','$pr_fee','$pr_cond','$pr_mode', '$pr_img')");
-    }
-    else {
-        if ($filename) {
-            // Remove the existing image
-            $imgs = '../images/program/' . $pr_img;
-            if (file_exists($imgs)) {
-              unlink($imgs);
-          }          
-            // Update shake with new image
-            $sql = mysqli_query($conn, "UPDATE program SET program_name='$pr_name', program_img='$pr_img', program_purpose='$pr_purpose', program_duration='$pr_dur', program_fee='$pr_fee', program_condition='$pr_cond', program_mode='$pr_mode' WHERE program_id='$pr_id'");
+          } else {
+            if ($filename) {
+              // Remove the existing image
+              $imgs = '../images/program/' . $pr_img;
+              if (file_exists($imgs)) {
+                unlink($imgs);
+              }
+              // Update shake with new image
+              $sql = mysqli_query($conn, "UPDATE program SET program_name='$pr_name', program_img='$pr_img', program_purpose='$pr_purpose', program_duration='$pr_dur', program_fee='$pr_fee', program_condition='$pr_cond', program_mode='$pr_mode' WHERE program_id='$pr_id'");
+            }
+            $sql = mysqli_query($conn, "UPDATE program SET program_name='$pr_name', program_purpose='$pr_purpose', program_duration='$pr_dur', program_fee='$pr_fee', program_condition='$pr_cond', program_mode='$pr_mode' WHERE program_id='$pr_id'");
+          }
+          if ($sql == TRUE) {
+            move_uploaded_file($tempname, "../images/program/$filename");
+            echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
+          } else {
+            echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
+          }
         }
-      $sql = mysqli_query($conn, "UPDATE program SET program_name='$pr_name', program_purpose='$pr_purpose', program_duration='$pr_dur', program_fee='$pr_fee', program_condition='$pr_cond', program_mode='$pr_mode' WHERE program_id='$pr_id'");
-  }
-if ($sql == TRUE) {
-move_uploaded_file($tempname, "../images/program/$filename");
-echo "<script type='text/javascript'>('Operation completed successfully.');</script>";}
-else {
-  echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
-}
-}
-?>
-              <!-- table view -->
-          <div class="col-lg-12 grid-margin stretch-card">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title">Program</h4>
-                <p class="card-description">Program Details</p>
-                <div class="table-responsive">
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
+        ?>
+        <!-- table view -->
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Program</h4>
+              <p class="card-description">Program Details</p>
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
                       <th>Edit</th>
-                        <th>Delete</th>
-                        <th>sl-no</th>
-                        <th>Program Name</th>
-                        <th>Program images</th>
-                        <th>Duration</th>
-                        <th>Fee</th>
-                        <th>Program Conditions</th>
-                        <th>Program Mode</th>
+                      <th>Delete</th>
+                      <th>sl-no</th>
+                      <th>Program Name</th>
+                      <th>Program images</th>
+                      <th>Duration</th>
+                      <th>Fee</th>
+                      <th>Program Conditions</th>
+                      <th>Program Mode</th>
 
-                      </tr>
-                    </thead>
-<?php  
-$sql=mysqli_query($conn,"SELECT * FROM program ORDER BY program_id ");
-$serialNo = 1;
-while($row=mysqli_fetch_assoc($sql))
-{
-    $pro_id=$row['program_id'];
-    $pro_name=$row['program_name'];
-    $pro_img=$row['program_img'];
-    $pro_dura=$row['program_duration'];
-    $pro_fee=$row['program_fee'];
-    $pro_con=$row['program_condition']; 
-    $pro_mode=$row['program_mode']; 
-?>
+                    </tr>
+                  </thead>
+                  <?php
+                  $sql = mysqli_query($conn, "SELECT * FROM program ORDER BY program_id ");
+                  $serialNo = 1;
+                  while ($row = mysqli_fetch_assoc($sql)) {
+                    $pro_id = $row['program_id'];
+                    $pro_name = $row['program_name'];
+                    $pro_img = $row['program_img'];
+                    $pro_dura = $row['program_duration'];
+                    $pro_fee = $row['program_fee'];
+                    $pro_con = $row['program_condition'];
+                    $pro_mode = $row['program_mode'];
+                  ?>
                     <tbody>
                       <tr>
-                      <td>
-                          <a href="admin-program.php?prid=<?php echo $pro_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit 
+                        <td>
+                          <a href="admin-program.php?prid=<?php echo $pro_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit
                             <i class="ti-pencil-alt btn-icon-append"></i>
                           </a>
                         </td>
                         <td>
-                          <a href="admin-program.php?prd_id=<?php echo $pro_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete 
+                          <a href="admin-program.php?prd_id=<?php echo $pro_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete
                             <i class="ti-trash btn-icon-prepend"></i>
                           </a>
                         </td>
@@ -242,43 +237,43 @@ while($row=mysqli_fetch_assoc($sql))
 
                       </tr>
                     </tbody>
-<?php
-}
-?>
-                  </table>
-                </div>
+                  <?php
+                  }
+                  ?>
+                </table>
               </div>
             </div>
           </div>
-          <!-- table view closed -->
-          </div>
         </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:../../partials/_footer.html -->
-        <footer class="footer">
-          <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024.Nutri-time. All rights reserved.</span>
-          </div>
-        </footer>
-        <!-- partial -->
+        <!-- table view closed -->
       </div>
-      <!-- main-panel ends -->
     </div>
-    <!-- page-body-wrapper ends -->
+    <!-- content-wrapper ends -->
+    <!-- partial:../../partials/_footer.html -->
+    <footer class="footer">
+      <div class="d-sm-flex justify-content-center justify-content-sm-between">
+        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024.Nutri-time. All rights reserved.</span>
+      </div>
+    </footer>
+    <!-- partial -->
+  </div>
+  <!-- main-panel ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
   <!-- plugins:js -->
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <script>
-function displaySelectedFileName(input) {
-    var fileName = input.files[0].name;
-    var label = input.nextElementSibling;
-    label.innerText = fileName;
+    function displaySelectedFileName(input) {
+      var fileName = input.files[0].name;
+      var label = input.nextElementSibling;
+      label.innerText = fileName;
 
-    // Display selected image
-    var fileReader = new FileReader();
-    fileReader.onload = function(e) {
+      // Display selected image
+      var fileReader = new FileReader();
+      fileReader.onload = function(e) {
         var img = document.createElement("img");
         img.src = e.target.result;
         img.style.width = "350px"; // Set width
@@ -286,10 +281,10 @@ function displaySelectedFileName(input) {
         img.style.borderRadius = "8px"; // Border radius
         img.style.marginTop = "50px"; // Optional margin
         label.parentNode.appendChild(img);
-    };
-    fileReader.readAsDataURL(input.files[0]);
-}
-</script>
+      };
+      fileReader.readAsDataURL(input.files[0]);
+    }
+  </script>
   <!-- inject:js -->
   <script src="../js/off-canvas.js"></script>
   <script src="../js/hoverable-collapse.js"></script>
@@ -298,4 +293,5 @@ function displaySelectedFileName(input) {
   <script src="../js/todolist.js"></script>
   <!-- endinject -->
 </body>
+
 </html>
