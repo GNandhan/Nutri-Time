@@ -101,7 +101,6 @@ if ($_SESSION["email"] == "") {
                       </div>
                     </div>
                   </div>
-
                   <button type="submit" class="btn btn-primary mr-2 rounded-pill" name="submitpr">Submit</button>
                   <a href="./admin-addproduct.php" class="btn btn-light rounded-pill">Cancel</a>
                 </form>
@@ -115,11 +114,9 @@ if ($_SESSION["email"] == "") {
             $pro_name = $_POST["pname"];
             $pro_desc = $_POST["pdesc"];
             $pro_img = $_FILES['pimg']['name'];
-
             // Image uploading formats
             $filename = $_FILES['pimg']['name'];
             $tempname = $_FILES['pimg']['tmp_name'];
-
             // Fetch the shake ID from the form
             $pro_id = $_POST["prid"];
 
@@ -224,7 +221,6 @@ if ($_SESSION["email"] == "") {
       var fileName = input.files[0].name;
       var label = input.nextElementSibling;
       label.innerText = fileName;
-
       // Toggle visibility of existing image
       var existingImage = document.getElementById('existingImage');
       if (input.files.length > 0) {
@@ -232,7 +228,6 @@ if ($_SESSION["email"] == "") {
       } else {
         existingImage.style.display = 'block';
       }
-
       // Display selected image
       var fileReader = new FileReader();
       fileReader.onload = function(e) {
@@ -247,7 +242,6 @@ if ($_SESSION["email"] == "") {
       fileReader.readAsDataURL(input.files[0]);
     }
   </script>
-
   <!-- inject:js -->
   <script src="../js/off-canvas.js"></script>
   <script src="../js/hoverable-collapse.js"></script>
@@ -256,5 +250,4 @@ if ($_SESSION["email"] == "") {
   <script src="../js/todolist.js"></script>
   <!-- endinject -->
 </body>
-
 </html>
