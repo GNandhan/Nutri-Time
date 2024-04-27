@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2024 at 07:04 AM
+-- Generation Time: Apr 27, 2024 at 07:51 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -224,7 +224,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `product_name`, `product_img`, `product_desc`) VALUES
-(1, 'Product 1', 'main page.jpg', 'ygbyybybyby');
+(1, 'Product 1', 'bg2.jpg', 'ygbyybybyby');
 
 -- --------------------------------------------------------
 
@@ -248,7 +248,8 @@ CREATE TABLE `program` (
 --
 
 INSERT INTO `program` (`program_id`, `program_name`, `program_img`, `program_duration`, `program_fee`, `program_condition`, `program_mode`, `program_purpose`) VALUES
-(1, 'Fitness diet', 'main page.jpg', '20-Days', 15000, 'Strict diet should be followed', 'Offline', 'protein diet and weight management');
+(1, 'Fitness diet', 'main page.jpg', '20-Days', 15000, 'Strict diet should be followed', 'Offline', 'protein diet and weight management'),
+(2, 'Weight Gainer', 'NightlY Glow 3.jpg', '10-Days', 15000, 'Strict diet should be followed', 'Online', 'protein diet and weight management');
 
 -- --------------------------------------------------------
 
@@ -544,7 +545,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `program`
 --
 ALTER TABLE `program`
-  MODIFY `program_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `program_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `sales`
