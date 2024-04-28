@@ -1,7 +1,7 @@
 <?php
 include './connect.php';
-// error_reporting(0);
-$cus_id1= $cus_code1= $cus_name1= $cus_phno1= $cus_invite1= $cus_age1= $cus_bodyage1= $cus_gender1= $cus_email1= $cus_doj1= $cus_city1= $cus_address1= $cus_height1= $cus_weight1= $cus_idleweight1= $cus_fat1= $cus_vcf1= $cus_bmr1= $cus_bmi1= $cus_mm1= $cus_tsf1= $cus_waketime1= $cus_tea1= $cus_breakfast1= $cus_lunch1= $cus_snack1= $cus_dinner1= $cus_veg_nonveg1= $cus_waterintake1= $cus_cond11= $cus_cond21= $cus_cond31= $cus_cond41= $cus_cond51= $cus_cond61= $cus_cond71= $cus_cond81= $cus_prg1= $cus_prgtype1= $cus_nodays1= $cus_total1= $cus_paid1= $cus_remain1= $cusid ="";
+error_reporting(0);
+$cus_id1 = $cus_code1 = $cus_name1 = $cus_phno1 = $cus_invite1 = $cus_age1 = $cus_bodyage1 = $cus_gender1 = $cus_email1 = $cus_doj1 = $cus_city1 = $cus_address1 = $cus_height1 = $cus_weight1 = $cus_idleweight1 = $cus_fat1 = $cus_vcf1 = $cus_bmr1 = $cus_bmi1 = $cus_mm1 = $cus_tsf1 = $cus_waketime1 = $cus_tea1 = $cus_breakfast1 = $cus_lunch1 = $cus_snack1 = $cus_dinner1 = $cus_veg_nonveg1 = $cus_waterintake1 = $cus_cond11 = $cus_cond21 = $cus_cond31 = $cus_cond41 = $cus_cond51 = $cus_cond61 = $cus_cond71 = $cus_cond81 = $cus_prg1 = $cus_prgtype1 = $cus_nodays1 = $cus_total1 = $cus_paid1 = $cus_remain1 = $cusid = "";
 session_start();
 if ($_SESSION["email"] == "") {
   header('location:admin-login.php');
@@ -80,7 +80,6 @@ if ($_SESSION["email"] == "") {
       $cus_total1 = $p_row1['cust_total'];
       $cus_paid1 = $p_row1['cust_paid'];
       $cus_date1 = $p_row1['cust_date'];
-
     }
     // fetching the data from the URL for deleting the subject form
     if (isset($_GET['cusdid'])) {
@@ -93,6 +92,18 @@ if ($_SESSION["email"] == "") {
       } else {
         echo "Deletion Failed";
       }
+    }
+    ?>
+    <?php
+    if (isset($_GET['cusmdid'])) {
+      $cusid = $_GET['cusmdid'];
+      $p_query = mysqli_query($conn, "SELECT * FROM customer WHERE cust_id = '$cusid'");
+      $p_row1 = mysqli_fetch_array($p_query);
+
+      $cus_id1 = $p_row1['cust_id'];
+      $cus_total2 = $p_row1['cust_total'];
+      $cus_paid2 = $p_row1['cust_paid'];
+      $cus_date12 = $p_row1['cust_date'];
     }
     ?>
     <!-- partial -->
@@ -460,6 +471,7 @@ if ($_SESSION["email"] == "") {
                       <tr>
                         <th>Edit</th>
                         <th>Delete</th>
+                        <th>Payment</th>
                         <th>Customer Code</th>
                         <th>Customer Name</th>
                         <th>Phno</th>
@@ -558,6 +570,7 @@ if ($_SESSION["email"] == "") {
                         <tr>
                           <td><a href="admin-customer.php?cusid=<?php echo $cus_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit <i class="ti-pencil-alt btn-icon-append"></i></a></td>
                           <td><a href="admin-customer.php?cusdid=<?php echo $cus_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a></td>
+                          <td><a href="admin-customer.php?cusmdid=<?php echo $cus_id; ?>" type="button" class="btn btn-inverse-primary p-2 mt-4" data-toggle="modal" data-target="#exampleModal_<?php echo $cus_id; ?>">Add Payment</a></td>
                           <!-- <td class="py-1"><?php echo $cus_code; ?></td> -->
                           <td class="py-1"><a href="admin-customerdetails.php?prid=<?php echo $cus_id; ?>" class="text-dark"><?php echo $cus_code; ?></a></td>
                           <td><?php echo $cus_name; ?></td>
@@ -604,10 +617,66 @@ if ($_SESSION["email"] == "") {
                           <td><?php echo $cus_remain; ?></td>
                         </tr>
                       </tbody>
+
+                      <div class="modal fade" id="exampleModal_<?php echo $cus_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <form action="" method="POST">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Payment history</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                Total Amount
+                                <p><?php echo $cus_total; ?></p>
+                                <div class="form-group">
+                                  <label>1st Paid</label>
+                                  <input type="text" class="form-control" style="border-radius: 16px;" name="cuspaid" value="<?php echo $cus_remain; ?>">
+                                  <label>2nd Paid</label>
+                                  <input type="text" class="form-control" style="border-radius: 16px;" name="cuspaid1">
+                                  <label>3rd Paid</label>
+                                  <input type="text" class="form-control" style="border-radius: 16px;" name="cuspaid2">
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" name="submitpay" class="btn btn-primary">Save changes</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
                     <?php
                     }
                     ?>
                   </table>
+                          <!-- PHP CODE FOR INSERTING THE DATA -->
+        <?php
+        if (isset($_POST["submitpay"])) {
+          $ppaid = $_POST["cuspaid"];
+          $ppaid1 = $_POST["cuspaid1"];
+          $ppaid2 = $_POST["cuspaid2"];
+
+          // Fetch the shake ID from the form
+          $pri_id = $_POST["prid"];
+
+          if ($pri_id == '') {
+            $sql = mysqli_query($conn, "INSERT INTO price (pro_name, pro_code, pro_category, pro_subcat, pro_mrp, pro_price, pro_dis15, pro_dis25, pro_dis35, pro_dis42, pro_dis50, pro_vp, pro_associate)
+                                         VALUES ('$pname','$pcode','$pcat','$psubcat','$pmrp','$ppur','$pdis15','$pdis25','$pdis35','$pdis42','$pdis50','$pvp','$passo' )");
+          } else {
+            // Update shake
+            $sql = mysqli_query($conn, "UPDATE price SET pro_name='$pname', pro_code='$pcode', pro_category='$pcat', pro_subcat='$psubcat', pro_mrp='$pmrp', pro_price='$ppur', pro_dis15='$pdis15', pro_dis25='$pdis25', pro_dis35='$pdis35', pro_dis42='$pdis42', pro_dis50='$pdis50', pro_vp='$pvp' WHERE pri_id='$pri_id'");
+          }
+          if ($sql == TRUE) {
+            echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
+            echo "<script>document.querySelector('form').reset();</script>";
+          } else {
+            echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
+          }
+        }
+        ?>
                 </div>
               </div>
             </div>
