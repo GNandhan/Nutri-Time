@@ -1,6 +1,6 @@
 <?php
 include './connect.php';
-error_reporting(0);
+// error_reporting(0);
 $cus_id1 = $cus_code1 = $cus_name1 = $cus_phno1 = $cus_invite1 = $cus_age1 = $cus_bodyage1 = $cus_gender1 = $cus_email1 = $cus_doj1 = $cus_city1 = $cus_address1 = $cus_height1 = $cus_weight1 = $cus_idleweight1 = $cus_fat1 = $cus_vcf1 = $cus_bmr1 = $cus_bmi1 = $cus_mm1 = $cus_tsf1 = $cus_waketime1 = $cus_tea1 = $cus_breakfast1 = $cus_lunch1 = $cus_snack1 = $cus_dinner1 = $cus_veg_nonveg1 = $cus_waterintake1 = $cus_cond11 = $cus_cond21 = $cus_cond31 = $cus_cond41 = $cus_cond51 = $cus_cond61 = $cus_cond71 = $cus_cond81 = $cus_prg1 = $cus_prgtype1 = $cus_nodays1 = $cus_total1 = $cus_paid1 = $cus_remain1 = $cusid = "";
 session_start();
 if ($_SESSION["email"] == "") {
@@ -562,7 +562,10 @@ if ($_SESSION["email"] == "") {
                       $cus_prgtype = $row['cust_prgtype'];
                       $cus_nodays = $row['cust_noday'];
                       $cus_total = $row['cust_total'];
-                      $cus_paid = $row['cust_paid'];
+                      $cus_paid0 = intval($row['cust_paid']); // Convert to integer
+                      $cus_paid1 = intval($row['cust_paid1']); // Convert to integer
+                      $cus_paid2 = intval($row['cust_paid2']); // Convert to integer
+                      $cus_paid = $cus_paid0 + $cus_paid1 + $cus_paid2;
                       $cus_remain = $row['cust_remain'];
                       $cus_date = $row['cust_date'];
                     ?>
@@ -622,6 +625,7 @@ if ($_SESSION["email"] == "") {
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <form action="" method="POST">
+                              <input type="hidden" name="custid2" value="<?php echo $cus_id; ?>">
                               <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Payment history</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -629,15 +633,14 @@ if ($_SESSION["email"] == "") {
                                 </button>
                               </div>
                               <div class="modal-body">
-                                Total Amount
-                                <p><?php echo $cus_total; ?></p>
+                                <h4>Total Amount :<span style="font-weight: bold;"><?php echo $cus_total; ?></span></h4>
                                 <div class="form-group">
                                   <label>1st Paid</label>
-                                  <input type="text" class="form-control" style="border-radius: 16px;" name="cuspaid" value="<?php echo $cus_remain; ?>">
+                                  <input type="text" class="form-control" style="border-radius: 16px;" name="cuspaid" value="<?php echo $cus_paid0; ?>">
                                   <label>2nd Paid</label>
-                                  <input type="text" class="form-control" style="border-radius: 16px;" name="cuspaid1">
+                                  <input type="text" class="form-control" style="border-radius: 16px;" name="cuspaid1" value="<?php echo $cus_paid1; ?>">
                                   <label>3rd Paid</label>
-                                  <input type="text" class="form-control" style="border-radius: 16px;" name="cuspaid2">
+                                  <input type="text" class="form-control" style="border-radius: 16px;" name="cuspaid2" value="<?php echo $cus_paid2; ?>">
                                 </div>
                               </div>
                               <div class="modal-footer">
@@ -652,31 +655,40 @@ if ($_SESSION["email"] == "") {
                     }
                     ?>
                   </table>
-                          <!-- PHP CODE FOR INSERTING THE DATA -->
-        <?php
-        if (isset($_POST["submitpay"])) {
-          $ppaid = $_POST["cuspaid"];
-          $ppaid1 = $_POST["cuspaid1"];
-          $ppaid2 = $_POST["cuspaid2"];
+                  <!-- PHP CODE FOR INSERTING THE DATA -->
+                  <?php
+                  if (isset($_POST["submitpay"])) {
+                    $ppaid = $_POST["cuspaid"];
+                    $ppaid1 = $_POST["cuspaid1"];
+                    $ppaid2 = $_POST["cuspaid2"];
+                    $pri_id = $_POST["custid2"];
+                    $pri_paidtotal = $ppaid + $ppaid1 + $ppaid2;
 
-          // Fetch the shake ID from the form
-          $pri_id = $_POST["prid"];
+                    $cu_query = mysqli_query($conn, "SELECT * FROM customer WHERE cust_id = '$pri_id'");
+                    $cu_row1 = mysqli_fetch_array($cu_query);
 
-          if ($pri_id == '') {
-            $sql = mysqli_query($conn, "INSERT INTO price (pro_name, pro_code, pro_category, pro_subcat, pro_mrp, pro_price, pro_dis15, pro_dis25, pro_dis35, pro_dis42, pro_dis50, pro_vp, pro_associate)
-                                         VALUES ('$pname','$pcode','$pcat','$psubcat','$pmrp','$ppur','$pdis15','$pdis25','$pdis35','$pdis42','$pdis50','$pvp','$passo' )");
-          } else {
-            // Update shake
-            $sql = mysqli_query($conn, "UPDATE price SET pro_name='$pname', pro_code='$pcode', pro_category='$pcat', pro_subcat='$psubcat', pro_mrp='$pmrp', pro_price='$ppur', pro_dis15='$pdis15', pro_dis25='$pdis25', pro_dis35='$pdis35', pro_dis42='$pdis42', pro_dis50='$pdis50', pro_vp='$pvp' WHERE pri_id='$pri_id'");
-          }
-          if ($sql == TRUE) {
-            echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
-            echo "<script>document.querySelector('form').reset();</script>";
-          } else {
-            echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
-          }
-        }
-        ?>
+                    $pri_total = $cu_row1['cust_total'];
+
+                    $pri_remain = $pri_total - $pri_paidtotal;
+                    // Check if the record already exists
+                    if (empty($pri_id)) {
+                      // If no record exists, insert a new one
+                      $sql = mysqli_query($conn, "INSERT INTO customer (cust_paid, cust_paid1, cust_paid2, cust_remain)
+                                             VALUES ('$ppaid','$ppaid1','$ppaid2','$pri_remain')");
+                    } else {
+                      // If a record exists, update it
+                      $sql = mysqli_query($conn, "UPDATE customer SET cust_paid='$ppaid', cust_paid1='$ppaid1', cust_paid2='$ppaid2', cust_remain='$pri_remain' WHERE cust_id='$pri_id'");
+                    }
+
+                    if ($sql) {
+                      echo "<script>alert('Operation completed successfully.');</script>";
+                      echo "<script>window.location='admin-customer.php';</script>";
+                    } else {
+                      echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
+                    }
+                  }
+                  ?>
+
                 </div>
               </div>
             </div>
