@@ -25,7 +25,6 @@ if ($_SESSION["email"] == "") {
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
-
 <body>
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
@@ -179,7 +178,7 @@ if ($_SESSION["email"] == "") {
                     </div>
                   </div>
                   <div class="row">
-                  <div class="col">
+                    <div class="col">
                       <div class="form-group">
                         <label>Associate Name</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="shassoc" placeholder="Enter Asssociate name" value="<?php echo $sh_assoc1; ?>" required>
@@ -303,6 +302,7 @@ if ($_SESSION["email"] == "") {
                       <tr>
                         <th>Edit</th>
                         <th>Delete</th>
+                        <th>Shake History</th>
                         <th>Sl-no</th>
                         <th>Customer Name</th>
                         <th>Shake Img</th>
@@ -341,15 +341,12 @@ if ($_SESSION["email"] == "") {
                       <tbody>
                         <tr>
                           <td>
-                            <a href="admin-shake.php?sid=<?php echo $sh_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit
-                              <i class="ti-pencil-alt btn-icon-append"></i>
-                            </a>
+                            <a href="admin-shake.php?sid=<?php echo $sh_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i></a>
                           </td>
                           <td>
-                            <a href="admin-shake.php?sd_id=<?php echo $sh_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete
-                              <i class="ti-trash btn-icon-prepend"></i>
-                            </a>
+                            <a href="admin-shake.php?sd_id=<?php echo $sh_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a>
                           </td>
+                          <td><a href="admin-shake.php?cusmdid=<?php echo $sh_id; ?>" class="btn btn-inverse-primary btn-icon-text p-3" data-toggle="modal" data-target="#exampleModal_<?php echo $sh_id; ?>">Shake History</a></td>
                           <td class="py-1"><?php echo $serialNo++; ?></td>
                           <td><?php echo $cu_name; ?></td>
                           <td><img src="../images/shake/<?php echo $sh_img; ?>" alt="" width="50" class="rounded-circle"></td>
@@ -366,6 +363,42 @@ if ($_SESSION["email"] == "") {
                           <td><?php echo $sh_total; ?></td>
                         </tr>
                       </tbody>
+
+                      <div class="modal fade" id="exampleModal_<?php echo $sh_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg"> <!-- Adjust modal size if needed -->
+                          <div class="modal-content" style="border-radius:15px;">
+                            <div class="modal-header">
+                              <h3 class="modal-title" id="exampleModalLabel">Shake History</h3>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="col-lg-8 col-md col-sm col">
+                                <h3>Customer Name : <span style="font-weight: bold;"> <?php echo $cu_name; ?></span></h3>
+                                <div class="row border-bottom mt-4">
+                                  <div class="col-lg h4">Shake Name</div>
+                                  <div class="col-lg h4">Idle Weight</div>
+                                  <div class="col-lg h4">BMR</div>
+                                  <div class="col-lg h4">BMI</div>
+                                  <div class="col-lg h4">VCF</div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-lg"><?php echo $sh_name; ?></div>
+                                  <div class="col-lg"></div>
+                                  <div class="col-lg"><?php echo $sh_recipe; ?></div>
+                                  <div class="col-lg"><?php echo $sh_mrp; ?></div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="submit" name="submitpay" class="btn btn-primary">Save changes</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
                     <?php
                     }
                     ?>

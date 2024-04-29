@@ -581,7 +581,7 @@ if ($_SESSION["email"] == "") {
                         <tr>
                           <td><a href="admin-customer.php?cusid=<?php echo $cus_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit <i class="ti-pencil-alt btn-icon-append"></i></a></td>
                           <td><a href="admin-customer.php?cusdid=<?php echo $cus_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a></td>
-                          <td><a href="admin-customer.php?cusmdid=<?php echo $cus_id; ?>" type="button" class="btn btn-inverse-primary p-2 mt-4" data-toggle="modal" data-target="#exampleModal_<?php echo $cus_id; ?>">Add Payment</a></td>
+                          <td><a href="admin-customer.php?cusmdid=<?php echo $cus_id; ?>" class="btn btn-inverse-primary btn-icon-text p-3" data-toggle="modal" data-target="#exampleModal_<?php echo $cus_id; ?>">Add Payment</a></td>
                           <!-- <td class="py-1"><?php echo $cus_code; ?></td> -->
                           <td class="py-1"><a href="admin-customerdetails.php?prid=<?php echo $cus_id; ?>" class="text-dark"><?php echo $cus_code; ?></a></td>
                           <td><?php echo $cus_name; ?></td>
@@ -789,26 +789,47 @@ if ($_SESSION["email"] == "") {
   <!-- page-body-wrapper ends -->
   </div>
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      var counter = 6; // Starting from 4th paid
-      document.getElementById("addPaymentField").addEventListener("click", function() {
-        var label = document.createElement("label");
-        label.textContent = counter + "th Paid";
-        var input = document.createElement("input");
-        input.type = "text";
-        input.className = "form-control cus-paid";
-        input.style.borderRadius = "16px";
-        input.name = "cuspaid[]";
-        var parent = document.getElementById("paymentFields");
-        parent.appendChild(label);
-        parent.appendChild(input);
-        counter++;
-      });
+  document.addEventListener("DOMContentLoaded", function() {
+    var counter = 6; // Starting from 4th paid
+    document.getElementById("addPaymentField").addEventListener("click", function() {
+      var row = document.createElement("div");
+      row.className = "row";
+      
+      var col1 = document.createElement("div");
+      col1.className = "col-lg col-md col-sm-4 col-6";
+      var label1 = document.createElement("label");
+      label1.textContent = counter + "th Paid";
+      var input1 = document.createElement("input");
+      input1.type = "text";
+      input1.className = "form-control cus-paid";
+      input1.style.borderRadius = "16px";
+      input1.name = "cuspaid" + counter;
+      col1.appendChild(label1);
+      col1.appendChild(input1);
+      
+      var col2 = document.createElement("div");
+      col2.className = "col-lg col-md col-sm-4 col-6";
+      var label2 = document.createElement("label");
+      label2.textContent = "Payment Date";
+      var input2 = document.createElement("input");
+      input2.type = "date";
+      input2.className = "form-control";
+      input2.style.borderRadius = "16px";
+      input2.name = "cuspaiddate" + counter;
+      col2.appendChild(label2);
+      col2.appendChild(input2);
+      
+      row.appendChild(col1);
+      row.appendChild(col2);
+      
+      document.getElementById("paymentFields").appendChild(row);
+      
+      counter++;
     });
-  </script>
+  });
+</script>
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <script src="../js/off-canvas.js"></script>
   <script src="../js/template.js"></script>
 </body>
-
 </html>
