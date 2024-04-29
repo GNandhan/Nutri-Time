@@ -1,6 +1,6 @@
 <?php
 include './connect.php';
-// error_reporting(0);
+error_reporting(0);
 $cus_id1 = $cus_code1 = $cus_name1 = $cus_phno1 = $cus_invite1 = $cus_age1 = $cus_bodyage1 = $cus_gender1 = $cus_email1 = $cus_doj1 = $cus_city1 = $cus_address1 = $cus_height1 = $cus_weight1 = $cus_idleweight1 = $cus_fat1 = $cus_vcf1 = $cus_bmr1 = $cus_bmi1 = $cus_mm1 = $cus_tsf1 = $cus_waketime1 = $cus_tea1 = $cus_breakfast1 = $cus_lunch1 = $cus_snack1 = $cus_dinner1 = $cus_veg_nonveg1 = $cus_waterintake1 = $cus_cond11 = $cus_cond21 = $cus_cond31 = $cus_cond41 = $cus_cond51 = $cus_cond61 = $cus_cond71 = $cus_cond81 = $cus_prg1 = $cus_prgtype1 = $cus_nodays1 = $cus_total1 = $cus_paid1 = $cus_remain1 = $cusid = $cus_paid3 = "";
 session_start();
 if ($_SESSION["email"] == "") {
@@ -16,6 +16,7 @@ if ($_SESSION["email"] == "") {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Admin Customer</title>
   <!-- plugins:css -->
+  <!-- <meta http-equiv="refresh" content="3"> -->
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
@@ -563,11 +564,16 @@ if ($_SESSION["email"] == "") {
                       $cus_nodays = $row['cust_noday'];
                       $cus_total = $row['cust_total'];
                       $cus_paid0 = intval($row['cust_paid']); // Convert to integer
+                      $cus_paid0date = $row['cust_paiddate'];
                       $cus_paid1 = intval($row['cust_paid1']); // Convert to integer
+                      $cus_paid0date1 = $row['cust_paiddate1'];
                       $cus_paid2 = intval($row['cust_paid2']); // Convert to integer
+                      $cus_paid0date2 = $row['cust_paiddate2'];
                       $cus_paid3 = intval($row['cust_paid3']); // Convert to integer
+                      $cus_paid0date3 = $row['cust_paiddate3'];
                       $cus_paid4 = intval($row['cust_paid4']); // Convert to integer
-                      $cus_paid = $cus_paid0 + $cus_paid1 + $cus_paid2+ $cus_paid3+ $cus_paid4;
+                      $cus_paid0date4 = $row['cust_paiddate4'];
+                      $cus_paid = $cus_paid0 + $cus_paid1 + $cus_paid2 + $cus_paid3 + $cus_paid4;
                       $cus_remain = $row['cust_remain'];
                       $cus_date = $row['cust_date'];
                     ?>
@@ -625,28 +631,88 @@ if ($_SESSION["email"] == "") {
 
                       <div class="modal fade" id="exampleModal_<?php echo $cus_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
-                          <div class="modal-content">
+                          <div class="modal-content" style="border-radius:20px;">
                             <form action="" method="POST">
                               <input type="hidden" name="custid2" value="<?php echo $cus_id; ?>">
                               <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Payment history</h5>
+                                <h3 class="modal-title" id="exampleModalLabel">Payment History</h3>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
                               </div>
                               <div class="modal-body">
-                                <h4>Total Amount :<span style="font-weight: bold;"><?php echo $cus_total; ?></span></h4>
-                                <div class="form-group"  id="paymentFields">
-                                  <label>1st Paid</label>
-                                  <input type="text" class="form-control cus-paid" style="border-radius: 16px;" name="cuspaid" value="<?php echo $cus_paid0; ?>">
-                                  <label>2nd Paid</label>
-                                  <input type="text" class="form-control cus-paid" style="border-radius: 16px;" name="cuspaid1" value="<?php echo $cus_paid1; ?>">
-                                  <label>3rd Paid</label>
-                                  <input type="text" class="form-control cus-paid" style="border-radius: 16px;" name="cuspaid2" value="<?php echo $cus_paid2; ?>">
-                                  <label>4th Paid</label>
-                                  <input type="text" class="form-control cus-paid" style="border-radius: 16px;" name="cuspaid3" value="<?php echo $cus_paid3; ?>">
-                                  <label>5th Paid</label>
-                                  <input type="text" class="form-control cus-paid" style="border-radius: 16px;" name="cuspaid4" value="<?php echo $cus_paid4; ?>">
+                                <h3>Total Amount :<span style="font-weight: bold;"><?php echo $cus_total; ?></span></h3>
+                                <div class="form-group" id="paymentFields">
+                                  <div class="row">
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">1st Paid</label>
+                                      <div class="form-group">
+                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid" value="<?php echo $cus_paid0; ?>">
+                                      </div>
+                                    </div>
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">Payment Date</label>
+                                      <div class="form-group">
+                                        <input type="date" class="form-control" style="border-radius: 16px;" name="cuspaiddate" value="<?php echo $cus_paid0date; ?>">
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">2nd Paid</label>
+                                      <div class="form-group">
+                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid1" value="<?php echo $cus_paid1; ?>">
+                                      </div>
+                                    </div>
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">Payment Date</label>
+                                      <div class="form-group">
+                                        <input type="date" class="form-control" style="border-radius: 16px;" name="cuspaiddate1" value="<?php echo $cus_paid0date1; ?>">
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">3rd Paid</label>
+                                      <div class="form-group">
+                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid2" value="<?php echo $cus_paid2; ?>">
+                                      </div>
+                                    </div>
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">Payment Date</label>
+                                      <div class="form-group">
+                                        <input type="date" class="form-control" style="border-radius: 16px;" name="cuspaiddate2" value="<?php echo $cus_paid0date2; ?>">
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">4th Paid</label>
+                                      <div class="form-group">
+                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid3" value="<?php echo $cus_paid3; ?>">
+                                      </div>
+                                    </div>
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">Payment Date</label>
+                                      <div class="form-group">
+                                        <input type="date" class="form-control" style="border-radius: 16px;" name="cuspaiddate3" value="<?php echo $cus_paid0date3; ?>">
+                                      </div>
+                                    </div>  
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">5th Paid</label>
+                                      <div class="form-group">
+                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid4" value="<?php echo $cus_paid4; ?>">
+                                      </div>
+                                    </div>
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">Payment Date</label>
+                                      <div class="form-group">
+                                        <input type="date" class="form-control" style="border-radius: 16px;" name="cuspaiddate4" value="<?php echo $cus_paid0date4; ?>">
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
                                 <button type="button" class="btn btn-primary mt-2" id="addPaymentField">+</button>
                               </div>
@@ -666,10 +732,15 @@ if ($_SESSION["email"] == "") {
                   <?php
                   if (isset($_POST["submitpay"])) {
                     $ppaid = $_POST["cuspaid"];
+                    $ppaiddate = $_POST["cuspaiddate"];
                     $ppaid1 = $_POST["cuspaid1"];
+                    $ppaiddate1 = $_POST["cuspaiddate1"];
                     $ppaid2 = $_POST["cuspaid2"];
+                    $ppaiddate2 = $_POST["cuspaiddate2"];
                     $ppaid3 = $_POST["cuspaid3"];
+                    $ppaiddate3 = $_POST["cuspaiddate3"];
                     $ppaid4 = $_POST["cuspaid4"];
+                    $ppaiddate4 = $_POST["cuspaiddate4"];
                     $pri_id = $_POST["custid2"];
                     $pri_paidtotal = $ppaid + $ppaid1 + $ppaid2 + $ppaid3 + $ppaid4;
 
@@ -682,13 +753,12 @@ if ($_SESSION["email"] == "") {
                     // Check if the record already exists
                     if (empty($pri_id)) {
                       // If no record exists, insert a new one
-                      $sql = mysqli_query($conn, "INSERT INTO customer (cust_paid, cust_paid1, cust_paid2, cust_paid3, cust_paid4, cust_remain)
-                                             VALUES ('$ppaid','$ppaid1','$ppaid2','$ppaid3','$ppaid4','$pri_remain')");
+                      $sql = mysqli_query($conn, "INSERT INTO customer (cust_paid, cust_paiddate, cust_paid1, cust_paiddate1, cust_paid2, cust_paiddate2, cust_paid3, cust_paiddate3, cust_paid4, cust_paiddate4, cust_remain)
+                                                                VALUES ('$ppaid','$ppaiddate','$ppaid1','$ppaiddate1','$ppaid2','$ppaiddate2','$ppaid3','$ppaiddate3','$ppaid4','$ppaiddate4','$pri_remain')");
                     } else {
                       // If a record exists, update it
-                      $sql = mysqli_query($conn, "UPDATE customer SET cust_paid='$ppaid', cust_paid1='$ppaid1', cust_paid2='$ppaid2', cust_paid3='$ppaid3', cust_paid4='$ppaid4', cust_remain='$pri_remain' WHERE cust_id='$pri_id'");
+                      $sql = mysqli_query($conn, "UPDATE customer SET cust_paid='$ppaid', cust_paiddate='$ppaiddate', cust_paid1='$ppaid1', cust_paiddate1='$ppaiddate1', cust_paid2='$ppaid2', cust_paiddate2='$ppaiddate2', cust_paid3='$ppaid3', cust_paiddate3='$ppaiddate3', cust_paid4='$ppaid4', cust_paiddate4='$ppaiddate4', cust_remain='$pri_remain' WHERE cust_id='$pri_id'");
                     }
-
                     if ($sql) {
                       echo "<script>alert('Operation completed successfully.');</script>";
                       echo "<script>window.location='admin-customer.php';</script>";
@@ -720,22 +790,22 @@ if ($_SESSION["email"] == "") {
   </div>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-        var counter = 6; // Starting from 4th paid
-        document.getElementById("addPaymentField").addEventListener("click", function() {
-            var label = document.createElement("label");
-            label.textContent = counter + "th Paid";
-            var input = document.createElement("input");
-            input.type = "text";
-            input.className = "form-control cus-paid";
-            input.style.borderRadius = "16px";
-            input.name = "cuspaid[]";
-            var parent = document.getElementById("paymentFields");
-            parent.appendChild(label);
-            parent.appendChild(input);
-            counter++;
-        });
+      var counter = 6; // Starting from 4th paid
+      document.getElementById("addPaymentField").addEventListener("click", function() {
+        var label = document.createElement("label");
+        label.textContent = counter + "th Paid";
+        var input = document.createElement("input");
+        input.type = "text";
+        input.className = "form-control cus-paid";
+        input.style.borderRadius = "16px";
+        input.name = "cuspaid[]";
+        var parent = document.getElementById("paymentFields");
+        parent.appendChild(label);
+        parent.appendChild(input);
+        counter++;
+      });
     });
-</script>
+  </script>
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <script src="../js/off-canvas.js"></script>
   <script src="../js/template.js"></script>
