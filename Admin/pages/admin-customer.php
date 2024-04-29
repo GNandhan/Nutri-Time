@@ -1,7 +1,7 @@
 <?php
 include './connect.php';
-// error_reporting(0);
-$cus_id1 = $cus_code1 = $cus_name1 = $cus_phno1 = $cus_invite1 = $cus_age1 = $cus_bodyage1 = $cus_gender1 = $cus_email1 = $cus_doj1 = $cus_city1 = $cus_address1 = $cus_height1 = $cus_weight1 = $cus_idleweight1 = $cus_fat1 = $cus_vcf1 = $cus_bmr1 = $cus_bmi1 = $cus_mm1 = $cus_tsf1 = $cus_waketime1 = $cus_tea1 = $cus_breakfast1 = $cus_lunch1 = $cus_snack1 = $cus_dinner1 = $cus_veg_nonveg1 = $cus_waterintake1 = $cus_cond11 = $cus_cond21 = $cus_cond31 = $cus_cond41 = $cus_cond51 = $cus_cond61 = $cus_cond71 = $cus_cond81 = $cus_prg1 = $cus_prgtype1 = $cus_nodays1 = $cus_total1 = $cus_paid1 = $cus_remain1 = $cusid = "";
+error_reporting(0);
+$cus_id1 = $cus_code1 = $cus_name1 = $cus_phno1 = $cus_invite1 = $cus_age1 = $cus_bodyage1 = $cus_gender1 = $cus_email1 = $cus_doj1 = $cus_city1 = $cus_address1 = $cus_height1 = $cus_weight1 = $cus_idleweight1 = $cus_fat1 = $cus_vcf1 = $cus_bmr1 = $cus_bmi1 = $cus_mm1 = $cus_tsf1 = $cus_waketime1 = $cus_tea1 = $cus_breakfast1 = $cus_lunch1 = $cus_snack1 = $cus_dinner1 = $cus_veg_nonveg1 = $cus_waterintake1 = $cus_cond11 = $cus_cond21 = $cus_cond31 = $cus_cond41 = $cus_cond51 = $cus_cond61 = $cus_cond71 = $cus_cond81 = $cus_prg1 = $cus_prgtype1 = $cus_nodays1 = $cus_total1 = $cus_paid1 = $cus_remain1 = $cusid = $cus_paid3 = "";
 session_start();
 if ($_SESSION["email"] == "") {
   header('location:admin-login.php');
@@ -565,7 +565,9 @@ if ($_SESSION["email"] == "") {
                       $cus_paid0 = intval($row['cust_paid']); // Convert to integer
                       $cus_paid1 = intval($row['cust_paid1']); // Convert to integer
                       $cus_paid2 = intval($row['cust_paid2']); // Convert to integer
-                      $cus_paid = $cus_paid0 + $cus_paid1 + $cus_paid2;
+                      $cus_paid3 = intval($row['cust_paid3']); // Convert to integer
+                      $cus_paid4 = intval($row['cust_paid4']); // Convert to integer
+                      $cus_paid = $cus_paid0 + $cus_paid1 + $cus_paid2+ $cus_paid3+ $cus_paid4;
                       $cus_remain = $row['cust_remain'];
                       $cus_date = $row['cust_date'];
                     ?>
@@ -634,14 +636,19 @@ if ($_SESSION["email"] == "") {
                               </div>
                               <div class="modal-body">
                                 <h4>Total Amount :<span style="font-weight: bold;"><?php echo $cus_total; ?></span></h4>
-                                <div class="form-group">
+                                <div class="form-group"  id="paymentFields">
                                   <label>1st Paid</label>
-                                  <input type="text" class="form-control" style="border-radius: 16px;" name="cuspaid" value="<?php echo $cus_paid0; ?>">
+                                  <input type="text" class="form-control cus-paid" style="border-radius: 16px;" name="cuspaid" value="<?php echo $cus_paid0; ?>">
                                   <label>2nd Paid</label>
-                                  <input type="text" class="form-control" style="border-radius: 16px;" name="cuspaid1" value="<?php echo $cus_paid1; ?>">
+                                  <input type="text" class="form-control cus-paid" style="border-radius: 16px;" name="cuspaid1" value="<?php echo $cus_paid1; ?>">
                                   <label>3rd Paid</label>
-                                  <input type="text" class="form-control" style="border-radius: 16px;" name="cuspaid2" value="<?php echo $cus_paid2; ?>">
+                                  <input type="text" class="form-control cus-paid" style="border-radius: 16px;" name="cuspaid2" value="<?php echo $cus_paid2; ?>">
+                                  <label>4th Paid</label>
+                                  <input type="text" class="form-control cus-paid" style="border-radius: 16px;" name="cuspaid3" value="<?php echo $cus_paid3; ?>">
+                                  <label>5th Paid</label>
+                                  <input type="text" class="form-control cus-paid" style="border-radius: 16px;" name="cuspaid4" value="<?php echo $cus_paid4; ?>">
                                 </div>
+                                <button type="button" class="btn btn-primary mt-2" id="addPaymentField">+</button>
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -661,8 +668,10 @@ if ($_SESSION["email"] == "") {
                     $ppaid = $_POST["cuspaid"];
                     $ppaid1 = $_POST["cuspaid1"];
                     $ppaid2 = $_POST["cuspaid2"];
+                    $ppaid3 = $_POST["cuspaid3"];
+                    $ppaid4 = $_POST["cuspaid4"];
                     $pri_id = $_POST["custid2"];
-                    $pri_paidtotal = $ppaid + $ppaid1 + $ppaid2;
+                    $pri_paidtotal = $ppaid + $ppaid1 + $ppaid2 + $ppaid3 + $ppaid4;
 
                     $cu_query = mysqli_query($conn, "SELECT * FROM customer WHERE cust_id = '$pri_id'");
                     $cu_row1 = mysqli_fetch_array($cu_query);
@@ -673,11 +682,11 @@ if ($_SESSION["email"] == "") {
                     // Check if the record already exists
                     if (empty($pri_id)) {
                       // If no record exists, insert a new one
-                      $sql = mysqli_query($conn, "INSERT INTO customer (cust_paid, cust_paid1, cust_paid2, cust_remain)
-                                             VALUES ('$ppaid','$ppaid1','$ppaid2','$pri_remain')");
+                      $sql = mysqli_query($conn, "INSERT INTO customer (cust_paid, cust_paid1, cust_paid2, cust_paid3, cust_paid4, cust_remain)
+                                             VALUES ('$ppaid','$ppaid1','$ppaid2','$ppaid3','$ppaid4','$pri_remain')");
                     } else {
                       // If a record exists, update it
-                      $sql = mysqli_query($conn, "UPDATE customer SET cust_paid='$ppaid', cust_paid1='$ppaid1', cust_paid2='$ppaid2', cust_remain='$pri_remain' WHERE cust_id='$pri_id'");
+                      $sql = mysqli_query($conn, "UPDATE customer SET cust_paid='$ppaid', cust_paid1='$ppaid1', cust_paid2='$ppaid2', cust_paid3='$ppaid3', cust_paid4='$ppaid4', cust_remain='$pri_remain' WHERE cust_id='$pri_id'");
                     }
 
                     if ($sql) {
@@ -709,6 +718,24 @@ if ($_SESSION["email"] == "") {
   </div>
   <!-- page-body-wrapper ends -->
   </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var counter = 6; // Starting from 4th paid
+        document.getElementById("addPaymentField").addEventListener("click", function() {
+            var label = document.createElement("label");
+            label.textContent = counter + "th Paid";
+            var input = document.createElement("input");
+            input.type = "text";
+            input.className = "form-control cus-paid";
+            input.style.borderRadius = "16px";
+            input.name = "cuspaid[]";
+            var parent = document.getElementById("paymentFields");
+            parent.appendChild(label);
+            parent.appendChild(input);
+            counter++;
+        });
+    });
+</script>
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <script src="../js/off-canvas.js"></script>
   <script src="../js/template.js"></script>
