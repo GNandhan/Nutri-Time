@@ -85,7 +85,7 @@
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#pricing" aria-expanded="false" aria-controls="pricing">
               <i class="icon-bar-graph menu-icon"></i>
-              <span class="menu-title">Product</span>
+              <span class="menu-title">Product & Pricing</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="pricing">

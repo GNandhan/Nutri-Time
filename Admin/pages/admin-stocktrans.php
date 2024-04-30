@@ -1,6 +1,6 @@
 <?php
 include './connect.php';
-// error_reporting(0);
+error_reporting(0);
 $stoloct1 = $stoqua1 =  $sh_raw1 = $sto_id = $stoassoc1 = "";
 session_start();
 if ($_SESSION["email"] == "") {
@@ -136,7 +136,7 @@ if ($_SESSION["email"] == "") {
                   <div class="row">
                     <div class="col">
                       <div class="form-group">
-                        <label>Associate / Location</label>
+                        <label>Location</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="stoloc" value="<?php echo $stoassoc1; ?>" required>
                       </div>
                     </div>
@@ -175,13 +175,14 @@ if ($_SESSION["email"] == "") {
           // Fetch the shake ID from the form
           $sto_id = $_POST["pri_id"];
           if ($sto_id == '') {
-              // Insert new record
-              $sql = mysqli_query($conn, "INSERT INTO stock (stock_proname, stock_quantity, stock_associate, stock_price, stock_total, stock_date)
-                                           VALUES ('$stomat', $stoqua, '$stoloct', $stopri, $stototal, $stodate");
-          } else {
-              // Update existing record
-              $sql = mysqli_query($conn, "UPDATE stock SET stock_proname='$stomat', stock_quantity=$stoqua, stock_associate='$stoloct', stock_price=$stopri, stock_total=$stototal, stock_date=$stodate WHERE stock_id='$sto_id'");
-          }
+            // Insert new record
+            $sql = mysqli_query($conn, "INSERT INTO stock (stock_proname, stock_quantity, stock_associate, stock_price, stock_total, stock_date)
+                                                    VALUES ('$stomat', $stoqua, '$stoloct', $stopri, $stototal, '$stodate')");
+        } else {
+            // Update existing record
+            $sql = mysqli_query($conn, "UPDATE stock SET stock_proname='$stomat', stock_quantity=$stoqua, stock_associate='$stoloct', stock_price=$stopri, stock_total=$stototal, stock_date='$stodate' WHERE stock_id='$sto_id'");
+        }
+        
           if ($sql) {
               echo "<script>alert('Operation completed successfully.');</script>";
       // Redirect after successful operation

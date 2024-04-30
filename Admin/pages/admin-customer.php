@@ -203,7 +203,7 @@ if ($_SESSION["email"] == "") {
                     </div>
                     <div class="col-lg-2 col-md-3 col-sm-3 col-4">
                       <div class="form-group">
-                        <label>Idle Weight</label>
+                        <label>Ideal Weight</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusidleweight" value="<?php echo $cus_idleweight1; ?>">
                       </div>
                     </div>
@@ -409,10 +409,10 @@ if ($_SESSION["email"] == "") {
           $cdoj = $_POST["cusdoj"];
           $ccity = $_POST["cuscity"];
           $caddress = $_POST["cusaddress"];
-          $cheight = $_POST["cusheight"];
-          $cweight = $_POST["cusweight"];
-          $cidle = 100;
-          $cidleweight = $cheight - $cidle;
+          $cheight = floatval($_POST["cusheight"]); // Convert string to float
+          $cweight = floatval($_POST["cusweight"]); // Convert string to float
+          $cidle = 100.0; // Assuming you want to subtract a float from the height
+          $cidleweight = $cheight - $cidle;          
           $cfat = $_POST["cusfat"];
           $cvcf = $_POST["cusvcf"];
           $cbmr = $_POST["cusbmr"];
@@ -438,8 +438,8 @@ if ($_SESSION["email"] == "") {
           $cprogram = $_POST["cusprogram"];
           $cprgtype = $_POST["cusprgtype"];
           $cnoday = $_POST["cusnoday"];
-          $ctotal = $_POST["custotal"];
-          $cpaid = $_POST["cuspaid"];
+          $ctotal = floatval($_POST["custotal"]);
+          $cpaid = floatval($_POST["cuspaid"]);
           $cdate = $_POST["cusdate"];
           $crem = $ctotal - $cpaid;
 
@@ -481,10 +481,9 @@ if ($_SESSION["email"] == "") {
                         <th>Age</th>
                         <th>Body Age</th>
                         <th>Gender</th>
-                        <th>Mail</th>
+                        <th>Mail / Username</th>
                         <th>Password</th>
                         <th>Joining Date</th>
-                        <th>Ending Date</th>
                         <th>City</th>
                         <th>Address</th>
                         <th>Height</th>
@@ -596,7 +595,6 @@ if ($_SESSION["email"] == "") {
                           <td><?php echo $cus_email; ?></td>
                           <td><?php echo $cus_password; ?></td>
                           <td><?php echo $cus_doj; ?></td>
-                          <td><?php echo $cus_date; ?></td>
                           <td><?php echo $cus_city; ?></td>
                           <td><?php echo $cus_address; ?></td>
                           <td><?php echo $cus_height; ?>Cm</td>

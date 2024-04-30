@@ -9,6 +9,7 @@ if ($_SESSION["email"] == "") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -214,31 +215,31 @@ if ($_SESSION["email"] == "") {
         </div>
         <!-- PHP CODE FOR INSERTING THE DATA -->
         <?php
-if (isset($_POST["submitp"])) {
-    $pname = $_POST["proname"];
-    $pcode = $_POST["procode"];
-    $pcat = $_POST["procat"];
-    $psubcat = $_POST["prosubcat"];
-    $pmrp = $_POST["promrp"];
-    $pprice = $_POST["proprice"];
-    $pquant = $_POST["proquant"]; // This is the new quantity from the form
-    $pvp = $_POST["provp"];
-    $phsn = $_POST["prohsn"];
-    $pdate = $_POST["prodate"];
-    $pvptotal = $pvp * $pquant;
+        if (isset($_POST["submitp"])) {
+          $pname = $_POST["proname"];
+          $pcode = $_POST["procode"];
+          $pcat = $_POST["procat"];
+          $psubcat = $_POST["prosubcat"];
+          $pmrp = $_POST["promrp"];
+          $pprice = $_POST["proprice"];
+          $pquant = $_POST["proquant"]; // This is the new quantity from the form
+          $pvp = $_POST["provp"];
+          $phsn = $_POST["prohsn"];
+          $pdate = $_POST["prodate"];
+          $pvptotal = $pvp * $pquant;
 
-    // Fetch existing quantity from the database
-    $query = mysqli_query($conn, "SELECT pro_quantity, pro_curquantity FROM price WHERE pro_name = '$pname'");
-    $row = mysqli_fetch_assoc($query);
-    $existingQuantity = $row['pro_quantity'];
-    $existingcurQuantity = $row['pro_curquantity'];
+          // Fetch existing quantity from the database
+          $query = mysqli_query($conn, "SELECT pro_quantity, pro_curquantity FROM price WHERE pro_name = '$pname'");
+          $row = mysqli_fetch_assoc($query);
+          $existingQuantity = $row['pro_quantity'];
+          $existingcurQuantity = $row['pro_curquantity'];
 
-    // Calculate new quantity (add new quantity to existing quantity)
-    $newQuantity = (int)$existingQuantity + (int)$pquant;
-    $newcurQuantity = (int)$existingcurQuantity + (int)$pquant;
+          // Calculate new quantity (add new quantity to existing quantity)
+          $newQuantity = (int)$existingQuantity + (int)$pquant;
+          $newcurQuantity = (int)$existingcurQuantity + (int)$pquant;
 
-    // Update the record in the price table
-    $sql = "UPDATE price SET 
+          // Update the record in the price table
+          $sql = "UPDATE price SET 
         pro_code = '$pcode',
         pro_category = '$pcat', 
         pro_subcat = '$psubcat', 
@@ -252,14 +253,14 @@ if (isset($_POST["submitp"])) {
         pro_date = '$pdate'
         WHERE pro_name = '$pname'";
 
-    // Execute the SQL update query
-    if (mysqli_query($conn, $sql)) {
-        echo "<script>alert('Product details updated successfully');</script>";
-    } else {
-        echo "<script>alert('Error updating product details');</script>";
-    }
-}
-?>
+          // Execute the SQL update query
+          if (mysqli_query($conn, $sql)) {
+            echo "<script>alert('Product details updated successfully');</script>";
+          } else {
+            echo "<script>alert('Error updating product details');</script>";
+          }
+        }
+        ?>
 
         <div class="row ">
           <!-- table view -->
@@ -425,4 +426,5 @@ if (isset($_POST["submitp"])) {
   <script src="../js/select2.js"></script>
   <!-- End custom js for this page-->
 </body>
+
 </html>

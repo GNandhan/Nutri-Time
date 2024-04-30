@@ -173,7 +173,7 @@ if ($_SESSION["email"] == "") {
                                         <div class="row">
                                             <div class="col-lg col-md col-sm col">
                                                 <ul>
-                                                    <li class="card-description">Wakeup Time : <span style="font-weight:bolder; color:black;"><?php echo $cus_code; ?></span></li>
+                                                    <li class="card-description">Wakeup Time : <span style="font-weight:bolder; color:black;"><?php echo $cus_wake; ?></span></li>
                                                     <li class="card-description">Tea / Coffee : <span style="font-weight:bolder; color:black;"><?php echo $cus_tea; ?></span></li>
                                                     <li class="card-description">Breakfast : <span style="font-weight:bolder; color:black;"><?php echo $cus_break; ?></span></li>
                                                     <li class="card-description">Lunch : <span style="font-weight:bolder; color:black;"><?php echo $cus_lunch; ?></span></li>
@@ -216,7 +216,7 @@ if ($_SESSION["email"] == "") {
                                             <li class="card-description"> No of Days: <span style="font-weight:bolder; color:black;"><?php echo $cus_nodays; ?></span></li>
                                             <li class="card-description"> Total Amount: <span style="font-weight:bolder; color:black;"><?php echo $cus_total; ?></span></li>
                                             <li class="card-description"> Amount paid: <span style="font-weight:bolder; color:black;"><?php echo $cus_paidtotal; ?></span></li>
-                                            <li class="card-description"> Remaining Amount: <span style="font-weight:bolder; color:black;"><?php echo $cus_remain; ?></span></li>
+                                            <li class="card-description"> Balance Amount: <span style="font-weight:bolder; color:black;"><?php echo $cus_remain; ?></span></li>
                                         </ul>
                                     </div>
                                 </div>

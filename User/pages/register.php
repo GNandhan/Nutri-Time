@@ -102,7 +102,7 @@
                       <i class="bi bi-shield-lock me-3 form-icon" style="color:rgb(34 203 48);"></i>
                       <div class="form-outline flex-fill position-relative mb-0">
                           <div class="input-group shadow-sm rounded-4  border border-top-0">
-                              <input type="password" class="form-control rounded-4 border-0 p-3 shadow-none" name="upass" placeholder="Enter Password" name="" required />
+                              <input type="password" class="form-control rounded-4 border-0 p-3 shadow-none" name="upass" placeholder="Create Password" name="" required />
                               <button class="btn border border-0  rounded-end-4" type="button" id="showPassword"><i class="bi bi-eye"></i></button>
                           </div>
                       </div>

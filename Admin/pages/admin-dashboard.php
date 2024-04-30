@@ -43,11 +43,11 @@ if ($row = mysqli_fetch_assoc($query)) {
             <div class="row">
               <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                 <h3 class="font-weight-bold">Welcome <?php echo $AdminName; ?> </h3>
-                <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6>
+                <!-- <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6> -->
               </div>
-              <div class="col-12 col-xl-4 mb-4 mb-xl-0 text-right">
+              <!-- <div class="col-12 col-xl-4 mb-4 mb-xl-0 text-right">
                 <button class="btn btn-primary">Export</button>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -156,7 +156,7 @@ if ($row = mysqli_fetch_assoc($query)) {
                           <div class="ml-xl-4 mt-3">
                             <p class="card-title">Detailed Reports</p>
                             <h1 class="text-primary">Sales</h1>
-                            <h3 class="font-weight-500 mb-xl-4 text-primary">Branch wise</h3>
+                            <!-- <h3 class="font-weight-500 mb-xl-4 text-primary">Branch wise</h3> -->
                             <p class="mb-2 mb-xl-0">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
                           </div>
                         </div>
@@ -257,7 +257,7 @@ if ($row = mysqli_fetch_assoc($query)) {
               </div>
             </div>
           </div>
-          <div class="col-md-4 stretch-card grid-margin">
+          <!-- <div class="col-md-4 stretch-card grid-margin">
             <div class="card">
               <div class="card-body">
                 <p class="card-title">Customers Reviews</p>
@@ -295,7 +295,7 @@ if ($row = mysqli_fetch_assoc($query)) {
                 </ul>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
       <!-- content-wrapper ends -->
