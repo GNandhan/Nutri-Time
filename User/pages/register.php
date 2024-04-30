@@ -108,26 +108,7 @@
                       </div>
                   </div>
                     <div class="row">
-                <div class="col-md-6 mb-4">
-                    <div class="d-flex flex-row align-items-center">
-                        <i class="bi bi-heart-fill me-3 form-icon" style="color:rgb(34 203 48);"></i>
-                        <div class="form-outline flex-fill mb-0">
-                            <!-- <input type="text" class="form-control rounded-4 border border-top-0 p-3 shadow-sm" placeholder="Enter Blood Group" name="ublood" required /> -->
-                            <select class="form-select rounded-4 border border-top-0 p-3 shadow-sm" name="ublood" required>
-                              <option value="" disabled selected>Blood Group</option>
-                              <option value="A+">A+</option>
-                              <option value="A-">A-</option>
-                              <option value="B+">B+</option>
-                              <option value="B-">B-</option>
-                              <option value="AB+">AB+</option>
-                              <option value="AB-">AB-</option>
-                              <option value="O+">O+</option>
-                              <option value="O-">O-</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
+                <div class="col-md mb-4">
                     <div class="d-flex flex-row align-items-center">
                         <i class="bi bi-person-fill me-3 form-icon" style="color:rgb(34 203 48);"></i>
                         <div class="form-outline flex-fill mb-0">
@@ -188,7 +169,6 @@
         $us_phno = $_POST["uphno"];
         $us_email = $_POST["uemail"];
         $us_pass = $_POST["upass"];
-        $us_blood = $_POST["ublood"];
         $us_gender = $_POST["ugender"];
         $us_location = $_POST["ulocation"];
         $us_address = $_POST["uaddress"];
@@ -197,11 +177,11 @@
  $sh_id = $_POST["shid"];
 
  if ($sh_id == '') {
-   $sql = mysqli_query($conn, "INSERT INTO customer (customer_name, customer_phno, customer_whatsapp, customer_email, customer_password, customer_gender, customer_blood, customer_address, customer_city)
-                                VALUES ('$us_name','$us_phno','$us_phno','$us_email','$us_pass','$us_gender','$us_blood','$us_address','$us_location')");
+   $sql = mysqli_query($conn, "INSERT INTO customer (cust_name, cust_phno, cust_email, cust_password, cust_gender, cust_address, cust_city)
+                                VALUES ('$us_name','$us_phno','$us_email','$us_pass','$us_gender','$us_address','$us_location')");
  } else {
    // Update shake
-   $sql = mysqli_query($conn, "UPDATE customer SET customer_name='$us_name', customer_phno='$us_phno', customer_whatsapp='$us_phno', customer_email='$us_email', customer_password='$us_pass', customer_gender='$us_gender', customer_blood='$us_blood', customer_address='$us_address', customer_city='$us_location' WHERE user_id='$sh_id'");
+   $sql = mysqli_query($conn, "UPDATE customer SET cust_name='$us_name', cust_phno='$us_phno', cust_email='$us_email', cust_password='$us_pass', cust_gender='$us_gender', cust_address='$us_address', cust_city='$us_location' WHERE cust_id='$sh_id'");
  }
  if ($sql == TRUE) {
   echo "<script>alert('User registration successfully.'); window.location.href = './login.php';</script>";

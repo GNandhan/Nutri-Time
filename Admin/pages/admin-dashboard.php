@@ -14,6 +14,7 @@ if ($row = mysqli_fetch_assoc($query)) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -27,6 +28,7 @@ if ($row = mysqli_fetch_assoc($query)) {
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
+
 <body>
   <div class="container-scroller">
     <!-- including the sidebar,navbar -->
@@ -59,45 +61,65 @@ if ($row = mysqli_fetch_assoc($query)) {
               </div>
               <div id="carouselExample" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
-                  <!-- Add your carousel items here -->
-                  <div class="carousel-item active">
-                    <img src="../images/shake3.jpg" class="d-block w-100 img-fluid" alt="People 1" style="object-fit: cover; height: 300px; border-radius: 20px;">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="../images/shake2.jpg" class="d-block w-100 img-fluid" alt="People 2" style="object-fit: cover; height: 300px; border-radius: 20px;">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="../images/shake4.jpg" class="d-block w-100 img-fluid" alt="People 3" style="object-fit: cover; height: 300px; border-radius: 20px;">
-                  </div>
+                  <?php
+                  $sql = mysqli_query($conn, "SELECT * FROM product ORDER BY product_id ");
+                  while ($row = mysqli_fetch_assoc($sql)) {
+                    $pro_img = $row['product_img'];
+                  ?>
+                    <!-- Add your carousel items here -->
+                    <div class="carousel-item active">
+                      <img src="../images/product/<?php echo $pro_img; ?>" class="d-block w-100 img-fluid" alt="People 1" style="object-fit: cover; height: 300px; border-radius: 20px;">
+                    </div>
+                  <?php
+                  }
+                  ?>
                   <!-- Add more carousel items as needed -->
                 </div>
-                <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+                <!-- <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                   <span class="sr-only">Previous</span>
                 </a>
                 <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
                   <span class="sr-only">Next</span>
-                </a>
+                </a> -->
               </div>
             </div>
           </div>
+          <?php
+          // Query to get the counts
+          $result = $conn->query("SELECT COUNT(*) AS customer_count FROM customer WHERE cust_prgtype = 'Online'");
+          $row = $result->fetch_assoc();
+          $cateringonline_count = $row['customer_count'];
+
+          $result = $conn->query("SELECT COUNT(*) AS customer_count FROM customer WHERE cust_prgtype = 'Offline'");
+          $row = $result->fetch_assoc();
+          $customeroffline_count = $row['customer_count'];
+
+          $result = $conn->query("SELECT COUNT(*) AS staff_count FROM staff");
+          $row = $result->fetch_assoc();
+          $staff_count = $row['staff_count'];
+
+          $result = $conn->query("SELECT COUNT(*) AS customer_count FROM customer");
+          $row = $result->fetch_assoc();
+          $customer_count = $row['customer_count'];
+          ?>
           <!-- newly arrived product carousel -->
           <div class="col-md-6 grid-margin transparent">
             <div class="row">
               <div class="col-md-6 col-6 mb-4 stretch-card transparent">
                 <div class="card card-tale">
                   <div class="card-body">
-                    <p class="mb-4">Today’s Bookings</p>
-                    <p class="fs-30 mb-2">6</p>
+                    <p class="mb-4">Online Customer</p>
+                    <p class="fs-30 mb-2"><?php echo $cateringonline_count; ?></p>
                   </div>
                 </div>
               </div>
               <div class="col-md-6 col-6 mb-4 stretch-card transparent">
                 <div class="card card-dark-blue">
                   <div class="card-body">
-                    <p class="mb-4">Total Bookings</p>
-                    <p class="fs-30 mb-2">215</p>
+                    <p class="mb-4">Offline Customer</p>
+                    <p class="fs-30 mb-2"><?php echo $customeroffline_count; ?></p>
                   </div>
                 </div>
               </div>
@@ -107,7 +129,7 @@ if ($row = mysqli_fetch_assoc($query)) {
                 <div class="card card-light-blue">
                   <div class="card-body">
                     <p class="mb-4">Number of Staff</p>
-                    <p class="fs-30 mb-2">22</p>
+                    <p class="fs-30 mb-2"><?php echo $staff_count; ?></p>
                   </div>
                 </div>
               </div>
@@ -115,7 +137,7 @@ if ($row = mysqli_fetch_assoc($query)) {
                 <div class="card card-light-danger">
                   <div class="card-body">
                     <p class="mb-4">Number of Clients</p>
-                    <p class="fs-30 mb-2">133</p>
+                    <p class="fs-30 mb-2"><?php echo $customer_count; ?></p>
                   </div>
                 </div>
               </div>
@@ -140,70 +162,48 @@ if ($row = mysqli_fetch_assoc($query)) {
                         </div>
                         <div class="col-md-12 col-xl-9">
                           <div class="row">
-                            <div class="col-md-6 border-right">
+                            <div class="col-md border-right">
                               <div class="table-responsive mb-3 mb-md-0 mt-3">
-                                <table class="table table-borderless report-table">
-                                  <tr>
-                                    <td class="text-muted">Kozhikode</td>
-                                    <td class="w-100 px-0">
-                                      <div class="progress progress-md mx-4">
-                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                                      </div>
-                                    </td>
-                                    <td><h5 class="font-weight-bold mb-0">68</h5></td>
-                                  </tr>
-                                  <tr>
-                                    <td class="text-muted">Kannur</td>
-                                    <td class="w-100 px-0">
-                                      <div class="progress progress-md mx-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                      </div>
-                                    </td>
-                                    <td><h5 class="font-weight-bold mb-0">13</h5></td>
-                                  </tr>
-                                  <tr>
-                                    <td class="text-muted">Malapuram</td>
-                                    <td class="w-100 px-0">
-                                      <div class="progress progress-md mx-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                                      </div>
-                                    </td>
-                                    <td><h5 class="font-weight-bold mb-0">96</h5></td>
-                                  </tr>
-                                  <tr>
-                                    <td class="text-muted">Thrissur</td>
-                                    <td class="w-100 px-0">
-                                      <div class="progress progress-md mx-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                      </div>
-                                    </td>
-                                    <td><h5 class="font-weight-bold mb-0">64</h5></td>
-                                  </tr>
-                                  <tr>
-                                    <td class="text-muted">Ernakulam</td>
-                                    <td class="w-100 px-0">
-                                      <div class="progress progress-md mx-4">
-                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                      </div>
-                                    </td>
-                                    <td><h5 class="font-weight-bold mb-0">35</h5></td>
-                                  </tr>
-                                  <tr>
-                                    <td class="text-muted">Kottayam</td>
-                                    <td class="w-100 px-0">
-                                      <div class="progress progress-md mx-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                      </div>
-                                    </td>
-                                    <td><h5 class="font-weight-bold mb-0">59</h5></td>
-                                  </tr>
-                                </table>
+                              <table class="table table-borderless report-table">
+  <?php
+  $sql = mysqli_query($conn, "SELECT * FROM sales ORDER BY sales_id ");
+  $serialNo = 1;
+  $colors = ['bg-primary', 'bg-warning', 'bg-danger', 'bg-info']; // Array of Bootstrap color classes
+  $color_index = 0; // Index to track the color
+  while ($row = mysqli_fetch_assoc($sql)) {
+    $sales_id = $row['sales_id'];
+    $sales_cus = $row['sales_cus'];
+    $sales_quan = $row['sales_quan'];
+    $max_quantity = 100; // Assuming maximum sales quantity is 100
+    $progress_width = ($sales_quan / $max_quantity) * 100; // Calculate width of progress bar
+  ?>
+    <tr>
+      <td class="text-muted"><?php echo $sales_cus; ?></td>
+      <td class="w-100 px-0">
+        <div class="progress progress-md mx-4">
+          <div class="progress-bar <?php echo $colors[$color_index]; ?>" role="progressbar" style="width: <?php echo $progress_width; ?>%" aria-valuenow="<?php echo $progress_width; ?>" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </td>
+      <td>
+        <h5 class="font-weight-bold mb-0"><?php echo $sales_quan; ?></h5>
+      </td>
+    </tr>
+  <?php
+    // Increment color index and reset if it exceeds the length of the colors array
+    $color_index++;
+    if ($color_index >= count($colors)) {
+      $color_index = 0;
+    }
+  }
+  ?>
+</table>
+
                               </div>
                             </div>
-                            <div class="col-md-6 mt-3">
+                            <!-- <div class="col-md-6 mt-3">
                               <canvas id="north-america-chart"></canvas>
                               <div id="north-america-legend"></div>
-                            </div>
+                            </div> -->
                           </div>
                         </div>
                       </div>
@@ -223,48 +223,35 @@ if ($row = mysqli_fetch_assoc($query)) {
                   <table class="table table-borderless table-striped">
                     <thead>
                       <tr>
-                        <th class="pl-0  pb-2 border-bottom">Places</th>
-                        <th class="border-bottom pb-2">Orders</th>
-                        <th class="border-bottom pb-2">Users</th>
+                        <th class="pl-0  pb-2 border-bottom">Product</th>
+                        <th class="border-bottom pb-2">Place</th>
+                        <th class="border-bottom pb-2">Order</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td class="pl-0">Kozhikode</td>
-                        <td><p class="mb-0"><span class="font-weight-bold mr-2">65</span>(2.15%)</p></td>
-                        <td class="text-muted">65</td>
-                      </tr>
-                      <tr>
-                        <td class="pl-0">Palakkad</td>
-                        <td><p class="mb-0"><span class="font-weight-bold mr-2">54</span>(3.25%)</p></td>
-                        <td class="text-muted">51</td>
-                      </tr>
-                      <tr>
-                        <td class="pl-0">Ernakulam</td>
-                        <td><p class="mb-0"><span class="font-weight-bold mr-2">22</span>(2.22%)</p></td>
-                        <td class="text-muted">32</td>
-                      </tr>
-                      <tr>
-                        <td class="pl-0">Kasargod</td>
-                        <td><p class="mb-0"><span class="font-weight-bold mr-2">46</span>(3.27%)</p></td>
-                        <td class="text-muted">15</td>
-                      </tr>
-                      <tr>
-                        <td class="pl-0">Malappuram</td>
-                        <td><p class="mb-0"><span class="font-weight-bold mr-2">17</span>(1.25%)</p></td>
-                        <td class="text-muted">25</td>
-                      </tr>
-                      <tr>
-                        <td class="pl-0">Trivandrum</td>
-                        <td><p class="mb-0"><span class="font-weight-bold mr-2">52</span>(3.11%)</p></td>
-                        <td class="text-muted">71</td>
-                      </tr>
-                      <tr>
-                        <td class="pl-0 pb-0">Thrissur</td>
-                        <td class="pb-0"><p class="mb-0"><span class="font-weight-bold mr-2">25</span>(1.32%)</p></td>
-                        <td class="pb-0">14</td>
-                      </tr>
+                      <?php
+                      $sql = mysqli_query($conn, "SELECT * FROM stock ORDER BY stock_id ");
+                      $serialNo = 1;
+                      while ($row = mysqli_fetch_assoc($sql)) {
+                        $stock_id = $row['stock_id'];
+                        $stock_product = $row['stock_proname'];
+                        $stock_quan = $row['stock_quantity'];
+                        $stock_location = $row['stock_associate'];
+                        $stock_price = $row['stock_price'];
+                        $stock_total = $row['stock_total'];
+                        $stock_date = $row['stock_date'];
+                      ?>
+                        <tr>
+                          <td class="pl-0 pl-4"><?php echo $stock_product; ?></td>
+                          <td>
+                            <p class="mb-0"><span class="font-weight-bold mr-2"><?php echo $stock_location; ?></span></p>
+                          </td>
+                          <td class="text-muted"> <span class="font-weight-bold"><?php echo $stock_quan; ?></span></td>
+                        </tr>
                     </tbody>
+                  <?php
+                      }
+                  ?>
                   </table>
                 </div>
               </div>
@@ -332,4 +319,5 @@ if ($row = mysqli_fetch_assoc($query)) {
   <script src="../js/template.js"></script>
   <script src="../js/dashboard.js"></script>
 </body>
+
 </html>

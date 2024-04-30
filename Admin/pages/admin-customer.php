@@ -411,7 +411,8 @@ if ($_SESSION["email"] == "") {
           $caddress = $_POST["cusaddress"];
           $cheight = $_POST["cusheight"];
           $cweight = $_POST["cusweight"];
-          $cidleweight = $_POST["cusidleweight"];
+          $cidle = 100;
+          $cidleweight = $cheight - $cidle;
           $cfat = $_POST["cusfat"];
           $cvcf = $_POST["cusvcf"];
           $cbmr = $_POST["cusbmr"];
@@ -481,6 +482,7 @@ if ($_SESSION["email"] == "") {
                         <th>Body Age</th>
                         <th>Gender</th>
                         <th>Mail</th>
+                        <th>Password</th>
                         <th>Joining Date</th>
                         <th>Ending Date</th>
                         <th>City</th>
@@ -531,6 +533,7 @@ if ($_SESSION["email"] == "") {
                       $cus_bodyage = $row['cust_bodyage'];
                       $cus_gender = $row['cust_gender'];
                       $cus_email = $row['cust_email'];
+                      $cus_password = $row['cust_password'];
                       $cus_doj = $row['cust_doj'];
                       $cus_city = $row['cust_city'];
                       $cus_address = $row['cust_address'];
@@ -591,13 +594,14 @@ if ($_SESSION["email"] == "") {
                           <td><?php echo $cus_bodyage; ?></td>
                           <td><?php echo $cus_gender; ?></td>
                           <td><?php echo $cus_email; ?></td>
+                          <td><?php echo $cus_password; ?></td>
                           <td><?php echo $cus_doj; ?></td>
                           <td><?php echo $cus_date; ?></td>
                           <td><?php echo $cus_city; ?></td>
                           <td><?php echo $cus_address; ?></td>
                           <td><?php echo $cus_height; ?>Cm</td>
-                          <td><?php echo $cus_weight; ?>Cm</td>
-                          <td><?php echo $cus_idleweight; ?>Cm</td>
+                          <td><?php echo $cus_weight; ?>Kg</td>
+                          <td><?php echo $cus_idleweight; ?>Kg</td>
                           <td><?php echo $cus_fat; ?></td>
                           <td><?php echo $cus_vcf; ?></td>
                           <td><?php echo $cus_bmr; ?></td>

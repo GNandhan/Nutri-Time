@@ -97,10 +97,13 @@
                                                 <button class="btn border border-0 rounded-end-4" type="button" id="showPassword"><i class="bi bi-eye"></i></button>
                                             </div>
                                         </div>
-                                    </div>                              
+                                    </div>   
+                                    <!-- <div class="d-flex justify-content ml-auto"><a href="forgot.php" class="text-decoration-none">Forgot Password.?</a></div> -->
+                                   
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                         <button type="submit" class="btn text-white rounded-pill px-5 btn-lg" style="background-color:rgb(34 203 48);" name="submit">Login</button>
                                     </div>
+                                    
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                         <span>Not registered yet?</span> 
                                         <a href="./register.php" type="button" class="text-decoration-none px-1"> Create an account <i class=" fw-bold bi-arrow-up-right-circle"></i></a>
@@ -121,7 +124,7 @@ if(isset($_POST["submit"]))
   $email=$_POST["email"];
   $password=$_POST["pass"];
   
-  $sq=mysqli_query($conn,"select * from user where user_email='$email' and user_password='$password'");
+  $sq=mysqli_query($conn,"SELECT * FROM customer WHERE cust_email='$email' and cust_password='$password'");
   $check=mysqli_num_rows($sq);
   
 if($check>0)
