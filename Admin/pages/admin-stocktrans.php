@@ -19,11 +19,8 @@ if ($_SESSION["email"] == "") {
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
-  <!-- endinject -->
-  <!-- Plugin css for this page -->
   <link rel="stylesheet" href="../vendors/select2/select2.min.css">
   <link rel="stylesheet" href="../vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
-  <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
   <!-- endinject -->
@@ -33,8 +30,6 @@ if ($_SESSION["email"] == "") {
 <body>
 
   <div class="container-scroller">
-    <!-- partial:../../partials/_navbar.html -->
-    <!-- including the sidebar,navbar -->
     <?php
     include './topbar.php';
     ?>
@@ -149,7 +144,7 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>Stock Transfer Date</label>
-                        <input type="date" class="form-control" style="border-radius: 16px;" name="stodate"  value="<?php echo $stodate1; ?>" required>
+                        <input type="date" class="form-control" style="border-radius: 16px;" name="stodate" value="<?php echo $stodate1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -169,6 +164,13 @@ if ($_SESSION["email"] == "") {
           $stopri = $_POST["stopri"];
           $stodate = $_POST["stodate"];
 
+          $sal_curquan_query = mysqli_query($conn, "SELECT pro_curquantity FROM price");
+          $sal_curquan_row = mysqli_fetch_assoc($sal_curquan_query);
+          $sal_curquan = $sal_curquan_row['pro_curquantity'];
+
+          $sal_curquan1 = $sal_curquan - $stoqua;
+
+
           // $total = $stopri * ($stogst / 100);
           $stototal = intval($stoqua) * intval($stopri);
 
@@ -178,18 +180,21 @@ if ($_SESSION["email"] == "") {
             // Insert new record
             $sql = mysqli_query($conn, "INSERT INTO stock (stock_proname, stock_quantity, stock_associate, stock_price, stock_total, stock_date)
                                                     VALUES ('$stomat', $stoqua, '$stoloct', $stopri, $stototal, '$stodate')");
-        } else {
+                                  
+            $sql = mysqli_query($conn, "UPDATE price SET pro_curquantity='$sal_curquan1' WHERE pro_name='$stomat'");
+          
+          } else {
             // Update existing record
             $sql = mysqli_query($conn, "UPDATE stock SET stock_proname='$stomat', stock_quantity=$stoqua, stock_associate='$stoloct', stock_price=$stopri, stock_total=$stototal, stock_date='$stodate' WHERE stock_id='$sto_id'");
-        }
-        
-          if ($sql) {
-              echo "<script>alert('Operation completed successfully.');</script>";
-      // Redirect after successful operation
-          } else {
-              echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
           }
-      }
+
+          if ($sql) {
+            echo "<script>alert('Operation completed successfully.');</script>";
+            // Redirect after successful operation
+          } else {
+            echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
+          }
+        }
         ?>
         <div class="row ">
           <!-- table view -->
