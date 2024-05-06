@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2024 at 05:12 PM
+-- Generation Time: May 06, 2024 at 05:37 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -207,8 +207,9 @@ CREATE TABLE `price` (
 --
 
 INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subcat`, `pro_mrp`, `pro_price`, `pro_dis0`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`, `pro_vp`, `pro_vptotal`, `pro_scoop`, `pro_scoop15`, `pro_scoop25`, `pro_scoop35`, `pro_scoop42`, `pro_scoop50`, `pro_quantity`, `pro_curquantity`, `pro_hsn`, `pro_img`, `pro_date`) VALUES
-(1, 'FORMULA 1 SHAKE MIX VANILLA', 'F1V', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '1', '2065', '1860', '1650', '1505', '1340', '21.75', '435', '60', '103.25', '93', '82.5', '75.25', '67', '20', '2', '1234', '', '2024-05-01'),
-(2, 'FORMULA 1 SHAKE MIX CHOCOLATE', 'F1C', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '1', '2065', '1860', '1650', '1505', '1340', '12.75', '127.5', '60', '103.25', '93', '82.5', '75.25', '67', '10', '10', '4321', '', '2024-05-02');
+(1, 'FORMULA 1 SHAKE MIX VANILLA', 'F1V', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '1', '2065', '1860', '1650', '1505', '1340', '21.75', '435', '60', '103.25', '93', '82.5', '75.25', '67', '20', '0', '1234', '', '2024-05-01'),
+(2, 'FORMULA 1 SHAKE MIX CHOCOLATE', 'F1C', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '1', '2065', '1860', '1650', '1505', '1340', '12.75', '127.5', '60', '103.25', '93', '82.5', '75.25', '67', '10', '5', '4321', '', '2024-05-02'),
+(3, 'FORMULA 1 SHAKE MIX PISTAH', 'F1P', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '1', '2065', '1860', '1650', '1505', '1340', '21.75', '652.5', '60', '103.25', '93', '82.5', '75.25', '67', '30', '-2', '1010', '', '2024-05-03');
 
 -- --------------------------------------------------------
 
@@ -271,7 +272,8 @@ CREATE TABLE `sales` (
 
 INSERT INTO `sales` (`sales_id`, `sales_proid`, `sales_procode`, `sales_proname`, `sales_procat`, `sales_prosubcat`, `sales_mrp`, `sales_quan`, `sales_curquan`, `sales_vp`, `sales_vptotal`, `sales_gst`, `sales_dis`, `sales_dispri`, `sales_cus`, `sales_address`, `sales_total`, `sales_date`) VALUES
 (1, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '10', '', '21.75', '217.5', '18', '0', '1', 'Jeslin Biju', 'none', '11.8', '2024-05-03'),
-(2, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '5', '', '21.75', '108.75', '18', '25', '1860', 'Arun', 'none2', '10974', '2024-05-04');
+(2, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '5', '', '21.75', '108.75', '18', '25', '1860', 'Arun', 'none2', '10974', '2024-05-04'),
+(3, 0, 'F1P', 'FORMULA 1 SHAKE MIX PISTAH', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '2', '', '21.75', '43.5', '18', '25', '1860', 'amla', 'none1', '4389.6', '2024-05-10');
 
 -- --------------------------------------------------------
 
@@ -338,7 +340,13 @@ CREATE TABLE `stock` (
 
 INSERT INTO `stock` (`stock_id`, `stock_proid`, `stock_proname`, `stock_quantity`, `stock_associate`, `stock_price`, `stock_total`, `stock_date`) VALUES
 (1, 0, 'FORMULA 1 SHAKE MIX VANILLA', '5', 'kollam', '1340', 6700, '2024-05-04'),
-(2, 0, 'FORMULA 1 SHAKE MIX VANILLA', '3', 'palarivattom', '1340', 4020, '2024-05-05');
+(2, 0, 'FORMULA 1 SHAKE MIX VANILLA', '3', 'palarivattom', '1340', 4020, '2024-05-05'),
+(3, 0, 'FORMULA 1 SHAKE MIX VANILLA', '1', 'kottayam', '1340', 1340, '2024-05-06'),
+(4, 0, 'FORMULA 1 SHAKE MIX VANILLA', '1', 'NUTRITIME', '1340', 1340, '2024-05-06'),
+(5, 0, 'Select the Product', '8', 'NUTRITIME', '1340', 10720, '2024-05-06'),
+(6, 0, 'FORMULA 1 SHAKE MIX PISTAH', '15', 'NUTRITIME', '1340', 20100, '2024-05-07'),
+(7, 0, 'FORMULA 1 SHAKE MIX PISTAH', '5', 'pandhalam', '1340', 6700, '2024-05-08'),
+(8, 0, 'FORMULA 1 SHAKE MIX PISTAH', '3', 'NUTRITIME', '1340', 4020, '2024-05-10');
 
 -- --------------------------------------------------------
 
@@ -490,7 +498,7 @@ ALTER TABLE `login_details`
 -- AUTO_INCREMENT for table `price`
 --
 ALTER TABLE `price`
-  MODIFY `pri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `pri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -508,7 +516,7 @@ ALTER TABLE `program`
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `shake`
@@ -526,7 +534,7 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `subcategory`

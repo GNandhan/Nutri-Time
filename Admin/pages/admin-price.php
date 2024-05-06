@@ -210,24 +210,6 @@ if ($_SESSION["email"] == "") {
                   <div class="col-md-9">
                     <p class="card-description">Product Discount Details</p>
                   </div>
-                  <!-- <div class="col-md-3">
-                    <div class="dropdown">
-                      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Filter By:
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <p class="pl-3">Type</p>
-                        <div class="dropdown-item">
-                          <input type="checkbox" id="checkCategory" class="filter-checkbox" value="category">
-                          <label for="checkCategory">Used Product</label>
-                        </div>
-                        <div class="dropdown-item">
-                          <input type="checkbox" id="checkSubcategory" class="filter-checkbox" value="subcategory">
-                          <label for="checkSubcategory">Unused Product</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div> -->
                 </div>
                 <div class="table-responsive">
                   <table class="table table-striped">
@@ -273,7 +255,7 @@ if ($_SESSION["email"] == "") {
                           <td><a href="admin-price.php?pid=<?php echo $pri_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i></a></td>
                           <td><a href="admin-price.php?pd_id=<?php echo $pri_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a></td>
                           <td class="py-1"><?php echo $serialNo++; ?></td>
-                          <td class="py-1">#<?php echo $pri_cod; ?></td>
+                          <td class="py-1"><?php echo $pri_cod; ?></td>
                           <td><?php echo $pri_nam; ?></td>
                           <td><?php echo $pri_cat; ?></td>
                           <td><?php echo $pri_subcat; ?></td>
@@ -298,18 +280,13 @@ if ($_SESSION["email"] == "") {
           <!-- table view closed -->
         </div>
       </div>
-      <!-- content-wrapper ends -->
-      <!-- partial:../../partials/_footer.html -->
       <footer class="footer">
         <div class="d-sm-flex justify-content-center justify-content-sm-between">
           <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024.Nutri-time. All rights reserved.</span>
         </div>
       </footer>
-      <!-- partial -->
     </div>
-    <!-- main-panel ends -->
   </div>
-  <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
   <!-- plugins:js -->

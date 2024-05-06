@@ -196,24 +196,6 @@ if ($_SESSION["email"] == "") {
                   <div class="col-md-9">
                     <p class="card-description">Product Discount Details</p>
                   </div>
-                  <!-- <div class="col-md-3">
-                    <div class="dropdown">
-                      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Filter By:
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <p class="pl-3">Type</p>
-                        <div class="dropdown-item">
-                          <input type="checkbox" id="checkCategory" class="filter-checkbox" value="category">
-                          <label for="checkCategory">Used Product</label>
-                        </div>
-                        <div class="dropdown-item">
-                          <input type="checkbox" id="checkSubcategory" class="filter-checkbox" value="subcategory">
-                          <label for="checkSubcategory">Unused Product</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div> -->
                 </div>
                 <div class="table-responsive">
                   <table class="table table-striped">
@@ -249,7 +231,7 @@ if ($_SESSION["email"] == "") {
                         <tr>
                           <td><a href="admin-scoopprice.php?pid=<?php echo $pri_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i></a></td>
                           <td class="py-1"><?php echo $serialNo++; ?></td>
-                          <td class="py-1">#<?php echo $pri_cod; ?></td>
+                          <td class="py-1"><?php echo $pri_cod; ?></td>
                           <td><?php echo $pri_nam; ?></td>
                           <td><?php echo $pri_scoop; ?></td>
                           <td><?php echo $pri_scoop15; ?></td>
