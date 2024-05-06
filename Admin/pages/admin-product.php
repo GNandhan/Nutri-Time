@@ -299,7 +299,6 @@ if ($_SESSION["email"] == "") {
                         <th>Slno</th>
                         <th>Purchase Date</th>
                         <th>Product Code</th>
-                        <!-- <th>Product Image</th> -->
                         <th>Product Name</th>
                         <th>HSL Code</th>
                         <th>Quanity</th>
@@ -336,18 +335,10 @@ if ($_SESSION["email"] == "") {
                     ?>
                       <tbody>
                         <tr>
-                          <td>
-                            <a href="admin-product.php?pid=<?php echo $pro_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i>
-                            </a>
-                          </td>
-                          <!-- <td>
-                            <a href="admin-product.php?pd_id=<?php echo $pro_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i>
-                            </a>
-                          </td> -->
+                          <td><a href="admin-product.php?pid=<?php echo $pro_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i></a></td>
                           <td class="py-1"><?php echo $serialNo++; ?></td>
                           <td class="py-1"><?php echo $pro_date; ?></td>
                           <td class="py-1"><?php echo $pro_cod; ?></td>
-                          <!-- <td><img src="../images/product/<?php echo $pro_img; ?>"  width="50" class="rounded-circle"></td> -->
                           <td><?php echo $pro_nam; ?></td>
                           <td><?php echo $pro_hsn; ?></td>
                           <td><?php echo $pro_qua; ?></td>

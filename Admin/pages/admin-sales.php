@@ -1,6 +1,6 @@
 <?php
 include './connect.php';
-// error_reporting(0);
+error_reporting(0);
 $sale_procode1 = $sale_proname1 = $sale_vp1 = $sale_cus1 = $sale_procat1 = $sale_prosubcat1 = $sale_address1 = "";
 session_start();
 if ($_SESSION["email"] == "") {
@@ -18,13 +18,7 @@ if ($_SESSION["email"] == "") {
   <!-- plugins:css -->
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
-  <!-- endinject -->
-  <!-- Plugin css for this page -->
-  <link rel="stylesheet" href="../vendors/select2/select2.min.css">
-  <link rel="stylesheet" href="../vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
   <!-- End plugin css for this page -->
-  <!-- inject:css -->
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
@@ -33,8 +27,6 @@ if ($_SESSION["email"] == "") {
 <body>
   <!-- code for getteing the subcategory as per the actegory selected -->
   <div class="container-scroller">
-    <!-- partial:../../partials/_navbar.html -->
-    <!-- including the sidebar,navbar -->
     <?php
     include './topbar.php';
     ?>
@@ -223,6 +215,7 @@ if ($_SESSION["email"] == "") {
                       <div class="form-group">
                         <label>Discount Percentage</label>
                         <select class="form-control" style="border-radius: 16px;" name="shdiscount" id="shdiscount" onchange="updateDiscount()">
+                          <option value="pro_dis0">0%</option>
                           <option value="pro_dis15">15%</option>
                           <option value="pro_dis25">25%</option>
                           <option value="pro_dis35">35%</option>
@@ -317,24 +310,6 @@ if ($_SESSION["email"] == "") {
                   <div class="col-md-9">
                     <p class="card-description">Product Sales Details</p>
                   </div>
-                  <!-- <div class="col-md-3">
-                    <div class="dropdown">
-                      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Filter By:
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <p class="pl-3">Type</p>
-                        <div class="dropdown-item">
-                          <input type="checkbox" id="checkCategory" class="filter-checkbox" value="category">
-                          <label for="checkCategory">Used Product</label>
-                        </div>
-                        <div class="dropdown-item">
-                          <input type="checkbox" id="checkSubcategory" class="filter-checkbox" value="subcategory">
-                          <label for="checkSubcategory">Unused Product</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div> -->
                 </div>
                 <div class="table-responsive">
                   <table class="table table-striped">
@@ -374,7 +349,6 @@ if ($_SESSION["email"] == "") {
                       $sale_mrp = $row['sales_mrp'];
                       $sale_quan = $row['sales_quan'];
                       $sale_date = $row['sales_date'];
-
                       // Fetch current quantity from the price table based on the product name
                       $currentQuantity = 0; // Default value if no quantity found
                       $currentQuantityQuery = mysqli_query($conn, "SELECT pro_curquantity FROM price WHERE pro_name = '$sale_proname'");
@@ -414,7 +388,6 @@ if ($_SESSION["email"] == "") {
                           <td><?php echo $sale_dis; ?>%</td>
                           <td><?php echo $sale_dispri; ?></td>
                           <td><?php echo $sale_total; ?></td>
-
                         </tr>
                       </tbody>
                     <?php
@@ -428,27 +401,18 @@ if ($_SESSION["email"] == "") {
           <!-- table view closed -->
         </div>
       </div>
-      <!-- content-wrapper ends -->
-      <!-- partial:../../partials/_footer.html -->
       <footer class="footer">
         <div class="d-sm-flex justify-content-center justify-content-sm-between">
           <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024.Nutri-time. All rights reserved.</span>
         </div>
       </footer>
-      <!-- partial -->
     </div>
-    <!-- main-panel ends -->
   </div>
-  <!-- page-body-wrapper ends -->
   </div>
-  <!-- container-scroller -->
-  <!-- plugins:js -->
-
   <script>
     function updateDiscount() {
       var selectedDiscount = document.getElementById("shdiscount").value;
       var productName = document.getElementById("proname").value;
-
       // AJAX request to fetch the discount value from the database based on the selected product and discount type
       $.post('get_discount_value.php', {
         product_name: productName,
@@ -460,23 +424,8 @@ if ($_SESSION["email"] == "") {
     }
   </script>
   <script src="../vendors/js/vendor.bundle.base.js"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page -->
-  <script src="../vendors/typeahead.js/typeahead.bundle.min.js"></script>
-  <script src="../vendors/select2/select2.min.js"></script>
-  <!-- End plugin js for this page -->
-  <!-- inject:js -->
   <script src="../js/off-canvas.js"></script>
-  <script src="../js/hoverable-collapse.js"></script>
   <script src="../js/template.js"></script>
-  <script src="../js/settings.js"></script>
-  <script src="../js/todolist.js"></script>
-  <!-- endinject -->
-  <!-- Custom js for this page-->
-  <script src="../js/file-upload.js"></script>
-  <script src="../js/typeahead.js"></script>
-  <script src="../js/select2.js"></script>
-  <!-- End custom js for this page-->
 </body>
 
 </html>

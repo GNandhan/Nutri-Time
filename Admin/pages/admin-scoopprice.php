@@ -220,7 +220,6 @@ if ($_SESSION["email"] == "") {
                     <thead>
                       <tr>
                         <th>Edit</th>
-                        <th>Delete</th>
                         <th>Slno</th>
                         <th>Product Code</th>
                         <th>Product Name</th>
@@ -249,7 +248,6 @@ if ($_SESSION["email"] == "") {
                       <tbody>
                         <tr>
                           <td><a href="admin-scoopprice.php?pid=<?php echo $pri_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i></a></td>
-                          <td><a href="admin-scoopprice.php?pd_id=<?php echo $pri_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a></td>
                           <td class="py-1"><?php echo $serialNo++; ?></td>
                           <td class="py-1">#<?php echo $pri_cod; ?></td>
                           <td><?php echo $pri_nam; ?></td>
