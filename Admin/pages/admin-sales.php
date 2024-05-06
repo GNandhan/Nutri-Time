@@ -266,11 +266,9 @@ if ($_SESSION["email"] == "") {
           $sal_dis = $numericDiscount; // Use this numeric value for further processing
           $sal_dispri = $_POST["properprice"];
 
-          $sal_curquan_query = mysqli_query($conn, "SELECT pro_curquantity FROM price ");
+          $sal_curquan_query = mysqli_query($conn, "SELECT pro_curquantity FROM price");
           $sal_curquan_row = mysqli_fetch_assoc($sal_curquan_query);
           $sal_curquan = $sal_curquan_row['pro_curquantity'];
-
-          $sal_curquan1 = $sal_curquan - $sal_quan;
 
           // Calculate subtotal
           $subtotal = $sal_dispri * $sal_quan;
@@ -278,6 +276,8 @@ if ($_SESSION["email"] == "") {
           $gstAmount = ($subtotal * $sal_gst) / 100;
           // Calculate total including GST
           $sal_total = $subtotal + $gstAmount;
+
+          $sal_curquan1 = $sal_curquan - $sal_quan;
 
           // Determine if this is an INSERT or UPDATE operation based on saleid
           $sale_id = $_POST["saleid"];
