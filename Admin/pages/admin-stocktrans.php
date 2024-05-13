@@ -171,6 +171,8 @@ if ($_SESSION["email"] == "") {
           $sal_curquan1 = $stoqua - $sal_curquan;
 
 
+
+          
           // $total = $stopri * ($stogst / 100);
           $stototal = intval($stoqua) * intval($stopri);
 
