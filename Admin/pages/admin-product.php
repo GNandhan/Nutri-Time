@@ -213,6 +213,7 @@ if ($_SESSION["email"] == "") {
             </div>
           </div>
         </div>
+        
         <!-- PHP CODE FOR INSERTING THE DATA -->
         <?php
         if (isset($_POST["submitp"])) {

@@ -64,8 +64,8 @@
            <div class="col-12 grid-margin stretch-card">
              <div class="card">
                <div class="card-body">
-                 <h4 class="card-title">Gallery</h4>
-                 <p class="card-description">Add Gallery Image</p>
+                 <h4 class="card-title">Message Details</h4>
+                 <p class="card-description">Add Message Content</p>
                  <form class="forms-sample" method="post" enctype="multipart/form-data">
                    <input type="hidden" name="gallid" value="<?php echo $gl_id; ?>">
                    <div class="form-group">
