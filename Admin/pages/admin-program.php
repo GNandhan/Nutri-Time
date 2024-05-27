@@ -107,8 +107,7 @@ if ($_SESSION["email"] == "") {
                       </div>
                     </div>
                   </div>
-              </div>
-
+              <!-- </div> -->
               <button type="submit" class="btn btn-primary mr-2 rounded-pill" name="submitpr">Submit</button>
               <a href="./admin-program.php" class="btn btn-light rounded-pill">Cancel</a>
               </form>
