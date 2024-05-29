@@ -36,7 +36,6 @@
           className: "btn btn-primary"
         }
       })
-
     } else if (type === 'auto-close') {
       swal({
         title: 'Auto close alert!',
