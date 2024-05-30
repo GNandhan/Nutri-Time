@@ -130,7 +130,6 @@ if ($_SESSION["email"] == "") {
                                                     <li class="card-description">Email id : <span style="font-weight:bold; color:black;"><?php echo $cus_mail; ?></span></li>
                                                     <li class="card-description">City : <span style="font-weight:bold; color:black;"><?php echo $cus_city; ?></span></li>
                                                     <li class="card-description">Address : <span style="font-weight:bold; color:black;"><?php echo $cus_address; ?></span></li>
-
                                                 </ul>
                                             </div>
                                         </div>
@@ -161,7 +160,6 @@ if ($_SESSION["email"] == "") {
                                                 </ul>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
