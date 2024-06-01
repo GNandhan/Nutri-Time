@@ -169,10 +169,7 @@ if ($_SESSION["email"] == "") {
           $sal_curquan = $sal_curquan_row['pro_curquantity'];
 
           $sal_curquan1 = $stoqua - $sal_curquan;
-
-
-
-          
+         
           // $total = $stopri * ($stogst / 100);
           $stototal = intval($stoqua) * intval($stopri);
 

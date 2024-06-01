@@ -291,5 +291,4 @@ if ($_SESSION["email"] == "") {
     <script src="../js/todolist.js"></script>
     <!-- endinject -->
 </body>
-
 </html>

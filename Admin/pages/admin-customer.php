@@ -106,6 +106,18 @@ if ($_SESSION["email"] == "") {
       $cus_date12 = $p_row1['cust_date'];
     }
     ?>
+        <?php
+    if (isset($_GET['cusmdid2'])) {
+      $cusid = $_GET['cusmdid2'];
+      $p_query = mysqli_query($conn, "SELECT * FROM customer WHERE cust_id = '$cusid'");
+      $p_row1 = mysqli_fetch_array($p_query);
+
+      $cus_id1 = $p_row1['cust_id'];
+      $cus_total2 = $p_row1['cust_bmr'];
+      $cus_paid2 = $p_row1['cust_bmi'];
+      $cus_date12 = $p_row1['cust_date'];
+    }
+    ?>
     <!-- partial -->
     <div class="main-panel">
       <div class="content-wrapper">
@@ -473,6 +485,7 @@ if ($_SESSION["email"] == "") {
                         <th>Edit</th>
                         <th>Delete</th>
                         <th>Payment</th>
+                        <th>BMR History</th>
                         <th>Customer Code</th>
                         <th>Customer Name</th>
                         <th>Phno</th>
@@ -583,6 +596,7 @@ if ($_SESSION["email"] == "") {
                           <td><a href="admin-customer.php?cusid=<?php echo $cus_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit <i class="ti-pencil-alt btn-icon-append"></i></a></td>
                           <td><a href="admin-customer.php?cusdid=<?php echo $cus_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a></td>
                           <td><a href="admin-customer.php?cusmdid=<?php echo $cus_id; ?>" class="btn btn-inverse-primary btn-icon-text p-3" data-toggle="modal" data-target="#exampleModal_<?php echo $cus_id; ?>">Add Payment</a></td>
+                          <td><a href="admin-customer.php?cusmdid=<?php echo $cus_id; ?>" class="btn btn-inverse-primary btn-icon-text p-3" data-toggle="modal" data-target="#exampleModal2_<?php echo $cus_id; ?>">BMI & BMR</a></td>
                           <!-- <td class="py-1"><?php echo $cus_code; ?></td> -->
                           <td class="py-1"><a href="admin-customerdetails.php?prid=<?php echo $cus_id; ?>" class="text-dark"><?php echo $cus_code; ?></a></td>
                           <td><?php echo $cus_name; ?></td>
@@ -709,6 +723,132 @@ if ($_SESSION["email"] == "") {
                                     </div>
                                     <div class="col-lg col-md col-sm-4 col-6">
                                       <label class="">Payment Date</label>
+                                      <div class="form-group">
+                                        <input type="date" class="form-control" style="border-radius: 16px;" name="cuspaiddate4" value="<?php echo $cus_paid0date4; ?>">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <button type="button" class="btn btn-primary mt-2" id="addPaymentField">+</button>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" name="submitpay" class="btn btn-primary">Save changes</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Modal for BMI and BMR -->
+                      <div class="modal fade" id="exampleModal2_<?php echo $cus_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content" style="border-radius:20px;">
+                            <form action="" method="POST">
+                              <input type="hidden" name="custid2" value="<?php echo $cus_id; ?>">
+                              <div class="modal-header">
+                                <h3 class="modal-title" id="exampleModalLabel">BMI & BMR History</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <div class="form-group" id="paymentFields">
+                                  <div class="row">
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">1st BMI</label>
+                                      <div class="form-group">
+                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid" value="<?php echo $cus_bmi; ?>">
+                                      </div>
+                                    </div>
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">1st BMR</label>
+                                      <div class="form-group">
+                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid" value="<?php echo $cus_bmr; ?>">
+                                      </div>
+                                    </div>
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">Date</label>
+                                      <div class="form-group">
+                                        <input type="date" class="form-control" style="border-radius: 16px;" name="cuspaiddate" value="<?php echo $cus_doj; ?>">
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">2nd BMI</label>
+                                      <div class="form-group">
+                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid1" value="<?php echo $cus_bmi; ?>">
+                                      </div>
+                                    </div>
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">2nd BMR</label>
+                                      <div class="form-group">
+                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid1" value="<?php echo $cus_bmr; ?>">
+                                      </div>
+                                    </div>
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">Date</label>
+                                      <div class="form-group">
+                                        <input type="date" class="form-control" style="border-radius: 16px;" name="cuspaiddate1" value="<?php echo $cus_paid0date1; ?>">
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">3rd BMI</label>
+                                      <div class="form-group">
+                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid2" value="<?php echo $cus_bmi; ?>">
+                                      </div>
+                                    </div>
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">3rd BMR</label>
+                                      <div class="form-group">
+                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid1" value="<?php echo $cus_bmr; ?>">
+                                      </div>
+                                    </div>
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">Date</label>
+                                      <div class="form-group">
+                                        <input type="date" class="form-control" style="border-radius: 16px;" name="cuspaiddate2" value="<?php echo $cus_paid0date2; ?>">
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">4th BMI</label>
+                                      <div class="form-group">
+                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid3" value="<?php echo $cus_bmi; ?>">
+                                      </div>
+                                    </div>
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">4th BMR</label>
+                                      <div class="form-group">
+                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid1" value="<?php echo $cus_bmr; ?>">
+                                      </div>
+                                    </div>
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">Date</label>
+                                      <div class="form-group">
+                                        <input type="date" class="form-control" style="border-radius: 16px;" name="cuspaiddate3" value="<?php echo $cus_paid0date3; ?>">
+                                      </div>
+                                    </div>  
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">5th BMI</label>
+                                      <div class="form-group">
+                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid4" value="<?php echo $cus_bmi; ?>">
+                                      </div>
+                                    </div>
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">5th BMR</label>
+                                      <div class="form-group">
+                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid1" value="<?php echo $cus_bmr; ?>">
+                                      </div>
+                                    </div>
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">Date</label>
                                       <div class="form-group">
                                         <input type="date" class="form-control" style="border-radius: 16px;" name="cuspaiddate4" value="<?php echo $cus_paid0date4; ?>">
                                       </div>
