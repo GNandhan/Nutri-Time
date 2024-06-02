@@ -1,6 +1,6 @@
 <?php
 include './connect.php';
-// error_reporting(0);
+error_reporting(0);
 session_start();
 if ($_SESSION["email"] == "") {
     header('location:admin-login.php');
@@ -83,17 +83,17 @@ if ($_SESSION["email"] == "") {
                         $cus_prgtype = $c_row['cust_prgtype'];
                         $cus_nodays = $c_row['cust_noday'];
                         $cus_total = $c_row['cust_total'];
-                        $cus_paid = $c_row['cust_paid'];
+                        $cus_paid = intval($c_row['cust_paid']);
                         $cus_paiddate = $c_row['cust_paiddate'];
-                        $cus_paid1 = $c_row['cust_paid1'];
+                        $cus_paid1 = intval($c_row['cust_paid1']);
                         $cus_paiddate1 = $c_row['cust_paiddate1'];
-                        $cus_paid2 = $c_row['cust_paid2'];
+                        $cus_paid2 = intval($c_row['cust_paid2']);
                         $cus_paiddate2 = $c_row['cust_paiddate2'];
-                        $cus_paid3 = $c_row['cust_paid3'];
+                        $cus_paid3 = intval($c_row['cust_paid3']);
                         $cus_paiddate3 = $c_row['cust_paiddate3'];
-                        $cus_paid4 = $c_row['cust_paid4'];
+                        $cus_paid4 = intval($c_row['cust_paid4']);
                         $cus_paiddate4 = $c_row['cust_paiddate4'];
-                        $cus_paid5 = $c_row['cust_paid5'];
+                        $cus_paid5 = intval($c_row['cust_paid5']);
                         $cus_paiddate5 = $c_row['cust_paiddate5'];
                         $cus_remain = $c_row['cust_remain'];
                         $cus_date = $c_row['cust_date'];
