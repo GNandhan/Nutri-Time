@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2024 at 07:03 AM
+-- Generation Time: Jun 02, 2024 at 06:53 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -112,19 +112,19 @@ CREATE TABLE `customer` (
   `cust_prgtype` varchar(20) NOT NULL,
   `cust_noday` varchar(10) NOT NULL,
   `cust_total` varchar(20) NOT NULL,
-  `cust_paid` varchar(20) NOT NULL,
+  `cust_paid` varchar(20) DEFAULT NULL,
   `cust_paiddate` varchar(100) NOT NULL,
-  `cust_paid1` varchar(10) NOT NULL,
+  `cust_paid1` varchar(10) DEFAULT NULL,
   `cust_paiddate1` varchar(100) NOT NULL,
-  `cust_paid2` varchar(10) NOT NULL,
+  `cust_paid2` varchar(10) DEFAULT NULL,
   `cust_paiddate2` varchar(100) NOT NULL,
-  `cust_paid3` varchar(10) NOT NULL,
+  `cust_paid3` varchar(10) DEFAULT NULL,
   `cust_paiddate3` varchar(100) NOT NULL,
-  `cust_paid4` varchar(10) NOT NULL,
+  `cust_paid4` varchar(10) DEFAULT NULL,
   `cust_paiddate4` varchar(100) NOT NULL,
-  `cust_paid5` varchar(10) NOT NULL,
+  `cust_paid5` varchar(10) DEFAULT NULL,
   `cust_paiddate5` varchar(100) NOT NULL,
-  `cust_remain` varchar(10) NOT NULL,
+  `cust_remain` varchar(10) DEFAULT NULL,
   `cust_date` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -136,7 +136,7 @@ INSERT INTO `customer` (`cust_id`, `cust_code`, `cust_name`, `cust_phno`, `cust_
 (1003, 'CUS10012', 'Kareem', '7854985687', 'Ashraf', '25', '26', 'Male', 'manu123@gmail.com', 'manu123@', '2024-04-09', 'Kozhikode', 'veluvil po mavoor, kozhikode', '175', '62', '75', '15', '10', '11', '12', '13', '14', '09:29', 'Green Tea', 'Idly, Sambar', 'Chicken Biriyani', 'ladoo', 'Mandi', 'Non-veg', '2 litre', 'Diabeted', 'Cancer', 'High BP', 'Diabetieswe3ee23e', 'Fever', 'Blood pressure', 'Diabeties 2', 'Diabeties 3', 'Weight lose', 'Online', '20', '10000', '2000', '2024-04-01', '3000', '2024-04-02', '1000', '2024-04-03', '1000', '2024-04-04', '2000', '2024-04-05', '0', '', '8000', '2024-04-27'),
 (1005, 'CUS10013', 'Amal', '9865329865', 'Ashraf', '26', '27', 'Male', 'amal123@gmail.com', 'amal123@', '', 'Thalayolaparambu', '3rd floor, Thalayolaparambu, po', '165', '63', '65', '32', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Offline', '40', '26000', '20000', '2024-04-02', '1000', '2024-04-09', '5000', '2024-04-16', '0', '', '0', '', '', '', '6000', '2024-04-27'),
 (1006, 'CUS10029', 'Albin', '9865875498', 'Ashraf', '25', '26', 'Male', 'albin12@gmail.com', 'albin12@', '', 'Vallaserry', '3rd floor, vallaserry, po', '152', '72', '52', '26', '001', '002', '003', '004', '005', '16:51', 'Black Coffee', 'Noodles', 'Mandi', 'fries', 'Mandi', 'Non-veg', '1 litre', 'belly fat', 'blood cancer', 'nutrition effectency', 'Diabeties', 'Fever', 'Blood pressure', 'Diabeties 2', 'Diabeties 3', 'Fat Reducer', 'Offline', '25', '15000', '8000', '', '7000', '', '0', '', '', '', '', '', '', '', '7000', '2024-04-27'),
-(1007, 'CUS10016', 'Ajith', '986585498', 'Ashraf', '45', '46', 'Male', 'amal123@gmail.com', 'amal123@', '', 'Kochi', '3rd floor, kochi, po', '182', '90', '82', '72', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '25', '15000', '8000', '', '900', '', '0', '', '0', '', '0', '', '', '', '7000', '2024-04-27'),
+(1007, 'CUS10016', 'Ajith', '986585498', 'Ashraf', '45', '46', 'Male', 'amal123@gmail.com', 'amal123@', '', 'Kochi', '3rd floor, kochi, po', '182', '90', '82', '72', '10', '105.4', '100.5', '142.2', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '25', '15000', '8000', '', '900', '', '0', '', '0', '', '0', '', '', '', '7000', '2024-04-27'),
 (1008, 'CUS10026', 'Melow', '9887659854', 'Amal', '25', '26', 'Female', 'melow12@gmail.com', '', '15-04-2023', 'Kochi', '3rd floor, kochi, po', '154', '78', '', '24', '001', '002', '003', '004', '14', '00:57', 'okkokook', 'Noodles', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '1 litre', 'belly fat', 'blood cancer', 'nutrition effectency', '', '', '', '', '', 'Weight lose', 'Offline', '20', '12000', '8000', '', '', '', '', '', '', '', '', '', '', '', '11000', '2024-04-27'),
 (1009, 'CUS10026', 'Mathew', '9887659854', 'Amal', '25', '26', 'Female', 'melow12@gmail.com', '', '15-04-2023', 'Kochi', '3rd floor, kochi, po', '154', '78', '', '24', '001', '002', '003', '004', '14', '00:57', 'okkokook', 'Noodles', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '1 litre', 'belly fat', 'blood cancer', 'nutrition effectency', '', '', '', '', '', 'Weight lose', 'Offline', '20', '12000', '8000', '', '', '', '', '', '', '', '', '', '', '', '11000', '2024-04-27'),
 (1010, 'CUS10027', 'Abdul', '9887659854', 'Amal', '38', '39', 'Male', 'abdul12@gmail.com', '', '20-06-2024', 'Kochi', '3rd floor, kochi, po', '163', '96', '60', '24', '001', '002', '003', '004', '005', '11:09', 'Black Coffee', 'Idly, Sambar', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '2 litre', 'Diabeted', 'Cancer', 'High BP', '', '', '', '', '', 'Weight lose', 'Offline', '20', '12000', '8000', '', '', '', '', '', '', '', '', '', '', '', '4000', '2024-04-27'),
@@ -219,7 +219,7 @@ CREATE TABLE `price` (
 
 INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subcat`, `pro_mrp`, `pro_price`, `pro_dis0`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`, `pro_vp`, `pro_vptotal`, `pro_scoop`, `pro_scoop15`, `pro_scoop25`, `pro_scoop35`, `pro_scoop42`, `pro_scoop50`, `pro_quantity`, `pro_curquantity`, `pro_hsn`, `pro_img`, `pro_date`) VALUES
 (1, 'FORMULA 1 SHAKE MIX VANILLA', 'F1V', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '1', '2065', '1860', '1650', '1505', '1340', '21.75', '108.75', '60', '103.25', '93', '82.5', '75.25', '67', '35', '0', '785487', '', '2024-05-01'),
-(2, 'FORMULA 1 SHAKE MIX CHOCOLATE', 'F1C', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '1', '2065', '1860', '1650', '1505', '1340', '12.75', '191.25', '60', '103.25', '93', '82.5', '75.25', '67', '25', '-10', '111111', '', '2024-05-01'),
+(2, 'FORMULA 1 SHAKE MIX CHOCOLATE', 'F1C', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '1', '2065', '1860', '1650', '1505', '1340', '12.75', '191.25', '60', '103.25', '93', '82.5', '75.25', '67', '25', '10', '111111', '', '2024-05-01'),
 (3, 'FORMULA 1 SHAKE MIX PISTAH', 'F1P', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '1', '2065', '1860', '1650', '1505', '1340', '21.75', '652.5', '60', '103.25', '93', '82.5', '75.25', '67', '30', '5', '1010', '', '2024-05-03');
 
 -- --------------------------------------------------------
