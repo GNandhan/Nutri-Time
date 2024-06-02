@@ -9,6 +9,7 @@ if ($_SESSION["email"] == "") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -106,7 +107,7 @@ if ($_SESSION["email"] == "") {
       $cus_date12 = $p_row1['cust_date'];
     }
     ?>
-        <?php
+    <?php
     if (isset($_GET['cusmdid2'])) {
       $cusid = $_GET['cusmdid2'];
       $p_query = mysqli_query($conn, "SELECT * FROM customer WHERE cust_id = '$cusid'");
@@ -423,7 +424,7 @@ if ($_SESSION["email"] == "") {
           $cheight = floatval($_POST["cusheight"]); // Convert string to float
           $cweight = floatval($_POST["cusweight"]); // Convert string to float
           $cidle = 100.0; // Assuming you want to subtract a float from the height
-          $cidleweight = $cheight - $cidle;          
+          $cidleweight = $cheight - $cidle;
           $cfat = $_POST["cusfat"];
           $cvcf = $_POST["cusvcf"];
           $cbmr = $_POST["cusbmr"];
@@ -712,7 +713,7 @@ if ($_SESSION["email"] == "") {
                                       <div class="form-group">
                                         <input type="date" class="form-control" style="border-radius: 16px;" name="cuspaiddate3" value="<?php echo $cus_paid0date3; ?>">
                                       </div>
-                                    </div>  
+                                    </div>
                                   </div>
                                   <div class="row">
                                     <div class="col-lg col-md col-sm-4 col-6">
@@ -832,7 +833,7 @@ if ($_SESSION["email"] == "") {
                                       <div class="form-group">
                                         <input type="date" class="form-control" style="border-radius: 16px;" name="cuspaiddate3" value="<?php echo $cus_paid0date3; ?>">
                                       </div>
-                                    </div>  
+                                    </div>
                                   </div>
                                   <div class="row">
                                     <div class="col-lg col-md col-sm-4 col-6">
@@ -930,47 +931,48 @@ if ($_SESSION["email"] == "") {
   <!-- page-body-wrapper ends -->
   </div>
   <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    var counter = 6; // Starting from 4th paid
-    document.getElementById("addPaymentField").addEventListener("click", function() {
-      var row = document.createElement("div");
-      row.className = "row";
-      
-      var col1 = document.createElement("div");
-      col1.className = "col-lg col-md col-sm-4 col-6";
-      var label1 = document.createElement("label");
-      label1.textContent = counter + "th Paid";
-      var input1 = document.createElement("input");
-      input1.type = "text";
-      input1.className = "form-control cus-paid";
-      input1.style.borderRadius = "16px";
-      input1.name = "cuspaid" + counter;
-      col1.appendChild(label1);
-      col1.appendChild(input1);
-      
-      var col2 = document.createElement("div");
-      col2.className = "col-lg col-md col-sm-4 col-6";
-      var label2 = document.createElement("label");
-      label2.textContent = "Payment Date";
-      var input2 = document.createElement("input");
-      input2.type = "date";
-      input2.className = "form-control";
-      input2.style.borderRadius = "16px";
-      input2.name = "cuspaiddate" + counter;
-      col2.appendChild(label2);
-      col2.appendChild(input2);
-      
-      row.appendChild(col1);
-      row.appendChild(col2);
-      
-      document.getElementById("paymentFields").appendChild(row);
-      
-      counter++;
+    document.addEventListener("DOMContentLoaded", function() {
+      var counter = 6; // Starting from 4th paid
+      document.getElementById("addPaymentField").addEventListener("click", function() {
+        var row = document.createElement("div");
+        row.className = "row";
+
+        var col1 = document.createElement("div");
+        col1.className = "col-lg col-md col-sm-4 col-6";
+        var label1 = document.createElement("label");
+        label1.textContent = counter + "th Paid";
+        var input1 = document.createElement("input");
+        input1.type = "text";
+        input1.className = "form-control cus-paid";
+        input1.style.borderRadius = "16px";
+        input1.name = "cuspaid" + counter;
+        col1.appendChild(label1);
+        col1.appendChild(input1);
+
+        var col2 = document.createElement("div");
+        col2.className = "col-lg col-md col-sm-4 col-6";
+        var label2 = document.createElement("label");
+        label2.textContent = "Payment Date";
+        var input2 = document.createElement("input");
+        input2.type = "date";
+        input2.className = "form-control";
+        input2.style.borderRadius = "16px";
+        input2.name = "cuspaiddate" + counter;
+        col2.appendChild(label2);
+        col2.appendChild(input2);
+
+        row.appendChild(col1);
+        row.appendChild(col2);
+
+        document.getElementById("paymentFields").appendChild(row);
+
+        counter++;
+      });
     });
-  });
-</script>
+  </script>
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <script src="../js/off-canvas.js"></script>
   <script src="../js/template.js"></script>
 </body>
+
 </html>
