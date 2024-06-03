@@ -629,6 +629,7 @@ if ($_SESSION["email"] == "") {
                       $cus_paid = $cus_paid0 + $cus_paid1 + $cus_paid2 + $cus_paid3 + $cus_paid4 + $cus_paid5 + $cus_paid6 + $cus_paid7 + $cus_paid8 + $cus_paid9;
                       $cus_remain = $row['cust_remain'];
                       $cus_date = $row['cust_date'];
+
                     ?>
                       <tbody>
                         <tr>
@@ -696,6 +697,7 @@ if ($_SESSION["email"] == "") {
                               </div>
                               <div class="modal-body">
                                 <h3>Total Amount :<span style="font-weight: bold;"><?php echo $cus_total; ?></span></h3>
+                                <h4 class="py-2">Balance Amount :<span style="font-weight: bold;"><?php echo $cus_remain; ?></span></h4>
                                 <div class="form-group" id="paymentFields">
                                   <div class="row">
                                     <div class="col-lg col-md col-sm-4 col-6">
@@ -739,34 +741,6 @@ if ($_SESSION["email"] == "") {
                                       </div>
                                     </div>
                                   </div>
-                                  <div class="row">
-                                    <div class="col-lg col-md col-sm-4 col-6">
-                                      <label class="">4th Paid</label>
-                                      <div class="form-group">
-                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid3" value="<?php echo $cus_paid3; ?>">
-                                      </div>
-                                    </div>
-                                    <div class="col-lg col-md col-sm-4 col-6">
-                                      <label class="">Payment Date</label>
-                                      <div class="form-group">
-                                        <input type="date" class="form-control" style="border-radius: 16px;" name="cuspaiddate3" value="<?php echo $cus_paid0date3; ?>">
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-lg col-md col-sm-4 col-6">
-                                      <label class="">5th Paid</label>
-                                      <div class="form-group">
-                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid4" value="<?php echo $cus_paid4; ?>">
-                                      </div>
-                                    </div>
-                                    <div class="col-lg col-md col-sm-4 col-6">
-                                      <label class="">Payment Date</label>
-                                      <div class="form-group">
-                                        <input type="date" class="form-control" style="border-radius: 16px;" name="cuspaiddate4" value="<?php echo $cus_paid0date4; ?>">
-                                      </div>
-                                    </div>
-                                  </div>
                                 </div>
                                 <button type="button" class="btn btn-primary mt-2" id="addPaymentField">+</button>
                               </div>
@@ -780,7 +754,7 @@ if ($_SESSION["email"] == "") {
                       </div>
 
                       <!-- Modal for BMI and BMR -->
-                      <div class="modal fade" id="exampleModal2_<?php echo $cus_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <!-- <div class="modal fade" id="exampleModal2_<?php echo $cus_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content" style="border-radius:20px;">
                             <form action="" method="POST">
@@ -903,7 +877,7 @@ if ($_SESSION["email"] == "") {
                             </form>
                           </div>
                         </div>
-                      </div>
+                      </div> -->
                     <?php
                     }
                     ?>
@@ -911,54 +885,47 @@ if ($_SESSION["email"] == "") {
                   <!-- PHP CODE FOR INSERTING THE PAYMENT DATA -->
                   <?php
                   if (isset($_POST["submitpay"])) {
-                    $ppaid = $_POST["cuspaid"];
-                    $ppaiddate = $_POST["cuspaiddate"];
-                    $ppaid1 = $_POST["cuspaid1"];
-                    $ppaiddate1 = $_POST["cuspaiddate1"];
-                    $ppaid2 = $_POST["cuspaid2"];
-                    $ppaiddate2 = $_POST["cuspaiddate2"];
-                    $ppaid3 = $_POST["cuspaid3"];
-                    $ppaiddate3 = $_POST["cuspaiddate3"];
-                    $ppaid4 = $_POST["cuspaid4"];
-                    $ppaiddate4 = $_POST["cuspaiddate4"];
-                    $ppaid5 = $_POST["cuspaid5"];
-                    $ppaiddate5 = $_POST["cuspaiddate5"];
-                    $ppaid6 = $_POST["cuspaid6"];
-                    $ppaiddate6 = $_POST["cuspaiddate6"];
-                    $ppaid7 = $_POST["cuspaid7"];
-                    $ppaiddate7 = $_POST["cuspaiddate7"];
-                    $ppaid8 = $_POST["cuspaid8"];
-                    $ppaiddate8 = $_POST["cuspaiddate8"];
-                    $ppaid9 = $_POST["cuspaid9"];
-                    $ppaiddate9 = $_POST["cuspaiddate9"];
                     $pri_id = $_POST["custid2"];
-                    $pri_paidtotal = $ppaid + $ppaid1 + $ppaid2 + $ppaid3 + $ppaid4 + $ppaid5 + $ppaid6 + $ppaid7 + $ppaid8 + $ppaid9;
 
-                    $cu_query = mysqli_query($conn, "SELECT * FROM customer WHERE cust_id = '$pri_id'");
-                    $cu_row1 = mysqli_fetch_array($cu_query);
+                    // Fetch customer details from the customer table
+                    $cu_query = mysqli_query($conn, "SELECT cust_code, cust_name FROM customer WHERE cust_id = '$pri_id'");
+                    if ($cu_query && mysqli_num_rows($cu_query) > 0) {
+                      $cu_row = mysqli_fetch_assoc($cu_query);
+                      $cust_code = $cu_row['cust_code'];
+                      $cust_name = $cu_row['cust_name'];
 
-                    $pri_total = $cu_row1['cust_total'];
+                      // Prepare to insert all payment data
+                      $insert_values = [];
+                      foreach ($_POST as $key => $value) {
+                        if (strpos($key, 'cuspaid') === 0 && !empty($value)) {
+                          $index = substr($key, 7);
+                          $ppaid = $value;
+                          $ppaiddate = $_POST["cuspaiddate" . $index] ?? null;
 
-                    $pri_remain = $pri_total - $pri_paidtotal;
-                    // Check if the record already exists
-                    if (empty($pri_id)) {
-                      // If no record exists, insert a new one
-                      $sql = mysqli_query($conn, "INSERT INTO customer (cust_paid, cust_paiddate, cust_paid1, cust_paiddate1, cust_paid2, cust_paiddate2, cust_paid3, cust_paiddate3, cust_paid4, cust_paiddate4, cust_paid5, cust_paiddate5, cust_paid6, cust_paiddate6, cust_paid7,  cust_paiddate7, cust_paid8, cust_paiddate8, cust_paid9, cust_paiddate9, cust_remain)
-                                                                VALUES ('$ppaid','$ppaiddate','$ppaid1','$ppaiddate1','$ppaid2','$ppaiddate2','$ppaid3','$ppaiddate3','$ppaid4','$ppaiddate4','$ppaid5','$ppaiddate5','$ppaid6','$ppaiddate6','$ppaid7','$ppaiddate7','$ppaid8','$ppaiddate8','$ppaid9','$ppaiddate9','$pri_remain')");
+                          if ($ppaiddate) {
+                            $insert_values[] = "('$pri_id', '$cust_code', '$cust_name', '$ppaid', '$ppaiddate')";
+                          }
+                        }
+                      }
+
+                      if (!empty($insert_values)) {
+                        $sql = "INSERT INTO `pay_history` (`cust_id`, `cust_code`, `cust_name`, `cust_paid`, `cust_paiddate`) VALUES " . implode(", ", $insert_values);
+                        if (mysqli_query($conn, $sql)) {
+                          echo "<script>alert('Operation completed successfully.');</script>";
+                          echo "<script>window.location='admin-customer.php';</script>";
+                        } else {
+                          echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
+                        }
+                      }
                     } else {
-                      // If a record exists, update it
-                      $sql = mysqli_query($conn, "UPDATE customer SET cust_paid='$ppaid', cust_paiddate='$ppaiddate', cust_paid1='$ppaid1', cust_paiddate1='$ppaiddate1', cust_paid2='$ppaid2', cust_paiddate2='$ppaiddate2', cust_paid3='$ppaid3', cust_paiddate3='$ppaiddate3', cust_paid4='$ppaid4', cust_paiddate4='$ppaiddate4', cust_remain='$pri_remain' WHERE cust_id='$pri_id'");
-                    }
-                    if ($sql) {
-                      echo "<script>alert('Operation completed successfully.');</script>";
-                      echo "<script>window.location='admin-customer.php';</script>";
-                    } else {
-                      echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
+                      echo "<script>alert('Error: Customer not found.');</script>";
                     }
                   }
                   ?>
-                   <!-- PHP CODE FOR INSERTING THE PAYMENT DATA -->
-                   <?php
+
+
+                  <!-- PHP CODE FOR INSERTING THE BMI & BMR HISTORY DATA -->
+                  <?php
                   if (isset($_POST["submitbmi"])) {
                     $cbmi = $_POST["cusbmi"];
                     $cbmr = $_POST["cusbmr"];
@@ -1018,7 +985,7 @@ if ($_SESSION["email"] == "") {
   </div>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      var counter = 6; // Starting from 4th paid
+      var counter = 3; // Starting from 4th paid
       document.getElementById("addPaymentField").addEventListener("click", function() {
         var row = document.createElement("div");
         row.className = "row";
@@ -1026,7 +993,7 @@ if ($_SESSION["email"] == "") {
         var col1 = document.createElement("div");
         col1.className = "col-lg col-md col-sm-4 col-6";
         var label1 = document.createElement("label");
-        label1.textContent = counter + "th Paid";
+        label1.textContent = (counter + 1) + "th Paid";
         var input1 = document.createElement("input");
         input1.type = "text";
         input1.className = "form-control cus-paid";

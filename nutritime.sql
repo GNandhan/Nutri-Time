@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2024 at 07:16 AM
+-- Generation Time: Jun 03, 2024 at 08:04 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,6 +40,22 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`admin_id`, `admin_name`, `admin_mail`, `admin_pass`) VALUES
 (1001, 'Ashraf', 'nutriadmin@gmail.com', 'nutriadmin@');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bmr_history`
+--
+
+CREATE TABLE `bmr_history` (
+  `bmr_id` int(11) NOT NULL,
+  `cust_id` int(10) NOT NULL,
+  `cust_code` varchar(50) NOT NULL,
+  `cust_name` varchar(100) NOT NULL,
+  `cust_bmr` varchar(20) NOT NULL,
+  `cust_bmi` varchar(20) NOT NULL,
+  `cust_bmidate` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -214,6 +230,21 @@ INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`)
 ('nutriadmin@gmail.com', 4, '2024-05-30 21:22:27'),
 ('nutriadmin@gmail.com', 5, '2024-05-31 18:21:43'),
 ('nutriadmin@gmail.com', 6, '2024-06-03 06:00:56');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment`
+--
+
+CREATE TABLE `payment` (
+  `pay_id` int(11) NOT NULL,
+  `cust_id` int(10) NOT NULL,
+  `cust_code` varchar(50) NOT NULL,
+  `cust_name` varchar(100) NOT NULL,
+  `cust_paid` varchar(20) NOT NULL,
+  `cust_paiddate` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -444,6 +475,12 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`);
 
 --
+-- Indexes for table `bmr_history`
+--
+ALTER TABLE `bmr_history`
+  ADD PRIMARY KEY (`bmr_id`);
+
+--
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
@@ -466,6 +503,12 @@ ALTER TABLE `gallery`
 --
 ALTER TABLE `login_details`
   ADD PRIMARY KEY (`login_details_id`);
+
+--
+-- Indexes for table `payment`
+--
+ALTER TABLE `payment`
+  ADD PRIMARY KEY (`pay_id`);
 
 --
 -- Indexes for table `price`
@@ -526,6 +569,12 @@ ALTER TABLE `admin`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1002;
 
 --
+-- AUTO_INCREMENT for table `bmr_history`
+--
+ALTER TABLE `bmr_history`
+  MODIFY `bmr_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
@@ -548,6 +597,12 @@ ALTER TABLE `gallery`
 --
 ALTER TABLE `login_details`
   MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `payment`
+--
+ALTER TABLE `payment`
+  MODIFY `pay_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `price`
