@@ -1,6 +1,6 @@
 <?php
 include './connect.php';
-error_reporting(0);
+// error_reporting(0);
 $cus_id1 = $cus_code1 = $cus_name1 = $cus_phno1 = $cus_invite1 = $cus_age1 = $cus_bodyage1 = $cus_gender1 = $cus_email1 = $cus_doj1 = $cus_city1 = $cus_address1 = $cus_height1 = $cus_weight1 = $cus_idleweight1 = $cus_fat1 = $cus_vcf1 = $cus_bmr1 = $cus_bmi1 = $cus_mm1 = $cus_tsf1 = $cus_waketime1 = $cus_tea1 = $cus_breakfast1 = $cus_lunch1 = $cus_snack1 = $cus_dinner1 = $cus_veg_nonveg1 = $cus_waterintake1 = $cus_cond11 = $cus_cond21 = $cus_cond31 = $cus_cond41 = $cus_cond51 = $cus_cond61 = $cus_cond71 = $cus_cond81 = $cus_prg1 = $cus_prgtype1 = $cus_nodays1 = $cus_total1 = $cus_paid1 = $cus_remain1 = $cusid = $cus_paid3 = "";
 session_start();
 if ($_SESSION["email"] == "") {
@@ -556,6 +556,34 @@ if ($_SESSION["email"] == "") {
                       $cus_vcf = $row['cust_vcf'];
                       $cus_bmr = $row['cust_bmr'];
                       $cus_bmi = $row['cust_bmi'];
+                      $cus_bmidate = $row['cust_bmidate'];
+                      $cus_bmr1 = $row['cust_bmr1'];
+                      $cus_bmi1 = $row['cust_bmi1'];
+                      $cus_bmidate1 = $row['cust_bmidate1'];
+                      $cus_bmr2 = $row['cust_bmr2'];
+                      $cus_bmi2 = $row['cust_bmi2'];
+                      $cus_bmidate2 = $row['cust_bmidate2'];
+                      $cus_bmr3 = $row['cust_bmr3'];
+                      $cus_bmi3 = $row['cust_bmi3'];
+                      $cus_bmidate3 = $row['cust_bmidate3'];
+                      $cus_bmr4 = $row['cust_bmr4'];
+                      $cus_bmi4 = $row['cust_bmi4'];
+                      $cus_bmidate4 = $row['cust_bmidate4'];
+                      $cus_bmr5 = $row['cust_bmr5'];
+                      $cus_bmi5 = $row['cust_bmi5'];
+                      $cus_bmidate5 = $row['cust_bmidate5'];
+                      $cus_bmr6 = $row['cust_bmr6'];
+                      $cus_bmi6 = $row['cust_bmi6'];
+                      $cus_bmidate6 = $row['cust_bmidate6'];
+                      $cus_bmr7 = $row['cust_bmr7'];
+                      $cus_bmi7 = $row['cust_bmi7'];
+                      $cus_bmidate7 = $row['cust_bmidate7'];
+                      $cus_bmr8 = $row['cust_bmr8'];
+                      $cus_bmi8 = $row['cust_bmi8'];
+                      $cus_bmidate8 = $row['cust_bmidate8'];
+                      $cus_bmr9 = $row['cust_bmr9'];
+                      $cus_bmi9 = $row['cust_bmi9'];
+                      $cus_bmidate9 = $row['cust_bmidate9'];
                       $cus_mm = $row['cust_mm'];
                       $cus_tsf = $row['cust_tsf'];
                       $cus_waketime = $row['cust_waketime'];
@@ -588,7 +616,17 @@ if ($_SESSION["email"] == "") {
                       $cus_paid0date3 = $row['cust_paiddate3'];
                       $cus_paid4 = intval($row['cust_paid4']); // Convert to integer
                       $cus_paid0date4 = $row['cust_paiddate4'];
-                      $cus_paid = $cus_paid0 + $cus_paid1 + $cus_paid2 + $cus_paid3 + $cus_paid4;
+                      $cus_paid5 = intval($row['cust_paid5']); // Convert to integer
+                      $cus_paid0date5 = $row['cust_paiddate5'];
+                      $cus_paid6 = intval($row['cust_paid6']); // Convert to integer
+                      $cus_paid0date6 = $row['cust_paiddate6'];
+                      $cus_paid7 = intval($row['cust_paid7']); // Convert to integer
+                      $cus_paid0date7 = $row['cust_paiddate7'];
+                      $cus_paid8 = intval($row['cust_paid8']); // Convert to integer
+                      $cus_paid0date8 = $row['cust_paiddate8'];
+                      $cus_paid9 = intval($row['cust_paid9']); // Convert to integer
+                      $cus_paid0date9 = $row['cust_paiddate9'];
+                      $cus_paid = $cus_paid0 + $cus_paid1 + $cus_paid2 + $cus_paid3 + $cus_paid4 + $cus_paid5 + $cus_paid6 + $cus_paid7 + $cus_paid8 + $cus_paid9;
                       $cus_remain = $row['cust_remain'];
                       $cus_date = $row['cust_date'];
                     ?>
@@ -759,19 +797,19 @@ if ($_SESSION["email"] == "") {
                                     <div class="col-lg col-md col-sm-4 col-6">
                                       <label class="">1st BMI</label>
                                       <div class="form-group">
-                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid" value="<?php echo $cus_bmi; ?>">
+                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cusbmi" value="<?php echo $cus_bmi; ?>">
                                       </div>
                                     </div>
                                     <div class="col-lg col-md col-sm-4 col-6">
                                       <label class="">1st BMR</label>
                                       <div class="form-group">
-                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid" value="<?php echo $cus_bmr; ?>">
+                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cusbmr" value="<?php echo $cus_bmr; ?>">
                                       </div>
                                     </div>
                                     <div class="col-lg col-md col-sm-4 col-6">
                                       <label class="">Date</label>
                                       <div class="form-group">
-                                        <input type="date" class="form-control" style="border-radius: 16px;" name="cuspaiddate" value="<?php echo $cus_doj; ?>">
+                                        <input type="date" class="form-control" style="border-radius: 16px;" name="cusbmidate" value="<?php echo $cus_bmidate; ?>">
                                       </div>
                                     </div>
                                   </div>
@@ -779,19 +817,19 @@ if ($_SESSION["email"] == "") {
                                     <div class="col-lg col-md col-sm-4 col-6">
                                       <label class="">2nd BMI</label>
                                       <div class="form-group">
-                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid1" value="<?php echo $cus_bmi; ?>">
+                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cusbmi1" value="<?php echo $cus_bmi1; ?>">
                                       </div>
                                     </div>
                                     <div class="col-lg col-md col-sm-4 col-6">
                                       <label class="">2nd BMR</label>
                                       <div class="form-group">
-                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid1" value="<?php echo $cus_bmr; ?>">
+                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cusbmr1" value="<?php echo $cus_bmr1; ?>">
                                       </div>
                                     </div>
                                     <div class="col-lg col-md col-sm-4 col-6">
                                       <label class="">Date</label>
                                       <div class="form-group">
-                                        <input type="date" class="form-control" style="border-radius: 16px;" name="cuspaiddate1" value="<?php echo $cus_paid0date1; ?>">
+                                        <input type="date" class="form-control" style="border-radius: 16px;" name="cusbmidate1" value="<?php echo $cus_bmidate1; ?>">
                                       </div>
                                     </div>
                                   </div>
@@ -799,19 +837,19 @@ if ($_SESSION["email"] == "") {
                                     <div class="col-lg col-md col-sm-4 col-6">
                                       <label class="">3rd BMI</label>
                                       <div class="form-group">
-                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid2" value="<?php echo $cus_bmi; ?>">
+                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cusbmi2" value="<?php echo $cus_bmi2; ?>">
                                       </div>
                                     </div>
                                     <div class="col-lg col-md col-sm-4 col-6">
                                       <label class="">3rd BMR</label>
                                       <div class="form-group">
-                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid1" value="<?php echo $cus_bmr; ?>">
+                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cusbmr2" value="<?php echo $cus_bmr2; ?>">
                                       </div>
                                     </div>
                                     <div class="col-lg col-md col-sm-4 col-6">
                                       <label class="">Date</label>
                                       <div class="form-group">
-                                        <input type="date" class="form-control" style="border-radius: 16px;" name="cuspaiddate2" value="<?php echo $cus_paid0date2; ?>">
+                                        <input type="date" class="form-control" style="border-radius: 16px;" name="cusbmidate2" value="<?php echo $cus_bmidate2; ?>">
                                       </div>
                                     </div>
                                   </div>
@@ -819,19 +857,19 @@ if ($_SESSION["email"] == "") {
                                     <div class="col-lg col-md col-sm-4 col-6">
                                       <label class="">4th BMI</label>
                                       <div class="form-group">
-                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid3" value="<?php echo $cus_bmi; ?>">
+                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cusbmi3" value="<?php echo $cus_bmi3; ?>">
                                       </div>
                                     </div>
                                     <div class="col-lg col-md col-sm-4 col-6">
                                       <label class="">4th BMR</label>
                                       <div class="form-group">
-                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid1" value="<?php echo $cus_bmr; ?>">
+                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cusbmr3" value="<?php echo $cus_bmr3; ?>">
                                       </div>
                                     </div>
                                     <div class="col-lg col-md col-sm-4 col-6">
                                       <label class="">Date</label>
                                       <div class="form-group">
-                                        <input type="date" class="form-control" style="border-radius: 16px;" name="cuspaiddate3" value="<?php echo $cus_paid0date3; ?>">
+                                        <input type="date" class="form-control" style="border-radius: 16px;" name="cusbmidate3" value="<?php echo $cus_bmidate3; ?>">
                                       </div>
                                     </div>
                                   </div>
@@ -839,19 +877,19 @@ if ($_SESSION["email"] == "") {
                                     <div class="col-lg col-md col-sm-4 col-6">
                                       <label class="">5th BMI</label>
                                       <div class="form-group">
-                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid4" value="<?php echo $cus_bmi; ?>">
+                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cusbmi4" value="<?php echo $cus_bmi4; ?>">
                                       </div>
                                     </div>
                                     <div class="col-lg col-md col-sm-4 col-6">
                                       <label class="">5th BMR</label>
                                       <div class="form-group">
-                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid1" value="<?php echo $cus_bmr; ?>">
+                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cusbmr4" value="<?php echo $cus_bmr4; ?>">
                                       </div>
                                     </div>
                                     <div class="col-lg col-md col-sm-4 col-6">
                                       <label class="">Date</label>
                                       <div class="form-group">
-                                        <input type="date" class="form-control" style="border-radius: 16px;" name="cuspaiddate4" value="<?php echo $cus_paid0date4; ?>">
+                                        <input type="date" class="form-control" style="border-radius: 16px;" name="cusmidate4" value="<?php echo $cus_bmidate4; ?>">
                                       </div>
                                     </div>
                                   </div>
@@ -860,7 +898,7 @@ if ($_SESSION["email"] == "") {
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" name="submitpay" class="btn btn-primary">Save changes</button>
+                                <button type="submit" name="submitbmi" class="btn btn-primary">Save changes</button>
                               </div>
                             </form>
                           </div>
@@ -870,7 +908,7 @@ if ($_SESSION["email"] == "") {
                     }
                     ?>
                   </table>
-                  <!-- PHP CODE FOR INSERTING THE DATA -->
+                  <!-- PHP CODE FOR INSERTING THE PAYMENT DATA -->
                   <?php
                   if (isset($_POST["submitpay"])) {
                     $ppaid = $_POST["cuspaid"];
@@ -883,8 +921,18 @@ if ($_SESSION["email"] == "") {
                     $ppaiddate3 = $_POST["cuspaiddate3"];
                     $ppaid4 = $_POST["cuspaid4"];
                     $ppaiddate4 = $_POST["cuspaiddate4"];
+                    $ppaid5 = $_POST["cuspaid5"];
+                    $ppaiddate5 = $_POST["cuspaiddate5"];
+                    $ppaid6 = $_POST["cuspaid6"];
+                    $ppaiddate6 = $_POST["cuspaiddate6"];
+                    $ppaid7 = $_POST["cuspaid7"];
+                    $ppaiddate7 = $_POST["cuspaiddate7"];
+                    $ppaid8 = $_POST["cuspaid8"];
+                    $ppaiddate8 = $_POST["cuspaiddate8"];
+                    $ppaid9 = $_POST["cuspaid9"];
+                    $ppaiddate9 = $_POST["cuspaiddate9"];
                     $pri_id = $_POST["custid2"];
-                    $pri_paidtotal = $ppaid + $ppaid1 + $ppaid2 + $ppaid3 + $ppaid4;
+                    $pri_paidtotal = $ppaid + $ppaid1 + $ppaid2 + $ppaid3 + $ppaid4 + $ppaid5 + $ppaid6 + $ppaid7 + $ppaid8 + $ppaid9;
 
                     $cu_query = mysqli_query($conn, "SELECT * FROM customer WHERE cust_id = '$pri_id'");
                     $cu_row1 = mysqli_fetch_array($cu_query);
@@ -895,11 +943,49 @@ if ($_SESSION["email"] == "") {
                     // Check if the record already exists
                     if (empty($pri_id)) {
                       // If no record exists, insert a new one
-                      $sql = mysqli_query($conn, "INSERT INTO customer (cust_paid, cust_paiddate, cust_paid1, cust_paiddate1, cust_paid2, cust_paiddate2, cust_paid3, cust_paiddate3, cust_paid4, cust_paiddate4, cust_remain)
-                                                                VALUES ('$ppaid','$ppaiddate','$ppaid1','$ppaiddate1','$ppaid2','$ppaiddate2','$ppaid3','$ppaiddate3','$ppaid4','$ppaiddate4','$pri_remain')");
+                      $sql = mysqli_query($conn, "INSERT INTO customer (cust_paid, cust_paiddate, cust_paid1, cust_paiddate1, cust_paid2, cust_paiddate2, cust_paid3, cust_paiddate3, cust_paid4, cust_paiddate4, cust_paid5, cust_paiddate5, cust_paid6, cust_paiddate6, cust_paid7,  cust_paiddate7, cust_paid8, cust_paiddate8, cust_paid9, cust_paiddate9, cust_remain)
+                                                                VALUES ('$ppaid','$ppaiddate','$ppaid1','$ppaiddate1','$ppaid2','$ppaiddate2','$ppaid3','$ppaiddate3','$ppaid4','$ppaiddate4','$ppaid5','$ppaiddate5','$ppaid6','$ppaiddate6','$ppaid7','$ppaiddate7','$ppaid8','$ppaiddate8','$ppaid9','$ppaiddate9','$pri_remain')");
                     } else {
                       // If a record exists, update it
                       $sql = mysqli_query($conn, "UPDATE customer SET cust_paid='$ppaid', cust_paiddate='$ppaiddate', cust_paid1='$ppaid1', cust_paiddate1='$ppaiddate1', cust_paid2='$ppaid2', cust_paiddate2='$ppaiddate2', cust_paid3='$ppaid3', cust_paiddate3='$ppaiddate3', cust_paid4='$ppaid4', cust_paiddate4='$ppaiddate4', cust_remain='$pri_remain' WHERE cust_id='$pri_id'");
+                    }
+                    if ($sql) {
+                      echo "<script>alert('Operation completed successfully.');</script>";
+                      echo "<script>window.location='admin-customer.php';</script>";
+                    } else {
+                      echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
+                    }
+                  }
+                  ?>
+                   <!-- PHP CODE FOR INSERTING THE PAYMENT DATA -->
+                   <?php
+                  if (isset($_POST["submitbmi"])) {
+                    $cbmi = $_POST["cusbmi"];
+                    $cbmr = $_POST["cusbmr"];
+                    $cbmidate = $_POST["cusbmidate"];
+                    $cbmi1 = $_POST["cusbmi1"];
+                    $cbmr1 = $_POST["cusbmr1"];
+                    $cbmidate1 = $_POST["cusbmidate1"];
+                    $cbmi2 = $_POST["cusbmi2"];
+                    $cbmr2 = $_POST["cusbmr2"];
+                    $cbmidate2 = $_POST["cusbmidate2"];
+                    $cbmi3 = $_POST["cusbmi3"];
+                    $cbmr3 = $_POST["cusbmr3"];
+                    $cbmidate3 = $_POST["cusbmidate3"];
+                    $cbmi4 = $_POST["cusbmi4"];
+                    $cbmr4 = $_POST["cusbmr4"];
+                    $cbmidate4 = $_POST["cusmidate4"];
+
+                    $pri_id = $_POST["custid2"];
+
+                    // Check if the record already exists
+                    if (empty($pri_id)) {
+                      // If no record exists, insert a new one
+                      $sql = mysqli_query($conn, "INSERT INTO customer (cust_bmr, cust_bmi, cust_bmidate, cust_bmr1, cust_bmi1, cust_bmidate1, cust_bmr2, cust_bmi2, cust_bmidate2, cust_bmr3, cust_bmi3, cust_bmidate3, cust_bmr4, cust_bmi4, cust_bmidate4)
+                                                                VALUES ('$cbmr','$cbmi','$cbmidate','$cbmr1','$cbmi1','$cbmidate1','$cbmr2','$cbmi2','$cbmidate2','$cbmr3','$cbmi3','$cbmidate3','$cbmr4','$cbmi4','$cbmidate4')");
+                    } else {
+                      // If a record exists, update it
+                      $sql = mysqli_query($conn, "UPDATE customer SET cust_bmr='$cbmr', cust_bmi='$cbmi', cust_bmidate='$cbmidate', cust_bmr1='$cbmr1', cust_bmi1='$cbmi1', cust_bmidate1='$cbmidate1', cust_bmr2='$cbmr2', cust_bmi2='$cbmi2', cust_bmidate2='$cbmidate2', cust_bmr3='$cbmr3', cust_bmi3='$cbmi3', cust_bmidate3='$cbmidate3', cust_bmr4='$cbmr4', cust_bmi4='$cbmi4', cust_bmidate4='$cbmidate4' WHERE cust_id='$pri_id'");
                     }
                     if ($sql) {
                       echo "<script>alert('Operation completed successfully.');</script>";
