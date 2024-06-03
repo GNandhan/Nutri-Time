@@ -495,7 +495,6 @@ if ($_SESSION["email"] == "") {
                         <th>Body Age</th>
                         <th>Gender</th>
                         <th>Mail / Username</th>
-                        <th>Password</th>
                         <th>Joining Date</th>
                         <th>City</th>
                         <th>Address</th>
@@ -503,27 +502,8 @@ if ($_SESSION["email"] == "") {
                         <th>Weight</th>
                         <th>Idle Weight</th>
                         <th>Fat %</th>
-                        <th>VCF</th>
-                        <th>BMR</th>
-                        <th>BMI</th>
                         <th>Muscle Mass</th>
                         <th>TSF</th>
-                        <th>Wake-Up Time</th>
-                        <th>Tea/ Coffee</th>
-                        <th>Breakfast</th>
-                        <th>Lunch</th>
-                        <th>Snacks</th>
-                        <th>Dinner</th>
-                        <th>Veg/Non-Veg</th>
-                        <th>Water Intake</th>
-                        <th>Condition 1</th>
-                        <th>Condition 2</th>
-                        <th>Condition 3</th>
-                        <th>Condition 4</th>
-                        <th>Condition 5</th>
-                        <th>Condition 6</th>
-                        <th>Condition 7</th>
-                        <th>Condition 8</th>
                         <th>Program</th>
                         <th>Program Type</th>
                         <th>No of Days</th>
@@ -545,7 +525,6 @@ if ($_SESSION["email"] == "") {
                       $cus_bodyage = $row['cust_bodyage'];
                       $cus_gender = $row['cust_gender'];
                       $cus_email = $row['cust_email'];
-                      $cus_password = $row['cust_password'];
                       $cus_doj = $row['cust_doj'];
                       $cus_city = $row['cust_city'];
                       $cus_address = $row['cust_address'];
@@ -554,82 +533,27 @@ if ($_SESSION["email"] == "") {
                       $cus_idleweight = $row['cust_idleweight'];
                       $cus_fat = $row['cust_fat'];
                       $cus_vcf = $row['cust_vcf'];
-                      $cus_bmr = $row['cust_bmr'];
-                      $cus_bmi = $row['cust_bmi'];
-                      $cus_bmidate = $row['cust_bmidate'];
-                      $cus_bmr1 = $row['cust_bmr1'];
-                      $cus_bmi1 = $row['cust_bmi1'];
-                      $cus_bmidate1 = $row['cust_bmidate1'];
-                      $cus_bmr2 = $row['cust_bmr2'];
-                      $cus_bmi2 = $row['cust_bmi2'];
-                      $cus_bmidate2 = $row['cust_bmidate2'];
-                      $cus_bmr3 = $row['cust_bmr3'];
-                      $cus_bmi3 = $row['cust_bmi3'];
-                      $cus_bmidate3 = $row['cust_bmidate3'];
-                      $cus_bmr4 = $row['cust_bmr4'];
-                      $cus_bmi4 = $row['cust_bmi4'];
-                      $cus_bmidate4 = $row['cust_bmidate4'];
-                      $cus_bmr5 = $row['cust_bmr5'];
-                      $cus_bmi5 = $row['cust_bmi5'];
-                      $cus_bmidate5 = $row['cust_bmidate5'];
-                      $cus_bmr6 = $row['cust_bmr6'];
-                      $cus_bmi6 = $row['cust_bmi6'];
-                      $cus_bmidate6 = $row['cust_bmidate6'];
-                      $cus_bmr7 = $row['cust_bmr7'];
-                      $cus_bmi7 = $row['cust_bmi7'];
-                      $cus_bmidate7 = $row['cust_bmidate7'];
-                      $cus_bmr8 = $row['cust_bmr8'];
-                      $cus_bmi8 = $row['cust_bmi8'];
-                      $cus_bmidate8 = $row['cust_bmidate8'];
-                      $cus_bmr9 = $row['cust_bmr9'];
-                      $cus_bmi9 = $row['cust_bmi9'];
-                      $cus_bmidate9 = $row['cust_bmidate9'];
                       $cus_mm = $row['cust_mm'];
                       $cus_tsf = $row['cust_tsf'];
-                      $cus_waketime = $row['cust_waketime'];
-                      $cus_tea = $row['cust_tea'];
-                      $cus_breakfast = $row['cust_breakfast'];
-                      $cus_lunch = $row['cust_lunch'];
-                      $cus_snack = $row['cust_snack'];
-                      $cus_dinner = $row['cust_dinner'];
-                      $cus_veg_nonveg = $row['cust_veg_nonveg'];
-                      $cus_waterintake = $row['cust_waterintake'];
-                      $cus_cond1 = $row['cust_cond1'];
-                      $cus_cond2 = $row['cust_cond2'];
-                      $cus_cond3 = $row['cust_cond3'];
-                      $cus_cond4 = $row['cust_cond4'];
-                      $cus_cond5 = $row['cust_cond5'];
-                      $cus_cond6 = $row['cust_cond6'];
-                      $cus_cond7 = $row['cust_cond7'];
-                      $cus_cond8 = $row['cust_cond8'];
                       $cus_prg = $row['cust_prg'];
                       $cus_prgtype = $row['cust_prgtype'];
                       $cus_nodays = $row['cust_noday'];
                       $cus_total = $row['cust_total'];
-                      $cus_paid0 = intval($row['cust_paid']); // Convert to integer
-                      $cus_paid0date = $row['cust_paiddate'];
-                      $cus_paid1 = intval($row['cust_paid1']); // Convert to integer
-                      $cus_paid0date1 = $row['cust_paiddate1'];
-                      $cus_paid2 = intval($row['cust_paid2']); // Convert to integer
-                      $cus_paid0date2 = $row['cust_paiddate2'];
-                      $cus_paid3 = intval($row['cust_paid3']); // Convert to integer
-                      $cus_paid0date3 = $row['cust_paiddate3'];
-                      $cus_paid4 = intval($row['cust_paid4']); // Convert to integer
-                      $cus_paid0date4 = $row['cust_paiddate4'];
-                      $cus_paid5 = intval($row['cust_paid5']); // Convert to integer
-                      $cus_paid0date5 = $row['cust_paiddate5'];
-                      $cus_paid6 = intval($row['cust_paid6']); // Convert to integer
-                      $cus_paid0date6 = $row['cust_paiddate6'];
-                      $cus_paid7 = intval($row['cust_paid7']); // Convert to integer
-                      $cus_paid0date7 = $row['cust_paiddate7'];
-                      $cus_paid8 = intval($row['cust_paid8']); // Convert to integer
-                      $cus_paid0date8 = $row['cust_paiddate8'];
-                      $cus_paid9 = intval($row['cust_paid9']); // Convert to integer
-                      $cus_paid0date9 = $row['cust_paiddate9'];
-                      $cus_paid = $cus_paid0 + $cus_paid1 + $cus_paid2 + $cus_paid3 + $cus_paid4 + $cus_paid5 + $cus_paid6 + $cus_paid7 + $cus_paid8 + $cus_paid9;
+                      // $cus_paid0 = intval($row['cust_paid']); // Convert to integer
+                      // $cus_paid0date = $row['cust_paiddate'];
+                      // $cus_paid1 = intval($row['cust_paid1']); // Convert to integer
+                      // $cus_paid0date1 = $row['cust_paiddate1'];
+                      // $cus_paid2 = intval($row['cust_paid2']); // Convert to integer
+                      // $cus_paid0date2 = $row['cust_paiddate2'];
+                      // $cus_paid3 = intval($row['cust_paid3']); // Convert to integer
+                      // $cus_paid0date3 = $row['cust_paiddate3'];
+                      // $cus_paid4 = intval($row['cust_paid4']); // Convert to integer
+                      // $cus_paid0date4 = $row['cust_paiddate4'];
+                      // $cus_paid5 = intval($row['cust_paid5']); // Convert to integer
+                      // $cus_paid0date5 = $row['cust_paiddate5'];
+                      // $cus_paid = $cus_paid0 + $cus_paid1 + $cus_paid2 + $cus_paid3 + $cus_paid4 + $cus_paid5;
                       $cus_remain = $row['cust_remain'];
                       $cus_date = $row['cust_date'];
-
                     ?>
                       <tbody>
                         <tr>
@@ -646,7 +570,6 @@ if ($_SESSION["email"] == "") {
                           <td><?php echo $cus_bodyage; ?></td>
                           <td><?php echo $cus_gender; ?></td>
                           <td><?php echo $cus_email; ?></td>
-                          <td><?php echo $cus_password; ?></td>
                           <td><?php echo $cus_doj; ?></td>
                           <td><?php echo $cus_city; ?></td>
                           <td><?php echo $cus_address; ?></td>
@@ -654,27 +577,8 @@ if ($_SESSION["email"] == "") {
                           <td><?php echo $cus_weight; ?>Kg</td>
                           <td><?php echo $cus_idleweight; ?>Kg</td>
                           <td><?php echo $cus_fat; ?></td>
-                          <td><?php echo $cus_vcf; ?></td>
-                          <td><?php echo $cus_bmr; ?></td>
-                          <td><?php echo $cus_bmi; ?></td>
                           <td><?php echo $cus_mm; ?></td>
                           <td><?php echo $cus_tsf; ?></td>
-                          <td><?php echo $cus_waketime; ?></td>
-                          <td><?php echo $cus_tea; ?></td>
-                          <td><?php echo $cus_breakfast; ?></td>
-                          <td><?php echo $cus_lunch; ?></td>
-                          <td><?php echo $cus_snack; ?></td>
-                          <td><?php echo $cus_dinner; ?></td>
-                          <td><?php echo $cus_veg_nonveg; ?></td>
-                          <td><?php echo $cus_waterintake; ?></td>
-                          <td><?php echo $cus_cond1; ?></td>
-                          <td><?php echo $cus_cond2; ?></td>
-                          <td><?php echo $cus_cond3; ?></td>
-                          <td><?php echo $cus_cond4; ?></td>
-                          <td><?php echo $cus_cond5; ?></td>
-                          <td><?php echo $cus_cond6; ?></td>
-                          <td><?php echo $cus_cond7; ?></td>
-                          <td><?php echo $cus_cond8; ?></td>
                           <td><?php echo $cus_prg; ?></td>
                           <td><?php echo $cus_prgtype; ?></td>
                           <td><?php echo $cus_nodays; ?></td>
@@ -697,7 +601,6 @@ if ($_SESSION["email"] == "") {
                               </div>
                               <div class="modal-body">
                                 <h3>Total Amount :<span style="font-weight: bold;"><?php echo $cus_total; ?></span></h3>
-                                <h4 class="py-2">Balance Amount :<span style="font-weight: bold;"><?php echo $cus_remain; ?></span></h4>
                                 <div class="form-group" id="paymentFields">
                                   <div class="row">
                                     <div class="col-lg col-md col-sm-4 col-6">
@@ -741,6 +644,20 @@ if ($_SESSION["email"] == "") {
                                       </div>
                                     </div>
                                   </div>
+                                  <div class="row">
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">4th Paid</label>
+                                      <div class="form-group">
+                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cuspaid3" value="<?php echo $cus_paid3; ?>">
+                                      </div>
+                                    </div>
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">Payment Date</label>
+                                      <div class="form-group">
+                                        <input type="date" class="form-control" style="border-radius: 16px;" name="cuspaiddate3" value="<?php echo $cus_paid0date3; ?>">
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
                                 <button type="button" class="btn btn-primary mt-2" id="addPaymentField">+</button>
                               </div>
@@ -752,9 +669,8 @@ if ($_SESSION["email"] == "") {
                           </div>
                         </div>
                       </div>
-
                       <!-- Modal for BMI and BMR -->
-                      <!-- <div class="modal fade" id="exampleModal2_<?php echo $cus_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal fade" id="exampleModal2_<?php echo $cus_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content" style="border-radius:20px;">
                             <form action="" method="POST">
@@ -847,26 +763,6 @@ if ($_SESSION["email"] == "") {
                                       </div>
                                     </div>
                                   </div>
-                                  <div class="row">
-                                    <div class="col-lg col-md col-sm-4 col-6">
-                                      <label class="">5th BMI</label>
-                                      <div class="form-group">
-                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cusbmi4" value="<?php echo $cus_bmi4; ?>">
-                                      </div>
-                                    </div>
-                                    <div class="col-lg col-md col-sm-4 col-6">
-                                      <label class="">5th BMR</label>
-                                      <div class="form-group">
-                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cusbmr4" value="<?php echo $cus_bmr4; ?>">
-                                      </div>
-                                    </div>
-                                    <div class="col-lg col-md col-sm-4 col-6">
-                                      <label class="">Date</label>
-                                      <div class="form-group">
-                                        <input type="date" class="form-control" style="border-radius: 16px;" name="cusmidate4" value="<?php echo $cus_bmidate4; ?>">
-                                      </div>
-                                    </div>
-                                  </div>
                                 </div>
                                 <button type="button" class="btn btn-primary mt-2" id="addPaymentField">+</button>
                               </div>
@@ -877,7 +773,7 @@ if ($_SESSION["email"] == "") {
                             </form>
                           </div>
                         </div>
-                      </div> -->
+                      </div>
                     <?php
                     }
                     ?>
@@ -885,46 +781,43 @@ if ($_SESSION["email"] == "") {
                   <!-- PHP CODE FOR INSERTING THE PAYMENT DATA -->
                   <?php
                   if (isset($_POST["submitpay"])) {
+                    $ppaid = $_POST["cuspaid"];
+                    $ppaiddate = $_POST["cuspaiddate"];
+                    $ppaid1 = $_POST["cuspaid1"];
+                    $ppaiddate1 = $_POST["cuspaiddate1"];
+                    $ppaid2 = $_POST["cuspaid2"];
+                    $ppaiddate2 = $_POST["cuspaiddate2"];
+                    $ppaid3 = $_POST["cuspaid3"];
+                    $ppaiddate3 = $_POST["cuspaiddate3"];
+                    $ppaid4 = $_POST["cuspaid4"];
+                    $ppaiddate4 = $_POST["cuspaiddate4"];
                     $pri_id = $_POST["custid2"];
+                    $pri_paidtotal = $ppaid + $ppaid1 + $ppaid2 + $ppaid3 + $ppaid4;
 
-                    // Fetch customer details from the customer table
-                    $cu_query = mysqli_query($conn, "SELECT cust_code, cust_name FROM customer WHERE cust_id = '$pri_id'");
-                    if ($cu_query && mysqli_num_rows($cu_query) > 0) {
-                      $cu_row = mysqli_fetch_assoc($cu_query);
-                      $cust_code = $cu_row['cust_code'];
-                      $cust_name = $cu_row['cust_name'];
+                    $cu_query = mysqli_query($conn, "SELECT * FROM customer WHERE cust_id = '$pri_id'");
+                    $cu_row1 = mysqli_fetch_array($cu_query);
 
-                      // Prepare to insert all payment data
-                      $insert_values = [];
-                      foreach ($_POST as $key => $value) {
-                        if (strpos($key, 'cuspaid') === 0 && !empty($value)) {
-                          $index = substr($key, 7);
-                          $ppaid = $value;
-                          $ppaiddate = $_POST["cuspaiddate" . $index] ?? null;
+                    $pri_total = $cu_row1['cust_total'];
 
-                          if ($ppaiddate) {
-                            $insert_values[] = "('$pri_id', '$cust_code', '$cust_name', '$ppaid', '$ppaiddate')";
-                          }
-                        }
-                      }
-
-                      if (!empty($insert_values)) {
-                        $sql = "INSERT INTO `pay_history` (`cust_id`, `cust_code`, `cust_name`, `cust_paid`, `cust_paiddate`) VALUES " . implode(", ", $insert_values);
-                        if (mysqli_query($conn, $sql)) {
-                          echo "<script>alert('Operation completed successfully.');</script>";
-                          echo "<script>window.location='admin-customer.php';</script>";
-                        } else {
-                          echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
-                        }
-                      }
+                    $pri_remain = $pri_total - $pri_paidtotal;
+                    // Check if the record already exists
+                    if (empty($pri_id)) {
+                      // If no record exists, insert a new one
+                      $sql = mysqli_query($conn, "INSERT INTO customer (cust_paid, cust_paiddate, cust_paid1, cust_paiddate1, cust_paid2, cust_paiddate2, cust_paid3, cust_paiddate3, cust_paid4, cust_paiddate4, cust_remain)
+                                                                VALUES ('$ppaid','$ppaiddate','$ppaid1','$ppaiddate1','$ppaid2','$ppaiddate2','$ppaid3','$ppaiddate3','$ppaid4','$ppaiddate4','$pri_remain')");
                     } else {
-                      echo "<script>alert('Error: Customer not found.');</script>";
+                      // If a record exists, update it
+                      $sql = mysqli_query($conn, "UPDATE customer SET cust_paid='$ppaid', cust_paiddate='$ppaiddate', cust_paid1='$ppaid1', cust_paiddate1='$ppaiddate1', cust_paid2='$ppaid2', cust_paiddate2='$ppaiddate2', cust_paid3='$ppaid3', cust_paiddate3='$ppaiddate3', cust_paid4='$ppaid4', cust_paiddate4='$ppaiddate4', cust_remain='$pri_remain' WHERE cust_id='$pri_id'");
+                    }
+                    if ($sql) {
+                      echo "<script>alert('Operation completed successfully.');</script>";
+                      echo "<script>window.location='admin-customer.php';</script>";
+                    } else {
+                      echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
                     }
                   }
                   ?>
-
-
-                  <!-- PHP CODE FOR INSERTING THE BMI & BMR HISTORY DATA -->
+                  <!-- PHP CODE FOR INSERTING THE PAYMENT DATA -->
                   <?php
                   if (isset($_POST["submitbmi"])) {
                     $cbmi = $_POST["cusbmi"];
@@ -985,7 +878,7 @@ if ($_SESSION["email"] == "") {
   </div>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      var counter = 3; // Starting from 4th paid
+      var counter = 5; // Starting from 4th paid
       document.getElementById("addPaymentField").addEventListener("click", function() {
         var row = document.createElement("div");
         row.className = "row";
@@ -993,7 +886,7 @@ if ($_SESSION["email"] == "") {
         var col1 = document.createElement("div");
         col1.className = "col-lg col-md col-sm-4 col-6";
         var label1 = document.createElement("label");
-        label1.textContent = (counter + 1) + "th Paid";
+        label1.textContent = counter + "th Paid";
         var input1 = document.createElement("input");
         input1.type = "text";
         input1.className = "form-control cus-paid";

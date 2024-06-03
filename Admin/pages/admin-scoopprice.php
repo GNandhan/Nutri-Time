@@ -45,6 +45,7 @@ if ($_SESSION["email"] == "") {
       $p_code1 = $p_row1['pro_code'];
       $p_name1 = $p_row1['pro_name'];
       $p_scoop1 = $p_row1['pro_scoop'];
+      $p_scoop01 = $p_row1['pro_scoop0'];
       $p_scoop151 = $p_row1['pro_scoop15'];
       $p_scoop251 = $p_row1['pro_scoop25'];
       $p_scoop351 = $p_row1['pro_scoop35'];
@@ -107,6 +108,12 @@ if ($_SESSION["email"] == "") {
                     <p>Rate per Scoop</p> <br>
                     <div class="col">
                       <div class="form-group">
+                        <label>0%</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="scoop0" value="<?php echo $p_scoop01; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
                         <label>15%</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="scoop15" value="<?php echo $p_scoop151; ?>" required>
                       </div>
@@ -148,6 +155,7 @@ if ($_SESSION["email"] == "") {
         if (isset($_POST["submitp"])) {
           $pname = $_POST["proname"];
           $pscoop = $_POST["scoop"];
+          $pscoop0 = $_POST["scoop0"];
           $pscoop15 = $_POST["scoop15"];
           $pscoop25 = $_POST["scoop25"];
           $pscoop35 = $_POST["scoop35"];
@@ -165,6 +173,7 @@ if ($_SESSION["email"] == "") {
               $pri_id = $existing_product['pri_id']; // Get the ID of the existing product
               $sql = mysqli_query($conn, "UPDATE price SET 
                                           pro_scoop = '$pscoop', 
+                                          pro_scoop0 = '$pscoop0', 
                                           pro_scoop15 = '$pscoop15', 
                                           pro_scoop25 = '$pscoop25', 
                                           pro_scoop35 = '$pscoop35', 
@@ -206,6 +215,7 @@ if ($_SESSION["email"] == "") {
                         <th>Product Code</th>
                         <th>Product Name</th>
                         <th>No of Scoops</th>
+                        <th>0% Scoop</th>
                         <th>15% Scoop</th>
                         <th>25% Scoop</th>
                         <th>35% Scoop</th>
@@ -221,6 +231,7 @@ if ($_SESSION["email"] == "") {
                       $pri_cod = $row['pro_code'];
                       $pri_nam = $row['pro_name'];
                       $pri_scoop = $row['pro_scoop'];
+                      $pri_scoop0 = $row['pro_scoop0'];
                       $pri_scoop15 = $row['pro_scoop15'];
                       $pri_scoop25 = $row['pro_scoop25'];
                       $pri_scoop35 = $row['pro_scoop35'];
@@ -234,6 +245,7 @@ if ($_SESSION["email"] == "") {
                           <td class="py-1"><?php echo $pri_cod; ?></td>
                           <td><?php echo $pri_nam; ?></td>
                           <td><?php echo $pri_scoop; ?></td>
+                          <td><?php echo $pri_scoop0; ?></td>
                           <td><?php echo $pri_scoop15; ?></td>
                           <td><?php echo $pri_scoop25; ?></td>
                           <td><?php echo $pri_scoop35; ?></td>

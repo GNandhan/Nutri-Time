@@ -301,7 +301,7 @@ if ($_SESSION["email"] == "") {
                         <th>Purchase Date</th>
                         <th>Product Code</th>
                         <th>Product Name</th>
-                        <th>HSL Code</th>
+                        <th>HSN Code</th>
                         <th>Quanity</th>
                         <th>Current Quantity</th>
                         <th>Category</th>

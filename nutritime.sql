@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2024 at 08:04 AM
+-- Generation Time: Jun 03, 2024 at 01:09 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -107,33 +107,6 @@ CREATE TABLE `customer` (
   `cust_bmr` varchar(10) NOT NULL,
   `cust_bmi` varchar(10) NOT NULL,
   `cust_bmidate` varchar(100) NOT NULL,
-  `cust_bmr1` varchar(10) NOT NULL,
-  `cust_bmi1` varchar(10) NOT NULL,
-  `cust_bmidate1` varchar(10) NOT NULL,
-  `cust_bmr2` varchar(10) NOT NULL,
-  `cust_bmi2` varchar(10) NOT NULL,
-  `cust_bmidate2` varchar(10) NOT NULL,
-  `cust_bmr3` varchar(10) NOT NULL,
-  `cust_bmi3` varchar(10) NOT NULL,
-  `cust_bmidate3` varchar(10) NOT NULL,
-  `cust_bmr4` varchar(10) NOT NULL,
-  `cust_bmi4` varchar(10) NOT NULL,
-  `cust_bmidate4` varchar(10) NOT NULL,
-  `cust_bmr5` varchar(10) NOT NULL,
-  `cust_bmi5` varchar(10) NOT NULL,
-  `cust_bmidate5` varchar(10) NOT NULL,
-  `cust_bmr6` varchar(10) NOT NULL,
-  `cust_bmi6` varchar(10) NOT NULL,
-  `cust_bmidate6` varchar(10) NOT NULL,
-  `cust_bmr7` varchar(10) NOT NULL,
-  `cust_bmi7` varchar(10) NOT NULL,
-  `cust_bmidate7` varchar(10) NOT NULL,
-  `cust_bmr8` varchar(10) NOT NULL,
-  `cust_bmi8` varchar(10) NOT NULL,
-  `cust_bmidate8` varchar(10) NOT NULL,
-  `cust_bmr9` varchar(10) NOT NULL,
-  `cust_bmi9` varchar(10) NOT NULL,
-  `cust_bmidate9` varchar(10) NOT NULL,
   `cust_mm` varchar(10) NOT NULL,
   `cust_tsf` varchar(10) NOT NULL,
   `cust_waketime` varchar(10) NOT NULL,
@@ -158,24 +131,6 @@ CREATE TABLE `customer` (
   `cust_total` varchar(20) NOT NULL,
   `cust_paid` varchar(20) DEFAULT NULL,
   `cust_paiddate` varchar(100) NOT NULL,
-  `cust_paid1` varchar(10) DEFAULT NULL,
-  `cust_paiddate1` varchar(100) NOT NULL,
-  `cust_paid2` varchar(10) DEFAULT NULL,
-  `cust_paiddate2` varchar(100) NOT NULL,
-  `cust_paid3` varchar(10) DEFAULT NULL,
-  `cust_paiddate3` varchar(100) NOT NULL,
-  `cust_paid4` varchar(10) DEFAULT NULL,
-  `cust_paiddate4` varchar(100) NOT NULL,
-  `cust_paid5` varchar(10) DEFAULT NULL,
-  `cust_paiddate5` varchar(100) NOT NULL,
-  `cust_paid6` varchar(10) NOT NULL,
-  `cust_paiddate6` varchar(100) NOT NULL,
-  `cust_paid7` varchar(10) NOT NULL,
-  `cust_paiddate7` varchar(100) NOT NULL,
-  `cust_paid8` varchar(10) NOT NULL,
-  `cust_paiddate8` varchar(100) NOT NULL,
-  `cust_paid9` varchar(10) NOT NULL,
-  `cust_paiddate9` varchar(100) NOT NULL,
   `cust_remain` varchar(10) DEFAULT NULL,
   `cust_date` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -184,16 +139,16 @@ CREATE TABLE `customer` (
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`cust_id`, `cust_code`, `cust_name`, `cust_phno`, `cust_invited`, `cust_age`, `cust_bodyage`, `cust_gender`, `cust_email`, `cust_password`, `cust_doj`, `cust_city`, `cust_address`, `cust_height`, `cust_weight`, `cust_idleweight`, `cust_fat`, `cust_vcf`, `cust_bmr`, `cust_bmi`, `cust_bmidate`, `cust_bmr1`, `cust_bmi1`, `cust_bmidate1`, `cust_bmr2`, `cust_bmi2`, `cust_bmidate2`, `cust_bmr3`, `cust_bmi3`, `cust_bmidate3`, `cust_bmr4`, `cust_bmi4`, `cust_bmidate4`, `cust_bmr5`, `cust_bmi5`, `cust_bmidate5`, `cust_bmr6`, `cust_bmi6`, `cust_bmidate6`, `cust_bmr7`, `cust_bmi7`, `cust_bmidate7`, `cust_bmr8`, `cust_bmi8`, `cust_bmidate8`, `cust_bmr9`, `cust_bmi9`, `cust_bmidate9`, `cust_mm`, `cust_tsf`, `cust_waketime`, `cust_tea`, `cust_breakfast`, `cust_lunch`, `cust_snack`, `cust_dinner`, `cust_veg_nonveg`, `cust_waterintake`, `cust_cond1`, `cust_cond2`, `cust_cond3`, `cust_cond4`, `cust_cond5`, `cust_cond6`, `cust_cond7`, `cust_cond8`, `cust_prg`, `cust_prgtype`, `cust_noday`, `cust_total`, `cust_paid`, `cust_paiddate`, `cust_paid1`, `cust_paiddate1`, `cust_paid2`, `cust_paiddate2`, `cust_paid3`, `cust_paiddate3`, `cust_paid4`, `cust_paiddate4`, `cust_paid5`, `cust_paiddate5`, `cust_paid6`, `cust_paiddate6`, `cust_paid7`, `cust_paiddate7`, `cust_paid8`, `cust_paiddate8`, `cust_paid9`, `cust_paiddate9`, `cust_remain`, `cust_date`) VALUES
-(1003, 'CUS10012', 'Kareem', '7854985687', 'Ashraf', '25', '26', 'Male', 'manu123@gmail.com', 'manu123@', '2024-04-09', 'Kozhikode', 'veluvil po mavoor, kozhikode', '175', '62', '75', '15', '10', '02', '01', '2024-06-30', '04', '03', '2024-06-29', '06', '05', '2024-06-28', '08', '07', '2024-06-27', '10', '09', '2024-06-26', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '13', '14', '09:29', 'Green Tea', 'Idly, Sambar', 'Chicken Biriyani', 'ladoo', 'Mandi', 'Non-veg', '2 litre', 'Diabeted', 'Cancer', 'High BP', 'Diabetieswe3ee23e', 'Fever', 'Blood pressure', 'Diabeties 2', 'Diabeties 3', 'Weight lose', 'Online', '20', '10000', '2000', '2024-04-01', '3000', '2024-04-02', '1000', '2024-04-03', '1000', '2024-04-04', '2000', '2024-04-05', '0', '', '', '', '', '', '', '', '', '', '1000', '2024-04-27'),
-(1005, 'CUS10013', 'Amal', '9865329865', 'Ashraf', '26', '27', 'Male', 'amal123@gmail.com', 'amal123@', '', 'Thalayolaparambu', '3rd floor, Thalayolaparambu, po', '165', '63', '65', '32', '001', '11', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '152', '145', '12:45', 'Black Coffee', 'Idly, Sambar', 'Mandi', 'ladoo', 'Mandi', 'Non-veg', '2 litre', 'belly fat', 'blood cancer', 'nutrition effectency', 'Diabeties', 'Fever', 'Blood pressure', 'Diabeties 2', 'Diabeties 3', 'Weight lose', 'Offline', '40', '26000', '20000', '2024-04-02', '1000', '2024-04-09', '5000', '2024-04-16', '0', '', '0', '', '', '', '', '', '', '', '', '', '', '', '6000', '2024-04-27'),
-(1006, 'CUS10029', 'Albin', '9865875498', 'Ashraf', '25', '26', 'Male', 'albin12@gmail.com', 'albin12@', '', 'Vallaserry', '3rd floor, vallaserry, po', '152', '72', '52', '26', '001', '002', '003', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '004', '005', '16:51', 'Black Coffee', 'Noodles', 'Mandi', 'fries', 'Mandi', 'Non-veg', '1 litre', 'belly fat', 'blood cancer', 'nutrition effectency', 'Diabeties', 'Fever', 'Blood pressure', 'Diabeties 2', 'Diabeties 3', 'Fat Reducer', 'Offline', '25', '15000', '1000', '2024-06-05', '2000', '2024-06-06', '3000', '2024-06-07', '4000', '2024-06-08', '5000', '2024-06-09', '', '', '', '', '', '', '', '', '', '', '0', '2024-04-27'),
-(1007, 'CUS10016', 'Ajith', '986585498', 'Ashraf', '45', '46', 'Male', 'amal123@gmail.com', 'amal123@', '', 'Kochi', '3rd floor, kochi, po', '182', '90', '82', '72', '10', '105.4', '100.5', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '142.2', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '25', '15000', '8000', '2024-05-29', '900', '2024-06-05', '500', '2024-06-11', '300', '2024-06-19', '800', '2024-06-26', '', '', '', '', '', '', '', '', '', '', '4500', '2024-04-27'),
-(1008, 'CUS10026', 'Melow', '9887659854', 'Amal', '25', '26', 'Female', 'melow12@gmail.com', '', '15-04-2023', 'Kochi', '3rd floor, kochi, po', '154', '78', '', '24', '001', '002', '003', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '004', '14', '00:57', 'okkokook', 'Noodles', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '1 litre', 'belly fat', 'blood cancer', 'nutrition effectency', '', '', '', '', '', 'Weight lose', 'Offline', '20', '12000', '8000', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '11000', '2024-04-27'),
-(1009, 'CUS10026', 'Mathew', '9887659854', 'Amal', '25', '26', 'Female', 'melow12@gmail.com', '', '15-04-2023', 'Kochi', '3rd floor, kochi, po', '154', '78', '', '24', '001', '002', '003', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '004', '14', '00:57', 'okkokook', 'Noodles', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '1 litre', 'belly fat', 'blood cancer', 'nutrition effectency', '', '', '', '', '', 'Weight lose', 'Offline', '20', '12000', '8000', '2024-06-01', '1000', '2024-06-05', '2000', '2024-06-13', '0', '', '0', '', '', '', '', '', '', '', '', '', '', '', '1000', '2024-04-27'),
-(1010, 'CUS10027', 'Abdul', '9887659854', 'Amal', '38', '39', 'Male', 'abdul12@gmail.com', '', '20-06-2024', 'Kochi', '3rd floor, kochi, po', '163', '96', '60', '24', '001', '002', '003', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '004', '005', '11:09', 'Black Coffee', 'Idly, Sambar', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '2 litre', 'Diabeted', 'Cancer', 'High BP', '', '', '', '', '', 'Weight lose', 'Offline', '20', '12000', '8000', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '4000', '2024-04-27'),
-(1011, 'CUS10026', 'Arjun', '', '', '', '', '', '', '', '2024-06-30', '', '', '150', '90', '50', '', '', '103.5', '306.4', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '15000', '5000', '', '1000', '', '2000', '2024-06-19', '1000', '2024-06-14', '5000', '2024-06-25', '', '', '', '', '', '', '', '', '', '', '10000', '2024-04-01'),
-(1012, 'CUS10028', 'Edwin', '9865875498', 'Amal', '24', '25', 'Male', 'edwin12@gmail.com', '', '2024-04-01', 'Kochi', '3rd floor, kochi, po', '154', '96', '60', '18', '001', '11', '12', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '13', '14', '03:25', 'Black Coffee', 'Noodles', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '2 litre', 'belly fat', 'blood cancer', 'nutrition effectency', 'Diabeties', 'Fever', 'Blood pressure', 'Diabeties 2', 'Diabeties 3', 'Weight lose', 'Offline', '30', '30000', '5000', '2024-04-01', '10000', '2024-04-08', '100', '2024-04-15', '0', '', '0', '', '', '', '', '', '', '', '', '', '', '', '25000', '2024-05-04');
+INSERT INTO `customer` (`cust_id`, `cust_code`, `cust_name`, `cust_phno`, `cust_invited`, `cust_age`, `cust_bodyage`, `cust_gender`, `cust_email`, `cust_password`, `cust_doj`, `cust_city`, `cust_address`, `cust_height`, `cust_weight`, `cust_idleweight`, `cust_fat`, `cust_vcf`, `cust_bmr`, `cust_bmi`, `cust_bmidate`, `cust_mm`, `cust_tsf`, `cust_waketime`, `cust_tea`, `cust_breakfast`, `cust_lunch`, `cust_snack`, `cust_dinner`, `cust_veg_nonveg`, `cust_waterintake`, `cust_cond1`, `cust_cond2`, `cust_cond3`, `cust_cond4`, `cust_cond5`, `cust_cond6`, `cust_cond7`, `cust_cond8`, `cust_prg`, `cust_prgtype`, `cust_noday`, `cust_total`, `cust_paid`, `cust_paiddate`, `cust_remain`, `cust_date`) VALUES
+(1003, 'CUS10012', 'Kareem', '7854985687', 'Ashraf', '25', '26', 'Male', 'manu123@gmail.com', 'manu123@', '2024-04-09', 'Kozhikode', 'veluvil po mavoor, kozhikode', '175', '62', '75', '15', '10', '02', '01', '2024-06-30', '13', '14', '09:29', 'Green Tea', 'Idly, Sambar', 'Chicken Biriyani', 'ladoo', 'Mandi', 'Non-veg', '2 litre', 'Diabeted', 'Cancer', 'High BP', 'Diabetieswe3ee23e', 'Fever', 'Blood pressure', 'Diabeties 2', 'Diabeties 3', 'Weight lose', 'Online', '20', '10000', '8000', '', '-2750', '2024-04-27'),
+(1005, 'CUS10013', 'Amal', '9865329865', 'Ashraf', '26', '27', 'Male', 'amal123@gmail.com', 'amal123@', '', 'Thalayolaparambu', '3rd floor, Thalayolaparambu, po', '165', '63', '65', '32', '001', '11', '100', '', '152', '145', '12:45', 'Black Coffee', 'Idly, Sambar', 'Mandi', 'ladoo', 'Mandi', 'Non-veg', '2 litre', 'belly fat', 'blood cancer', 'nutrition effectency', 'Diabeties', 'Fever', 'Blood pressure', 'Diabeties 2', 'Diabeties 3', 'Weight lose', 'Offline', '40', '26000', '20000', '2024-04-02', '6000', '2024-04-27'),
+(1006, 'CUS10029', 'Albin', '9865875498', 'Ashraf', '25', '26', 'Male', 'albin12@gmail.com', 'albin12@', '', 'Vallaserry', '3rd floor, vallaserry, po', '152', '72', '52', '26', '001', '002', '003', '', '004', '005', '16:51', 'Black Coffee', 'Noodles', 'Mandi', 'fries', 'Mandi', 'Non-veg', '1 litre', 'belly fat', 'blood cancer', 'nutrition effectency', 'Diabeties', 'Fever', 'Blood pressure', 'Diabeties 2', 'Diabeties 3', 'Fat Reducer', 'Offline', '25', '15000', '1000', '2024-06-05', '0', '2024-04-27'),
+(1007, 'CUS10016', 'Ajith', '986585498', 'Ashraf', '45', '46', 'Male', 'amal123@gmail.com', 'amal123@', '', 'Kochi', '3rd floor, kochi, po', '182', '90', '82', '72', '10', '105.4', '100.5', '', '142.2', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '25', '15000', '8000', '2024-05-29', '4500', '2024-04-27'),
+(1008, 'CUS10026', 'Melow', '9887659854', 'Amal', '25', '26', 'Female', 'melow12@gmail.com', '', '15-04-2023', 'Kochi', '3rd floor, kochi, po', '154', '78', '', '24', '001', '002', '003', '', '004', '14', '00:57', 'okkokook', 'Noodles', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '1 litre', 'belly fat', 'blood cancer', 'nutrition effectency', '', '', '', '', '', 'Weight lose', 'Offline', '20', '12000', '8000', '', '11000', '2024-04-27'),
+(1009, 'CUS10026', 'Mathew', '9887659854', 'Amal', '25', '26', 'Female', 'melow12@gmail.com', '', '15-04-2023', 'Kochi', '3rd floor, kochi, po', '154', '78', '', '24', '001', '002', '003', '', '004', '14', '00:57', 'okkokook', 'Noodles', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '1 litre', 'belly fat', 'blood cancer', 'nutrition effectency', '', '', '', '', '', 'Weight lose', 'Offline', '20', '12000', '8000', '2024-06-01', '1000', '2024-04-27'),
+(1010, 'CUS10027', 'Abdul', '9887659854', 'Amal', '38', '39', 'Male', 'abdul12@gmail.com', '', '20-06-2024', 'Kochi', '3rd floor, kochi, po', '163', '96', '60', '24', '001', '002', '003', '', '004', '005', '11:09', 'Black Coffee', 'Idly, Sambar', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '2 litre', 'Diabeted', 'Cancer', 'High BP', '', '', '', '', '', 'Weight lose', 'Offline', '20', '12000', '8000', '', '4000', '2024-04-27'),
+(1011, 'CUS10026', 'Arjun', '', '', '', '', '', '', '', '2024-06-30', '', '', '150', '90', '50', '', '', '103.5', '306.4', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '15000', '5000', '', '10000', '2024-04-01'),
+(1012, 'CUS10028', 'Edwin', '9865875498', 'Amal', '24', '25', 'Male', 'edwin12@gmail.com', '', '2024-04-01', 'Kochi', '3rd floor, kochi, po', '154', '96', '60', '18', '001', '11', '12', '', '13', '14', '03:25', 'Black Coffee', 'Noodles', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '2 litre', 'belly fat', 'blood cancer', 'nutrition effectency', 'Diabeties', 'Fever', 'Blood pressure', 'Diabeties 2', 'Diabeties 3', 'Weight lose', 'Offline', '30', '30000', '5000', '2024-04-01', '25000', '2024-05-04');
 
 -- --------------------------------------------------------
 
@@ -219,25 +174,13 @@ CREATE TABLE `login_details` (
   `login_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `login_details`
---
-
-INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`) VALUES
-('nutriadmin@gmail.com', 1, '2024-05-24 08:30:54'),
-('nutriadmin@gmail.com', 2, '2024-05-27 11:36:44'),
-('nutriadmin@gmail.com', 3, '2024-05-30 12:38:56'),
-('nutriadmin@gmail.com', 4, '2024-05-30 21:22:27'),
-('nutriadmin@gmail.com', 5, '2024-05-31 18:21:43'),
-('nutriadmin@gmail.com', 6, '2024-06-03 06:00:56');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payment`
+-- Table structure for table `pay_history`
 --
 
-CREATE TABLE `payment` (
+CREATE TABLE `pay_history` (
   `pay_id` int(11) NOT NULL,
   `cust_id` int(10) NOT NULL,
   `cust_code` varchar(50) NOT NULL,
@@ -269,6 +212,7 @@ CREATE TABLE `price` (
   `pro_vp` varchar(100) NOT NULL,
   `pro_vptotal` varchar(10) NOT NULL,
   `pro_scoop` varchar(10) NOT NULL,
+  `pro_scoop0` varchar(10) NOT NULL,
   `pro_scoop15` varchar(10) NOT NULL,
   `pro_scoop25` varchar(10) NOT NULL,
   `pro_scoop35` varchar(10) NOT NULL,
@@ -285,10 +229,11 @@ CREATE TABLE `price` (
 -- Dumping data for table `price`
 --
 
-INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subcat`, `pro_mrp`, `pro_price`, `pro_dis0`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`, `pro_vp`, `pro_vptotal`, `pro_scoop`, `pro_scoop15`, `pro_scoop25`, `pro_scoop35`, `pro_scoop42`, `pro_scoop50`, `pro_quantity`, `pro_curquantity`, `pro_hsn`, `pro_img`, `pro_date`) VALUES
-(1, 'FORMULA 1 SHAKE MIX VANILLA', 'F1V', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '1', '2065', '1860', '1650', '1505', '1340', '21.75', '108.75', '60', '103.25', '93', '82.5', '75.25', '67', '35', '0', '785487', '', '2024-05-01'),
-(2, 'FORMULA 1 SHAKE MIX CHOCOLATE', 'F1C', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '1', '2065', '1860', '1650', '1505', '1340', '12.75', '191.25', '60', '103.25', '93', '82.5', '75.25', '67', '25', '10', '111111', '', '2024-05-01'),
-(3, 'FORMULA 1 SHAKE MIX PISTAH', 'F1P', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '1', '2065', '1860', '1650', '1505', '1340', '21.75', '652.5', '60', '103.25', '93', '82.5', '75.25', '67', '30', '5', '1010', '', '2024-05-03');
+INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subcat`, `pro_mrp`, `pro_price`, `pro_dis0`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`, `pro_vp`, `pro_vptotal`, `pro_scoop`, `pro_scoop0`, `pro_scoop15`, `pro_scoop25`, `pro_scoop35`, `pro_scoop42`, `pro_scoop50`, `pro_quantity`, `pro_curquantity`, `pro_hsn`, `pro_img`, `pro_date`) VALUES
+(1, 'FORMULA 1 SHAKE MIX VANILLA', 'F1V', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '2378', '2065', '1860', '1650', '1505', '1340', '21.75', '108.75', '60', '118.90', '103.25', '93', '82.5', '75.25', '67', '35', '3', '785487', '', '2024-05-01'),
+(2, 'FORMULA 1 SHAKE MIX CHOCOLATE', 'F1C', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '2378', '2065', '1860', '1650', '1505', '1340', '12.75', '191.25', '60', '121.65', '103.25', '93', '82.5', '75.25', '67', '25', '25', '111111', '', '2024-05-01'),
+(3, 'FORMULA 1 SHAKE MIX PISTAH', 'F1P', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '2378', '2065', '1860', '1650', '1505', '1340', '21.75', '652.5', '60', '145.52', '103.25', '93', '82.5', '75.25', '67', '30', '30', '1010', '', '2024-05-03'),
+(4, 'FORMULA 1 SHAKE MIX OREO', 'F!O', 'Ayurdevic Nutrition', 'Energy', '2687', '2500', '2687', '2100', '2000', '1800', '1700', '1600', '12.75', '510', '50', '123.45', '103.25', '93', '82.5', '75.25', '67', '40', '40', '785487', '', '2024-06-05');
 
 -- --------------------------------------------------------
 
@@ -358,8 +303,9 @@ CREATE TABLE `sales` (
 --
 
 INSERT INTO `sales` (`sales_id`, `sales_proid`, `sales_procode`, `sales_proname`, `sales_procat`, `sales_prosubcat`, `sales_mrp`, `sales_quan`, `sales_curquan`, `sales_vp`, `sales_vptotal`, `sales_gst`, `sales_dis`, `sales_dispri`, `sales_cus`, `sales_address`, `sales_total`, `sales_date`) VALUES
-(1, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '25', '', '21.75', '543.75', '18', '15', '2065', 'Abrar', 'Mangavu Office', '60917.5', '2024-06-02'),
-(2, 0, 'F1C', 'FORMULA 1 SHAKE MIX CHOCOLATE', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '10', '', '12.75', '127.5', '10', '25', '1860', 'Ashraf', 'Palakkad', '20460', '2024-06-02');
+(1, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '5', '', '21.75', '108.75', '18', '15', '2065', 'Arun', 'none', '12183.5', '2024-06-01'),
+(2, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '15', '', '21.75', '326.25', '18', '15', '2065', 'Jeslin Biju', 'yyyyyyyyyyyyyyyyyy', '36550.5', '2024-06-01'),
+(3, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '5', '', '21.75', '108.75', '18', '15', '2065', 'amla', 'yyyyyyyyyyyyyyyyyy', '12183.5', '2024-06-01');
 
 -- --------------------------------------------------------
 
@@ -432,7 +378,8 @@ CREATE TABLE `stock` (
 --
 
 INSERT INTO `stock` (`stock_id`, `stock_proid`, `stock_proname`, `stock_quantity`, `stock_associate`, `stock_price`, `stock_total`, `stock_date`) VALUES
-(1, 0, 'FORMULA 1 SHAKE MIX PISTAH', '5', 'palarivattom', '1340', 6700, '2024-06-02');
+(1, 0, 'FORMULA 1 SHAKE MIX VANILLA', '5', 'kollam', '1340', 6700, '2024-06-05'),
+(2, 0, 'FORMULA 1 SHAKE MIX VANILLA', '2', 'palarivattom', '1340', 2680, '2024-06-06');
 
 -- --------------------------------------------------------
 
@@ -505,9 +452,9 @@ ALTER TABLE `login_details`
   ADD PRIMARY KEY (`login_details_id`);
 
 --
--- Indexes for table `payment`
+-- Indexes for table `pay_history`
 --
-ALTER TABLE `payment`
+ALTER TABLE `pay_history`
   ADD PRIMARY KEY (`pay_id`);
 
 --
@@ -596,19 +543,19 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `payment`
+-- AUTO_INCREMENT for table `pay_history`
 --
-ALTER TABLE `payment`
+ALTER TABLE `pay_history`
   MODIFY `pay_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `price`
 --
 ALTER TABLE `price`
-  MODIFY `pri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `pri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -626,7 +573,7 @@ ALTER TABLE `program`
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `shake`
@@ -644,7 +591,7 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `subcategory`

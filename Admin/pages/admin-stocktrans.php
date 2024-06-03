@@ -1,7 +1,7 @@
 <?php
 include './connect.php';
-error_reporting(0);
-$stoloct1 = $stoqua1 =  $sh_raw1 = $sto_id = $stoassoc1 = "";
+// error_reporting(0);
+$stoloct1 = $stoqua1 = $sh_raw1 = $sto_id = $stoassoc1 = "";
 session_start();
 if ($_SESSION["email"] == "") {
   header('location:admin-login.php');
@@ -11,17 +11,11 @@ if ($_SESSION["email"] == "") {
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Admin Stock</title>
-  <!-- plugins:css -->
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
-  <link rel="stylesheet" href="../vendors/select2/select2.min.css">
-  <link rel="stylesheet" href="../vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
-  <!-- inject:css -->
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
@@ -48,11 +42,8 @@ if ($_SESSION["email"] == "") {
     // fetching the data from the URL for deleting the subject form
     if (isset($_GET['stod_id'])) {
       $dl_id = $_GET['stod_id'];
-      $dl_query = mysqli_query($conn, "SELECT * FROM stock WHERE stock_id = '$dl_id'");
-      $dl_row1 = mysqli_fetch_array($dl_query);
       $del = mysqli_query($conn, "DELETE FROM stock WHERE stock_id='$dl_id'");
       if ($del) {
-        unlink($img); //for deleting the existing image from the folder
         header("location:admin-stocktrans.php");
       } else {
         echo "Deletion Failed";
@@ -72,7 +63,6 @@ if ($_SESSION["email"] == "") {
     <script>
       // Define a JavaScript object to store material prices
       var materialPrices = <?php echo json_encode($material_prices); ?>;
-
       // Function to update price field based on selected raw material
       function updatePrice() {
         var selectedMaterial = document.getElementById("stomaterial").value;
@@ -98,7 +88,7 @@ if ($_SESSION["email"] == "") {
                 <h1 class="card-title">Stock Transfer</h1>
                 <p class="card-description">Stock Transfer Details</p>
                 <form method="post" class="forms-sample" enctype="multipart/form-data">
-                  <input type="hidden" name="pri_id" id="pri_id" value="<?php echo $stoid; ?>">
+                  <input type="hidden" name="pri_id" id="pri_id" value="<?php echo isset($stoid) ? $stoid : ''; ?>">
                   <div class="row">
                     <div class="col-lg-6 col-md col-sm col-12">
                       <div class="form-group">
@@ -163,25 +153,27 @@ if ($_SESSION["email"] == "") {
           $stoloct = $_POST["stoloc"];
           $stopri = $_POST["stopri"];
           $stodate = $_POST["stodate"];
+          $sto_id = $_POST["pri_id"];
 
-          $sal_curquan_query = mysqli_query($conn, "SELECT pro_curquantity FROM price");
+          // Fetch current quantity of the selected product
+          $sal_curquan_query = mysqli_query($conn, "SELECT pro_curquantity FROM price WHERE pro_name='$stomat'");
           $sal_curquan_row = mysqli_fetch_assoc($sal_curquan_query);
           $sal_curquan = $sal_curquan_row['pro_curquantity'];
 
-          $sal_curquan1 = $stoqua - $sal_curquan;
-         
-          // $total = $stopri * ($stogst / 100);
+          $sal_curquan1 = $sal_curquan - $stoqua;
+
+          // Calculate the total
           $stototal = intval($stoqua) * intval($stopri);
 
-          // Fetch the shake ID from the form
-          $sto_id = $_POST["pri_id"];
           if ($sto_id == '') {
             // Insert new record
             $sql = mysqli_query($conn, "INSERT INTO stock (stock_proname, stock_quantity, stock_associate, stock_price, stock_total, stock_date)
-                                                    VALUES ('$stomat', $stoqua, '$stoloct', $stopri, $stototal, '$stodate')");
-                                  
-            $sql = mysqli_query($conn, "UPDATE price SET pro_curquantity='$sal_curquan1' WHERE pro_name='$stomat'");
-          
+                                        VALUES ('$stomat', $stoqua, '$stoloct', $stopri, $stototal, '$stodate')");
+
+            if ($sql) {
+              // Update the price table
+              $update_query = mysqli_query($conn, "UPDATE price SET pro_curquantity='$sal_curquan1' WHERE pro_name='$stomat'");
+            }
           } else {
             // Update existing record
             $sql = mysqli_query($conn, "UPDATE stock SET stock_proname='$stomat', stock_quantity=$stoqua, stock_associate='$stoloct', stock_price=$stopri, stock_total=$stototal, stock_date='$stodate' WHERE stock_id='$sto_id'");
@@ -189,7 +181,6 @@ if ($_SESSION["email"] == "") {
 
           if ($sql) {
             echo "<script>alert('Operation completed successfully.');</script>";
-            // Redirect after successful operation
           } else {
             echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
           }
@@ -216,7 +207,7 @@ if ($_SESSION["email"] == "") {
                         <th>Stock Transfer Date</th>
                         <th>Product</th>
                         <th>Quantity</th>
-                        <!-- <th>Remaining Quantity</th> -->
+                        <th>Remaining Quantity</th>
                         <th>Location/Associate</th>
                         <th>Price</th>
                         <th>Total</th>
@@ -240,13 +231,8 @@ if ($_SESSION["email"] == "") {
                     ?>
                       <tbody>
                         <tr>
-                          <td>
-                            <a href="admin-stocktrans.php?stoid=<?php echo $stock_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i>
-                            </a>
-                          </td>
-                          <td>
-                            <a href="admin-stocktrans.php?stod_id=<?php echo $stock_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i>
-                            </a>
+                          <td><a href="admin-stocktrans.php?stoid=<?php echo $stock_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i></a></td>
+                          <td><a href="admin-stocktrans.php?stod_id=<?php echo $stock_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a>
                           </td>
                           <td class="py-1"><?php echo $serialNo++; ?></td>
                           <td><?php echo $stock_date; ?></td>
@@ -269,40 +255,18 @@ if ($_SESSION["email"] == "") {
           <!-- table view closed -->
         </div>
       </div>
-      <!-- content-wrapper ends -->
-      <!-- partial:../../partials/_footer.html -->
       <footer class="footer">
         <div class="d-sm-flex justify-content-center justify-content-sm-between">
-          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024.Nutri-time. All
-            rights reserved.</span>
+          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024.Nutri-time. All rights reserved.</span>
         </div>
       </footer>
       <!-- partial -->
     </div>
-    <!-- main-panel ends -->
   </div>
-  <!-- page-body-wrapper ends -->
   </div>
-  <!-- container-scroller -->
-  <!-- plugins:js -->
   <script src="../vendors/js/vendor.bundle.base.js"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page -->
-  <script src="../vendors/typeahead.js/typeahead.bundle.min.js"></script>
-  <script src="../vendors/select2/select2.min.js"></script>
-  <!-- End plugin js for this page -->
-  <!-- inject:js -->
   <script src="../js/off-canvas.js"></script>
-  <script src="../js/hoverable-collapse.js"></script>
   <script src="../js/template.js"></script>
-  <script src="../js/settings.js"></script>
-  <script src="../js/todolist.js"></script>
-  <!-- endinject -->
-  <!-- Custom js for this page-->
-  <script src="../js/file-upload.js"></script>
-  <script src="../js/typeahead.js"></script>
-  <script src="../js/select2.js"></script>
-  <!-- End custom js for this page-->
 </body>
 
 </html>
