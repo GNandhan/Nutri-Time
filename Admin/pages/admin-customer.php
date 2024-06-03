@@ -1,6 +1,6 @@
 <?php
 include './connect.php';
-// error_reporting(0);
+error_reporting(0);
 $cus_id1 = $cus_code1 = $cus_name1 = $cus_phno1 = $cus_invite1 = $cus_age1 = $cus_bodyage1 = $cus_gender1 = $cus_email1 = $cus_doj1 = $cus_city1 = $cus_address1 = $cus_height1 = $cus_weight1 = $cus_idleweight1 = $cus_fat1 = $cus_vcf1 = $cus_bmr1 = $cus_bmi1 = $cus_mm1 = $cus_tsf1 = $cus_waketime1 = $cus_tea1 = $cus_breakfast1 = $cus_lunch1 = $cus_snack1 = $cus_dinner1 = $cus_veg_nonveg1 = $cus_waterintake1 = $cus_cond11 = $cus_cond21 = $cus_cond31 = $cus_cond41 = $cus_cond51 = $cus_cond61 = $cus_cond71 = $cus_cond81 = $cus_prg1 = $cus_prgtype1 = $cus_nodays1 = $cus_total1 = $cus_paid1 = $cus_remain1 = $cusid = $cus_paid3 = "";
 session_start();
 if ($_SESSION["email"] == "") {
@@ -580,6 +580,8 @@ if ($_SESSION["email"] == "") {
                           <div class="modal-content" style="border-radius:20px;">
                             <form action="" method="POST">
                               <input type="hidden" name="custid2" value="<?php echo $cus_id; ?>">
+                              <input type="hidden" name="cust_code" value="<?php echo $cus_code; ?>">
+                              <input type="hidden" name="cust_name" value="<?php echo $cus_name; ?>">
                               <div class="modal-header">
                                 <h3 class="modal-title" id="exampleModalLabel">Payment History</h3>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -591,29 +593,45 @@ if ($_SESSION["email"] == "") {
                                 <h3 class="py-2">Remaining Amount :<span style="font-weight: bold;"><?php echo $cus_remain; ?></span></h3>
                                 <hr>
                                 <div class="form-group" id="paymentFields">
-                                <?php
-              // Retrieve payment history for the current customer
-              $paymentSql = mysqli_query($conn, "SELECT * FROM pay_history WHERE cust_id = '$cus_id'");
-              while ($paymentRow = mysqli_fetch_assoc($paymentSql)) {
-                $pay_id = $paymentRow['pay_id'];
-                $cust_paid = $paymentRow['cust_paid'];
-                $cust_paiddate = $paymentRow['cust_paiddate'];
-              ?>
-                <div class="row">
-                  <div class="col-lg col-md col-sm-4 col-6">
-                    <label class="">Paid Amount</label>
-                    <div class="form-group">
-                      <input type="text" class="form-control cus-paid" style="border-radius: 16px;" name="cuspaid[]" value="<?php echo $cust_paid; ?>" readonly>
-                    </div>
-                  </div>
-                  <div class="col-lg col-md col-sm-4 col-6">
-                    <label class="">Payment Date</label>
-                    <div class="form-group">
-                      <input type="date" class="form-control" style="border-radius: 16px;" name="cuspaiddate[]" value="<?php echo $cust_paiddate; ?>" readonly>
-                    </div>
-                  </div>
-                </div>
-              <?php } ?>
+                                  <?php
+                                  // Retrieve payment history for the current customer
+                                  $paymentSql = mysqli_query($conn, "SELECT * FROM pay_history WHERE cust_id = '$cus_id'");
+                                  while ($paymentRow = mysqli_fetch_assoc($paymentSql)) {
+                                    $pay_id = $paymentRow['pay_id'];
+                                    $cust_paid = $paymentRow['cust_paid'];
+                                    $cust_paiddate = $paymentRow['cust_paiddate'];
+                                  ?>
+                                    <div class="row">
+                                      <div class="col-lg col-md col-sm-4 col-6">
+                                        <label class="">Paid Amount</label>
+                                        <div class="form-group">
+                                          <input type="text" class="form-control cus-paid" style="border-radius: 16px;" name="existing_cuspaid[]" value="<?php echo $cust_paid; ?>" readonly>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg col-md col-sm-4 col-6">
+                                        <label class="">Payment Date</label>
+                                        <div class="form-group">
+                                          <input type="date" class="form-control" style="border-radius: 16px;" name="existing_cuspaiddate[]" value="<?php echo $cust_paiddate; ?>" readonly>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  <?php } ?>
+
+                                  <!-- Input fields for new payment -->
+                                  <div class="row">
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">New Paid Amount</label>
+                                      <div class="form-group">
+                                        <input type="text" class="form-control cus-paid" style="border-radius: 16px;" name="new_cuspaid">
+                                      </div>
+                                    </div>
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">New Payment Date</label>
+                                      <div class="form-group">
+                                        <input type="date" class="form-control" style="border-radius: 16px;" name="new_cuspaiddate">
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
                                 <!-- <button type="button" class="btn btn-primary mt-2" id="addPaymentField">+</button> -->
                               </div>
@@ -675,41 +693,36 @@ if ($_SESSION["email"] == "") {
                   </table>
                   <!-- PHP CODE FOR INSERTING THE PAYMENT DATA -->
                   <?php
-                  if (isset($_POST["submitpay"])) {
-                    $ppaid = $_POST["cuspaid"];
-                    $ppaiddate = $_POST["cuspaiddate"];
-                    $ppaid1 = $_POST["cuspaid1"];
-                    $ppaiddate1 = $_POST["cuspaiddate1"];
-                    $ppaid2 = $_POST["cuspaid2"];
-                    $ppaiddate2 = $_POST["cuspaiddate2"];
-                    $ppaid3 = $_POST["cuspaid3"];
-                    $ppaiddate3 = $_POST["cuspaiddate3"];
-                    $ppaid4 = $_POST["cuspaid4"];
-                    $ppaiddate4 = $_POST["cuspaiddate4"];
-                    $pri_id = $_POST["custid2"];
-                    $pri_paidtotal = $ppaid + $ppaid1 + $ppaid2 + $ppaid3 + $ppaid4;
+                  ob_start(); // Start output buffering
+                  if (isset($_POST['submitpay'])) {
+                    $cust_id = $_POST['custid2'];
+                    $cust_code = $_POST['cust_code'];
+                    $cust_name = $_POST['cust_name'];
+                    $new_cuspaid = $_POST['new_cuspaid'];
+                    $new_cuspaiddate = $_POST['new_cuspaiddate'];
 
-                    $cu_query = mysqli_query($conn, "SELECT * FROM customer WHERE cust_id = '$pri_id'");
-                    $cu_row1 = mysqli_fetch_array($cu_query);
-
-                    $pri_total = $cu_row1['cust_total'];
-
-                    $pri_remain = $pri_total - $pri_paidtotal;
-                    // Check if the record already exists
-                    if (empty($pri_id)) {
-                      // If no record exists, insert a new one
-                      $sql = mysqli_query($conn, "INSERT INTO customer (cust_paid, cust_paiddate, cust_paid1, cust_paiddate1, cust_paid2, cust_paiddate2, cust_paid3, cust_paiddate3, cust_paid4, cust_paiddate4, cust_remain)
-                                                                VALUES ('$ppaid','$ppaiddate','$ppaid1','$ppaiddate1','$ppaid2','$ppaiddate2','$ppaid3','$ppaiddate3','$ppaid4','$ppaiddate4','$pri_remain')");
-                    } else {
-                      // If a record exists, update it
-                      $sql = mysqli_query($conn, "UPDATE customer SET cust_paid='$ppaid', cust_paiddate='$ppaiddate', cust_paid1='$ppaid1', cust_paiddate1='$ppaiddate1', cust_paid2='$ppaid2', cust_paiddate2='$ppaiddate2', cust_paid3='$ppaid3', cust_paiddate3='$ppaiddate3', cust_paid4='$ppaid4', cust_paiddate4='$ppaiddate4', cust_remain='$pri_remain' WHERE cust_id='$pri_id'");
+                    // Insert new payment record into pay_history table
+                    if (!empty($new_cuspaid) && !empty($new_cuspaiddate)) {
+                      $insertPaymentSql = "INSERT INTO pay_history (cust_id, cust_code, cust_name, cust_paid, cust_paiddate) VALUES ('$cust_id', '$cust_code', '$cust_name', '$new_cuspaid', '$new_cuspaiddate')";
+                      if (mysqli_query($conn, $insertPaymentSql)) {
+                        echo "<script>alert('New payment added successfully.');</script>";
+                      } else {
+                        echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
+                      }
                     }
-                    if ($sql) {
-                      echo "<script>alert('Operation completed successfully.');</script>";
-                      echo "<script>window.location='admin-customer.php';</script>";
+
+                    // Optionally, update the remaining amount in the customer table
+                    $updateCustomerSql = "UPDATE customer SET cust_remain = cust_remain - '$new_cuspaid' WHERE cust_id = '$cust_id'";
+                    if (mysqli_query($conn, $updateCustomerSql)) {
+                      echo "<script>alert('Remaining amount updated successfully.');</script>";
                     } else {
                       echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
                     }
+
+                    // Redirect to avoid form resubmission
+                    header("Location: admin-customer.php");
+                    ob_end_flush(); // End output buffering and flush the buffer
+                    exit(); // Ensure no further code is executed after the redirect
                   }
                   ?>
                   <!-- PHP CODE FOR INSERTING THE PAYMENT DATA -->
