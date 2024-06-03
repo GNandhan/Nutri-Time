@@ -165,7 +165,7 @@ if ($_SESSION["email"] == "") {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg col-md col-sm col grid-margin stretch-card">
+                        <div class="col-lg-4 col-md col-sm col grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
                                     <p class="card-description">Eating Habits</p>
@@ -205,7 +205,7 @@ if ($_SESSION["email"] == "") {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg col-md col-sm col grid-margin stretch-card">
+                        <div class="col-lg-4 col-md col-sm col grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
                                     <p class="card-description">Program Details</p>
@@ -234,6 +234,46 @@ if ($_SESSION["email"] == "") {
                                         <li class="card-description">5th Payment : <span style="font-weight:bolder; color:black;"><?php echo $cus_paid4; ?> (<?php echo $cus_paiddate4; ?>)</span></li>
                                         <li class="card-description">6th Payment : <span style="font-weight:bolder; color:black;"><?php echo $cus_paid5; ?> (<?php echo $cus_paiddate5; ?>)</span></li>
                                     </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg col-md col-sm col grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <p class="card-description">BMI & BMR HISTORY</p>
+                                    <hr>
+                                   <div class="row">
+                                    <div class="col-lg col-md col-sm col">
+                                         <ul>
+                                        <li class="card-description">1st BMI :<span style="font-weight:bolder; color:black;"><?php echo $cus_bmi; ?> </span></li>
+                                        <li class="card-description">2nd BMI : <span style="font-weight:bolder; color:black;"><?php echo $cus_paid1; ?> </span></li>
+                                        <li class="card-description">3rd BMI : <span style="font-weight:bolder; color:black;"><?php echo $cus_paid2; ?> </span></li>
+                                        <li class="card-description">4th BMI : <span style="font-weight:bolder; color:black;"><?php echo $cus_paid3; ?> </span></li>
+                                        <li class="card-description">5th BMI : <span style="font-weight:bolder; color:black;"><?php echo $cus_paid4; ?> </span></li>
+                                        <li class="card-description">6th BMI : <span style="font-weight:bolder; color:black;"><?php echo $cus_paid5; ?> </span></li>
+                                    </ul>
+                                    </div>
+                                    <div class="col-lg col-md col-sm col">
+                                         <ul>
+                                        <li class="card-description">1st BMR :<span style="font-weight:bolder; color:black;"><?php echo $cus_bmr; ?> </span></li>
+                                        <li class="card-description">2nd BMR : <span style="font-weight:bolder; color:black;"><?php echo $cus_paid1; ?> </span></li>
+                                        <li class="card-description">3rd BMR : <span style="font-weight:bolder; color:black;"><?php echo $cus_paid2; ?> </span></li>
+                                        <li class="card-description">4th BMR : <span style="font-weight:bolder; color:black;"><?php echo $cus_paid3; ?> </span></li>
+                                        <li class="card-description">5th BMR : <span style="font-weight:bolder; color:black;"><?php echo $cus_paid4; ?> </span></li>
+                                        <li class="card-description">6th BMR : <span style="font-weight:bolder; color:black;"><?php echo $cus_paid5; ?> </span></li>
+                                    </ul>
+                                    </div>
+                                    <div class="col-lg col-md col-sm col">
+                                         <ul>
+                                        <li class="card-description">DATE :<span style="font-weight:bolder; color:black;"> (<?php echo $cus_paiddate; ?>)</span></li>
+                                        <li class="card-description">DATE : <span style="font-weight:bolder; color:black;"> (<?php echo $cus_paiddate1; ?>)</span></li>
+                                        <li class="card-description">DATE : <span style="font-weight:bolder; color:black;"> (<?php echo $cus_paiddate2; ?>)</span></li>
+                                        <li class="card-description">DATE : <span style="font-weight:bolder; color:black;"> (<?php echo $cus_paiddate3; ?>)</span></li>
+                                        <li class="card-description">DATE : <span style="font-weight:bolder; color:black;"> (<?php echo $cus_paiddate4; ?>)</span></li>
+                                        <li class="card-description">DATE : <span style="font-weight:bolder; color:black;"> (<?php echo $cus_paiddate5; ?>)</span></li>
+                                    </ul>
+                                    </div>
+                                   </div>
                                 </div>
                             </div>
                         </div>
