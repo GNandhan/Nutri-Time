@@ -657,17 +657,40 @@ if ($_SESSION["email"] == "") {
                               </div>
                               <div class="modal-body">
                                 <div class="form-group" id="paymentFields">
+                                <?php
+                                  // Retrieve payment history for the current customer
+                                  $paymentSql = mysqli_query($conn, "SELECT * FROM bmr_history WHERE cust_id = '$cus_id'");
+                                  while ($paymentRow = mysqli_fetch_assoc($paymentSql)) {
+                                    $pay_id = $paymentRow['pay_id'];
+                                    $cust_paid = $paymentRow['cust_paid'];
+                                    $cust_paiddate = $paymentRow['cust_paiddate'];
+                                  ?>
+                                    <div class="row">
+                                      <div class="col-lg col-md col-sm-4 col-6">
+                                        <label class="">Paid Amount</label>
+                                        <div class="form-group">
+                                          <input type="text" class="form-control cus-paid" style="border-radius: 16px;" name="existing_cuspaid[]" value="<?php echo $cust_paid; ?>" readonly>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg col-md col-sm-4 col-6">
+                                        <label class="">Payment Date</label>
+                                        <div class="form-group">
+                                          <input type="date" class="form-control" style="border-radius: 16px;" name="existing_cuspaiddate[]" value="<?php echo $cust_paiddate; ?>" readonly>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  <?php } ?>
                                   <div class="row">
                                     <div class="col-lg col-md col-sm-4 col-6">
-                                      <label class="">1st BMI</label>
+                                      <label class="">BMI</label>
                                       <div class="form-group">
-                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cusbmi" value="<?php echo $cus_bmi; ?>">
+                                        <input type="text" class="form-control cus-bmi" style="border-radius: 16px;" name="cusbmi" value="<?php echo $cus_bmi; ?>">
                                       </div>
                                     </div>
                                     <div class="col-lg col-md col-sm-4 col-6">
-                                      <label class="">1st BMR</label>
+                                      <label class="">BMR</label>
                                       <div class="form-group">
-                                        <input type="text" class="form-control  cus-paid" style="border-radius: 16px;" name="cusbmr" value="<?php echo $cus_bmr; ?>">
+                                        <input type="text" class="form-control cus-bmr" style="border-radius: 16px;" name="cusbmr" value="<?php echo $cus_bmr; ?>">
                                       </div>
                                     </div>
                                     <div class="col-lg col-md col-sm-4 col-6">
@@ -731,32 +754,13 @@ if ($_SESSION["email"] == "") {
                     $cbmi = $_POST["cusbmi"];
                     $cbmr = $_POST["cusbmr"];
                     $cbmidate = $_POST["cusbmidate"];
-                    $cbmi1 = $_POST["cusbmi1"];
-                    $cbmr1 = $_POST["cusbmr1"];
-                    $cbmidate1 = $_POST["cusbmidate1"];
-                    $cbmi2 = $_POST["cusbmi2"];
-                    $cbmr2 = $_POST["cusbmr2"];
-                    $cbmidate2 = $_POST["cusbmidate2"];
-                    $cbmi3 = $_POST["cusbmi3"];
-                    $cbmr3 = $_POST["cusbmr3"];
-                    $cbmidate3 = $_POST["cusbmidate3"];
-                    $cbmi4 = $_POST["cusbmi4"];
-                    $cbmr4 = $_POST["cusbmr4"];
-                    $cbmidate4 = $_POST["cusmidate4"];
-
                     $pri_id = $_POST["custid2"];
 
-                    // Check if the record already exists
-                    if (empty($pri_id)) {
-                      // If no record exists, insert a new one
-                      $sql = mysqli_query($conn, "INSERT INTO customer (cust_bmr, cust_bmi, cust_bmidate, cust_bmr1, cust_bmi1, cust_bmidate1, cust_bmr2, cust_bmi2, cust_bmidate2, cust_bmr3, cust_bmi3, cust_bmidate3, cust_bmr4, cust_bmi4, cust_bmidate4)
-                                                                VALUES ('$cbmr','$cbmi','$cbmidate','$cbmr1','$cbmi1','$cbmidate1','$cbmr2','$cbmi2','$cbmidate2','$cbmr3','$cbmi3','$cbmidate3','$cbmr4','$cbmi4','$cbmidate4')");
-                    } else {
-                      // If a record exists, update it
-                      $sql = mysqli_query($conn, "UPDATE customer SET cust_bmr='$cbmr', cust_bmi='$cbmi', cust_bmidate='$cbmidate', cust_bmr1='$cbmr1', cust_bmi1='$cbmi1', cust_bmidate1='$cbmidate1', cust_bmr2='$cbmr2', cust_bmi2='$cbmi2', cust_bmidate2='$cbmidate2', cust_bmr3='$cbmr3', cust_bmi3='$cbmi3', cust_bmidate3='$cbmidate3', cust_bmr4='$cbmr4', cust_bmi4='$cbmi4', cust_bmidate4='$cbmidate4' WHERE cust_id='$pri_id'");
-                    }
-                    if ($sql) {
-                      echo "<script>alert('Operation completed successfully.');</script>";
+                    $insertBMRSql = "INSERT INTO bmr_history (cust_id, cust_code, cust_name, cust_bmr, cust_bmi, cust_bmidate) 
+                    VALUES ('$pri_id', '$cus_code', '$cus_name', '$cbmr', '$cbmi', '$cbmidate')";
+
+                    if (mysqli_query($conn, $insertBMRSql)) {
+                      echo "<script>alert('BMI & BMR history added successfully.');</script>";
                       echo "<script>window.location='admin-customer.php';</script>";
                     } else {
                       echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
