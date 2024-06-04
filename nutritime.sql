@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2024 at 01:19 AM
+-- Generation Time: Jun 04, 2024 at 02:05 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -56,6 +56,13 @@ CREATE TABLE `bmr_history` (
   `cust_bmi` varchar(20) NOT NULL,
   `cust_bmidate` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `bmr_history`
+--
+
+INSERT INTO `bmr_history` (`bmr_id`, `cust_id`, `cust_code`, `cust_name`, `cust_bmr`, `cust_bmi`, `cust_bmidate`) VALUES
+(1, 1010, 'CUS10028', 'Edwin', '11', '12', '2024-06-01');
 
 -- --------------------------------------------------------
 
@@ -563,7 +570,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `bmr_history`
 --
 ALTER TABLE `bmr_history`
-  MODIFY `bmr_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `bmr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `category`
