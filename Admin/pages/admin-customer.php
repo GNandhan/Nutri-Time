@@ -15,8 +15,6 @@ if ($_SESSION["email"] == "") {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Admin Customer</title>
-  <!-- plugins:css -->
-  <!-- <meta http-equiv="refresh" content="3"> -->
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
@@ -541,6 +539,10 @@ if ($_SESSION["email"] == "") {
                       $cus_total = $row['cust_total'];
                       $cus_remain = $row['cust_remain'];
                       $cus_date = $row['cust_date'];
+                      // Calculate the total amount paid by this customer
+                      $payment_sql = mysqli_query($conn, "SELECT SUM(cust_paid) as total_paid FROM pay_history WHERE cust_id = '$cus_id'");
+                      $payment_row = mysqli_fetch_assoc($payment_sql);
+                      $cus_paid = $payment_row['total_paid'];
                     ?>
                       <tbody>
                         <tr>
@@ -657,38 +659,45 @@ if ($_SESSION["email"] == "") {
                               </div>
                               <div class="modal-body">
                                 <div class="form-group" id="paymentFields">
-                                <?php
+                                  <?php
                                   // Retrieve payment history for the current customer
                                   $paymentSql = mysqli_query($conn, "SELECT * FROM bmr_history WHERE cust_id = '$cus_id'");
                                   while ($paymentRow = mysqli_fetch_assoc($paymentSql)) {
-                                    $pay_id = $paymentRow['pay_id'];
-                                    $cust_paid = $paymentRow['cust_paid'];
-                                    $cust_paiddate = $paymentRow['cust_paiddate'];
+                                    $bmr_id = $paymentRow['bmr_id'];
+                                    $cust_bmr = $paymentRow['cust_bmr'];
+                                    $cust_bmi = $paymentRow['cust_bmi'];
+                                    $cust_bmidate = $paymentRow['cust_bmidate'];
                                   ?>
                                     <div class="row">
                                       <div class="col-lg col-md col-sm-4 col-6">
-                                        <label class="">Paid Amount</label>
+                                        <label class="">BMR</label>
                                         <div class="form-group">
-                                          <input type="text" class="form-control cus-paid" style="border-radius: 16px;" name="existing_cuspaid[]" value="<?php echo $cust_paid; ?>" readonly>
+                                          <input type="text" class="form-control cus-paid" style="border-radius: 16px;" name="existing_cuspaid[]" value="<?php echo $cust_bmr; ?>" readonly>
                                         </div>
                                       </div>
                                       <div class="col-lg col-md col-sm-4 col-6">
-                                        <label class="">Payment Date</label>
+                                        <label class="">BMI</label>
                                         <div class="form-group">
-                                          <input type="date" class="form-control" style="border-radius: 16px;" name="existing_cuspaiddate[]" value="<?php echo $cust_paiddate; ?>" readonly>
+                                          <input type="text" class="form-control" style="border-radius: 16px;" name="existing_cuspaiddate[]" value="<?php echo $cust_bmi; ?>" readonly>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg col-md col-sm-4 col-6">
+                                        <label class="">Date</label>
+                                        <div class="form-group">
+                                          <input type="date" class="form-control" style="border-radius: 16px;" name="cusbmidate" value="<?php echo $cust_bmidate; ?>">
                                         </div>
                                       </div>
                                     </div>
                                   <?php } ?>
                                   <div class="row">
                                     <div class="col-lg col-md col-sm-4 col-6">
-                                      <label class="">BMI</label>
+                                      <label class="">BMR</label>
                                       <div class="form-group">
                                         <input type="text" class="form-control cus-bmi" style="border-radius: 16px;" name="cusbmi" value="<?php echo $cus_bmi; ?>">
                                       </div>
                                     </div>
                                     <div class="col-lg col-md col-sm-4 col-6">
-                                      <label class="">BMR</label>
+                                      <label class="">BMI</label>
                                       <div class="form-group">
                                         <input type="text" class="form-control cus-bmr" style="border-radius: 16px;" name="cusbmr" value="<?php echo $cus_bmr; ?>">
                                       </div>
@@ -775,8 +784,6 @@ if ($_SESSION["email"] == "") {
           <!-- table view closed -->
         </div>
       </div>
-      <!-- content-wrapper ends -->
-      <!-- partial:../../partials/_footer.html -->
       <footer class="footer">
         <div class="d-sm-flex justify-content-center justify-content-sm-between">
           <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024.Nutri-time. All rights reserved.</span>
@@ -788,46 +795,6 @@ if ($_SESSION["email"] == "") {
   </div>
   <!-- page-body-wrapper ends -->
   </div>
-  <!-- <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      var counter = 5; // Starting from 4th paid
-      document.getElementById("addPaymentField").addEventListener("click", function() {
-        var row = document.createElement("div");
-        row.className = "row";
-
-        var col1 = document.createElement("div");
-        col1.className = "col-lg col-md col-sm-4 col-6";
-        var label1 = document.createElement("label");
-        label1.textContent = counter + "th Paid";
-        var input1 = document.createElement("input");
-        input1.type = "text";
-        input1.className = "form-control cus-paid";
-        input1.style.borderRadius = "16px";
-        input1.name = "cuspaid" + counter;
-        col1.appendChild(label1);
-        col1.appendChild(input1);
-
-        var col2 = document.createElement("div");
-        col2.className = "col-lg col-md col-sm-4 col-6";
-        var label2 = document.createElement("label");
-        label2.textContent = "Payment Date";
-        var input2 = document.createElement("input");
-        input2.type = "date";
-        input2.className = "form-control";
-        input2.style.borderRadius = "16px";
-        input2.name = "cuspaiddate" + counter;
-        col2.appendChild(label2);
-        col2.appendChild(input2);
-
-        row.appendChild(col1);
-        row.appendChild(col2);
-
-        document.getElementById("paymentFields").appendChild(row);
-
-        counter++;
-      });
-    });
-  </script> -->
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <script src="../js/off-canvas.js"></script>
   <script src="../js/template.js"></script>
