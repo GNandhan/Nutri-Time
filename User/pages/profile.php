@@ -39,9 +39,9 @@
               <li class="nav-item"><a href="./index2.php" class="nav-link text-dark">Home</a></li>
               <li class="nav-item"><a href="./program2.php" class="nav-link text-dark">Program</a></li>
               <li class="nav-item"><a href="./gallery2.php" class="nav-link text-dark">Gallery</a></li>
-              <li class="nav-item"><a href="./product2.php" class="nav-link text-success border-bottom border-2 border-success text-success">Product</a></li>
+              <li class="nav-item"><a href="./product2.php" class="nav-link text-dark">Product</a></li>
               <li class="nav-item"><a href="./contact2.php" class="nav-link text-dark">Contact</a></li>
-            <li class="nav-item"><a href="./profile.php" class="nav-link text-dark">Profile</a></li>
+            <li class="nav-item"><a href="./profile.php" class="nav-link text-success border-bottom border-2 border-success text-success">Profile</a></li>
               <li class="nav-item"><a href="./login.php" class="nav-link text-dark">Log out</a></li>
             </ul>
           </header>
@@ -51,7 +51,7 @@
 <!-- Program cards -->
 <div class="container">
     <div class="row">
-      <div class="h2 py-4 px-5 border-start bg-white rounded-5 shadow">Product</div>
+      <div class="h2 py-4 px-5 border-start bg-white rounded-5 shadow">Profile</div>
       <div class="card border-0 shadow-lg rounded-5">
         <div class="row text-center p-4">
 <?php  

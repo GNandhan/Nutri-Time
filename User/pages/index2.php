@@ -151,6 +151,7 @@
             <li class="nav-item"><a href="gallery2.php" class="nav-link text-dark">Gallery</a></li>
             <li class="nav-item"><a href="./product2.php" class="nav-link text-dark">Product</a></li>
             <li class="nav-item"><a href="./contact2.php" class="nav-link text-dark">Contact</a></li>
+            <li class="nav-item"><a href="./profile.php" class="nav-link text-dark">Profile</a></li>
             <li class="nav-item"><a href="./login.php" class="nav-link text-dark">Log out</a></li>
           </ul>
         </header>
