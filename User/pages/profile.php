@@ -11,6 +11,7 @@ if ($_SESSION["email"] == "") {
 
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="3">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nutri-time Product</title>
   <link rel="shortcut icon" href="../images/icon.png" type="image/x-icon">
@@ -44,11 +45,11 @@ if ($_SESSION["email"] == "") {
           <li class="nav-item"><a href="./product2.php" class="nav-link text-dark">Product</a></li>
           <li class="nav-item"><a href="./contact2.php" class="nav-link text-dark">Contact</a></li>
           <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle text-dark" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a href="#" class="nav-link dropdown-toggle text-success border-bottom border-2 border-success" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="bi bi-person" width="24" height="24"></i>
             </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-              <li><a class="dropdown-item" href="./profile.php">Profile</a></li>
+            <ul class="dropdown-menu dropdown-menu-end shadow rounded-4" aria-labelledby="profileDropdown">
+              <li><a class="dropdown-item text-success" href="./profile.php">Profile</a></li>
               <li><a class="dropdown-item" href="./logout.php">Log out</a></li>
             </ul>
           </li>
@@ -58,14 +59,35 @@ if ($_SESSION["email"] == "") {
   </div>
   <!-- navbar closed -->
   <!-- Program cards -->
-  <div class="container">
+  <div class="container-fluid px-5">
+    <div class="row justify-content-between">
+      <div class="col-lg col-md-6 col-sm col text-start h2 py-4">CUSTOMER NAME</div>
+      <div class="col-lg col-md-3 col-sm col text-end h2 py-4">
+        <button class="btn btn-light border border-1 rounded-5 px-4 p-2">Program name</button>
+        <button class="btn btn-primary border border-1 rounded-5 px-4 p-2">No of days</button>
+      </div>
+    </div>
     <div class="row">
-      <div class="h2 py-4 px-5 border-start bg-white rounded-5 shadow">Profile</div>
-      <div class="card border-0 shadow-lg rounded-5">
-        <!-- Content for the profile page goes here -->
+      <div class="col-lg col-md col-sm col">
+        <div class="card p-3 rounded-5 border-0 bg-success">
+          <div class="row">
+            <div class="col-lg col-md col-sm col">
+              <div class="card p-3 py-5 rounded-5 border-0">hello</div>
+            </div>
+            <div class="col-lg col-md col-sm col">
+              <div class="card p-3 py-5 rounded-5 border-0">hello</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg col-md col-sm col">
+        <div class="card p-5 rounded-5 border-0">
+          program details
+        </div>
       </div>
     </div>
   </div>
+
   <!-- Program cards -->
   <!-- footer -->
   <footer class="d-flex container flex-wrap fixed-bottom justify-content-between align-items-center py-3 my-4 border-top">

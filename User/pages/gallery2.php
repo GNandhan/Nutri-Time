@@ -40,8 +40,15 @@
           <li class="nav-item"><a href="./gallery2.php"class="nav-link text-success border-bottom border-2 border-success text-success">Gallery</a></li>
           <li class="nav-item"><a href="./product2.php" class="nav-link text-dark">Product</a></li>
           <li class="nav-item"><a href="./contact2.php" class="nav-link text-dark">Contact</a></li>
-          <li class="nav-item"><a href="./profile.php" class="nav-link text-dark">Profile</a></li>
-          <li class="nav-item"><a href="./login.php" class="nav-link text-dark">Log out</a></li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle text-dark" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-person" width="24" height="24"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+              <li><a class="dropdown-item" href="./profile.php">Profile</a></li>
+              <li><a class="dropdown-item" href="./logout.php">Log out</a></li>
+            </ul>
+          </li>
         </ul>
       </header>
     </div>
