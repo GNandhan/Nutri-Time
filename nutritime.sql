@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2024 at 12:08 PM
+-- Generation Time: Jun 05, 2024 at 11:00 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -193,7 +193,8 @@ CREATE TABLE `login_details` (
 
 INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`) VALUES
 ('nutriadmin@gmail.com', 1, '2024-06-03 18:52:29'),
-('nutriadmin@gmail.com', 2, '2024-06-04 05:54:36');
+('nutriadmin@gmail.com', 2, '2024-06-04 05:54:36'),
+('nutriadmin@gmail.com', 3, '2024-06-05 10:51:01');
 
 -- --------------------------------------------------------
 
@@ -604,7 +605,7 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pay_history`
