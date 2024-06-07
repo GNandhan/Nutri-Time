@@ -24,7 +24,7 @@ if ($_SESSION["email"] == "") {
     @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
     body {
-      background-color: rgb(250, 250, 250);
+      background-color: rgb(248, 248, 248);
       font-family: "Outfit", sans-serif;
     }
   </style>
@@ -69,15 +69,8 @@ if ($_SESSION["email"] == "") {
     </div>
     <div class="row">
       <div class="col-lg col-md col-sm col">
-        <div class="card p-3 rounded-5 border-0 bg-success">
-          <div class="row">
-            <div class="col-lg col-md col-sm col">
-              <div class="card p-3 py-5 rounded-5 border-0">hello</div>
-            </div>
-            <div class="col-lg col-md col-sm col">
-              <div class="card p-3 py-5 rounded-5 border-0">hello</div>
-            </div>
-          </div>
+        <div class="card p-3 rounded-5 border-0">
+        program details
         </div>
       </div>
       <div class="col-lg col-md col-sm col">
