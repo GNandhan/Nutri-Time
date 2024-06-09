@@ -69,8 +69,8 @@ if ($_SESSION["email"] == "") {
                                 $u_name = $row['cust_name'];
                               ?>
                                 <tr>
-                                  <td style="width: 10%;"><input type="checkbox" class="large-checkbox"></td>
-                                  <td style="width: 90%;"><?php echo htmlspecialchars($u_name); ?></td>
+                                  <td style="width: 6%;"><input type="checkbox" class="large-checkbox"></td>
+                                  <td style="width: 50%;"><?php echo htmlspecialchars($u_name); ?></td>
                                 </tr>
                               <?php
                               }

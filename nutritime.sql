@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2024 at 03:32 PM
+-- Generation Time: Jun 09, 2024 at 07:51 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -161,7 +161,8 @@ INSERT INTO `customer` (`cust_id`, `cust_code`, `cust_name`, `cust_phno`, `cust_
 (1009, 'CUS10026', 'Mathew', '9887659854', 'Amal', '25', '26', 'Female', 'melow12@gmail.com', '', '15-04-2023', 'Kochi', '3rd floor, kochi, po', '154', '78', '', '24', '001', '002', '003', '', '004', '14', '00:57', 'okkokook', 'Noodles', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '1 litre', 'belly fat', 'blood cancer', 'nutrition effectency', '', '', '', '', '', 'Weight lose', 'Offline', '20', '11000', '0', '2024-06-01', '0', '2024-04-27'),
 (1010, 'CUS10027', 'Abdul', '9887659854', 'Amal', '38', '39', 'Male', 'abdul12@gmail.com', '', '20-06-2024', 'Kochi', '3rd floor, kochi, po', '163', '96', '60', '24', '001', '002', '003', '', '004', '005', '11:09', 'Black Coffee', 'Idly, Sambar', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '2 litre', 'Diabeted', 'Cancer', 'High BP', '', '', '', '', '', 'Weight lose', 'Offline', '20', '10000', '0', '2024-04-01', '4000', '2024-04-27'),
 (1011, 'CUS10026', 'Arjun', '', '', '', '', '', '', '', '2024-06-30', '', '', '150', '90', '50', '', '', '103.5', '306.4', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '15000', '5500', '2024-04-01', '0', '2024-04-01'),
-(1012, 'CUS10028', 'Edwin', '9865875498', 'Amal', '24', '25', 'Male', 'edwin12@gmail.com', '', '2024-04-01', 'Kochi', '3rd floor, kochi, po', '154', '96', '60', '18', '001', '11', '12', '', '13', '14', '03:25', 'Black Coffee', 'Noodles', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '2 litre', 'belly fat', 'blood cancer', 'nutrition effectency', 'Diabeties', 'Fever', 'Blood pressure', 'Diabeties 2', 'Diabeties 3', 'Weight lose', 'Offline', '30', '30000', '0', '2024-04-01', '0', '2024-05-04');
+(1012, 'CUS10028', 'Edwin', '9865875498', 'Amal', '24', '25', 'Male', 'edwin12@gmail.com', '', '2024-04-01', 'Kochi', '3rd floor, kochi, po', '154', '96', '60', '18', '001', '11', '12', '', '13', '14', '03:25', 'Black Coffee', 'Noodles', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '2 litre', 'belly fat', 'blood cancer', 'nutrition effectency', 'Diabeties', 'Fever', 'Blood pressure', 'Diabeties 2', 'Diabeties 3', 'Weight lose', 'Offline', '30', '30000', '0', '2024-04-01', '0', '2024-05-04'),
+(1017, 'CUS10030', 'Wolf', '9876543210', 'Amal', '25', '32', 'Male', 'wolf12@gmail.com', '', '2024-06-13', 'North Marad', '3rd floor, Marad, po', '163', '85', '63', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0', '0', '', '0', '');
 
 -- --------------------------------------------------------
 
@@ -602,7 +603,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `cust_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1017;
+  MODIFY `cust_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1018;
 
 --
 -- AUTO_INCREMENT for table `gallery`
