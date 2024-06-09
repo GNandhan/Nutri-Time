@@ -14,12 +14,9 @@ if ($_SESSION["email"] == "") {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Admin Program</title>
-  <!-- plugins:css -->
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
-  <!-- endinject -->
-  <!-- inject:css -->
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
@@ -107,127 +104,127 @@ if ($_SESSION["email"] == "") {
                       </div>
                     </div>
                   </div>
-              <!-- </div> -->
-              <button type="submit" class="btn btn-primary mr-2 rounded-pill" name="submitpr">Submit</button>
-              <a href="./admin-program.php" class="btn btn-light rounded-pill">Cancel</a>
-              </form>
+                  <!-- </div> -->
+                  <button type="submit" class="btn btn-primary mr-2 rounded-pill" name="submitpr">Submit</button>
+                  <a href="./admin-program.php" class="btn btn-light rounded-pill">Cancel</a>
+                </form>
+              </div>
+              <!-- Form Closed -->
             </div>
-            <!-- Form Closed -->
           </div>
-        </div>
-        <!-- PHP CODE FOR INSERTING THE DATA -->
-        <?php
-        if (isset($_POST["submitpr"])) {
-          $pr_id = $_POST["prid"];
-          $pr_name = $_POST["pname"];
-          $pr_location = $_POST["plocation"];
-          $pr_date = $_POST["pdate"];
-          $pr_time = $_POST["ptime"];
-          $pr_img = $_FILES['prgimg']['name'];
+          <!-- PHP CODE FOR INSERTING THE DATA -->
+          <?php
+          if (isset($_POST["submitpr"])) {
+            $pr_id = $_POST["prid"];
+            $pr_name = $_POST["pname"];
+            $pr_location = $_POST["plocation"];
+            $pr_date = $_POST["pdate"];
+            $pr_time = $_POST["ptime"];
+            $pr_img = $_FILES['prgimg']['name'];
 
-          // Image uploading formats
-          $filename = $_FILES['prgimg']['name'];
-          $tempname = $_FILES['prgimg']['tmp_name'];
+            // Image uploading formats
+            $filename = $_FILES['prgimg']['name'];
+            $tempname = $_FILES['prgimg']['tmp_name'];
 
-          // Fetch the shake ID from the form
-          $pr_id = $_POST["prid"];
+            // Fetch the shake ID from the form
+            $pr_id = $_POST["prid"];
 
-          if ($pr_id == '') {
-            $sql = mysqli_query($conn, "INSERT INTO program (program_name, program_date, program_time, program_venue, program_img) 
+            if ($pr_id == '') {
+              $sql = mysqli_query($conn, "INSERT INTO program (program_name, program_date, program_time, program_venue, program_img) 
                          VALUES ('$pr_name','$pr_date','$pr_time','$pr_location','$pr_img')");
-          } else {
-            if ($filename) {
-              // Remove the existing image
-              $imgs = '../images/program/' . $pr_img;
-              if (file_exists($imgs)) {
-                unlink($imgs);
+            } else {
+              if ($filename) {
+                // Remove the existing image
+                $imgs = '../images/program/' . $pr_img;
+                if (file_exists($imgs)) {
+                  unlink($imgs);
+                }
+                // Update shake with new image
+                $sql = mysqli_query($conn, "UPDATE program SET program_name='$pr_name', program_img='$pr_img', program_date='$pr_date', program_time='$pr_time', program_venue='$pr_location' WHERE program_id='$pr_id'");
               }
-              // Update shake with new image
-              $sql = mysqli_query($conn, "UPDATE program SET program_name='$pr_name', program_img='$pr_img', program_date='$pr_date', program_time='$pr_time', program_venue='$pr_location' WHERE program_id='$pr_id'");
+              $sql = mysqli_query($conn, "UPDATE program SET program_name='$pr_name', program_date='$pr_date', program_time='$pr_time', program_venue='$pr_location' WHERE program_id='$pr_id'");
             }
-            $sql = mysqli_query($conn, "UPDATE program SET program_name='$pr_name', program_date='$pr_date', program_time='$pr_time', program_venue='$pr_location' WHERE program_id='$pr_id'");
+            if ($sql == TRUE) {
+              move_uploaded_file($tempname, "../images/program/$filename");
+              echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
+            } else {
+              echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
+            }
           }
-          if ($sql == TRUE) {
-            move_uploaded_file($tempname, "../images/program/$filename");
-            echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
-          } else {
-            echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
-          }
-        }
-        ?>
-        <!-- table view -->
-        <div class="col-lg-12 grid-margin stretch-card">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">Program</h4>
-              <p class="card-description">Program Details</p>
-              <div class="table-responsive">
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>Edit</th>
-                      <th>Delete</th>
-                      <th>sl-no</th>
-                      <th>Program Name</th>
-                      <th>Program images</th>
-                      <th>Date</th>
-                      <th>Time</th>
-                      <th>Program Venue</th>
-                    </tr>
-                  </thead>
-                  <?php
-                  $sql = mysqli_query($conn, "SELECT * FROM program ORDER BY program_id ");
-                  $serialNo = 1;
-                  while ($row = mysqli_fetch_assoc($sql)) {
-                    $pro_id = $row['program_id'];
-                    $pro_name = $row['program_name'];
-                    $pro_img = $row['program_img'];
-                    $pro_date = $row['program_date'];
-                    $pro_time = $row['program_time'];
-                    $pro_venue = $row['program_venue'];
-                  ?>
-                    <tbody>
+          ?>
+          <!-- table view -->
+          <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Program</h4>
+                <p class="card-description">Program Details</p>
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
                       <tr>
-                        <td>
-                          <a href="admin-program.php?prid=<?php echo $pro_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit
-                            <i class="ti-pencil-alt btn-icon-append"></i>
-                          </a>
-                        </td>
-                        <td>
-                          <a href="admin-program.php?prd_id=<?php echo $pro_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete
-                            <i class="ti-trash btn-icon-prepend"></i>
-                          </a>
-                        </td>
-                        <td class="py-1"><?php echo $serialNo++; ?></td>
-                        <td><?php echo $pro_name; ?></td>
-                        <td><img src="../images/program/<?php echo $pro_img; ?>" alt=""></td>
-                        <td><?php echo $pro_date; ?></td>
-                        <td><?php echo $pro_time; ?></td>
-                        <td><?php echo $pro_venue; ?></td>
-
+                        <th>Edit</th>
+                        <th>Delete</th>
+                        <th>sl-no</th>
+                        <th>Program Name</th>
+                        <th>Program images</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Program Venue</th>
                       </tr>
-                    </tbody>
-                  <?php
-                  }
-                  ?>
-                </table>
+                    </thead>
+                    <?php
+                    $sql = mysqli_query($conn, "SELECT * FROM program ORDER BY program_id ");
+                    $serialNo = 1;
+                    while ($row = mysqli_fetch_assoc($sql)) {
+                      $pro_id = $row['program_id'];
+                      $pro_name = $row['program_name'];
+                      $pro_img = $row['program_img'];
+                      $pro_date = $row['program_date'];
+                      $pro_time = $row['program_time'];
+                      $pro_venue = $row['program_venue'];
+                    ?>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <a href="admin-program.php?prid=<?php echo $pro_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit
+                              <i class="ti-pencil-alt btn-icon-append"></i>
+                            </a>
+                          </td>
+                          <td>
+                            <a href="admin-program.php?prd_id=<?php echo $pro_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete
+                              <i class="ti-trash btn-icon-prepend"></i>
+                            </a>
+                          </td>
+                          <td class="py-1"><?php echo $serialNo++; ?></td>
+                          <td><?php echo $pro_name; ?></td>
+                          <td><img src="../images/program/<?php echo $pro_img; ?>" alt=""></td>
+                          <td><?php echo $pro_date; ?></td>
+                          <td><?php echo $pro_time; ?></td>
+                          <td><?php echo $pro_venue; ?></td>
+
+                        </tr>
+                      </tbody>
+                    <?php
+                    }
+                    ?>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
+          <!-- table view closed -->
         </div>
-        <!-- table view closed -->
       </div>
+      <!-- content-wrapper ends -->
+      <!-- partial:../../partials/_footer.html -->
+      <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024.Nutri-time. All rights reserved.</span>
+        </div>
+      </footer>
+      <!-- partial -->
     </div>
-    <!-- content-wrapper ends -->
-    <!-- partial:../../partials/_footer.html -->
-    <footer class="footer">
-      <div class="d-sm-flex justify-content-center justify-content-sm-between">
-        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024.Nutri-time. All rights reserved.</span>
-      </div>
-    </footer>
-    <!-- partial -->
-  </div>
-  <!-- main-panel ends -->
+    <!-- main-panel ends -->
   </div>
   <!-- page-body-wrapper ends -->
   </div>
@@ -257,11 +254,7 @@ if ($_SESSION["email"] == "") {
   </script>
   <!-- inject:js -->
   <script src="../js/off-canvas.js"></script>
-  <script src="../js/hoverable-collapse.js"></script>
   <script src="../js/template.js"></script>
-  <script src="../js/settings.js"></script>
-  <script src="../js/todolist.js"></script>
-  <!-- endinject -->
 </body>
 
 </html>

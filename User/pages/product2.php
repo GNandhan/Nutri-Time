@@ -35,8 +35,7 @@ if ($_SESSION["email"] == "") {
     <div class="container">
       <header class="d-flex flex-wrap justify-content-center py-2 mb-4 border-bottom">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-          <img src="../images/icon.png" class="icon1 me-2" width="90">
-        </a>
+          <img src="../images/icon.png" class="icon1 me-2" width="90"></a>
         <ul class="nav">
           <li class="nav-item"><a href="./index2.php" class="nav-link text-dark">Home</a></li>
           <li class="nav-item"><a href="./program2.php" class="nav-link text-dark">Program</a></li>
@@ -47,7 +46,7 @@ if ($_SESSION["email"] == "") {
             <a href="#" class="nav-link dropdown-toggle text-dark" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="bi bi-person" width="24" height="24"></i>
             </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+            <ul class="dropdown-menu dropdown-menu-end shadow rounded-4" aria-labelledby="profileDropdown">
               <li><a class="dropdown-item" href="./profile.php">Profile</a></li>
               <li><a class="dropdown-item" href="./logout.php">Log out</a></li>
             </ul>
@@ -58,60 +57,7 @@ if ($_SESSION["email"] == "") {
   </div>
   <!-- navbar closed -->
   <!-- Program cards -->
-  <div class="container">
-    <div class="row">
-      <div class="h2 py-4 px-5 border-start bg-white rounded-5 shadow">Product</div>
-      <div class="card border-0 shadow-lg rounded-5">
-        <div class="row text-center p-4">
-          <?php
-          $sql = mysqli_query($conn, "SELECT * FROM material ORDER BY pro_id ");
-          while ($row = mysqli_fetch_assoc($sql)) {
-            $pro_name = $row['pro_name'];
-            $pro_mrp = $row['pro_mrp'];
-            $pro_cat = $row['pro_category'];
-            $pro_img = $row['pro_image'];
-          ?>
-            <div class="col-lg-3 col-md col-sm-6 col my-2">
-              <div class="card rounded-4 shadow-lg d-flex flex-column border-0 h-100" style="height: 200px; object-fit: cover; border-radius: 20px;">
-                <img src="../../Admin/images/material/<?php echo $pro_img; ?>" class="rounded-top-4" alt="..." style="height: 200px; object-fit: cover; border-radius: 20px 20px 0px 0px;">
-                <div class="card-body d-flex justify-content-between align-items-center">
-                  <p class="card-text"><?php echo $pro_name; ?></p>
-                  <p class="card-text">$<?php echo $pro_mrp; ?></p> <!-- Assuming $pro_price contains the price -->
-                </div>
-                <div class="card-footer bg-transparent border-top-0">
-                  <div class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">View Product</div>
-                </div>
-              </div>
-            </div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel"><?php echo $pro_name; ?></h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <img src="../../Admin/images/material/<?php echo $pro_img; ?>" class="rounded-4" alt="Product Image" width="100%">
-                    <div><?php echo $pro_name; ?></div>
-                    <div><?php echo $pro_cat; ?></div>
-                    <div><?php echo $pro_mrp; ?></div>
-                  </div>
-                  <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button> -->
-                    <button type="button" class="btn text-white" style="background-color: rgb(44, 202, 44);">Buy Now</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- modal closed -->
-          <?php
-          }
-          ?>
-        </div>
-      </div>
-    </div>
-  </div>
+
   <!-- Program cards -->
   <!-- footer -->
   <footer class="d-flex container flex-wrap fixed-bottom justify-content-between align-items-center py-3 my-4 border-top">

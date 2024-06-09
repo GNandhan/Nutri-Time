@@ -70,7 +70,7 @@ if ($_SESSION["email"] == "") {
     <div class="row">
       <div class="col-lg col-md col-sm col">
         <div class="card p-3 rounded-5 border-0">
-        program details
+          program details
         </div>
       </div>
       <div class="col-lg col-md col-sm col">

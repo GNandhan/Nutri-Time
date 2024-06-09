@@ -25,7 +25,6 @@ if ($row = mysqli_fetch_assoc($query)) {
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
-  <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
 
@@ -160,39 +159,39 @@ if ($row = mysqli_fetch_assoc($query)) {
                           <div class="row">
                             <div class="col-md border-right">
                               <div class="table-responsive mb-3 mb-md-0 mt-3">
-                              <table class="table table-borderless report-table">
-  <?php
-  $sql = mysqli_query($conn, "SELECT * FROM sales ORDER BY sales_id ");
-  $serialNo = 1;
-  $colors = ['bg-primary', 'bg-warning', 'bg-danger', 'bg-info']; // Array of Bootstrap color classes
-  $color_index = 0; // Index to track the color
-  while ($row = mysqli_fetch_assoc($sql)) {
-    $sales_id = $row['sales_id'];
-    $sales_cus = $row['sales_cus'];
-    $sales_quan = $row['sales_quan'];
-    $max_quantity = 100; // Assuming maximum sales quantity is 100
-    $progress_width = ($sales_quan / $max_quantity) * 100; // Calculate width of progress bar
-  ?>
-    <tr>
-      <td class="text-muted"><?php echo $sales_cus; ?></td>
-      <td class="w-100 px-0">
-        <div class="progress progress-md mx-4">
-          <div class="progress-bar <?php echo $colors[$color_index]; ?>" role="progressbar" style="width: <?php echo $progress_width; ?>%" aria-valuenow="<?php echo $progress_width; ?>" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-      </td>
-      <td>
-        <h5 class="font-weight-bold mb-0"><?php echo $sales_quan; ?></h5>
-      </td>
-    </tr>
-  <?php
-    // Increment color index and reset if it exceeds the length of the colors array
-    $color_index++;
-    if ($color_index >= count($colors)) {
-      $color_index = 0;
-    }
-  }
-  ?>
-</table>
+                                <table class="table table-borderless report-table">
+                                  <?php
+                                  $sql = mysqli_query($conn, "SELECT * FROM sales ORDER BY sales_id ");
+                                  $serialNo = 1;
+                                  $colors = ['bg-primary', 'bg-warning', 'bg-danger', 'bg-info']; // Array of Bootstrap color classes
+                                  $color_index = 0; // Index to track the color
+                                  while ($row = mysqli_fetch_assoc($sql)) {
+                                    $sales_id = $row['sales_id'];
+                                    $sales_cus = $row['sales_cus'];
+                                    $sales_quan = $row['sales_quan'];
+                                    $max_quantity = 100; // Assuming maximum sales quantity is 100
+                                    $progress_width = ($sales_quan / $max_quantity) * 100; // Calculate width of progress bar
+                                  ?>
+                                    <tr>
+                                      <td class="text-muted"><?php echo $sales_cus; ?></td>
+                                      <td class="w-100 px-0">
+                                        <div class="progress progress-md mx-4">
+                                          <div class="progress-bar <?php echo $colors[$color_index]; ?>" role="progressbar" style="width: <?php echo $progress_width; ?>%" aria-valuenow="<?php echo $progress_width; ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                      </td>
+                                      <td>
+                                        <h5 class="font-weight-bold mb-0"><?php echo $sales_quan; ?></h5>
+                                      </td>
+                                    </tr>
+                                  <?php
+                                    // Increment color index and reset if it exceeds the length of the colors array
+                                    $color_index++;
+                                    if ($color_index >= count($colors)) {
+                                      $color_index = 0;
+                                    }
+                                  }
+                                  ?>
+                                </table>
 
                               </div>
                             </div>

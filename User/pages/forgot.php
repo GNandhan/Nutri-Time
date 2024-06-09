@@ -113,24 +113,24 @@ $_SESSION["email"] = '';
     // Check if form is submitted
     if (isset($_POST["submit"])) {
         $email = $_POST['email'];
-        
+
         // Query to select password based on email using prepared statement
         $query = "SELECT cust_password FROM customer WHERE cust_email = ?";
         $stmt = mysqli_prepare($conn, $query);
         mysqli_stmt_bind_param($stmt, "s", $email);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_store_result($stmt);
-    
+
         if (mysqli_stmt_num_rows($stmt) > 0) {
             mysqli_stmt_bind_result($stmt, $password);
             mysqli_stmt_fetch($stmt);
-            
+
             // Send email containing the password reset link
             $to = $email;
             $subject = "Password Recovery";
             $message = "Your password is: $password";
             $headers = "From: your@gowrinandhan95@gmail.com"; // Replace with your email
-    
+
             if (mail($to, $subject, $message, $headers)) {
                 echo "<script>alert('Password sent to your email.');</script>";
             } else {
@@ -139,7 +139,7 @@ $_SESSION["email"] = '';
         } else {
             echo "<script>alert('Email not found.');</script>";
         }
-    
+
         mysqli_stmt_close($stmt);
     }
     ?>

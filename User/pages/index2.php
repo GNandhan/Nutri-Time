@@ -179,7 +179,7 @@ if ($_SESSION["email"] == "") {
             <a href="#" class="nav-link dropdown-toggle text-dark" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="bi bi-person" width="24" height="24"></i>
             </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+            <ul class="dropdown-menu dropdown-menu-end shadow rounded-4" aria-labelledby="profileDropdown">
               <li><a class="dropdown-item" href="./profile.php">Profile</a></li>
               <li><a class="dropdown-item" href="./logout.php">Log out</a></li>
             </ul>

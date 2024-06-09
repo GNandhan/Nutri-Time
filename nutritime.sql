@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2024 at 04:00 PM
+-- Generation Time: Jun 09, 2024 at 03:32 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -175,6 +175,13 @@ CREATE TABLE `gallery` (
   `gallery_img` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `gallery`
+--
+
+INSERT INTO `gallery` (`gallery_id`, `gallery_dis`, `gallery_img`) VALUES
+(1, '', 'main page.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -194,7 +201,9 @@ CREATE TABLE `login_details` (
 INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`) VALUES
 ('nutriadmin@gmail.com', 1, '2024-06-03 18:52:29'),
 ('nutriadmin@gmail.com', 2, '2024-06-04 05:54:36'),
-('nutriadmin@gmail.com', 3, '2024-06-05 10:51:01');
+('nutriadmin@gmail.com', 3, '2024-06-05 10:51:01'),
+('nutriadmin@gmail.com', 4, '2024-06-09 10:13:35'),
+('nutriadmin@gmail.com', 5, '2024-06-09 14:01:46');
 
 -- --------------------------------------------------------
 
@@ -599,13 +608,13 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `gallery_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `gallery_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `pay_history`

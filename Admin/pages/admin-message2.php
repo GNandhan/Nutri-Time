@@ -13,18 +13,10 @@ if ($_SESSION["email"] == "") {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Admin Message</title>
-   <!-- plugins:css -->
    <link rel="stylesheet" href="../vendors/feather/feather.css">
    <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
    <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
-   <!-- endinject -->
-   <!-- Plugin css for this page -->
-   <link rel="stylesheet" href="../vendors/select2/select2.min.css">
-   <link rel="stylesheet" href="../vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
-   <!-- End plugin css for this page -->
-   <!-- inject:css -->
    <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
-   <!-- endinject -->
    <link rel="shortcut icon" href="../images/icon-small.png" />
  </head>
 <body>
@@ -96,7 +88,6 @@ if ($_SESSION["email"] == "") {
   </div>
   </div>
   <script src="../vendors/js/vendor.bundle.base.js"></script>
-   <!-- endinject -->
    <script src="../js/off-canvas.js"></script>
    <script src="../js/template.js"></script>
  </body>
