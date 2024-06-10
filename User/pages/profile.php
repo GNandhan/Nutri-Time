@@ -4,7 +4,20 @@ error_reporting(0);
 session_start();
 if ($_SESSION["email"] == "") {
   header('location:login.php');
+  exit();
 }
+
+// Fetch user details from the database
+$email = $_SESSION["email"];
+$query = "SELECT `cust_id`, `cust_code`, `cust_name`, `cust_phno`, `cust_invited`, `cust_age`, `cust_bodyage`, `cust_gender`, `cust_email`, `cust_password`, `cust_doj`, `cust_city`, `cust_address`, `cust_height`, `cust_weight`, `cust_idleweight`, `cust_fat`, `cust_vcf`, `cust_bmr`, `cust_bmi`, `cust_bmidate`, `cust_mm`, `cust_tsf`, `cust_waketime`, `cust_tea`, `cust_breakfast`, `cust_lunch`, `cust_snack`, `cust_dinner`, `cust_veg_nonveg`, `cust_waterintake`, `cust_cond1`, `cust_cond2`, `cust_cond3`, `cust_cond4`, `cust_cond5`, `cust_cond6`, `cust_cond7`, `cust_cond8`, `cust_prg`, `cust_prgtype`, `cust_noday`, `cust_total`, `cust_paid`, `cust_paiddate`, `cust_remain`, `cust_date` 
+FROM `customer` 
+WHERE `cust_email` = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+$stmt->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,23 +74,56 @@ if ($_SESSION["email"] == "") {
   <!-- Program cards -->
   <div class="container-fluid px-5">
     <div class="row justify-content-between">
-      <div class="col-lg col-md-6 col-sm col text-start h2 py-4">CUSTOMER NAME</div>
-      <div class="col-lg col-md-3 col-sm col text-end h2 py-4">
-        <button class="btn btn-light border border-1 rounded-5 px-4 p-2">Program name</button>
-        <button class="btn btn-primary border border-1 rounded-5 px-4 p-2">No of days</button>
+      <div class="col-lg col-md-6 col-sm col-6 text-start h2 py-4 capitalize">Welcome <?php echo strtoupper(htmlspecialchars($user['cust_name'])); ?>,</div>
+      <div class="col-lg col-md-3 col-sm col-12 text-end h2 py-4">
+        <button class="btn btn-light border border-1 rounded-5 px-4 p-2">Program : <?php echo htmlspecialchars($user['cust_prg']); ?></button>
+        <button class="btn btn-primary border border-1 rounded-5 px-4 p-2"><?php echo htmlspecialchars($user['cust_noday']); ?> DAYS</button>
       </div>
     </div>
     <div class="row">
-      <div class="col-lg col-md col-sm col">
-        <div class="card p-3 rounded-5 border-0">
-          program details
+      <div class="col-lg-8 col-md col-sm col">
+        <div class="row">
+          <div class="col-lg-6 col-md col-sm col">
+            <div class="card shadow-sm p-5 rounded-5 border-0">
+              program details
+            </div>
+          </div>
+          <div class="col-lg-6 col-md col-sm col">
+            <div class="card shadow-sm p-5 rounded-5 border-0">
+              program details
+            </div>
+          </div>
+        </div>
+        <div class="row my-4">
+          <div class="col-lg col-md col-sm col">
+            <div class="card shadow-sm p-5 rounded-5 border-0">
+              <h4>program details</h4>
+              <h4>program details</h4>
+              <h4>program details</h4>
+              <h4>program details</h4>
+              <h4>program details</h4>
+              <h4>program details</h4>
+              <h4>program details</h4>
+              <h4>program details</h4>
+              <h4>program details</h4>
+              <h4>program details</h4>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-lg col-md col-sm col">
-        <div class="card p-5 rounded-5 border-0">
-          program details
+      <div class="col-lg-4 col-md col-sm col">
+        <div class="card shadow-sm p-5 rounded-5 border-0">
+          <h4>program details</h4>
+          <h4>program details</h4>
+          <h4>program details</h4>
+          <h4>program details</h4>
+          <h4>program details</h4>
+          <h4>program details</h4>
+          <h4>program details</h4>
+          <h4>program details</h4>
         </div>
       </div>
+
     </div>
   </div>
 
