@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -15,32 +16,33 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
+
 <body>
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
-<!-- including the sidebar,navbar -->
-<?php
-  include './topbar.php';
-?>
-      <!-- partial -->
-      <div class="main-panel">
-        <div class="content-wrapper">
-          <div class="row">
-           <!-- table view -->
-           <div class="col-lg-12 grid-margin stretch-card">
+    <!-- including the sidebar,navbar -->
+    <?php
+    include './topbar.php';
+    ?>
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <div class="row">
+          <!-- table view -->
+          <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-              <div class="row">
-                        <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                            <h4 class="card-title">Report Table</h4>
-                            <p class="card-description">Complete Sales and Overview Report Details</p>
-                            </div>
-                        <div class="col-12 col-xl-4 mb-4 mb-xl-0 text-right">
-                                <button class="btn btn-primary rounded-pill">Export</button>
-                        </div>
+                <div class="row">
+                  <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                    <h4 class="card-title">Report Table</h4>
+                    <p class="card-description">Complete Sales and Overview Report Details</p>
+                  </div>
+                  <div class="col-12 col-xl-4 mb-4 mb-xl-0 text-right">
+                    <button class="btn btn-primary rounded-pill">Export</button>
+                  </div>
                 </div>
                 <div class="table-responsive">
-                <table id="reportTable" class="table table-striped">
+                  <table id="reportTable" class="table table-striped">
                     <thead>
                       <tr>
                         <th>Sl No</th>
@@ -67,51 +69,54 @@
             </div>
           </div>
           <!-- table view closed -->
-          </div>
         </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:../../partials/_footer.html -->
-        <footer class="footer">
-          <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024.Nutri-time. All rights reserved.</span>
-          </div>
-        </footer>
-        <!-- partial -->
       </div>
-      <!-- main-panel ends -->
+      <!-- content-wrapper ends -->
+      <!-- partial:../../partials/_footer.html -->
+      <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024.Nutri-time. All rights reserved.</span>
+        </div>
+      </footer>
+      <!-- partial -->
     </div>
-    <!-- page-body-wrapper ends -->
+    <!-- main-panel ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
- <!-- plugins:js -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../vendors/js/vendor.bundle.base.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
-<!-- endinject -->
-<!-- inject:js -->
-<script src="../js/off-canvas.js"></script>
-<script src="../js/hoverable-collapse.js"></script>
-<script src="../js/template.js"></script>
-<script src="../js/settings.js"></script>
-<script src="../js/todolist.js"></script>
-<!-- endinject -->
-<!-- Custom js for this page-->
-<script>
-$(document).ready(function(){
-  // Add click event listener to export button
-  $(".btn-primary").on('click', function(){
-    // Create new jsPDF instance
-    var doc = new jsPDF();
-    // Get table content
-    var tableContent = $("#reportTable").get(0);
-    // Add table content to PDF
-    doc.autoTable({html: tableContent});
-    // Save or download the PDF file
-    doc.save('report.pdf');
-  });
-});
-</script>
-<!-- End custom js for this page-->
+  <!-- plugins:js -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="../vendors/js/vendor.bundle.base.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
+  <!-- endinject -->
+  <!-- inject:js -->
+  <script src="../js/off-canvas.js"></script>
+  <script src="../js/hoverable-collapse.js"></script>
+  <script src="../js/template.js"></script>
+  <script src="../js/settings.js"></script>
+  <script src="../js/todolist.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script>
+    $(document).ready(function() {
+      // Add click event listener to export button
+      $(".btn-primary").on('click', function() {
+        // Create new jsPDF instance
+        var doc = new jsPDF();
+        // Get table content
+        var tableContent = $("#reportTable").get(0);
+        // Add table content to PDF
+        doc.autoTable({
+          html: tableContent
+        });
+        // Save or download the PDF file
+        doc.save('report.pdf');
+      });
+    });
+  </script>
+  <!-- End custom js for this page-->
 
 </body>
+
 </html>

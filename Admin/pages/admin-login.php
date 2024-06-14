@@ -6,6 +6,7 @@ $_SESSION["email"] = '';
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,6 +14,7 @@ $_SESSION["email"] = '';
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
   <link rel="icon" href="../images/icon-small.png" />
 </head>
+
 <body>
   <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -66,4 +68,5 @@ $_SESSION["email"] = '';
   ?>
   <script src="../js/template.js"></script>
 </body>
+
 </html>

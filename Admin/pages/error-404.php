@@ -1,14 +1,14 @@
 <?php
- include './connect.php';
- error_reporting(0);
- session_start();
- if($_SESSION["email"]=="")
- {
-    header('location:admin-login.php');
- }
+include './connect.php';
+error_reporting(0);
+session_start();
+if ($_SESSION["email"] == "") {
+  header('location:admin-login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -24,6 +24,7 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="images/icon-small.png" />
 </head>
+
 <body>
   <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -46,7 +47,7 @@
             </div>
             <div class="row mt-5">
               <div class="col-12 mt-xl-2">
-                <p class="text-white font-weight-medium text-center">Copyright &copy; 2021  All rights reserved.</p>
+                <p class="text-white font-weight-medium text-center">Copyright &copy; 2021 All rights reserved.</p>
               </div>
             </div>
           </div>
@@ -68,4 +69,5 @@
   <script src="../../js/todolist.js"></script>
   <!-- endinject -->
 </body>
+
 </html>

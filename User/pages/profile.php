@@ -18,6 +18,19 @@ $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 $stmt->close();
+
+// Fetch payment history for the logged-in user
+$cust_id = $user['cust_id'];
+$query_payments = "SELECT `pay_id`, `cust_id`, `cust_code`, `cust_name`, `cust_paid`, `cust_paiddate` FROM `pay_history` WHERE `cust_id` = ?";
+$stmt_payments = $conn->prepare($query_payments);
+$stmt_payments->bind_param("i", $cust_id);
+$stmt_payments->execute();
+$result_payments = $stmt_payments->get_result();
+$payment_history = [];
+while ($row = $result_payments->fetch_assoc()) {
+  $payment_history[] = $row;
+}
+$stmt_payments->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,13 +39,11 @@ $stmt->close();
   <meta charset="UTF-8">
   <meta http-equiv="refresh" content="3">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nutri-time Product</title>
+  <title>Nutri-time Profile</title>
   <link rel="shortcut icon" href="../images/icon.png" type="image/x-icon">
-  <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <!-- Example using Font Awesome for the play button icon -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
@@ -74,53 +85,104 @@ $stmt->close();
   <!-- Program cards -->
   <div class="container-fluid px-5">
     <div class="row justify-content-between">
-      <div class="col-lg col-md-6 col-sm col-6 text-start h2 py-4 capitalize">Welcome <?php echo strtoupper(htmlspecialchars($user['cust_name'])); ?>,</div>
-      <div class="col-lg col-md-3 col-sm col-12 text-end h2 py-4">
+      <div class="col-lg col-md col-sm col-6 text-start h2 py-2 capitalize">Welcome <?php echo strtoupper(htmlspecialchars($user['cust_name'])); ?>,</div>
+      <div class="col-lg col-md col-sm col-12 text-end h2 py-2">
         <button class="btn btn-light border border-1 rounded-5 px-4 p-2">Program : <?php echo htmlspecialchars($user['cust_prg']); ?></button>
         <button class="btn btn-primary border border-1 rounded-5 px-4 p-2"><?php echo htmlspecialchars($user['cust_noday']); ?> DAYS</button>
       </div>
     </div>
+  </div>
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-8 col-md col-sm col">
+      <div class="col-lg-3 col-md-6 col-sm-12 col-12 text-white">
+        <div class="card rounded-5 mx-2 my-0 border-0 shadow">
+          <img src="../images/profile.jpg" class="rounded-circle mx-auto py-3 d-block" alt="" width="100">
+          <h4 class="text-center"><?php echo strtoupper(htmlspecialchars($user['cust_name'])); ?></h4>
+          <h5 class="text-center"><?php echo htmlspecialchars($user['cust_code']); ?></h5>
+        </div>
+        <div class="card rounded-4 px-5 p-4 mx-2 my-4 border-0 shadow">
+          <span class="py-1"><i class="bi bi-gender-ambiguous text-success" style="font-size: 1.5rem;"></i><span class="h5 mx-2"><?php echo htmlspecialchars($user['cust_gender']); ?></span></span>
+          <span class="py-1"><i class="bi bi-calendar-week text-success" style="font-size: 1.5rem;"></i><span class="h5 mx-2"><?php echo htmlspecialchars($user['cust_age']); ?></span></span>
+          <span class="py-1"><i class="bi bi-person-arms-up text-success" style="font-size: 1.5rem;"></i><span class="h5 mx-2"><?php echo htmlspecialchars($user['cust_height']); ?></span></span>
+          <span class="py-1"><i class="bi bi-diagram-2 text-success" style="font-size: 1.5rem;"></i><span class="h5 mx-2"><?php echo htmlspecialchars($user['cust_weight']); ?></span></span>
+          <span class="py-1"><i class="bi bi-telephone text-success" style="font-size: 1.5rem;"></i><span class="h5 mx-2"><?php echo htmlspecialchars($user['cust_phno']); ?></span></span>
+          <span class="py-1"><i class="bi bi-envelope text-success" style="font-size: 1.5rem;"></i><span class="h5 mx-2"><?php echo htmlspecialchars($user['cust_email']); ?></span></span>
+          <span class="py-1"><i class="bi bi-geo-alt text-success" style="font-size: 1.5rem;"></i><span class="h5 mx-2"><?php echo htmlspecialchars($user['cust_city']); ?></span></span>
+          <span class="py-1"><i class="bi bi-map text-success" style="font-size: 1.5rem;"></i><span class="h5 mx-2"><?php echo htmlspecialchars($user['cust_address']); ?></span></span>
+          <span class="py-1"><i class="bi bi-calendar2-week text-success" style="font-size: 1.5rem;"></i><span class="h5 mx-2"><?php echo htmlspecialchars($user['cust_doj']); ?></span></span>
+          <span class="py-1"><i class="bi bi-person-check text-success" style="font-size: 1.5rem;"></i><span class="h5 mx-2"><?php echo htmlspecialchars($user['cust_invited']); ?></span></span>
+        </div>
+      </div>
+      <div class="col-lg col-md-6 col-sm-12 col-12">
         <div class="row">
-          <div class="col-lg-6 col-md col-sm col">
-            <div class="card shadow-sm p-5 rounded-5 border-0">
-              program details
-            </div>
+          <div class="col-lg col-md-6 col-sm col">
+            <div class="card rounded-4 px-5 p-4 mx-3 my-4 border-0 shadow-sm"> .</div>
           </div>
-          <div class="col-lg-6 col-md col-sm col">
-            <div class="card shadow-sm p-5 rounded-5 border-0">
-              program details
-            </div>
+          <div class="col-lg col-md-6 col-sm col">
+            <div class="card rounded-4 px-5 p-4 mx-3 my-4 border-0 shadow-sm"> .</div>
+          </div>
+          <div class="col-lg col-md-12 col-sm col">
+            <div class="card rounded-4 px-5 p-4 mx-3 my-4 border-0 shadow-sm"> .</div>
           </div>
         </div>
-        <div class="row my-4">
+        <div class="row">
           <div class="col-lg col-md col-sm col">
-            <div class="card shadow-sm p-5 rounded-5 border-0">
-              <h4>program details</h4>
-              <h4>program details</h4>
-              <h4>program details</h4>
-              <h4>program details</h4>
-              <h4>program details</h4>
-              <h4>program details</h4>
-              <h4>program details</h4>
-              <h4>program details</h4>
-              <h4>program details</h4>
-              <h4>program details</h4>
-            </div>
+            <div class="card rounded-4 px-5 p-4 mx-3 my-4 border-0 shadow-sm"> .</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg col-md col-sm col">
+            <div class="card rounded-4 px-5 p-4 mx-3 my-4 border-0 shadow-sm"> .</div>
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md col-sm col">
-        <div class="card shadow-sm p-5 rounded-5 border-0">
-          <h4>program details</h4>
-          <h4>program details</h4>
-          <h4>program details</h4>
-          <h4>program details</h4>
-          <h4>program details</h4>
-          <h4>program details</h4>
-          <h4>program details</h4>
-          <h4>program details</h4>
+      <div class="col-lg-3 col-md col-sm col">
+        <div class="card rounded-4 px-5 p-4 mx-3 my-0 border-0 shadow">
+          <h5>Payment Details</h5>
+          <hr>
+          <div class="row">
+            <div class="col-6 text-start">Program :</div>
+            <div class="col text-end"><span class="h5"><?php echo htmlspecialchars($user['cust_prg']); ?></span></div>
+          </div>
+          <div class="row">
+            <div class="col-6 text-start">Program Type :</div>
+            <div class="col text-end"><span class="h5"><?php echo htmlspecialchars($user['cust_prgtype']); ?></span></div>
+          </div>
+          <div class="row">
+            <div class="col-6 text-start">No of Days :</div>
+            <div class="col text-end"><span class="h5"><?php echo htmlspecialchars($user['cust_noday']); ?></span></div>
+          </div>
+          <div class="row">
+            <div class="col-6 text-start">Total :</div>
+            <div class="col text-end"><span class="h5"><?php echo htmlspecialchars($user['cust_total']); ?></span></div>
+          </div>
+          <div class="row">
+            <div class="col-6 text-start">Amount Paid :</div>
+            <div class="col text-end"><span class="h5"><?php echo htmlspecialchars($user['cust_paid']); ?></span></div>
+          </div>
+          <div class="row">
+            <div class="col-6 text-start">Remaining Amount :</div>
+            <div class="col text-end"><span class="h5"><?php echo htmlspecialchars($user['cust_remain']); ?></span></div>
+          </div>
+        </div>
+        <div class="card rounded-4 px-5 p-4 mx-3 my-4 border-0 shadow">
+          <h5>Payment History</h5>
+          <div class="row mb-2">
+            <div class="col-6 text-start">Date</div>
+            <div class="col text-end">Amount</div>
+          </div>
+          <hr>
+          <?php if (!empty($payment_history)) : ?>
+            <?php foreach ($payment_history as $payment) : ?>
+              <div class="row mb-2">
+                <div class="col-6 text-start"><span class="h5"><span class="h5"><?php echo htmlspecialchars($payment['cust_paiddate']); ?></span></span></div>
+                <div class="col text-end"><span class="h5"><?php echo htmlspecialchars($payment['cust_paid']); ?></div>
+              </div>
+              <hr>
+            <?php endforeach; ?>
+          <?php else : ?>
+            <p class="text-center">No payment history available.</p>
+          <?php endif; ?>
         </div>
       </div>
 

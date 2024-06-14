@@ -84,25 +84,25 @@ if ($_SESSION["email"] == "") {
                     <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product Code</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;"  name="prodcode" value="<?php echo $p_code1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="prodcode" value="<?php echo $p_code1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product Name</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;"  name="prodname" value="<?php echo $p_name1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="prodname" value="<?php echo $p_name1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product MRP</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;"  name="prodmrp" value="<?php echo $p_mrp1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="prodmrp" value="<?php echo $p_mrp1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product Purchase Price</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;"  name="prodpur" value="<?php echo $p_pri1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="prodpur" value="<?php echo $p_pri1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -111,31 +111,31 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>15%</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;"  name="dis15" value="<?php echo $p_dis151; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="dis15" value="<?php echo $p_dis151; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>25%</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;"  name="dis25" value="<?php echo $p_dis251; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="dis25" value="<?php echo $p_dis251; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>35%</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;"  name="dis35" value="<?php echo $p_dis351; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="dis35" value="<?php echo $p_dis351; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>42%</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;"  name="dis42" value="<?php echo $p_dis421; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="dis42" value="<?php echo $p_dis421; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>50%</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;"  name="dis50" value="<?php echo $p_dis501; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="dis50" value="<?php echo $p_dis501; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -143,13 +143,13 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>Category</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;"  name="prodcat" value="<?php echo $p_cat1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="prodcat" value="<?php echo $p_cat1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label>Subcategory</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;"  name="prodsubcat" value="<?php echo $p_subcat1; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="prodsubcat" value="<?php echo $p_subcat1; ?>" required>
                       </div>
                     </div>
                     <div class="col">

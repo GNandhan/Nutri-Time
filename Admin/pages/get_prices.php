@@ -22,4 +22,3 @@ if (isset($_POST['discount']) && isset($_POST['recipes'])) {
     // Return prices as JSON response
     echo json_encode($prices);
 }
-?>

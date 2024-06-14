@@ -17,4 +17,3 @@ if ($row = mysqli_fetch_assoc($query)) {
   // If no discount value is found, return an empty response
   echo "";
 }
-?>

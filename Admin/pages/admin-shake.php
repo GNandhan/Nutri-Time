@@ -25,6 +25,7 @@ if ($_SESSION["email"] == "") {
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
+
 <body>
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
