@@ -132,7 +132,12 @@ $stmt_payments->close();
         </div>
         <div class="row">
           <div class="col-lg col-md col-sm col">
-            <div class="card rounded-4 px-5 p-4 mx-3 my-4 border-0 shadow-sm"> .</div>
+            <div class="card rounded-4 px-5 p-4 mx-3 my-4 border-0 shadow-sm">
+              <div class="row">
+                <div class="col-lg col-md col-sm col">Eating Habits</div>
+                <div class="col-lg col-md col-sm col">Health Conditions</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -161,7 +166,7 @@ $stmt_payments->close();
             <div class="col text-end"><span class="h5"><?php echo htmlspecialchars($user['cust_paid']); ?></span></div>
           </div>
           <div class="row">
-            <div class="col-6 text-start">Remaining Amount :</div>
+            <div class="col-6 text-start">Remaining Amount:</div>
             <div class="col text-end"><span class="h5"><?php echo htmlspecialchars($user['cust_remain']); ?></span></div>
           </div>
         </div>
