@@ -210,7 +210,6 @@ if ($_SESSION["email"] == "") {
   </div>
   <!-- container-scroller -->
   <!-- plugins:js -->
-  <script src="../vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <script>
     function displaySelectedFileName(input) {
@@ -238,6 +237,7 @@ if ($_SESSION["email"] == "") {
       fileReader.readAsDataURL(input.files[0]);
     }
   </script>
+  <script src="../vendors/js/vendor.bundle.base.js"></script>
   <script src="../js/off-canvas.js"></script>
   <script src="../js/template.js"></script>
 </body>

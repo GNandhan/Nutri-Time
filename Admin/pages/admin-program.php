@@ -228,10 +228,6 @@ if ($_SESSION["email"] == "") {
   </div>
   <!-- page-body-wrapper ends -->
   </div>
-  <!-- container-scroller -->
-  <!-- plugins:js -->
-  <script src="../vendors/js/vendor.bundle.base.js"></script>
-  <!-- endinject -->
   <script>
     function displaySelectedFileName(input) {
       var fileName = input.files[0].name;
@@ -253,6 +249,7 @@ if ($_SESSION["email"] == "") {
     }
   </script>
   <!-- inject:js -->
+  <script src="../vendors/js/vendor.bundle.base.js"></script>
   <script src="../js/off-canvas.js"></script>
   <script src="../js/template.js"></script>
 </body>

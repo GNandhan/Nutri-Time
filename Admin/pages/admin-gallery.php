@@ -195,7 +195,6 @@
      }
    </script>
    <script src="../vendors/js/vendor.bundle.base.js"></script>
-   <!-- endinject -->
    <script src="../js/off-canvas.js"></script>
    <script src="../js/template.js"></script>
  </body>

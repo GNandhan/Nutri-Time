@@ -15,6 +15,7 @@ if ($_SESSION["email"] == "") {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Admin Shake</title>
+  <meta http-equiv="refresh" content="3">
   <!-- plugins:css -->
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
@@ -131,14 +132,6 @@ if ($_SESSION["email"] == "") {
                     </div>
                     <div class="col">
                       <div class="form-group">
-                        <label>Ingredient Prices (MRP)</label>
-                        <div id="ingredientPrices">
-                          <!-- Ingredient prices will be dynamically updated here -->
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <div class="form-group">
                         No of Scoops
                         <ul>
                           <?php
@@ -155,6 +148,14 @@ if ($_SESSION["email"] == "") {
                             </li>
                           <?php } ?>
                         </ul>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Ingredient Prices (MRP)</label>
+                        <div id="ingredientPrices">
+                          <!-- Ingredient prices will be dynamically updated here -->
+                        </div>
                       </div>
                     </div>
                     <div class="col">

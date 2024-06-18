@@ -84,20 +84,11 @@
   </div>
   <!-- page-body-wrapper ends -->
   </div>
-  <!-- container-scroller -->
-  <!-- plugins:js -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
-  <!-- endinject -->
-  <!-- inject:js -->
   <script src="../js/off-canvas.js"></script>
-  <script src="../js/hoverable-collapse.js"></script>
   <script src="../js/template.js"></script>
-  <script src="../js/settings.js"></script>
-  <script src="../js/todolist.js"></script>
-  <!-- endinject -->
-  <!-- Custom js for this page-->
   <script>
     $(document).ready(function() {
       // Add click event listener to export button
