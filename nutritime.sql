@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2024 at 02:40 PM
+-- Generation Time: Jun 18, 2024 at 02:48 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -207,7 +207,8 @@ INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`)
 ('nutriadmin@gmail.com', 5, '2024-06-09 14:01:46'),
 ('nutriadmin@gmail.com', 6, '2024-06-10 18:58:43'),
 ('nutriadmin@gmail.com', 7, '2024-06-12 14:08:01'),
-('nutriadmin@gmail.com', 8, '2024-06-13 23:20:15');
+('nutriadmin@gmail.com', 8, '2024-06-13 23:20:15'),
+('nutriadmin@gmail.com', 9, '2024-06-16 17:52:48');
 
 -- --------------------------------------------------------
 
@@ -280,6 +281,8 @@ CREATE TABLE `price` (
   `pro_vp` varchar(100) NOT NULL,
   `pro_vptotal` varchar(10) NOT NULL,
   `pro_scoop` varchar(10) NOT NULL,
+  `pro_scooptotal` varchar(10) NOT NULL,
+  `pro_scoopqua` varchar(10) NOT NULL,
   `pro_scoop0` varchar(10) NOT NULL,
   `pro_scoop15` varchar(10) NOT NULL,
   `pro_scoop25` varchar(10) NOT NULL,
@@ -297,11 +300,11 @@ CREATE TABLE `price` (
 -- Dumping data for table `price`
 --
 
-INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subcat`, `pro_mrp`, `pro_price`, `pro_dis0`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`, `pro_vp`, `pro_vptotal`, `pro_scoop`, `pro_scoop0`, `pro_scoop15`, `pro_scoop25`, `pro_scoop35`, `pro_scoop42`, `pro_scoop50`, `pro_quantity`, `pro_curquantity`, `pro_hsn`, `pro_img`, `pro_date`) VALUES
-(1, 'FORMULA 1 SHAKE MIX VANILLA', 'F1V', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '2378', '2065', '1860', '1650', '1505', '1340', '21.75', '108.75', '60', '118.90', '103.25', '93', '82.5', '75.25', '67', '35', '3', '785487', '', '2024-05-01'),
-(2, 'FORMULA 1 SHAKE MIX CHOCOLATE', 'F1C', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '2378', '2065', '1860', '1650', '1505', '1340', '12.75', '191.25', '60', '121.65', '103.25', '93', '82.5', '75.25', '67', '25', '25', '111111', '', '2024-05-01'),
-(3, 'FORMULA 1 SHAKE MIX PISTAH', 'F1P', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '2378', '2065', '1860', '1650', '1505', '1340', '21.75', '652.5', '60', '145.52', '103.25', '93', '82.5', '75.25', '67', '30', '30', '1010', '', '2024-05-03'),
-(4, 'FORMULA 1 SHAKE MIX OREO', 'F!O', 'Ayurdevic Nutrition', 'Energy', '2687', '2500', '2687', '2100', '2000', '1800', '1700', '1600', '12.75', '510', '50', '123.45', '103.25', '93', '82.5', '75.25', '67', '40', '40', '785487', '', '2024-06-05');
+INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subcat`, `pro_mrp`, `pro_price`, `pro_dis0`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`, `pro_vp`, `pro_vptotal`, `pro_scoop`, `pro_scooptotal`, `pro_scoopqua`, `pro_scoop0`, `pro_scoop15`, `pro_scoop25`, `pro_scoop35`, `pro_scoop42`, `pro_scoop50`, `pro_quantity`, `pro_curquantity`, `pro_hsn`, `pro_img`, `pro_date`) VALUES
+(1, 'FORMULA 1 SHAKE MIX VANILLA', 'F1V', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '2378', '2065', '1860', '1650', '1505', '1340', '21.75', '108.75', '60', '', '', '118.90', '103.25', '93', '82.5', '75.25', '67', '35', '3', '785487', '', '2024-05-01'),
+(2, 'FORMULA 1 SHAKE MIX CHOCOLATE', 'F1C', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '2378', '2065', '1860', '1650', '1505', '1340', '12.75', '191.25', '60', '', '', '121.65', '103.25', '93', '82.5', '75.25', '67', '25', '25', '111111', '', '2024-05-01'),
+(3, 'FORMULA 1 SHAKE MIX PISTAH', 'F1P', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '2378', '2065', '1860', '1650', '1505', '1340', '21.75', '652.5', '60', '', '', '145.52', '103.25', '93', '82.5', '75.25', '67', '30', '30', '1010', '', '2024-05-03'),
+(4, 'FORMULA 1 SHAKE MIX OREO', 'F!O', 'Ayurdevic Nutrition', 'Energy', '2687', '2500', '2687', '2100', '2000', '1800', '1700', '1600', '12.75', '510', '50', '', '', '123.45', '103.25', '93', '82.5', '75.25', '67', '40', '40', '785487', '', '2024-06-05');
 
 -- --------------------------------------------------------
 
@@ -337,7 +340,7 @@ CREATE TABLE `program` (
 
 INSERT INTO `program` (`program_id`, `program_name`, `program_img`, `program_date`, `program_time`, `program_venue`) VALUES
 (1, 'Fitness diet', 'bg (6).jpg', '2024-05-01', '17:11', 'Kozhikode'),
-(2, 'Weight Gainer', 'bg (5).jpg', '2024-05-02', '05:15', 'Thrissur');
+(2, 'Weight Gainer', 'bg (3).jpg', '2024-05-02', '05:15', 'Thrissur');
 
 -- --------------------------------------------------------
 
@@ -618,7 +621,7 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `pay_history`
