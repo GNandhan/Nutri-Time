@@ -96,13 +96,6 @@
           </ul>
         </div>
       </li>
-      <!-- <li class="nav-item">
-            <a class="nav-link" href="admin-product.php">
-              <i class="icon-columns menu-icon"></i>
-              <span class="menu-title">Product Purchase</span>
-              <i class="menu-arrow"></i>
-            </a>
-          </li> -->
       <li class="nav-item">
         <a class="nav-link" href="admin-sales.php">
           <i class="icon-columns menu-icon"></i>

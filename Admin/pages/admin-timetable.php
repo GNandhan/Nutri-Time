@@ -95,9 +95,7 @@ if ($_SESSION["email"] == "") {
       </footer>
       <!-- partial -->
     </div>
-    <!-- main-panel ends -->
   </div>
-  <!-- page-body-wrapper ends -->
   </div>
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <script src="../js/off-canvas.js"></script>

@@ -14,12 +14,10 @@ if ($_SESSION["email"] == "") {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Admin Customer Details</title>
-    <!-- plugins:css -->
     <link rel="stylesheet" href="../vendors/feather/feather.css">
     <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
     <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
-    <!-- endinject -->
     <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
 
@@ -318,12 +316,8 @@ if ($_SESSION["email"] == "") {
             </footer>
             <!-- partial -->
         </div>
-        <!-- main-panel ends -->
     </div>
-    <!-- page-body-wrapper ends -->
     </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
     <script src="../vendors/js/vendor.bundle.base.js"></script>
     <script src="../js/off-canvas.js"></script>
     <script src="../js/template.js"></script>

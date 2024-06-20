@@ -20,7 +20,6 @@ if ($row = mysqli_fetch_assoc($query)) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Admin-Dashboard</title>
-  <!-- plugins:css -->
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
@@ -30,7 +29,6 @@ if ($row = mysqli_fetch_assoc($query)) {
 
 <body>
   <div class="container-scroller">
-    <!-- including the sidebar,navbar -->
     <?php
     include './topbar.php';
     ?>
@@ -300,14 +298,9 @@ if ($row = mysqli_fetch_assoc($query)) {
           <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024.Nutri-time. All rights reserved.</span>
         </div>
       </footer>
-      <!-- partial -->
     </div>
-    <!-- main-panel ends -->
   </div>
-  <!-- page-body-wrapper ends -->
   </div>
-  <!-- container-scroller -->
-  <!-- plugins:js -->
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <script src="../vendors/chart.js/Chart.min.js"></script>
   <script src="../js/off-canvas.js"></script>

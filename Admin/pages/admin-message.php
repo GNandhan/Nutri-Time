@@ -23,14 +23,12 @@ if ($_SESSION["email"] == "") {
     .large-checkbox {
       transform: scale(1.5);
       margin: 5px;
-      /* Adjust the margin to fit the larger checkbox */
     }
   </style>
 </head>
 
 <body>
   <div class="container-scroller">
-    <!-- including the sidebar,navbar -->
     <?php
     include './topbar.php';
     ?>
@@ -100,7 +98,6 @@ if ($_SESSION["email"] == "") {
         </div>
       </footer>
     </div>
-    <!-- </div> -->
   </div>
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <script src="../js/off-canvas.js"></script>

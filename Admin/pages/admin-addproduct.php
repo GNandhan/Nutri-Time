@@ -18,13 +18,11 @@ if ($_SESSION["email"] == "") {
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
-  <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
 
 <body>
   <div class="container-scroller">
-    <!-- including the sidebar,navbar -->
     <?php
     include './topbar.php';
     ?>

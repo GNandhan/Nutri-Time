@@ -18,14 +18,11 @@ if ($_SESSION["email"] == "") {
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
-  <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
 
 <body>
   <div class="container-scroller">
-    <!-- partial:../../partials/_navbar.html -->
-    <!-- including the sidebar,navbar -->
     <?php
     include './topbar.php';
     ?>
@@ -215,18 +212,13 @@ if ($_SESSION["email"] == "") {
           <!-- table view closed -->
         </div>
       </div>
-      <!-- content-wrapper ends -->
-      <!-- partial:../../partials/_footer.html -->
       <footer class="footer">
         <div class="d-sm-flex justify-content-center justify-content-sm-between">
           <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024.Nutri-time. All rights reserved.</span>
         </div>
       </footer>
-      <!-- partial -->
     </div>
-    <!-- main-panel ends -->
   </div>
-  <!-- page-body-wrapper ends -->
   </div>
   <script>
     function displaySelectedFileName(input) {
@@ -248,7 +240,6 @@ if ($_SESSION["email"] == "") {
       fileReader.readAsDataURL(input.files[0]);
     }
   </script>
-  <!-- inject:js -->
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <script src="../js/off-canvas.js"></script>
   <script src="../js/template.js"></script>
