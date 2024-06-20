@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 18, 2024 at 02:48 PM
+-- Generation Time: Jun 20, 2024 at 05:47 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -301,10 +301,10 @@ CREATE TABLE `price` (
 --
 
 INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subcat`, `pro_mrp`, `pro_price`, `pro_dis0`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`, `pro_vp`, `pro_vptotal`, `pro_scoop`, `pro_scooptotal`, `pro_scoopqua`, `pro_scoop0`, `pro_scoop15`, `pro_scoop25`, `pro_scoop35`, `pro_scoop42`, `pro_scoop50`, `pro_quantity`, `pro_curquantity`, `pro_hsn`, `pro_img`, `pro_date`) VALUES
-(1, 'FORMULA 1 SHAKE MIX VANILLA', 'F1V', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '2378', '2065', '1860', '1650', '1505', '1340', '21.75', '108.75', '60', '', '', '118.90', '103.25', '93', '82.5', '75.25', '67', '35', '3', '785487', '', '2024-05-01'),
-(2, 'FORMULA 1 SHAKE MIX CHOCOLATE', 'F1C', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '2378', '2065', '1860', '1650', '1505', '1340', '12.75', '191.25', '60', '', '', '121.65', '103.25', '93', '82.5', '75.25', '67', '25', '25', '111111', '', '2024-05-01'),
-(3, 'FORMULA 1 SHAKE MIX PISTAH', 'F1P', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '2378', '2065', '1860', '1650', '1505', '1340', '21.75', '652.5', '60', '', '', '145.52', '103.25', '93', '82.5', '75.25', '67', '30', '30', '1010', '', '2024-05-03'),
-(4, 'FORMULA 1 SHAKE MIX OREO', 'F!O', 'Ayurdevic Nutrition', 'Energy', '2687', '2500', '2687', '2100', '2000', '1800', '1700', '1600', '12.75', '510', '50', '', '', '123.45', '103.25', '93', '82.5', '75.25', '67', '40', '40', '785487', '', '2024-06-05');
+(1, 'FORMULA 1 SHAKE MIX VANILLA', 'F1V', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '2378', '2065', '1860', '1650', '1505', '1340', '21.75', '87', '60', '2700', '', '118.90', '103.25', '93', '82.5', '75.25', '67', '45', '13', '785487', '', '2024-05-01'),
+(2, 'FORMULA 1 SHAKE MIX CHOCOLATE', 'F1C', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '2378', '2065', '1860', '1650', '1505', '1340', '12.75', '63.75', '60', '1800', '', '121.65', '103.25', '93', '82.5', '75.25', '67', '30', '30', '111111', '', '2024-05-01'),
+(3, 'FORMULA 1 SHAKE MIX PISTAH', 'F1P', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '1340', '2378', '2065', '1860', '1650', '1505', '1340', '21.75', '43.5', '60', '1920', '', '145.52', '103.25', '93', '82.5', '75.25', '67', '32', '32', '1010', '', '2024-05-03'),
+(4, 'FORMULA 1 SHAKE MIX OREO', 'F!O', 'Ayurdevic Nutrition', 'Energy', '2687', '2500', '2687', '2100', '2000', '1800', '1700', '1600', '12.75', '38.25', '50', '2150', '', '123.45', '103.25', '93', '82.5', '75.25', '67', '43', '43', '785487', '', '2024-06-05');
 
 -- --------------------------------------------------------
 
