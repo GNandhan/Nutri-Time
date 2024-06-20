@@ -33,8 +33,6 @@ if ($_SESSION["email"] == "") {
 <body>
   <!-- code for getteing the subcategory as per the actegory selected -->
   <div class="container-scroller">
-    <!-- partial:../../partials/_navbar.html -->
-    <!-- including the sidebar,navbar -->
     <?php
     include './topbar.php';
     ?>
@@ -213,7 +211,6 @@ if ($_SESSION["email"] == "") {
             </div>
           </div>
         </div>
-
         <!-- PHP CODE FOR INSERTING THE DATA -->
         <?php
         if (isset($_POST["submitp"])) {
@@ -230,14 +227,18 @@ if ($_SESSION["email"] == "") {
           $pvptotal = $pvp * $pquant;
 
           // Fetch existing quantity from the database
-          $query = mysqli_query($conn, "SELECT pro_quantity, pro_curquantity FROM price WHERE pro_name = '$pname'");
+          $query = mysqli_query($conn, "SELECT pro_quantity, pro_curquantity, pro_scoop FROM price WHERE pro_name = '$pname'");
           $row = mysqli_fetch_assoc($query);
           $existingQuantity = $row['pro_quantity'];
           $existingcurQuantity = $row['pro_curquantity'];
+          $scoops = $row['pro_scoop'];
 
           // Calculate new quantity (add new quantity to existing quantity)
           $newQuantity = (int)$existingQuantity + (int)$pquant;
           $newcurQuantity = (int)$existingcurQuantity + (int)$pquant;
+
+          // Calculate total scoops
+          $totalScoops = $scoops * $newQuantity;
 
           // Update the record in the price table
           $sql = "UPDATE price SET 
@@ -251,7 +252,8 @@ if ($_SESSION["email"] == "") {
         pro_vp = '$pvp', 
         pro_vptotal = '$pvptotal', 
         pro_hsn = '$phsn',
-        pro_date = '$pdate'
+        pro_date = '$pdate',
+        pro_scooptotal = '$totalScoops' -- Store total scoops
         WHERE pro_name = '$pname'";
 
           // Execute the SQL update query
@@ -262,7 +264,6 @@ if ($_SESSION["email"] == "") {
           }
         }
         ?>
-
         <div class="row ">
           <!-- table view -->
           <div class="col-lg-12 grid-margin stretch-card">
@@ -273,24 +274,6 @@ if ($_SESSION["email"] == "") {
                   <div class="col-md-9">
                     <p class="card-description">Product Details</p>
                   </div>
-                  <!-- <div class="col-md-3">
-                    <div class="dropdown">
-                      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Filter By:
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <p class="pl-3">Type</p>
-                        <div class="dropdown-item">
-                          <input type="checkbox" id="checkCategory" class="filter-checkbox" value="category">
-                          <label for="checkCategory">Used Product</label>
-                        </div>
-                        <div class="dropdown-item">
-                          <input type="checkbox" id="checkSubcategory" class="filter-checkbox" value="subcategory">
-                          <label for="checkSubcategory">Unused Product</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div> -->
                 </div>
                 <div class="table-responsive">
                   <table class="table table-striped">
@@ -364,21 +347,14 @@ if ($_SESSION["email"] == "") {
           <!-- table view closed -->
         </div>
       </div>
-      <!-- content-wrapper ends -->
-      <!-- partial:../../partials/_footer.html -->
       <footer class="footer">
         <div class="d-sm-flex justify-content-center justify-content-sm-between">
           <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024.Nutri-time. All rights reserved.</span>
         </div>
       </footer>
-      <!-- partial -->
     </div>
-    <!-- main-panel ends -->
   </div>
-  <!-- page-body-wrapper ends -->
   </div>
-  <!-- container-scroller -->
-  <!-- plugins:js -->
   <script>
     function displaySelectedFileName(input) {
       var fileName = input.files[0].name;
