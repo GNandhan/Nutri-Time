@@ -9,9 +9,7 @@ if ($_SESSION["email"] == "") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Admin Shake</title>
@@ -21,7 +19,6 @@ if ($_SESSION["email"] == "") {
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
-
 <body>
   <div class="container-scroller">
     <?php
@@ -38,7 +35,6 @@ if ($_SESSION["email"] == "") {
       $sh_cusname1 = $s_row1['customer_name'];
       $sh_goal1 = $s_row1['shake_goal'];
       $sh_reci1 = $s_row1['shake_recipes'];
-      // $sh_mrp1 = $s_row1['shake_mrp'];
       $sh_scoop1 = $s_row1['shake_scoops'];
       $sh_extra1 = $s_row1['shake_extra'];
       $sh_extraprice1 = $s_row1['shake_extraprice'];
@@ -46,7 +42,6 @@ if ($_SESSION["email"] == "") {
       $sh_expen1 = $s_row1['shake_expence'];
       $sh_img1 = $s_row1['shake_image'];
     }
-    // fetching the data from the URL for deleting the subject form
     if (isset($_GET['sd_id'])) {
       $dl_id = $_GET['sd_id'];
       $dl_query = mysqli_query($conn, "SELECT * FROM shake WHERE shake_id = '$dl_id'");
@@ -61,20 +56,18 @@ if ($_SESSION["email"] == "") {
       }
     }
     ?>
-    <!-- partial -->
     <div class="main-panel">
       <div class="content-wrapper">
         <div class="row">
           <div class="col-12 grid-margin stretch-card">
             <div class="card">
-              <!-- Form -->
               <div class="card-body">
                 <h1 class="card-title">Shakes</h1>
                 <p class="card-description">Add Shakes Details</p>
                 <form method="post" enctype="multipart/form-data" class="forms-sample">
                   <input type="hidden" name="shid" value="<?php echo $sh_id; ?>">
                   <div class="row">
-                    <div class="col">
+                    <div class="col-lg col-md col-sm col-6">
                       <div class="form-group">
                         <label>Customer Name</label>
                         <select class="form-control" style="border-radius: 16px;" name="cusname">
@@ -84,8 +77,6 @@ if ($_SESSION["email"] == "") {
                           while ($row = mysqli_fetch_assoc($query)) {
                             $cus_id = $row["cust_id "];
                             $cus_name = $row["cust_name"];
-                            // $cus_lname = $row["customer_lname"];
-                            // $fullname = $cus_fname . ' ' . $cus_lname;
                           ?>
                             <option value="<?php echo $cus_name; ?>" <?php if ($row['cust_name'] == $sh_name1) ?>><?php echo $cus_name; ?></option>
                           <?php
@@ -94,13 +85,13 @@ if ($_SESSION["email"] == "") {
                         </select>
                       </div>
                     </div>
-                    <div class="col">
+                    <div class="col-lg col-md col-sm col-6">
                       <div class="form-group">
                         <label>Shake Name</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" placeholder="#00A001" name="shname" value="<?php echo $sh_name1; ?>" required>
                       </div>
                     </div>
-                    <div class="col">
+                    <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
                         <label>Shake Goal</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Weight Gainer" name="shgoal" value="<?php echo $sh_goal1; ?>" required>
@@ -108,42 +99,30 @@ if ($_SESSION["email"] == "") {
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col">
-                      <div class="form-group">
-                        <label for="exampleSelectGender">Shake Recipe</label><br>
-                        <?php
-                        $query = mysqli_query($conn, "SELECT * FROM price");
-                        while ($row = mysqli_fetch_assoc($query)) {
-                          $pro_name = $row["pro_name"];
-                        ?>
-                          <div class="form-check ml-4">
-                            <input class="form-check-input" type="checkbox" name="shrecipe[]" value="<?php echo $pro_name; ?>" onchange="displayIngredientPrices()">
-                            <label class="form-check-label"><?php echo $pro_name; ?></label>
-                          </div>
-                        <?php } ?>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <div class="form-group">
-                        No of Scoops
-                        <ul>
-                          <?php
-                          $query = mysqli_query($conn, "SELECT * FROM price");
-                          while ($row = mysqli_fetch_assoc($query)) {
-                            $pro_name = $row["pro_name"];
-                            $pro_scoop = $row["pro_scoop"];
-                          ?>
-                            <li>
-                              <div class="form-group mb-2">
-                                <!-- <label><?php echo $pro_name; ?> Scoops</label> -->
-                                <input type="number" class="form-control" style="border-radius: 16px;" style="height: 8px; width: aut0;" name="<?php echo $pro_name; ?>_scoops" value="<?php echo $pro_scoop; ?>">
-                              </div>
-                            </li>
-                          <?php } ?>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="col">
+  <div class="col-lg-3 col-md col-sm col-12">
+    <div class="form-group">
+      <label for="exampleSelectGender">Shake Recipe</label><br>
+      <?php
+      $query = mysqli_query($conn, "SELECT * FROM price");
+      while ($row = mysqli_fetch_assoc($query)) {
+        $pro_name = $row["pro_name"];
+      ?>
+        <div class="form-check ml-4 py-2">
+          <input class="form-check-input" style="transform:scale(1.5)" type="checkbox" name="shrecipe[]" value="<?php echo $pro_name; ?>" onchange="displayScoopInput(this, '<?php echo $pro_name; ?>')">
+          <label class="form-check-label"><?php echo $pro_name; ?></label>
+        </div>
+      <?php } ?>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md col-sm col-2">
+    <div class="form-group">
+      <label for="scoops">No of Scoops</label>
+      <div id="scoopInputs">
+        <!-- Dynamic scoop input fields will be added here -->
+      </div>
+    </div>
+  </div>
+                    <div class="col-lg col-md col-sm col">
                       <div class="form-group">
                         <label>Ingredient Prices (MRP)</label>
                         <div id="ingredientPrices">
@@ -151,7 +130,7 @@ if ($_SESSION["email"] == "") {
                         </div>
                       </div>
                     </div>
-                    <div class="col">
+                    <div class="col-lg-2 col-md col-sm col">
                       <div class="col">
                         <div class="form-group">
                           <label>Ingredients Price Total</label>
@@ -173,13 +152,13 @@ if ($_SESSION["email"] == "") {
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col">
+                    <div class="col-lg col-md col-sm col-7">
                       <div class="form-group">
                         <label>Associate Name</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="shassoc" placeholder="Enter Asssociate name" value="<?php echo $sh_assoc1; ?>" required>
                       </div>
                     </div>
-                    <div class="col">
+                    <div class="col-lg col-md col-sm col-5">
                       <div class="form-group">
                         <label>Discount %</label>
                         <select class="form-control" style="border-radius: 16px;" name="shdiscount" required>
@@ -192,13 +171,13 @@ if ($_SESSION["email"] == "") {
                         </select>
                       </div>
                     </div>
-                    <div class="col">
+                    <div class="col-lg col-md col-sm col-5">
                       <div class="form-group">
                         <label>Service Charge</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="shcharge" value="<?php echo $sh_expen1; ?>" required>
                       </div>
                     </div>
-                    <div class="col">
+                    <div class="col-lg col-md col-sm col-7">
                       <div class="form-group">
                         <label>Shake Image</label>
                         <div class="input-group mb-3">
@@ -209,32 +188,14 @@ if ($_SESSION["email"] == "") {
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <!-- <div class="col">
-                      <div class="form-group">
-                        <label>Associate Name</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="shcharge" value="<?php echo $sh_expen1; ?>" required>
-                      </div>
-                    </div> -->
-                    <!-- <div class="col">
-                      <div class="form-group">
-                        <label>Association</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="shcharge" value="<?php echo $sh_expen1; ?>" required>
-                      </div>
-                    </div> -->
-                  </div>
                   <input type="submit" class="btn btn-primary mr-2 rounded-pill" name="submitsh" value="Submit">
                   <a href="./admin-shake.php" class="btn btn-light rounded-pill">Cancel</a>
                 </form>
               </div>
-              <!-- Form Closed -->
             </div>
           </div>
-          <!-- PHP CODE FOR INSERTING THE DATA -->
           <?php
           if (isset($_POST["submitsh"])) {
-            // Retrieve shake_mrp from the form // Default value if 'number' is not set
-            // var_dump($_POST);
             $sh_id = $_POST["shid"];
             $cus_name = $_POST["cusname"];
             $sh_name = $_POST["shname"];
@@ -254,7 +215,6 @@ if ($_SESSION["email"] == "") {
             $sh_img = $_FILES['shimg']['name'];
             // Calculate total cost by adding service charge and extra ingredient price
             $total_cost = floatval($sh_sercharge) + floatval($sh_extra_price) + floatval($sh_mrp);
-            // Use existing value if not provided
             // Image uploading formats
             $filename = $_FILES['shimg']['name'];
             $tempname = $_FILES['shimg']['tmp_name'];
@@ -265,15 +225,11 @@ if ($_SESSION["email"] == "") {
               $sql = mysqli_query($conn, "INSERT INTO shake (shake_name,shake_assoc, customer_id, customer_name, shake_goal, shake_recipes, shake_mrp, shake_extra, shake_extraprice, shake_discount, shake_expence, shake_total, shake_image)
                                                      VALUES ('$sh_name','$sh_assoc','$cus_name','$cus_name','$sh_goal','$sh_reci','$sh_mrp','$sh_extra','$sh_extra_price','$sh_disc','$sh_sercharge','$total_cost','$sh_img')");
             } else {
-              // Update existing material
               if ($filename) {
-                // Remove the existing image
                 $imgs = '../images/shake/' . $sh_img;
                 unlink($imgs);
-                // Update shake with new image
                 $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_assoc='$sh_assoc', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_mrp='$sh_mrp', shake_extra='$sh_extra', shake_extraprice='$sh_extra_price', shake_discount='$sh_disc', shake_expence='$sh_sercharge', shake_image='$sh_img' WHERE shake_id='$sh_id'");
               } else {
-                // Update shake without changing the image
                 $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_assoc='$sh_assoc', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_mrp='$sh_mrp', shake_extra='$sh_extra', shake_extraprice='$sh_extra_price', shake_discount='$sh_disc', shake_expence='$sh_sercharge' WHERE shake_id='$sh_id'");
               }
             }
@@ -285,7 +241,6 @@ if ($_SESSION["email"] == "") {
             }
           }
           ?>
-          <!-- table view -->
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
@@ -335,12 +290,8 @@ if ($_SESSION["email"] == "") {
                     ?>
                       <tbody>
                         <tr>
-                          <td>
-                            <a href="admin-shake.php?sid=<?php echo $sh_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i></a>
-                          </td>
-                          <td>
-                            <a href="admin-shake.php?sd_id=<?php echo $sh_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a>
-                          </td>
+                          <td><a href="admin-shake.php?sid=<?php echo $sh_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i></a></td>
+                          <td><a href="admin-shake.php?sd_id=<?php echo $sh_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a></td>
                           <td><a href="admin-shake.php?cusmdid=<?php echo $sh_id; ?>" class="btn btn-inverse-primary btn-icon-text p-3" data-toggle="modal" data-target="#exampleModal_<?php echo $sh_id; ?>">Shake History</a></td>
                           <td class="py-1"><?php echo $serialNo++; ?></td>
                           <td><?php echo $cu_name; ?></td>
@@ -358,15 +309,12 @@ if ($_SESSION["email"] == "") {
                           <td><?php echo $sh_total; ?></td>
                         </tr>
                       </tbody>
-
                       <div class="modal fade" id="exampleModal_<?php echo $sh_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg"> <!-- Adjust modal size if needed -->
                           <div class="modal-content" style="border-radius:15px;">
                             <div class="modal-header">
                               <h3 class="modal-title" id="exampleModalLabel">Shake History</h3>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
                             <div class="modal-body">
                               <div class="col-lg-8 col-md col-sm col">
@@ -393,7 +341,6 @@ if ($_SESSION["email"] == "") {
                           </div>
                         </div>
                       </div>
-
                     <?php
                     }
                     ?>
@@ -402,29 +349,25 @@ if ($_SESSION["email"] == "") {
               </div>
             </div>
           </div>
-          <!-- table view closed -->
         </div>
       </div>
 
     </div>
   </div>
-  <!-- content-wrapper ends -->
-  <!-- partial:../../partials/_footer.html -->
   <footer class="footer">
     <div class="d-sm-flex justify-content-center justify-content-sm-between">
       <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024.Nutri-time. All rights reserved.</span>
     </div>
   </footer>
-  <!-- partial -->
   </div>
   </div>
   </div>
+  <script src="../vendors/js/vendor.bundle.base.js"></script>
   <script>
     function displaySelectedFileName(input) {
       var fileName = input.files[0].name;
       var label = input.nextElementSibling;
       label.innerText = fileName;
-
       // Display selected image
       var fileReader = new FileReader();
       fileReader.onload = function(e) {
@@ -441,17 +384,14 @@ if ($_SESSION["email"] == "") {
   </script>
   <script>
     var ingredientPrices = {}; // Define global variable to store ingredient prices
-
     $(document).ready(function() {
       $('select[name="shdiscount"]').change(function() {
         var discount = $(this).val();
         var selectedRecipes = [];
-
         // Collect selected recipe checkboxes
         $('input[name="shrecipe[]"]:checked').each(function() {
           selectedRecipes.push($(this).val());
         });
-
         // AJAX call to fetch prices of selected recipes based on the selected discount
         $.ajax({
           type: 'POST',
@@ -464,30 +404,24 @@ if ($_SESSION["email"] == "") {
           success: function(response) {
             var ingredientPrices = '';
             var totalMRP = 0;
-
             // Loop through response to display prices and calculate total MRP
             $.each(response, function(key, value) {
               if (key === 'shake_mrp') {
                 // Update hidden input field with the total price
                 // Inside the success callback of the AJAX request
                 totalMRP = parseFloat(value);
-
-                ingredientPrices += '<div>Total Price: ' + value + '</div>';
+                ingredientPrices += '<div class="py-3">Total Price: ' + value + '</div>';
               } else {
-                ingredientPrices += '<div>' + key + ' Price: ' + value + '</div>';
+                ingredientPrices += '<div class="py-3">' + key + ' Price: ' + value + '</div>';
               }
             });
-
             // Update ingredient prices HTML
             $('#ingredientPrices').html(ingredientPrices);
-
             // Set hidden input field to calculated total MRP
             // Set value of Ingredients Price Total input field
             $('#ingredientsPriceTotal').val(totalMRP);
             // $('input[name="total_price"]').val(totalMRP);
-
           },
-
           error: function(xhr, status, error) {
             console.log(error);
           }
@@ -495,9 +429,37 @@ if ($_SESSION["email"] == "") {
       });
     });
   </script>
-  <script src="../vendors/js/vendor.bundle.base.js"></script>
+  <script>
+  function displayScoopInput(checkbox, productName) {
+    const scoopContainer = document.getElementById('scoopInputs');
+
+    if (checkbox.checked) {
+      const inputGroup = document.createElement('div');
+      inputGroup.className = 'input-group mb-3';
+      inputGroup.setAttribute('data-product', productName);
+
+      const inputField = document.createElement('input');
+      inputField.type = 'number';
+      inputField.className = 'form-control';
+      inputField.name = 'scoops[' + productName + ']';
+      inputField.placeholder = 'Enter scoops for ' + productName;
+      inputField.required = true;
+
+      inputGroup.appendChild(inputField);
+      scoopContainer.appendChild(inputGroup);
+    } else {
+      const inputGroups = scoopContainer.getElementsByClassName('input-group');
+      for (let i = inputGroups.length - 1; i >= 0; i--) {
+        if (inputGroups[i].getAttribute('data-product') === productName) {
+          scoopContainer.removeChild(inputGroups[i]);
+        }
+      }
+    }
+  }
+</script>
+
   <script src="../js/off-canvas.js"></script>
+  <script src="../js/hoverable-collapse.js"></script>
   <script src="../js/template.js"></script>
 </body>
-
 </html>
