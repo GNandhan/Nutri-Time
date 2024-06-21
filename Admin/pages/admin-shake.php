@@ -9,6 +9,7 @@ if ($_SESSION["email"] == "") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,7 +19,13 @@ if ($_SESSION["email"] == "") {
   <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
   <link rel="shortcut icon" href="../images/icon-small.png" />
+  <style>
+    .form-control {
+      border-radius: 15px !important;
+    }
+  </style>
 </head>
+
 <body>
   <div class="container-scroller">
     <?php
@@ -99,29 +106,29 @@ if ($_SESSION["email"] == "") {
                     </div>
                   </div>
                   <div class="row">
-  <div class="col-lg-3 col-md col-sm col-12">
-    <div class="form-group">
-      <label for="exampleSelectGender">Shake Recipe</label><br>
-      <?php
-      $query = mysqli_query($conn, "SELECT * FROM price");
-      while ($row = mysqli_fetch_assoc($query)) {
-        $pro_name = $row["pro_name"];
-      ?>
-        <div class="form-check ml-4 py-2">
-          <input class="form-check-input" style="transform:scale(1.5)" type="checkbox" name="shrecipe[]" value="<?php echo $pro_name; ?>" onchange="displayScoopInput(this, '<?php echo $pro_name; ?>')">
-          <label class="form-check-label"><?php echo $pro_name; ?></label>
-        </div>
-      <?php } ?>
-    </div>
-  </div>
-  <div class="col-lg-3 col-md col-sm col-2">
-    <div class="form-group">
-      <label for="scoops">No of Scoops</label>
-      <div id="scoopInputs">
-        <!-- Dynamic scoop input fields will be added here -->
-      </div>
-    </div>
-  </div>
+                    <div class="col-lg-3 col-md col-sm col-12">
+                      <div class="form-group">
+                        <label>Shake Recipe</label><br>
+                        <?php
+                        $query = mysqli_query($conn, "SELECT * FROM price");
+                        while ($row = mysqli_fetch_assoc($query)) {
+                          $pro_name = $row["pro_name"];
+                        ?>
+                          <div class="form-check ml-4 py-2">
+                            <input class="form-check-input" style="transform:scale(1.5)" type="checkbox" name="shrecipe[]" value="<?php echo $pro_name; ?>" onchange="displayScoopInput(this, '<?php echo $pro_name; ?>')">
+                            <label class="form-check-label"><?php echo $pro_name; ?></label>
+                          </div>
+                        <?php } ?>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md col-sm col-2">
+                      <div class="form-group">
+                        <label for="scoops">No of Scoops</label>
+                        <div id="scoopInputs">
+                          <!-- Dynamic scoop input fields will be added here -->
+                        </div>
+                      </div>
+                    </div>
                     <div class="col-lg col-md col-sm col">
                       <div class="form-group">
                         <label>Ingredient Prices (MRP)</label>
@@ -218,19 +225,29 @@ if ($_SESSION["email"] == "") {
             // Image uploading formats
             $filename = $_FILES['shimg']['name'];
             $tempname = $_FILES['shimg']['tmp_name'];
-            // Fetch the shake ID from the form
-            $sh_id = $_POST["shid"];
+            // Collect scoop data
+            // Handle scoops data
+            $scoopsData = $_POST["scoops"]; // This is an associative array
+            // Initialize an empty array to store formatted scoops data
+            $formattedScoops = [];
+            // Iterate through each product and its scoops count
+            foreach ($scoopsData as $product => $scoops) {
+              // Format each entry and push to the formatted array
+              $formattedScoops[] = "$product : $scoops";
+            }
+            // Join the formatted scoops with commas and store in database-friendly format
+            $sh_scoops = implode(", ", $formattedScoops);
 
             if ($sh_id == '') {
-              $sql = mysqli_query($conn, "INSERT INTO shake (shake_name,shake_assoc, customer_id, customer_name, shake_goal, shake_recipes, shake_mrp, shake_extra, shake_extraprice, shake_discount, shake_expence, shake_total, shake_image)
-                                                     VALUES ('$sh_name','$sh_assoc','$cus_name','$cus_name','$sh_goal','$sh_reci','$sh_mrp','$sh_extra','$sh_extra_price','$sh_disc','$sh_sercharge','$total_cost','$sh_img')");
+              $sql = mysqli_query($conn, "INSERT INTO shake (shake_name,shake_assoc, customer_id, customer_name, shake_goal, shake_recipes, shake_mrp, shake_extra, shake_extraprice, shake_discount, shake_expence, shake_total, shake_image, shake_scoops)
+                                                     VALUES ('$sh_name','$sh_assoc','$cus_name','$cus_name','$sh_goal','$sh_reci','$sh_mrp','$sh_extra','$sh_extra_price','$sh_disc','$sh_sercharge','$total_cost','$sh_img','$sh_scoops')");
             } else {
               if ($filename) {
                 $imgs = '../images/shake/' . $sh_img;
                 unlink($imgs);
-                $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_assoc='$sh_assoc', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_mrp='$sh_mrp', shake_extra='$sh_extra', shake_extraprice='$sh_extra_price', shake_discount='$sh_disc', shake_expence='$sh_sercharge', shake_image='$sh_img' WHERE shake_id='$sh_id'");
+                $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_assoc='$sh_assoc', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_mrp='$sh_mrp', shake_extra='$sh_extra', shake_extraprice='$sh_extra_price', shake_discount='$sh_disc', shake_expence='$sh_sercharge', shake_image='$sh_img', shake_scoops='$sh_scoops' WHERE shake_id='$sh_id'");
               } else {
-                $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_assoc='$sh_assoc', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_mrp='$sh_mrp', shake_extra='$sh_extra', shake_extraprice='$sh_extra_price', shake_discount='$sh_disc', shake_expence='$sh_sercharge' WHERE shake_id='$sh_id'");
+                $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_assoc='$sh_assoc', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_mrp='$sh_mrp', shake_extra='$sh_extra', shake_extraprice='$sh_extra_price', shake_discount='$sh_disc', shake_expence='$sh_sercharge', shake_scoops='$sh_scoops' WHERE shake_id='$sh_id'");
               }
             }
             if ($sql == TRUE) {
@@ -430,36 +447,37 @@ if ($_SESSION["email"] == "") {
     });
   </script>
   <script>
-  function displayScoopInput(checkbox, productName) {
-    const scoopContainer = document.getElementById('scoopInputs');
+    function displayScoopInput(checkbox, productName) {
+      const scoopContainer = document.getElementById('scoopInputs');
 
-    if (checkbox.checked) {
-      const inputGroup = document.createElement('div');
-      inputGroup.className = 'input-group mb-3';
-      inputGroup.setAttribute('data-product', productName);
+      if (checkbox.checked) {
+        const inputGroup = document.createElement('div');
+        inputGroup.className = 'input-group mb-3';
+        inputGroup.setAttribute('data-product', productName);
 
-      const inputField = document.createElement('input');
-      inputField.type = 'number';
-      inputField.className = 'form-control';
-      inputField.name = 'scoops[' + productName + ']';
-      inputField.placeholder = 'Enter scoops for ' + productName;
-      inputField.required = true;
+        const inputField = document.createElement('input');
+        inputField.type = 'number';
+        inputField.className = 'form-control';
+        inputField.name = 'scoops[' + productName + ']'; // Name changed to handle scoops array
+        inputField.placeholder = 'Scoops for ' + productName;
+        inputField.required = true;
 
-      inputGroup.appendChild(inputField);
-      scoopContainer.appendChild(inputGroup);
-    } else {
-      const inputGroups = scoopContainer.getElementsByClassName('input-group');
-      for (let i = inputGroups.length - 1; i >= 0; i--) {
-        if (inputGroups[i].getAttribute('data-product') === productName) {
-          scoopContainer.removeChild(inputGroups[i]);
+        inputGroup.appendChild(inputField);
+        scoopContainer.appendChild(inputGroup);
+      } else {
+        const inputGroups = scoopContainer.getElementsByClassName('input-group');
+        for (let i = inputGroups.length - 1; i >= 0; i--) {
+          if (inputGroups[i].getAttribute('data-product') === productName) {
+            scoopContainer.removeChild(inputGroups[i]);
+          }
         }
       }
     }
-  }
-</script>
+  </script>
 
   <script src="../js/off-canvas.js"></script>
   <script src="../js/hoverable-collapse.js"></script>
   <script src="../js/template.js"></script>
 </body>
+
 </html>
