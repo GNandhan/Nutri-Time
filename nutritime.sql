@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2024 at 11:04 PM
+-- Generation Time: Jun 22, 2024 at 04:38 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -301,10 +301,10 @@ CREATE TABLE `price` (
 --
 
 INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subcat`, `pro_mrp`, `pro_price`, `pro_dis0`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`, `pro_vp`, `pro_vptotal`, `pro_scoop`, `pro_scooptotal`, `pro_scoopqua`, `pro_scoop0`, `pro_scoop15`, `pro_scoop25`, `pro_scoop35`, `pro_scoop42`, `pro_scoop50`, `pro_quantity`, `pro_curquantity`, `pro_hsn`, `pro_img`, `pro_date`) VALUES
-(1, 'FORMULA 1 SHAKE MIX VANILLA', 'F1V', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '1340', '2370', '2060', '1860', '1650', '1500', '1340', '21.75', '108.75', '60', '3000', '', '118.90', '103.5', '93', '83.5', '73', '63.5', '50', '18', '785487', '', '2024-05-01'),
-(2, 'FORMULA 1 SHAKE MIX CHOCOLATE', 'F1C', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2371', '1341', '2371', '2061', '1861', '1651', '1501', '1341', '12.75', '63.75', '50', '1750', '', '121.65', '111.55', '10.45', '9.35', '8.25', '7.15', '35', '35', '111111', '', '2024-05-01'),
-(3, 'FORMULA 1 SHAKE MIX PISTAH', 'F1P', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '1342', '2372', '2062', '1862', '1652', '1502', '1342', '21.75', '108.75', '40', '1480', '', '145.52', '135.52', '125.52', '115.52', '105.25', '95.25', '37', '37', '1010', '', '2024-05-03'),
-(4, 'FORMULA 1 SHAKE MIX OREO', 'F!O', 'Ayurdevic Nutrition', 'Energy', '2683', '2503', '2683', '2103', '2003', '1803', '1703', '1603', '12.75', '63.75', '30', '1440', '', '123.45', '113.45', '103.45', '93.45', '83.45', '73.45', '48', '48', '785487', '', '2024-06-05');
+(1, 'FORMULA 1 SHAKE MIX VANILLA', 'F1V', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '1340', '2370', '2060', '1860', '1650', '1500', '1340', '21.75', '108.75', '60', '3000', '2960', '118.90', '103.5', '93', '83.5', '73', '63.5', '50', '18', '785487', '', '2024-05-01'),
+(2, 'FORMULA 1 SHAKE MIX CHOCOLATE', 'F1C', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2371', '1341', '2371', '2061', '1861', '1651', '1501', '1341', '12.75', '63.75', '50', '1750', '1730', '121.65', '111.55', '10.45', '9.35', '8.25', '7.15', '35', '35', '111111', '', '2024-05-01'),
+(3, 'FORMULA 1 SHAKE MIX PISTAH', 'F1P', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '1342', '2372', '2062', '1862', '1652', '1502', '1342', '21.75', '108.75', '40', '1480', '1450', '145.52', '135.52', '125.52', '115.52', '105.25', '95.25', '37', '37', '1010', '', '2024-05-03'),
+(4, 'FORMULA 1 SHAKE MIX OREO', 'F!O', 'Ayurdevic Nutrition', 'Energy', '2683', '2503', '2683', '2103', '2003', '1803', '1703', '1603', '12.75', '63.75', '30', '1440', '1420', '123.45', '113.45', '103.45', '93.45', '83.45', '73.45', '48', '48', '785487', '', '2024-06-05');
 
 -- --------------------------------------------------------
 
@@ -408,12 +408,14 @@ CREATE TABLE `shake` (
 --
 
 INSERT INTO `shake` (`shake_id`, `shake_name`, `shake_assoc`, `customer_id`, `customer_name`, `shake_goal`, `shake_recipes`, `shake_mrp`, `shake_scoops`, `shake_extra`, `shake_extraprice`, `shake_discount`, `shake_expence`, `shake_total`, `shake_image`, `shake_date`) VALUES
-(1, 'Club Shake', 'Ashraf', 0, 'Amal', 'weight losser', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX CHOCOLATE', '206.5', '', 'milk', '20', '15', '40', '266.5', 'main page.jpg', ''),
-(2, 'Club Shake1', 'Ashraf', 0, 'Kareem', 'Weight gainer', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX PISTAH,FORMULA 1 SHAKE MIX OREO', '279', '', 'Milk, Butter', '50', '25', '10', '339', 'main page.jpg', ''),
+(1, 'Club Shake0', 'Ashraf', 0, 'Amal', 'weight losser0', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX CHOCOLATE', '103.45', 'FORMULA 1 SHAKE MIX VANILLA : 10, FORMULA 1 SHAKE MIX CHOCOLATE : 20', 'milk', '20', '25', '40', '266.5', 'main page.jpg', ''),
+(2, 'Club Shake1', 'Ashraf', 0, 'Kareem', 'Weight gainer', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX PISTAH,FORMULA 1 SHAKE MIX OREO', '321.96999999999997', 'FORMULA 1 SHAKE MIX VANILLA : 15, FORMULA 1 SHAKE MIX PISTAH : 30, FORMULA 1 SHAKE MIX OREO : 20', 'Milk, Butter', '50', '25', '10', '339', 'main page.jpg', ''),
 (3, 'Club Shake2', 'Ashraf', 0, 'Albin', 'weight losser2', 'FORMULA 1 SHAKE MIX VANILLA', '73', 'FORMULA 1 SHAKE MIX VANILLA : 15', 'Milk, Butter', '50', '42', '50', '452.47', 'main page.jpg', ''),
 (4, 'Club Shake3', 'Ashraf', 0, 'Edwin', 'weight losser3', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX OREO', '196.45', 'FORMULA 1 SHAKE MIX VANILLA : 2, FORMULA 1 SHAKE MIX OREO : 3', 'milk boost, butter', '20', '25', '60', '408.5', 'main page.jpg', ''),
 (5, 'Club Shake4', 'Ashraf', 0, 'Abdul', 'weight losser4', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX PISTAH,FORMULA 1 SHAKE MIX OREO', '232.2', 'FORMULA 1 SHAKE MIX VANILLA : 5, FORMULA 1 SHAKE MIX PISTAH : 10, FORMULA 1 SHAKE MIX OREO : 15', 'water', '20', '50', '10', '194.7', 'main page.jpg', ''),
-(6, 'Club Shake5', 'Ashraf', 0, 'Mathew', 'weight losser5', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX PISTAH', '218.51999999999998', 'FORMULA 1 SHAKE MIX VANILLA : 2, FORMULA 1 SHAKE MIX PISTAH : 4', 'Milk, Butter', '50', '25', '15', '283.52', 'main page.jpg', '');
+(6, 'Club Shake5', 'Ashraf', 0, 'Mathew', 'weight losser5', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX PISTAH', '218.51999999999998', 'FORMULA 1 SHAKE MIX VANILLA : 2, FORMULA 1 SHAKE MIX PISTAH : 4', 'Milk, Butter', '50', '25', '15', '283.52', 'main page.jpg', ''),
+(7, 'Club Shake6', 'Ashraf', 0, 'Albin', 'weight losser6', 'FORMULA 1 SHAKE MIX PISTAH,FORMULA 1 SHAKE MIX OREO', '208.97', 'FORMULA 1 SHAKE MIX PISTAH : 3, FORMULA 1 SHAKE MIX OREO : 6', 'Milk', '10', '35', '20', '238.97', 'main page.jpg', ''),
+(8, 'Club Shake7', 'Ashraf', 0, 'Arjun', 'weight losser7', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX OREO', '176.95', 'FORMULA 1 SHAKE MIX VANILLA : 6, FORMULA 1 SHAKE MIX OREO : 2', 'Milk, Butter', '50', '35', '40', '266.95', 'main page.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -662,7 +664,7 @@ ALTER TABLE `sales`
 -- AUTO_INCREMENT for table `shake`
 --
 ALTER TABLE `shake`
-  MODIFY `shake_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `shake_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `staff`
