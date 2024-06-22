@@ -220,12 +220,10 @@ if ($_SESSION["email"] == "") {
             $sh_sercharge = $_POST["shcharge"];
             $sh_assoc = $_POST["shassoc"];
             $sh_img = $_FILES['shimg']['name'];
-            // Calculate total cost by adding service charge and extra ingredient price
             $total_cost = floatval($sh_sercharge) + floatval($sh_extra_price) + floatval($sh_mrp);
             // Image uploading formats
             $filename = $_FILES['shimg']['name'];
             $tempname = $_FILES['shimg']['tmp_name'];
-            // Collect scoop data
             // Handle scoops data
             $scoopsData = $_POST["scoops"]; // This is an associative array
             // Initialize an empty array to store formatted scoops data
@@ -252,6 +250,20 @@ if ($_SESSION["email"] == "") {
             }
             if ($sql == TRUE) {
               move_uploaded_file($tempname, "../images/shake/$filename");
+              // Subtract the scoops from the pro_scoopqua in the price table
+              foreach ($scoopsData as $product => $scoops) {
+                $product = mysqli_real_escape_string($conn, $product);
+                $scoops = intval($scoops);
+                // Fetch the current quantity
+                $result = mysqli_query($conn, "SELECT pro_scoopqua FROM price WHERE pro_name='$product'");
+                if ($result && mysqli_num_rows($result) > 0) {
+                  $row = mysqli_fetch_assoc($result);
+                  $currentQuantity = intval($row['pro_scoopqua']);
+                  $newQuantity = $currentQuantity - $scoops;
+                  // Update the new quantity in the database
+                  mysqli_query($conn, "UPDATE price SET pro_scoopqua='$newQuantity' WHERE pro_name='$product'");
+                }
+              }
               echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
             } else {
               echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
@@ -368,7 +380,6 @@ if ($_SESSION["email"] == "") {
           </div>
         </div>
       </div>
-
     </div>
   </div>
   <footer class="footer">
@@ -405,7 +416,6 @@ if ($_SESSION["email"] == "") {
       $('select[name="shdiscount"]').change(function() {
         var discount = $(this).val();
         var selectedRecipes = [];
-        // Collect selected recipe checkboxes
         $('input[name="shrecipe[]"]:checked').each(function() {
           selectedRecipes.push($(this).val());
         });
@@ -437,7 +447,6 @@ if ($_SESSION["email"] == "") {
             // Set hidden input field to calculated total MRP
             // Set value of Ingredients Price Total input field
             $('#ingredientsPriceTotal').val(totalMRP);
-            // $('input[name="total_price"]').val(totalMRP);
           },
           error: function(xhr, status, error) {
             console.log(error);
@@ -449,32 +458,28 @@ if ($_SESSION["email"] == "") {
   <script>
     function displayScoopInput(checkbox, productName) {
       const scoopContainer = document.getElementById('scoopInputs');
-
       if (checkbox.checked) {
         const inputGroup = document.createElement('div');
         inputGroup.className = 'input-group mb-3';
         inputGroup.setAttribute('data-product', productName);
-
         const inputField = document.createElement('input');
         inputField.type = 'number';
         inputField.className = 'form-control';
-        inputField.name = 'scoops[' + productName + ']'; // Name changed to handle scoops array
+        inputField.name = 'scoops[' + productName + ']';
         inputField.placeholder = 'Scoops for ' + productName;
-        inputField.required = true;
-
         inputGroup.appendChild(inputField);
         scoopContainer.appendChild(inputGroup);
       } else {
         const inputGroups = scoopContainer.getElementsByClassName('input-group');
-        for (let i = inputGroups.length - 1; i >= 0; i--) {
+        for (let i = 0; i < inputGroups.length; i++) {
           if (inputGroups[i].getAttribute('data-product') === productName) {
             scoopContainer.removeChild(inputGroups[i]);
+            break;
           }
         }
       }
     }
   </script>
-
   <script src="../js/off-canvas.js"></script>
   <script src="../js/hoverable-collapse.js"></script>
   <script src="../js/template.js"></script>
