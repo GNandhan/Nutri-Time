@@ -292,11 +292,24 @@ if ($_SESSION["email"] == "") {
             // Update the current quantity in the price table
             $sql_update = mysqli_query($conn, "UPDATE price SET pro_curquantity='$sal_curquan1' WHERE pro_name='$sal_proname'");
           }
-
-
           // Check if the query was successful
           if ($sql === TRUE) {
-            echo "<script>alert('Operation completed successfully.');</script>";
+            // Fetch pro_curquantity from price table
+            $price_query = mysqli_query($conn, "SELECT pro_curquantity, pro_scoop FROM price WHERE pro_name = '$sal_proname'");
+            $price_row = mysqli_fetch_assoc($price_query);
+            $pro_curquantity = $price_row['pro_curquantity'];
+            $pro_scoop = $price_row['pro_scoop'];
+        
+            // Calculate pro_scoopqua
+            $pro_scoopqua = $pro_curquantity * $pro_scoop;
+        
+            // Update pro_scoopqua in the price table
+            $update_price = mysqli_query($conn, "UPDATE price SET pro_scoopqua = '$pro_scoopqua' WHERE pro_name = '$sal_proname'");
+            if ($update_price) {
+                echo "<script>alert('Sales data inserted successfully.');</script>";
+            } else {
+                echo "<script>alert('Error updating pro_scoopqua: " . mysqli_error($conn) . "');</script>";
+            }
           } else {
             echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
           }

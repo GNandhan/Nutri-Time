@@ -11,7 +11,6 @@ if ($_SESSION["email"] == "") {
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Admin Product</title>
@@ -102,7 +101,6 @@ if ($_SESSION["email"] == "") {
         }
       }
     </script>
-    <!-- partial -->
     <div class="main-panel">
       <div class="content-wrapper">
         <div class="row">
@@ -219,19 +217,18 @@ if ($_SESSION["email"] == "") {
           $pvptotal = $pvp * $pquant;
 
           // Fetch existing quantity from the database
-          $query = mysqli_query($conn, "SELECT pro_quantity, pro_curquantity, pro_scoop FROM price WHERE pro_name = '$pname'");
+          $query = mysqli_query($conn, "SELECT pro_quantity, pro_curquantity, pro_scoop, pro_scoopqua FROM price WHERE pro_name = '$pname'");
           $row = mysqli_fetch_assoc($query);
           $existingQuantity = $row['pro_quantity'];
           $existingcurQuantity = $row['pro_curquantity'];
           $scoops = $row['pro_scoop'];
-
+          $quascoops = $row['pro_scoopqua'];
           // Calculate new quantity (add new quantity to existing quantity)
           $newQuantity = (int)$existingQuantity + (int)$pquant;
           $newcurQuantity = (int)$existingcurQuantity + (int)$pquant;
-
           // Calculate total scoops
-          $totalScoops = $scoops * $newQuantity;
-
+          $Scoopstotal = $scoops * $newQuantity;
+          $Scoopsqua = $scoops * $newcurQuantity;
           // Update the record in the price table
           $sql = "UPDATE price SET 
         pro_code = '$pcode',
@@ -245,9 +242,9 @@ if ($_SESSION["email"] == "") {
         pro_vptotal = '$pvptotal', 
         pro_hsn = '$phsn',
         pro_date = '$pdate',
-        pro_scooptotal = '$totalScoops' -- Store total scoops
+        pro_scooptotal = '$Scoopstotal', -- Store total scoops
+        pro_scoopqua = '$Scoopsqua' -- Store quantity scoops
         WHERE pro_name = '$pname'";
-
           // Execute the SQL update query
           if (mysqli_query($conn, $sql)) {
             echo "<script>alert('Product details updated successfully');</script>";
@@ -257,7 +254,6 @@ if ($_SESSION["email"] == "") {
         }
         ?>
         <div class="row ">
-          <!-- table view -->
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
@@ -336,7 +332,6 @@ if ($_SESSION["email"] == "") {
               </div>
             </div>
           </div>
-          <!-- table view closed -->
         </div>
       </div>
       <footer class="footer">
@@ -352,7 +347,6 @@ if ($_SESSION["email"] == "") {
       var fileName = input.files[0].name;
       var label = input.nextElementSibling;
       label.innerText = fileName;
-
       // Display selected image
       var fileReader = new FileReader();
       fileReader.onload = function(e) {
