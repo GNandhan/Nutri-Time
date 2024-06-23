@@ -270,114 +270,155 @@ if ($_SESSION["email"] == "") {
             }
           }
           ?>
-          <div class="col-lg-12 grid-margin stretch-card">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title">Shakes</h4>
-                <p class="card-description">Shake Details</p>
-                <div class="table-responsive">
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                        <th>Shake History</th>
-                        <th>Sl-no</th>
-                        <th>Customer Name</th>
-                        <th>Shake Img</th>
-                        <th>Shake Name</th>
-                        <th>Associate Name</th>
-                        <th>Shake Goal</th>
-                        <th>Recipes</th>
-                        <th>MRP</th>
-                        <th>No of Scoops</th>
-                        <th>Extra Incredients</th>
-                        <th>Extra Incredients Cost</th>
-                        <th>Discount</th>
-                        <th>Service Charge</th>
-                        <th>Total</th>
-                      </tr>
-                    </thead>
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Shakes</h4>
+      <p class="card-description">Shake Details</p>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Edit</th>
+              <th>Delete</th>
+              <th>Shake History</th>
+              <th>Sl-no</th>
+              <th>Customer Name</th>
+              <th>Shake Img</th>
+              <th>Shake Name</th>
+              <th>Associate Name</th>
+              <th>Shake Goal</th>
+              <th>Recipes</th>
+              <th>MRP</th>
+              <th>No of Scoops</th>
+              <th>Extra Ingredients</th>
+              <th>Extra Ingredients Cost</th>
+              <th>Discount</th>
+              <th>Service Charge</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <?php
+          $sql = mysqli_query($conn, "SELECT * FROM shake ORDER BY shake_id ");
+          $serialNo = 1;
+          $displayedCustomerNames = array(); // Initialize the array to keep track of displayed customer names
+          while ($row = mysqli_fetch_assoc($sql)) {
+            $sh_id = $row['shake_id'];
+            $cu_name = $row['customer_name'];
+            $sh_img = $row['shake_image'];
+            $sh_name = $row['shake_name'];
+            $sh_assoc = $row['shake_assoc'];
+            $sh_goal = $row['shake_goal'];
+            $sh_recipe = $row['shake_recipes'];
+            $sh_mrp = $row['shake_mrp'];
+            $sh_scoop = $row['shake_scoops'];
+            $sh_extra = $row['shake_extra'];
+            $sh_extraprice = $row['shake_extraprice'];
+            $sh_discount = $row['shake_discount'];
+            $sh_expense = $row['shake_expence'];
+            $sh_total = $row['shake_total'];
+
+            if (!in_array($cu_name, $displayedCustomerNames)) {
+              $displayedCustomerNames[] = $cu_name; // Add the customer name to the array
+          ?>
+          <tbody>
+            <tr>
+              <td><a href="admin-shake.php?sid=<?php echo $sh_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i></a></td>
+              <td><a href="admin-shake.php?sd_id=<?php echo $sh_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a></td>
+              <td><a href="admin-shake.php?cusmdid=<?php echo $sh_id; ?>" class="btn btn-inverse-primary btn-icon-text p-3" data-toggle="modal" data-target="#exampleModal_<?php echo $sh_id; ?>">Shake History</a></td>
+              <td class="py-1"><?php echo $serialNo++; ?></td>
+              <td><?php echo $cu_name; ?></td>
+              <td><img src="../images/shake/<?php echo $sh_img; ?>" alt="" width="50" class="rounded-circle"></td>
+              <td><?php echo $sh_name; ?></td>
+              <td><?php echo $sh_assoc; ?></td>
+              <td><?php echo $sh_goal; ?></td>
+              <td><?php echo $sh_recipe; ?></td>
+              <td><?php echo $sh_mrp; ?></td>
+              <td><?php echo $sh_scoop; ?></td>
+              <td><?php echo $sh_extra; ?></td>
+              <td><?php echo $sh_extraprice; ?></td>
+              <td><?php echo $sh_discount; ?>%</td>
+              <td><?php echo $sh_expense; ?></td>
+              <td><?php echo $sh_total; ?></td>
+            </tr>
+          </tbody>
+          <div class="modal fade" id="exampleModal_<?php echo $sh_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg"> <!-- Adjust modal size if needed -->
+              <div class="modal-content" style="border-radius:15px;">
+                <div class="modal-header">
+                  <h3 class="modal-title" id="exampleModalLabel">Shake History</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                  <div class="col-lg-8 col-md col-sm col">
+                    <h3>Customer Name : <span style="font-weight: bold;"> <?php echo $cu_name; ?></span></h3>
+                    <div class="row border-bottom mt-4">
+                      <div class="col-lg h4">Shake Name</div>
+                      <div class="col-lg h4">Shake Img</div>
+                      <div class="col-lg h4">Associate Name</div>
+                      <div class="col-lg h4">Shake Goal</div>
+                      <div class="col-lg h4">Recipes</div>
+                      <div class="col-lg h4">MRP</div>
+                      <div class="col-lg h4">No of Scoops</div>
+                      <div class="col-lg h4">Extra Ingredients</div>
+                      <div class="col-lg h4">Extra Ingredients Cost</div>
+                      <div class="col-lg h4">Discount</div>
+                      <div class="col-lg h4">Service Charge</div>
+                      <div class="col-lg h4">Total</div>
+                    </div>
                     <?php
-                    $sql = mysqli_query($conn, "SELECT * FROM shake ORDER BY shake_id ");
-                    $serialNo = 1;
-                    while ($row = mysqli_fetch_assoc($sql)) {
-                      $sh_id = $row['shake_id'];
-                      $cu_name = $row['customer_name'];
-                      $sh_img = $row['shake_image'];
-                      $sh_name = $row['shake_name'];
-                      $sh_assoc = $row['shake_assoc'];
-                      $sh_goal = $row['shake_goal'];
-                      $sh_recipe = $row['shake_recipes'];
-                      $sh_mrp = $row['shake_mrp'];
-                      $sh_scoop = $row['shake_scoops'];
-                      $sh_extra = $row['shake_extra'];
-                      $sh_extraprice = $row['shake_extraprice'];
-                      $sh_discount = $row['shake_discount'];
-                      $sh_expense = $row['shake_expence'];
-                      $sh_total = $row['shake_total'];
+                    // Query to fetch all shakes for the current customer
+                    $customer_shakes_sql = mysqli_query($conn, "SELECT * FROM shake WHERE customer_name = '$cu_name'");
+                    while ($customer_shake = mysqli_fetch_assoc($customer_shakes_sql)) {
+                      $sh_name_modal = $customer_shake['shake_name'];
+                      $sh_img_modal = $customer_shake['shake_image'];
+                      $sh_assoc_modal = $customer_shake['shake_assoc'];
+                      $sh_goal_modal = $customer_shake['shake_goal'];
+                      $sh_recipe_modal = $customer_shake['shake_recipes'];
+                      $sh_mrp_modal = $customer_shake['shake_mrp'];
+                      $sh_scoop_modal = $customer_shake['shake_scoops'];
+                      $sh_extra_modal = $customer_shake['shake_extra'];
+                      $sh_extraprice_modal = $customer_shake['shake_extraprice'];
+                      $sh_discount_modal = $customer_shake['shake_discount'];
+                      $sh_expense_modal = $customer_shake['shake_expence'];
+                      $sh_total_modal = $customer_shake['shake_total'];
                     ?>
-                      <tbody>
-                        <tr>
-                          <td><a href="admin-shake.php?sid=<?php echo $sh_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i></a></td>
-                          <td><a href="admin-shake.php?sd_id=<?php echo $sh_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a></td>
-                          <td><a href="admin-shake.php?cusmdid=<?php echo $sh_id; ?>" class="btn btn-inverse-primary btn-icon-text p-3" data-toggle="modal" data-target="#exampleModal_<?php echo $sh_id; ?>">Shake History</a></td>
-                          <td class="py-1"><?php echo $serialNo++; ?></td>
-                          <td><?php echo $cu_name; ?></td>
-                          <td><img src="../images/shake/<?php echo $sh_img; ?>" alt="" width="50" class="rounded-circle"></td>
-                          <td><?php echo $sh_name; ?></td>
-                          <td><?php echo $sh_assoc; ?></td>
-                          <td><?php echo $sh_goal; ?></td>
-                          <td><?php echo $sh_recipe; ?></td>
-                          <td><?php echo $sh_mrp; ?></td>
-                          <td><?php echo $sh_scoop; ?></td>
-                          <td><?php echo $sh_extra; ?></td>
-                          <td><?php echo $sh_extraprice; ?></td>
-                          <td><?php echo $sh_discount; ?>%</td>
-                          <td><?php echo $sh_expense; ?></td>
-                          <td><?php echo $sh_total; ?></td>
-                        </tr>
-                      </tbody>
-                      <div class="modal fade" id="exampleModal_<?php echo $sh_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg"> <!-- Adjust modal size if needed -->
-                          <div class="modal-content" style="border-radius:15px;">
-                            <div class="modal-header">
-                              <h3 class="modal-title" id="exampleModalLabel">Shake History</h3>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div class="modal-body">
-                              <div class="col-lg-8 col-md col-sm col">
-                                <h3>Customer Name : <span style="font-weight: bold;"> <?php echo $cu_name; ?></span></h3>
-                                <div class="row border-bottom mt-4">
-                                  <div class="col-lg h4">Shake Name</div>
-                                  <div class="col-lg h4">Idle Weight</div>
-                                  <div class="col-lg h4">BMR</div>
-                                  <div class="col-lg h4">BMI</div>
-                                  <div class="col-lg h4">VCF</div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-lg"><?php echo $sh_name; ?></div>
-                                  <div class="col-lg"></div>
-                                  <div class="col-lg"><?php echo $sh_recipe; ?></div>
-                                  <div class="col-lg"><?php echo $sh_mrp; ?></div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              <button type="submit" name="submitpay" class="btn btn-primary">Save changes</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                    <div class="row mt-2">
+                      <div class="col-lg"><?php echo $sh_name_modal; ?></div>
+                      <div class="col-lg"><img src="../images/shake/<?php echo $sh_img_modal; ?>" alt="" width="50" class="rounded-circle"></div>
+                      <div class="col-lg"><?php echo $sh_assoc_modal; ?></div>
+                      <div class="col-lg"><?php echo $sh_goal_modal; ?></div>
+                      <div class="col-lg"><?php echo $sh_recipe_modal; ?></div>
+                      <div class="col-lg"><?php echo $sh_mrp_modal; ?></div>
+                      <div class="col-lg"><?php echo $sh_scoop_modal; ?></div>
+                      <div class="col-lg"><?php echo $sh_extra_modal; ?></div>
+                      <div class="col-lg"><?php echo $sh_extraprice_modal; ?></div>
+                      <div class="col-lg"><?php echo $sh_discount_modal; ?>%</div>
+                      <div class="col-lg"><?php echo $sh_expense_modal; ?></div>
+                      <div class="col-lg"><?php echo $sh_total_modal; ?></div>
+                    </div>
                     <?php
                     }
                     ?>
-                  </table>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" name="submitpay" class="btn btn-primary">Save changes</button>
                 </div>
               </div>
             </div>
           </div>
+          <?php
+            }
+          }
+          ?>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
         </div>
       </div>
     </div>
