@@ -269,7 +269,8 @@ if ($_SESSION["email"] == "") {
           // Calculate total including GST
           $sal_total = $subtotal + $gstAmount;
 
-          $sal_curquan_query = mysqli_query($conn, "SELECT pro_curquantity FROM price");
+          // Retrieve the current quantity from the price table for the given product
+          $sal_curquan_query = mysqli_query($conn, "SELECT pro_curquantity FROM price WHERE pro_name = '$sal_proname'");
           $sal_curquan_row = mysqli_fetch_assoc($sal_curquan_query);
           $sal_curquan = $sal_curquan_row['pro_curquantity'];
 
@@ -280,13 +281,19 @@ if ($_SESSION["email"] == "") {
           if (empty($sale_id)) {
             // Perform INSERT operation
             $sql = mysqli_query($conn, "INSERT INTO sales (sales_procode, sales_proname, sales_procat, sales_prosubcat, sales_mrp, sales_quan, sales_vp, sales_vptotal, sales_gst, sales_dis, sales_dispri, sales_cus, sales_address, sales_total, sales_date)
-                                                    VALUES ('$sal_procode','$sal_proname','$sal_procat','$sal_prosubcat','$sal_mrp','$sal_quan','$sal_vp', '$sal_vptotal','$sal_gst','$sal_dis','$sal_dispri','$sal_cus','$sal_address','$sal_total','$sal_date')");
+              VALUES ('$sal_procode','$sal_proname','$sal_procat','$sal_prosubcat','$sal_mrp','$sal_quan','$sal_vp', '$sal_vptotal','$sal_gst','$sal_dis','$sal_dispri','$sal_cus','$sal_address','$sal_total','$sal_date')");
 
-            $sql = mysqli_query($conn, "UPDATE price SET pro_curquantity='$sal_curquan1' WHERE pro_name='$sal_proname'");
+            // Update the current quantity in the price table
+            $sql_update = mysqli_query($conn, "UPDATE price SET pro_curquantity='$sal_curquan1' WHERE pro_name='$sal_proname'");
           } else {
             // Perform UPDATE operation
             $sql = mysqli_query($conn, "UPDATE sales SET sales_procode='$sal_procode', sales_proname='$sal_proname', sales_procat='$sal_procat', sales_prosubcat='$sal_prosubcat', sales_mrp='$sal_mrp', sales_quan='$sal_quan', sales_vp='$sal_vp', sales_vptotal='$sal_vptotal', sales_gst='$sal_gst', sales_dis='$sal_dis', sales_dispri='$sal_dispri', sales_cus='$sal_cus', sales_address='$sal_address', sales_total='$sal_total' WHERE sales_id='$sale_id'");
+
+            // Update the current quantity in the price table
+            $sql_update = mysqli_query($conn, "UPDATE price SET pro_curquantity='$sal_curquan1' WHERE pro_name='$sal_proname'");
           }
+
+
           // Check if the query was successful
           if ($sql === TRUE) {
             echo "<script>alert('Operation completed successfully.');</script>";

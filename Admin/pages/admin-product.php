@@ -231,6 +231,7 @@ if ($_SESSION["email"] == "") {
 
           // Calculate total scoops
           $totalScoops = $scoops * $newQuantity;
+          $quaScoops = $scoops * $newcurQuantity;
 
           // Update the record in the price table
           $sql = "UPDATE price SET 
@@ -245,7 +246,8 @@ if ($_SESSION["email"] == "") {
         pro_vptotal = '$pvptotal', 
         pro_hsn = '$phsn',
         pro_date = '$pdate',
-        pro_scooptotal = '$totalScoops' -- Store total scoops
+        pro_scooptotal = '$totalScoops', -- Store total scoops
+        pro_scoopqua = '$quaScoops' -- Store total scoops
         WHERE pro_name = '$pname'";
 
           // Execute the SQL update query

@@ -207,7 +207,7 @@ if ($_SESSION["email"] == "") {
                         <th>Stock Transfer Date</th>
                         <th>Product</th>
                         <th>Quantity</th>
-                        <th>Remaining Quantity</th>
+                        <!-- <th>Remaining Quantity</th> -->
                         <th>Location/Associate</th>
                         <th>Price</th>
                         <th>Total</th>
