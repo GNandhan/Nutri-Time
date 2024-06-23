@@ -179,8 +179,24 @@ if ($_SESSION["email"] == "") {
             $sql = mysqli_query($conn, "UPDATE stock SET stock_proname='$stomat', stock_quantity=$stoqua, stock_associate='$stoloct', stock_price=$stopri, stock_total=$stototal, stock_date='$stodate' WHERE stock_id='$sto_id'");
           }
 
-          if ($sql) {
-            echo "<script>alert('Operation completed successfully.');</script>";
+          // Check if the query was successful
+          if ($sql === TRUE) {
+            // Fetch pro_curquantity from price table
+            $price_query = mysqli_query($conn, "SELECT pro_curquantity, pro_scoop FROM price WHERE pro_name = '$stomat'");
+            $price_row = mysqli_fetch_assoc($price_query);
+            $pro_curquantity = $price_row['pro_curquantity'];
+            $pro_scoop = $price_row['pro_scoop'];
+        
+            // Calculate pro_scoopqua
+            $pro_scoopqua = $pro_curquantity * $pro_scoop;
+        
+            // Update pro_scoopqua in the price table
+            $update_price = mysqli_query($conn, "UPDATE price SET pro_scoopqua = '$pro_scoopqua' WHERE pro_name = '$stomat'");
+            if ($update_price) {
+                echo "<script>alert('Sales data inserted successfully.');</script>";
+            } else {
+                echo "<script>alert('Error updating pro_scoopqua: " . mysqli_error($conn) . "');</script>";
+            }
           } else {
             echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
           }
