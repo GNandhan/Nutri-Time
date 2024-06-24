@@ -264,6 +264,23 @@ if ($_SESSION["email"] == "") {
                   mysqli_query($conn, "UPDATE price SET pro_scoopqua='$newQuantity' WHERE pro_name='$product'");
                 }
               }
+// After successful SQL operation (insert or update)
+foreach ($scoopsData as $product => $scoops) {
+  // Fetch pro_scoopqua from price table for the current product
+  $result = mysqli_query($conn, "SELECT pro_scoopqua, pro_scoop FROM price WHERE pro_name='$product'");
+  if ($result && mysqli_num_rows($result) > 0) {
+      $row = mysqli_fetch_assoc($result);
+      $pro_scoopqua = intval($row['pro_scoopqua']);
+      $pro_scoops = intval($row['pro_scoop']);
+      
+      // Calculate new pro_curquantity
+      $pro_curquantity = $pro_scoopqua / $pro_scoops;
+      
+      // Update pro_curquantity in price table
+      mysqli_query($conn, "UPDATE price SET pro_curquantity='$pro_curquantity' WHERE pro_name='$product'");
+  }
+}
+
               echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
             } else {
               echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
@@ -396,7 +413,8 @@ if ($_SESSION["email"] == "") {
                                       <div class="col-lg"><?php echo $sh_discount_modal; ?>%</div>
                                       <div class="col-lg"><?php echo $sh_expense_modal; ?></div>
                                       <div class="col-lg"><?php echo $sh_total_modal; ?></div>
-                                    </div> <hr>
+                                    </div>
+                                    <hr>
                                   <?php
                                   }
                                   ?>
@@ -524,4 +542,5 @@ if ($_SESSION["email"] == "") {
   <script src="../js/hoverable-collapse.js"></script>
   <script src="../js/template.js"></script>
 </body>
+
 </html>

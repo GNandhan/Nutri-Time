@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 24, 2024 at 12:59 AM
+-- Generation Time: Jun 24, 2024 at 02:20 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -301,10 +301,10 @@ CREATE TABLE `price` (
 --
 
 INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subcat`, `pro_mrp`, `pro_price`, `pro_dis0`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`, `pro_vp`, `pro_vptotal`, `pro_scoop`, `pro_scooptotal`, `pro_scoopqua`, `pro_scoop0`, `pro_scoop15`, `pro_scoop25`, `pro_scoop35`, `pro_scoop42`, `pro_scoop50`, `pro_quantity`, `pro_curquantity`, `pro_hsn`, `pro_img`, `pro_date`) VALUES
-(1, 'FORMULA 1 SHAKE MIX VANILLA', 'F1V', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '1340', '2370', '2060', '1860', '1650', '1500', '1340', '21.75', '217.5', '60', '6720', '2400', '118.90', '103.5', '93', '83.5', '73', '63.5', '112', '40', '785487', '', '2024-06-23'),
-(2, 'FORMULA 1 SHAKE MIX CHOCOLATE', 'F1C', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2371', '1341', '2371', '2061', '1861', '1651', '1501', '1341', '12.75', '76.5', '50', '4800', '3700', '121.65', '111.55', '10.45', '9.35', '8.25', '7.15', '96', '50', '986598', '', '2024-06-23'),
-(3, 'FORMULA 1 SHAKE MIX PISTAH', 'F1P', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '1342', '2372', '2062', '1862', '1652', '1502', '1342', '21.75', '65.25', '40', '4160', '1600', '145.52', '135.52', '125.52', '115.52', '105.25', '95.25', '104', '40', '986598', '', '2024-06-23'),
-(4, 'FORMULA 1 SHAKE MIX OREO', 'F!O', 'Ayurdevic Nutrition', 'Energy', '2683', '2503', '2683', '2103', '2003', '1803', '1703', '1603', '12.75', '127.5', '30', '3000', '1500', '123.45', '113.45', '103.45', '93.45', '83.45', '73.45', '100', '50', '986598', '', '2024-06-24');
+(1, 'FORMULA 1 SHAKE MIX VANILLA', 'F1V', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '1340', '2370', '2060', '1860', '1650', '1500', '1340', '21.75', '217.5', '60', '6720', '1320', '118.90', '103.5', '93', '83.5', '73', '63.5', '112', '22', '785487', '', '2024-06-23'),
+(2, 'FORMULA 1 SHAKE MIX CHOCOLATE', 'F1C', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2371', '1341', '2371', '2061', '1861', '1651', '1501', '1341', '12.75', '76.5', '50', '4800', '3295', '121.65', '111.55', '10.45', '9.35', '8.25', '7.15', '96', '65.9', '986598', '', '2024-06-23'),
+(3, 'FORMULA 1 SHAKE MIX PISTAH', 'F1P', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '1342', '2372', '2062', '1862', '1652', '1502', '1342', '21.75', '65.25', '40', '4160', '1280', '145.52', '135.52', '125.52', '115.52', '105.25', '95.25', '104', '32', '986598', '', '2024-06-23'),
+(4, 'FORMULA 1 SHAKE MIX OREO', 'F!O', 'Ayurdevic Nutrition', 'Energy', '2683', '2503', '2683', '2103', '2003', '1803', '1703', '1603', '12.75', '127.5', '30', '3000', '1260', '123.45', '113.45', '103.45', '93.45', '83.45', '73.45', '100', '42', '986598', '', '2024-06-24');
 
 -- --------------------------------------------------------
 
@@ -391,7 +391,8 @@ INSERT INTO `sales` (`sales_id`, `sales_proid`, `sales_procode`, `sales_proname`
 (15, 0, 'F!O', 'FORMULA 1 SHAKE MIX OREO', 'Ayurdevic Nutrition', 'Energy', '2683', '20', '', '12.75', '255', '18', '35', '1803', 'Jeslin Biju', 'none', '42550.8', '2024-06-11'),
 (16, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '5', '', '21.75', '108.75', '18', '15', '2060', 'Arun', 'none', '12154', '2024-06-17'),
 (17, 0, 'F1C', 'FORMULA 1 SHAKE MIX CHOCOLATE', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2371', '6', '', '12.75', '76.5', '18', '25', '1861', 'Jeslin Biju', 'none', '13175.88', '2024-06-17'),
-(18, 0, 'F1P', 'FORMULA 1 SHAKE MIX PISTAH', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '1', '', '21.75', '21.75', '18', '25', '1862', 'Arun', 'none', '2197.16', '2024-06-10');
+(18, 0, 'F1P', 'FORMULA 1 SHAKE MIX PISTAH', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '1', '', '21.75', '21.75', '18', '25', '1862', 'Arun', 'none', '2197.16', '2024-06-10'),
+(19, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '10', '', '21.75', '217.5', '18', '15', '2060', 'Jeslin Biju', 'none', '24308', '2024-06-17');
 
 -- --------------------------------------------------------
 
@@ -443,7 +444,18 @@ INSERT INTO `shake` (`shake_id`, `shake_name`, `shake_assoc`, `customer_id`, `cu
 (18, 'Club Shake18', 'Ashraf', 0, 'Amal', 'weight losser18', 'FORMULA 1 SHAKE MIX VANILLA', '83.5', 'FORMULA 1 SHAKE MIX VANILLA : 30', 'Milk, Butter', '20', '35', '10', '113.5', 'main page.jpg', ''),
 (19, 'Club Shake19', 'Ashraf', 0, 'Ajith', 'weight losser19', 'FORMULA 1 SHAKE MIX VANILLA', '73', 'FORMULA 1 SHAKE MIX VANILLA : 30', 'Milk, Butter', '10', '42', '10', '93', 'main page.jpg', ''),
 (20, 'Club Shake20', 'Ashraf', 0, 'Melow', 'weight losser20', 'FORMULA 1 SHAKE MIX CHOCOLATE,FORMULA 1 SHAKE MIX PISTAH', '247.07', 'FORMULA 1 SHAKE MIX CHOCOLATE : 30, FORMULA 1 SHAKE MIX PISTAH : 30', 'Milk, Butter', '10', '15', '10', '267.07', 'main page.jpg', ''),
-(21, 'Club Shake22', 'Ashraf', 0, 'Albin', 'weight losser22', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX PISTAH', '239.02', 'FORMULA 1 SHAKE MIX VANILLA : 30, FORMULA 1 SHAKE MIX PISTAH : 30', 'Milk, Butter', '20', '15', '10', '269.02', 'main page.jpg', '');
+(21, 'Club Shake22', 'Ashraf', 0, 'Albin', 'weight losser22', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX PISTAH', '239.02', 'FORMULA 1 SHAKE MIX VANILLA : 30, FORMULA 1 SHAKE MIX PISTAH : 30', 'Milk, Butter', '20', '15', '10', '269.02', 'main page.jpg', ''),
+(22, 'Club Shake', 'Ashraf', 0, 'Ajith', 'Weight gainer222', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX CHOCOLATE', '103.45', 'FORMULA 1 SHAKE MIX VANILLA : 10, FORMULA 1 SHAKE MIX CHOCOLATE : 5', 'Milk, Butter', '20', '25', '60', '183.45', 'main page.jpg', ''),
+(23, 'Club Shake23', 'Ashraf', 0, 'Mathew', 'weight losser23', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX CHOCOLATE,FORMULA 1 SHAKE MIX PISTAH,FORMULA 1 SHAKE MIX OREO', '332.42', 'FORMULA 1 SHAKE MIX VANILLA : 60, FORMULA 1 SHAKE MIX CHOCOLATE : 50, FORMULA 1 SHAKE MIX PISTAH : 40, FORMULA 1 SHAKE MIX OREO : 30', 'Milk', '10', '25', '50', '392.42', 'main page.jpg', ''),
+(24, 'Club Shake24', 'Ashraf', 0, 'Wolf', 'weight losser24', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX CHOCOLATE,FORMULA 1 SHAKE MIX PISTAH,FORMULA 1 SHAKE MIX OREO', '464.02000000000004', 'FORMULA 1 SHAKE MIX VANILLA : 60, FORMULA 1 SHAKE MIX CHOCOLATE : 50, FORMULA 1 SHAKE MIX PISTAH : 40, FORMULA 1 SHAKE MIX OREO : 30', 'Milk', '10', '15', '60', '534.02', 'main page.jpg', ''),
+(25, 'Club Shake25', 'Ashraf', 0, 'Abdul', 'weight losser25', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX CHOCOLATE,FORMULA 1 SHAKE MIX PISTAH,FORMULA 1 SHAKE MIX OREO', '301.82', 'FORMULA 1 SHAKE MIX VANILLA : 60, FORMULA 1 SHAKE MIX CHOCOLATE : 50, FORMULA 1 SHAKE MIX PISTAH : 40, FORMULA 1 SHAKE MIX OREO : 30', 'Milk, Butter', '50', '35', '10', '361.82', 'main page.jpg', ''),
+(26, 'Club Shake26', 'Ashraf', 0, 'Wolf', 'weight losser26', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX CHOCOLATE,FORMULA 1 SHAKE MIX PISTAH,FORMULA 1 SHAKE MIX OREO', '464.02000000000004', 'FORMULA 1 SHAKE MIX VANILLA : 60, FORMULA 1 SHAKE MIX CHOCOLATE : 50, FORMULA 1 SHAKE MIX PISTAH : 40, FORMULA 1 SHAKE MIX OREO : 30', 'Milk, Butter', '20', '15', '60', '544.02', 'main page.jpg', ''),
+(27, 'Club Shake27', 'Ashraf', 0, 'Mathew', 'weight losser27', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX CHOCOLATE,FORMULA 1 SHAKE MIX PISTAH,FORMULA 1 SHAKE MIX OREO', '464.02000000000004', 'FORMULA 1 SHAKE MIX VANILLA : 60, FORMULA 1 SHAKE MIX CHOCOLATE : 50, FORMULA 1 SHAKE MIX PISTAH : 40, FORMULA 1 SHAKE MIX OREO : 30', 'Milk, Butter', '50', '15', '10', '524.02', 'main page.jpg', ''),
+(28, 'Club Shake26', 'Ashraf', 0, 'Kareem', 'weight losser26', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX CHOCOLATE,FORMULA 1 SHAKE MIX PISTAH,FORMULA 1 SHAKE MIX OREO', '464.02000000000004', 'FORMULA 1 SHAKE MIX VANILLA : 60, FORMULA 1 SHAKE MIX CHOCOLATE : 50, FORMULA 1 SHAKE MIX PISTAH : 40, FORMULA 1 SHAKE MIX OREO : 30', 'Milk', '10', '15', '10', '484.02', 'main page.jpg', ''),
+(29, 'Club Shake28', 'Ashraf', 0, 'Arjun', 'weight losser28', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX CHOCOLATE,FORMULA 1 SHAKE MIX PISTAH,FORMULA 1 SHAKE MIX OREO', '301.82', 'FORMULA 1 SHAKE MIX VANILLA : 60, FORMULA 1 SHAKE MIX CHOCOLATE : 50, FORMULA 1 SHAKE MIX PISTAH : 40, FORMULA 1 SHAKE MIX OREO : 30', 'Milk, Butter', '10', '35', '40', '351.82', 'main page.jpg', ''),
+(30, 'Club Shake29', 'Ashraf', 0, 'Wolf', 'weight losser29', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX CHOCOLATE,FORMULA 1 SHAKE MIX PISTAH,FORMULA 1 SHAKE MIX OREO', '464.02000000000004', 'FORMULA 1 SHAKE MIX VANILLA : 60, FORMULA 1 SHAKE MIX CHOCOLATE : 50, FORMULA 1 SHAKE MIX PISTAH : 40, FORMULA 1 SHAKE MIX OREO : 30', 'milk, sugar, protein', '10', '15', '10', '484.02', 'main page.jpg', ''),
+(31, 'Club Shake30', 'Ashraf', 0, 'Kareem', 'weight losser30', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX CHOCOLATE,FORMULA 1 SHAKE MIX PISTAH,FORMULA 1 SHAKE MIX OREO', '332.42', 'FORMULA 1 SHAKE MIX VANILLA : 30, FORMULA 1 SHAKE MIX CHOCOLATE : 25, FORMULA 1 SHAKE MIX PISTAH : 20, FORMULA 1 SHAKE MIX OREO : 15', 'milk, sugar, protein', '50', '25', '40', '422.42', 'main page.jpg', ''),
+(32, 'Club Shake31', 'Ashraf', 0, 'Mathew', 'weight losser31', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX CHOCOLATE,FORMULA 1 SHAKE MIX PISTAH,FORMULA 1 SHAKE MIX OREO', '332.42', 'FORMULA 1 SHAKE MIX VANILLA : 30, FORMULA 1 SHAKE MIX CHOCOLATE : 25, FORMULA 1 SHAKE MIX PISTAH : 20, FORMULA 1 SHAKE MIX OREO : 15', 'milk, sugar, protein', '10', '25', '10', '352.42', 'main page.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -690,13 +702,13 @@ ALTER TABLE `program`
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `shake`
 --
 ALTER TABLE `shake`
-  MODIFY `shake_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `shake_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `staff`
