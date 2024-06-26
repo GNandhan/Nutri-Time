@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 26, 2024 at 08:57 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: localhost:3306
+-- Generation Time: Jun 27, 2024 at 12:24 AM
+-- Server version: 10.6.18-MariaDB-cll-lve
+-- PHP Version: 8.1.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `nutritime`
+-- Database: `nutritime_nutritime`
 --
 
 -- --------------------------------------------------------
@@ -68,8 +68,7 @@ INSERT INTO `bmr_history` (`bmr_id`, `cust_id`, `cust_code`, `cust_name`, `cust_
 (4, 1003, 'CUS10028', 'Edwin', '2222', '1111', '2024-06-03'),
 (5, 1003, 'CUS10028', 'Edwin', '0002', '0001', '2024-06-04'),
 (6, 1005, 'CUS10028', 'Edwin', '333', '222', '2024-06-06'),
-(7, 1005, 'CUS10028', 'Edwin', '201', '301', '2024-06-05'),
-(8, 1006, '', 'Aswin', '30', '15', '2024-06-26');
+(7, 1005, 'CUS10028', 'Edwin', '201', '301', '2024-06-05');
 
 -- --------------------------------------------------------
 
@@ -156,7 +155,7 @@ CREATE TABLE `customer` (
 INSERT INTO `customer` (`cust_id`, `cust_code`, `cust_name`, `cust_phno`, `cust_invited`, `cust_age`, `cust_bodyage`, `cust_gender`, `cust_email`, `cust_password`, `cust_doj`, `cust_city`, `cust_address`, `cust_height`, `cust_weight`, `cust_idleweight`, `cust_fat`, `cust_vcf`, `cust_bmr`, `cust_bmi`, `cust_bmidate`, `cust_mm`, `cust_tsf`, `cust_waketime`, `cust_tea`, `cust_breakfast`, `cust_lunch`, `cust_snack`, `cust_dinner`, `cust_veg_nonveg`, `cust_waterintake`, `cust_cond1`, `cust_cond2`, `cust_cond3`, `cust_cond4`, `cust_cond5`, `cust_cond6`, `cust_cond7`, `cust_cond8`, `cust_prg`, `cust_prgtype`, `cust_noday`, `cust_total`, `cust_paid`, `cust_paiddate`, `cust_remain`, `cust_date`) VALUES
 (1003, 'CUS10012', 'Kareem', '7854985687', 'Ashraf', '25', '26', 'Male', 'manu123@gmail.com', 'manu123@', '2024-04-09', 'Kozhikode', 'veluvil po mavoor, kozhikode', '175', '62', '75', '15', '10', '02', '01', '2024-06-30', '13', '14', '09:29', 'Green Tea', 'Idly, Sambar', 'Chicken Biriyani', 'ladoo', 'Mandi', 'Non-veg', '2 litre', 'Diabeted', 'Cancer', 'High BP', 'Diabetieswe3ee23e', 'Fever', 'Blood pressure', 'Diabeties 2', 'Diabeties 3', 'Weight lose', 'Online', '20', '10000', '3500', '2024-04-01', '2850', '2024-04-27'),
 (1005, 'CUS10013', 'Amal', '9865329865', 'Ashraf', '26', '27', 'Male', 'amal123@gmail.com', 'amal123@', '2024-06-01', 'Thalayolaparambu', '3rd floor, Thalayolaparambu, po', '165', '63', '65', '32', '001', '11', '100', '', '152', '145', '12:45', 'Black Coffee', 'Idly, Sambar', 'Mandi', 'ladoo', 'Mandi', 'Non-veg', '2 litre', 'belly fat', 'blood cancer', 'nutrition effectency', 'Diabeties', 'Fever', 'Blood pressure', 'Diabeties 2', 'Diabeties 3', 'Weight lose', 'Offline', '40', '26000', '3030', '2024-04-02', '22970', '2024-04-27'),
-(1006, 'CUS10029', 'Albin', '9865875498', 'Ashraf', '25', '26', 'Male', 'albin12@gmail.com', 'albin12@', '', 'Vallaserry', '3rd floor, vallaserry, po', '152', '72', '52', '26', '001', '002', '003', '', '004', '005', '16:51', 'Black Coffee', 'Noodles', 'Mandi', 'fries', 'Mandi', 'Non-veg', '1 litre', 'belly fat', 'blood cancer', 'nutrition effectency', 'Diabeties', 'Fever', 'Blood pressure', 'Diabeties 2', 'Diabeties 3', 'Fat Reducer', 'Offline', '25', '15000', '0', '2024-06-05', '1', '2024-04-27'),
+(1006, 'CUS10029', 'Albin', '9865875498', 'Ashraf', '25', '26', 'Male', 'albin12@gmail.com', 'albin12@', '', 'Vallaserry', '3rd floor, vallaserry, po', '152', '72', '52', '26', '001', '002', '003', '', '004', '005', '16:51', 'Black Coffee', 'Noodles', 'Mandi', 'fries', 'Mandi', 'Non-veg', '1 litre', 'belly fat', 'blood cancer', 'nutrition effectency', 'Diabeties', 'Fever', 'Blood pressure', 'Diabeties 2', 'Diabeties 3', 'Fat Reducer', 'Offline', '25', '15000', '0', '2024-06-05', '9000', '2024-04-27'),
 (1007, 'CUS10016', 'Ajith', '986585498', 'Ashraf', '45', '46', 'Male', 'amal123@gmail.com', 'amal123@', '', 'Kochi', '3rd floor, kochi, po', '182', '90', '82', '72', '10', '105.4', '100.5', '', '142.2', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '25', '15000', '3510', '2024-05-29', '5000', '2024-04-27'),
 (1008, 'CUS10026', 'Melow', '9887659854', 'Amal', '25', '26', 'Female', 'melow12@gmail.com', '', '15-04-2023', 'Kochi', '3rd floor, kochi, po', '154', '78', '', '24', '001', '002', '003', '', '004', '14', '00:57', 'okkokook', 'Noodles', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '1 litre', 'belly fat', 'blood cancer', 'nutrition effectency', '', '', '', '', '', 'Weight lose', 'Offline', '20', '12000', '0', '2024-04-01', '1000', '2024-04-27'),
 (1009, 'CUS10026', 'Mathew', '9887659854', 'Amal', '25', '26', 'Female', 'melow12@gmail.com', '', '15-04-2023', 'Kochi', '3rd floor, kochi, po', '154', '78', '', '24', '001', '002', '003', '', '004', '14', '00:57', 'okkokook', 'Noodles', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '1 litre', 'belly fat', 'blood cancer', 'nutrition effectency', '', '', '', '', '', 'Weight lose', 'Offline', '20', '11000', '0', '2024-06-01', '0', '2024-04-27'),
@@ -269,9 +268,7 @@ INSERT INTO `pay_history` (`pay_id`, `cust_id`, `cust_code`, `cust_name`, `cust_
 (25, 1003, 'CUS10012', 'Kareem', '150', '2024-06-13'),
 (26, 1007, 'CUS10016', 'Ajith', '5000', '2024-06-10'),
 (27, 1006, 'CUS10029', 'Albin', '879', '2024-06-12'),
-(28, 1018, '', 'Aswin', '1000', '2024-06-26'),
-(29, 1006, 'CUS10029', 'Albin', '8000', '2024-06-26'),
-(30, 1006, 'CUS10029', 'Albin', '999', '2024-06-28');
+(28, 1018, '', 'Aswin', '1000', '2024-06-26');
 
 -- --------------------------------------------------------
 
@@ -685,7 +682,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `bmr_history`
 --
 ALTER TABLE `bmr_history`
-  MODIFY `bmr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `bmr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -715,7 +712,7 @@ ALTER TABLE `login_details`
 -- AUTO_INCREMENT for table `pay_history`
 --
 ALTER TABLE `pay_history`
-  MODIFY `pay_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `pay_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `price`
