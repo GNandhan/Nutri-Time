@@ -1,3 +1,17 @@
+<?php
+include './connect.php';
+error_reporting(0);
+session_start();
+if ($_SESSION["email"] == "") {
+  header('location:admin-login.php');
+}
+// Fetch the customer's name based on the logged-in user's email
+$email = $_SESSION["email"];
+$query = mysqli_query($conn, "SELECT `admin_name` FROM `admin` WHERE `admin_mail`='$email'");
+if ($row = mysqli_fetch_assoc($query)) {
+  $AdminName = $row['admin_name'];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,14 +62,29 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td class="py-1">#00A001</td>
-                        <td>---</td>
-                        <td>---</td>
-                        <td>---</td>
-                        <td>---</td>
-                        <td>---</td>
-                      </tr>
+                      <?php
+
+                      $sql = "SELECT pri_id, pro_name, pro_code, pro_category, pro_subcat, pro_mrp, pro_price, pro_dis0, pro_dis15, pro_dis25, pro_dis35, pro_dis42, pro_dis50, pro_vp, pro_vptotal, pro_scoop, pro_scooptotal, pro_scoopqua, pro_scoop0, pro_scoop15, pro_scoop25, pro_scoop35, pro_scoop42, pro_scoop50, pro_quantity, pro_curquantity, pro_hsn, pro_img, pro_date FROM price";
+                      // $result = $conn->query($sql);
+
+                      if ($result->num_rows > 0) {
+                        // Output data of each row
+                        while($row = $result->fetch_assoc()) {
+                          echo "<tr>
+                                  <td>" . $row["pri_id"] . "</td>
+                                  <td>" . $row["pro_name"] . "</td>
+                                  <td>" . $row["pro_code"] . "</td>
+                                  <td>" . $row["pro_category"] . "</td>
+                                  <td>" . $row["pro_price"] . "</td>
+                                  <td>" . $row["pro_curquantity"] . "</td>
+                                </tr>";
+                        }
+                      } else {
+                        echo "<tr><td colspan='6'>No data available</td></tr>";
+                      }
+
+                      $conn->close();
+                      ?>
                     </tbody>
                   </table>
                 </div>
