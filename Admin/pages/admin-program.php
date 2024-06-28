@@ -10,13 +10,11 @@ if ($_SESSION["email"] == "") {
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Admin Program</title>
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
@@ -53,13 +51,11 @@ if ($_SESSION["email"] == "") {
       }
     }
     ?>
-    <!-- partial -->
     <div class="main-panel">
       <div class="content-wrapper">
         <div class="row">
           <div class="col-12 grid-margin stretch-card">
             <div class="card">
-              <!-- Form -->
               <div class="card-body">
                 <h1 class="card-title">Program</h1>
                 <p class="card-description">Add Program Details</p>
@@ -101,12 +97,10 @@ if ($_SESSION["email"] == "") {
                       </div>
                     </div>
                   </div>
-                  <!-- </div> -->
                   <button type="submit" class="btn btn-primary mr-2 rounded-pill" name="submitpr">Submit</button>
                   <a href="./admin-program.php" class="btn btn-light rounded-pill">Cancel</a>
                 </form>
               </div>
-              <!-- Form Closed -->
             </div>
           </div>
           <!-- PHP CODE FOR INSERTING THE DATA -->
@@ -149,7 +143,6 @@ if ($_SESSION["email"] == "") {
             }
           }
           ?>
-          <!-- table view -->
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
@@ -209,7 +202,6 @@ if ($_SESSION["email"] == "") {
               </div>
             </div>
           </div>
-          <!-- table view closed -->
         </div>
       </div>
       <footer class="footer">
@@ -225,7 +217,6 @@ if ($_SESSION["email"] == "") {
       var fileName = input.files[0].name;
       var label = input.nextElementSibling;
       label.innerText = fileName;
-
       // Display selected image
       var fileReader = new FileReader();
       fileReader.onload = function(e) {

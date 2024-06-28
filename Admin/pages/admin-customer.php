@@ -11,13 +11,11 @@ if ($_SESSION["email"] == "") {
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Admin Customer</title>
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
@@ -114,7 +112,6 @@ if ($_SESSION["email"] == "") {
       $cus_date12 = $p_row1['cust_date'];
     }
     ?>
-    <!-- partial -->
     <div class="main-panel">
       <div class="content-wrapper">
         <div class="row">
@@ -468,7 +465,6 @@ if ($_SESSION["email"] == "") {
         }
         ?>
         <div class="row">
-          <!-- table view -->
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
@@ -778,7 +774,6 @@ if ($_SESSION["email"] == "") {
               </div>
             </div>
           </div>
-          <!-- table view closed -->
         </div>
       </div>
       <footer class="footer">
@@ -786,7 +781,6 @@ if ($_SESSION["email"] == "") {
           <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024.Nutri-time. All rights reserved.</span>
         </div>
       </footer>
-      <!-- partial -->
     </div>
   </div>
   </div>

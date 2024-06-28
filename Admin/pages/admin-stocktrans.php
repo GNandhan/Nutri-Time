@@ -17,12 +17,10 @@ if ($_SESSION["email"] == "") {
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
-  <!-- endinject -->
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
 
 <body>
-
   <div class="container-scroller">
     <?php
     include './topbar.php';
@@ -58,7 +56,6 @@ if ($_SESSION["email"] == "") {
       $material_prices[$row['pro_name']] = $row['pro_price'];
     }
     ?>
-
     <!-- JavaScript to update the price field -->
     <script>
       // Define a JavaScript object to store material prices
@@ -78,7 +75,6 @@ if ($_SESSION["email"] == "") {
         }
       }
     </script>
-    <!-- partial -->
     <div class="main-panel">
       <div class="content-wrapper">
         <div class="row">
@@ -186,16 +182,16 @@ if ($_SESSION["email"] == "") {
             $price_row = mysqli_fetch_assoc($price_query);
             $pro_curquantity = $price_row['pro_curquantity'];
             $pro_scoop = $price_row['pro_scoop'];
-        
+
             // Calculate pro_scoopqua
             $pro_scoopqua = $pro_curquantity * $pro_scoop;
-        
+
             // Update pro_scoopqua in the price table
             $update_price = mysqli_query($conn, "UPDATE price SET pro_scoopqua = '$pro_scoopqua' WHERE pro_name = '$stomat'");
             if ($update_price) {
-                echo "<script>alert('Sales data inserted successfully.');</script>";
+              echo "<script>alert('Sales data inserted successfully.');</script>";
             } else {
-                echo "<script>alert('Error updating pro_scoopqua: " . mysqli_error($conn) . "');</script>";
+              echo "<script>alert('Error updating pro_scoopqua: " . mysqli_error($conn) . "');</script>";
             }
           } else {
             echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
@@ -203,7 +199,6 @@ if ($_SESSION["email"] == "") {
         }
         ?>
         <div class="row ">
-          <!-- table view -->
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
@@ -268,7 +263,6 @@ if ($_SESSION["email"] == "") {
               </div>
             </div>
           </div>
-          <!-- table view closed -->
         </div>
       </div>
       <footer class="footer">
@@ -276,7 +270,6 @@ if ($_SESSION["email"] == "") {
           <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024.Nutri-time. All rights reserved.</span>
         </div>
       </footer>
-      <!-- partial -->
     </div>
   </div>
   </div>

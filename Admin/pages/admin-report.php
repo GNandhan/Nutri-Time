@@ -16,13 +16,11 @@ if ($row = mysqli_fetch_assoc($query)) {
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Admin Report</title>
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
@@ -32,11 +30,9 @@ if ($row = mysqli_fetch_assoc($query)) {
     <?php
     include './topbar.php';
     ?>
-    <!-- partial -->
     <div class="main-panel">
       <div class="content-wrapper">
         <div class="row">
-          <!-- table view -->
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
@@ -69,7 +65,7 @@ if ($row = mysqli_fetch_assoc($query)) {
 
                       if ($result->num_rows > 0) {
                         // Output data of each row
-                        while($row = $result->fetch_assoc()) {
+                        while ($row = $result->fetch_assoc()) {
                           echo "<tr>
                                   <td>" . $row["pri_id"] . "</td>
                                   <td>" . $row["pro_name"] . "</td>
@@ -91,7 +87,6 @@ if ($row = mysqli_fetch_assoc($query)) {
               </div>
             </div>
           </div>
-          <!-- table view closed -->
         </div>
       </div>
       <footer class="footer">
@@ -119,9 +114,7 @@ if ($row = mysqli_fetch_assoc($query)) {
       });
     });
   </script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="../vendors/js/vendor.bundle.base.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
   <script src="../js/off-canvas.js"></script>
   <script src="../js/template.js"></script>
 </body>

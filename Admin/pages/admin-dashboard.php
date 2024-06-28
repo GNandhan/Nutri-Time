@@ -16,13 +16,11 @@ if ($row = mysqli_fetch_assoc($query)) {
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Admin-Dashboard</title>
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
@@ -32,7 +30,6 @@ if ($row = mysqli_fetch_assoc($query)) {
     <?php
     include './topbar.php';
     ?>
-    <!-- partial -->
     <div class="main-panel">
       <div class="content-wrapper">
         <div class="row">
@@ -154,58 +151,57 @@ if ($row = mysqli_fetch_assoc($query)) {
                           </div>
                         </div>
                         <div class="col-md-12 col-xl-9">
-  <div class="row">
-    <div class="col-md border-right">
-      <div class="table-responsive mb-3 mb-md-0 mt-3">
-        <table class="table table-borderless report-table">
-          <?php
-          $sql = mysqli_query($conn, "SELECT * FROM sales ORDER BY sales_id");
-          
-          // Initialize an array to store the highest sales quantity for each customer
-          $customer_sales = [];
-          
-          while ($row = mysqli_fetch_assoc($sql)) {
-            $sales_cus = $row['sales_cus'];
-            $sales_quan = $row['sales_quan'];
-            
-            // Update the sales quantity for the customer if it's higher than the previous value
-            if (!isset($customer_sales[$sales_cus]) || $customer_sales[$sales_cus] < $sales_quan) {
-              $customer_sales[$sales_cus] = $sales_quan;
-            }
-          }
-          
-          $colors = ['bg-primary', 'bg-warning', 'bg-danger', 'bg-info']; // Array of Bootstrap color classes
-          $color_index = 0; // Index to track the color
-          $max_quantity = 100; // Assuming maximum sales quantity is 100
-          
-          foreach ($customer_sales as $sales_cus => $sales_quan) {
-            $progress_width = ($sales_quan / $max_quantity) * 100; // Calculate width of progress bar
-          ?>
-            <tr>
-              <td class="text-muted"><?php echo $sales_cus; ?></td>
-              <td class="w-100 px-0">
-                <div class="progress progress-md mx-4">
-                  <div class="progress-bar <?php echo $colors[$color_index]; ?>" role="progressbar" style="width: <?php echo $progress_width; ?>%" aria-valuenow="<?php echo $progress_width; ?>" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </td>
-              <td>
-                <h5 class="font-weight-bold mb-0"><?php echo $sales_quan; ?></h5>
-              </td>
-            </tr>
-          <?php
-            // Increment color index and reset if it exceeds the length of the colors array
-            $color_index++;
-            if ($color_index >= count($colors)) {
-              $color_index = 0;
-            }
-          }
-          ?>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
+                          <div class="row">
+                            <div class="col-md border-right">
+                              <div class="table-responsive mb-3 mb-md-0 mt-3">
+                                <table class="table table-borderless report-table">
+                                  <?php
+                                  $sql = mysqli_query($conn, "SELECT * FROM sales ORDER BY sales_id");
 
+                                  // Initialize an array to store the highest sales quantity for each customer
+                                  $customer_sales = [];
+
+                                  while ($row = mysqli_fetch_assoc($sql)) {
+                                    $sales_cus = $row['sales_cus'];
+                                    $sales_quan = $row['sales_quan'];
+
+                                    // Update the sales quantity for the customer if it's higher than the previous value
+                                    if (!isset($customer_sales[$sales_cus]) || $customer_sales[$sales_cus] < $sales_quan) {
+                                      $customer_sales[$sales_cus] = $sales_quan;
+                                    }
+                                  }
+
+                                  $colors = ['bg-primary', 'bg-warning', 'bg-danger', 'bg-info']; // Array of Bootstrap color classes
+                                  $color_index = 0; // Index to track the color
+                                  $max_quantity = 100; // Assuming maximum sales quantity is 100
+
+                                  foreach ($customer_sales as $sales_cus => $sales_quan) {
+                                    $progress_width = ($sales_quan / $max_quantity) * 100; // Calculate width of progress bar
+                                  ?>
+                                    <tr>
+                                      <td class="text-muted"><?php echo $sales_cus; ?></td>
+                                      <td class="w-100 px-0">
+                                        <div class="progress progress-md mx-4">
+                                          <div class="progress-bar <?php echo $colors[$color_index]; ?>" role="progressbar" style="width: <?php echo $progress_width; ?>%" aria-valuenow="<?php echo $progress_width; ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                      </td>
+                                      <td>
+                                        <h5 class="font-weight-bold mb-0"><?php echo $sales_quan; ?></h5>
+                                      </td>
+                                    </tr>
+                                  <?php
+                                    // Increment color index and reset if it exceeds the length of the colors array
+                                    $color_index++;
+                                    if ($color_index >= count($colors)) {
+                                      $color_index = 0;
+                                    }
+                                  }
+                                  ?>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -298,8 +294,6 @@ if ($row = mysqli_fetch_assoc($query)) {
           </div> -->
         </div>
       </div>
-      <!-- content-wrapper ends -->
-      <!-- partial:partials/_footer.html -->
       <footer class="footer">
         <div class="d-sm-flex justify-content-center justify-content-sm-between">
           <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024.Nutri-time. All rights reserved.</span>
@@ -309,7 +303,6 @@ if ($row = mysqli_fetch_assoc($query)) {
   </div>
   </div>
   <script src="../vendors/js/vendor.bundle.base.js"></script>
-  <script src="../vendors/chart.js/Chart.min.js"></script>
   <script src="../js/off-canvas.js"></script>
   <script src="../js/template.js"></script>
   <script src="../js/dashboard.js"></script>

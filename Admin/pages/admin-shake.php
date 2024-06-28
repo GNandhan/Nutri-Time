@@ -16,7 +16,6 @@ if ($_SESSION["email"] == "") {
   <title>Admin Shake</title>
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
   <link rel="shortcut icon" href="../images/icon-small.png" />
   <style>

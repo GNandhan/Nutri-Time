@@ -16,7 +16,6 @@ if ($_SESSION["email"] == "") {
   <title>Admin Product</title>
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
@@ -215,7 +214,6 @@ if ($_SESSION["email"] == "") {
           $phsn = $_POST["prohsn"];
           $pdate = $_POST["prodate"];
           $pvptotal = $pvp * $pquant;
-
           // Fetch existing quantity from the database
           $query = mysqli_query($conn, "SELECT pro_quantity, pro_curquantity, pro_scoop, pro_scoopqua FROM price WHERE pro_name = '$pname'");
           $row = mysqli_fetch_assoc($query);

@@ -10,13 +10,11 @@ if ($_SESSION["email"] == "") {
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Admin Request</title>
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
@@ -26,11 +24,9 @@ if ($_SESSION["email"] == "") {
     <?php
     include './topbar.php';
     ?>
-    <!-- partial -->
     <div class="main-panel">
       <div class="content-wrapper">
         <div class="row">
-          <!-- table view -->
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
@@ -89,7 +85,6 @@ if ($_SESSION["email"] == "") {
               </div>
             </div>
           </div>
-          <!-- table view closed -->
         </div>
       </div>
       <footer class="footer">

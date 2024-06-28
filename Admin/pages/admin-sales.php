@@ -11,7 +11,6 @@ if ($_SESSION["email"] == "") {
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Admin Sales</title>
@@ -115,7 +114,6 @@ if ($_SESSION["email"] == "") {
         }
       }
     </script>
-    <!-- partial -->
     <div class="main-panel">
       <div class="content-wrapper">
         <div class="row">
@@ -275,7 +273,6 @@ if ($_SESSION["email"] == "") {
           $sal_curquan = $sal_curquan_row['pro_curquantity'];
 
           $sal_curquan1 = $sal_curquan - $sal_quan;
-
           // Determine if this is an INSERT or UPDATE operation based on saleid
           $sale_id = $_POST["saleid"];
           if (empty($sale_id)) {
@@ -299,16 +296,16 @@ if ($_SESSION["email"] == "") {
             $price_row = mysqli_fetch_assoc($price_query);
             $pro_curquantity = $price_row['pro_curquantity'];
             $pro_scoop = $price_row['pro_scoop'];
-        
+
             // Calculate pro_scoopqua
             $pro_scoopqua = $pro_curquantity * $pro_scoop;
-        
+
             // Update pro_scoopqua in the price table
             $update_price = mysqli_query($conn, "UPDATE price SET pro_scoopqua = '$pro_scoopqua' WHERE pro_name = '$sal_proname'");
             if ($update_price) {
-                echo "<script>alert('Sales data inserted successfully.');</script>";
+              echo "<script>alert('Sales data inserted successfully.');</script>";
             } else {
-                echo "<script>alert('Error updating pro_scoopqua: " . mysqli_error($conn) . "');</script>";
+              echo "<script>alert('Error updating pro_scoopqua: " . mysqli_error($conn) . "');</script>";
             }
           } else {
             echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
@@ -316,7 +313,6 @@ if ($_SESSION["email"] == "") {
         }
         ?>
         <div class="row ">
-          <!-- table view -->
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
@@ -370,7 +366,6 @@ if ($_SESSION["email"] == "") {
                       if ($currentQuantityRow = mysqli_fetch_assoc($currentQuantityQuery)) {
                         $currentQuantity = $currentQuantityRow['pro_curquantity'];
                       }
-
                       $sale_vp = $row['sales_vp'];
                       $sale_vptotal = $row['sales_vptotal'];
                       $sale_gst = $row['sales_gst'];
@@ -413,7 +408,6 @@ if ($_SESSION["email"] == "") {
               </div>
             </div>
           </div>
-          <!-- table view closed -->
         </div>
       </div>
       <footer class="footer">
