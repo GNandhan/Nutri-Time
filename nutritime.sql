@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 28, 2024 at 12:58 PM
+-- Generation Time: Jun 28, 2024 at 07:36 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -366,7 +366,7 @@ CREATE TABLE `program` (
 INSERT INTO `program` (`program_id`, `program_name`, `program_img`, `program_date`, `program_time`, `program_venue`) VALUES
 (1, 'Fitness diet', 'bg (6).jpg', '2024-05-01', '17:11', 'Kozhikode'),
 (2, 'Weight Gainer', 'bg (3).jpg', '2024-05-02', '05:15', 'Thrissur'),
-(3, 'wellness ', 'fas1.jpg', '2024-06-28', '10:00', 'Kottayam');
+(3, 'wellness ', 'main page.jpg', '2024-06-28', '10:00', 'Kottayam');
 
 -- --------------------------------------------------------
 
