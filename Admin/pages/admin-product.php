@@ -275,6 +275,7 @@ if ($_SESSION["email"] == "") {
                         <th>HSN Code</th>
                         <th>Quanity</th>
                         <th>Current Quantity</th>
+                        <th>Current Scoop</th>
                         <th>Category</th>
                         <th>Subcategory</th>
                         <th>VP</th>
@@ -295,6 +296,7 @@ if ($_SESSION["email"] == "") {
                       $pro_hsn = $row['pro_hsn'];
                       $pro_qua = $row['pro_quantity'];
                       $pro_curqua = $row['pro_curquantity'];
+                      $pro_scoopqua = $row['pro_scoopqua'];
                       $pro_cat = $row['pro_category'];
                       $pro_subcat = $row['pro_subcat'];
                       $pro_vp = $row['pro_vp'];
@@ -315,6 +317,7 @@ if ($_SESSION["email"] == "") {
                           <td><?php echo $pro_hsn; ?></td>
                           <td><?php echo $pro_qua; ?></td>
                           <td><?php echo $pro_curqua; ?></td>
+                          <td><?php echo $pro_scoopqua; ?></td>
                           <td><?php echo $pro_cat; ?></td>
                           <td><?php echo $pro_subcat; ?></td>
                           <td><?php echo $pro_vp; ?></td>

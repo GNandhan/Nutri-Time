@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2024 at 08:57 PM
+-- Generation Time: Jun 28, 2024 at 12:58 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -220,7 +220,9 @@ INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`)
 ('nutriadmin@gmail.com', 13, '2024-06-25 06:46:21'),
 ('nutriadmin@gmail.com', 14, '2024-06-25 09:13:37'),
 ('nutriadmin@gmail.com', 15, '2024-06-25 10:26:14'),
-('nutriadmin@gmail.com', 16, '2024-06-26 18:52:48');
+('nutriadmin@gmail.com', 16, '2024-06-26 18:52:48'),
+('nutriadmin@gmail.com', 17, '2024-06-27 10:24:50'),
+('nutriadmin@gmail.com', 18, '2024-06-28 12:56:30');
 
 -- --------------------------------------------------------
 
@@ -316,7 +318,7 @@ CREATE TABLE `price` (
 --
 
 INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subcat`, `pro_mrp`, `pro_price`, `pro_dis0`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`, `pro_vp`, `pro_vptotal`, `pro_scoop`, `pro_scooptotal`, `pro_scoopqua`, `pro_scoop0`, `pro_scoop15`, `pro_scoop25`, `pro_scoop35`, `pro_scoop42`, `pro_scoop50`, `pro_quantity`, `pro_curquantity`, `pro_hsn`, `pro_img`, `pro_date`) VALUES
-(1, 'FORMULA 1 SHAKE MIX VANILLA', 'F1V', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '1340', '2370', '2060', '1860', '1650', '1500', '1340', '21.75', '217.5', '60', '6720', '-10', '118.90', '103.5', '93', '83.5', '73', '63.5', '112', '-0.1666666', '785487', '', '2024-06-23'),
+(1, 'FORMULA 1 SHAKE MIX VANILLA', 'F1V', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '1340', '2370', '2060', '1860', '1650', '1500', '1340', '21.75', '217.5', '60', '7320', '600', '118.90', '103.5', '93', '83.5', '73', '63.5', '122', '10', '785487', '', '2024-06-27'),
 (2, 'FORMULA 1 SHAKE MIX CHOCOLATE', 'F1C', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2371', '1341', '2371', '2061', '1861', '1651', '1501', '1341', '12.75', '76.5', '50', '4800', '-750', '121.65', '111.55', '10.45', '9.35', '8.25', '7.15', '96', '-15', '986598', '', '2024-06-23'),
 (3, 'FORMULA 1 SHAKE MIX PISTAH', 'F1P', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '1342', '2372', '2062', '1862', '1652', '1502', '1342', '21.75', '65.25', '40', '4160', '-400', '145.52', '135.52', '125.52', '115.52', '105.25', '95.25', '104', '-10', '986598', '', '2024-06-23'),
 (4, 'FORMULA 1 SHAKE MIX OREO', 'F!O', 'Ayurdevic Nutrition', 'Energy', '2683', '2503', '2683', '2103', '2003', '1803', '1703', '1603', '12.75', '127.5', '30', '3000', '-3', '123.45', '113.45', '103.45', '93.45', '83.45', '73.45', '100', '-0.1', '986598', '', '2024-06-24');
@@ -709,7 +711,7 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `pay_history`
