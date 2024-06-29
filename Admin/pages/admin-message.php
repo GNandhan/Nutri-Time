@@ -5,6 +5,52 @@ session_start();
 if ($_SESSION["email"] == "") {
   header('location:admin-login.php');
 }
+
+function sendMessage($phone, $message) {
+  $apiUrl = "https://api.whatsapp.com/send";
+  $apiToken = "YOUR_WHATSAPP_API_TOKEN"; // Replace with your WhatsApp API token
+
+  // Build the URL with query parameters
+  $url = $apiUrl . "?phone=" . $phone . "&text=" . urlencode($message);
+
+  // Use cURL to send the message
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+  $headers = array();
+  $headers[] = 'Authorization: Bearer ' . $apiToken;
+  curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+  $result = curl_exec($ch);
+  if (curl_errno($ch)) {
+    echo 'Error:' . curl_error($ch);
+  }
+  curl_close($ch);
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  if (isset($_POST['broadcast'])) {
+    $messageContent = $_POST['messageContent'];
+
+    $sql = mysqli_query($conn, "SELECT * FROM customer ORDER BY cust_id");
+    while ($row = mysqli_fetch_assoc($sql)) {
+      $phone = $row['cust_phone']; // Assuming there is a 'cust_phone' field
+      sendMessage($phone, $messageContent);
+    }
+    echo "<script>alert('Message broadcasted to all customers.');</script>";
+  } elseif (isset($_POST['send_individual'])) {
+    $messageContent = $_POST['messageContent'];
+    $selectedCustomers = $_POST['selectedCustomers'];
+
+    foreach ($selectedCustomers as $custId) {
+      $sql = mysqli_query($conn, "SELECT cust_phone FROM customer WHERE cust_id = '$custId'");
+      $row = mysqli_fetch_assoc($sql);
+      $phone = $row['cust_phone']; // Assuming there is a 'cust_phone' field
+      sendMessage($phone, $messageContent);
+    }
+    echo "<script>alert('Message sent to selected customers.');</script>";
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,13 +84,13 @@ if ($_SESSION["email"] == "") {
               <div class="card-body">
                 <h4 class="card-title">Message Details</h4>
                 <p class="card-description">Add Message Content</p>
-                <form class="forms-sample">
+                <form class="forms-sample" method="post" action="">
                   <div class="form-group">
                     <label for="exampleTextarea1">Message content</label>
-                    <textarea class="form-control" id="exampleTextarea1" rows="4" placeholder="Thank You For choosing Nutri-Time. Your Program Id id #00Ad001"></textarea>
+                    <textarea class="form-control" id="exampleTextarea1" name="messageContent" rows="4" placeholder="Thank You For choosing Nutri-Time. Your Program Id id #00Ad001"></textarea>
                   </div>
                   <button type="button" class="btn btn-primary mr-2 rounded-pill" data-toggle="modal" data-target="#staticBackdrop">Send individually</button>
-                  <button type="submit" class="btn btn-primary mr-2 rounded-pill">Broadcast</button>
+                  <button type="submit" name="broadcast" class="btn btn-primary mr-2 rounded-pill">Broadcast</button>
                   <button class="btn btn-light rounded-pill">Cancel</button>
                   <!-- Modal -->
                   <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -55,28 +101,31 @@ if ($_SESSION["email"] == "") {
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
                         <div class="modal-body">
-                          <table class="table table-hover">
-                            <tbody>
-                              <?php
-                              $sql = mysqli_query($conn, "SELECT * FROM customer ORDER BY cust_id ");
-                              while ($row = mysqli_fetch_assoc($sql)) {
-                                $u_id = $row['cust_id'];
-                                $u_name = $row['cust_name'];
-                              ?>
-                                <tr>
-                                  <td style="width: 6%;"><input type="checkbox" class="large-checkbox"></td>
-                                  <td style="width: 50%;"><?php echo htmlspecialchars($u_name); ?></td>
-                                </tr>
-                              <?php
-                              }
-                              ?>
-                            </tbody>
-                          </table>
+                          <form method="post" action="">
+                            <input type="hidden" name="messageContent" value="">
+                            <table class="table table-hover">
+                              <tbody>
+                                <?php
+                                $sql = mysqli_query($conn, "SELECT * FROM customer ORDER BY cust_id ");
+                                while ($row = mysqli_fetch_assoc($sql)) {
+                                  $u_id = $row['cust_id'];
+                                  $u_name = $row['cust_name'];
+                                ?>
+                                  <tr>
+                                    <td style="width: 6%;"><input type="checkbox" name="selectedCustomers[]" value="<?php echo $u_id; ?>" class="large-checkbox"></td>
+                                    <td style="width: 50%;"><?php echo htmlspecialchars($u_name); ?></td>
+                                  </tr>
+                                <?php
+                                }
+                                ?>
+                              </tbody>
+                            </table>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary rounded-pill" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary rounded-pill" data-dismiss="modal">Send Message</button>
+                          <button type="submit" name="send_individual" class="btn btn-primary rounded-pill">Send Message</button>
                         </div>
+                        </form>
                       </div>
                     </div>
                   </div>
@@ -97,6 +146,14 @@ if ($_SESSION["email"] == "") {
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <script src="../js/off-canvas.js"></script>
   <script src="../js/template.js"></script>
+  <script>
+    // Copy the message content to the hidden input field in the modal form
+    $('#staticBackdrop').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget);
+      var messageContent = $('#exampleTextarea1').val();
+      $(this).find('input[name="messageContent"]').val(messageContent);
+    });
+  </script>
 </body>
 
 </html>
