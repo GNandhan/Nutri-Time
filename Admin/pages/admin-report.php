@@ -19,6 +19,7 @@ if ($row = mysqli_fetch_assoc($query)) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Admin Report</title>
+  <meta http-equiv="refresh" content="3">
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
@@ -37,12 +38,20 @@ if ($row = mysqli_fetch_assoc($query)) {
             <div class="card">
               <div class="card-body">
                 <div class="row">
-                  <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                    <h4 class="card-title">Report Table</h4>
+                  <div class="col-lg col-md col-sm col-12 col-xl-8 mb-1 mb-xl-0">
+                    <h4 class="card-title">Report</h4>
                     <p class="card-description">Complete Sales and Overview Report Details</p>
                   </div>
-                  <div class="col-12 col-xl-4 mb-4 mb-xl-0 text-right">
+                  <div class="col-lg col-md col-sm col-12 col-xl-4 mb-4 mb-xl-0 text-right">
                     <button class="btn btn-primary rounded-pill">Export</button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg col-md col-sm col">
+                    <h5>Total Customers</h5>
+                    <h5>cus</h5>
+                    <h5>cus</h5>
+                    <h5>cus</h5>
                   </div>
                 </div>
                 <div class="table-responsive">
