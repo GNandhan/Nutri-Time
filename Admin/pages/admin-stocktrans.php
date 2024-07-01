@@ -218,7 +218,7 @@ if ($_SESSION["email"] == "") {
                         <th>Stock Transfer Date</th>
                         <th>Product</th>
                         <th>Quantity</th>
-                        <!-- <th>Remaining Quantity</th> -->
+                        <th>Current Quantity</th>
                         <th>Location/Associate</th>
                         <th>Price</th>
                         <th>Total</th>
@@ -235,10 +235,13 @@ if ($_SESSION["email"] == "") {
                       $stock_price = $row['stock_price'];
                       $stock_total = $row['stock_total'];
                       $stock_date = $row['stock_date'];
-                      // $sql = mysqli_query($conn, "SELECT pro_curquantity FROM price WHERE pro_name ='$stock_product' ");
-                      // while ($row = mysqli_fetch_assoc($sql)) {
-                      //   $stock_curquan1 = $row['pro_curquantity'];
-                      // }
+                      // Fetch current quantity from the price table based on the product name
+                      $currentQuantity = 0; // Default value if no quantity found
+                      $currentQuantityQuery = mysqli_query($conn, "SELECT pro_curquantity FROM price WHERE pro_name = '$stock_product'");
+                      if ($currentQuantityRow = mysqli_fetch_assoc($currentQuantityQuery)) {
+                        $currentQuantity = $currentQuantityRow['pro_curquantity'];
+                      }
+
                     ?>
                       <tbody>
                         <tr>
@@ -249,7 +252,7 @@ if ($_SESSION["email"] == "") {
                           <td><?php echo $stock_date; ?></td>
                           <td class="py-1"><?php echo $stock_product; ?></td>
                           <td><?php echo $stock_quan; ?></td>
-                          <!-- <td><?php echo $stock_curquan1; ?></td> -->
+                          <td><?php echo $currentQuantity; ?></td>
                           <td><?php echo $stock_location; ?></td>
                           <td><?php echo $stock_price; ?></td>
                           <td><?php echo $stock_total; ?></td>

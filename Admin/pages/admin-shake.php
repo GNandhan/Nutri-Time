@@ -46,16 +46,13 @@ if ($_SESSION["email"] == "") {
       $sh_extraprice1 = $s_row1['shake_extraprice'];
       $sh_disc1 = $s_row1['shake_discount'];
       $sh_expen1 = $s_row1['shake_expence'];
-      $sh_img1 = $s_row1['shake_image'];
     }
     if (isset($_GET['sd_id'])) {
       $dl_id = $_GET['sd_id'];
       $dl_query = mysqli_query($conn, "SELECT * FROM shake WHERE shake_id = '$dl_id'");
       $dl_row1 = mysqli_fetch_array($dl_query);
-      $img = '../images/shake/' . $dl_row1['shake_img'];
       $del = mysqli_query($conn, "DELETE FROM shake WHERE shake_id='$dl_id'");
       if ($del) {
-        unlink($img); //for deleting the existing image from the folder
         header("location:admin-shake.php");
       } else {
         echo "Deletion Failed";
@@ -183,7 +180,7 @@ if ($_SESSION["email"] == "") {
                         <input type="text" class="form-control" style="border-radius: 16px;" name="shcharge" value="<?php echo $sh_expen1; ?>" required>
                       </div>
                     </div>
-                    <div class="col-lg col-md col-sm col-7">
+                    <!-- <div class="col-lg col-md col-sm col-7">
                       <div class="form-group">
                         <label>Shake Image</label>
                         <div class="input-group mb-3">
@@ -192,7 +189,7 @@ if ($_SESSION["email"] == "") {
                         </div>
                         <img src="../images/shake/<?php echo $p_img1; ?>" alt="" width="100">
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                   <input type="submit" class="btn btn-primary mr-2 rounded-pill" name="submitsh" value="Submit">
                   <a href="./admin-shake.php" class="btn btn-light rounded-pill">Cancel</a>
@@ -218,11 +215,11 @@ if ($_SESSION["email"] == "") {
             $sh_disc = $_POST["shdiscount"];
             $sh_sercharge = $_POST["shcharge"];
             $sh_assoc = $_POST["shassoc"];
-            $sh_img = $_FILES['shimg']['name'];
+            // $sh_img = $_FILES['shimg']['name'];
             $total_cost = floatval($sh_sercharge) + floatval($sh_extra_price) + floatval($sh_mrp);
             // Image uploading formats
-            $filename = $_FILES['shimg']['name'];
-            $tempname = $_FILES['shimg']['tmp_name'];
+            // $filename = $_FILES['shimg']['name'];
+            // $tempname = $_FILES['shimg']['tmp_name'];
             // Handle scoops data
             $scoopsData = $_POST["scoops"]; // This is an associative array
             // Initialize an empty array to store formatted scoops data
@@ -236,19 +233,18 @@ if ($_SESSION["email"] == "") {
             $sh_scoops = implode(", ", $formattedScoops);
 
             if ($sh_id == '') {
-              $sql = mysqli_query($conn, "INSERT INTO shake (shake_name,shake_assoc, customer_id, customer_name, shake_goal, shake_recipes, shake_mrp, shake_extra, shake_extraprice, shake_discount, shake_expence, shake_total, shake_image, shake_scoops)
-                                                     VALUES ('$sh_name','$sh_assoc','$cus_name','$cus_name','$sh_goal','$sh_reci','$sh_mrp','$sh_extra','$sh_extra_price','$sh_disc','$sh_sercharge','$total_cost','$sh_img','$sh_scoops')");
+              $sql = mysqli_query($conn, "INSERT INTO shake (shake_name,shake_assoc, customer_id, customer_name, shake_goal, shake_recipes, shake_mrp, shake_extra, shake_extraprice, shake_discount, shake_expence, shake_total, shake_scoops)
+                                                     VALUES ('$sh_name','$sh_assoc','$cus_name','$cus_name','$sh_goal','$sh_reci','$sh_mrp','$sh_extra','$sh_extra_price','$sh_disc','$sh_sercharge','$total_cost','$sh_scoops')");
             } else {
               if ($filename) {
                 $imgs = '../images/shake/' . $sh_img;
                 unlink($imgs);
-                $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_assoc='$sh_assoc', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_mrp='$sh_mrp', shake_extra='$sh_extra', shake_extraprice='$sh_extra_price', shake_discount='$sh_disc', shake_expence='$sh_sercharge', shake_image='$sh_img', shake_scoops='$sh_scoops' WHERE shake_id='$sh_id'");
+                $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_assoc='$sh_assoc', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_mrp='$sh_mrp', shake_extra='$sh_extra', shake_extraprice='$sh_extra_price', shake_discount='$sh_disc', shake_expence='$sh_sercharge', shake_scoops='$sh_scoops' WHERE shake_id='$sh_id'");
               } else {
                 $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_assoc='$sh_assoc', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_mrp='$sh_mrp', shake_extra='$sh_extra', shake_extraprice='$sh_extra_price', shake_discount='$sh_disc', shake_expence='$sh_sercharge', shake_scoops='$sh_scoops' WHERE shake_id='$sh_id'");
               }
             }
             if ($sql == TRUE) {
-              move_uploaded_file($tempname, "../images/shake/$filename");
               // Subtract the scoops from the pro_scoopqua in the price table
               foreach ($scoopsData as $product => $scoops) {
                 $product = mysqli_real_escape_string($conn, $product);
@@ -300,7 +296,6 @@ if ($_SESSION["email"] == "") {
                         <th>Shake History</th>
                         <th>Sl-no</th>
                         <th>Customer Name</th>
-                        <th>Shake Img</th>
                         <th>Shake Name</th>
                         <th>Associate Name</th>
                         <th>Shake Goal</th>
@@ -321,7 +316,6 @@ if ($_SESSION["email"] == "") {
                     while ($row = mysqli_fetch_assoc($sql)) {
                       $sh_id = $row['shake_id'];
                       $cu_name = $row['customer_name'];
-                      $sh_img = $row['shake_image'];
                       $sh_name = $row['shake_name'];
                       $sh_assoc = $row['shake_assoc'];
                       $sh_goal = $row['shake_goal'];
@@ -344,7 +338,6 @@ if ($_SESSION["email"] == "") {
                             <td><a href="admin-shake.php?cusmdid=<?php echo $sh_id; ?>" class="btn btn-inverse-primary btn-icon-text p-3" data-toggle="modal" data-target="#exampleModal_<?php echo $sh_id; ?>">Shake History</a></td>
                             <td class="py-1"><?php echo $serialNo++; ?></td>
                             <td><?php echo $cu_name; ?></td>
-                            <td><img src="../images/shake/<?php echo $sh_img; ?>" alt="" width="50" class="rounded-circle"></td>
                             <td><?php echo $sh_name; ?></td>
                             <td><?php echo $sh_assoc; ?></td>
                             <td><?php echo $sh_goal; ?></td>
@@ -370,7 +363,6 @@ if ($_SESSION["email"] == "") {
                                   <h3>Customer Name : <span style="font-weight: bold;"> <?php echo $cu_name; ?></span></h3>
                                   <div class="row border-bottom mt-4">
                                     <div class="col-lg col-md col-sm col h4">Shake Name</div>
-                                    <div class="col-lg col-md col-sm col h4">Shake Img</div>
                                     <div class="col-lg col-md col-sm col h4">Associate Name</div>
                                     <div class="col-lg col-md col-sm col h4">Shake Goal</div>
                                     <div class="col-lg col-md col-sm col h4">Recipes</div>
@@ -387,7 +379,6 @@ if ($_SESSION["email"] == "") {
                                   $customer_shakes_sql = mysqli_query($conn, "SELECT * FROM shake WHERE customer_name = '$cu_name'");
                                   while ($customer_shake = mysqli_fetch_assoc($customer_shakes_sql)) {
                                     $sh_name_modal = $customer_shake['shake_name'];
-                                    $sh_img_modal = $customer_shake['shake_image'];
                                     $sh_assoc_modal = $customer_shake['shake_assoc'];
                                     $sh_goal_modal = $customer_shake['shake_goal'];
                                     $sh_recipe_modal = $customer_shake['shake_recipes'];
@@ -401,7 +392,6 @@ if ($_SESSION["email"] == "") {
                                   ?>
                                     <div class="row mt-2">
                                       <div class="col-lg"><?php echo $sh_name_modal; ?></div>
-                                      <div class="col-lg"><img src="../images/shake/<?php echo $sh_img_modal; ?>" alt="" width="50" class="rounded-circle"></div>
                                       <div class="col-lg"><?php echo $sh_assoc_modal; ?></div>
                                       <div class="col-lg"><?php echo $sh_goal_modal; ?></div>
                                       <div class="col-lg"><?php echo $sh_recipe_modal; ?></div>
@@ -448,25 +438,6 @@ if ($_SESSION["email"] == "") {
   </div>
   </div>
   <script src="../vendors/js/vendor.bundle.base.js"></script>
-  <script>
-    function displaySelectedFileName(input) {
-      var fileName = input.files[0].name;
-      var label = input.nextElementSibling;
-      label.innerText = fileName;
-      // Display selected image
-      var fileReader = new FileReader();
-      fileReader.onload = function(e) {
-        var img = document.createElement("img");
-        img.src = e.target.result;
-        img.style.width = "350px"; // Set width
-        img.style.height = "auto"; // Maintain aspect ratio
-        img.style.borderRadius = "8px"; // Border radius
-        img.style.marginTop = "50px"; // Optional margin
-        label.parentNode.appendChild(img);
-      };
-      fileReader.readAsDataURL(input.files[0]);
-    }
-  </script>
   <script>
     var ingredientPrices = {}; // Define global variable to store ingredient prices
     $(document).ready(function() {

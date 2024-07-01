@@ -263,9 +263,9 @@ if ($_SESSION["email"] == "") {
           // Calculate subtotal
           $subtotal = $sal_dispri * $sal_quan;
           // Calculate GST (considering 18%)
-          $gstAmount = ($subtotal * $sal_gst) / 100;
+          // $gstAmount = ($subtotal * $sal_gst) / 100;
           // Calculate total including GST
-          $sal_total = $subtotal + $gstAmount;
+          $sal_total = $subtotal;
 
           // Retrieve the current quantity from the price table for the given product
           $sal_curquan_query = mysqli_query($conn, "SELECT pro_curquantity FROM price WHERE pro_name = '$sal_proname'");

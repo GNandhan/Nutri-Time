@@ -460,7 +460,7 @@ if ($_SESSION["email"] == "") {
       </div>
     </footer>
     <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
-      <p>Powered by <a href="https://allenzion.com/">Allen<span class="text-danger">Zion</span></a></p>
+      <p>Powered by <a href="https://zionitedu.com/" class="text-decoration-none"><span class="text-danger fs-3">Zion</span> IT COMPANY</a></p>
       <ul class="list-unstyled d-flex">
         <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-facebook" width="24" height="24"></i></a></li>
         <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-twitter-x" width="24" height="24"></i></a></li>
