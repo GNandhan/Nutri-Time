@@ -82,20 +82,8 @@ if ($row = mysqli_fetch_assoc($query)) {
                     </thead>
                     <tbody>
                       <?php
-                      $sql = "SELECT pri_id, pro_name, pro_quantity, pro_curquantity FROM price";
+                      $sql = "SELECT pri_id, pro_name, pro_code, pro_category, pro_price, pro_quantity, pro_curquantity FROM price";
                       $result = $conn->query($sql);
-                      
-                      // Fetch stock data
-                      $stock_sql = "SELECT stock_proid, stock_quantity, stock_date FROM stock WHERE stock_date LIKE '2024-07-%'";
-                      $stock_result = $conn->query($stock_sql);
-                      $stock_data = [];
-
-                      if ($stock_result->num_rows > 0) {
-                        while ($stock_row = $stock_result->fetch_assoc()) {
-                          $day = date('j', strtotime($stock_row['stock_date'])); // Day of the month without leading zeros
-                          $stock_data[$stock_row['stock_proid']][$day] = $stock_row['stock_quantity'];
-                        }
-                      }
 
                       if ($result->num_rows > 0) {
                         // Output data of each row
@@ -104,11 +92,26 @@ if ($row = mysqli_fetch_assoc($query)) {
                           echo "<tr>
                                   <td>{$row['pro_name']}</td>
                                   <td>{$row['pro_quantity']}</td>";
-                          // Generate columns for each day of the month
-                          for ($day = 1; $day <= 31; $day++) {
-                            $quantity = isset($stock_data[$row['pri_id']][$day]) ? $stock_data[$row['pri_id']][$day] : 0;
-                            echo "<td>$quantity</td>";
+                          
+                          // Initialize array to store stock quantities for each day
+                          $dayStock = array_fill(1, 31, "");
+
+                          // Fetch data from stock table for each product
+                          $productId = $row['pri_id'];
+                          $stockQuery = "SELECT DAY(stock_date) AS day, stock_quantity FROM stock WHERE stock_proid = $productId";
+                          $stockResult = $conn->query($stockQuery);
+
+                          // Fill in actual stock quantities based on dates
+                          while ($stockRow = $stockResult->fetch_assoc()) {
+                            $stockDate = $stockRow['day'];
+                            $dayStock[$stockDate] = $stockRow['stock_quantity'];
                           }
+
+                          // Output stock quantities for each day
+                          for ($day = 1; $day <= 31; $day++) {
+                            echo "<td>{$dayStock[$day]}</td>";
+                          }
+
                           echo "<td>$used</td>
                                 <td>{$row['pro_curquantity']}</td>
                                 </tr>";
