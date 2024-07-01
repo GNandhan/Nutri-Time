@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2024 at 07:51 AM
+-- Generation Time: Jul 01, 2024 at 08:47 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -321,10 +321,10 @@ CREATE TABLE `price` (
 --
 
 INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subcat`, `pro_mrp`, `pro_price`, `pro_dis0`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`, `pro_vp`, `pro_vptotal`, `pro_scoop`, `pro_scooptotal`, `pro_scoopqua`, `pro_scoop0`, `pro_scoop15`, `pro_scoop25`, `pro_scoop35`, `pro_scoop42`, `pro_scoop50`, `pro_quantity`, `pro_curquantity`, `pro_hsn`, `pro_img`, `pro_date`) VALUES
-(1, 'FORMULA 1 SHAKE MIX VANILLA', 'F1V', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '1340', '2370', '2060', '1860', '1650', '1500', '1340', '21.75', '217.5', '60', '7320', '600', '118.90', '103.5', '93', '83.5', '73', '63.5', '122', '10', '785487', '', '2024-06-27'),
-(2, 'FORMULA 1 SHAKE MIX CHOCOLATE', 'F1C', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2371', '1341', '2371', '2061', '1861', '1651', '1501', '1341', '12.75', '76.5', '50', '4800', '-750', '121.65', '111.55', '10.45', '9.35', '8.25', '7.15', '96', '-15', '986598', '', '2024-06-23'),
-(3, 'FORMULA 1 SHAKE MIX PISTAH', 'F1P', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '1342', '2372', '2062', '1862', '1652', '1502', '1342', '21.75', '65.25', '40', '4160', '-400', '145.52', '135.52', '125.52', '115.52', '105.25', '95.25', '104', '-10', '986598', '', '2024-06-23'),
-(4, 'FORMULA 1 SHAKE MIX OREO', 'F!O', 'Ayurdevic Nutrition', 'Energy', '2683', '2503', '2683', '2103', '2003', '1803', '1703', '1603', '12.75', '127.5', '30', '3000', '-3', '123.45', '113.45', '103.45', '93.45', '83.45', '73.45', '100', '-0.1', '986598', '', '2024-06-24');
+(1, 'FORMULA 1 SHAKE MIX VANILLA', 'F1V', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '1340', '2370', '2060', '1860', '1650', '1500', '1340', '21.75', '217.5', '60', '7320', '326', '118.90', '103.5', '93', '83.5', '73', '63.5', '122', '5.43333333', '785487', '', '2024-07-01'),
+(2, 'FORMULA 1 SHAKE MIX CHOCOLATE', 'F1C', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2371', '1341', '2371', '2061', '1861', '1651', '1501', '1341', '12.75', '76.5', '50', '4800', '-791', '121.65', '111.55', '10.45', '9.35', '8.25', '7.15', '96', '-15.82', '986598', '', '2024-07-01'),
+(3, 'FORMULA 1 SHAKE MIX PISTAH', 'F1P', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '1342', '2372', '2062', '1862', '1652', '1502', '1342', '21.75', '65.25', '40', '4160', '-405', '145.52', '135.52', '125.52', '115.52', '105.25', '95.25', '104', '-10.125', '986598', '', '2024-07-01'),
+(4, 'FORMULA 1 SHAKE MIX OREO', 'F!O', 'Ayurdevic Nutrition', 'Energy', '2683', '2503', '2683', '2103', '2003', '1803', '1703', '1603', '12.75', '127.5', '30', '3000', '-13', '123.45', '113.45', '103.45', '93.45', '83.45', '73.45', '100', '-0.4333333', '986598', '', '2024-07-01');
 
 -- --------------------------------------------------------
 
@@ -403,30 +403,32 @@ CREATE TABLE `sales` (
 --
 
 INSERT INTO `sales` (`sales_id`, `sales_proid`, `sales_procode`, `sales_proname`, `sales_procat`, `sales_prosubcat`, `sales_mrp`, `sales_quan`, `sales_curquan`, `sales_vp`, `sales_vptotal`, `sales_gst`, `sales_dis`, `sales_dispri`, `sales_cus`, `sales_address`, `sales_total`, `sales_date`) VALUES
-(1, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '7', '', '21.75', '152.25', '18', '0', '2065', 'Arun', 'none', '17056.9', '2024-06-01'),
-(2, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '15', '', '21.75', '326.25', '18', '15', '2065', 'Jeslin Biju', 'yyyyyyyyyyyyyyyyyy', '36550.5', '2024-06-01'),
-(3, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '5', '', '21.75', '108.75', '18', '15', '2065', 'amla', 'yyyyyyyyyyyyyyyyyy', '12183.5', '2024-06-01'),
-(4, 0, 'F1P', 'FORMULA 1 SHAKE MIX PISTAH', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '20', '', '21.75', '435', '18', '25', '1862', 'Arun', 'zzzzzzzzzzzzzzzzzzzzzzzz', '43943.2', '2024-06-23'),
-(5, 0, 'F1C', 'FORMULA 1 SHAKE MIX CHOCOLATE', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2371', '10', '', '12.75', '127.5', '18', '15', '2061', 'Alvin', 'mmmmmmmmmmmmmm', '24319.8', '2024-06-23'),
-(6, 0, 'F!O', 'FORMULA 1 SHAKE MIX OREO', 'Ayurdevic Nutrition', 'Energy', '2683', '8', '', '12.75', '102', '18', '25', '2003', 'Melow', 'none', '18908.32', '2024-06-23'),
-(7, 0, 'F1P', 'FORMULA 1 SHAKE MIX PISTAH', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '5', '', '21.75', '108.75', '18', '15', '2062', 'Raj', 'none', '12165.8', '2024-06-23'),
-(8, 0, 'F1C', 'FORMULA 1 SHAKE MIX CHOCOLATE', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2371', '5', '', '12.75', '63.75', '18', '15', '2061', 'Adarsh', 'none', '12159.9', '2024-06-23'),
-(9, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '5', '', '21.75', '108.75', '18', '25', '1860', 'Arun', 'none', '10974', '2024-06-23'),
-(10, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '52', '', '21.75', '1131', '18', '25', '1860', 'Jeslin Biju', 'none', '114129.6', '2024-06-04'),
-(11, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '10', '', '21.75', '217.5', '18', '15', '2060', 'Jeslin Biju', 'none', '24308', '2024-06-23'),
-(12, 0, 'F!O', 'FORMULA 1 SHAKE MIX OREO', 'Ayurdevic Nutrition', 'Energy', '2683', '15', '', '12.75', '191.25', '18', '25', '2003', 'Jeslin Biju', 'none', '35453.1', '2024-06-23'),
-(13, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '5', '', '21.75', '108.75', '18', '15', '2060', 'Jeslin Biju', 'none', '12154', '2024-06-23'),
-(14, 0, 'F1C', 'FORMULA 1 SHAKE MIX CHOCOLATE', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2371', '4', '', '12.75', '51', '18', '15', '2061', 'Arun', 'none', '9727.92', '2024-06-16'),
-(15, 0, 'F!O', 'FORMULA 1 SHAKE MIX OREO', 'Ayurdevic Nutrition', 'Energy', '2683', '20', '', '12.75', '255', '18', '35', '1803', 'Jeslin Biju', 'none', '42550.8', '2024-06-11'),
-(16, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '5', '', '21.75', '108.75', '18', '15', '2060', 'Arun', 'none', '12154', '2024-06-17'),
-(17, 0, 'F1C', 'FORMULA 1 SHAKE MIX CHOCOLATE', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2371', '6', '', '12.75', '76.5', '18', '25', '1861', 'Jeslin Biju', 'none', '13175.88', '2024-06-17'),
-(18, 0, 'F1P', 'FORMULA 1 SHAKE MIX PISTAH', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '1', '', '21.75', '21.75', '18', '25', '1862', 'Arun', 'none', '2197.16', '2024-06-10'),
-(19, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '10', '', '21.75', '217.5', '18', '15', '2060', 'Jeslin Biju', 'none', '24308', '2024-06-17'),
-(20, 0, '1001', 'FORMULA 1 SHAKE MIX OREO', 'Ayurdevic Nutrition', 'Energy', '2683', '2', '', '12.75', '25.5', '18', '15', '2103', 'kiran', 'sv', '4963.08', '2024-06-24'),
-(21, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '3000', '15', '', '21.75', '326.25', '50', '15', '2060', 'Aswin M M', 'kozhikode', '46350', '2024-06-26'),
-(22, 0, 'F1P', 'FORMULA 1 SHAKE MIX PISTAH', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '32', '', '21.75', '696', '36', '42', '1502', 'Aswin M M', 'kozhikode', '65367.04', '2024-06-29'),
-(23, 0, 'F!O', 'FORMULA 1 SHAKE MIX OREO', 'Ayurdevic Nutrition', 'Energy', '2683', '30', '', '12.75', '382.5', '15', '42', '1703', 'Aswin M M', 'kozhikode', '58753.5', '2024-06-27'),
-(24, 0, 'F1P', 'FORMULA 1 SHAKE MIX PISTAH', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '10', '', '21.75', '217.5', '15', '15', '2062', 'Aswin M M', 'kozhikode', '23713', '2024-06-27');
+(1, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '7', '', '21.75', '152.25', '18', '0', '2065', 'Arun', 'none', '17056.9', '2024-07-01'),
+(2, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '15', '', '21.75', '326.25', '18', '15', '2065', 'Jeslin Biju', 'yyyyyyyyyyyyyyyyyy', '36550.5', '2024-07-02'),
+(3, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '5', '', '21.75', '108.75', '18', '15', '2065', 'amla', 'yyyyyyyyyyyyyyyyyy', '12183.5', '2024-07-03'),
+(4, 0, 'F1P', 'FORMULA 1 SHAKE MIX PISTAH', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '20', '', '21.75', '435', '18', '25', '1862', 'Arun', 'zzzzzzzzzzzzzzzzzzzzzzzz', '43943.2', '2024-07-04'),
+(5, 0, 'F1C', 'FORMULA 1 SHAKE MIX CHOCOLATE', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2371', '10', '', '12.75', '127.5', '18', '15', '2061', 'Alvin', 'mmmmmmmmmmmmmm', '24319.8', '2024-07-05'),
+(6, 0, 'F!O', 'FORMULA 1 SHAKE MIX OREO', 'Ayurdevic Nutrition', 'Energy', '2683', '8', '', '12.75', '102', '18', '25', '2003', 'Melow', 'none', '18908.32', '2024-07-06'),
+(7, 0, 'F1P', 'FORMULA 1 SHAKE MIX PISTAH', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '5', '', '21.75', '108.75', '18', '15', '2062', 'Raj', 'none', '12165.8', '2024-07-07'),
+(8, 0, 'F1C', 'FORMULA 1 SHAKE MIX CHOCOLATE', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2371', '5', '', '12.75', '63.75', '18', '15', '2061', 'Adarsh', 'none', '12159.9', '2024-07-07'),
+(9, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '5', '', '21.75', '108.75', '18', '25', '1860', 'Arun', 'none', '10974', '2024-07-08'),
+(10, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '52', '', '21.75', '1131', '18', '25', '1860', 'Jeslin Biju', 'none', '114129.6', '2024-07-08'),
+(11, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '10', '', '21.75', '217.5', '18', '15', '2060', 'Jeslin Biju', 'none', '24308', '2024-07-09'),
+(12, 0, 'F!O', 'FORMULA 1 SHAKE MIX OREO', 'Ayurdevic Nutrition', 'Energy', '2683', '15', '', '12.75', '191.25', '18', '25', '2003', 'Jeslin Biju', 'none', '35453.1', '2024-07-10'),
+(13, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '5', '', '21.75', '108.75', '18', '15', '2060', 'Jeslin Biju', 'none', '12154', '2024-07-11'),
+(14, 0, 'F1C', 'FORMULA 1 SHAKE MIX CHOCOLATE', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2371', '4', '', '12.75', '51', '18', '15', '2061', 'Arun', 'none', '9727.92', '2024-07-12'),
+(15, 0, 'F!O', 'FORMULA 1 SHAKE MIX OREO', 'Ayurdevic Nutrition', 'Energy', '2683', '20', '', '12.75', '255', '18', '35', '1803', 'Jeslin Biju', 'none', '42550.8', '2024-07-13'),
+(16, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '5', '', '21.75', '108.75', '18', '15', '2060', 'Arun', 'none', '12154', '2024-07-14'),
+(17, 0, 'F1C', 'FORMULA 1 SHAKE MIX CHOCOLATE', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2371', '6', '', '12.75', '76.5', '18', '25', '1861', 'Jeslin Biju', 'none', '13175.88', '2024-07-15'),
+(18, 0, 'F1P', 'FORMULA 1 SHAKE MIX PISTAH', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '1', '', '21.75', '21.75', '18', '25', '1862', 'Arun', 'none', '2197.16', '2024-07-16'),
+(19, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '10', '', '21.75', '217.5', '18', '15', '2060', 'Jeslin Biju', 'none', '24308', '2024-07-17'),
+(20, 0, '1001', 'FORMULA 1 SHAKE MIX OREO', 'Ayurdevic Nutrition', 'Energy', '2683', '2', '', '12.75', '25.5', '18', '15', '2103', 'kiran', 'sv', '4963.08', '2024-07-18'),
+(21, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '3000', '15', '', '21.75', '326.25', '50', '15', '2060', 'Aswin M M', 'kozhikode', '46350', '2024-07-19'),
+(22, 0, 'F1P', 'FORMULA 1 SHAKE MIX PISTAH', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '32', '', '21.75', '696', '36', '42', '1502', 'Aswin M M', 'kozhikode', '65367.04', '2024-07-20'),
+(23, 0, 'F!O', 'FORMULA 1 SHAKE MIX OREO', 'Ayurdevic Nutrition', 'Energy', '2683', '30', '', '12.75', '382.5', '15', '42', '1703', 'Aswin M M', 'kozhikode', '58753.5', '2024-07-21'),
+(24, 0, 'F1P', 'FORMULA 1 SHAKE MIX PISTAH', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '10', '', '21.75', '217.5', '15', '15', '2062', 'Aswin M M', 'kozhikode', '23713', '2024-07-22'),
+(25, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '2', '', '21.75', '43.5', '18', '15', '2060', 'Arun', 'none', '4120', '2024-07-01'),
+(26, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '2', '', '21.75', '43.5', '18', '15', '2060', 'Arun', 'none', '4120', '2024-07-01');
 
 -- --------------------------------------------------------
 
@@ -493,7 +495,15 @@ INSERT INTO `shake` (`shake_id`, `shake_name`, `shake_assoc`, `customer_id`, `cu
 (33, 'sdf', 'er', 0, 'Amal', 'dd', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX CHOCOLATE,FORMULA 1 SHAKE MIX OREO', '328.5', 'FORMULA 1 SHAKE MIX VANILLA : 3, FORMULA 1 SHAKE MIX OREO : 3, FORMULA 1 SHAKE MIX CHOCOLATE : 3', 'milk', '0', '15', '10', '338.5', 'protein.jpg', ''),
 (34, 'srf', 'erkjhh', 0, 'Kareem', 'sdg', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX CHOCOLATE', '215.05', 'FORMULA 1 SHAKE MIX VANILLA : 3, FORMULA 1 SHAKE MIX CHOCOLATE : 3', 'milk', '0', '15', '10', '225.05', 'Formula1.webp', ''),
 (35, 'FORMULA 1 SHAKE MIX VANILLA', ' MIX VANILLA', 0, 'Aswin', '50', 'FORMULA 1 SHAKE MIX VANILLA', '83.5', 'FORMULA 1 SHAKE MIX VANILLA : 2', '10', '50', '35', '100', '233.5', 'img 1 nutri.html', ''),
-(36, 'FORMULA 1 SHAKE MIX VANILLA', ' MIX VANILLA', 0, 'Aswin', '50', 'FORMULA 1 SHAKE MIX VANILLA', '83.5', 'FORMULA 1 SHAKE MIX VANILLA : 2', '10', '50', '35', '100', '233.5', 'img 1 nutri.html', '');
+(36, 'FORMULA 1 SHAKE MIX VANILLA', ' MIX VANILLA', 0, 'Aswin', '50', 'FORMULA 1 SHAKE MIX VANILLA', '83.5', 'FORMULA 1 SHAKE MIX VANILLA : 2', '10', '50', '35', '100', '233.5', 'img 1 nutri.html', ''),
+(37, 'SHAKE!@', 'Ashraf', 0, 'Kareem', 'WEIGHT GAIN', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX CHOCOLATE,FORMULA 1 SHAKE MIX PISTAH,FORMULA 1 SHAKE MIX OREO', '464.02000000000004', 'FORMULA 1 SHAKE MIX VANILLA : 5, FORMULA 1 SHAKE MIX CHOCOLATE : 5, FORMULA 1 SHAKE MIX PISTAH : 5, FORMULA 1 SHAKE MIX OREO : 5', 'milk', '20', '15', '10', '494.02', '', ''),
+(38, 'SHAKE!@', 'Ashraf', 0, 'Kareem', 'WEIGHT GAIN', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX CHOCOLATE,FORMULA 1 SHAKE MIX PISTAH,FORMULA 1 SHAKE MIX OREO', '', '', 'milk', '20', '15', '10', '30', '', ''),
+(39, 'Club Shake', 'Ashraf', 0, 'Ajith', 'Weight gainer', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX CHOCOLATE,FORMULA 1 SHAKE MIX PISTAH,FORMULA 1 SHAKE MIX OREO', '464.02000000000004', 'FORMULA 1 SHAKE MIX VANILLA : 10, FORMULA 1 SHAKE MIX CHOCOLATE : 10, FORMULA 1 SHAKE MIX PISTAH : , FORMULA 1 SHAKE MIX OREO : ', '10', '10', '15', '10', '484.02', 'bg (7).jpg', ''),
+(40, '101010', 'Ashraf', 0, 'Wolf', '202020', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX CHOCOLATE', '215.05', 'FORMULA 1 SHAKE MIX VANILLA : 10, FORMULA 1 SHAKE MIX CHOCOLATE : 10', '10', '10', '15', '10', '235.05', 'bg (7).jpg', ''),
+(41, '11111', 'Ashraf', 0, 'Wolf', '22222', 'FORMULA 1 SHAKE MIX CHOCOLATE,FORMULA 1 SHAKE MIX OREO', '113.9', 'FORMULA 1 SHAKE MIX CHOCOLATE : 5, FORMULA 1 SHAKE MIX OREO : 5', 'Milk', '20', '25', '10', '143.9', '', ''),
+(42, '2222', 'Ashraf', 0, 'Wolf', '3333', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX CHOCOLATE', '215.05', 'FORMULA 1 SHAKE MIX VANILLA : 2, FORMULA 1 SHAKE MIX CHOCOLATE : 3', 'Milk', '20', '15', '50', '285.05', '', ''),
+(43, 'sh1', 'Ashraf', 0, 'Arjun', 'sh2', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX CHOCOLATE', '215.05', 'FORMULA 1 SHAKE MIX VANILLA : 5, FORMULA 1 SHAKE MIX CHOCOLATE : 6', 'milk', '20', '15', '10', '245.05', '', ''),
+(44, 'sh2', 'Ashraf', 0, 'Arjun', 'sh3', 'FORMULA 1 SHAKE MIX VANILLA,FORMULA 1 SHAKE MIX CHOCOLATE', '103.45', 'FORMULA 1 SHAKE MIX VANILLA : 2, FORMULA 1 SHAKE MIX CHOCOLATE : 2', 'Milk, Butter', '50', '25', '10', '163.45', '', '');
 
 -- --------------------------------------------------------
 
@@ -542,15 +552,15 @@ CREATE TABLE `stock` (
 --
 
 INSERT INTO `stock` (`stock_id`, `stock_proid`, `stock_proname`, `stock_quantity`, `stock_associate`, `stock_price`, `stock_total`, `stock_date`) VALUES
-(1, 0, 'FORMULA 1 SHAKE MIX VANILLA', '5', 'kollam', '1340', 6700, '2024-06-05'),
-(2, 0, 'FORMULA 1 SHAKE MIX VANILLA', '2', 'palarivattom', '1340', 2680, '2024-06-06'),
-(3, 0, 'FORMULA 1 SHAKE MIX CHOCOLATE', '5', 'palarivattom', '1341', 6705, '2024-06-23'),
-(4, 0, 'FORMULA 1 SHAKE MIX OREO', '5', 'kollam', '2503', 12515, '2024-06-23'),
-(5, 0, 'FORMULA 1 SHAKE MIX CHOCOLATE', '24', 'kollam', '1341', 32184, '2024-06-07'),
-(6, 0, 'FORMULA 1 SHAKE MIX PISTAH', '10', 'kottayam', '1342', 13420, '2024-06-23'),
-(7, 0, 'FORMULA 1 SHAKE MIX OREO', '10', 'kochi', '2503', 25030, '2024-06-24'),
-(8, 0, 'FORMULA 1 SHAKE MIX CHOCOLATE', '65.78', 'kozhikode', '1347', 87555, '2024-06-27'),
-(9, 0, 'FORMULA 1 SHAKE MIX CHOCOLATE', '15', 'kottayam', '1350', 20250, '2024-06-28');
+(1, 0, 'FORMULA 1 SHAKE MIX VANILLA', '5', 'kollam', '1340', 6700, '2024-07-03'),
+(2, 0, 'FORMULA 1 SHAKE MIX VANILLA', '2', 'palarivattom', '1340', 2680, '2024-07-04'),
+(3, 0, 'FORMULA 1 SHAKE MIX CHOCOLATE', '5', 'palarivattom', '1341', 6705, '2024-07-05'),
+(4, 0, 'FORMULA 1 SHAKE MIX OREO', '5', 'kollam', '2503', 12515, '2024-07-06'),
+(5, 0, 'FORMULA 1 SHAKE MIX CHOCOLATE', '24', 'kollam', '1341', 32184, '2024-07-07'),
+(6, 0, 'FORMULA 1 SHAKE MIX PISTAH', '10', 'kottayam', '1342', 13420, '2024-07-15'),
+(7, 0, 'FORMULA 1 SHAKE MIX OREO', '10', 'kochi', '2503', 25030, '2024-07-16'),
+(8, 0, 'FORMULA 1 SHAKE MIX CHOCOLATE', '65.78', 'kozhikode', '1347', 87555, '2024-07-25'),
+(9, 0, 'FORMULA 1 SHAKE MIX CHOCOLATE', '15', 'kottayam', '1350', 20250, '2024-07-26');
 
 -- --------------------------------------------------------
 
@@ -744,13 +754,13 @@ ALTER TABLE `program`
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `shake`
 --
 ALTER TABLE `shake`
-  MODIFY `shake_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `shake_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `staff`
