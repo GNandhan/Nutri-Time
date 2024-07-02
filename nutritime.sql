@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 02, 2024 at 02:35 AM
+-- Generation Time: Jul 02, 2024 at 02:44 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -190,33 +190,6 @@ CREATE TABLE `login_details` (
   `login_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `login_details`
---
-
-INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`) VALUES
-('nutriadmin@gmail.com', 1, '2024-06-03 18:52:29'),
-('nutriadmin@gmail.com', 2, '2024-06-04 05:54:36'),
-('nutriadmin@gmail.com', 3, '2024-06-05 10:51:01'),
-('nutriadmin@gmail.com', 4, '2024-06-09 10:13:35'),
-('nutriadmin@gmail.com', 5, '2024-06-09 14:01:46'),
-('nutriadmin@gmail.com', 6, '2024-06-10 18:58:43'),
-('nutriadmin@gmail.com', 7, '2024-06-12 14:08:01'),
-('nutriadmin@gmail.com', 8, '2024-06-13 23:20:15'),
-('nutriadmin@gmail.com', 9, '2024-06-16 17:52:48'),
-('nutriadmin@gmail.com', 10, '2024-06-24 10:29:03'),
-('nutriadmin@gmail.com', 11, '2024-06-25 04:58:43'),
-('nutriadmin@gmail.com', 12, '2024-06-25 06:01:50'),
-('nutriadmin@gmail.com', 13, '2024-06-25 06:46:21'),
-('nutriadmin@gmail.com', 14, '2024-06-25 09:13:37'),
-('nutriadmin@gmail.com', 15, '2024-06-25 10:26:14'),
-('nutriadmin@gmail.com', 16, '2024-06-26 18:52:48'),
-('nutriadmin@gmail.com', 17, '2024-06-27 10:24:50'),
-('nutriadmin@gmail.com', 18, '2024-06-28 12:56:30'),
-('nutriadmin@gmail.com', 19, '2024-06-28 20:54:12'),
-('nutriadmin@gmail.com', 20, '2024-06-28 23:05:46'),
-('nutriadmin@gmail.com', 21, '2024-06-29 11:26:00');
-
 -- --------------------------------------------------------
 
 --
@@ -401,8 +374,8 @@ INSERT INTO `sales` (`sales_id`, `sales_proid`, `sales_procode`, `sales_proname`
 (23, 4, 'F!O', 'FORMULA 1 SHAKE MIX OREO', 'Ayurdevic Nutrition', 'Energy', '2683', '30', '', '12.75', '382.5', '15', '42', '1703', 'Aswin M M', 'kozhikode', '58753.5', '2024-07-21'),
 (24, 3, 'F1P', 'FORMULA 1 SHAKE MIX PISTAH', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '10', '', '21.75', '217.5', '15', '15', '2062', 'Aswin M M', 'kozhikode', '23713', '2024-07-22'),
 (25, 1, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '2', '', '21.75', '43.5', '18', '15', '2060', 'Arun', 'none', '4120', '2024-07-22'),
-(26, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '2', '', '21.75', '43.5', '18', '15', '2060', 'Arun', 'none', '4120', '2024-07-01'),
-(27, 0, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '1', '', '21.75', '21.75', '14', '15', '2060', 'Jeslin Biju', 'none', '2060', '2024-07-01');
+(26, 1, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '2', '', '21.75', '43.5', '18', '15', '2060', 'Arun', 'none', '4120', '2024-07-01'),
+(27, 1, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '1', '', '21.75', '21.75', '14', '15', '2060', 'Jeslin Biju', 'none', '2060', '2024-07-01');
 
 -- --------------------------------------------------------
 
@@ -698,7 +671,7 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pay_history`

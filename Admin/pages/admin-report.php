@@ -65,7 +65,7 @@ if ($row = mysqli_fetch_assoc($query)) {
                 </div>
                 <div class="table-responsive my-4">
                   <table id="reportTable" class="table table-striped">
-                    <h4>PRODUCT STOCK SUMMARY - NC ( <span>JULY 2024</span> )</h4>
+                    <h4>PRODUCT STOCK SUMMARY - NC ( <span id="reportMonthYear">JULY 2024</span> )</h4>
                     <thead>
                       <tr>
                         <th>Items</th>
@@ -127,7 +127,7 @@ if ($row = mysqli_fetch_assoc($query)) {
                 
                 <div class="table-responsive my-5">
                   <table id="salesTable" class="table table-striped">
-                    <h4>PRODUCT SALES SUMMARY - NC ( <span>JULY 2024</span> )</h4>
+                    <h4>PRODUCT SALES SUMMARY - NC ( <span id="salesMonthYear">JULY 2024</span> )</h4>
                     <thead>
                       <tr>
                         <th>Items</th>
@@ -158,7 +158,7 @@ if ($row = mysqli_fetch_assoc($query)) {
 
                           // Fetch data from sales table for each product
                           $productId = $row['sales_proid'];
-                          $salesQuery = "SELECT DAY(sales_date) AS day, sales_quan FROM sales WHERE sales_proid = $productId";
+                          $salesQuery = "SELECT DAY(sales_date) AS day, SUM(sales_quan) AS sales_quan FROM sales WHERE sales_proid = $productId GROUP BY day";
                           $salesResult = $conn->query($salesQuery);
 
                           // Fill in actual sales quantities based on dates
@@ -199,8 +199,21 @@ if ($row = mysqli_fetch_assoc($query)) {
   </div>
   <script>
     document.getElementById('exportBtn').addEventListener('click', function() {
-      var wb = XLSX.utils.table_to_book(document.getElementById('reportTable'), { sheet: "Sheet JS" });
-      XLSX.writeFile(wb, 'report.xlsx');
+      var wb = XLSX.utils.book_new();
+      
+      // Add the first table to the workbook
+      var ws1 = XLSX.utils.table_to_sheet(document.getElementById('reportTable'));
+      XLSX.utils.book_append_sheet(wb, ws1, "Stock Summary");
+      
+      // Add the second table to the workbook
+      var ws2 = XLSX.utils.table_to_sheet(document.getElementById('salesTable'));
+      XLSX.utils.book_append_sheet(wb, ws2, "Sales Summary");
+
+      // Get the month and year from the headings
+      var reportMonthYear = document.getElementById('reportMonthYear').innerText.trim();
+      
+      // Write the workbook to a file with dynamic name
+      XLSX.writeFile(wb, `Report-${reportMonthYear}.xlsx`);
     });
   </script>
   <script src="../vendors/js/vendor.bundle.base.js"></script>
