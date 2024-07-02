@@ -63,7 +63,7 @@ if ($row = mysqli_fetch_assoc($query)) {
                     <button class="btn btn-primary rounded-pill" id="exportBtn">Export</button>
                   </div>
                 </div>
-                <div class="table-responsive">
+                <div class="table-responsive my-4">
                   <table id="reportTable" class="table table-striped">
                     <h4>PRODUCT STOCK SUMMARY - NC ( <span>JULY 2024</span> )</h4>
                     <thead>
@@ -98,7 +98,8 @@ if ($row = mysqli_fetch_assoc($query)) {
 
                           // Fetch data from stock table for each product
                           $productId = $row['pri_id'];
-                          $stockQuery = "SELECT DAY(stock_date) AS day, stock_quantity FROM stock WHERE stock_proid = $productId";
+                          $stockQuery = "SELECT DAY(stock_date) AS day, SUM(stock_quantity) AS stock_quantity 
+                                         FROM stock WHERE stock_proid = $productId GROUP BY day";
                           $stockResult = $conn->query($stockQuery);
 
                           // Fill in actual stock quantities based on dates
@@ -119,12 +120,71 @@ if ($row = mysqli_fetch_assoc($query)) {
                       } else {
                         echo "<tr><td colspan='34'>No data available</td></tr>";
                       }
+                      ?>
+                    </tbody>
+                  </table>
+                </div>
+                
+                <div class="table-responsive my-5">
+                  <table id="salesTable" class="table table-striped">
+                    <h4>PRODUCT SALES SUMMARY - NC ( <span>JULY 2024</span> )</h4>
+                    <thead>
+                      <tr>
+                        <th>Items</th>
+                        <th>Sold</th>
+                        <?php
+                        // Generate table headers for each day of the month
+                        for ($day = 1; $day <= 31; $day++) {
+                          echo "<th>$day</th>";
+                        }
+                        ?>
+                        <th>Total Sold</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $sql = "SELECT sales_proid, sales_proname, SUM(sales_quan) AS total_sold FROM sales GROUP BY sales_proid";
+                      $result = $conn->query($sql);
+
+                      if ($result->num_rows > 0) {
+                        // Output data of each row
+                        while ($row = $result->fetch_assoc()) {
+                          echo "<tr>
+                                  <td>{$row['sales_proname']}</td>
+                                  <td>{$row['total_sold']}</td>";
+                          
+                          // Initialize array to store sales quantities for each day
+                          $daySales = array_fill(1, 31, "");
+
+                          // Fetch data from sales table for each product
+                          $productId = $row['sales_proid'];
+                          $salesQuery = "SELECT DAY(sales_date) AS day, sales_quan FROM sales WHERE sales_proid = $productId";
+                          $salesResult = $conn->query($salesQuery);
+
+                          // Fill in actual sales quantities based on dates
+                          while ($salesRow = $salesResult->fetch_assoc()) {
+                            $salesDate = $salesRow['day'];
+                            $daySales[$salesDate] = $salesRow['sales_quan'];
+                          }
+
+                          // Output sales quantities for each day
+                          for ($day = 1; $day <= 31; $day++) {
+                            echo "<td>{$daySales[$day]}</td>";
+                          }
+
+                          echo "<td>{$row['total_sold']}</td>
+                                </tr>";
+                        }
+                      } else {
+                        echo "<tr><td colspan='34'>No data available</td></tr>";
+                      }
 
                       $conn->close();
                       ?>
                     </tbody>
                   </table>
                 </div>
+
               </div>
             </div>
           </div>
