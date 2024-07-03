@@ -32,6 +32,7 @@ if ($_SESSION["email"] == "") {
       $s_query = mysqli_query($conn, "SELECT * FROM sales WHERE sales_id = '$saleid'");
       $s_row1 = mysqli_fetch_array($s_query);
 
+      // Populate variables with fetched data
       $sale_id1 = $s_row1['sales_id'];
       $sale_proid1 = $s_row1['sales_proid'];
       $sale_procode1 = $s_row1['sales_procode'];
@@ -84,6 +85,7 @@ if ($_SESSION["email"] == "") {
         var subcategoryInput = document.getElementById("prosubcat");
         var vpInput = document.getElementById("provp");
         var quaInput = document.getElementById("procurqua");
+        var proidInput = document.getElementById("proid");
 
         // Set the price, code, category, subcategory, and purchase price fields based on selected material
         if (selectedMaterial && materialPrices[selectedMaterial]) {
@@ -100,10 +102,12 @@ if ($_SESSION["email"] == "") {
               subcategoryInput.value = productDetails.pro_subcat; // Set subcategory value
               vpInput.value = productDetails.pro_vp; // Set vp value
               quaInput.value = productDetails.pro_curquantity; // Set vp value
+              proidInput.value = productDetails.pro_id; // Set product ID
             } else {
               codeInput.value = ""; // Clear product code if no data found
               categoryInput.value = ""; // Clear category if no data found
               subcategoryInput.value = ""; // Clear subcategory if no data found
+              proidInput.value = ""; // Clear product ID if no data found
             }
           });
         } else {
@@ -111,6 +115,7 @@ if ($_SESSION["email"] == "") {
           codeInput.value = ""; // Clear the code field if no material is selected
           categoryInput.value = ""; // Clear the category field if no material is selected
           subcategoryInput.value = ""; // Clear the subcategory field if no material is selected
+          proidInput.value = ""; // Clear product ID if no material is selected
         }
       }
     </script>
@@ -124,6 +129,7 @@ if ($_SESSION["email"] == "") {
                 <p class="card-description">Add Product Sales Details</p>
                 <form method="post" class="forms-sample">
                   <input type="hidden" name="saleid" value="<?php echo $saleid; ?>">
+                  <input type="hidden" name="proid" id="proid" value="<?php echo $sale_proid1; ?>">
                   <div class="row">
                     <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
@@ -240,6 +246,7 @@ if ($_SESSION["email"] == "") {
           </div>
         </div>
         <!-- PHP CODE FOR INSERTING THE DATA -->
+
         <?php
         if (isset($_POST["submitp"])) {
           $sal_proname = $_POST["proname"];
@@ -266,6 +273,7 @@ if ($_SESSION["email"] == "") {
           // $gstAmount = ($subtotal * $sal_gst) / 100;
           // Calculate total including GST
           $sal_total = $subtotal;
+          $sal_proid = $_POST["proid"]; // Get the product ID
 
           // Retrieve the current quantity from the price table for the given product
           $sal_curquan_query = mysqli_query($conn, "SELECT pro_curquantity FROM price WHERE pro_name = '$sal_proname'");
@@ -277,14 +285,14 @@ if ($_SESSION["email"] == "") {
           $sale_id = $_POST["saleid"];
           if (empty($sale_id)) {
             // Perform INSERT operation
-            $sql = mysqli_query($conn, "INSERT INTO sales (sales_procode, sales_proname, sales_procat, sales_prosubcat, sales_mrp, sales_quan, sales_vp, sales_vptotal, sales_gst, sales_dis, sales_dispri, sales_cus, sales_address, sales_total, sales_date)
-              VALUES ('$sal_procode','$sal_proname','$sal_procat','$sal_prosubcat','$sal_mrp','$sal_quan','$sal_vp', '$sal_vptotal','$sal_gst','$sal_dis','$sal_dispri','$sal_cus','$sal_address','$sal_total','$sal_date')");
+            $sql = mysqli_query($conn, "INSERT INTO sales (sales_proid, sales_procode, sales_proname, sales_procat, sales_prosubcat, sales_mrp, sales_quan, sales_vp, sales_vptotal, sales_gst, sales_dis, sales_dispri, sales_cus, sales_address, sales_total, sales_date)
+            VALUES ('$sal_proid','$sal_procode','$sal_proname','$sal_procat','$sal_prosubcat','$sal_mrp','$sal_quan','$sal_vp', '$sal_vptotal','$sal_gst','$sal_dis','$sal_dispri','$sal_cus','$sal_address','$sal_total','$sal_date')");
 
             // Update the current quantity in the price table
             $sql_update = mysqli_query($conn, "UPDATE price SET pro_curquantity='$sal_curquan1' WHERE pro_name='$sal_proname'");
           } else {
             // Perform UPDATE operation
-            $sql = mysqli_query($conn, "UPDATE sales SET sales_procode='$sal_procode', sales_proname='$sal_proname', sales_procat='$sal_procat', sales_prosubcat='$sal_prosubcat', sales_mrp='$sal_mrp', sales_quan='$sal_quan', sales_vp='$sal_vp', sales_vptotal='$sal_vptotal', sales_gst='$sal_gst', sales_dis='$sal_dis', sales_dispri='$sal_dispri', sales_cus='$sal_cus', sales_address='$sal_address', sales_total='$sal_total' WHERE sales_id='$sale_id'");
+            $sql = mysqli_query($conn, "UPDATE sales SET sales_proid='$sal_proid', sales_procode='$sal_procode', sales_proname='$sal_proname', sales_procat='$sal_procat', sales_prosubcat='$sal_prosubcat', sales_mrp='$sal_mrp', sales_quan='$sal_quan', sales_vp='$sal_vp', sales_vptotal='$sal_vptotal', sales_gst='$sal_gst', sales_dis='$sal_dis', sales_dispri='$sal_dispri', sales_cus='$sal_cus', sales_address='$sal_address', sales_total='$sal_total' WHERE sales_id='$sale_id'");
 
             // Update the current quantity in the price table
             $sql_update = mysqli_query($conn, "UPDATE price SET pro_curquantity='$sal_curquan1' WHERE pro_name='$sal_proname'");
