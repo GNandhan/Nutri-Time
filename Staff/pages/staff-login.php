@@ -10,7 +10,7 @@ $_SESSION["email"] = '';
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Nutri-Time: Admin-Login</title>
+  <title>Nutri-Time: Staff-Login</title>
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
   <link rel="icon" href="../images/icon-small.png" />
 </head>
@@ -60,7 +60,7 @@ $_SESSION["email"] = '';
       $_SESSION["email"] = $email;
       $_SESSION["pass"] = $password;
 
-      echo '<script type="text/javascript">window.location = "admin-dashboard.php"</script>';
+      echo '<script type="text/javascript">window.location = "staff-dashboard.php"</script>';
     } else {
       echo "<script type='text/javascript'>alert('Error: Invalid credentials');</script>";
     }

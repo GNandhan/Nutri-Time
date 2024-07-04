@@ -3,7 +3,7 @@ include './connect.php';
 error_reporting(0);
 session_start();
 if ($_SESSION["email"] == "") {
-  header('location:admin-login.php');
+  header('location:staff-login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -12,7 +12,7 @@ if ($_SESSION["email"] == "") {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Admin Program</title>
+  <title>Staff Program</title>
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
@@ -41,11 +41,11 @@ if ($_SESSION["email"] == "") {
       $dl_id = $_GET['prd_id'];
       $dl_query = mysqli_query($conn, "SELECT * FROM program WHERE program_id = '$dl_id'");
       $dl_row1 = mysqli_fetch_array($dl_query);
-      $img = '../images/program/' . $dl_row1['program_img'];
+      $img = '../../Admin/images/program/' . $dl_row1['program_img'];
       $del = mysqli_query($conn, "DELETE FROM program WHERE program_id='$dl_id'");
       if ($del) {
         unlink($img); //for deleting the existing image from the folder
-        header("location:admin-program.php");
+        header("location:staff-program.php");
       } else {
         echo "Deletion Failed";
       }
@@ -98,7 +98,7 @@ if ($_SESSION["email"] == "") {
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary mr-2 rounded-pill" name="submitpr">Submit</button>
-                  <a href="./admin-program.php" class="btn btn-light rounded-pill">Cancel</a>
+                  <a href="./staff-program.php" class="btn btn-light rounded-pill">Cancel</a>
                 </form>
               </div>
             </div>
@@ -126,7 +126,7 @@ if ($_SESSION["email"] == "") {
             } else {
               if ($filename) {
                 // Remove the existing image
-                $imgs = '../images/program/' . $pr_img;
+                $imgs = '../../Admin/images/program/' . $pr_img;
                 if (file_exists($imgs)) {
                   unlink($imgs);
                 }
@@ -136,7 +136,7 @@ if ($_SESSION["email"] == "") {
               $sql = mysqli_query($conn, "UPDATE program SET program_name='$pr_name', program_date='$pr_date', program_time='$pr_time', program_venue='$pr_location' WHERE program_id='$pr_id'");
             }
             if ($sql == TRUE) {
-              move_uploaded_file($tempname, "../images/program/$filename");
+              move_uploaded_file($tempname, "../../Admin/images/program/$filename");
               echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
             } else {
               echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
@@ -176,18 +176,18 @@ if ($_SESSION["email"] == "") {
                       <tbody>
                         <tr>
                           <td>
-                            <a href="admin-program.php?prid=<?php echo $pro_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit
+                            <a href="staff-program.php?prid=<?php echo $pro_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit
                               <i class="ti-pencil-alt btn-icon-append"></i>
                             </a>
                           </td>
                           <td>
-                            <a href="admin-program.php?prd_id=<?php echo $pro_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete
+                            <a href="staff-program.php?prd_id=<?php echo $pro_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete
                               <i class="ti-trash btn-icon-prepend"></i>
                             </a>
                           </td>
                           <td class="py-1"><?php echo $serialNo++; ?></td>
                           <td><?php echo $pro_name; ?></td>
-                          <td><img src="../images/program/<?php echo $pro_img; ?>" alt=""></td>
+                          <td><img src="../../Admin/images/program/<?php echo $pro_img; ?>" alt=""></td>
                           <td><?php echo $pro_date; ?></td>
                           <td><?php echo $pro_time; ?></td>
                           <td><?php echo $pro_venue; ?></td>

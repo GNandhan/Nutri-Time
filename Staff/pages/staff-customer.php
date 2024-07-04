@@ -4,7 +4,7 @@ error_reporting(0);
 $cus_id1 = $cus_code1 = $cus_name1 = $cus_phno1 = $cus_invite1 = $cus_age1 = $cus_bodyage1 = $cus_gender1 = $cus_email1 = $cus_doj1 = $cus_city1 = $cus_address1 = $cus_height1 = $cus_weight1 = $cus_idleweight1 = $cus_fat1 = $cus_vcf1 = $cus_bmr1 = $cus_bmi1 = $cus_mm1 = $cus_tsf1 = $cus_waketime1 = $cus_tea1 = $cus_breakfast1 = $cus_lunch1 = $cus_snack1 = $cus_dinner1 = $cus_veg_nonveg1 = $cus_waterintake1 = $cus_cond11 = $cus_cond21 = $cus_cond31 = $cus_cond41 = $cus_cond51 = $cus_cond61 = $cus_cond71 = $cus_cond81 = $cus_prg1 = $cus_prgtype1 = $cus_nodays1 = $cus_total1 = $cus_paid1 = $cus_remain1 = $cusid = $cus_paid3 = "";
 session_start();
 if ($_SESSION["email"] == "") {
-  header('location:admin-login.php');
+  header('location:staff-login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -13,7 +13,7 @@ if ($_SESSION["email"] == "") {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Admin Customer</title>
+  <title>Staff Customer</title>
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
@@ -82,7 +82,7 @@ if ($_SESSION["email"] == "") {
       $dl_row1 = mysqli_fetch_array($dl_query);
       $del = mysqli_query($conn, "DELETE FROM customer WHERE cust_id='$dl_id'");
       if ($del) { //for deleting the existing image from the folder
-        header("location:admin-customer.php");
+        header("location:staff-customer.php");
       } else {
         echo "Deletion Failed";
       }
@@ -393,7 +393,7 @@ if ($_SESSION["email"] == "") {
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary mr-2 rounded-pill" name="submitp">Submit</button>
-                  <a href="./admin-customer.php" type="reset" class="btn btn-light rounded-pill">Cancel</a>
+                  <a href="./staff-customer.php" type="reset" class="btn btn-light rounded-pill">Cancel</a>
                 </form>
               </div>
             </div>
@@ -539,12 +539,12 @@ if ($_SESSION["email"] == "") {
                     ?>
                       <tbody>
                         <tr>
-                          <td><a href="admin-customer.php?cusid=<?php echo $cus_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit <i class="ti-pencil-alt btn-icon-append"></i></a></td>
-                          <td><a href="admin-customer.php?cusdid=<?php echo $cus_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a></td>
-                          <td><a href="admin-customer.php?cusmdid=<?php echo $cus_id; ?>" class="btn btn-inverse-primary btn-icon-text p-3" data-toggle="modal" data-target="#exampleModal_<?php echo $cus_id; ?>">Add Payment</a></td>
-                          <td><a href="admin-customer.php?cusmdid=<?php echo $cus_id; ?>" class="btn btn-inverse-primary btn-icon-text p-3" data-toggle="modal" data-target="#exampleModal2_<?php echo $cus_id; ?>">BMI & BMR</a></td>
+                          <td><a href="staff-customer.php?cusid=<?php echo $cus_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit <i class="ti-pencil-alt btn-icon-append"></i></a></td>
+                          <td><a href="staff-customer.php?cusdid=<?php echo $cus_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a></td>
+                          <td><a href="staff-customer.php?cusmdid=<?php echo $cus_id; ?>" class="btn btn-inverse-primary btn-icon-text p-3" data-toggle="modal" data-target="#exampleModal_<?php echo $cus_id; ?>">Add Payment</a></td>
+                          <td><a href="staff-customer.php?cusmdid=<?php echo $cus_id; ?>" class="btn btn-inverse-primary btn-icon-text p-3" data-toggle="modal" data-target="#exampleModal2_<?php echo $cus_id; ?>">BMI & BMR</a></td>
                           <!-- <td class="py-1"><?php echo $cus_code; ?></td> -->
-                          <td class="py-1"><a href="admin-customerdetails.php?prid=<?php echo $cus_id; ?>" class="text-dark"><?php echo $cus_code; ?></a></td>
+                          <td class="py-1"><a href="staff-customerdetails.php?prid=<?php echo $cus_id; ?>" class="text-dark"><?php echo $cus_code; ?></a></td>
                           <td><?php echo $cus_name; ?></td>
                           <td><?php echo $cus_phno; ?></td>
                           <td><?php echo $cus_invite; ?></td>
@@ -745,7 +745,7 @@ if ($_SESSION["email"] == "") {
                     }
 
                     // Redirect to avoid form resubmission
-                    header("Location: admin-customer.php");
+                    header("Location: staff-customer.php");
                     ob_end_flush(); // End output buffering and flush the buffer
                     exit(); // Ensure no further code is executed after the redirect
                   }
@@ -763,7 +763,7 @@ if ($_SESSION["email"] == "") {
 
                     if (mysqli_query($conn, $insertBMRSql)) {
                       echo "<script>alert('BMI & BMR history added successfully.');</script>";
-                      echo "<script>window.location='admin-customer.php';</script>";
+                      echo "<script>window.location='staff-customer.php';</script>";
                     } else {
                       echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
                     }

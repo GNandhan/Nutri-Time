@@ -4,7 +4,7 @@ include './connect.php';
 $stoloct1 = $stoqua1 = $sh_raw1 = $sto_id = $stoassoc1 = "";
 session_start();
 if ($_SESSION["email"] == "") {
-  header('location:admin-login.php');
+  header('location:staff-login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -13,7 +13,7 @@ if ($_SESSION["email"] == "") {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Admin Stock</title>
+  <title>Staff Stock</title>
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
@@ -42,7 +42,7 @@ if ($_SESSION["email"] == "") {
       $dl_id = $_GET['stod_id'];
       $del = mysqli_query($conn, "DELETE FROM stock WHERE stock_id='$dl_id'");
       if ($del) {
-        header("location:admin-stocktrans.php");
+        header("location:staff-stocktrans.php");
       } else {
         echo "Deletion Failed";
       }
@@ -245,8 +245,8 @@ if ($_SESSION["email"] == "") {
                     ?>
                       <tbody>
                         <tr>
-                          <td><a href="admin-stocktrans.php?stoid=<?php echo $stock_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i></a></td>
-                          <td><a href="admin-stocktrans.php?stod_id=<?php echo $stock_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a>
+                          <td><a href="staff-stocktrans.php?stoid=<?php echo $stock_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i></a></td>
+                          <td><a href="staff-stocktrans.php?stod_id=<?php echo $stock_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a>
                           </td>
                           <td class="py-1"><?php echo $serialNo++; ?></td>
                           <td><?php echo $stock_date; ?></td>

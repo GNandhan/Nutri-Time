@@ -3,7 +3,7 @@ include './connect.php';
 error_reporting(0);
 session_start();
 if ($_SESSION["email"] == "") {
-    header('location:admin-login.php');
+    header('location:staff-login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -12,7 +12,7 @@ if ($_SESSION["email"] == "") {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Admin Customer Details</title>
+    <title>Staff Customer Details</title>
     <link rel="stylesheet" href="../vendors/feather/feather.css">
     <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
     <link rel="stylesheet" href="../css/vertical-layout-light/style.css">

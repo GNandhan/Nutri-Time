@@ -4,7 +4,7 @@ include './connect.php';
 $sh_reci1 = $pro_id = $sh_name1 = $sh_goal1 = $sh_extra1 = $sh_extraprice1 = $sh_expen1 = $sh_raw1 = $sh_disc1 = $sh_id =  $sh_assoc1 = ''; //for declaring the variable and not to show errors in the page
 session_start();
 if ($_SESSION["email"] == "") {
-  header('location:admin-login.php');
+  header('location:staff-login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -13,7 +13,7 @@ if ($_SESSION["email"] == "") {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Admin Shake</title>
+  <title>Staff Shake</title>
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
@@ -53,7 +53,7 @@ if ($_SESSION["email"] == "") {
       $dl_row1 = mysqli_fetch_array($dl_query);
       $del = mysqli_query($conn, "DELETE FROM shake WHERE shake_id='$dl_id'");
       if ($del) {
-        header("location:admin-shake.php");
+        header("location:staff-shake.php");
       } else {
         echo "Deletion Failed";
       }
@@ -187,12 +187,12 @@ if ($_SESSION["email"] == "") {
                           <input type="file" class="custom-file-input form-control file-upload-info" id="inputGroupFile01" name="shimg" onchange="displaySelectedFileName(this)" value="<?php echo $sh_img1; ?>" required>
                           <label class="input-group-text custom-file-label" for="inputGroupFile01">Choose file</label>
                         </div>
-                        <img src="../images/shake/<?php echo $p_img1; ?>" alt="" width="100">
+                        <img src="../../Admin/images/shake/<?php echo $p_img1; ?>" alt="" width="100">
                       </div>
                     </div> -->
                   </div>
                   <input type="submit" class="btn btn-primary mr-2 rounded-pill" name="submitsh" value="Submit">
-                  <a href="./admin-shake.php" class="btn btn-light rounded-pill">Cancel</a>
+                  <a href="./staff-shake.php" class="btn btn-light rounded-pill">Cancel</a>
                 </form>
               </div>
             </div>
@@ -237,7 +237,7 @@ if ($_SESSION["email"] == "") {
                                                      VALUES ('$sh_name','$sh_assoc','$cus_name','$cus_name','$sh_goal','$sh_reci','$sh_mrp','$sh_extra','$sh_extra_price','$sh_disc','$sh_sercharge','$total_cost','$sh_scoops')");
             } else {
               if ($filename) {
-                $imgs = '../images/shake/' . $sh_img;
+                $imgs = '../../Admin/images/shake/' . $sh_img;
                 unlink($imgs);
                 $sql = mysqli_query($conn, "UPDATE shake SET shake_name='$sh_name', shake_assoc='$sh_assoc', shake_goal='$sh_goal', shake_recipes='$sh_reci', shake_mrp='$sh_mrp', shake_extra='$sh_extra', shake_extraprice='$sh_extra_price', shake_discount='$sh_disc', shake_expence='$sh_sercharge', shake_scoops='$sh_scoops' WHERE shake_id='$sh_id'");
               } else {
@@ -333,9 +333,9 @@ if ($_SESSION["email"] == "") {
                     ?>
                         <tbody>
                           <tr>
-                            <td><a href="admin-shake.php?sid=<?php echo $sh_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i></a></td>
-                            <td><a href="admin-shake.php?sd_id=<?php echo $sh_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a></td>
-                            <td><a href="admin-shake.php?cusmdid=<?php echo $sh_id; ?>" class="btn btn-inverse-primary btn-icon-text p-3" data-toggle="modal" data-target="#exampleModal_<?php echo $sh_id; ?>">Shake History</a></td>
+                            <td><a href="staff-shake.php?sid=<?php echo $sh_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i></a></td>
+                            <td><a href="staff-shake.php?sd_id=<?php echo $sh_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a></td>
+                            <td><a href="staff-shake.php?cusmdid=<?php echo $sh_id; ?>" class="btn btn-inverse-primary btn-icon-text p-3" data-toggle="modal" data-target="#exampleModal_<?php echo $sh_id; ?>">Shake History</a></td>
                             <td class="py-1"><?php echo $serialNo++; ?></td>
                             <td><?php echo $cu_name; ?></td>
                             <td><?php echo $sh_name; ?></td>

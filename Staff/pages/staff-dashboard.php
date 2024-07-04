@@ -3,7 +3,7 @@ include './connect.php';
 error_reporting(0);
 session_start();
 if ($_SESSION["email"] == "") {
-  header('location:admin-login.php');
+  header('location:staff-login.php');
 }
 // Fetch the customer's name based on the logged-in user's email
 $email = $_SESSION["email"];
@@ -18,7 +18,7 @@ if ($row = mysqli_fetch_assoc($query)) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Admin-Dashboard</title>
+  <title>Staff-Dashboard</title>
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
@@ -58,7 +58,7 @@ if ($row = mysqli_fetch_assoc($query)) {
                   ?>
                     <!-- Add your carousel items here -->
                     <div class="carousel-item active">
-                      <img src="../images/product/<?php echo $pro_img; ?>" class="d-block w-100 img-fluid" alt="People 1" style="object-fit: cover; height: 300px; border-radius: 20px;">
+                      <img src="../../Admin/images/product/<?php echo $pro_img; ?>" class="d-block w-100 img-fluid" alt="People 1" style="object-fit: cover; height: 300px; border-radius: 20px;">
                     </div>
                   <?php
                   }
