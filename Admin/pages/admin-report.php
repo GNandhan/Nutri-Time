@@ -30,7 +30,8 @@ if ($row = mysqli_fetch_assoc($query)) {
       width: 100%;
     }
 
-    th, td {
+    th,
+    td {
       border: 1px solid #dddddd;
       text-align: left;
       padding: 8px;
