@@ -102,7 +102,7 @@ if ($_SESSION["email"] == "") {
               subcategoryInput.value = productDetails.pro_subcat; // Set subcategory value
               vpInput.value = productDetails.pro_vp; // Set vp value
               quaInput.value = productDetails.pro_curquantity; // Set vp value
-              proidInput.value = productDetails.pro_id; // Set product ID
+              proidInput.value = productDetails.pri_id; // Set product ID
             } else {
               codeInput.value = ""; // Clear product code if no data found
               categoryInput.value = ""; // Clear category if no data found

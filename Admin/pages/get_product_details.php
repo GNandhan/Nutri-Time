@@ -15,3 +15,4 @@ if (isset($_POST['product_name'])) {
     echo json_encode(array()); // Return empty JSON if no data found
   }
 }
+?>

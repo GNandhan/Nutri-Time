@@ -51,7 +51,7 @@ if ($_SESSION["email"] == "") {
     <!-- Fetching prices of all materials from the database -->
     <?php
     $material_prices = array();
-    $query = mysqli_query($conn, "SELECT pro_name, pro_price FROM price");
+    $query = mysqli_query($conn, "SELECT pri_id, pro_name, pro_price FROM price");
     while ($row = mysqli_fetch_assoc($query)) {
       $material_prices[$row['pro_name']] = $row['pro_price'];
     }
@@ -65,13 +65,16 @@ if ($_SESSION["email"] == "") {
         var selectedMaterial = document.getElementById("stomaterial").value;
         var priceInput = document.getElementById("stopri");
         var quantityInput = document.getElementById("stocurqua");
+        var proIdInput = document.getElementById("pro_id");
 
         if (selectedMaterial && materialPrices[selectedMaterial]) {
           priceInput.value = materialPrices[selectedMaterial]; // Set the purchase price input
           quantityInput.value = document.querySelector('#stomaterial option:checked').getAttribute('data-quantity'); // Retrieve and set the product quantity input
+          proIdInput.value = document.querySelector('#stomaterial option:checked').getAttribute('data-proid'); // Retrieve and set the product ID
         } else {
           priceInput.value = "";
           quantityInput.value = ""; // Clear fields if no material is selected
+          proIdInput.value = ""; // Clear product ID
         }
       }
     </script>
@@ -85,6 +88,7 @@ if ($_SESSION["email"] == "") {
                 <p class="card-description">Stock Transfer Details</p>
                 <form method="post" class="forms-sample" enctype="multipart/form-data">
                   <input type="hidden" name="pri_id" id="pri_id" value="<?php echo isset($stoid) ? $stoid : ''; ?>">
+                  <input type="hidden" name="pro_id" id="pro_id" value="">
                   <div class="row">
                     <div class="col-lg-6 col-md col-sm col-12">
                       <div class="form-group">
@@ -98,7 +102,7 @@ if ($_SESSION["email"] == "") {
                             $pro_name = $row["pro_name"];
                             $pro_quantity = $row["pro_curquantity"];
                           ?>
-                            <option value="<?php echo $pro_name; ?>" data-quantity="<?php echo $pro_quantity; ?>" <?php if ($row['pro_name'] == $sh_raw1) {
+                            <option value="<?php echo $pro_name; ?>" data-quantity="<?php echo $pro_quantity; ?>" data-proid="<?php echo $pro_id; ?>" <?php if ($row['pro_name'] == $sh_raw1) {
                                                                                                                     echo 'selected';
                                                                                                                   } ?>><?php echo $pro_name; ?></option>
                           <?php
@@ -150,6 +154,7 @@ if ($_SESSION["email"] == "") {
           $stopri = $_POST["stopri"];
           $stodate = $_POST["stodate"];
           $sto_id = $_POST["pri_id"];
+          $pro_id = $_POST["pro_id"];
 
           // Fetch current quantity of the selected product
           $sal_curquan_query = mysqli_query($conn, "SELECT pro_curquantity FROM price WHERE pro_name='$stomat'");
@@ -164,7 +169,7 @@ if ($_SESSION["email"] == "") {
           if ($sto_id == '') {
             // Insert new record
             $sql = mysqli_query($conn, "INSERT INTO stock (stock_proid, stock_proname, stock_quantity, stock_associate, stock_price, stock_total, stock_date)
-                                        VALUES ('$stomat', $stoqua, '$stoloct', $stopri, $stototal, '$stodate')");
+                                        VALUES ('$pro_id','$stomat', $stoqua, '$stoloct', $stopri, $stototal, '$stodate')");
 
             if ($sql) {
               // Update the price table
@@ -172,7 +177,7 @@ if ($_SESSION["email"] == "") {
             }
           } else {
             // Update existing record
-            $sql = mysqli_query($conn, "UPDATE stock SET stock_proid='$stomat', stock_proname='$stomat', stock_quantity=$stoqua, stock_associate='$stoloct', stock_price=$stopri, stock_total=$stototal, stock_date='$stodate' WHERE stock_id='$sto_id'");
+            $sql = mysqli_query($conn, "UPDATE stock SET stock_proid='$pro_id', stock_proname='$stomat', stock_quantity=$stoqua, stock_associate='$stoloct', stock_price=$stopri, stock_total=$stototal, stock_date='$stodate' WHERE stock_id='$sto_id'");
           }
 
           // Check if the query was successful
@@ -198,7 +203,7 @@ if ($_SESSION["email"] == "") {
           }
         }
         ?>
-        <div class="row ">
+        <div class="row">
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">

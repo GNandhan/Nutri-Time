@@ -92,7 +92,7 @@ if ($row = mysqli_fetch_assoc($query)) {
                           echo "<tr>
                                   <td>{$row['pro_name']}</td>
                                   <td>{$row['pro_quantity']}</td>";
-                          
+
                           // Initialize array to store stock quantities for each day
                           $dayStock = array_fill(1, 31, "");
 
@@ -124,7 +124,7 @@ if ($row = mysqli_fetch_assoc($query)) {
                     </tbody>
                   </table>
                 </div>
-                
+
                 <div class="table-responsive my-5">
                   <table id="salesTable" class="table table-striped">
                     <h4>PRODUCT SALES SUMMARY - NC ( <span id="salesMonthYear">JULY 2024</span> )</h4>
@@ -152,7 +152,7 @@ if ($row = mysqli_fetch_assoc($query)) {
                           echo "<tr>
                                   <td>{$row['sales_proname']}</td>
                                   <td>{$row['total_sold']}</td>";
-                          
+
                           // Initialize array to store sales quantities for each day
                           $daySales = array_fill(1, 31, "");
 
@@ -200,18 +200,18 @@ if ($row = mysqli_fetch_assoc($query)) {
   <script>
     document.getElementById('exportBtn').addEventListener('click', function() {
       var wb = XLSX.utils.book_new();
-      
+
       // Add the first table to the workbook
       var ws1 = XLSX.utils.table_to_sheet(document.getElementById('reportTable'));
       XLSX.utils.book_append_sheet(wb, ws1, "Stock Summary");
-      
+
       // Add the second table to the workbook
       var ws2 = XLSX.utils.table_to_sheet(document.getElementById('salesTable'));
       XLSX.utils.book_append_sheet(wb, ws2, "Sales Summary");
 
       // Get the month and year from the headings
       var reportMonthYear = document.getElementById('reportMonthYear').innerText.trim();
-      
+
       // Write the workbook to a file with dynamic name
       XLSX.writeFile(wb, `Report-${reportMonthYear}.xlsx`);
     });
