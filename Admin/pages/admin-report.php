@@ -20,7 +20,6 @@ if ($row = mysqli_fetch_assoc($query)) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Admin Report</title>
-  <!-- <meta http-equiv="refresh" content="10"> -->
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
@@ -31,8 +30,7 @@ if ($row = mysqli_fetch_assoc($query)) {
       width: 100%;
     }
 
-    th,
-    td {
+    th, td {
       border: 1px solid #dddddd;
       text-align: left;
       padding: 8px;
@@ -71,7 +69,6 @@ if ($row = mysqli_fetch_assoc($query)) {
                         <th>Items</th>
                         <th>Stock</th>
                         <?php
-                        // Generate table headers for each day of the month
                         for ($day = 1; $day <= 31; $day++) {
                           echo "<th>$day</th>";
                         }
@@ -86,29 +83,23 @@ if ($row = mysqli_fetch_assoc($query)) {
                       $result = $conn->query($sql);
 
                       if ($result->num_rows > 0) {
-                        // Output data of each row
                         while ($row = $result->fetch_assoc()) {
                           $used = $row['pro_quantity'] - $row['pro_curquantity'];
                           echo "<tr>
                                   <td>{$row['pro_name']}</td>
                                   <td>{$row['pro_quantity']}</td>";
 
-                          // Initialize array to store stock quantities for each day
                           $dayStock = array_fill(1, 31, "");
 
-                          // Fetch data from stock table for each product
                           $productId = $row['pri_id'];
-                          $stockQuery = "SELECT DAY(stock_date) AS day, SUM(stock_quantity) AS stock_quantity 
-                                         FROM stock WHERE stock_proid = $productId GROUP BY day";
+                          $stockQuery = "SELECT DAY(stock_date) AS day, SUM(stock_quantity) AS stock_quantity FROM stock WHERE stock_proid = $productId GROUP BY day";
                           $stockResult = $conn->query($stockQuery);
 
-                          // Fill in actual stock quantities based on dates
                           while ($stockRow = $stockResult->fetch_assoc()) {
                             $stockDate = $stockRow['day'];
                             $dayStock[$stockDate] = $stockRow['stock_quantity'];
                           }
 
-                          // Output stock quantities for each day
                           for ($day = 1; $day <= 31; $day++) {
                             echo "<td>{$dayStock[$day]}</td>";
                           }
@@ -133,7 +124,6 @@ if ($row = mysqli_fetch_assoc($query)) {
                         <th>Items</th>
                         <th>Sold</th>
                         <?php
-                        // Generate table headers for each day of the month
                         for ($day = 1; $day <= 31; $day++) {
                           echo "<th>$day</th>";
                         }
@@ -147,32 +137,81 @@ if ($row = mysqli_fetch_assoc($query)) {
                       $result = $conn->query($sql);
 
                       if ($result->num_rows > 0) {
-                        // Output data of each row
                         while ($row = $result->fetch_assoc()) {
                           echo "<tr>
                                   <td>{$row['sales_proname']}</td>
                                   <td>{$row['total_sold']}</td>";
 
-                          // Initialize array to store sales quantities for each day
                           $daySales = array_fill(1, 31, "");
 
-                          // Fetch data from sales table for each product
                           $productId = $row['sales_proid'];
                           $salesQuery = "SELECT DAY(sales_date) AS day, SUM(sales_quan) AS sales_quan FROM sales WHERE sales_proid = $productId GROUP BY day";
                           $salesResult = $conn->query($salesQuery);
 
-                          // Fill in actual sales quantities based on dates
                           while ($salesRow = $salesResult->fetch_assoc()) {
                             $salesDate = $salesRow['day'];
                             $daySales[$salesDate] = $salesRow['sales_quan'];
                           }
 
-                          // Output sales quantities for each day
                           for ($day = 1; $day <= 31; $day++) {
                             echo "<td>{$daySales[$day]}</td>";
                           }
 
                           echo "<td>{$row['total_sold']}</td>
+                                </tr>";
+                        }
+                      } else {
+                        echo "<tr><td colspan='34'>No data available</td></tr>";
+                      }
+                      ?>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="table-responsive my-5">
+                  <table id="priceTable" class="table table-striped">
+                    <h4>PRODUCT PRICE SUMMARY - NC ( <span id="priceMonthYear">JULY 2024</span> )</h4>
+                    <thead>
+                      <tr>
+                        <th>Items</th>
+                        <th>Price</th>
+                        <?php
+                        for ($day = 1; $day <= 31; $day++) {
+                          echo "<th>$day</th>";
+                        }
+                        ?>
+                        <th>Total Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $sql = "SELECT pri_id, pro_name, pro_price FROM price";
+                      $result = $conn->query($sql);
+
+                      if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                          echo "<tr>
+                                  <td>{$row['pro_name']}</td>
+                                  <td>{$row['pro_price']}</td>";
+
+                          $dayPrices = array_fill(1, 31, "");
+
+                          $productId = $row['pri_id'];
+                          $priceQuery = "SELECT DAY(sales_date) AS day, SUM(sales_quan * {$row['pro_price']}) AS total_price FROM sales WHERE sales_proid = $productId GROUP BY day";
+                          $priceResult = $conn->query($priceQuery);
+
+                          while ($priceRow = $priceResult->fetch_assoc()) {
+                            $priceDate = $priceRow['day'];
+                            $dayPrices[$priceDate] = $priceRow['total_price'];
+                          }
+
+                          $totalPrice = array_sum($dayPrices);
+
+                          for ($day = 1; $day <= 31; $day++) {
+                            echo "<td>{$dayPrices[$day]}</td>";
+                          }
+
+                          echo "<td>$totalPrice</td>
                                 </tr>";
                         }
                       } else {
@@ -192,7 +231,7 @@ if ($row = mysqli_fetch_assoc($query)) {
       </div>
       <footer class="footer">
         <div class="d-sm-flex justify-content-center justify-content-sm-between">
-          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024.Nutri-time. All rights reserved.</span>
+          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024. Nutri-time. All rights reserved.</span>
         </div>
       </footer>
     </div>
@@ -201,18 +240,17 @@ if ($row = mysqli_fetch_assoc($query)) {
     document.getElementById('exportBtn').addEventListener('click', function() {
       var wb = XLSX.utils.book_new();
 
-      // Add the first table to the workbook
       var ws1 = XLSX.utils.table_to_sheet(document.getElementById('reportTable'));
       XLSX.utils.book_append_sheet(wb, ws1, "Stock Summary");
 
-      // Add the second table to the workbook
       var ws2 = XLSX.utils.table_to_sheet(document.getElementById('salesTable'));
       XLSX.utils.book_append_sheet(wb, ws2, "Sales Summary");
 
-      // Get the month and year from the headings
+      var ws3 = XLSX.utils.table_to_sheet(document.getElementById('priceTable'));
+      XLSX.utils.book_append_sheet(wb, ws3, "Price Summary");
+
       var reportMonthYear = document.getElementById('reportMonthYear').innerText.trim();
 
-      // Write the workbook to a file with dynamic name
       XLSX.writeFile(wb, `Report-${reportMonthYear}.xlsx`);
     });
   </script>
