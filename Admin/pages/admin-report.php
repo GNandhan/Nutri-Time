@@ -123,7 +123,8 @@ if ($row = mysqli_fetch_assoc($query)) {
                     <thead>
                       <tr>
                         <th>Items</th>
-                        <th>Sold</th>
+                        <th>Quantity</th>
+                        <!-- <th>Sold</th> -->
                         <?php
                         for ($day = 1; $day <= 31; $day++) {
                           echo "<th>$day</th>";
@@ -134,14 +135,14 @@ if ($row = mysqli_fetch_assoc($query)) {
                     </thead>
                     <tbody>
                       <?php
-                      $sql = "SELECT sales_proid, sales_proname, SUM(sales_quan) AS total_sold FROM sales GROUP BY sales_proid";
+                      $sql = "SELECT sales_proid, sales_proname, pro_quantity, SUM(sales_quan) AS total_sold FROM sales JOIN price ON sales.sales_proid = price.pri_id GROUP BY sales_proid";
                       $result = $conn->query($sql);
 
                       if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                           echo "<tr>
-                                  <td>{$row['sales_proname']}</td>
-                                  <td>{$row['total_sold']}</td>";
+                  <td>{$row['sales_proname']}</td>
+                  <td>{$row['pro_quantity']}</td>";
 
                           $daySales = array_fill(1, 31, "");
 
@@ -159,15 +160,17 @@ if ($row = mysqli_fetch_assoc($query)) {
                           }
 
                           echo "<td>{$row['total_sold']}</td>
-                                </tr>";
+                </tr>";
                         }
                       } else {
-                        echo "<tr><td colspan='34'>No data available</td></tr>";
+                        echo "<tr><td colspan='35'>No data available</td></tr>";
                       }
                       ?>
                     </tbody>
                   </table>
                 </div>
+
+
 
                 <div class="table-responsive my-5">
                   <table id="priceTable" class="table table-striped">
@@ -175,18 +178,23 @@ if ($row = mysqli_fetch_assoc($query)) {
                     <thead>
                       <tr>
                         <th>Items</th>
-                        <th>Price</th>
+                        <th>Purchased Price</th>
                         <?php
                         for ($day = 1; $day <= 31; $day++) {
                           echo "<th>$day</th>";
                         }
                         ?>
                         <th>Total Price</th>
+                        <th>Sales Total</th>
+                        <th>Profit</th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
-                      $sql = "SELECT pri_id, pro_name, pro_price FROM price";
+                      $sql = "SELECT p.pri_id, p.pro_name, p.pro_price, IFNULL(SUM(s.sales_quan), 0) AS total_sold 
+                              FROM price p
+                              LEFT JOIN sales s ON p.pri_id = s.sales_proid
+                              GROUP BY p.pri_id, p.pro_name, p.pro_price";
                       $result = $conn->query($sql);
 
                       if ($result->num_rows > 0) {
@@ -198,7 +206,11 @@ if ($row = mysqli_fetch_assoc($query)) {
                           $dayPrices = array_fill(1, 31, "");
 
                           $productId = $row['pri_id'];
-                          $priceQuery = "SELECT DAY(sales_date) AS day, SUM(sales_quan * {$row['pro_price']}) AS total_price FROM sales WHERE sales_proid = $productId GROUP BY day";
+                          $priceQuery = "SELECT DAY(sales_date) AS day, SUM(sales_total) AS total_price 
+                                         FROM sales 
+                                         WHERE sales_proid = $productId 
+                                         GROUP BY day";
+
                           $priceResult = $conn->query($priceQuery);
 
                           while ($priceRow = $priceResult->fetch_assoc()) {
@@ -206,17 +218,21 @@ if ($row = mysqli_fetch_assoc($query)) {
                             $dayPrices[$priceDate] = $priceRow['total_price'];
                           }
 
-                          $totalPrice = array_sum($dayPrices);
+                          $totalPrice = $row['total_sold'] * $row['pro_price'];
+                          $salesTotal = array_sum($dayPrices);
+                          $profit = $salesTotal - $totalPrice;
 
                           for ($day = 1; $day <= 31; $day++) {
                             echo "<td>{$dayPrices[$day]}</td>";
                           }
 
                           echo "<td>$totalPrice</td>
+                                <td>$salesTotal</td>
+                                <td>$profit</td>
                                 </tr>";
                         }
                       } else {
-                        echo "<tr><td colspan='34'>No data available</td></tr>";
+                        echo "<tr><td colspan='35'>No data available</td></tr>";
                       }
 
                       $conn->close();
