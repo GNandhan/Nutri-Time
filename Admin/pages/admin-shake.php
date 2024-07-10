@@ -157,7 +157,7 @@ if ($_SESSION["email"] == "") {
                   <div class="row">
                     <div class="col-lg col-md col-sm col-7">
                       <div class="form-group">
-                        <label>Associate Name</label>
+                        <label>Wellness Coach</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="shassoc" placeholder="Enter Asssociate name" value="<?php echo $sh_assoc1; ?>" required>
                       </div>
                     </div>
@@ -300,13 +300,13 @@ if ($_SESSION["email"] == "") {
                         <th>Associate Name</th>
                         <th>Shake Goal</th>
                         <th>Recipes</th>
-                        <th>MRP</th>
+                        <th>Scoop Price</th>
                         <th>No of Scoops</th>
                         <th>Extra Ingredients</th>
                         <th>Extra Ingredients Cost</th>
                         <th>Discount</th>
                         <th>Service Charge</th>
-                        <th>Total</th>
+                        <th>Shake Price</th>
                       </tr>
                     </thead>
                     <?php
@@ -366,13 +366,13 @@ if ($_SESSION["email"] == "") {
                                     <div class="col-lg col-md col-sm col h4">Associate Name</div>
                                     <div class="col-lg col-md col-sm col h4">Shake Goal</div>
                                     <div class="col-lg col-md col-sm col h4">Recipes</div>
-                                    <div class="col-lg col-md col-sm col h4">MRP</div>
+                                    <div class="col-lg col-md col-sm col h4">Scoop Price</div>
                                     <div class="col-lg col-md col-sm col h4">No of Scoops</div>
                                     <div class="col-lg col-md col-sm col h4">Extra Ingredients</div>
                                     <div class="col-lg col-md col-sm col h4">Extra Ingredients Cost</div>
                                     <div class="col-lg col-md col-sm col h4">Discount</div>
                                     <div class="col-lg col-md col-sm col h4">Service Charge</div>
-                                    <div class="col-lg col-md col-sm col h4">Total</div>
+                                    <div class="col-lg col-md col-sm col h4">Shake Price</div>
                                   </div>
                                   <?php
                                   // Query to fetch all shakes for the current customer

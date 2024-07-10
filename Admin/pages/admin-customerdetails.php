@@ -91,7 +91,7 @@ if ($_SESSION["email"] == "") {
                         $cus_paiddate5 = $c_row['cust_paiddate5'];
                         $cus_remain = $c_row['cust_remain'];
                         $cus_date = $c_row['cust_date'];
-
+                        $cus_paidtotal = $cus_total - $cus_remain;
                         // Fetch payment history
                         $pay_history_query = mysqli_query($conn, "SELECT `pay_id`, `cust_id`, `cust_code`, `cust_name`, `cust_paid`, `cust_paiddate` FROM `pay_history` WHERE `cust_id` = $progid");
 
@@ -263,7 +263,7 @@ if ($_SESSION["email"] == "") {
                         <div class="col-lg col-md col-sm col grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <p class="card-description">BMI & BMR HISTORY</p>
+                                    <p class="card-description">Body Parameters</p>
                                     <hr>
                                     <?php
                                     $serial_number = 1; // Initialize serial number

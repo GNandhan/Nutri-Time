@@ -119,7 +119,7 @@ if ($row = mysqli_fetch_assoc($query)) {
 
                 <div class="table-responsive my-5">
                   <table id="salesTable" class="table table-striped">
-                    <h4>PRODUCT SALES SUMMARY - NC ( <span id="salesMonthYear">JULY 2024</span> )</h4>
+                    <h4>PRODUCT SALES QUANTITY - NC ( <span id="salesMonthYear">JULY 2024</span> )</h4>
                     <thead>
                       <tr>
                         <th>Items</th>
@@ -174,7 +174,7 @@ if ($row = mysqli_fetch_assoc($query)) {
 
                 <div class="table-responsive my-5">
                   <table id="priceTable" class="table table-striped">
-                    <h4>PRODUCT PRICE SUMMARY - NC ( <span id="priceMonthYear">JULY 2024</span> )</h4>
+                    <h4>PRODUCT SALES PRICE - NC ( <span id="priceMonthYear">JULY 2024</span> )</h4>
                     <thead>
                       <tr>
                         <th>Items</th>
