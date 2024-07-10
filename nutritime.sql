@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 07, 2024 at 03:28 PM
+-- Generation Time: Jul 10, 2024 at 06:16 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -163,7 +163,7 @@ INSERT INTO `customer` (`cust_id`, `cust_code`, `cust_name`, `cust_phno`, `cust_
 (1010, 'CUS10027', 'Abdul', '9887659854', 'Amal', '38', '39', 'Male', 'abdul12@gmail.com', '', '20-06-2024', 'Kochi', '3rd floor, kochi, po', '163', '96', '60', '24', '001', '002', '003', '', '004', '005', '11:09', 'Black Coffee', 'Idly, Sambar', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '2 litre', 'Diabeted', 'Cancer', 'High BP', '', '', '', '', '', 'Weight lose', 'Offline', '20', '10000', '0', '2024-04-01', '4000', '2024-04-27'),
 (1011, 'CUS10026', 'Arjun', '', '', '', '', '', '', '', '2024-06-30', '', '', '150', '90', '50', '', '', '103.5', '306.4', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '15000', '5500', '2024-04-01', '0', '2024-04-01'),
 (1012, 'CUS10028', 'Edwin', '9865875498', 'Amal', '24', '25', 'Male', 'edwin12@gmail.com', '', '2024-04-01', 'Kochi', '3rd floor, kochi, po', '154', '96', '60', '18', '001', '11', '12', '', '13', '14', '03:25', 'Black Coffee', 'Noodles', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '2 litre', 'belly fat', 'blood cancer', 'nutrition effectency', 'Diabeties', 'Fever', 'Blood pressure', 'Diabeties 2', 'Diabeties 3', 'Weight lose', 'Offline', '30', '30000', '0', '2024-04-01', '0', '2024-05-04'),
-(1017, 'CUS10030', 'Wolf', '9876543210', 'Amal', '25', '32', 'Male', 'wolf12@gmail.com', '', '2024-06-13', 'North Marad', '3rd floor, Marad, po', '163', '85', '63', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0', '0', '', '0', ''),
+(1017, 'CUS10030', 'Mathew', '9876543210', 'Amal', '25', '32', 'Male', 'wolf12@gmail.com', '', '2024-06-13', 'North Marad', '3rd floor, Marad, po', '163', '85', '63', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '150000', '10000', '', '130000', '2024-07-10'),
 (1018, '', 'Aswin', '7034410471', '', '', '', 'Male', 'mma125037@gmail.com', 'kannan@123', '', 'Kottayam', 'Mukalel House', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, '', NULL, '');
 
 -- --------------------------------------------------------
@@ -200,7 +200,8 @@ INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`)
 ('nutriadmin@gmail.com', 3, '2024-07-04 16:33:34'),
 ('nutriadmin@gmail.com', 4, '2024-07-05 10:24:33'),
 ('nutriadmin@gmail.com', 5, '2024-07-05 11:19:27'),
-('nutriadmin@gmail.com', 6, '2024-07-06 20:31:50');
+('nutriadmin@gmail.com', 6, '2024-07-06 20:31:50'),
+('nutriadmin@gmail.com', 7, '2024-07-09 07:05:37');
 
 -- --------------------------------------------------------
 
@@ -251,7 +252,10 @@ INSERT INTO `pay_history` (`pay_id`, `cust_id`, `cust_code`, `cust_name`, `cust_
 (27, 1006, 'CUS10029', 'Albin', '879', '2024-06-12'),
 (28, 1018, '', 'Aswin', '1000', '2024-06-26'),
 (29, 1006, 'CUS10029', 'Albin', '8000', '2024-06-26'),
-(30, 1006, 'CUS10029', 'Albin', '999', '2024-06-28');
+(30, 1006, 'CUS10029', 'Albin', '999', '2024-06-28'),
+(31, 1017, 'CUS10030', 'Mathew', '0', '2024-07-10'),
+(32, 1017, 'CUS10030', 'Mathew', '10000', '2024-07-10'),
+(33, 1017, 'CUS10030', 'Mathew', '10000', '2024-07-11');
 
 -- --------------------------------------------------------
 
@@ -313,6 +317,15 @@ CREATE TABLE `product` (
   `product_img` varchar(100) NOT NULL,
   `product_desc` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`product_id`, `product_name`, `product_img`, `product_desc`) VALUES
+(3, 'Fitness diet', 'main page.jpg', 'Newly one'),
+(4, 'Weight Gainer', 'shake3.jpg', 'mmm'),
+(5, 'Weight Gainer', 'shake2.jpg', 'nmmm');
 
 -- --------------------------------------------------------
 
@@ -694,13 +707,13 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `pay_history`
 --
 ALTER TABLE `pay_history`
-  MODIFY `pay_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `pay_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `price`
@@ -712,7 +725,7 @@ ALTER TABLE `price`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `program`
