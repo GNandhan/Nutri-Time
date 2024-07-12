@@ -41,7 +41,7 @@ if ($row = mysqli_fetch_assoc($query)) {
             </div>
           </div>
         </div>
-        <div class="row">
+        <div class="row d-flex align-items-center">
           <!-- newly arrived product carousel -->
           <div class="col-md-6 grid-margin stretch-card">
             <div class="card tale-bg" style="position: relative;">
@@ -53,17 +53,19 @@ if ($row = mysqli_fetch_assoc($query)) {
                 <div class="carousel-inner">
                   <?php
                   $sql = mysqli_query($conn, "SELECT * FROM product ORDER BY product_id ");
+                  $firstItem = true; // Variable to track the first item
                   while ($row = mysqli_fetch_assoc($sql)) {
                     $pro_img = $row['product_img'];
                   ?>
-                    <!-- Add your carousel items here -->
-                    <div class="carousel-item active">
-                      <img src="../images/product/<?php echo $pro_img; ?>" class="d-block w-100 img-fluid" alt="People 1" style="object-fit: cover; height: 300px; border-radius: 20px;">
+                    <div class="carousel-item <?php if ($firstItem) {
+                                                echo 'active';
+                                                $firstItem = false;
+                                              } ?>">
+                      <img src="../images/product/<?php echo htmlspecialchars($pro_img, ENT_QUOTES, 'UTF-8'); ?>" class="d-block w-100 img-fluid" alt="Product Image" style="object-fit: cover; height: 300px; border-radius: 20px;">
                     </div>
                   <?php
                   }
                   ?>
-                  <!-- Add more carousel items as needed -->
                 </div>
                 <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -76,6 +78,7 @@ if ($row = mysqli_fetch_assoc($query)) {
               </div>
             </div>
           </div>
+
           <?php
           // Query to get the counts
           $result = $conn->query("SELECT COUNT(*) AS customer_count FROM customer WHERE cust_prgtype = 'Online'");
@@ -101,7 +104,7 @@ if ($row = mysqli_fetch_assoc($query)) {
                 <div class="card card-tale">
                   <div class="card-body">
                     <p class="mb-4">Online Customer</p>
-                    <p class="fs-30 mb-2"><?php echo $cateringonline_count; ?></p>
+                    <h2 class="fs-3 mb-2"><?php echo $cateringonline_count; ?></h2>
                   </div>
                 </div>
               </div>
@@ -109,25 +112,25 @@ if ($row = mysqli_fetch_assoc($query)) {
                 <div class="card card-dark-blue">
                   <div class="card-body">
                     <p class="mb-4">Offline Customer</p>
-                    <p class="fs-30 mb-2"><?php echo $customeroffline_count; ?></p>
+                    <h2 class="fs-3 mb-2"><?php echo $customeroffline_count; ?></h2>
                   </div>
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-6 col-6 mb-4 mb-lg-0 stretch-card transparent">
+              <div class="col-md-6 col-6 mb-4 stretch-card transparent">
                 <div class="card card-light-blue">
                   <div class="card-body">
                     <p class="mb-4">Number of Staff</p>
-                    <p class="fs-30 mb-2"><?php echo $staff_count; ?></p>
+                    <h2 class="fs-3 mb-2"><?php echo $staff_count; ?></h2>
                   </div>
                 </div>
               </div>
-              <div class="col-md-6 col-6 mb-0 stretch-card transparent">
+              <div class="col-md-6 col-6 mb-4 stretch-card transparent">
                 <div class="card card-light-danger">
                   <div class="card-body">
                     <p class="mb-4">Number of Clients</p>
-                    <p class="fs-30 mb-2"><?php echo $customer_count; ?></p>
+                    <h2 class="fs-3 mb-2"><?php echo $customer_count; ?></h2>
                   </div>
                 </div>
               </div>
@@ -216,10 +219,10 @@ if ($row = mysqli_fetch_assoc($query)) {
               <div class="card-body">
                 <p class="card-title mb-0">Newly Orders</p>
                 <div class="table-responsive">
-                  <table class="table table-borderless table-striped">
+                  <table class="table table-striped table-hover">
                     <thead>
                       <tr>
-                        <th class="pl-0  pb-2 border-bottom">Product</th>
+                        <th class="pl-0 pb-2 border-bottom">Product</th>
                         <th class="border-bottom pb-2">Place</th>
                         <th class="border-bottom pb-2">Order</th>
                       </tr>
@@ -238,18 +241,19 @@ if ($row = mysqli_fetch_assoc($query)) {
                         $stock_date = $row['stock_date'];
                       ?>
                         <tr>
-                          <td class="pl-0 pl-4"><?php echo $stock_product; ?></td>
-                          <td>
-                            <p class="mb-0"><span class="font-weight-bold mr-2"><?php echo $stock_location; ?></span></p>
+                          <td class="pl-0 pl-4 border-right"><?php echo htmlspecialchars($stock_product, ENT_QUOTES, 'UTF-8'); ?></td>
+                          <td class="border-right">
+                            <p class="mb-0"><span class="font-weight-bold mr-2"><?php echo htmlspecialchars($stock_location, ENT_QUOTES, 'UTF-8'); ?></span></p>
                           </td>
-                          <td class="text-muted"> <span class="font-weight-bold"><?php echo $stock_quan; ?></span></td>
+                          <td class="text-muted border-right"><span class="font-weight-bold"><?php echo htmlspecialchars($stock_quan, ENT_QUOTES, 'UTF-8'); ?></span></td>
                         </tr>
-                    </tbody>
-                  <?php
+                      <?php
                       }
-                  ?>
+                      ?>
+                    </tbody>
                   </table>
                 </div>
+
               </div>
             </div>
           </div>
