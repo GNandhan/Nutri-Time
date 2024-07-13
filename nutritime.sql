@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2024 at 11:32 PM
+-- Generation Time: Jul 13, 2024 at 02:04 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -54,6 +54,12 @@ CREATE TABLE `bmr_history` (
   `cust_name` varchar(100) NOT NULL,
   `cust_bmr` varchar(20) NOT NULL,
   `cust_bmi` varchar(20) NOT NULL,
+  `cust_vcf` varchar(20) NOT NULL,
+  `cust_tcf` varchar(20) NOT NULL,
+  `cust_fat` varchar(20) NOT NULL,
+  `cust_bage` varchar(20) NOT NULL,
+  `cust_weight` varchar(20) NOT NULL,
+  `cust_mass` varchar(20) NOT NULL,
   `cust_bmidate` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -61,15 +67,18 @@ CREATE TABLE `bmr_history` (
 -- Dumping data for table `bmr_history`
 --
 
-INSERT INTO `bmr_history` (`bmr_id`, `cust_id`, `cust_code`, `cust_name`, `cust_bmr`, `cust_bmi`, `cust_bmidate`) VALUES
-(1, 1010, 'CUS10028', 'Edwin', '11', '12', '2024-06-01'),
-(2, 1003, 'CUS10028', 'Edwin', '2002', '1001', '2024-06-01'),
-(3, 1003, 'CUS10028', 'Edwin', '0110', '0220', '2024-06-02'),
-(4, 1003, 'CUS10028', 'Edwin', '2222', '1111', '2024-06-03'),
-(5, 1003, 'CUS10028', 'Edwin', '0002', '0001', '2024-06-04'),
-(6, 1005, 'CUS10028', 'Edwin', '333', '222', '2024-06-06'),
-(7, 1005, 'CUS10028', 'Edwin', '201', '301', '2024-06-05'),
-(8, 1006, '', 'Aswin', '30', '15', '2024-06-26');
+INSERT INTO `bmr_history` (`bmr_id`, `cust_id`, `cust_code`, `cust_name`, `cust_bmr`, `cust_bmi`, `cust_vcf`, `cust_tcf`, `cust_fat`, `cust_bage`, `cust_weight`, `cust_mass`, `cust_bmidate`) VALUES
+(1, 1010, 'CUS10028', 'Edwin', '11', '12', '', '', '', '', '', '', '2024-06-01'),
+(2, 1003, 'CUS10028', 'Edwin', '2002', '1001', '', '', '', '', '', '', '2024-06-01'),
+(3, 1003, 'CUS10028', 'Edwin', '0110', '0220', '', '', '', '', '', '', '2024-06-02'),
+(4, 1003, 'CUS10028', 'Edwin', '2222', '1111', '', '', '', '', '', '', '2024-06-03'),
+(5, 1003, 'CUS10028', 'Edwin', '0002', '0001', '', '', '', '', '', '', '2024-06-04'),
+(6, 1005, 'CUS10028', 'Edwin', '333', '222', '', '', '', '', '', '', '2024-06-06'),
+(7, 1005, 'CUS10028', 'Edwin', '201', '301', '', '', '', '', '', '', '2024-06-05'),
+(8, 1006, '', 'Aswin', '30', '15', '', '', '', '', '', '', '2024-06-26'),
+(9, 1006, '', 'Aswin', '20', '10', '30', '40', '50', '60', '70', '80', '2024-07-04'),
+(10, 1006, '', 'Aswin', '33', '22', '44', '55', '66', '77', '88', '99', '2024-07-05'),
+(11, 1006, '', 'Aswin', '0002', '0001', '0003', '0004', '0005', '0006', '0007', '0008', '2024-07-10');
 
 -- --------------------------------------------------------
 
@@ -684,7 +693,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `bmr_history`
 --
 ALTER TABLE `bmr_history`
-  MODIFY `bmr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `bmr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `category`
