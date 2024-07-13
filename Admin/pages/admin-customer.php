@@ -401,77 +401,77 @@ if ($_SESSION["email"] == "") {
         </div>
         <!-- PHP CODE FOR INSERTING THE DATA -->
         <?php
-if (isset($_POST["submitp"])) {
-  // Collect form data
-  $ccode = $_POST["cuscode"];
-  $cname = $_POST["cusname"];
-  $cphno = $_POST["cusphno"];
-  $cinvite = $_POST["cusinvite"];
-  $cage = $_POST["cusage"];
-  $cbodyage = $_POST["cusbodyage"];
-  $cgender = $_POST["cusgender"];
-  $cemail = $_POST["cusemail"];
-  $cdoj = $_POST["cusdoj"];
-  $ccity = $_POST["cuscity"];
-  $caddress = $_POST["cusaddress"];
-  $cheight = floatval($_POST["cusheight"]);
-  $cweight = floatval($_POST["cusweight"]);
-  $cidle = 100.0;
-  $cidleweight = $cheight - $cidle;
-  $cfat = $_POST["cusfat"];
-  $cvcf = $_POST["cusvcf"];
-  $cbmr = $_POST["cusbmr"];
-  $cbmi = $_POST["cusbmi"];
-  $cmm = $_POST["cusmm"];
-  $ctcf = $_POST["custcf"];
-  $cwaketime = $_POST["cuswaketime"];
-  $ctea = $_POST["custea"];
-  $cbreakfast = $_POST["cusbreakfast"];
-  $clunch = $_POST["cuslunch"];
-  $csnack = $_POST["cussnack"];
-  $cdinner = $_POST["cusdinner"];
-  $cveg = $_POST["cusveg"];
-  $cwaterintake = $_POST["cuswaterintake"];
-  $ccond1 = $_POST["cuscond1"];
-  $ccond2 = $_POST["cuscond2"];
-  $ccond3 = $_POST["cuscond3"];
-  $ccond4 = $_POST["cuscond4"];
-  $ccond5 = $_POST["cuscond5"];
-  $ccond6 = $_POST["cuscond6"];
-  $ccond7 = $_POST["cuscond7"];
-  $ccond8 = $_POST["cuscond8"];
-  $cprogram = $_POST["cusprogram"];
-  $cprgtype = $_POST["cusprgtype"];
-  $cnoday = $_POST["cusnoday"];
-  $ctotal = floatval($_POST["custotal"]);
-  $cpaid = floatval($_POST["cuspaid"]);
-  $cdate = $_POST["cusdate"];
-  $crem = $ctotal - $cpaid;
+        if (isset($_POST["submitp"])) {
+          // Collect form data
+          $ccode = $_POST["cuscode"];
+          $cname = $_POST["cusname"];
+          $cphno = $_POST["cusphno"];
+          $cinvite = $_POST["cusinvite"];
+          $cage = $_POST["cusage"];
+          $cbodyage = $_POST["cusbodyage"];
+          $cgender = $_POST["cusgender"];
+          $cemail = $_POST["cusemail"];
+          $cdoj = $_POST["cusdoj"];
+          $ccity = $_POST["cuscity"];
+          $caddress = $_POST["cusaddress"];
+          $cheight = floatval($_POST["cusheight"]);
+          $cweight = floatval($_POST["cusweight"]);
+          $cidle = 100.0;
+          $cidleweight = $cheight - $cidle;
+          $cfat = $_POST["cusfat"];
+          $cvcf = $_POST["cusvcf"];
+          $cbmr = $_POST["cusbmr"];
+          $cbmi = $_POST["cusbmi"];
+          $cmm = $_POST["cusmm"];
+          $ctcf = $_POST["custcf"];
+          $cwaketime = $_POST["cuswaketime"];
+          $ctea = $_POST["custea"];
+          $cbreakfast = $_POST["cusbreakfast"];
+          $clunch = $_POST["cuslunch"];
+          $csnack = $_POST["cussnack"];
+          $cdinner = $_POST["cusdinner"];
+          $cveg = $_POST["cusveg"];
+          $cwaterintake = $_POST["cuswaterintake"];
+          $ccond1 = $_POST["cuscond1"];
+          $ccond2 = $_POST["cuscond2"];
+          $ccond3 = $_POST["cuscond3"];
+          $ccond4 = $_POST["cuscond4"];
+          $ccond5 = $_POST["cuscond5"];
+          $ccond6 = $_POST["cuscond6"];
+          $ccond7 = $_POST["cuscond7"];
+          $ccond8 = $_POST["cuscond8"];
+          $cprogram = $_POST["cusprogram"];
+          $cprgtype = $_POST["cusprgtype"];
+          $cnoday = $_POST["cusnoday"];
+          $ctotal = floatval($_POST["custotal"]);
+          $cpaid = floatval($_POST["cuspaid"]);
+          $cdate = $_POST["cusdate"];
+          $crem = $ctotal - $cpaid;
 
-  // Fetch the shake ID from the form
-  $cus_id = $_POST["custid"];
+          // Fetch the shake ID from the form
+          $cus_id = $_POST["custid"];
 
-  if ($cus_id == '') {
-    $sql = mysqli_query($conn, "INSERT INTO customer (cust_code, cust_name, cust_phno, cust_invited, cust_age, cust_bodyage, cust_gender, cust_email, cust_doj, cust_city, cust_address, cust_height, cust_weight, cust_idleweight, cust_fat, cust_vcf, cust_bmr, cust_bmi, cust_mm, cust_tsf, cust_waketime, cust_tea, cust_breakfast, cust_lunch, cust_snack, cust_dinner, cust_veg_nonveg, cust_waterintake, cust_cond1, cust_cond2, cust_cond3, cust_cond4, cust_cond5, cust_cond6, cust_cond7, cust_cond8, cust_prg, cust_prgtype, cust_noday, cust_total, cust_remain, cust_date)
+          if ($cus_id == '') {
+            $sql = mysqli_query($conn, "INSERT INTO customer (cust_code, cust_name, cust_phno, cust_invited, cust_age, cust_bodyage, cust_gender, cust_email, cust_doj, cust_city, cust_address, cust_height, cust_weight, cust_idleweight, cust_fat, cust_vcf, cust_bmr, cust_bmi, cust_mm, cust_tsf, cust_waketime, cust_tea, cust_breakfast, cust_lunch, cust_snack, cust_dinner, cust_veg_nonveg, cust_waterintake, cust_cond1, cust_cond2, cust_cond3, cust_cond4, cust_cond5, cust_cond6, cust_cond7, cust_cond8, cust_prg, cust_prgtype, cust_noday, cust_total, cust_remain, cust_date)
       VALUES ('$ccode','$cname','$cphno','$cinvite','$cage','$cbodyage','$cgender','$cemail','$cdoj','$ccity','$caddress','$cheight','$cweight','$cidleweight','$cfat','$cvcf','$cbmr','$cbmi','$cmm','$ctcf','$cwaketime','$ctea','$cbreakfast','$clunch','$csnack','$cdinner','$cveg','$cwaterintake','$ccond1','$ccond2','$ccond3','$ccond4','$ccond5','$ccond6','$ccond7','$ccond8','$cprogram','$cprgtype','$cnoday','$ctotal','$crem','$cdate')");
 
-    // Insert into pay_history
-    $pay_history_sql = mysqli_query($conn, "INSERT INTO pay_history (cust_id, cust_code, cust_name, cust_paid, cust_paiddate) VALUES (LAST_INSERT_ID(), '$ccode', '$cname', '$cpaid', '$cdate')");
-  } else {
-    // Update customer
-    $sql = mysqli_query($conn, "UPDATE customer SET cust_code='$ccode', cust_name='$cname', cust_phno='$cphno', cust_invited='$cinvite', cust_age='$cage', cust_bodyage='$cbodyage', cust_gender='$cgender', cust_email='$cemail', cust_doj='$cdoj', cust_city='$ccity', cust_address='$caddress', cust_height='$cheight', cust_weight='$cweight', cust_idleweight='$cidleweight', cust_fat='$cfat', cust_vcf='$cvcf', cust_bmr='$cbmr', cust_bmi='$cbmi', cust_mm='$cmm', cust_tsf='$ctcf', cust_waketime='$cwaketime', cust_tea='$ctea', cust_breakfast='$cbreakfast', cust_lunch='$clunch', cust_snack='$csnack', cust_dinner='$cdinner', cust_veg_nonveg='$cveg', cust_waterintake='$cwaterintake', cust_cond1='$ccond1', cust_cond2='$ccond2', cust_cond3='$ccond3', cust_cond4='$ccond4', cust_cond5='$ccond5', cust_cond6='$ccond6', cust_cond7='$ccond7', cust_cond8='$ccond8', cust_prg='$cprogram', cust_prgtype='$cprgtype', cust_noday='$cnoday', cust_total='$ctotal', cust_paid='$cpaid', cust_remain='$crem', cust_date='$cdate' WHERE cust_id='$cus_id'");
+            // Insert into pay_history
+            $pay_history_sql = mysqli_query($conn, "INSERT INTO pay_history (cust_id, cust_code, cust_name, cust_paid, cust_paiddate) VALUES (LAST_INSERT_ID(), '$ccode', '$cname', '$cpaid', '$cdate')");
+          } else {
+            // Update customer
+            $sql = mysqli_query($conn, "UPDATE customer SET cust_code='$ccode', cust_name='$cname', cust_phno='$cphno', cust_invited='$cinvite', cust_age='$cage', cust_bodyage='$cbodyage', cust_gender='$cgender', cust_email='$cemail', cust_doj='$cdoj', cust_city='$ccity', cust_address='$caddress', cust_height='$cheight', cust_weight='$cweight', cust_idleweight='$cidleweight', cust_fat='$cfat', cust_vcf='$cvcf', cust_bmr='$cbmr', cust_bmi='$cbmi', cust_mm='$cmm', cust_tsf='$ctcf', cust_waketime='$cwaketime', cust_tea='$ctea', cust_breakfast='$cbreakfast', cust_lunch='$clunch', cust_snack='$csnack', cust_dinner='$cdinner', cust_veg_nonveg='$cveg', cust_waterintake='$cwaterintake', cust_cond1='$ccond1', cust_cond2='$ccond2', cust_cond3='$ccond3', cust_cond4='$ccond4', cust_cond5='$ccond5', cust_cond6='$ccond6', cust_cond7='$ccond7', cust_cond8='$ccond8', cust_prg='$cprogram', cust_prgtype='$cprgtype', cust_noday='$cnoday', cust_total='$ctotal', cust_paid='$cpaid', cust_remain='$crem', cust_date='$cdate' WHERE cust_id='$cus_id'");
 
-    // Insert into pay_history
-    $pay_history_sql = mysqli_query($conn, "INSERT INTO pay_history (cust_id, cust_code, cust_name, cust_paid, cust_paiddate) VALUES ('$cus_id', '$ccode', '$cname', '$cpaid', '$cdate')");
-  }
+            // Insert into pay_history
+            $pay_history_sql = mysqli_query($conn, "INSERT INTO pay_history (cust_id, cust_code, cust_name, cust_paid, cust_paiddate) VALUES ('$cus_id', '$ccode', '$cname', '$cpaid', '$cdate')");
+          }
 
-  if ($sql == TRUE && $pay_history_sql == TRUE) {
-    echo "<script type='text/javascript'>alert('Operation completed successfully.');</script>";
-  } else {
-    echo "<script type='text/javascript'>alert('Error: " . mysqli_error($conn) . "');</script>";
-  }
-}
-?>
+          if ($sql == TRUE && $pay_history_sql == TRUE) {
+            echo "<script type='text/javascript'>alert('Operation completed successfully.');</script>";
+          } else {
+            echo "<script type='text/javascript'>alert('Error: " . mysqli_error($conn) . "');</script>";
+          }
+        }
+        ?>
 
         <div class="row">
           <div class="col-lg-12 grid-margin stretch-card">
@@ -649,7 +649,7 @@ if (isset($_POST["submitp"])) {
                       </div>
                       <!-- Modal for BMI and BMR -->
                       <div class="modal fade" id="exampleModal2_<?php echo $cus_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
+                        <div class="modal-dialog modal-lg">
                           <div class="modal-content" style="border-radius:20px;">
                             <form action="" method="POST">
                               <input type="hidden" name="custid2" value="<?php echo $cus_id; ?>">
@@ -668,6 +668,12 @@ if (isset($_POST["submitp"])) {
                                     $bmr_id = $paymentRow['bmr_id'];
                                     $cust_bmr = $paymentRow['cust_bmr'];
                                     $cust_bmi = $paymentRow['cust_bmi'];
+                                    $cust_vcf = $paymentRow['cust_vcf'];
+                                    $cust_tcf = $paymentRow['cust_tcf'];
+                                    $cust_fat = $paymentRow['cust_fat'];
+                                    $cust_bage = $paymentRow['cust_bage'];
+                                    $cust_weight = $paymentRow['cust_weight'];
+                                    $cust_mass = $paymentRow['cust_mass'];
                                     $cust_bmidate = $paymentRow['cust_bmidate'];
                                   ?>
                                     <div class="row">
@@ -684,9 +690,39 @@ if (isset($_POST["submitp"])) {
                                         </div>
                                       </div>
                                       <div class="col-lg col-md col-sm-4 col-6">
+                                        <label class="">VCF</label>
+                                        <div class="form-group">
+                                          <input type="text" class="form-control" style="border-radius: 16px;" name="existing_cuspaiddate[]" value="<?php echo $cust_vcf; ?>" readonly>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg col-md col-sm-4 col-6">
+                                        <label class="">TCF</label>
+                                        <div class="form-group">
+                                          <input type="text" class="form-control" style="border-radius: 16px;" name="existing_cuspaiddate[]" value="<?php echo $cust_tcf; ?>" readonly>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg col-md col-sm-4 col-6">
                                         <label class="">Fat</label>
                                         <div class="form-group">
                                           <input type="text" class="form-control" style="border-radius: 16px;" name="existing_cuspaiddate[]" value="<?php echo $cust_fat; ?>" readonly>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg col-md col-sm-4 col-6">
+                                        <label class="">Body Age</label>
+                                        <div class="form-group">
+                                          <input type="text" class="form-control" style="border-radius: 16px;" name="existing_cuspaiddate[]" value="<?php echo $cust_bage; ?>" readonly>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg col-md col-sm-4 col-6">
+                                        <label class="">Weight</label>
+                                        <div class="form-group">
+                                          <input type="text" class="form-control" style="border-radius: 16px;" name="existing_cuspaiddate[]" value="<?php echo $cust_weight; ?>" readonly>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg col-md col-sm-4 col-6">
+                                        <label class="">Muscle Mass</label>
+                                        <div class="form-group">
+                                          <input type="text" class="form-control" style="border-radius: 16px;" name="existing_cuspaiddate[]" value="<?php echo $cust_mass; ?>" readonly>
                                         </div>
                                       </div>
                                       <div class="col-lg col-md col-sm-4 col-6">
@@ -708,6 +744,42 @@ if (isset($_POST["submitp"])) {
                                       <label class="">BMI</label>
                                       <div class="form-group">
                                         <input type="text" class="form-control cus-bmr" style="border-radius: 16px;" name="cusbmr" value="<?php echo $cus_bmr; ?>">
+                                      </div>
+                                    </div>
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">VCF</label>
+                                      <div class="form-group">
+                                        <input type="text" class="form-control cus-vcf" style="border-radius: 16px;" name="cusvcf" value="<?php echo $cus_vcf; ?>">
+                                      </div>
+                                    </div>
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">TCF</label>
+                                      <div class="form-group">
+                                        <input type="text" class="form-control cus-tcf" style="border-radius: 16px;" name="custcf" value="<?php echo $cus_tcf; ?>">
+                                      </div>
+                                    </div>
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">Fat</label>
+                                      <div class="form-group">
+                                        <input type="text" class="form-control cus-fat" style="border-radius: 16px;" name="cusfat" value="<?php echo $cus_fat; ?>">
+                                      </div>
+                                    </div>
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">Body Age</label>
+                                      <div class="form-group">
+                                        <input type="text" class="form-control cus-bage" style="border-radius: 16px;" name="cusbage" value="<?php echo $cus_bage; ?>">
+                                      </div>
+                                    </div>
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">Weight</label>
+                                      <div class="form-group">
+                                        <input type="text" class="form-control cus-weight" style="border-radius: 16px;" name="cusweight" value="<?php echo $cus_weight; ?>">
+                                      </div>
+                                    </div>
+                                    <div class="col-lg col-md col-sm-4 col-6">
+                                      <label class="">Muscle Mass</label>
+                                      <div class="form-group">
+                                        <input type="text" class="form-control cus-mass" style="border-radius: 16px;" name="cusmass" value="<?php echo $cus_mass; ?>">
                                       </div>
                                     </div>
                                     <div class="col-lg col-md col-sm-4 col-6">
@@ -768,16 +840,22 @@ if (isset($_POST["submitp"])) {
                   <!-- PHP CODE FOR INSERTING THE PAYMENT DATA -->
                   <?php
                   if (isset($_POST["submitbmi"])) {
-                    $cbmi = $_POST["cusbmi"];
                     $cbmr = $_POST["cusbmr"];
+                    $cbmi = $_POST["cusbmi"];
+                    $cvcf = $_POST["cusvcf"];
+                    $ctcf = $_POST["custcf"];
+                    $cfat = $_POST["cusfat"];
+                    $cbage = $_POST["cusbage"];
+                    $cweight = $_POST["cusweight"];
+                    $cmass = $_POST["cusmass"];
                     $cbmidate = $_POST["cusbmidate"];
                     $pri_id = $_POST["custid2"];
 
-                    $insertBMRSql = "INSERT INTO bmr_history (cust_id, cust_code, cust_name, cust_bmr, cust_bmi, cust_bmidate) 
-                    VALUES ('$pri_id', '$cus_code', '$cus_name', '$cbmr', '$cbmi', '$cbmidate')";
+                    $insertBMRSql = "INSERT INTO bmr_history (cust_id, cust_code, cust_name, cust_bmr, cust_bmi, cust_vcf, cust_tcf, cust_fat, cust_bage, cust_weight, cust_mass, cust_bmidate) 
+                    VALUES ('$pri_id', '$cust_code', '$cus_name', '$cbmr', '$cbmi', '$cvcf', '$ctcf', '$cfat', '$cbage', '$cweight', '$cmass', '$cbmidate')";
 
                     if (mysqli_query($conn, $insertBMRSql)) {
-                      echo "<script>alert('BMI & BMR history added successfully.');</script>";
+                      echo "<script>alert('Body parameters history added successfully.');</script>";
                       echo "<script>window.location='admin-customer.php';</script>";
                     } else {
                       echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";

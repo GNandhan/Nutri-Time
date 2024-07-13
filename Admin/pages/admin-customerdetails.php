@@ -104,7 +104,7 @@ if ($_SESSION["email"] == "") {
                             $payment_history = [];
                         }
                         // Fetch BMI and BMR history
-                        $bmr_history_query = mysqli_query($conn, "SELECT `bmr_id`, `cust_id`, `cust_code`, `cust_name`, `cust_bmr`, `cust_bmi`, `cust_bmidate` FROM `bmr_history` WHERE `cust_id` = $progid");
+                        $bmr_history_query = mysqli_query($conn, "SELECT `bmr_id`, `cust_id`, `cust_code`, `cust_name`, `cust_bmr`, `cust_bmi`, `cust_vcf`, `cust_tcf`, `cust_fat`, `cust_bage`, `cust_weight`, `cust_mass`, `cust_bmidate` FROM `bmr_history` WHERE `cust_id` = $progid");
 
                         if ($bmr_history_query && mysqli_num_rows($bmr_history_query) > 0) {
                             $bmr_history = [];
@@ -260,7 +260,7 @@ if ($_SESSION["email"] == "") {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg col-md col-sm col grid-margin stretch-card">
+                        <div class="col-lg-9 col-md col-sm col grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
                                     <p class="card-description">Body Parameters</p>
@@ -269,22 +269,52 @@ if ($_SESSION["email"] == "") {
                                     $serial_number = 1; // Initialize serial number
                                     foreach ($bmr_history as $bmr_item) { ?>
                                         <div class="row">
-                                            <div class="col-lg-1 col-md-1 col-sm-1 col">
+                                            <div class="col-lg col-md-1 col-sm-1 col">
                                                 <ul>
                                                     <li class="card-description"><?php echo $serial_number; ?></li>
                                                 </ul>
                                             </div>
-                                            <div class="col-lg-3 col-md-3 col-sm-3 col">
+                                            <div class="col-lg col-md col-sm-3 col">
                                                 <ul>
                                                     <li class="card-description">BMI: <span style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_bmi']; ?></span></li>
                                                 </ul>
                                             </div>
-                                            <div class="col-lg-3 col-md-3 col-sm-3 col">
+                                            <div class="col-lg col-md col-sm-3 col">
                                                 <ul>
                                                     <li class="card-description">BMR: <span style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_bmr']; ?></span></li>
                                                 </ul>
                                             </div>
-                                            <div class="col-lg-5 col-md-5 col-sm-5 col">
+                                            <div class="col-lg col-md col-sm-3 col">
+                                                <ul>
+                                                    <li class="card-description">VCF: <span style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_vcf']; ?></span></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg col-md col-sm-3 col">
+                                                <ul>
+                                                    <li class="card-description">TCF: <span style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_tcf']; ?></span></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg col-md col-sm-3 col">
+                                                <ul>
+                                                    <li class="card-description">FAT: <span style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_fat']; ?></span></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg col-md col-sm-3 col">
+                                                <ul>
+                                                    <li class="card-description">Body Age: <span style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_bage']; ?></span></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg col-md col-sm-3 col">
+                                                <ul>
+                                                    <li class="card-description">Weight: <span style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_weight']; ?></span></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg col-md col-sm-3 col">
+                                                <ul>
+                                                    <li class="card-description">Mass: <span style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_mass']; ?></span></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg-2 col-md col-sm-5 col">
                                                 <ul>
                                                     <li class="card-description">Date: <span style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_bmidate']; ?></span></li>
                                                 </ul>
