@@ -265,68 +265,47 @@ if ($_SESSION["email"] == "") {
                                 <div class="card-body">
                                     <p class="card-description">Body Parameters</p>
                                     <hr>
-                                    <?php
-                                    $serial_number = 1; // Initialize serial number
-                                    foreach ($bmr_history as $bmr_item) { ?>
-                                        <div class="row">
-                                            <div class="col-lg col-md-1 col-sm-1 col">
-                                                <ul>
-                                                    <li class="card-description"><?php echo $serial_number; ?></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg col-md col-sm-3 col">
-                                                <ul>
-                                                    <li class="card-description">BMI: <span style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_bmi']; ?></span></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg col-md col-sm-3 col">
-                                                <ul>
-                                                    <li class="card-description">BMR: <span style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_bmr']; ?></span></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg col-md col-sm-3 col">
-                                                <ul>
-                                                    <li class="card-description">VCF: <span style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_vcf']; ?></span></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg col-md col-sm-3 col">
-                                                <ul>
-                                                    <li class="card-description">TCF: <span style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_tcf']; ?></span></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg col-md col-sm-3 col">
-                                                <ul>
-                                                    <li class="card-description">FAT: <span style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_fat']; ?></span></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg col-md col-sm-3 col">
-                                                <ul>
-                                                    <li class="card-description">Body Age: <span style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_bage']; ?></span></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg col-md col-sm-3 col">
-                                                <ul>
-                                                    <li class="card-description">Weight: <span style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_weight']; ?></span></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg col-md col-sm-3 col">
-                                                <ul>
-                                                    <li class="card-description">Mass: <span style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_mass']; ?></span></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg-2 col-md col-sm-5 col">
-                                                <ul>
-                                                    <li class="card-description">Date: <span style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_bmidate']; ?></span></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    <?php
-                                        $serial_number++; // Increment serial number
-                                    } ?>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>BMI</th>
+                                                    <th>BMR</th>
+                                                    <th>VCF</th>
+                                                    <th>TCF</th>
+                                                    <th>FAT</th>
+                                                    <th>Body Age</th>
+                                                    <th>Weight</th>
+                                                    <th>Mass</th>
+                                                    <th>Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $serial_number = 1; // Initialize serial number
+                                                foreach ($bmr_history as $bmr_item) { ?>
+                                                    <tr>
+                                                        <td><?php echo $serial_number; ?></td>
+                                                        <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_bmi']; ?></td>
+                                                        <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_bmr']; ?></td>
+                                                        <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_vcf']; ?></td>
+                                                        <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_tcf']; ?></td>
+                                                        <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_fat']; ?></td>
+                                                        <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_bage']; ?></td>
+                                                        <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_weight']; ?></td>
+                                                        <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_mass']; ?></td>
+                                                        <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_bmidate']; ?></td>
+                                                    </tr>
+                                                <?php
+                                                    $serial_number++; // Increment serial number
+                                                } ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
 
                     </div>
                 <?php
