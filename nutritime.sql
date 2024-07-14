@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2024 at 02:04 AM
+-- Generation Time: Jul 14, 2024 at 10:05 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -198,20 +198,6 @@ CREATE TABLE `login_details` (
   `login_details_id` int(11) NOT NULL,
   `login_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `login_details`
---
-
-INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`) VALUES
-('nutriadmin@gmail.com', 1, '2024-07-02 08:20:04'),
-('nutriadmin@gmail.com', 2, '2024-07-04 00:11:53'),
-('nutriadmin@gmail.com', 3, '2024-07-04 16:33:34'),
-('nutriadmin@gmail.com', 4, '2024-07-05 10:24:33'),
-('nutriadmin@gmail.com', 5, '2024-07-05 11:19:27'),
-('nutriadmin@gmail.com', 6, '2024-07-06 20:31:50'),
-('nutriadmin@gmail.com', 7, '2024-07-09 07:05:37'),
-('nutriadmin@gmail.com', 8, '2024-07-12 19:56:03');
 
 -- --------------------------------------------------------
 
@@ -717,7 +703,7 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pay_history`
