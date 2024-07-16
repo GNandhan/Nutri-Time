@@ -229,8 +229,10 @@ if ($row = mysqli_fetch_assoc($query)) {
                     </thead>
                     <tbody>
                       <?php
-                      $sql = mysqli_query($conn, "SELECT * FROM stock ORDER BY stock_id ");
-                      $serialNo = 1;
+                      $sql = mysqli_query($conn, "SELECT * FROM stock ORDER BY stock_associate, stock_id");
+                      $current_place = null;
+                      $total_quantity = 0;
+
                       while ($row = mysqli_fetch_assoc($sql)) {
                         $stock_id = $row['stock_id'];
                         $stock_product = $row['stock_proname'];
@@ -239,63 +241,50 @@ if ($row = mysqli_fetch_assoc($query)) {
                         $stock_price = $row['stock_price'];
                         $stock_total = $row['stock_total'];
                         $stock_date = $row['stock_date'];
-                      ?>
-                        <tr>
-                          <td class="pl-0 pl-4 border-right"><?php echo htmlspecialchars($stock_product, ENT_QUOTES, 'UTF-8'); ?></td>
-                          <td class="border-right">
-                            <p class="mb-0"><span class="font-weight-bold mr-2"><?php echo htmlspecialchars($stock_location, ENT_QUOTES, 'UTF-8'); ?></span></p>
-                          </td>
-                          <td class="text-muted border-right"><span class="font-weight-bold"><?php echo htmlspecialchars($stock_quan, ENT_QUOTES, 'UTF-8'); ?></span></td>
-                        </tr>
-                      <?php
+
+                        // Check if place has changed
+                        if ($stock_location !== $current_place) {
+                          // Output row for previous place if not first iteration
+                          if ($current_place !== null) {
+                            echo '
+            <tr>
+              <td class="pl-0 pl-4 border-right">' . htmlspecialchars($stock_product, ENT_QUOTES, 'UTF-8') . '</td>
+              <td class="border-right">
+                <p class="mb-0"><span class="font-weight-bold mr-2">' . htmlspecialchars($current_place, ENT_QUOTES, 'UTF-8') . '</span></p>
+              </td>
+              <td class="text-muted border-right"><span class="font-weight-bold">' . $total_quantity . '</span></td>
+            </tr>';
+                          }
+
+                          // Reset total_quantity for the new place
+                          $current_place = $stock_location;
+                          $total_quantity = 0;
+                        }
+
+                        // Add current row quantity to total_quantity
+                        $total_quantity += $stock_quan;
+                      }
+
+                      // Output last row after loop ends
+                      if ($current_place !== null) {
+                        echo '
+        <tr>
+          <td class="pl-0 pl-4 border-right">' . htmlspecialchars($stock_product, ENT_QUOTES, 'UTF-8') . '</td>
+          <td class="border-right">
+            <p class="mb-0"><span class="font-weight-bold mr-2">' . htmlspecialchars($current_place, ENT_QUOTES, 'UTF-8') . '</span></p>
+          </td>
+          <td class="text-muted border-right"><span class="font-weight-bold">' . $total_quantity . '</span></td>
+        </tr>';
                       }
                       ?>
                     </tbody>
                   </table>
                 </div>
 
+
               </div>
             </div>
           </div>
-          <!-- <div class="col-md-4 stretch-card grid-margin">
-            <div class="card">
-              <div class="card-body">
-                <p class="card-title">Customers Reviews</p>
-                <ul class="icon-data-list">
-                  <li>
-                    <div class="d-flex">
-                      <img src="../images/user.jpg" alt="user">
-                      <div>
-                        <p class="text-info mb-1">Isabella Becker</p>
-                        <p class="mb-0">Thanks i really helpful</p>
-                        <small>9:30 am</small>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="d-flex">
-                      <img src="../images/user.jpg" alt="user">
-                      <div>
-                        <p class="text-info mb-1">Adam Warren</p>
-                        <p class="mb-0">You have done a great job
-                          <small>10:30 am</small>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="d-flex">
-                      <img src="../images/user.jpg" alt="user">
-                      <div>
-                        <p class="text-info mb-1">Leonard Thornton</p>
-                        <p class="mb-0">i am looking for this kind of product for so long,</p>
-                        <small>11:30 am</small>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div> -->
         </div>
       </div>
       <footer class="footer">
