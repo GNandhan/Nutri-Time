@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 14, 2024 at 10:05 PM
+-- Generation Time: Jul 16, 2024 at 10:54 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -199,6 +199,14 @@ CREATE TABLE `login_details` (
   `login_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `login_details`
+--
+
+INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`) VALUES
+('nutriadmin@gmail.com', 1, '2024-07-15 12:45:36'),
+('nutriadmin@gmail.com', 2, '2024-07-16 15:33:02');
+
 -- --------------------------------------------------------
 
 --
@@ -296,9 +304,9 @@ CREATE TABLE `price` (
 --
 
 INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subcat`, `pro_mrp`, `pro_price`, `pro_dis0`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`, `pro_vp`, `pro_vptotal`, `pro_scoop`, `pro_scooptotal`, `pro_scoopqua`, `pro_scoop0`, `pro_scoop15`, `pro_scoop25`, `pro_scoop35`, `pro_scoop42`, `pro_scoop50`, `pro_quantity`, `pro_curquantity`, `pro_hsn`, `pro_img`, `pro_date`) VALUES
-(1, 'FORMULA 1 SHAKE MIX VANILLA', 'F1V', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '1340', '2370', '2060', '1860', '1650', '1500', '1340', '21.75', '217.5', '60', '7920', '0', '118.90', '103.5', '93', '83.5', '73', '63.5', '132', '0', '785487', '', '2024-07-04'),
+(1, 'FORMULA 1 SHAKE MIX VANILLA', 'F1V', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '1340', '2370', '2060', '1860', '1650', '1500', '1340', '21.75', '261', '60', '9240', '720', '118.90', '103.5', '93', '83.5', '73', '63.5', '154', '12', '785487', '', '2024-07-20'),
 (2, 'FORMULA 1 SHAKE MIX CHOCOLATE', 'F1C', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2371', '1341', '2371', '2061', '1861', '1651', '1501', '1341', '12.75', '153', '50', '6150', '0', '121.65', '111.55', '10.45', '9.35', '8.25', '7.15', '123', '0', '986598', '', '2024-07-04'),
-(3, 'FORMULA 1 SHAKE MIX PISTAH', 'F1P', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '1342', '2372', '2062', '1862', '1652', '1502', '1342', '21.75', '435', '40', '4960', '400', '145.52', '135.52', '125.52', '115.52', '105.25', '95.25', '124', '10', '785487', '', '2024-07-05'),
+(3, 'FORMULA 1 SHAKE MIX PISTAH', 'F1P', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '1342', '2372', '2062', '1862', '1652', '1502', '1342', '21.75', '435', '40', '4960', '-400', '145.52', '135.52', '125.52', '115.52', '105.25', '95.25', '124', '-10', '785487', '', '2024-07-05'),
 (4, 'FORMULA 1 SHAKE MIX OREO', 'F!O', 'Ayurdevic Nutrition', 'Energy', '2683', '2503', '2683', '2103', '2003', '1803', '1703', '1603', '12.75', '127.5', '30', '3000', '-13', '123.45', '113.45', '103.45', '93.45', '83.45', '73.45', '100', '-0.4333333', '986598', '', '2024-07-01');
 
 -- --------------------------------------------------------
@@ -496,14 +504,6 @@ CREATE TABLE `staff` (
   `staff_phno` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `staff`
---
-
-INSERT INTO `staff` (`staff_id`, `staff_name`, `staff_uname`, `staff_email`, `staff_pass`, `staff_gender`, `staff_city`, `staff_phno`) VALUES
-(1, 'ALex', 'alex123@', 'alex123@gmail.com', 'alex123@', 'Male', 'Kozhikode', '8798659897'),
-(2, 'aswin', 'aswin123', 'mmaswin524@gmail.com', 'aswin@123', 'Male', 'kozhikode', '07034410471');
-
 -- --------------------------------------------------------
 
 --
@@ -539,7 +539,18 @@ INSERT INTO `stock` (`stock_id`, `stock_proid`, `stock_proname`, `stock_quantity
 (11, 2, 'FORMULA 1 SHAKE MIX CHOCOLATE', '2', 'kollam', '1341', 2682, '2024-07-04'),
 (12, 2, 'FORMULA 1 SHAKE MIX CHOCOLATE', '1', 'kollam', '1341', 1341, '2024-07-04'),
 (13, 1, 'FORMULA 1 SHAKE MIX VANILLA', '1', 'palarivattom', '1340', 1340, '2024-07-05'),
-(14, 2, 'FORMULA 1 SHAKE MIX CHOCOLATE', '1', 'kollam', '1341', 1341, '2024-07-04');
+(14, 2, 'FORMULA 1 SHAKE MIX CHOCOLATE', '1', 'kollam', '1341', 1341, '2024-07-04'),
+(15, 0, 'FORMULA 1 SHAKE MIX VANILLA', '0', 'palarivattom', '1340', 0, '2024-07-10'),
+(16, 0, 'FORMULA 1 SHAKE MIX CHOCOLATE', '0', 'palarivattom', '1341', 0, '2024-07-10'),
+(17, 0, 'FORMULA 1 SHAKE MIX PISTAH', '10', 'palarivattom', '1342', 13420, '2024-07-10'),
+(18, 0, 'FORMULA 1 SHAKE MIX PISTAH', '10', 'palarivattom', '1342', 13420, '2024-07-10'),
+(19, 1, 'FORMULA 1 SHAKE MIX VANILLA', '2', 'Puthiyapalam', '1340', 2680, '2024-07-16'),
+(20, 1, 'FORMULA 1 SHAKE MIX VANILLA', '1', 'Puthiyapalam NC', '1340', 1340, '2024-07-03'),
+(21, 1, 'FORMULA 1 SHAKE MIX VANILLA', '1', 'Mankavu NC', '1340', 1340, '2024-07-18'),
+(22, 1, 'FORMULA 1 SHAKE MIX VANILLA', '1', 'Select Location', '1340', 1340, '2024-07-17'),
+(23, 1, 'FORMULA 1 SHAKE MIX VANILLA', '1', 'Puthiyapalam NC', '1340', 1340, '2024-07-17'),
+(24, 1, 'FORMULA 1 SHAKE MIX VANILLA', '1', 'Mankavu NC', '1340', 1340, '2024-07-18'),
+(25, 1, 'FORMULA 1 SHAKE MIX VANILLA', '3', 'Puthiyapalam NC', '1340', 4020, '2024-07-31');
 
 -- --------------------------------------------------------
 
@@ -703,7 +714,7 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pay_history`
@@ -751,7 +762,7 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `subcategory`
