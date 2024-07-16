@@ -34,7 +34,7 @@ if ($_SESSION["email"] == "") {
       $st_uname1 = $st_row1['staff_uname'];
       $st_mail1 = $st_row1['staff_email'];
       $st_pass1 = $st_row1['staff_pass'];
-      $st_gender1 = $st_row1['staff_gender'];
+      $st_address1 = $st_row1['staff_address'];
       $st_city1 = $st_row1['staff_city'];
       $st_phno1 = $st_row1['staff_phno'];
     }
@@ -65,8 +65,8 @@ if ($_SESSION["email"] == "") {
                   <div class="row">
                     <div class="col">
                       <div class="form-group">
-                        <label for="exampleInputName1">Staff Name</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Name" name="stname" value="<?php echo $st_name1; ?>" required>
+                        <label for="exampleInputName1">Nutrition Club</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" placeholder="Nutrition Club" name="stname" value="<?php echo $st_name1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
@@ -93,12 +93,8 @@ if ($_SESSION["email"] == "") {
                   <div class="row">
                     <div class="col">
                       <div class="form-group">
-                        <label for="exampleSelectGender">Gender</label>
-                        <select class="form-control" style="border-radius: 16px;" name="stgender" required>
-                          <option <?php if ($st_gender1 == 'Male') echo 'selected'; ?> value="Male">Male</option>
-                          <option <?php if ($st_gender1 == 'Female') echo 'selected'; ?> value="Female">Female</option>
-                          <option <?php if ($st_gender1 == 'Other') echo 'selected'; ?> value="Other">Other</option>
-                        </select>
+                        <label for="exampleInputAddress">Address</label>
+                        <textarea class="form-control" style="border-radius: 16px;" placeholder="Address" name="staddress" required><?php echo $st_address1; ?></textarea>
                       </div>
                     </div>
                     <div class="col">
@@ -127,7 +123,7 @@ if ($_SESSION["email"] == "") {
             $st_uname = $_POST["stusername"];
             $st_mail = $_POST["stmail"];
             $st_pass = $_POST["stpass"];
-            $st_gender = $_POST["stgender"];
+            $st_address = $_POST["staddress"];
             $st_city = $_POST["stcity"];
             $st_phno = $_POST["stphno"];
 
@@ -135,11 +131,11 @@ if ($_SESSION["email"] == "") {
             $st_id = $_POST["stid"];
 
             if ($st_id == '') {
-              $sql = mysqli_query($conn, "INSERT INTO staff (staff_name, staff_uname, staff_email, staff_pass, staff_gender, staff_city, staff_phno)
-                                         VALUES ('$st_name','$st_uname','$st_mail','$st_pass','$st_gender','$st_city','$st_phno')");
+              $sql = mysqli_query($conn, "INSERT INTO staff (staff_name, staff_uname, staff_email, staff_pass, staff_address, staff_city, staff_phno)
+                                         VALUES ('$st_name','$st_uname','$st_mail','$st_pass','$st_address','$st_city','$st_phno')");
             } else {
               // Update shake
-              $sql = mysqli_query($conn, "UPDATE staff SET staff_name='$st_name', staff_uname='$st_uname', staff_email='$st_mail', staff_pass='$st_pass', staff_gender='$st_gender', staff_city='$st_city', staff_phno='$st_phno' WHERE staff_id='$st_id'");
+              $sql = mysqli_query($conn, "UPDATE staff SET staff_name='$st_name', staff_uname='$st_uname', staff_email='$st_mail', staff_pass='$st_pass', staff_address='$st_address', staff_city='$st_city', staff_phno='$st_phno' WHERE staff_id='$st_id'");
             }
 
             if ($sql == TRUE) {
@@ -160,11 +156,11 @@ if ($_SESSION["email"] == "") {
                         <th>Edit</th>
                         <th>Delete</th>
                         <th>Slno</th>
-                        <th>Staff Name</th>
+                        <th>Nutrition Club</th>
                         <th>Username</th>
                         <th>Email Id</th>
                         <th>Password</th>
-                        <th>Gender</th>
+                        <th>Address</th>
                         <th>City</th>
                         <th>Phone No</th>
                       </tr>
@@ -178,7 +174,7 @@ if ($_SESSION["email"] == "") {
                       $st_uname = $row['staff_uname'];
                       $st_mail = $row['staff_email'];
                       $st_pass = $row['staff_pass'];
-                      $st_gender = $row['staff_gender'];
+                      $st_address = $row['staff_address'];
                       $st_city = $row['staff_city'];
                       $st_phno = $row['staff_phno'];
                     ?>
@@ -199,7 +195,7 @@ if ($_SESSION["email"] == "") {
                           <td><?php echo $st_uname; ?></td>
                           <td><?php echo $st_mail; ?></td>
                           <td><?php echo $st_pass; ?></td>
-                          <td><?php echo $st_gender; ?></td>
+                          <td><?php echo $st_address; ?></td>
                           <td><?php echo $st_city; ?></td>
                           <td><?php echo $st_phno; ?></td>
 
