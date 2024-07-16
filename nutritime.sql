@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2024 at 11:42 PM
+-- Generation Time: Jul 17, 2024 at 12:01 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -304,7 +304,7 @@ CREATE TABLE `price` (
 --
 
 INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subcat`, `pro_mrp`, `pro_price`, `pro_dis0`, `pro_dis15`, `pro_dis25`, `pro_dis35`, `pro_dis42`, `pro_dis50`, `pro_vp`, `pro_vptotal`, `pro_scoop`, `pro_scooptotal`, `pro_scoopqua`, `pro_scoop0`, `pro_scoop15`, `pro_scoop25`, `pro_scoop35`, `pro_scoop42`, `pro_scoop50`, `pro_quantity`, `pro_curquantity`, `pro_hsn`, `pro_img`, `pro_date`) VALUES
-(1, 'FORMULA 1 SHAKE MIX VANILLA', 'F1V', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '1340', '2370', '2060', '1860', '1650', '1500', '1340', '21.75', '261', '60', '9240', '720', '118.90', '103.5', '93', '83.5', '73', '63.5', '154', '12', '785487', '', '2024-07-20'),
+(1, 'FORMULA 1 SHAKE MIX VANILLA', 'F1V', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '1340', '2370', '2060', '1860', '1650', '1500', '1340', '21.75', '261', '60', '9240', '540', '118.90', '103.5', '93', '83.5', '73', '63.5', '154', '9', '785487', '', '2024-07-20'),
 (2, 'FORMULA 1 SHAKE MIX CHOCOLATE', 'F1C', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2371', '1341', '2371', '2061', '1861', '1651', '1501', '1341', '12.75', '153', '50', '6150', '0', '121.65', '111.55', '10.45', '9.35', '8.25', '7.15', '123', '0', '986598', '', '2024-07-04'),
 (3, 'FORMULA 1 SHAKE MIX PISTAH', 'F1P', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '1342', '2372', '2062', '1862', '1652', '1502', '1342', '21.75', '435', '40', '4960', '-400', '145.52', '135.52', '125.52', '115.52', '105.25', '95.25', '124', '-10', '785487', '', '2024-07-05'),
 (4, 'FORMULA 1 SHAKE MIX OREO', 'F!O', 'Ayurdevic Nutrition', 'Energy', '2683', '2503', '2683', '2103', '2003', '1803', '1703', '1603', '12.75', '127.5', '30', '3000', '-13', '123.45', '113.45', '103.45', '93.45', '83.45', '73.45', '100', '-0.4333333', '986598', '', '2024-07-01');
@@ -510,7 +510,9 @@ CREATE TABLE `staff` (
 
 INSERT INTO `staff` (`staff_id`, `staff_name`, `staff_uname`, `staff_email`, `staff_pass`, `staff_address`, `staff_city`, `staff_phno`) VALUES
 (3, 'Puthiyapalam NC', 'Staff1', 'nutritimestaff1@gmail.com', 'nutritimestaff1@', 'Nutri-time Wellness Club , Puthiyapalam,', 'Puthiyapalam', '9876543210'),
-(4, 'Mangavu NC	', 'Staff2', 'nutritimestaff2@gmail.com', 'nutritimestaff2@', 'Nutri-time Wellness Club , Mankavu, Kozhikode	', 'Mankavu', '9876543211');
+(4, 'Mangavu NC	', 'Staff2', 'nutritimestaff2@gmail.com', 'nutritimestaff2@', 'Nutri-time Wellness Club , Mankavu, Kozhikode	', 'Mankavu', '9876543211'),
+(5, 'Aryankavu NC', 'Staff3', 'nutritimestaff3@gmail.com', 'nutritimestaff3@', 'Nutri-time Wellness Club , Aryankavu, Kollam	', 'Aryankavu', '9876543212'),
+(6, 'Palayam NC', 'Staff4', 'nutritimestaff4@gmail.com', 'nutritimestaff4@', 'Nutri-time Wellness Club , Palayam, Kozhikode', 'Palayam', '9876543213');
 
 -- --------------------------------------------------------
 
@@ -558,7 +560,9 @@ INSERT INTO `stock` (`stock_id`, `stock_proid`, `stock_proname`, `stock_quantity
 (22, 1, 'FORMULA 1 SHAKE MIX VANILLA', '1', 'Select Location', '1340', 1340, '2024-07-17'),
 (23, 1, 'FORMULA 1 SHAKE MIX VANILLA', '1', 'Puthiyapalam NC', '1340', 1340, '2024-07-17'),
 (24, 1, 'FORMULA 1 SHAKE MIX VANILLA', '1', 'Mankavu NC', '1340', 1340, '2024-07-18'),
-(25, 1, 'FORMULA 1 SHAKE MIX VANILLA', '3', 'Puthiyapalam NC', '1340', 4020, '2024-07-31');
+(25, 1, 'FORMULA 1 SHAKE MIX VANILLA', '3', 'Puthiyapalam NC', '1340', 4020, '2024-07-31'),
+(26, 1, 'FORMULA 1 SHAKE MIX VANILLA', '2', 'Palayam NC', '1340', 2680, '2024-07-17'),
+(27, 1, 'FORMULA 1 SHAKE MIX VANILLA', '1', 'Aryankavu NC', '1340', 1340, '2024-07-17');
 
 -- --------------------------------------------------------
 
@@ -764,13 +768,13 @@ ALTER TABLE `shake`
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `subcategory`
