@@ -38,7 +38,7 @@ if ($_SESSION["email"] == "") {
               <div class="card-body">
                 <h4 class="card-title">Message Details</h4>
                 <p class="card-description">Add Message Content</p>
-                <!-- <form class="forms-sample"> -->
+                <form class="forms-sample">
                   <div class="form-group">
                     <label for="exampleTextarea1">Message content</label>
                     <textarea class="form-control" id="exampleTextarea1" rows="4" placeholder="Thank You For choosing Nutri-Time. Your Program Id id #00Ad001"></textarea>
