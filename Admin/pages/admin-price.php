@@ -122,7 +122,7 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>50%</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="dis50" value="<?php echo $p_dis501; ?>" required>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="dis50" id="dis50" value="<?php echo $p_dis501; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -273,6 +273,22 @@ if ($_SESSION["email"] == "") {
     </div>
   </div>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get the input element for 50% discount
+      const dis50Input = document.getElementById('dis50');
+
+      // Get the input element for Product Purchase Price
+      const prodpurInput = document.getElementsByName('prodpur')[0]; // Assuming there's only one input with this name
+
+      // Update the value of 50% discount input based on Product Purchase Price input
+      prodpurInput.addEventListener('input', function() {
+        dis50Input.value = prodpurInput.value; // Set the value of dis50Input to prodpurInput value
+      });
+    });
+  </script>
+
+
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <script src="../js/off-canvas.js"></script>
   <script src="../js/template.js"></script>
