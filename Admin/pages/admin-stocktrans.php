@@ -139,11 +139,22 @@ if ($_SESSION["email"] == "") {
                         <label>Location</label>
                         <select class="form-control" style="border-radius: 16px;" name="stoloc" id="stoloc" required>
                           <option selected>Select Location</option>
-                          <option value="Puthiyapalam NC" <?php echo $stoassoc1 == 'Puthiyapalam NC' ? 'selected' : ''; ?>>Puthiyapalam NC</option>
-                          <option value="Mankavu NC" <?php echo $stoassoc1 == 'Mankavu NC' ? 'selected' : ''; ?>>Mankavu NC</option>
+                          <?php
+                          // Assuming 'staff' is the table name and 'staff_location' is the field for location
+                          $location_query = mysqli_query($conn, "SELECT DISTINCT staff_name FROM staff");
+                          while ($location_row = mysqli_fetch_assoc($location_query)) {
+                            $location_name = $location_row['staff_name'];
+                            echo '<option value="' . $location_name . '"';
+                            if ($location_name == $stoassoc1) {
+                              echo ' selected';
+                            }
+                            echo '>' . $location_name . '</option>';
+                          }
+                          ?>
                         </select>
                       </div>
                     </div>
+
                     <div class="col">
                       <div class="form-group">
                         <label>Purchased Price</label>
