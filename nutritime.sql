@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2024 at 10:54 PM
+-- Generation Time: Jul 16, 2024 at 11:42 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -499,10 +499,18 @@ CREATE TABLE `staff` (
   `staff_uname` varchar(100) NOT NULL,
   `staff_email` varchar(100) NOT NULL,
   `staff_pass` varchar(50) NOT NULL,
-  `staff_gender` varchar(50) NOT NULL,
+  `staff_address` varchar(100) NOT NULL,
   `staff_city` varchar(50) NOT NULL,
   `staff_phno` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `staff`
+--
+
+INSERT INTO `staff` (`staff_id`, `staff_name`, `staff_uname`, `staff_email`, `staff_pass`, `staff_address`, `staff_city`, `staff_phno`) VALUES
+(3, 'Puthiyapalam NC', 'Staff1', 'nutritimestaff1@gmail.com', 'nutritimestaff1@', 'Nutri-time Wellness Club , Puthiyapalam,', 'Puthiyapalam', '9876543210'),
+(4, 'Mangavu NC	', 'Staff2', 'nutritimestaff2@gmail.com', 'nutritimestaff2@', 'Nutri-time Wellness Club , Mankavu, Kozhikode	', 'Mankavu', '9876543211');
 
 -- --------------------------------------------------------
 
@@ -756,7 +764,7 @@ ALTER TABLE `shake`
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `stock`
