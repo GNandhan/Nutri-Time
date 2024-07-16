@@ -77,8 +77,23 @@ if ($_SESSION["email"] == "") {
           proIdInput.value = ""; // Clear product ID
         }
       }
+
+      // Function to validate the location field
+      function validateForm(event) {
+        var locationSelect = document.getElementById("stoloc");
+        if (locationSelect.value === "Select Location") {
+          alert("Please select a location.");
+          event.preventDefault(); // Prevent form submission
+        }
+      }
+
+      // Add event listener to the form submit event
+      document.addEventListener("DOMContentLoaded", function() {
+        var form = document.querySelector("form");
+        form.addEventListener("submit", validateForm);
+      });
     </script>
-     <div class="main-panel">
+    <div class="main-panel">
       <div class="content-wrapper">
         <div class="row">
           <div class="col-12 grid-margin stretch-card">
@@ -86,39 +101,35 @@ if ($_SESSION["email"] == "") {
               <div class="card-body">
                 <h1 class="card-title">Stock Transfer</h1>
                 <p class="card-description">Stock Transfer Details</p>
-                <form method="post" class="forms-sample" enctype="multipart/form-data" id="stockTransferForm">
+                <form method="post" class="forms-sample" enctype="multipart/form-data">
                   <input type="hidden" name="pri_id" id="pri_id" value="<?php echo isset($stoid) ? $stoid : ''; ?>">
                   <input type="hidden" name="pro_id" id="pro_id" value="">
-                  <div id="productEntries">
-                    <div class="row product-entry">
-                      <div class="col-lg-6 col-md col-sm col-12">
-                        <div class="form-group">
-                          <label>Product</label>
-                          <select class="form-control" style="border-radius: 16px;" name="stomaterial[]" id="stomaterial" onchange="updatePrice(this)">
-                            <option selected>Select the Product</option>
-                            <?php
-                            $query = mysqli_query($conn, "SELECT pri_id, pro_name, pro_curquantity FROM price");
-                            while ($row = mysqli_fetch_assoc($query)) {
-                              $pro_id = $row["pri_id"];
-                              $pro_name = $row["pro_name"];
-                              $pro_quantity = $row["pro_curquantity"];
-                            ?>
-                              <option value="<?php echo $pro_name; ?>" data-quantity="<?php echo $pro_quantity; ?>" data-proid="<?php echo $pro_id; ?>"><?php echo $pro_name; ?></option>
-                            <?php } ?>
-                          </select>
-                        </div>
+                  <div class="row">
+                    <div class="col-lg-6 col-md col-sm col-12">
+                      <div class="form-group">
+                        <label>Product</label>
+                        <select class="form-control" style="border-radius: 16px;" name="stomaterial" id="stomaterial" onchange="updatePrice()">
+                          <option selected>Select the Product</option>
+                          <?php
+                          $query = mysqli_query($conn, "SELECT pri_id, pro_name, pro_curquantity FROM price");
+                          while ($row = mysqli_fetch_assoc($query)) {
+                            $pro_id = $row["pri_id"];
+                            $pro_name = $row["pro_name"];
+                            $pro_quantity = $row["pro_curquantity"];
+                          ?>
+                            <option value="<?php echo $pro_name; ?>" data-quantity="<?php echo $pro_quantity; ?>" data-proid="<?php echo $pro_id; ?>" <?php if ($row['pro_name'] == $sh_raw1) {
+                                                                                                                                                        echo 'selected';
+                                                                                                                                                      } ?>><?php echo $pro_name; ?></option>
+                          <?php
+                          }
+                          ?>
+                        </select>
                       </div>
-                      <div class="col">
-                        <div class="form-group">
-                          <label>Quantity</label>
-                          <input type="text" class="form-control" style="border-radius: 16px;" name="stoqua[]" required>
-                        </div>
-                      </div>
-                      <div class="col">
-                        <div class="form-group">
-                          <label>Purchased Price</label>
-                          <input type="number" class="form-control" style="border-radius: 16px;" name="stopri[]" required>
-                        </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Quantity</label>
+                        <input type="text" class="form-control" style="border-radius: 16px;" name="stoqua" id="stocurqua" value="<?php echo $stoqua1; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -126,7 +137,17 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>Location</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="stoloc" value="<?php echo $stoassoc1; ?>" required>
+                        <select class="form-control" style="border-radius: 16px;" name="stoloc" id="stoloc" required>
+                          <option selected>Select Location</option>
+                          <option value="Puthiyapalam NC" <?php echo $stoassoc1 == 'Puthiyapalam NC' ? 'selected' : ''; ?>>Puthiyapalam NC</option>
+                          <option value="Mankavu NC" <?php echo $stoassoc1 == 'Mankavu NC' ? 'selected' : ''; ?>>Mankavu NC</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Purchased Price</label>
+                        <input type="number" class="form-control" style="border-radius: 16px;" name="stopri" id="stopri" value="<?php echo $storpri1; ?>" required>
                       </div>
                     </div>
                     <div class="col">
@@ -136,7 +157,6 @@ if ($_SESSION["email"] == "") {
                       </div>
                     </div>
                   </div>
-                  <button type="button" class="btn btn-secondary mr-2 rounded-pill" onclick="addProductEntry()">Add Product</button>
                   <button type="submit" class="btn btn-primary mr-2 rounded-pill" name="submitsto">Submit</button>
                   <button class="btn btn-light rounded-pill">Cancel</button>
                 </form>
@@ -146,59 +166,62 @@ if ($_SESSION["email"] == "") {
         </div>
         <!-- PHP CODE FOR INSERTING THE DATA -->
         <?php
-if (isset($_POST["submitsto"])) {
-  $stoloct = $_POST["stoloc"];
-  $stodate = $_POST["stodate"];
-  $sto_id = $_POST["pri_id"];
+        if (isset($_POST["submitsto"])) {
+          $stomat = $_POST["stomaterial"];
+          $stoqua = $_POST["stoqua"];
+          $stoloct = $_POST["stoloc"];
+          $stopri = $_POST["stopri"];
+          $stodate = $_POST["stodate"];
+          $sto_id = $_POST["pri_id"];
+          $pro_id = $_POST["pro_id"];
 
-  $stomaterials = $_POST["stomaterial"];
-  $stoquas = $_POST["stoqua"];
-  $stopris = $_POST["stopri"];
-  
-  for ($i = 0; $i < count($stomaterials); $i++) {
-    $stomat = $stomaterials[$i];
-    $stoqua = $stoquas[$i];
-    $stopri = $stopris[$i];
-    
-    $sal_curquan_query = mysqli_query($conn, "SELECT pro_curquantity FROM price WHERE pro_name='$stomat'");
-    $sal_curquan_row = mysqli_fetch_assoc($sal_curquan_query);
-    $sal_curquan = $sal_curquan_row['pro_curquantity'];
-    
-    $sal_curquan1 = $sal_curquan - $stoqua;
-    
-    $stototal = intval($stoqua) * intval($stopri);
-    
-    if ($sto_id == '') {
-      $sql = mysqli_query($conn, "INSERT INTO stock (stock_proname, stock_quantity, stock_associate, stock_price, stock_total, stock_date)
-                                  VALUES ('$stomat', $stoqua, '$stoloct', $stopri, $stototal, '$stodate')");
-      
-      if ($sql) {
-        $update_query = mysqli_query($conn, "UPDATE price SET pro_curquantity='$sal_curquan1' WHERE pro_name='$stomat'");
-      }
-    } else {
-      $sql = mysqli_query($conn, "UPDATE stock SET stock_proname='$stomat', stock_quantity=$stoqua, stock_associate='$stoloct', stock_price=$stopri, stock_total=$stototal, stock_date='$stodate' WHERE stock_id='$sto_id'");
-    }
-    
-    if ($sql) {
-      $price_query = mysqli_query($conn, "SELECT pro_curquantity, pro_scoop FROM price WHERE pro_name = '$stomat'");
-      $price_row = mysqli_fetch_assoc($price_query);
-      $pro_curquantity = $price_row['pro_curquantity'];
-      $pro_scoop = $price_row['pro_scoop'];
-      
-      $pro_scoopqua = $pro_curquantity * $pro_scoop;
-      
-      $update_price = mysqli_query($conn, "UPDATE price SET pro_scoopqua = '$pro_scoopqua' WHERE pro_name = '$stomat'");
-      if ($update_price) {
-        echo "<script>alert('Sales data inserted successfully.');</script>";
-      } else {
-        echo "<script>alert('Error updating pro_scoopqua: " . mysqli_error($conn) . "');</script>";
-      }
-    } else {
-      echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
-    }
-  }
-}
-?>
+          // Fetch current quantity of the selected product
+          $sal_curquan_query = mysqli_query($conn, "SELECT pro_curquantity FROM price WHERE pro_name='$stomat'");
+          $sal_curquan_row = mysqli_fetch_assoc($sal_curquan_query);
+          $sal_curquan = $sal_curquan_row['pro_curquantity'];
+
+          $sal_curquan1 = $sal_curquan - $stoqua;
+
+          // Calculate the total
+          $stototal = intval($stoqua) * intval($stopri);
+
+          if ($sto_id == '') {
+            // Insert new record
+            $sql = mysqli_query($conn, "INSERT INTO stock (stock_proid, stock_proname, stock_quantity, stock_associate, stock_price, stock_total, stock_date)
+                                        VALUES ('$pro_id','$stomat', $stoqua, '$stoloct', $stopri, $stototal, '$stodate')");
+
+            if ($sql) {
+              // Update the price table
+              $update_query = mysqli_query($conn, "UPDATE price SET pro_curquantity='$sal_curquan1' WHERE pro_name='$stomat'");
+            }
+          } else {
+            // Update existing record
+            $sql = mysqli_query($conn, "UPDATE stock SET stock_proid='$pro_id', stock_proname='$stomat', stock_quantity=$stoqua, stock_associate='$stoloct', stock_price=$stopri, stock_total=$stototal, stock_date='$stodate' WHERE stock_id='$sto_id'");
+          }
+
+          // Check if the query was successful
+          if ($sql === TRUE) {
+            // Fetch pro_curquantity from price table
+            $price_query = mysqli_query($conn, "SELECT pro_curquantity, pro_scoop FROM price WHERE pro_name = '$stomat'");
+            $price_row = mysqli_fetch_assoc($price_query);
+            $pro_curquantity = $price_row['pro_curquantity'];
+            $pro_scoop = $price_row['pro_scoop'];
+
+            // Calculate pro_scoopqua
+            $pro_scoopqua = $pro_curquantity * $pro_scoop;
+
+            // Update pro_scoopqua in the price table
+            $update_price = mysqli_query($conn, "UPDATE price SET pro_scoopqua = '$pro_scoopqua' WHERE pro_name = '$stomat'");
+            if ($update_price) {
+              echo "<script>alert('Sales data inserted successfully.');</script>";
+            } else {
+              echo "<script>alert('Error updating pro_scoopqua: " . mysqli_error($conn) . "');</script>";
+            }
+          } else {
+            echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
+          }
+        }
+        ?>
         <div class="row">
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
@@ -280,29 +303,6 @@ if (isset($_POST["submitsto"])) {
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <script src="../js/off-canvas.js"></script>
   <script src="../js/template.js"></script>
-  <script>
-          function updatePrice(selectElement) {
-            var selectedMaterial = selectElement.value;
-            var priceInput = selectElement.closest('.product-entry').querySelector('input[name="stopri[]"]');
-            var quantityInput = selectElement.closest('.product-entry').querySelector('input[name="stoqua[]"]');
-
-            var materialPrices = <?php echo json_encode($material_prices); ?>;
-            if (selectedMaterial && materialPrices[selectedMaterial]) {
-              priceInput.value = materialPrices[selectedMaterial];
-              quantityInput.value = selectElement.options[selectElement.selectedIndex].getAttribute('data-quantity');
-            } else {
-              priceInput.value = "";
-              quantityInput.value = "";
-            }
-          }
-
-          function addProductEntry() {
-            var newEntry = document.querySelector('.product-entry').cloneNode(true);
-            newEntry.querySelectorAll('input').forEach(input => input.value = '');
-            newEntry.querySelector('select').selectedIndex = 0;
-            document.getElementById('productEntries').appendChild(newEntry);
-          }
-        </script>                                                       
 </body>
 
 </html>
