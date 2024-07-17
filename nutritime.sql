@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 17, 2024 at 02:16 AM
+-- Generation Time: Jul 17, 2024 at 02:30 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -62,6 +62,13 @@ CREATE TABLE `bmr_history` (
   `cust_mass` varchar(20) NOT NULL,
   `cust_bmidate` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `bmr_history`
+--
+
+INSERT INTO `bmr_history` (`bmr_id`, `cust_id`, `cust_code`, `cust_name`, `cust_bmr`, `cust_bmi`, `cust_vcf`, `cust_tcf`, `cust_fat`, `cust_bage`, `cust_weight`, `cust_mass`, `cust_bmidate`) VALUES
+(1, 1005, '', 'Melow111', '222', '111', '333', '444', '555', '666', '777', '888', '2024-07-17');
 
 -- --------------------------------------------------------
 
@@ -146,13 +153,13 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`cust_id`, `cust_code`, `cust_name`, `cust_phno`, `cust_invited`, `cust_age`, `cust_bodyage`, `cust_gender`, `cust_email`, `cust_password`, `cust_doj`, `cust_city`, `cust_address`, `cust_height`, `cust_weight`, `cust_idleweight`, `cust_fat`, `cust_vcf`, `cust_bmr`, `cust_bmi`, `cust_bmidate`, `cust_mm`, `cust_tsf`, `cust_waketime`, `cust_tea`, `cust_breakfast`, `cust_lunch`, `cust_snack`, `cust_dinner`, `cust_veg_nonveg`, `cust_waterintake`, `cust_cond1`, `cust_cond2`, `cust_cond3`, `cust_cond4`, `cust_cond5`, `cust_cond6`, `cust_cond7`, `cust_cond8`, `cust_prg`, `cust_prgtype`, `cust_noday`, `cust_total`, `cust_paid`, `cust_paiddate`, `cust_remain`, `cust_date`) VALUES
-(1003, 'CUS10012', 'Kareem', '7854985687', 'Ashraf', '25', '26', 'Male', 'manu123@gmail.com', 'manu123@', '2024-04-09', 'Kozhikode', 'veluvil po mavoor, kozhikode', '175', '62', '75', '15', '10', '02', '01', '2024-06-30', '13', '14', '09:29', 'Green Tea', 'Idly, Sambar', 'Chicken Biriyani', 'ladoo', 'Mandi', 'Non-veg', '2 litre', 'Diabeted', 'Cancer', 'High BP', 'Diabetieswe3ee23e', 'Fever', 'Blood pressure', 'Diabeties 2', 'Diabeties 3', 'Weight lose', 'Online', '20', '10000', '3500', '2024-04-01', '2850', '2024-04-27'),
-(1005, 'CUS10013', 'Amal', '9865329865', 'Ashraf', '26', '27', 'Male', 'amal123@gmail.com', 'amal123@', '2024-06-01', 'Thalayolaparambu', '3rd floor, Thalayolaparambu, po', '165', '63', '65', '32', '001', '11', '100', '', '152', '145', '12:45', 'Black Coffee', 'Idly, Sambar', 'Mandi', 'ladoo', 'Mandi', 'Non-veg', '2 litre', 'belly fat', 'blood cancer', 'nutrition effectency', 'Diabeties', 'Fever', 'Blood pressure', 'Diabeties 2', 'Diabeties 3', 'Weight lose', 'Offline', '40', '26000', '3030', '2024-04-02', '22970', '2024-04-27'),
-(1006, 'CUS10029', 'Albin', '9865875498', 'Ashraf', '25', '26', 'Male', 'albin12@gmail.com', 'albin12@', '', 'Vallaserry', '3rd floor, vallaserry, po', '152', '72', '52', '26', '001', '002', '003', '', '004', '005', '16:51', 'Black Coffee', 'Noodles', 'Mandi', 'fries', 'Mandi', 'Non-veg', '1 litre', 'belly fat', 'blood cancer', 'nutrition effectency', 'Diabeties', 'Fever', 'Blood pressure', 'Diabeties 2', 'Diabeties 3', 'Fat Reducer', 'Offline', '25', '15000', '0', '2024-06-05', '1', '2024-04-27'),
-(1007, 'CUS10016', 'Ajith', '986585498', 'Ashraf', '45', '46', 'Male', 'amal123@gmail.com', 'amal123@', '', 'Kochi', '3rd floor, kochi, po', '182', '90', '82', '72', '10', '105.4', '100.5', '', '142.2', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '25', '15000', '3510', '2024-05-29', '5000', '2024-04-27'),
-(1008, 'CUS10026', 'Melow', '9887659854', 'Amal', '25', '26', 'Female', 'melow12@gmail.com', '', '15-04-2023', 'Kochi', '3rd floor, kochi, po', '154', '78', '', '24', '001', '002', '003', '', '004', '14', '00:57', 'okkokook', 'Noodles', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '1 litre', 'belly fat', 'blood cancer', 'nutrition effectency', '', '', '', '', '', 'Weight lose', 'Offline', '20', '12000', '0', '2024-04-01', '1000', '2024-04-27'),
-(1009, 'CUS10026', 'Mathew', '9887659854', 'Amal', '25', '26', 'Female', 'melow12@gmail.com', '', '15-04-2023', 'Kochi', '3rd floor, kochi, po', '154', '78', '', '24', '001', '002', '003', '', '004', '14', '00:57', 'okkokook', 'Noodles', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '1 litre', 'belly fat', 'blood cancer', 'nutrition effectency', '', '', '', '', '', 'Weight lose', 'Offline', '20', '11000', '0', '2024-06-01', '0', '2024-04-27'),
-(1019, 'CUS10026', 'Melow111', '', '', '', '', 'other', '', '', '', '', '', '0', '0', '-100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0', '0', '', '0', '');
+(1003, 'CUS10012', 'Kareem', '7854985687', 'Ashraf', '25', '26', 'male', 'manu123@gmail.com', 'manu123@', '2024-04-09', 'Kozhikode', 'veluvil po mavoor, kozhikode', '175', '62', '75', '15', '10', '02', '01', '2024-06-30', '13', '14', '09:29', 'Green Tea', 'Idly, Sambar', 'Chicken Biriyani', 'ladoo', 'Mandi', 'Non-veg', '2 litre', 'Diabeted', 'Cancer', 'High BP', 'Diabetieswe3ee23e', 'Fever', 'Blood pressure', 'Diabeties 2', 'Diabeties 3', 'Weight lose', 'Online', '20', '10000', '1000', '', '8500', '2024-04-27'),
+(1005, 'CUS10013', 'Amal', '9865329865', 'Ashraf', '26', '27', 'Male', 'amal123@gmail.com', 'amal123@', '2024-06-01', 'Thalayolaparambu', '3rd floor, Thalayolaparambu, po', '165', '63', '65', '32', '001', '11', '100', '', '152', '145', '12:45', 'Black Coffee', 'Idly, Sambar', 'Mandi', 'ladoo', 'Mandi', 'Non-veg', '2 litre', 'belly fat', 'blood cancer', 'nutrition effectency', 'Diabeties', 'Fever', 'Blood pressure', 'Diabeties 2', 'Diabeties 3', 'Weight lose', 'Offline', '40', '26000', '0', '', '6000', '2024-04-27'),
+(1006, 'CUS10029', 'Albin', '9865875498', 'Ashraf', '25', '26', 'Male', 'albin12@gmail.com', 'albin12@', '', 'Vallaserry', '3rd floor, vallaserry, po', '152', '72', '52', '26', '001', '002', '003', '', '004', '005', '16:51', 'Black Coffee', 'Noodles', 'Mandi', 'fries', 'Mandi', 'Non-veg', '1 litre', 'belly fat', 'blood cancer', 'nutrition effectency', 'Diabeties', 'Fever', 'Blood pressure', 'Diabeties 2', 'Diabeties 3', 'Fat Reducer', 'Offline', '25', '15000', '0', '', '15000', '2024-04-27'),
+(1007, 'CUS10016', 'Ajith', '986585498', 'Ashraf', '45', '46', 'Male', 'amal123@gmail.com', 'amal123@', '', 'Kochi', '3rd floor, kochi, po', '182', '90', '82', '72', '10', '105.4', '100.5', '', '142.2', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '25', '15000', '0', '', '15000', '2024-04-27'),
+(1008, 'CUS10026', 'Melow', '9887659854', 'Amal', '25', '26', 'Female', 'melow12@gmail.com', '', '15-04-2023', 'Kochi', '3rd floor, kochi, po', '154', '78', '', '24', '001', '002', '003', '', '004', '14', '00:57', 'okkokook', 'Noodles', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '1 litre', 'belly fat', 'blood cancer', 'nutrition effectency', '', '', '', '', '', 'Weight lose', 'Offline', '20', '12000', '0', '', '12000', '2024-04-27'),
+(1009, 'CUS10026', 'Mathew', '9887659854', 'Amal', '25', '26', 'Female', 'melow12@gmail.com', '', '15-04-2023', 'Kochi', '3rd floor, kochi, po', '154', '78', '', '24', '001', '002', '003', '', '004', '14', '00:57', 'okkokook', 'Noodles', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '1 litre', 'belly fat', 'blood cancer', 'nutrition effectency', '', '', '', '', '', 'Weight lose', 'Offline', '20', '11000', '0', '', '11000', '2024-04-27'),
+(1019, 'CUS10026', 'Melow111', '', '', '', '', 'other', '', '', '', '', '', '0', '0', '-100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '10000', '0', '', '10000', '');
 
 -- --------------------------------------------------------
 
@@ -178,15 +185,6 @@ CREATE TABLE `login_details` (
   `login_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `login_details`
---
-
-INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`) VALUES
-('nutriadmin@gmail.com', 1, '2024-07-15 12:45:36'),
-('nutriadmin@gmail.com', 2, '2024-07-16 15:33:02'),
-('nutriadmin@gmail.com', 3, '2024-07-17 02:05:56');
-
 -- --------------------------------------------------------
 
 --
@@ -207,9 +205,9 @@ CREATE TABLE `pay_history` (
 --
 
 INSERT INTO `pay_history` (`pay_id`, `cust_id`, `cust_code`, `cust_name`, `cust_paid`, `cust_paiddate`) VALUES
-(1, 1019, 'CUS10026', 'Melow111', '0', ''),
-(2, 1019, 'CUS10026', 'Melow111', '0', ''),
-(3, 1019, 'CUS10026', 'Melow111', '0', '');
+(1, 1003, 'CUS10012', 'Kareem', '1000', '2024-04-27'),
+(2, 1003, 'CUS10012', 'Kareem', '500', '2024-07-17'),
+(3, 1005, 'CUS10013', 'Amal', '20000', '2024-07-17');
 
 -- --------------------------------------------------------
 
@@ -653,7 +651,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `bmr_history`
 --
 ALTER TABLE `bmr_history`
-  MODIFY `bmr_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `bmr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -677,7 +675,7 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pay_history`
