@@ -583,11 +583,10 @@ if ($_SESSION["email"] == "") {
                           <td><?php echo $cus_prgtype; ?></td>
                           <td><?php echo $cus_nodays; ?></td>
                           <td><?php echo $cus_total; ?></td>
-                          <td><?php echo $cus_paid; ?></td>
+                          <td><?php echo !empty($cus_paid) ? $cus_paid : '0'; ?></td> <!-- Display 0 if $cus_paid is empty -->
                           <td><?php echo $cus_remain; ?></td>
                         </tr>
                       </tbody>
-
                       <div class="modal fade" id="exampleModal_<?php echo $cus_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content" style="border-radius:20px;">
