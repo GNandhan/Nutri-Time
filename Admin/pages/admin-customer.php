@@ -123,7 +123,7 @@ if ($_SESSION["email"] == "") {
                 <form method="post" class="forms-sample">
                   <input type="hidden" name="custid" value="<?php echo $cusid; ?>">
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 col-sm-4 col-6">
+                    <div class="col-lg-2 col-md-4 col-sm-4 col-6">
                       <div class="form-group">
                         <label>Customer Id</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cuscode" value="<?php echo $cus_code1; ?>">
@@ -135,7 +135,7 @@ if ($_SESSION["email"] == "") {
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusname" value="<?php echo $cus_name1; ?>">
                       </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-4 col-12">
+                    <div class="col-lg-2 col-md-4 col-sm-4 col-12">
                       <div class="form-group">
                         <label>Customer Phno</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusphno" value="<?php echo $cus_phno1; ?>">
@@ -147,24 +147,29 @@ if ($_SESSION["email"] == "") {
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusinvite" value="<?php echo $cus_invite1; ?>">
                       </div>
                     </div>
-                    <div class="col-lg-2 col-md-4 col-sm-4 col-6">
+                    <div class="col-lg-1 col-md-4 col-sm-4 col-6">
                       <div class="form-group">
                         <label>Age</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusage" value="<?php echo $cus_age1; ?>">
                       </div>
                     </div>
-                    <div class="col-lg-2 col-md-4 col-sm-4 col-6">
+                    <div class="col-lg-1 col-md-4 col-sm-4 col-6">
                       <div class="form-group">
                         <label>Body Age</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusbodyage" value="<?php echo $cus_bodyage1; ?>">
                       </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-4 col-12">
+                    <div class="col-lg-2 col-md-4 col-sm-4 col-12">
                       <div class="form-group">
-                        <label>Gender</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusgender" value="<?php echo $cus_gender1; ?>">
+                        <label for="cusgender">Gender</label>
+                        <select class="form-control" style="border-radius: 16px;" id="cusgender" name="cusgender">
+                          <option value="male" <?php if ($cus_gender1 == 'male') echo 'selected'; ?>>Male</option>
+                          <option value="female" <?php if ($cus_gender1 == 'female') echo 'selected'; ?>>Female</option>
+                          <option value="other" <?php if ($cus_gender1 == 'other') echo 'selected'; ?>>Other</option>
+                        </select>
                       </div>
                     </div>
+
                     <div class="col-lg-3 col-md-4 col-sm-4 col-12">
                       <div class="form-group">
                         <label>Email Id</label>
@@ -177,71 +182,71 @@ if ($_SESSION["email"] == "") {
                         <input type="date" class="form-control" style="border-radius: 16px;" name="cusdoj" value="<?php echo $cus_doj1; ?>">
                       </div>
                     </div>
-                    <div class="col-lg col-md col-sm col-6">
+                    <div class="col-lg-2 col-md col-sm col-6">
                       <div class="form-group">
                         <label>City</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cuscity" value="<?php echo $cus_city1; ?>">
                       </div>
                     </div>
-                    <div class="col-lg-6 col-md col-sm col-12">
+                    <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
                         <label>Address</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusaddress" value="<?php echo $cus_address1; ?>">
+                        <textarea class="form-control" rows="3" style="border-radius: 16px;" name="cusaddress"><?php echo $cus_address1; ?></textarea>
                       </div>
                     </div>
                   </div>
                   <p class="card-description">Add Evaluation Record</p>
                   <hr>
                   <div class="row">
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-4">
+                    <div class="col-lg col-md-3 col-sm-3 col-4">
                       <div class="form-group">
                         <label>Height</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusheight" value="<?php echo $cus_height1; ?>">
                       </div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-4">
+                    <div class="col-lg col-md-3 col-sm-3 col-4">
                       <div class="form-group">
                         <label>Weight</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusweight" value="<?php echo $cus_weight1; ?>">
                       </div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-4">
+                    <div class="col-lg col-md-3 col-sm-3 col-4">
                       <div class="form-group">
                         <label>Ideal Weight</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusidleweight" value="<?php echo $cus_idleweight1; ?>">
                       </div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-4">
+                    <div class="col-lg col-md-3 col-sm-3 col-4">
                       <div class="form-group">
                         <label>Fat %</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusfat" value="<?php echo $cus_fat1; ?>">
                       </div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-4">
+                    <div class="col-lg col-md-3 col-sm-3 col-4">
                       <div class="form-group">
                         <label>VCF</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusvcf" value="<?php echo $cus_vcf1; ?>">
                       </div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-4">
+                    <div class="col-lg col-md-3 col-sm-3 col-4">
                       <div class="form-group">
                         <label>BMR</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusbmr" value="<?php echo $cus_bmr1; ?>">
                       </div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-4">
+                    <div class="col-lg col-md-3 col-sm-3 col-4">
                       <div class="form-group">
                         <label>BMI</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusbmi" value="<?php echo $cus_bmi1; ?>">
                       </div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-6">
+                    <div class="col-lg col-md-3 col-sm-3 col-6">
                       <div class="form-group">
                         <label>Muscle Mass</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusmm" value="<?php echo $cus_mm1; ?>">
                       </div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-6">
+                    <div class="col-lg col-md-3 col-sm-3 col-6">
                       <div class="form-group">
                         <label>TCF</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="custcf" value="<?php echo $cus_tsf1; ?>">
@@ -251,7 +256,7 @@ if ($_SESSION["email"] == "") {
                   <p class="card-description">Add Eating Habits</p>
                   <hr>
                   <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-3 col-6">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-6">
                       <div class="form-group">
                         <label>Wake-Up Time</label>
                         <input type="time" class="form-control" style="border-radius: 16px;" name="cuswaketime" value="<?php echo $cus_waketime1; ?>">
@@ -303,49 +308,49 @@ if ($_SESSION["email"] == "") {
                   <p class="card-description">Add Health Conditions</p>
                   <hr>
                   <div class="row">
-                    <div class="col-lg-4 col-md col-sm-4 col-6">
+                    <div class="col-lg-2 col-md col-sm-4 col-6">
                       <div class="form-group">
                         <label>Condition 1</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cuscond1" value="<?php echo $cus_cond11; ?>">
                       </div>
                     </div>
-                    <div class="col-lg-4 col-md col-sm-4 col-6">
+                    <div class="col-lg-2 col-md col-sm-4 col-6">
                       <div class="form-group">
                         <label>Condition 2</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cuscond2" value="<?php echo $cus_cond21; ?>">
                       </div>
                     </div>
-                    <div class="col-lg-4 col-md col-sm-4 col-12">
+                    <div class="col-lg-2 col-md col-sm-4 col-12">
                       <div class="form-group">
                         <label>Condition 3</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cuscond3" value="<?php echo $cus_cond31; ?>">
                       </div>
                     </div>
-                    <div class="col-lg-4 col-md col-sm-4 col-12">
+                    <div class="col-lg-2 col-md col-sm-4 col-12">
                       <div class="form-group">
                         <label>Condition 4</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cuscond4" value="<?php echo $cus_cond41; ?>">
                       </div>
                     </div>
-                    <div class="col-lg-4 col-md col-sm-4 col-12">
+                    <div class="col-lg-2 col-md col-sm-4 col-12">
                       <div class="form-group">
                         <label>Condition 5</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cuscond5" value="<?php echo $cus_cond51; ?>">
                       </div>
                     </div>
-                    <div class="col-lg-4 col-md col-sm-4 col-12">
+                    <div class="col-lg-2 col-md col-sm-4 col-12">
                       <div class="form-group">
                         <label>Condition 6</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cuscond6" value="<?php echo $cus_cond61; ?>">
                       </div>
                     </div>
-                    <div class="col-lg-4 col-md col-sm-4 col-12">
+                    <div class="col-lg-2 col-md col-sm-4 col-12">
                       <div class="form-group">
                         <label>Condition 7</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cuscond7" value="<?php echo $cus_cond71; ?>">
                       </div>
                     </div>
-                    <div class="col-lg-4 col-md col-sm-4 col-12">
+                    <div class="col-lg-2 col-md col-sm-4 col-12">
                       <div class="form-group">
                         <label>Condition 8</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cuscond8" value="<?php echo $cus_cond81; ?>">
@@ -361,31 +366,35 @@ if ($_SESSION["email"] == "") {
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusprogram" value="<?php echo $cus_prg1; ?>">
                       </div>
                     </div>
-                    <div class="col-lg-3 col-md col-sm-4 col-6">
+                    <div class="col-lg-2 col-md col-sm-4 col-6">
                       <div class="form-group">
-                        <label>Program Type</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="cusprgtype" value="<?php echo $cus_prgtype1; ?>">
+                        <label for="cusprgtype">Program Type</label>
+                        <select class="form-control" style="border-radius: 16px;" name="cusprgtype" id="cusprgtype">
+                        <option selected>Select Type</option>
+                          <option value="Online" <?php if ($cus_prgtype1 == "Online") echo "selected"; ?>>Online</option>
+                          <option value="Offline" <?php if ($cus_prgtype1 == "Offline") echo "selected"; ?>>Offline</option>
+                        </select>
                       </div>
                     </div>
-                    <div class="col-lg-2 col-md col-sm-4 col-6">
+                    <div class="col-lg col-md col-sm-4 col-6">
                       <div class="form-group">
                         <label>No of Days</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cusnoday" value="<?php echo $cus_nodays1; ?>">
                       </div>
                     </div>
-                    <div class="col-lg-2 col-md col-sm-4 col-6">
+                    <div class="col-lg col-md col-sm-4 col-6">
                       <div class="form-group">
                         <label>Total Amount</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="custotal" value="<?php echo $cus_total1; ?>">
                       </div>
                     </div>
-                    <div class="col-lg-2 col-md col-sm-4 col-6">
+                    <div class="col-lg col-md col-sm-4 col-6">
                       <div class="form-group">
                         <label>Amount Paid</label>
                         <input type="text" class="form-control" style="border-radius: 16px;" name="cuspaid" value="<?php echo $cus_paid1; ?>">
                       </div>
                     </div>
-                    <div class="col-lg-2 col-md col-sm-4 col-6">
+                    <div class="col-lg col-md col-sm-4 col-6">
                       <div class="form-group">
                         <label>Program Ending Date</label>
                         <input type="date" class="form-control" style="border-radius: 16px;" name="cusdate" value="<?php echo $cus_date1; ?>">
