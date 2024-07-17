@@ -370,7 +370,7 @@ if ($_SESSION["email"] == "") {
                       <div class="form-group">
                         <label for="cusprgtype">Program Type</label>
                         <select class="form-control" style="border-radius: 16px;" name="cusprgtype" id="cusprgtype">
-                        <option selected>Select Type</option>
+                          <option selected>Select Type</option>
                           <option value="Online" <?php if ($cus_prgtype1 == "Online") echo "selected"; ?>>Online</option>
                           <option value="Offline" <?php if ($cus_prgtype1 == "Offline") echo "selected"; ?>>Offline</option>
                         </select>

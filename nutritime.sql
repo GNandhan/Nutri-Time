@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 17, 2024 at 01:20 AM
+-- Generation Time: Jul 17, 2024 at 02:16 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -62,23 +62,6 @@ CREATE TABLE `bmr_history` (
   `cust_mass` varchar(20) NOT NULL,
   `cust_bmidate` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `bmr_history`
---
-
-INSERT INTO `bmr_history` (`bmr_id`, `cust_id`, `cust_code`, `cust_name`, `cust_bmr`, `cust_bmi`, `cust_vcf`, `cust_tcf`, `cust_fat`, `cust_bage`, `cust_weight`, `cust_mass`, `cust_bmidate`) VALUES
-(1, 1010, 'CUS10028', 'Edwin', '11', '12', '', '', '', '', '', '', '2024-06-01'),
-(2, 1003, 'CUS10028', 'Edwin', '2002', '1001', '', '', '', '', '', '', '2024-06-01'),
-(3, 1003, 'CUS10028', 'Edwin', '0110', '0220', '', '', '', '', '', '', '2024-06-02'),
-(4, 1003, 'CUS10028', 'Edwin', '2222', '1111', '', '', '', '', '', '', '2024-06-03'),
-(5, 1003, 'CUS10028', 'Edwin', '0002', '0001', '', '', '', '', '', '', '2024-06-04'),
-(6, 1005, 'CUS10028', 'Edwin', '333', '222', '', '', '', '', '', '', '2024-06-06'),
-(7, 1005, 'CUS10028', 'Edwin', '201', '301', '', '', '', '', '', '', '2024-06-05'),
-(8, 1006, '', 'Aswin', '30', '15', '', '', '', '', '', '', '2024-06-26'),
-(9, 1006, '', 'Aswin', '20', '10', '30', '40', '50', '60', '70', '80', '2024-07-04'),
-(10, 1006, '', 'Aswin', '33', '22', '44', '55', '66', '77', '88', '99', '2024-07-05'),
-(11, 1006, '', 'Aswin', '0002', '0001', '0003', '0004', '0005', '0006', '0007', '0008', '2024-07-10');
 
 -- --------------------------------------------------------
 
@@ -169,11 +152,7 @@ INSERT INTO `customer` (`cust_id`, `cust_code`, `cust_name`, `cust_phno`, `cust_
 (1007, 'CUS10016', 'Ajith', '986585498', 'Ashraf', '45', '46', 'Male', 'amal123@gmail.com', 'amal123@', '', 'Kochi', '3rd floor, kochi, po', '182', '90', '82', '72', '10', '105.4', '100.5', '', '142.2', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '25', '15000', '3510', '2024-05-29', '5000', '2024-04-27'),
 (1008, 'CUS10026', 'Melow', '9887659854', 'Amal', '25', '26', 'Female', 'melow12@gmail.com', '', '15-04-2023', 'Kochi', '3rd floor, kochi, po', '154', '78', '', '24', '001', '002', '003', '', '004', '14', '00:57', 'okkokook', 'Noodles', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '1 litre', 'belly fat', 'blood cancer', 'nutrition effectency', '', '', '', '', '', 'Weight lose', 'Offline', '20', '12000', '0', '2024-04-01', '1000', '2024-04-27'),
 (1009, 'CUS10026', 'Mathew', '9887659854', 'Amal', '25', '26', 'Female', 'melow12@gmail.com', '', '15-04-2023', 'Kochi', '3rd floor, kochi, po', '154', '78', '', '24', '001', '002', '003', '', '004', '14', '00:57', 'okkokook', 'Noodles', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '1 litre', 'belly fat', 'blood cancer', 'nutrition effectency', '', '', '', '', '', 'Weight lose', 'Offline', '20', '11000', '0', '2024-06-01', '0', '2024-04-27'),
-(1010, 'CUS10027', 'Abdul', '9887659854', 'Amal', '38', '39', 'Male', 'abdul12@gmail.com', '', '20-06-2024', 'Kochi', '3rd floor, kochi, po', '163', '96', '60', '24', '001', '002', '003', '', '004', '005', '11:09', 'Black Coffee', 'Idly, Sambar', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '2 litre', 'Diabeted', 'Cancer', 'High BP', '', '', '', '', '', 'Weight lose', 'Offline', '20', '10000', '0', '2024-04-01', '4000', '2024-04-27'),
-(1011, 'CUS10026', 'Arjun', '', '', '', '', '', '', '', '2024-06-30', '', '', '150', '90', '50', '', '', '103.5', '306.4', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '15000', '5500', '2024-04-01', '0', '2024-04-01'),
-(1012, 'CUS10028', 'Edwin', '9865875498', 'Amal', '24', '25', 'Male', 'edwin12@gmail.com', '', '2024-04-01', 'Kochi', '3rd floor, kochi, po', '154', '96', '60', '18', '001', '11', '12', '', '13', '14', '03:25', 'Black Coffee', 'Noodles', 'Chicken Biriyani', 'fries', 'Mandi', 'Non-veg', '2 litre', 'belly fat', 'blood cancer', 'nutrition effectency', 'Diabeties', 'Fever', 'Blood pressure', 'Diabeties 2', 'Diabeties 3', 'Weight lose', 'Offline', '30', '30000', '0', '2024-04-01', '0', '2024-05-04'),
-(1017, 'CUS10030', 'Mathew', '9876543210', 'Amal', '25', '32', 'Male', 'wolf12@gmail.com', '', '2024-06-13', 'North Marad', '3rd floor, Marad, po', '163', '85', '63', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '150000', '10000', '', '130000', '2024-07-10'),
-(1018, '', 'Aswin', '7034410471', '', '', '', 'Male', 'mma125037@gmail.com', 'kannan@123', '', 'Kottayam', 'Mukalel House', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, '', NULL, '');
+(1019, 'CUS10026', 'Melow111', '', '', '', '', 'other', '', '', '', '', '', '0', '0', '-100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0', '0', '', '0', '');
 
 -- --------------------------------------------------------
 
@@ -205,7 +184,8 @@ CREATE TABLE `login_details` (
 
 INSERT INTO `login_details` (`admin_username`, `login_details_id`, `login_time`) VALUES
 ('nutriadmin@gmail.com', 1, '2024-07-15 12:45:36'),
-('nutriadmin@gmail.com', 2, '2024-07-16 15:33:02');
+('nutriadmin@gmail.com', 2, '2024-07-16 15:33:02'),
+('nutriadmin@gmail.com', 3, '2024-07-17 02:05:56');
 
 -- --------------------------------------------------------
 
@@ -227,39 +207,9 @@ CREATE TABLE `pay_history` (
 --
 
 INSERT INTO `pay_history` (`pay_id`, `cust_id`, `cust_code`, `cust_name`, `cust_paid`, `cust_paiddate`) VALUES
-(1, 1003, 'CUS10012', 'Kareem', '1000', '2024-05-01'),
-(2, 1003, 'CUS10012', 'Kareem', '2500', '2024-05-04'),
-(3, 1007, 'CUS10016', 'Ajith', '3510', '2024-05-08'),
-(4, 1005, 'CUS10013', 'Amal', '1010', '2024-05-15'),
-(5, 1005, 'CUS10013', 'Amal', '2020', '2024-05-04'),
-(6, 1011, 'CUS10026', 'Arjun', '5400', '2024-05-14'),
-(7, 1011, 'CUS10026', 'Arjun', '100', '2024-05-25'),
-(8, 1003, 'CUS10012', 'Kareem', '3000', '2024-06-06'),
-(9, 1003, 'CUS10012', 'Kareem', '500', '2024-06-07'),
-(10, 1005, 'CUS10013', 'Amal', '1970', '2024-06-14'),
-(11, 1006, 'CUS10029', 'Albin', '3000', '2024-06-10'),
-(12, 1007, 'CUS10016', 'Ajith', '1490', '2024-06-09'),
-(13, 1006, 'CUS10029', 'Albin', '2121', '2024-06-11'),
-(14, 1008, 'CUS10026', 'Melow', '11000', '2024-06-04'),
-(15, 1010, 'CUS10027', 'Abdul', '5000', '2024-06-05'),
-(16, 1011, 'CUS10026', 'Arjun', '9500', '2024-06-30'),
-(17, 1012, 'CUS10028', 'Edwin', '25000', '2024-06-20'),
-(18, 1012, 'CUS10028', 'Edwin', '5000', '2024-06-27'),
-(19, 1010, 'CUS10027', 'Abdul', '1000', '2024-06-06'),
-(20, 1009, 'CUS10026', 'Mathew', '5000', '2024-06-05'),
-(21, 1009, 'CUS10026', 'Mathew', '5000', '2024-06-06'),
-(22, 1009, 'CUS10026', 'Mathew', '500', '2024-06-07'),
-(23, 1009, 'CUS10026', 'Mathew', '450', '2024-06-08'),
-(24, 1009, 'CUS10026', 'Mathew', '50', '2024-06-09'),
-(25, 1003, 'CUS10012', 'Kareem', '150', '2024-06-13'),
-(26, 1007, 'CUS10016', 'Ajith', '5000', '2024-06-10'),
-(27, 1006, 'CUS10029', 'Albin', '879', '2024-06-12'),
-(28, 1018, '', 'Aswin', '1000', '2024-06-26'),
-(29, 1006, 'CUS10029', 'Albin', '8000', '2024-06-26'),
-(30, 1006, 'CUS10029', 'Albin', '999', '2024-06-28'),
-(31, 1017, 'CUS10030', 'Mathew', '0', '2024-07-10'),
-(32, 1017, 'CUS10030', 'Mathew', '10000', '2024-07-10'),
-(33, 1017, 'CUS10030', 'Mathew', '10000', '2024-07-11');
+(1, 1019, 'CUS10026', 'Melow111', '0', ''),
+(2, 1019, 'CUS10026', 'Melow111', '0', ''),
+(3, 1019, 'CUS10026', 'Melow111', '0', '');
 
 -- --------------------------------------------------------
 
@@ -703,7 +653,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `bmr_history`
 --
 ALTER TABLE `bmr_history`
-  MODIFY `bmr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `bmr_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -715,7 +665,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `cust_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1019;
+  MODIFY `cust_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1020;
 
 --
 -- AUTO_INCREMENT for table `gallery`
@@ -727,13 +677,13 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pay_history`
 --
 ALTER TABLE `pay_history`
-  MODIFY `pay_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `pay_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `price`
