@@ -3,7 +3,7 @@ include './connect.php';
 error_reporting(0);
 session_start();
 if ($_SESSION["email"] == "") {
-  header('location:staff-login.php');
+  header('location:admin-login.php');
 }
 // Fetch the customer's name based on the logged-in user's email
 $email = $_SESSION["email"];
@@ -18,7 +18,7 @@ if ($row = mysqli_fetch_assoc($query)) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Staff-Dashboard</title>
+  <title>Admin-Dashboard</title>
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
@@ -41,7 +41,7 @@ if ($row = mysqli_fetch_assoc($query)) {
             </div>
           </div>
         </div>
-        <div class="row">
+        <div class="row d-flex align-items-center">
           <!-- newly arrived product carousel -->
           <div class="col-md-6 grid-margin stretch-card">
             <div class="card tale-bg" style="position: relative;">
@@ -53,29 +53,32 @@ if ($row = mysqli_fetch_assoc($query)) {
                 <div class="carousel-inner">
                   <?php
                   $sql = mysqli_query($conn, "SELECT * FROM product ORDER BY product_id ");
+                  $firstItem = true; // Variable to track the first item
                   while ($row = mysqli_fetch_assoc($sql)) {
                     $pro_img = $row['product_img'];
                   ?>
-                    <!-- Add your carousel items here -->
-                    <div class="carousel-item active">
-                      <img src="../../Admin/images/product/<?php echo $pro_img; ?>" class="d-block w-100 img-fluid" alt="People 1" style="object-fit: cover; height: 300px; border-radius: 20px;">
+                    <div class="carousel-item <?php if ($firstItem) {
+                                                echo 'active';
+                                                $firstItem = false;
+                                              } ?>">
+                      <img src="../images/product/<?php echo htmlspecialchars($pro_img, ENT_QUOTES, 'UTF-8'); ?>" class="d-block w-100 img-fluid" alt="Product Image" style="object-fit: cover; height: 300px; border-radius: 20px;">
                     </div>
                   <?php
                   }
                   ?>
-                  <!-- Add more carousel items as needed -->
                 </div>
-                <!-- <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+                <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                   <span class="sr-only">Previous</span>
                 </a>
                 <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
                   <span class="sr-only">Next</span>
-                </a> -->
+                </a>
               </div>
             </div>
           </div>
+
           <?php
           // Query to get the counts
           $result = $conn->query("SELECT COUNT(*) AS customer_count FROM customer WHERE cust_prgtype = 'Online'");
@@ -101,7 +104,7 @@ if ($row = mysqli_fetch_assoc($query)) {
                 <div class="card card-tale">
                   <div class="card-body">
                     <p class="mb-4">Online Customer</p>
-                    <p class="fs-30 mb-2"><?php echo $cateringonline_count; ?></p>
+                    <h2 class="fs-3 mb-2"><?php echo $cateringonline_count; ?></h2>
                   </div>
                 </div>
               </div>
@@ -109,25 +112,25 @@ if ($row = mysqli_fetch_assoc($query)) {
                 <div class="card card-dark-blue">
                   <div class="card-body">
                     <p class="mb-4">Offline Customer</p>
-                    <p class="fs-30 mb-2"><?php echo $customeroffline_count; ?></p>
+                    <h2 class="fs-3 mb-2"><?php echo $customeroffline_count; ?></h2>
                   </div>
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-6 col-6 mb-4 mb-lg-0 stretch-card transparent">
+              <div class="col-md-6 col-6 mb-4 stretch-card transparent">
                 <div class="card card-light-blue">
                   <div class="card-body">
                     <p class="mb-4">Number of Staff</p>
-                    <p class="fs-30 mb-2"><?php echo $staff_count; ?></p>
+                    <h2 class="fs-3 mb-2"><?php echo $staff_count; ?></h2>
                   </div>
                 </div>
               </div>
-              <div class="col-md-6 col-6 mb-0 stretch-card transparent">
+              <div class="col-md-6 col-6 mb-4 stretch-card transparent">
                 <div class="card card-light-danger">
                   <div class="card-body">
                     <p class="mb-4">Number of Clients</p>
-                    <p class="fs-30 mb-2"><?php echo $customer_count; ?></p>
+                    <h2 class="fs-3 mb-2"><?php echo $customer_count; ?></h2>
                   </div>
                 </div>
               </div>
@@ -216,18 +219,20 @@ if ($row = mysqli_fetch_assoc($query)) {
               <div class="card-body">
                 <p class="card-title mb-0">Newly Orders</p>
                 <div class="table-responsive">
-                  <table class="table table-borderless table-striped">
+                  <table class="table table-striped table-hover">
                     <thead>
                       <tr>
-                        <th class="pl-0  pb-2 border-bottom">Product</th>
+                        <th class="pl-0 pb-2 border-bottom">Product</th>
                         <th class="border-bottom pb-2">Place</th>
                         <th class="border-bottom pb-2">Order</th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
-                      $sql = mysqli_query($conn, "SELECT * FROM stock ORDER BY stock_id ");
-                      $serialNo = 1;
+                      $sql = mysqli_query($conn, "SELECT * FROM stock ORDER BY stock_associate, stock_id");
+                      $current_place = null;
+                      $total_quantity = 0;
+
                       while ($row = mysqli_fetch_assoc($sql)) {
                         $stock_id = $row['stock_id'];
                         $stock_product = $row['stock_proname'];
@@ -236,62 +241,50 @@ if ($row = mysqli_fetch_assoc($query)) {
                         $stock_price = $row['stock_price'];
                         $stock_total = $row['stock_total'];
                         $stock_date = $row['stock_date'];
-                      ?>
-                        <tr>
-                          <td class="pl-0 pl-4"><?php echo $stock_product; ?></td>
-                          <td>
-                            <p class="mb-0"><span class="font-weight-bold mr-2"><?php echo $stock_location; ?></span></p>
-                          </td>
-                          <td class="text-muted"> <span class="font-weight-bold"><?php echo $stock_quan; ?></span></td>
-                        </tr>
-                    </tbody>
-                  <?php
+
+                        // Check if place has changed
+                        if ($stock_location !== $current_place) {
+                          // Output row for previous place if not first iteration
+                          if ($current_place !== null) {
+                            echo '
+            <tr>
+              <td class="pl-0 pl-4 border-right">' . htmlspecialchars($stock_product, ENT_QUOTES, 'UTF-8') . '</td>
+              <td class="border-right">
+                <p class="mb-0"><span class="font-weight-bold mr-2">' . htmlspecialchars($current_place, ENT_QUOTES, 'UTF-8') . '</span></p>
+              </td>
+              <td class="text-muted border-right"><span class="font-weight-bold">' . $total_quantity . '</span></td>
+            </tr>';
+                          }
+
+                          // Reset total_quantity for the new place
+                          $current_place = $stock_location;
+                          $total_quantity = 0;
+                        }
+
+                        // Add current row quantity to total_quantity
+                        $total_quantity += $stock_quan;
                       }
-                  ?>
+
+                      // Output last row after loop ends
+                      if ($current_place !== null) {
+                        echo '
+        <tr>
+          <td class="pl-0 pl-4 border-right">' . htmlspecialchars($stock_product, ENT_QUOTES, 'UTF-8') . '</td>
+          <td class="border-right">
+            <p class="mb-0"><span class="font-weight-bold mr-2">' . htmlspecialchars($current_place, ENT_QUOTES, 'UTF-8') . '</span></p>
+          </td>
+          <td class="text-muted border-right"><span class="font-weight-bold">' . $total_quantity . '</span></td>
+        </tr>';
+                      }
+                      ?>
+                    </tbody>
                   </table>
                 </div>
+
+
               </div>
             </div>
           </div>
-          <!-- <div class="col-md-4 stretch-card grid-margin">
-            <div class="card">
-              <div class="card-body">
-                <p class="card-title">Customers Reviews</p>
-                <ul class="icon-data-list">
-                  <li>
-                    <div class="d-flex">
-                      <img src="../images/user.jpg" alt="user">
-                      <div>
-                        <p class="text-info mb-1">Isabella Becker</p>
-                        <p class="mb-0">Thanks i really helpful</p>
-                        <small>9:30 am</small>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="d-flex">
-                      <img src="../images/user.jpg" alt="user">
-                      <div>
-                        <p class="text-info mb-1">Adam Warren</p>
-                        <p class="mb-0">You have done a great job
-                          <small>10:30 am</small>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="d-flex">
-                      <img src="../images/user.jpg" alt="user">
-                      <div>
-                        <p class="text-info mb-1">Leonard Thornton</p>
-                        <p class="mb-0">i am looking for this kind of product for so long,</p>
-                        <small>11:30 am</small>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div> -->
         </div>
       </div>
       <footer class="footer">

@@ -3,7 +3,7 @@ include './connect.php';
 error_reporting(0);
 session_start();
 if ($_SESSION["email"] == "") {
-  header('location:staff-login.php');
+  header('location:admin-login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -12,7 +12,7 @@ if ($_SESSION["email"] == "") {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Staff Add-Product</title>
+  <title>Admin Add-Product</title>
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
@@ -39,11 +39,11 @@ if ($_SESSION["email"] == "") {
       $dl_id = $_GET['prd_id'];
       $dl_query = mysqli_query($conn, "SELECT * FROM product WHERE product_id = '$dl_id'");
       $dl_row1 = mysqli_fetch_array($dl_query);
-      $img = '../../Admin/images/product/' . $dl_row1['product_img'];
+      $img = '../images/product/' . $dl_row1['product_img'];
       $del = mysqli_query($conn, "DELETE FROM product WHERE product_id='$dl_id'");
       if ($del) {
         unlink($img); //for deleting the existing image from the folder
-        header("location:staff-addproduct.php");
+        header("location:admin-addproduct.php");
       } else {
         echo "Deletion Failed";
       }
@@ -77,7 +77,7 @@ if ($_SESSION["email"] == "") {
                         <!-- Display existing image if available -->
                         <?php if ($pro_img1) : ?>
                           <div id="existingImage">
-                            <img src="../../Admin/images/product/<?php echo $pro_img1; ?>" alt="Product Image" style="width: 200px; height: auto; margin-top: 10px; border-radius: 16px;">
+                            <img src="../images/product/<?php echo $pro_img1; ?>" alt="Product Image" style="width: 200px; height: auto; margin-top: 10px; border-radius: 16px;">
                           </div>
                         <?php endif; ?>
                       </div>
@@ -92,7 +92,7 @@ if ($_SESSION["email"] == "") {
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary mr-2 rounded-pill" name="submitpr">Submit</button>
-                  <a href="./staff-addproduct.php" class="btn btn-light rounded-pill">Cancel</a>
+                  <a href="./admin-addproduct.php" class="btn btn-light rounded-pill">Cancel</a>
                 </form>
               </div>
             </div>
@@ -115,7 +115,7 @@ if ($_SESSION["email"] == "") {
             } else {
               if ($filename) {
                 // Remove the existing image
-                $imgs = '../../Admin/images/product/' . $pr_img;
+                $imgs = '../images/product/' . $pr_img;
                 if (file_exists($imgs)) {
                   unlink($imgs);
                 }
@@ -125,7 +125,7 @@ if ($_SESSION["email"] == "") {
               $sql = mysqli_query($conn, "UPDATE product SET product_name='$pro_name', product_desc='$pro_desc'  WHERE product_id='$pro_id'");
             }
             if ($sql == TRUE) {
-              move_uploaded_file($tempname, "../../Admin/images/product/$filename");
+              move_uploaded_file($tempname, "../images/product/$filename");
               echo "<script type='text/javascript'>('Operation completed successfully.');</script>";
             } else {
               echo "<script type='text/javascript'>('Error: " . mysqli_error($conn) . "');</script>";
@@ -162,15 +162,18 @@ if ($_SESSION["email"] == "") {
                       <tbody>
                         <tr>
                           <td>
-                            <a href="staff-addproduct.php?prid=<?php echo $pro_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i>
+                            <a href="admin-addproduct.php?prid=<?php echo $pro_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit
+                              <i class="ti-pencil-alt btn-icon-append"></i>
                             </a>
                           </td>
                           <td>
-                            <a href="staff-addproduct.php?prd_id=<?php echo $pro_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a>
+                            <a href="admin-addproduct.php?prd_id=<?php echo $pro_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete
+                              <i class="ti-trash btn-icon-prepend"></i>
+                            </a>
                           </td>
                           <td class="py-1"><?php echo $serialNo++; ?></td>
                           <td><?php echo $pro_name; ?></td>
-                          <td><img src="../../Admin/images/product/<?php echo $pro_img; ?>" alt=""></td>
+                          <td><img src="../images/product/<?php echo $pro_img; ?>" alt=""></td>
                           <td><?php echo $pro_desc; ?></td>
                         </tr>
                       </tbody>

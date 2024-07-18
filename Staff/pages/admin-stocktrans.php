@@ -4,7 +4,7 @@ include './connect.php';
 $stoloct1 = $stoqua1 = $sh_raw1 = $sto_id = $stoassoc1 = "";
 session_start();
 if ($_SESSION["email"] == "") {
-  header('location:staff-login.php');
+  header('location:admin-login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -13,7 +13,7 @@ if ($_SESSION["email"] == "") {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Staff Stock</title>
+  <title>Admin Stock</title>
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
@@ -42,7 +42,7 @@ if ($_SESSION["email"] == "") {
       $dl_id = $_GET['stod_id'];
       $del = mysqli_query($conn, "DELETE FROM stock WHERE stock_id='$dl_id'");
       if ($del) {
-        header("location:staff-stocktrans.php");
+        header("location:admin-stocktrans.php");
       } else {
         echo "Deletion Failed";
       }
@@ -51,7 +51,7 @@ if ($_SESSION["email"] == "") {
     <!-- Fetching prices of all materials from the database -->
     <?php
     $material_prices = array();
-    $query = mysqli_query($conn, "SELECT pro_name, pro_price FROM price");
+    $query = mysqli_query($conn, "SELECT pri_id, pro_name, pro_price FROM price");
     while ($row = mysqli_fetch_assoc($query)) {
       $material_prices[$row['pro_name']] = $row['pro_price'];
     }
@@ -65,15 +65,33 @@ if ($_SESSION["email"] == "") {
         var selectedMaterial = document.getElementById("stomaterial").value;
         var priceInput = document.getElementById("stopri");
         var quantityInput = document.getElementById("stocurqua");
+        var proIdInput = document.getElementById("pro_id");
 
         if (selectedMaterial && materialPrices[selectedMaterial]) {
           priceInput.value = materialPrices[selectedMaterial]; // Set the purchase price input
           quantityInput.value = document.querySelector('#stomaterial option:checked').getAttribute('data-quantity'); // Retrieve and set the product quantity input
+          proIdInput.value = document.querySelector('#stomaterial option:checked').getAttribute('data-proid'); // Retrieve and set the product ID
         } else {
           priceInput.value = "";
           quantityInput.value = ""; // Clear fields if no material is selected
+          proIdInput.value = ""; // Clear product ID
         }
       }
+
+      // Function to validate the location field
+      function validateForm(event) {
+        var locationSelect = document.getElementById("stoloc");
+        if (locationSelect.value === "Select Location") {
+          alert("Please select a location.");
+          event.preventDefault(); // Prevent form submission
+        }
+      }
+
+      // Add event listener to the form submit event
+      document.addEventListener("DOMContentLoaded", function() {
+        var form = document.querySelector("form");
+        form.addEventListener("submit", validateForm);
+      });
     </script>
     <div class="main-panel">
       <div class="content-wrapper">
@@ -85,6 +103,7 @@ if ($_SESSION["email"] == "") {
                 <p class="card-description">Stock Transfer Details</p>
                 <form method="post" class="forms-sample" enctype="multipart/form-data">
                   <input type="hidden" name="pri_id" id="pri_id" value="<?php echo isset($stoid) ? $stoid : ''; ?>">
+                  <input type="hidden" name="pro_id" id="pro_id" value="">
                   <div class="row">
                     <div class="col-lg-6 col-md col-sm col-12">
                       <div class="form-group">
@@ -98,9 +117,9 @@ if ($_SESSION["email"] == "") {
                             $pro_name = $row["pro_name"];
                             $pro_quantity = $row["pro_curquantity"];
                           ?>
-                            <option value="<?php echo $pro_name; ?>" data-quantity="<?php echo $pro_quantity; ?>" <?php if ($row['pro_name'] == $sh_raw1) {
-                                                                                                                    echo 'selected';
-                                                                                                                  } ?>><?php echo $pro_name; ?></option>
+                            <option value="<?php echo $pro_name; ?>" data-quantity="<?php echo $pro_quantity; ?>" data-proid="<?php echo $pro_id; ?>" <?php if ($row['pro_name'] == $sh_raw1) {
+                                                                                                                                                        echo 'selected';
+                                                                                                                                                      } ?>><?php echo $pro_name; ?></option>
                           <?php
                           }
                           ?>
@@ -118,9 +137,24 @@ if ($_SESSION["email"] == "") {
                     <div class="col">
                       <div class="form-group">
                         <label>Location</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="stoloc" value="<?php echo $stoassoc1; ?>" required>
+                        <select class="form-control" style="border-radius: 16px;" name="stoloc" id="stoloc" required>
+                          <option selected>Select Location</option>
+                          <?php
+                          // Assuming 'staff' is the table name and 'staff_location' is the field for location
+                          $location_query = mysqli_query($conn, "SELECT DISTINCT staff_name FROM staff");
+                          while ($location_row = mysqli_fetch_assoc($location_query)) {
+                            $location_name = $location_row['staff_name'];
+                            echo '<option value="' . $location_name . '"';
+                            if ($location_name == $stoassoc1) {
+                              echo ' selected';
+                            }
+                            echo '>' . $location_name . '</option>';
+                          }
+                          ?>
+                        </select>
                       </div>
                     </div>
+
                     <div class="col">
                       <div class="form-group">
                         <label>Purchased Price</label>
@@ -150,6 +184,7 @@ if ($_SESSION["email"] == "") {
           $stopri = $_POST["stopri"];
           $stodate = $_POST["stodate"];
           $sto_id = $_POST["pri_id"];
+          $pro_id = $_POST["pro_id"];
 
           // Fetch current quantity of the selected product
           $sal_curquan_query = mysqli_query($conn, "SELECT pro_curquantity FROM price WHERE pro_name='$stomat'");
@@ -164,7 +199,7 @@ if ($_SESSION["email"] == "") {
           if ($sto_id == '') {
             // Insert new record
             $sql = mysqli_query($conn, "INSERT INTO stock (stock_proid, stock_proname, stock_quantity, stock_associate, stock_price, stock_total, stock_date)
-                                        VALUES ('$stomat', $stoqua, '$stoloct', $stopri, $stototal, '$stodate')");
+                                        VALUES ('$pro_id','$stomat', $stoqua, '$stoloct', $stopri, $stototal, '$stodate')");
 
             if ($sql) {
               // Update the price table
@@ -172,7 +207,7 @@ if ($_SESSION["email"] == "") {
             }
           } else {
             // Update existing record
-            $sql = mysqli_query($conn, "UPDATE stock SET stock_proid='$stomat', stock_proname='$stomat', stock_quantity=$stoqua, stock_associate='$stoloct', stock_price=$stopri, stock_total=$stototal, stock_date='$stodate' WHERE stock_id='$sto_id'");
+            $sql = mysqli_query($conn, "UPDATE stock SET stock_proid='$pro_id', stock_proname='$stomat', stock_quantity=$stoqua, stock_associate='$stoloct', stock_price=$stopri, stock_total=$stototal, stock_date='$stodate' WHERE stock_id='$sto_id'");
           }
 
           // Check if the query was successful
@@ -198,7 +233,7 @@ if ($_SESSION["email"] == "") {
           }
         }
         ?>
-        <div class="row ">
+        <div class="row">
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
@@ -245,8 +280,8 @@ if ($_SESSION["email"] == "") {
                     ?>
                       <tbody>
                         <tr>
-                          <td><a href="staff-stocktrans.php?stoid=<?php echo $stock_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i></a></td>
-                          <td><a href="staff-stocktrans.php?stod_id=<?php echo $stock_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a>
+                          <td><a href="admin-stocktrans.php?stoid=<?php echo $stock_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i></a></td>
+                          <td><a href="admin-stocktrans.php?stod_id=<?php echo $stock_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a>
                           </td>
                           <td class="py-1"><?php echo $serialNo++; ?></td>
                           <td><?php echo $stock_date; ?></td>

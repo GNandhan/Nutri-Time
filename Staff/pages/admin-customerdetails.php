@@ -3,7 +3,7 @@ include './connect.php';
 error_reporting(0);
 session_start();
 if ($_SESSION["email"] == "") {
-    header('location:staff-login.php');
+    header('location:admin-login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -12,7 +12,7 @@ if ($_SESSION["email"] == "") {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Staff Customer Details</title>
+    <title>Admin Customer Details</title>
     <link rel="stylesheet" href="../vendors/feather/feather.css">
     <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
     <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
@@ -91,7 +91,7 @@ if ($_SESSION["email"] == "") {
                         $cus_paiddate5 = $c_row['cust_paiddate5'];
                         $cus_remain = $c_row['cust_remain'];
                         $cus_date = $c_row['cust_date'];
-
+                        $cus_paidtotal = $cus_total - $cus_remain;
                         // Fetch payment history
                         $pay_history_query = mysqli_query($conn, "SELECT `pay_id`, `cust_id`, `cust_code`, `cust_name`, `cust_paid`, `cust_paiddate` FROM `pay_history` WHERE `cust_id` = $progid");
 
@@ -104,7 +104,7 @@ if ($_SESSION["email"] == "") {
                             $payment_history = [];
                         }
                         // Fetch BMI and BMR history
-                        $bmr_history_query = mysqli_query($conn, "SELECT `bmr_id`, `cust_id`, `cust_code`, `cust_name`, `cust_bmr`, `cust_bmi`, `cust_bmidate` FROM `bmr_history` WHERE `cust_id` = $progid");
+                        $bmr_history_query = mysqli_query($conn, "SELECT `bmr_id`, `cust_id`, `cust_code`, `cust_name`, `cust_bmr`, `cust_bmi`, `cust_vcf`, `cust_tcf`, `cust_fat`, `cust_bage`, `cust_weight`, `cust_mass`, `cust_bmidate` FROM `bmr_history` WHERE `cust_id` = $progid");
 
                         if ($bmr_history_query && mysqli_num_rows($bmr_history_query) > 0) {
                             $bmr_history = [];
@@ -260,43 +260,52 @@ if ($_SESSION["email"] == "") {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg col-md col-sm col grid-margin stretch-card">
+                        <div class="col-lg-9 col-md col-sm col grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <p class="card-description">BMI & BMR HISTORY</p>
+                                    <p class="card-description">Body Parameters</p>
                                     <hr>
-                                    <?php
-                                    $serial_number = 1; // Initialize serial number
-                                    foreach ($bmr_history as $bmr_item) { ?>
-                                        <div class="row">
-                                            <div class="col-lg-1 col-md-1 col-sm-1 col">
-                                                <ul>
-                                                    <li class="card-description"><?php echo $serial_number; ?></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg-3 col-md-3 col-sm-3 col">
-                                                <ul>
-                                                    <li class="card-description">BMI: <span style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_bmi']; ?></span></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg-3 col-md-3 col-sm-3 col">
-                                                <ul>
-                                                    <li class="card-description">BMR: <span style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_bmr']; ?></span></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg-5 col-md-5 col-sm-5 col">
-                                                <ul>
-                                                    <li class="card-description">Date: <span style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_bmidate']; ?></span></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    <?php
-                                        $serial_number++; // Increment serial number
-                                    } ?>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>BMI</th>
+                                                    <th>BMR</th>
+                                                    <th>VCF</th>
+                                                    <th>TCF</th>
+                                                    <th>FAT</th>
+                                                    <th>Body Age</th>
+                                                    <th>Weight</th>
+                                                    <th>Mass</th>
+                                                    <th>Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $serial_number = 1; // Initialize serial number
+                                                foreach ($bmr_history as $bmr_item) { ?>
+                                                    <tr>
+                                                        <td><?php echo $serial_number; ?></td>
+                                                        <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_bmi']; ?></td>
+                                                        <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_bmr']; ?></td>
+                                                        <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_vcf']; ?></td>
+                                                        <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_tcf']; ?></td>
+                                                        <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_fat']; ?></td>
+                                                        <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_bage']; ?></td>
+                                                        <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_weight']; ?></td>
+                                                        <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_mass']; ?></td>
+                                                        <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_bmidate']; ?></td>
+                                                    </tr>
+                                                <?php
+                                                    $serial_number++; // Increment serial number
+                                                } ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
 
                     </div>
                 <?php
