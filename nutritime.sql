@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2024 at 07:44 PM
+-- Generation Time: Jul 19, 2024 at 08:29 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -173,6 +173,13 @@ CREATE TABLE `gallery` (
   `gallery_img` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `gallery`
+--
+
+INSERT INTO `gallery` (`gallery_id`, `gallery_dis`, `gallery_img`) VALUES
+(9, '', 'main page.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -256,7 +263,7 @@ INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subc
 (2, 'FORMULA 1 SHAKE MIX CHOCOLATE', 'F1C', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2371', '1341', '2371', '2061', '1861', '1651', '1501', '1341', '12.75', '153', '50', '6150', '0', '121.65', '111.55', '10.45', '9.35', '8.25', '7.15', '123', '0', '986598', '', '2024-07-04'),
 (3, 'FORMULA 1 SHAKE MIX PISTAH', 'F1P', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '1342', '2372', '2062', '1862', '1652', '1502', '1342', '21.75', '435', '40', '4960', '-400', '145.52', '135.52', '125.52', '115.52', '105.25', '95.25', '124', '-10', '785487', '', '2024-07-05'),
 (4, 'FORMULA 1 SHAKE MIX OREO', 'F!O', 'Ayurdevic Nutrition', 'Energy', '2683', '2503', '2683', '2103', '2003', '1803', '1703', '1603', '12.75', '127.5', '30', '3000', '-13', '123.45', '113.45', '103.45', '93.45', '83.45', '73.45', '100', '-0.4333333', '986598', '', '2024-07-01'),
-(6, 'FORMULA 1 SHAKE MIX STRAWBERRY', 'F1S', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '1342', '2372', '2062', '1862', '1652', '1502', '1342', '21.75', '870', '20', '800', '400', '145.52', '135.52', '125.52', '115.52', '105.25', '95.25', '40', '20', '785487', '', '2024-07-19');
+(6, 'FORMULA 1 SHAKE MIX STRAWBERRY', 'F1S', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '1342', '2372', '2062', '1862', '1652', '1502', '1342', '21.75', '870', '20', '800', '360', '145.52', '135.52', '125.52', '115.52', '105.25', '95.25', '40', '18', '785487', '', '2024-07-19');
 
 -- --------------------------------------------------------
 
@@ -276,8 +283,6 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `product_name`, `product_img`, `product_desc`) VALUES
-(3, 'Fitness diet', 'main page.jpg', 'Newly one'),
-(4, 'Weight Gainer', 'shake3.jpg', 'mmm'),
 (5, 'Weight Gainer', 'shake2.jpg', 'nmmm');
 
 -- --------------------------------------------------------
@@ -327,8 +332,6 @@ CREATE TABLE `sales` (
 --
 
 INSERT INTO `sales` (`sales_id`, `sales_proid`, `sales_procode`, `sales_proname`, `sales_procat`, `sales_prosubcat`, `sales_mrp`, `sales_quan`, `sales_curquan`, `sales_vp`, `sales_vptotal`, `sales_gst`, `sales_dis`, `sales_dispri`, `sales_cus`, `sales_address`, `sales_total`, `sales_date`) VALUES
-(1, 1, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '7', '', '21.75', '152.25', '18', '0', '2065', 'Arun', 'none', '14455', '2024-07-01'),
-(2, 1, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '15', '', '21.75', '326.25', '18', '15', '2065', 'Jeslin Biju', 'yyyyyyyyyyyyyyyyyy', '36550.5', '2024-07-02'),
 (3, 1, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2378', '5', '', '21.75', '108.75', '18', '15', '2065', 'amla', 'yyyyyyyyyyyyyyyyyy', '12183.5', '2024-07-03'),
 (4, 3, 'F1P', 'FORMULA 1 SHAKE MIX PISTAH', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '20', '', '21.75', '435', '18', '25', '1862', 'Arun', 'zzzzzzzzzzzzzzzzzzzzzzzz', '43943.2', '2024-07-04'),
 (5, 2, 'F1C', 'FORMULA 1 SHAKE MIX CHOCOLATE', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2371', '10', '', '12.75', '127.5', '18', '15', '2061', 'Alvin', 'mmmmmmmmmmmmmm', '24319.8', '2024-07-05'),
@@ -359,7 +362,8 @@ INSERT INTO `sales` (`sales_id`, `sales_proid`, `sales_procode`, `sales_proname`
 (30, 2, 'F1C', 'FORMULA 1 SHAKE MIX CHOCOLATE', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2371', '3', '', '12.75', '38.25', '18', '15', '2061', 'Arun', 'none', '6183', '2024-07-02'),
 (31, 1, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '2', '', '21.75', '43.5', '18', '15', '2060', 'Jeslin Biju', 'none', '4120', '2024-07-04'),
 (32, 1, 'F1V', 'FORMULA 1 SHAKE MIX VANILLA', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2370', '1', '', '21.75', '21.75', '18', '15', '2060', 'zzzzzzzzzzzz', 'iojdijewdeiwjdijewiodjewjifewriofoiref', '2060', '2024-07-05'),
-(33, 2, 'F1C', 'FORMULA 1 SHAKE MIX CHOCOLATE', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2371', '5', '', '12.75', '63.75', '18', '15', '2061', 'none', 'none', '10305', '2024-07-04');
+(33, 2, 'F1C', 'FORMULA 1 SHAKE MIX CHOCOLATE', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2371', '5', '', '12.75', '63.75', '18', '15', '2061', 'none', 'none', '10305', '2024-07-04'),
+(34, 6, 'F1S', 'FORMULA 1 SHAKE MIX STRAWBERRY', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '2', '', '21.75', '43.5', '18', '15', '2062', 'Jeslin Biju', 'none', '4124', '2024-07-19');
 
 -- --------------------------------------------------------
 
@@ -670,7 +674,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `gallery_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `gallery_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `login_details`
@@ -700,13 +704,13 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `program`
 --
 ALTER TABLE `program`
-  MODIFY `program_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `program_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `shake`
