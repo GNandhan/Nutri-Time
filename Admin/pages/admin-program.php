@@ -175,16 +175,8 @@ if ($_SESSION["email"] == "") {
                     ?>
                       <tbody>
                         <tr>
-                          <td>
-                            <a href="admin-program.php?prid=<?php echo $pro_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit
-                              <i class="ti-pencil-alt btn-icon-append"></i>
-                            </a>
-                          </td>
-                          <td>
-                            <a href="admin-program.php?prd_id=<?php echo $pro_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete
-                              <i class="ti-trash btn-icon-prepend"></i>
-                            </a>
-                          </td>
+                          <td><a href="admin-program.php?prid=<?php echo $pro_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i></a></td>
+                          <td><a href="admin-program.php?prd_id=<?php echo $pro_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2" onclick="return confirmDelete();">Delete<i class="ti-trash btn-icon-prepend"></i></a></td>
                           <td class="py-1"><?php echo $serialNo++; ?></td>
                           <td><?php echo $pro_name; ?></td>
                           <td><img src="../images/program/<?php echo $pro_img; ?>" alt=""></td>
@@ -229,6 +221,10 @@ if ($_SESSION["email"] == "") {
         label.parentNode.appendChild(img);
       };
       fileReader.readAsDataURL(input.files[0]);
+    }
+
+    function confirmDelete() {
+      return confirm('Are you sure you want to delete this Program?');
     }
   </script>
   <script src="../vendors/js/vendor.bundle.base.js"></script>

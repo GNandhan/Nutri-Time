@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 17, 2024 at 02:30 AM
+-- Generation Time: Jul 19, 2024 at 07:44 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -256,7 +256,7 @@ INSERT INTO `price` (`pri_id`, `pro_name`, `pro_code`, `pro_category`, `pro_subc
 (2, 'FORMULA 1 SHAKE MIX CHOCOLATE', 'F1C', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2371', '1341', '2371', '2061', '1861', '1651', '1501', '1341', '12.75', '153', '50', '6150', '0', '121.65', '111.55', '10.45', '9.35', '8.25', '7.15', '123', '0', '986598', '', '2024-07-04'),
 (3, 'FORMULA 1 SHAKE MIX PISTAH', 'F1P', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '1342', '2372', '2062', '1862', '1652', '1502', '1342', '21.75', '435', '40', '4960', '-400', '145.52', '135.52', '125.52', '115.52', '105.25', '95.25', '124', '-10', '785487', '', '2024-07-05'),
 (4, 'FORMULA 1 SHAKE MIX OREO', 'F!O', 'Ayurdevic Nutrition', 'Energy', '2683', '2503', '2683', '2103', '2003', '1803', '1703', '1603', '12.75', '127.5', '30', '3000', '-13', '123.45', '113.45', '103.45', '93.45', '83.45', '73.45', '100', '-0.4333333', '986598', '', '2024-07-01'),
-(5, 'FORMULA 1 SHAKE MIX STRAWBERRY', 'F1S', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '3794', '3614', '3794', '3214', '3114', '2914', '2814', '3614', '21.75', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+(6, 'FORMULA 1 SHAKE MIX STRAWBERRY', 'F1S', 'WEIGHT MANAGEMENT', 'WEIGHT LOSS / GAIN / MAINTAIN', '2372', '1342', '2372', '2062', '1862', '1652', '1502', '1342', '21.75', '870', '20', '800', '400', '145.52', '135.52', '125.52', '115.52', '105.25', '95.25', '40', '20', '785487', '', '2024-07-19');
 
 -- --------------------------------------------------------
 
@@ -511,7 +511,8 @@ INSERT INTO `stock` (`stock_id`, `stock_proid`, `stock_proname`, `stock_quantity
 (24, 1, 'FORMULA 1 SHAKE MIX VANILLA', '1', 'Mankavu NC', '1340', 1340, '2024-07-18'),
 (25, 1, 'FORMULA 1 SHAKE MIX VANILLA', '3', 'Puthiyapalam NC', '1340', 4020, '2024-07-31'),
 (26, 1, 'FORMULA 1 SHAKE MIX VANILLA', '2', 'Palayam NC', '1340', 2680, '2024-07-17'),
-(27, 1, 'FORMULA 1 SHAKE MIX VANILLA', '1', 'Aryankavu NC', '1340', 1340, '2024-07-17');
+(27, 1, 'FORMULA 1 SHAKE MIX VANILLA', '1', 'Aryankavu NC', '1340', 1340, '2024-07-17'),
+(28, 6, 'FORMULA 1 SHAKE MIX STRAWBERRY', '20', 'Mangavu NC	', '1342', 26840, '2024-07-20');
 
 -- --------------------------------------------------------
 
@@ -687,7 +688,7 @@ ALTER TABLE `pay_history`
 -- AUTO_INCREMENT for table `price`
 --
 ALTER TABLE `price`
-  MODIFY `pri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `pri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -723,7 +724,7 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `subcategory`

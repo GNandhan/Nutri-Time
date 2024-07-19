@@ -334,7 +334,7 @@ if ($_SESSION["email"] == "") {
                         <tbody>
                           <tr>
                             <td><a href="admin-shake.php?sid=<?php echo $sh_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i></a></td>
-                            <td><a href="admin-shake.php?sd_id=<?php echo $sh_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a></td>
+                            <td><a href="admin-shake.php?sd_id=<?php echo $sh_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2" onclick="return confirmDelete();">Delete<i class="ti-trash btn-icon-prepend"></i></a></td>
                             <td><a href="admin-shake.php?cusmdid=<?php echo $sh_id; ?>" class="btn btn-inverse-primary btn-icon-text p-3" data-toggle="modal" data-target="#exampleModal_<?php echo $sh_id; ?>">Shake History</a></td>
                             <td class="py-1"><?php echo $serialNo++; ?></td>
                             <td><?php echo $cu_name; ?></td>
@@ -506,6 +506,11 @@ if ($_SESSION["email"] == "") {
           }
         }
       }
+    }
+  </script>
+  <script>
+    function confirmDelete() {
+      return confirm('Are you sure you want to delete this Shake?');
     }
   </script>
   <script src="../js/off-canvas.js"></script>

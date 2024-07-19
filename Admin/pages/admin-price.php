@@ -239,7 +239,7 @@ if ($_SESSION["email"] == "") {
                       <tbody>
                         <tr>
                           <td><a href="admin-price.php?pid=<?php echo $pri_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i></a></td>
-                          <td><a href="admin-price.php?pd_id=<?php echo $pri_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a></td>
+                          <td><a href="admin-price.php?pd_id=<?php echo $pri_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2" onclick="return confirmDelete();">Delete<i class="ti-trash btn-icon-prepend"></i></a></td>
                           <td class="py-1"><?php echo $serialNo++; ?></td>
                           <td class="py-1"><?php echo $pri_cod; ?></td>
                           <td><?php echo $pri_nam; ?></td>
@@ -274,6 +274,9 @@ if ($_SESSION["email"] == "") {
   </div>
   </div>
   <script>
+    function confirmDelete() {
+      return confirm('Are you sure you want to delete this item?');
+    }
     document.addEventListener('DOMContentLoaded', function() {
       // Get the input element for 50% discount
       const dis50Input = document.getElementById('dis50');
@@ -287,8 +290,6 @@ if ($_SESSION["email"] == "") {
       });
     });
   </script>
-
-
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <script src="../js/off-canvas.js"></script>
   <script src="../js/template.js"></script>

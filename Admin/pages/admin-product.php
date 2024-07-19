@@ -361,6 +361,10 @@ if ($_SESSION["email"] == "") {
       };
       fileReader.readAsDataURL(input.files[0]);
     }
+
+    function confirmDelete() {
+      return confirm('Are you sure you want to delete this item?');
+    }
   </script>
   <script src="../vendors/js/vendor.bundle.base.js"></script>
   <script src="../js/off-canvas.js"></script>

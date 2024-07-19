@@ -385,10 +385,8 @@ if ($_SESSION["email"] == "") {
                     ?>
                       <tbody>
                         <tr>
-                          <td><a href="admin-sales.php?sid=<?php echo $sale_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i></a>
-                          </td>
-                          <td><a href="admin-sales.php?sd_id=<?php echo $sale_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2">Delete<i class="ti-trash btn-icon-prepend"></i></a>
-                          </td>
+                          <td><a href="admin-sales.php?sid=<?php echo $sale_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i></a></td>
+                          <td><a href="admin-sales.php?sd_id=<?php echo $sale_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2" onclick="return confirmDelete();">Delete<i class="ti-trash btn-icon-prepend"></i></a></td>
                           <td class="py-1"><?php echo $serialNo++; ?></td>
                           <td><?php echo $sale_date; ?></td>
                           <td><?php echo $sale_cus; ?></td>
@@ -427,6 +425,10 @@ if ($_SESSION["email"] == "") {
   </div>
   </div>
   <script>
+    function confirmDelete() {
+      return confirm('Are you sure you want to delete this item?');
+    }
+
     function updateDiscount() {
       var selectedDiscount = document.getElementById("shdiscount").value;
       var productName = document.getElementById("proname").value;
