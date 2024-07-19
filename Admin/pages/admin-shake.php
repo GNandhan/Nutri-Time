@@ -74,7 +74,7 @@ if ($_SESSION["email"] == "") {
                       <div class="form-group">
                         <label>Customer Name</label>
                         <select class="form-control" style="border-radius: 16px;" name="cusname">
-                          <option selected>Select Customers</option>
+                          <option value="" selected>Select Customers</option>
                           <?php
                           $query = mysqli_query($conn, "SELECT * FROM customer");
                           while ($row = mysqli_fetch_assoc($query)) {
@@ -158,7 +158,8 @@ if ($_SESSION["email"] == "") {
                     <div class="col-lg col-md col-sm col-7">
                       <div class="form-group">
                         <label>Wellness Coach</label>
-                        <input type="text" class="form-control" style="border-radius: 16px;" name="shassoc" placeholder="Enter Asssociate name" value="<?php echo $sh_assoc1; ?>" required>
+                        <input type="hidden" id="cust_invited" name="cust_invited" value="">
+                        <input type="text" class="form-control" style="border-radius: 16px;" id="wellness_coach" name="shassoc" placeholder="Enter Asssociate name" value="<?php echo $sh_assoc1; ?>" required>
                       </div>
                     </div>
                     <div class="col-lg col-md col-sm col-5">
@@ -425,6 +426,7 @@ if ($_SESSION["email"] == "") {
               </div>
             </div>
           </div>
+          <!-- Table ends -->
         </div>
       </div>
     </div>
@@ -513,6 +515,40 @@ if ($_SESSION["email"] == "") {
       return confirm('Are you sure you want to delete this Shake?');
     }
   </script>
+  <script>
+    $(document).ready(function() {
+      $('select[name="cusname"]').change(function() {
+        var customerName = $(this).val();
+
+        if (customerName) {
+          $.ajax({
+            type: 'POST',
+            url: 'get_customer_invited.php',
+            data: {
+              customerName: customerName
+            },
+            dataType: 'json',
+            success: function(response) {
+              if (response && response.cust_invited) {
+                $('#cust_invited').val(response.cust_invited);
+                $('#wellness_coach').val(response.cust_invited); // Update the Wellness Coach field
+              } else {
+                $('#cust_invited').val('');
+                $('#wellness_coach').val('');
+              }
+            },
+            error: function(xhr, status, error) {
+              console.log(error);
+            }
+          });
+        } else {
+          $('#cust_invited').val('');
+          $('#wellness_coach').val('');
+        }
+      });
+    });
+  </script>
+
   <script src="../js/off-canvas.js"></script>
   <script src="../js/hoverable-collapse.js"></script>
   <script src="../js/template.js"></script>
