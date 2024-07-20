@@ -56,7 +56,7 @@ if ($_SESSION["email"] == "") {
                         $cus_bmr = $c_row['cust_bmr'];
                         $cus_bmi = $c_row['cust_bmi'];
                         $cus_mm = $c_row['cust_mm'];
-                        $cus_tsf = $c_row['cust_tsf'];
+                        $cus_tcf = $c_row['cust_tcf'];
                         $cus_wake = $c_row['cust_waketime'];
                         $cus_tea = $c_row['cust_tea'];
                         $cus_break = $c_row['cust_breakfast'];
@@ -174,7 +174,7 @@ if ($_SESSION["email"] == "") {
                                                 <li class="card-description">BMR : <span style="font-weight:bold; color:black;"><?php echo $cus_bmr; ?></span></li>
                                                 <li class="card-description">BMI : <span style="font-weight:bold; color:black;"><?php echo $cus_bmi; ?></span></li>
                                                 <li class="card-description">Muscle Mass : <span style="font-weight:bold; color:black;"><?php echo $cus_mm; ?></span></li>
-                                                <li class="card-description">TSF : <span style="font-weight:bold; color:black;"><?php echo $cus_tsf; ?></span></li>
+                                                <li class="card-description">TCF : <span style="font-weight:bold; color:black;"><?php echo $cus_tcf; ?></span></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -282,11 +282,23 @@ if ($_SESSION["email"] == "") {
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <tr>
+                                                    <td class="border-right" style="font-weight:bolder; color:black;">1</td>
+                                                    <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $cus_bmi; ?></td>
+                                                    <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $cus_bmr; ?></td>
+                                                    <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $cus_vcf; ?></td>
+                                                    <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $cus_tcf; ?></td>
+                                                    <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $cus_fat; ?></td>
+                                                    <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $cus_bodyage; ?></td>
+                                                    <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $cus_weight; ?></td>
+                                                    <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $cus_mm; ?></td>
+                                                    <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $cus_date; ?></td>
+                                                </tr>
                                                 <?php
-                                                $serial_number = 1; // Initialize serial number
+                                                $serial_number = 2; // Initialize serial number
                                                 foreach ($bmr_history as $bmr_item) { ?>
                                                     <tr>
-                                                        <td><?php echo $serial_number; ?></td>
+                                                        <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $serial_number; ?></td>
                                                         <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_bmi']; ?></td>
                                                         <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_bmr']; ?></td>
                                                         <td class="border-right" style="font-weight:bolder; color:black;"><?php echo $bmr_item['cust_vcf']; ?></td>
