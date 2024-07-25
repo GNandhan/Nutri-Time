@@ -249,6 +249,7 @@ if ($_SESSION["email"] == "") {
                       <tr>
                         <th>Edit</th>
                         <th>Delete</th>
+                        <th>Stock History</th>
                         <th>Slno</th>
                         <th>Stock Transfer Date</th>
                         <th>Product</th>
@@ -262,6 +263,7 @@ if ($_SESSION["email"] == "") {
                     <?php
                     $sql = mysqli_query($conn, "SELECT * FROM stock ORDER BY stock_id ");
                     $serialNo = 1;
+                    $displayedStockLocation = array(); // Initialize the array to keep track of displayed Stock location
                     while ($row = mysqli_fetch_assoc($sql)) {
                       $stock_id = $row['stock_id'];
                       $stock_product = $row['stock_proname'];
@@ -277,22 +279,87 @@ if ($_SESSION["email"] == "") {
                         $currentQuantity = $currentQuantityRow['pro_curquantity'];
                       }
 
+                      if (!in_array($stock_location, $displayedStockLocation)) {
+                        $displayedStockLocation[] = $stock_location; // Add the stock location to the array
                     ?>
-                      <tbody>
-                        <tr>
-                          <td><a href="admin-stocktrans.php?stoid=<?php echo $stock_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i></a></td>
-                          <td><a href="admin-stocktrans.php?stod_id=<?php echo $stock_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2" onclick="return confirmDelete();">Delete<i class="ti-trash btn-icon-prepend"></i></a></td>
-                          <td class="py-1"><?php echo $serialNo++; ?></td>
-                          <td><?php echo $stock_date; ?></td>
-                          <td class="py-1"><?php echo $stock_product; ?></td>
-                          <td><?php echo $stock_quan; ?></td>
-                          <td><?php echo $currentQuantity; ?></td>
-                          <td><?php echo $stock_location; ?></td>
-                          <td><?php echo $stock_price; ?></td>
-                          <td><?php echo $stock_total; ?></td>
-                        </tr>
-                      </tbody>
+                        <tbody>
+                          <tr>
+                            <td><a href="admin-stocktrans.php?stoid=<?php echo $stock_id; ?>" class="btn btn-inverse-secondary btn-icon-text p-2">Edit<i class="ti-pencil-alt btn-icon-append"></i></a></td>
+                            <td><a href="admin-stocktrans.php?stod_id=<?php echo $stock_id; ?>" class="btn btn-inverse-danger btn-icon-text p-2" onclick="return confirmDelete();">Delete<i class="ti-trash btn-icon-prepend"></i></a></td>
+                            <td><a href="admin-stocktrans.php?cusmdid=<?php echo $stock_id; ?>" class="btn btn-inverse-primary btn-icon-text p-3" data-toggle="modal" data-target="#exampleModal_<?php echo $stock_id; ?>">Stock History</a></td>
+                            <td class="py-1"><?php echo $serialNo++; ?></td>
+                            <td><?php echo $stock_date; ?></td>
+                            <td class="py-1"><?php echo $stock_product; ?></td>
+                            <td><?php echo $stock_quan; ?></td>
+                            <td><?php echo $currentQuantity; ?></td>
+                            <td><?php echo $stock_location; ?></td>
+                            <td><?php echo $stock_price; ?></td>
+                            <td><?php echo $stock_total; ?></td>
+                          </tr>
+                        </tbody>
+                        <div class="modal fade" id="exampleModal_<?php echo $stock_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-lg"> <!-- Adjust modal size if needed -->
+                            <div class="modal-content" style="border-radius:15px;">
+                              <div class="modal-header">
+                                <h3 class="modal-title" id="exampleModalLabel">Shake History</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              </div>
+                              <div class="modal-body">
+                                <div class="col-lg col-md col-sm col">
+                                  <h3>Branch : <span style="font-weight: bold;"> <?php echo $stock_location; ?></span></h3>
+                                  <div class="row border-bottom mt-4">
+                                    <div class="col-lg col-md col-sm col h4">Slno</div>
+                                    <div class="col-lg col-md col-sm col h4">Stock Transfer Date</div>
+                                    <div class="col-lg col-md col-sm col h4">Product</div>
+                                    <div class="col-lg col-md col-sm col h4">Quantity</div>
+                                    <div class="col-lg col-md col-sm col h4">Current Quantity</div>
+                                    <div class="col-lg col-md col-sm col h4">Location/Associate</div>
+                                    <div class="col-lg col-md col-sm col h4">Price</div>
+                                    <div class="col-lg col-md col-sm col h4">Total</div>
+                                  </div>
+                                  <?php
+                                  // Query to fetch all shakes for the current customer
+                                  $customer_shakes_sql = mysqli_query($conn, "SELECT * FROM stock WHERE stock_associate = '$stock_location'");
+                                  $serialNoModal = 1;
+                                  while ($customer_shake = mysqli_fetch_assoc($customer_shakes_sql)) {
+                                    $sto_proname_modal = $customer_shake['stock_proname'];
+                                    $sto_qua_modal = $customer_shake['stock_quantity'];
+                                    $sto_assoc_modal = $customer_shake['stock_associate'];
+                                    $sto_price_modal = $customer_shake['stock_price'];
+                                    $sto_total_modal = $customer_shake['stock_total'];
+                                    $sto_date_modal = $customer_shake['stock_date'];
+                                    // Fetch current quantity from the price table based on the product name
+                                    $currentQuantityM = 0; // Default value if no quantity found
+                                    $currentQuantityQueryM = mysqli_query($conn, "SELECT pro_curquantity FROM price WHERE pro_name = '$stock_product'");
+                                    if ($currentQuantityRowM = mysqli_fetch_assoc($currentQuantityQueryM)) {
+                                      $currentQuantityM = $currentQuantityRowM['pro_curquantity'];
+                                    }
+                                  ?>
+                                    <div class="row mt-2">
+                                      <div class="col-lg"><?php echo $serialNoModal++; ?></div>
+                                      <div class="col-lg"><?php echo $sto_date_modal; ?></div>
+                                      <div class="col-lg"><?php echo $sto_proname_modal; ?></div>
+                                      <div class="col-lg"><?php echo $sto_qua_modal; ?></div>
+                                      <div class="col-lg"><?php echo $currentQuantityM; ?></div>
+                                      <div class="col-lg"><?php echo $sto_assoc_modal; ?></div>
+                                      <div class="col-lg"><?php echo $sto_price_modal; ?></div>
+                                      <div class="col-lg"><?php echo $sto_total_modal; ?></div>
+                                    </div>
+                                    <hr>
+                                  <?php
+                                  }
+                                  ?>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" name="submitpay" class="btn btn-primary">Save changes</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                     <?php
+                      }
                     }
                     ?>
                   </table>

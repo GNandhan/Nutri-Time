@@ -883,7 +883,7 @@ if ($_SESSION["email"] == "") {
         </div>
       </footer>
     </div>
-  </div>
+  </div>  
   </div>
   <script>
     function confirmDelete() {

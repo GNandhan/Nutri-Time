@@ -320,7 +320,7 @@ if ($_SESSION["email"] == "") {
                       $sh_name = $row['shake_name'];
                       $sh_assoc = $row['shake_assoc'];
                       $sh_goal = $row['shake_goal'];
-                      $sh_recipe = $row['shake_recipes'];
+                      $sh_recipe = $rishhhhhow['shake_recipes'];
                       $sh_mrp = $row['shake_mrp'];
                       $sh_scoop = $row['shake_scoops'];
                       $sh_extra = $row['shake_extra'];
@@ -548,10 +548,8 @@ if ($_SESSION["email"] == "") {
       });
     });
   </script>
-
   <script src="../js/off-canvas.js"></script>
   <script src="../js/hoverable-collapse.js"></script>
   <script src="../js/template.js"></script>
 </body>
-
 </html>
