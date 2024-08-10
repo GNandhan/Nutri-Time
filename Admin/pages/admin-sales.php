@@ -9,7 +9,6 @@ if ($_SESSION["email"] == "") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,7 +18,6 @@ if ($_SESSION["email"] == "") {
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
   <link rel="shortcut icon" href="../images/icon-small.png" />
 </head>
-
 <body>
   <!-- code for getteing the subcategory as per the actegory selected -->
   <div class="container-scroller">
@@ -31,7 +29,6 @@ if ($_SESSION["email"] == "") {
       $saleid = $_GET['sid'];
       $s_query = mysqli_query($conn, "SELECT * FROM sales WHERE sales_id = '$saleid'");
       $s_row1 = mysqli_fetch_array($s_query);
-
       // Populate variables with fetched data
       $sale_id1 = $s_row1['sales_id'];
       $sale_proid1 = $s_row1['sales_proid'];
@@ -75,7 +72,6 @@ if ($_SESSION["email"] == "") {
     <script>
       // Define a JavaScript object to store material prices
       var materialPrices = <?php echo json_encode($material_prices); ?>;
-
       // JavaScript to update the price, product code, category, subcategory, and purchase price fields
       function updatePrice() {
         var selectedMaterial = document.getElementById("proname").value;
@@ -86,11 +82,9 @@ if ($_SESSION["email"] == "") {
         var vpInput = document.getElementById("provp");
         var quaInput = document.getElementById("procurqua");
         var proidInput = document.getElementById("proid");
-
         // Set the price, code, category, subcategory, and purchase price fields based on selected material
         if (selectedMaterial && materialPrices[selectedMaterial]) {
           priceInput.value = materialPrices[selectedMaterial]; // Set MRP value
-
           // AJAX request to fetch product details based on selected product name
           $.post('get_product_details.php', {
             product_name: selectedMaterial
@@ -151,7 +145,6 @@ if ($_SESSION["email"] == "") {
                         </select>
                       </div>
                     </div>
-
                     <div class="col-lg col-md col-sm col-12">
                       <div class="form-group">
                         <label>Product Code</label>
@@ -246,7 +239,6 @@ if ($_SESSION["email"] == "") {
           </div>
         </div>
         <!-- PHP CODE FOR INSERTING THE DATA -->
-
         <?php
         if (isset($_POST["submitp"])) {
           $sal_proname = $_POST["proname"];
@@ -274,7 +266,6 @@ if ($_SESSION["email"] == "") {
           // Calculate total including GST
           $sal_total = $subtotal;
           $sal_proid = $_POST["proid"]; // Get the product ID
-
           // Retrieve the current quantity from the price table for the given product
           $sal_curquan_query = mysqli_query($conn, "SELECT pro_curquantity FROM price WHERE pro_name = '$sal_proname'");
           $sal_curquan_row = mysqli_fetch_assoc($sal_curquan_query);
@@ -304,10 +295,8 @@ if ($_SESSION["email"] == "") {
             $price_row = mysqli_fetch_assoc($price_query);
             $pro_curquantity = $price_row['pro_curquantity'];
             $pro_scoop = $price_row['pro_scoop'];
-
             // Calculate pro_scoopqua
             $pro_scoopqua = $pro_curquantity * $pro_scoop;
-
             // Update pro_scoopqua in the price table
             $update_price = mysqli_query($conn, "UPDATE price SET pro_scoopqua = '$pro_scoopqua' WHERE pro_name = '$sal_proname'");
             if ($update_price) {
@@ -428,7 +417,6 @@ if ($_SESSION["email"] == "") {
     function confirmDelete() {
       return confirm('Are you sure you want to delete this item?');
     }
-
     function updateDiscount() {
       var selectedDiscount = document.getElementById("shdiscount").value;
       var productName = document.getElementById("proname").value;
@@ -446,5 +434,4 @@ if ($_SESSION["email"] == "") {
   <script src="../js/off-canvas.js"></script>
   <script src="../js/template.js"></script>
 </body>
-
 </html>
